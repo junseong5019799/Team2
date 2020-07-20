@@ -28,16 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // frmMItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.ClientSize = new System.Drawing.Size(1534, 861);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "frmMItem";
             this.Text = "제품 관리";
             this.Load += new System.EventHandler(this.frmMItem_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
