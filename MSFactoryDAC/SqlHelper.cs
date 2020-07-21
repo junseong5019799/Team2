@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeePrince2ndDAC
+namespace WinMSFactory
 {
     public class SqlHelper : ConnectionAccess, IDisposable
     {
