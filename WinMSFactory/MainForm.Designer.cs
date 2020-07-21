@@ -134,7 +134,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(57, 62);
+            this.toolStripButton2.Size = new System.Drawing.Size(217, 19);
             this.toolStripButton2.Text = "ListForm";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -146,7 +146,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton4 });
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 65);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(219, 752);
@@ -200,6 +200,7 @@
             this.mainTabControl1.Size = new System.Drawing.Size(1342, 23);
             this.mainTabControl1.TabIndex = 6;
             this.mainTabControl1.Visible = false;
+            this.mainTabControl1.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
             // 
             // toolStripButton1
             // 
@@ -209,7 +210,31 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 62);
             this.toolStripButton1.Text = "toolStripButton1";
-         
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 23);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 23);
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 23);
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 23);
+            // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(23, 23);
             // 
             // MainForm
             // 
