@@ -80,47 +80,17 @@
     <Compile Include="BaseForm\PopUpDialogForm.Designer.cs">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMCopyForm.cs">
+    <Compile Include="BOMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMCopyForm.Designer.cs">
-      <DependentUpon>BOMCopyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMForm.Designer.cs">
+    <Compile Include="BOMForm.Designer.cs">
       <DependentUpon>BOMForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.cs">
+    <Compile Include="BOMSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
-      <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.Designer.cs">
+    <Compile Include="BOMSelectForm.Designer.cs">
       <DependentUpon>BOMSelectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Nam\frmAStop.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\frmAStop.Designer.cs">
-      <DependentUpon>frmAStop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Nam\frmAWoHis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\frmAWoHis.Designer.cs">
-      <DependentUpon>frmAWoHis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Nam\frmPStock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\frmPStock.Designer.cs">
-      <DependentUpon>frmPStock.cs</DependentUpon>
     </Compile>
     <Compile Include="MyControl\MainTabControl.cs">
       <SubType>Component</SubType>
@@ -138,22 +108,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ReleaseListForm.cs" />
-    <Compile Include="ReleaseListForm.Designer.cs">
-      <DependentUpon>ReleaseListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReleaseOutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReleaseOutForm.Designer.cs">
-      <DependentUpon>ReleaseOutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReleasePlanForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReleasePlanForm.Designer.cs">
-      <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
@@ -175,22 +129,22 @@
       <DependentUpon>FromToDateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\DgvUtil.cs" />
-    <Compile Include="Nam\frmABad.cs">
+    <Compile Include="frmABad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmABad.Designer.cs">
+    <Compile Include="frmABad.Designer.cs">
       <DependentUpon>frmABad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmMItem.cs">
+    <Compile Include="frmMItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmMItem.Designer.cs">
+    <Compile Include="frmMItem.Designer.cs">
       <DependentUpon>frmMItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmMItemGrp.cs">
+    <Compile Include="frmMItemGrp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\.Designer.cs">
+    <Compile Include=".Designer.cs">
       <DependentUpon>frmMItemGrp.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -220,26 +174,11 @@
     <EmbeddedResource Include="BaseForm\PopUpDialogForm.resx">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMCopyForm.resx">
-      <DependentUpon>BOMCopyForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMForm.resx">
+    <EmbeddedResource Include="BOMForm.resx">
       <DependentUpon>BOMForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
-      <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectForm.resx">
+    <EmbeddedResource Include="BOMSelectForm.resx">
       <DependentUpon>BOMSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmAStop.resx">
-      <DependentUpon>frmAStop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmAWoHis.resx">
-      <DependentUpon>frmAWoHis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmPStock.resx">
-      <DependentUpon>frmPStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DataGridViewControl.resx">
       <DependentUpon>DataGridViewControl.cs</DependentUpon>
@@ -247,13 +186,13 @@
     <EmbeddedResource Include="MyControl\FromToDateControl.resx">
       <DependentUpon>FromToDateControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmABad.resx">
+    <EmbeddedResource Include="frmABad.resx">
       <DependentUpon>frmABad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmMItem.resx">
+    <EmbeddedResource Include="frmMItem.resx">
       <DependentUpon>frmMItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmMItemGrp.resx">
+    <EmbeddedResource Include="frmMItemGrp.resx">
       <DependentUpon>frmMItemGrp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -263,15 +202,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReleaseListForm.resx">
-      <DependentUpon>ReleaseListForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReleaseOutForm.resx">
-      <DependentUpon>ReleaseOutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReleasePlanForm.resx">
-      <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
