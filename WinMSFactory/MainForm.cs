@@ -79,5 +79,15 @@ namespace WinMSFactory
             if ((mainTabControl1.SelectedTab != null) && (mainTabControl1.SelectedTab.Tag != null))
                 (mainTabControl1.SelectedTab.Tag as Form).Select();
         }
-    }
+
+		private void toolStripButton11_Click(object sender, EventArgs e)
+		{
+            SystemCodeForm frm = new SystemCodeForm();
+            frm.MdiParent = this;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            mainTabControl1.Visible = true;
+            frm.Show();
+        }
+	}
 }

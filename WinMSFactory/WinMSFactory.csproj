@@ -94,6 +94,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SystemCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemCodeForm.Designer.cs">
+      <DependentUpon>SystemCodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="MyControl\DataGridViewControl.cs">
       <SubType>Component</SubType>
