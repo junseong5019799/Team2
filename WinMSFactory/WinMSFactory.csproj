@@ -191,5 +191,15 @@
   <ItemGroup>
     <None Include="Resources\Delete_now.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSFactoryDAC\MSFactoryDAC.csproj">
+      <Project>{03a1256e-17ee-4962-b779-a7e6892368e3}</Project>
+      <Name>MSFactoryDAC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSFactoryVO\MSFactoryVO.csproj">
+      <Project>{d79c3363-d6eb-4be8-9f70-dab5a07f0477}</Project>
+      <Name>MSFactoryVO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

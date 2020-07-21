@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMSFactory", "WinMSFactory\WinMSFactory.csproj", "{BC51A06A-F34A-4FEC-BC60-D776A3FEF1D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSFactoryVO", "MSFactoryVO\MSFactoryVO.csproj", "{D79C3363-D6EB-4BE8-9F70-DAB5A07F0477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSFactoryDAC", "MSFactoryDAC\MSFactoryDAC.csproj", "{03A1256E-17EE-4962-B779-A7E6892368E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BC51A06A-F34A-4FEC-BC60-D776A3FEF1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC51A06A-F34A-4FEC-BC60-D776A3FEF1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC51A06A-F34A-4FEC-BC60-D776A3FEF1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D79C3363-D6EB-4BE8-9F70-DAB5A07F0477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D79C3363-D6EB-4BE8-9F70-DAB5A07F0477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D79C3363-D6EB-4BE8-9F70-DAB5A07F0477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D79C3363-D6EB-4BE8-9F70-DAB5A07F0477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A1256E-17EE-4962-B779-A7E6892368E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A1256E-17EE-4962-B779-A7E6892368E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A1256E-17EE-4962-B779-A7E6892368E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A1256E-17EE-4962-B779-A7E6892368E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
