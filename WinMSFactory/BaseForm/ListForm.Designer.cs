@@ -31,7 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.GuidLabel1 = new System.Windows.Forms.Label();
             this.GuidLabel2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +48,7 @@
             this.GuidLabel1.AutoSize = true;
             this.GuidLabel1.Location = new System.Drawing.Point(72, 33);
             this.GuidLabel1.Name = "GuidLabel1";
-            this.GuidLabel1.Size = new System.Drawing.Size(237, 18);
+            this.GuidLabel1.Size = new System.Drawing.Size(199, 16);
             this.GuidLabel1.TabIndex = 4;
             this.GuidLabel1.Text = "검색 영역 (필요에 따라 높이 조절 가능)";
             this.GuidLabel1.Visible = false;
@@ -59,27 +58,18 @@
             this.GuidLabel2.AutoSize = true;
             this.GuidLabel2.Location = new System.Drawing.Point(121, 259);
             this.GuidLabel2.Name = "GuidLabel2";
-            this.GuidLabel2.Size = new System.Drawing.Size(48, 18);
+            this.GuidLabel2.Size = new System.Drawing.Size(44, 16);
             this.GuidLabel2.TabIndex = 3;
             this.GuidLabel2.Text = "DGV1";
             this.GuidLabel2.Visible = false;
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1534, 761);
-            this.panel2.TabIndex = 4;
-            // 
             // ListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1534, 761);
             this.Controls.Add(this.GuidLabel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ListForm";
@@ -96,6 +86,5 @@
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.Label GuidLabel1;
         protected System.Windows.Forms.Label GuidLabel2;
-        private System.Windows.Forms.Panel panel2;
     }
 }
