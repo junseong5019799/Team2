@@ -36,30 +36,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            this.panel2.Controls.SetChildIndex(this.label11, 0);
-            this.panel2.Controls.SetChildIndex(this.label8, 0);
-            this.panel2.Controls.SetChildIndex(this.label7, 0);
-            this.panel2.Controls.SetChildIndex(this.label6, 0);
-            this.panel2.Controls.SetChildIndex(this.label10, 0);
-            this.panel2.Controls.SetChildIndex(this.label5, 0);
-            this.panel2.Controls.SetChildIndex(this.label9, 0);
-            this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel2.Controls.SetChildIndex(this.label2, 0);
             // 
             // label2
             // 
@@ -142,10 +122,6 @@
             this.Name = "BOMForm";
             this.Text = "BOMForm";
             this.Load += new System.EventHandler(this.BOMForm_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

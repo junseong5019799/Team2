@@ -28,20 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // frmABad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(1534, 761);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "frmABad";
+            this.Text = "불량 현황";
             this.Load += new System.EventHandler(this.frmABad_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
