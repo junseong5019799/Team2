@@ -118,7 +118,7 @@
         protected System.Windows.Forms.Label Guidlabel1;
         protected System.Windows.Forms.Label Guidlabel2;
         protected System.Windows.Forms.Label Guidlabel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        protected System.Windows.Forms.Panel panel2;
+        protected System.Windows.Forms.Panel panel3;
     }
 }

@@ -28,7 +28,23 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this.panel1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// Guidlabel1
+			// 
+			this.Guidlabel1.Location = new System.Drawing.Point(284, 78);
+			// 
+			// SystemCodeForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.ClientSize = new System.Drawing.Size(1534, 761);
+			this.Name = "SystemCodeForm";
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
 		}
 
 		#endregion
