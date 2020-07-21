@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.fromToDateControl2 = new WinMSFactory.Control.FromToDateControl();
+            this.buttonControl2 = new WinMSFactory.ButtonControl();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
+            this.buttonControl3 = new WinMSFactory.ButtonControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -41,25 +49,18 @@
             this.chkFactory = new System.Windows.Forms.CheckBox();
             this.chkCoporation = new System.Windows.Forms.CheckBox();
             this.rdoNameSearch = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
-            this.buttonControl3 = new WinMSFactory.ButtonControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.fromToDateControl2 = new WinMSFactory.Control.FromToDateControl();
-            this.buttonControl2 = new WinMSFactory.ButtonControl();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
@@ -73,23 +74,23 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Location = new System.Drawing.Point(0, 176);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -113,6 +114,82 @@
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(831, 32);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(151, 16);
+            this.radioButton1.TabIndex = 32;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "비가동 종료일자로 검색";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.fromToDateControl2);
+            this.panel1.Controls.Add(this.buttonControl2);
+            this.panel1.Location = new System.Drawing.Point(831, 64);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(318, 38);
+            this.panel1.TabIndex = 33;
+            // 
+            // fromToDateControl2
+            // 
+            this.fromToDateControl2.Location = new System.Drawing.Point(1, 4);
+            this.fromToDateControl2.Name = "fromToDateControl2";
+            this.fromToDateControl2.Size = new System.Drawing.Size(205, 30);
+            this.fromToDateControl2.TabIndex = 26;
+            // 
+            // buttonControl2
+            // 
+            this.buttonControl2.BackColor = System.Drawing.Color.White;
+            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl2.Location = new System.Drawing.Point(212, 7);
+            this.buttonControl2.Name = "buttonControl2";
+            this.buttonControl2.Size = new System.Drawing.Size(95, 22);
+            this.buttonControl2.TabIndex = 26;
+            this.buttonControl2.Text = "검색";
+            this.buttonControl2.UseVisualStyleBackColor = false;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(430, 31);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(151, 16);
+            this.radioButton2.TabIndex = 32;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "비가동 시작일자로 검색";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.fromToDateControl1);
+            this.panel4.Controls.Add(this.buttonControl3);
+            this.panel4.Location = new System.Drawing.Point(430, 63);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(318, 38);
+            this.panel4.TabIndex = 33;
+            // 
+            // fromToDateControl1
+            // 
+            this.fromToDateControl1.Location = new System.Drawing.Point(1, 4);
+            this.fromToDateControl1.Name = "fromToDateControl1";
+            this.fromToDateControl1.Size = new System.Drawing.Size(205, 30);
+            this.fromToDateControl1.TabIndex = 26;
+            // 
+            // buttonControl3
+            // 
+            this.buttonControl3.BackColor = System.Drawing.Color.White;
+            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl3.Location = new System.Drawing.Point(212, 7);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(95, 22);
+            this.buttonControl3.TabIndex = 26;
+            this.buttonControl3.Text = "검색";
+            this.buttonControl3.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
@@ -203,82 +280,6 @@
             this.rdoNameSearch.Text = "명칭으로 검색";
             this.rdoNameSearch.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(430, 31);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(151, 16);
-            this.radioButton2.TabIndex = 32;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "비가동 시작일자로 검색";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.fromToDateControl1);
-            this.panel4.Controls.Add(this.buttonControl3);
-            this.panel4.Location = new System.Drawing.Point(430, 63);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(318, 38);
-            this.panel4.TabIndex = 33;
-            // 
-            // fromToDateControl1
-            // 
-            this.fromToDateControl1.Location = new System.Drawing.Point(1, 4);
-            this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(205, 30);
-            this.fromToDateControl1.TabIndex = 26;
-            // 
-            // buttonControl3
-            // 
-            this.buttonControl3.BackColor = System.Drawing.Color.White;
-            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl3.Location = new System.Drawing.Point(212, 7);
-            this.buttonControl3.Name = "buttonControl3";
-            this.buttonControl3.Size = new System.Drawing.Size(95, 22);
-            this.buttonControl3.TabIndex = 26;
-            this.buttonControl3.Text = "검색";
-            this.buttonControl3.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.fromToDateControl2);
-            this.panel1.Controls.Add(this.buttonControl2);
-            this.panel1.Location = new System.Drawing.Point(831, 64);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 38);
-            this.panel1.TabIndex = 33;
-            // 
-            // fromToDateControl2
-            // 
-            this.fromToDateControl2.Location = new System.Drawing.Point(1, 4);
-            this.fromToDateControl2.Name = "fromToDateControl2";
-            this.fromToDateControl2.Size = new System.Drawing.Size(205, 30);
-            this.fromToDateControl2.TabIndex = 26;
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.Color.White;
-            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(212, 7);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(95, 22);
-            this.buttonControl2.TabIndex = 26;
-            this.buttonControl2.Text = "검색";
-            this.buttonControl2.UseVisualStyleBackColor = false;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(831, 32);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(151, 16);
-            this.radioButton1.TabIndex = 32;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "비가동 종료일자로 검색";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // frmAStop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -295,12 +296,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
