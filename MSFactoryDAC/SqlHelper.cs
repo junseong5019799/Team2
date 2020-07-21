@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinMSFactory
+namespace MSFactoryDAC
 {
     public class SqlHelper : ConnectionAccess, IDisposable
     {

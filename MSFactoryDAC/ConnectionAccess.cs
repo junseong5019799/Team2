@@ -1,5 +1,4 @@
-﻿using log4net.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -10,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace WinMSFactory
+namespace MSFactoryDAC
 {
 	public abstract class ConnectionAccess
 	{
-		public static LoggingUtility log;
+		//public static LoggingUtility log;
 
 		protected string ConnectionString
 		{
@@ -50,17 +49,17 @@ namespace WinMSFactory
 			return str;
 		}
 
-		public static LoggingUtility GetLogger()
-		{
-			if (log == null)
-			{
-				if (!int.TryParse(GetXmlText("logDay"), out int logDay))
-					logDay = 30;
+		//public static LoggingUtility GetLogger()
+		//{
+		//	if (log == null)
+		//	{
+		//		if (!int.TryParse(GetXmlText("logDay"), out int logDay))
+		//			logDay = 30;
 
-				log = new LoggingUtility("CoffeePrince2nd", Level.Debug, logDay);
-			}
+		//		log = new LoggingUtility("CoffeePrince2nd", Level.Debug, logDay);
+		//	}
 
-			return log;
-		}
+		//	return log;
+		//}
 	}
 }
