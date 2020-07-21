@@ -208,7 +208,7 @@
             this.Controls.Add(this.label12);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "BOMForm";
-            this.Text = "BOMForm";
+            this.Text = "제품 목록";
             this.Load += new System.EventHandler(this.BOMForm_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.label12, 0);
