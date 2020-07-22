@@ -102,6 +102,7 @@
 			this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 290);
 			this.dataGridViewControl1.TabIndex = 0;
+			this.dataGridViewControl1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewControl1_CellValueChanged);
 			// 
 			// dataGridViewControl2
 			// 

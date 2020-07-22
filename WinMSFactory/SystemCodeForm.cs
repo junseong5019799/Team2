@@ -66,5 +66,10 @@ namespace WinMSFactory
 		{
 
 		}
+
+		private void dataGridViewControl1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
 	}
 }
