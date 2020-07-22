@@ -18,7 +18,7 @@ namespace WinMSFactory
 
         private void frmMItemGrp_Load(object sender, EventArgs e)
         {
-            //dgv.AddNewColumns("제품그룹 코드", "", 100, true);
+            //dgv.AddNewColumns("제품그룹 코드", "", 100, false);
             dgv.AddNewColumns("제품그룹 명칭", "", 100, true);
             dgv.AddNewColumns("사용여부", "", 100, true);
             dgv.AddNewColumns("비고1", "", 100, true);

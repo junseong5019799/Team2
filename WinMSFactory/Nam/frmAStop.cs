@@ -31,6 +31,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("공정명칭", "", 100, true);
             //dgv.AddNewColumns("비가동 코드", "", 100, true);
             dgv.AddNewColumns("비가동 명칭", "", 100, true);
+            dgv.AddNewColumns("비가동 비고", "", 100, true);
             dgv.AddNewColumns("비가동 시작 시각", "", 100, true);
             dgv.AddNewColumns("비가동 종료 시각", "", 100, true);
             dgv.AddNewColumns("최초등록시각", "", 100, true);

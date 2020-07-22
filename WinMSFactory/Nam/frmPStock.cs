@@ -20,10 +20,8 @@ namespace WinMSFactory
 
         private void frmPStock_Load(object sender, EventArgs e)
         {
-            dgv.AddNewColumns("재고번호", "", 100, true);
-            dgv.AddNewColumns("창고코드", "", 100, true);
+            dgv.AddNewColumns("재고번호", "", 100, false);
             dgv.AddNewColumns("창고명칭", "", 100, true);
-            dgv.AddNewColumns("품목코드", "", 100, true);
             dgv.AddNewColumns("품목명칭", "", 100, true);
             dgv.AddNewColumns("수량", "", 100, true);
             dgv.AddNewColumns("구분코드", "", 100, true);

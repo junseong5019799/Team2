@@ -18,7 +18,7 @@ namespace WinMSFactory
 
         private void frmABad_Load(object sender, EventArgs e)
         {
-            dgv.AddNewColumns("불량 번호", "", 100, true);
+            //dgv.AddNewColumns("불량 번호", "", 100, false);
             //dgv.AddNewColumns("법인코드", "", 100, true);
             dgv.AddNewColumns("법인명칭", "", 100, true);
             //dgv.AddNewColumns("공장코드", "", 100, true);
@@ -31,8 +31,6 @@ namespace WinMSFactory
             dgv.AddNewColumns("품목명칭", "", 100, true);
             //dgv.AddNewColumns("불량코드", "", 100, true);
             dgv.AddNewColumns("불량명칭", "", 100, true);
-            dgv.AddNewColumns("불량수량순번", "", 100, true);
-            dgv.AddNewColumns("사용여부", "", 100, true);
             dgv.AddNewColumns("최초등록시각", "", 100, true);
             dgv.AddNewColumns("최초등록사원", "", 100, true);
             dgv.AddNewColumns("최종등록시각", "", 100, true);

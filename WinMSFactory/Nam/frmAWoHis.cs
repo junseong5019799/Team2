@@ -21,7 +21,7 @@ namespace WinMSFactory
         private void frmAWoHis_Load(object sender, EventArgs e)
         {
             // 일부는 팝업창을 따로 만들어 보여줄 것
-            dgv.AddNewColumns("작업지시 번호", "", 100, true);
+            //dgv.AddNewColumns("작업지시 번호", "", 100, false);
             dgv.AddNewColumns("생산일자", "", 100, true);
             //dgv.AddNewColumns("법인코드", "", 100, true);
             dgv.AddNewColumns("법인명칭", "", 100, true);
@@ -39,6 +39,10 @@ namespace WinMSFactory
             dgv.AddNewColumns("작업자", "", 100, true);
             dgv.AddNewColumns("작업시작시간", "", 100, true);
             dgv.AddNewColumns("작업종료시간", "", 100, true);
+            dgv.AddNewColumns("최초등록시각", "", 100, true);
+            dgv.AddNewColumns("최초등록사원", "", 100, true);
+            dgv.AddNewColumns("최종등록시각", "", 100, true);
+            dgv.AddNewColumns("최종등록사원", "", 100, true);
         }
     }
 }

@@ -58,6 +58,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Size = new System.Drawing.Size(1534, 190);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             // 
@@ -84,12 +85,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv.Location = new System.Drawing.Point(0, 176);
+            this.dgv.Location = new System.Drawing.Point(0, 187);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 585);
+            this.dgv.Size = new System.Drawing.Size(1534, 622);
             this.dgv.TabIndex = 4;
             // 
             // groupBox1
@@ -100,9 +102,9 @@
             this.groupBox1.Controls.Add(this.rdoNumSearch);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.rdoNameSearch);
-            this.groupBox1.Location = new System.Drawing.Point(75, 23);
+            this.groupBox1.Location = new System.Drawing.Point(75, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(967, 127);
+            this.groupBox1.Size = new System.Drawing.Size(967, 135);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
@@ -111,9 +113,9 @@
             // 
             this.panel5.Controls.Add(this.radioButton3);
             this.panel5.Controls.Add(this.radioButton2);
-            this.panel5.Location = new System.Drawing.Point(815, 67);
+            this.panel5.Location = new System.Drawing.Point(815, 71);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(135, 33);
+            this.panel5.Size = new System.Drawing.Size(135, 35);
             this.panel5.TabIndex = 27;
             // 
             // radioButton3
@@ -121,7 +123,7 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(79, 6);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(44, 20);
+            this.radioButton3.Size = new System.Drawing.Size(46, 22);
             this.radioButton3.TabIndex = 20;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "No";
@@ -132,7 +134,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(11, 6);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(50, 20);
+            this.radioButton2.Size = new System.Drawing.Size(51, 22);
             this.radioButton2.TabIndex = 21;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Yes";
@@ -143,9 +145,9 @@
             this.panel4.Controls.Add(this.buttonControl1);
             this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(381, 69);
+            this.panel4.Location = new System.Drawing.Point(381, 73);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(314, 32);
+            this.panel4.Size = new System.Drawing.Size(314, 34);
             this.panel4.TabIndex = 26;
             // 
             // buttonControl1
@@ -154,7 +156,7 @@
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
             this.buttonControl1.Location = new System.Drawing.Point(216, 6);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(95, 22);
+            this.buttonControl1.Size = new System.Drawing.Size(95, 23);
             this.buttonControl1.TabIndex = 26;
             this.buttonControl1.Text = "검색";
             this.buttonControl1.UseVisualStyleBackColor = false;
@@ -164,15 +166,15 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(69, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 24);
+            this.comboBox1.Size = new System.Drawing.Size(143, 25);
             this.comboBox1.TabIndex = 25;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 9);
+            this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.Size = new System.Drawing.Size(64, 18);
             this.label1.TabIndex = 24;
             this.label1.Text = "품목 타입";
             // 
@@ -181,9 +183,9 @@
             this.panel2.Controls.Add(this.buttonControl2);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(46, 71);
+            this.panel2.Location = new System.Drawing.Point(46, 75);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(304, 31);
+            this.panel2.Size = new System.Drawing.Size(304, 33);
             this.panel2.TabIndex = 23;
             // 
             // buttonControl2
@@ -192,7 +194,7 @@
             this.buttonControl2.ForeColor = System.Drawing.Color.Black;
             this.buttonControl2.Location = new System.Drawing.Point(200, 4);
             this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(95, 22);
+            this.buttonControl2.Size = new System.Drawing.Size(95, 23);
             this.buttonControl2.TabIndex = 26;
             this.buttonControl2.Text = "검색";
             this.buttonControl2.UseVisualStyleBackColor = false;
@@ -201,7 +203,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(73, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
+            this.textBox1.Size = new System.Drawing.Size(121, 24);
             this.textBox1.TabIndex = 25;
             // 
             // label3
@@ -209,16 +211,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 16);
+            this.label3.Size = new System.Drawing.Size(34, 18);
             this.label3.TabIndex = 24;
             this.label3.Text = "품명";
             // 
             // rdoNumSearch
             // 
             this.rdoNumSearch.AutoSize = true;
-            this.rdoNumSearch.Location = new System.Drawing.Point(61, 31);
+            this.rdoNumSearch.Location = new System.Drawing.Point(61, 33);
             this.rdoNumSearch.Name = "rdoNumSearch";
-            this.rdoNumSearch.Size = new System.Drawing.Size(120, 20);
+            this.rdoNumSearch.Size = new System.Drawing.Size(138, 22);
             this.rdoNumSearch.TabIndex = 22;
             this.rdoNumSearch.TabStop = true;
             this.rdoNumSearch.Text = "제품 품명으로 검색";
@@ -227,9 +229,9 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(778, 31);
+            this.radioButton1.Location = new System.Drawing.Point(778, 33);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(109, 20);
+            this.radioButton1.Size = new System.Drawing.Size(125, 22);
             this.radioButton1.TabIndex = 17;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "사용 여부로 검색";
@@ -238,9 +240,9 @@
             // rdoNameSearch
             // 
             this.rdoNameSearch.AutoSize = true;
-            this.rdoNameSearch.Location = new System.Drawing.Point(369, 31);
+            this.rdoNameSearch.Location = new System.Drawing.Point(369, 33);
             this.rdoNameSearch.Name = "rdoNameSearch";
-            this.rdoNameSearch.Size = new System.Drawing.Size(117, 20);
+            this.rdoNameSearch.Size = new System.Drawing.Size(134, 22);
             this.rdoNameSearch.TabIndex = 17;
             this.rdoNameSearch.TabStop = true;
             this.rdoNameSearch.Text = "품목타입으로 검색";
@@ -248,8 +250,8 @@
             // 
             // frmMItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.ClientSize = new System.Drawing.Size(1534, 809);
             this.Controls.Add(this.dgv);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "frmMItem";
