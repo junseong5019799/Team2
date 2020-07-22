@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <settings>
+    <!--<![CDATA[]]> 형식으로 읽기 때문에 <![CDATA[]]> 형식으로 값 줘야함-->
+    <add key="MyDB"><![CDATA[Server=whyfi8888.ddns.net,11433;Database=TEAM2;Uid=team2;Pwd=team2]]></add>
+    <add key="logDay"><![CDATA[30]]></add>
+  </settings>
+</configuration>

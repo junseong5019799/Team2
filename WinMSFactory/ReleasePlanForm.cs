@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory.BaseForm
+namespace WinMSFactory
 {
-    public partial class Form1 : Form
+    public partial class ReleasePlanForm : ListForm
     {
-        public Form1()
+        public ReleasePlanForm()
         {
             InitializeComponent();
         }

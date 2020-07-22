@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace WinMSFactory
 {
-    public partial class ReleaseListForm : ListForm
+    public partial class CompanyForm : ListForm
     {
-        public ReleaseListForm()
+        //거래처관리폼
+        public CompanyForm()
         {
             InitializeComponent();
         }
