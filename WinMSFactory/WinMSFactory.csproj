@@ -175,6 +175,7 @@
     <Compile Include="ReleaseForm\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +275,9 @@
     <EmbeddedResource Include="ReleaseForm\ReleasePlanForm.resx">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystemCodeForm.resx">
+      <DependentUpon>SystemCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -304,5 +308,6 @@
       <Name>MSFactoryVO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
