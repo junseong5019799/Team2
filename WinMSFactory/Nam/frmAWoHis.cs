@@ -20,8 +20,32 @@ namespace WinMSFactory
 
         private void frmAWoHis_Load(object sender, EventArgs e)
         {
-            // 일부는 팝업창을 따로 만들어 보여줄 것
-            //dgv.AddNewColumns("작업지시 번호", "", 100, false);
+            // 일부는 팝업창을 따로 만들어 보여줄 것 (보류)
+            FirstGridViewColumns();
+            SecondGridViewColumns();
+            ThirdGridViewColumns();
+        }
+
+        private void ThirdGridViewColumns()
+        {
+            //dgv3.AddNewColumns("작업지시번호", "", 100, false);
+            //dgv3.AddNewColumns("비가동 코드", "", 100, false);
+            dgv3.AddNewColumns("비가동 일자", "", 100, true);
+            dgv3.AddNewColumns("비가동 명칭", "", 100, true);
+            dgv3.AddNewColumns("비가동 시작시간", "", 100, true);
+            dgv3.AddNewColumns("비가동 종료시간", "", 100, true);
+        }
+
+        private void SecondGridViewColumns()
+        {
+            dgv2.AddNewColumns("불량코드", "", 100, false);
+            dgv2.AddNewColumns("불량명", "", 100, true);
+            dgv2.AddNewColumns("불량 수량", "", 100, true);
+        }
+
+        private void FirstGridViewColumns()
+        {
+            dgv.AddNewColumns("작업지시 번호", "", 100, true);
             dgv.AddNewColumns("생산일자", "", 100, true);
             //dgv.AddNewColumns("법인코드", "", 100, true);
             dgv.AddNewColumns("법인명칭", "", 100, true);
@@ -39,10 +63,6 @@ namespace WinMSFactory
             dgv.AddNewColumns("작업자", "", 100, true);
             dgv.AddNewColumns("작업시작시간", "", 100, true);
             dgv.AddNewColumns("작업종료시간", "", 100, true);
-            dgv.AddNewColumns("최초등록시각", "", 100, true);
-            dgv.AddNewColumns("최초등록사원", "", 100, true);
-            dgv.AddNewColumns("최종등록시각", "", 100, true);
-            dgv.AddNewColumns("최종등록사원", "", 100, true);
         }
     }
 }
