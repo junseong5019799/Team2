@@ -157,6 +157,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReleaseOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReleaseOutForm.Designer.cs">
+      <DependentUpon>ReleaseOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReleasePlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReleasePlanForm.Designer.cs">
+      <DependentUpon>ReleasePlanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +258,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReleaseOutForm.resx">
+      <DependentUpon>ReleaseOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReleasePlanForm.resx">
+      <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
