@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory
+namespace WinMSFactory.BOM_Nam_
 {
-    public partial class BOMSelectForm : BasicForm
+    public partial class BOMSelectAllForm : BasicForm
     {
-        public BOMSelectForm()
+        public BOMSelectAllForm()
         {
             InitializeComponent();
+        }
+
+        private void BOMSelectAllForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

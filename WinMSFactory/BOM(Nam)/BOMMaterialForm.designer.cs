@@ -1,6 +1,6 @@
 ﻿namespace WinMSFactory
 {
-    partial class BOMForm
+    partial class BOMMaterialForm
     {
         /// <summary>
         /// Required designer variable.
@@ -51,7 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.buttonControl2 = new WinMSFactory.ButtonControl();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonControl3 = new WinMSFactory.ButtonControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
@@ -59,15 +59,17 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonControl3);
             this.panel2.Controls.Add(this.buttonControl2);
             this.panel2.Controls.SetChildIndex(this.buttonControl2, 0);
+            this.panel2.Controls.SetChildIndex(this.buttonControl3, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
             // GuidLabel1
             // 
             this.GuidLabel1.Location = new System.Drawing.Point(736, 140);
             this.GuidLabel1.Size = new System.Drawing.Size(213, 12);
-            this.GuidLabel1.Text = "완제품을 등록하려면 등록 폼으로 이동";
+            this.GuidLabel1.Text = "완제품 등록은 왼쪽 dgv에 컬럼을 추가";
             // 
             // label2
             // 
@@ -206,22 +208,22 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Location = new System.Drawing.Point(13, 226);
+            this.dgv.Location = new System.Drawing.Point(13, 211);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(766, 523);
+            this.dgv.Size = new System.Drawing.Size(766, 538);
             this.dgv.TabIndex = 31;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 198);
+            this.label1.Location = new System.Drawing.Point(28, 187);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 12);
             this.label1.TabIndex = 32;
-            this.label1.Text = "제품 목록";
+            this.label1.Text = "재료 목록";
             // 
             // dataGridViewControl1
             // 
@@ -244,22 +246,22 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewControl1.Location = new System.Drawing.Point(805, 226);
+            this.dataGridViewControl1.Location = new System.Drawing.Point(805, 211);
             this.dataGridViewControl1.MultiSelect = false;
             this.dataGridViewControl1.Name = "dataGridViewControl1";
             this.dataGridViewControl1.RowTemplate.Height = 23;
             this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewControl1.Size = new System.Drawing.Size(717, 523);
+            this.dataGridViewControl1.Size = new System.Drawing.Size(717, 538);
             this.dataGridViewControl1.TabIndex = 31;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(814, 198);
+            this.label3.Location = new System.Drawing.Point(820, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 12);
             this.label3.TabIndex = 32;
-            this.label3.Text = "정전개 (완제품 => 재료)";
+            this.label3.Text = "역전개 (재료 => 완제품)";
             // 
             // label13
             // 
@@ -278,25 +280,26 @@
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(136, 40);
             this.buttonControl2.TabIndex = 30;
-            this.buttonControl2.Text = "BOM 등록";
+            this.buttonControl2.Text = "재료 등록";
             this.buttonControl2.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // buttonControl3
             // 
-            this.button1.Location = new System.Drawing.Point(232, 189);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 31);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "사용 여부 변경";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonControl3.BackColor = System.Drawing.Color.White;
+            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl3.Location = new System.Drawing.Point(959, 82);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(129, 40);
+            this.buttonControl3.TabIndex = 30;
+            this.buttonControl3.Text = "BOM 등록";
+            this.buttonControl3.UseVisualStyleBackColor = false;
             // 
-            // BOMForm
+            // BOMMaterialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1534, 761);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -308,7 +311,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label12);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "BOMForm";
+            this.Name = "BOMMaterialForm";
             this.Text = "완제품 목록";
             this.Load += new System.EventHandler(this.BOMForm_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
@@ -322,7 +325,6 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label13, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
@@ -348,11 +350,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label12;
         private DataGridViewControl dgv;
+        private ButtonControl buttonControl3;
         private ButtonControl buttonControl2;
         private System.Windows.Forms.Label label1;
         private DataGridViewControl dataGridViewControl1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button1;
     }
 }
