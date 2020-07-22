@@ -100,6 +100,7 @@
     <Compile Include="ReleaseListForm.Designer.cs">
       <DependentUpon>ReleaseListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReleaseListForm.resx">
       <DependentUpon>ReleaseListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemCodeForm.resx">
+      <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

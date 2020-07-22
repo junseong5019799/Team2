@@ -10,9 +10,9 @@ namespace WinMSFactory
 {
     public static class DgvUtil
     {/// <summary>
-    /// Columns (Text) 추가 확장 메서드
-    /// </summary>
-        public static void AddNewColumns(this DataGridView dgv, string HeaderText, string PropertyName, int Width = 100, bool Visible = true,
+     /// Columns (Text) 추가 확장 메서드
+     /// </summary>
+        public static void AddNewColumns(this DataGridView dgv, string HeaderText, string PropertyName, int Width = 100, bool Visible = true, bool ReadOnly = false,
             DataGridViewContentAlignment Center = DataGridViewContentAlignment.MiddleCenter)
         {
             // 기본 셀 정렬 : 가운데정렬
@@ -22,6 +22,7 @@ namespace WinMSFactory
             col.DataPropertyName = PropertyName;
             col.Width = Width;
             col.Visible = Visible;
+            col.ReadOnly = ReadOnly;
             col.DefaultCellStyle.Alignment = Center;
 
             dgv.Columns.Add(col);
@@ -70,6 +71,21 @@ namespace WinMSFactory
 
                 dgv.Controls.Add(headerChk);
             }
+        }
+
+        public static void AddNewComCol(this DataGridView dgv, string HeaderText, string PropertyName, object DataSource, string DisplayName, string ValueMember,
+                                        int Width = 100, bool ReadOnly = false)
+        {
+            DataGridViewComboBoxColumn com = new DataGridViewComboBoxColumn();
+            com.HeaderText = HeaderText;
+            com.DataPropertyName = PropertyName;
+            com.Width = Width;
+            com.ReadOnly = ReadOnly;
+            com.DataSource = DataSource;
+            com.DisplayMember = DisplayName;
+            com.ValueMember = ValueMember;
+
+            dgv.Columns.Add(com);
         }
 
         /* 체크 박스용 Context 설정 (지우지 말고 사용할 것)

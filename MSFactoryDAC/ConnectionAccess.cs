@@ -26,7 +26,7 @@ namespace MSFactoryDAC
 		public static XmlDocument LoadXml()
 		{
 			XmlDocument configXml = new XmlDocument();
-			configXml.Load(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/Sample_DEV.xml");
+			configXml.Load(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/MSFactory_DEV.xml");
 
 			return configXml;
 		}
