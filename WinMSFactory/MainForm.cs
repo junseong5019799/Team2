@@ -89,5 +89,26 @@ namespace WinMSFactory
             mainTabControl1.Visible = true;
             frm.Show();
         }
-	}
+
+        private void mainTabControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            for (var i = 0; i < mainTabControl1.TabPages.Count; i++)
+            {
+                var tabRect = mainTabControl1.GetTabRect(i);
+                //tabRect.Inflate(-2, -2);
+                var closeImage = Properties.Resources.Delete_now;
+                var imageRect = new Rectangle(
+                    (tabRect.Right - closeImage.Width),
+                    tabRect.Top + (tabRect.Height - closeImage.Height) / 2,
+                    closeImage.Width,
+                    closeImage.Height);
+                if (imageRect.Contains(e.Location))
+                {
+                    this.ActiveMdiChild.Close();
+                    //tabForms.TabPages.RemoveAt(i);                    
+                    break;
+                }
+            }
+        }
+    }
 }

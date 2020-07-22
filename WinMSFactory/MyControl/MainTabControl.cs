@@ -51,7 +51,7 @@ namespace WinMSFactory
                 if (this.SelectedTab == this.TabPages[e.Index])
                     img = Properties.Resources.Delete_now;
                 else
-                    img = Properties.Resources.Delete;
+                    img = null;
 
                 // TabPage Text
                 e.Graphics.DrawString(title, f, titleBrush, new PointF(r.X, r.Y));
