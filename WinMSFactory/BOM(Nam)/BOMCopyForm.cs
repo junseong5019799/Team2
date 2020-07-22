@@ -35,9 +35,6 @@ namespace WinMSFactory.BOM
             dgv.AddNewColumns("최초등록사원", "", 100, true);
             dgv.AddNewColumns("최종등록시각", "", 100, true);
             dgv.AddNewColumns("최종등록사원", "", 100, true);
-
-
-
         }
     }
 }

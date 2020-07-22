@@ -21,7 +21,7 @@ namespace WinMSFactory
 
             dgv.AddNewColumns("제품코드", "", 100, true);
 
-            dgv.AddNewColumns("제품그룹코드", "", 100, true);
+            //dgv.AddNewColumns("제품그룹코드", "", 100, true);
             dgv.AddNewColumns("제품명", "", 100, true);
             dgv.AddNewColumns("제품스펙", "", 100, true);
             dgv.AddNewColumns("기본단위", "", 100, true);

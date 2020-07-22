@@ -18,8 +18,9 @@ namespace WinMSFactory
 
         private void frmABad_Load(object sender, EventArgs e)
         {
+            dgv.AddNewColumns("작업일자", "", 100, true);
             //dgv.AddNewColumns("불량 번호", "", 100, false);
-            //dgv.AddNewColumns("법인코드", "", 100, true);
+            //dgv.AddNewColumns("법인코드", "", 100, false);
             dgv.AddNewColumns("법인명칭", "", 100, true);
             //dgv.AddNewColumns("공장코드", "", 100, true);
             dgv.AddNewColumns("공장명칭", "", 100, true);
