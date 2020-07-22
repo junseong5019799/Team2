@@ -2,7 +2,7 @@
 <configuration>
   <settings>
     <!--<![CDATA[]]> 형식으로 읽기 때문에 <![CDATA[]]> 형식으로 값 줘야함-->
-    <add key="MyDB"><![CDATA[Server=whyfi8888.ddns.net,11433;Database=TEAM2;Uid=team2;Pwd=team2]]></add>
+    <add key="MyDB"><![CDATA[i6pa+AHin2K+66qIB5p0uzito3JITwRxyQcdJqaZpaPfJ9mUO7tyVUZZMw+/NQfju+nfi86D2peKzcD1NtgXbNQ/skh2oAh2oUM4qDcG/JY=]]></add>
     <add key="logDay"><![CDATA[30]]></add>
   </settings>
 </configuration>

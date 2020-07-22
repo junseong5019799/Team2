@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Encrypt;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -19,7 +20,7 @@ namespace MSFactoryDAC
 		{
 			get
 			{
-				return GetXmlText("MyDB");
+				return new AES().AESDecrypt256(GetXmlText("MyDB"));
 			}
 		}
 
