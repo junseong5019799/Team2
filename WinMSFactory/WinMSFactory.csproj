@@ -104,6 +104,7 @@
     <Compile Include="BOM%28Nam%29\BOMSelectForm.designer.cs">
       <DependentUpon>BOMSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nam\ControlSettings.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
