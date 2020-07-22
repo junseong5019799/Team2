@@ -28,36 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonControl2 = new WinMSFactory.ButtonControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.rdoNumSearch = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.rdoNameSearch = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Size = new System.Drawing.Size(1534, 179);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             // 
@@ -66,27 +59,28 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgv.Location = new System.Drawing.Point(0, 176);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1534, 585);
@@ -94,12 +88,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.panel5);
-            this.groupBox1.Controls.Add(this.panel4);
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.rdoNumSearch);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.rdoNameSearch);
             this.groupBox1.Location = new System.Drawing.Point(75, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(967, 127);
@@ -111,7 +105,7 @@
             // 
             this.panel5.Controls.Add(this.radioButton3);
             this.panel5.Controls.Add(this.radioButton2);
-            this.panel5.Location = new System.Drawing.Point(815, 67);
+            this.panel5.Location = new System.Drawing.Point(713, 54);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(135, 33);
             this.panel5.TabIndex = 27;
@@ -138,113 +132,47 @@
             this.radioButton2.Text = "Yes";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.buttonControl1);
-            this.panel4.Controls.Add(this.comboBox1);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(381, 69);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(314, 32);
-            this.panel4.TabIndex = 26;
-            // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(216, 6);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(95, 22);
-            this.buttonControl1.TabIndex = 26;
-            this.buttonControl1.Text = "검색";
-            this.buttonControl1.UseVisualStyleBackColor = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(69, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 24);
-            this.comboBox1.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "품목 타입";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.buttonControl2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(46, 71);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(304, 31);
-            this.panel2.TabIndex = 23;
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.Color.White;
-            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(200, 4);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(95, 22);
-            this.buttonControl2.TabIndex = 26;
-            this.buttonControl2.Text = "검색";
-            this.buttonControl2.UseVisualStyleBackColor = false;
-            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(73, 4);
+            this.textBox1.Location = new System.Drawing.Point(120, 58);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 25;
+            this.textBox1.Size = new System.Drawing.Size(169, 22);
+            this.textBox1.TabIndex = 29;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 7);
+            this.label3.Location = new System.Drawing.Point(59, 62);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 16);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "품명";
+            this.label3.Size = new System.Drawing.Size(41, 16);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "제품명";
             // 
-            // rdoNumSearch
+            // label1
             // 
-            this.rdoNumSearch.AutoSize = true;
-            this.rdoNumSearch.Location = new System.Drawing.Point(61, 31);
-            this.rdoNumSearch.Name = "rdoNumSearch";
-            this.rdoNumSearch.Size = new System.Drawing.Size(120, 20);
-            this.rdoNumSearch.TabIndex = 22;
-            this.rdoNumSearch.TabStop = true;
-            this.rdoNumSearch.Text = "제품 품명으로 검색";
-            this.rdoNumSearch.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(326, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "제품 타입";
             // 
-            // radioButton1
+            // comboBox1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(778, 31);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(109, 20);
-            this.radioButton1.TabIndex = 17;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "사용 여부로 검색";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(405, 56);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(172, 24);
+            this.comboBox1.TabIndex = 30;
             // 
-            // rdoNameSearch
+            // label2
             // 
-            this.rdoNameSearch.AutoSize = true;
-            this.rdoNameSearch.Location = new System.Drawing.Point(369, 31);
-            this.rdoNameSearch.Name = "rdoNameSearch";
-            this.rdoNameSearch.Size = new System.Drawing.Size(117, 20);
-            this.rdoNameSearch.TabIndex = 17;
-            this.rdoNameSearch.TabStop = true;
-            this.rdoNameSearch.Text = "품목타입으로 검색";
-            this.rdoNameSearch.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(629, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 16);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "사용 여부";
             // 
             // frmMItem
             // 
@@ -265,10 +193,6 @@
             this.groupBox1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,16 +205,10 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Panel panel4;
-        private ButtonControl buttonControl1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private ButtonControl buttonControl2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton rdoNumSearch;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton rdoNameSearch;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

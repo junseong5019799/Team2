@@ -19,13 +19,14 @@ namespace WinMSFactory
         private void frmMItem_Load(object sender, EventArgs e)
         {
 
-            dgv.AddNewColumns("품목코드", "", 100, true);
-            dgv.AddNewColumns("품목그룹코드", "", 100, true);
-            dgv.AddNewColumns("품명", "", 100, true);
-            dgv.AddNewColumns("품목스펙", "", 100, true);
+            dgv.AddNewColumns("제품코드", "", 100, true);
+
+            //dgv.AddNewColumns("제품그룹코드", "", 100, true);
+            dgv.AddNewColumns("제품명", "", 100, true);
+            dgv.AddNewColumns("제품스펙", "", 100, true);
             dgv.AddNewColumns("기본단위", "", 100, true);
             dgv.AddNewColumns("생산기준량", "", 100, true);
-            dgv.AddNewColumns("품목타입", "", 100, true);
+            dgv.AddNewColumns("제품타입", "", 100, true);
             dgv.AddNewColumns("순번", "", 100, true);
             dgv.AddNewColumns("비고 1", "", 100, true);
             dgv.AddNewColumns("비고 2", "", 100, true);

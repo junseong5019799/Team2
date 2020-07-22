@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Encrypt;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -19,14 +20,14 @@ namespace MSFactoryDAC
 		{
 			get
 			{
-				return GetXmlText("MyDB");
+				return new AES().AESDecrypt256(GetXmlText("MyDB"));
 			}
 		}
 
 		public static XmlDocument LoadXml()
 		{
 			XmlDocument configXml = new XmlDocument();
-			configXml.Load(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/Sample_DEV.xml");
+			configXml.Load(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/MSFactory_DEV.xml");
 
 			return configXml;
 		}
