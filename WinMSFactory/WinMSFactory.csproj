@@ -104,6 +104,12 @@
     <Compile Include="BOM%28Nam%29\BOMSelectForm.designer.cs">
       <DependentUpon>BOMSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Release\CalculateRatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Release\CalculateRatingForm.Designer.cs">
+      <DependentUpon>CalculateRatingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\MainTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -157,16 +163,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ReleaseOutForm.cs">
+    <Compile Include="Release\ReleaseOutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReleaseOutForm.Designer.cs">
+    <Compile Include="Release\ReleaseOutForm.Designer.cs">
       <DependentUpon>ReleaseOutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReleasePlanForm.cs">
+    <Compile Include="Release\ReleasePlanForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReleasePlanForm.Designer.cs">
+    <Compile Include="Release\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemCodeForm.cs">
@@ -259,10 +265,13 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReleaseOutForm.resx">
+    <EmbeddedResource Include="Release\CalculateRatingForm.resx">
+      <DependentUpon>CalculateRatingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Release\ReleaseOutForm.resx">
       <DependentUpon>ReleaseOutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReleasePlanForm.resx">
+    <EmbeddedResource Include="Release\ReleasePlanForm.resx">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
