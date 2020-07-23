@@ -26,17 +26,18 @@ namespace WinMSFactory
         private void dgvColumnSettings()
         {
             dgv.AddNewColumns("불량 번호", "", 100, false);
-            dgv.AddNewColumns("작업일자", "", 100, true);
+            dgv.AddNewColumns("불량일자", "", 100, true);
             dgv.AddNewColumns("법인명칭", "", 100, true);
             dgv.AddNewColumns("공장명칭", "", 100, true);
             dgv.AddNewColumns("라인명칭", "", 100, true);
             dgv.AddNewColumns("공정명칭", "", 100, true);
-            dgv.AddNewColumns("품목명칭", "", 100, true);
+            dgv.AddNewColumns("제품명", "", 100, true); // 불량 - 작업지시번호 - 품목코드 - 제품명
             dgv.AddNewColumns("불량명칭", "", 100, true);
+            dgv.AddNewColumns("불량수량", "", 100, true);
+            dgv.AddNewColumns("불량일자", "", 100, true);
+            dgv.AddNewColumns("비고", "", 100, true);
             dgv.AddNewColumns("최초등록시각", "", 100, true);
             dgv.AddNewColumns("최초등록사원", "", 100, true);
-            dgv.AddNewColumns("최종등록시각", "", 100, true);
-            dgv.AddNewColumns("최종등록사원", "", 100, true);
         }
     }
 }

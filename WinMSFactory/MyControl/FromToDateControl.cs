@@ -16,5 +16,10 @@ namespace WinMSFactory.Control
         {
             InitializeComponent();
         }
+
+        private void FromToDateControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
