@@ -98,17 +98,35 @@
     <Compile Include="BOM%28Nam%29\BOMManageForm.designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.designer.cs">
-      <DependentUpon>BOMSelectForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="OrderForm\OrderPlanForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrderForm\OrderPlanForm.Designer.cs">
       <DependentUpon>OrderPlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\CorporationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\CorporationForm.Designer.cs">
+      <DependentUpon>CorporationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\FactoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FactoryForm.Designer.cs">
+      <DependentUpon>FactoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\LineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\LineForm.Designer.cs">
+      <DependentUpon>LineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\ProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\ProcessForm.Designer.cs">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
@@ -188,6 +206,36 @@
     <Compile Include="SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnologyStandards\CompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\CompanyForm.Designer.cs">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnologyStandards\DefectiveTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\DefectiveTypeForm.Designer.cs">
+      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnologyStandards\DowntimeTyreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\DowntimeTyreForm.Designer.cs">
+      <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnologyStandards\ProcessWorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\ProcessWorkerForm.Designer.cs">
+      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnologyStandards\StorageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\StorageForm.Designer.cs">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="MyControl\DataGridViewControl.cs">
       <SubType>Component</SubType>
@@ -237,9 +285,6 @@
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectForm.resx">
-      <DependentUpon>BOMSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DataGridViewControl.resx">
       <DependentUpon>DataGridViewControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +315,18 @@
     <EmbeddedResource Include="OrderForm\OrderPlanForm.resx">
       <DependentUpon>OrderPlanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\CorporationForm.resx">
+      <DependentUpon>CorporationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FactoryForm.resx">
+      <DependentUpon>FactoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\LineForm.resx">
+      <DependentUpon>LineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\ProcessForm.resx">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -286,6 +343,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\CompanyForm.resx">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\DefectiveTypeForm.resx">
+      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\DowntimeTyreForm.resx">
+      <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\ProcessWorkerForm.resx">
+      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\StorageForm.resx">
+      <DependentUpon>StorageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
