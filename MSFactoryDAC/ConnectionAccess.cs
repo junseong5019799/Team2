@@ -57,7 +57,7 @@ namespace MSFactoryDAC
 		//		if (!int.TryParse(GetXmlText("logDay"), out int logDay))
 		//			logDay = 30;
 
-		//		log = new LoggingUtility("CoffeePrince2nd", Level.Debug, logDay);
+		//		log = new LoggingUtility("MSFactory", Level.Debug, logDay);
 		//	}
 
 		//	return log;

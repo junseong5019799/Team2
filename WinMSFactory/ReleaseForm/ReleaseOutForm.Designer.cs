@@ -63,6 +63,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Size = new System.Drawing.Size(1364, 170);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
@@ -187,7 +188,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 170);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1534, 642);
+            this.panel3.Size = new System.Drawing.Size(1364, 591);
             this.panel3.TabIndex = 26;
             // 
             // dgv
@@ -218,14 +219,14 @@
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 642);
+            this.dgv.Size = new System.Drawing.Size(1364, 591);
             this.dgv.TabIndex = 0;
             // 
             // ReleaseOutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 812);
+            this.ClientSize = new System.Drawing.Size(1364, 761);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label6);
             this.Name = "ReleaseOutForm";
