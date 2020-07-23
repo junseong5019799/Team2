@@ -27,6 +27,11 @@ namespace WinMSFactory
 
         }
 
+        public static void initControlSettings(this FromToDateControl dtp)
+        {
+            dtp.
+        }
+
         
     }
 }
