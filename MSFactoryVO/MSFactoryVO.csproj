@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BomVO.cs" />
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

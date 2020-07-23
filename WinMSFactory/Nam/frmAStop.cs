@@ -36,7 +36,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("비가동 비고", "", 100, true);
             dgv.AddNewColumns("비가동 시작 시간", "", 100, true);
             dgv.AddNewColumns("비가동 종료 시각", "", 100, true);
-            dgv.AddNewBtnCol("비가동 사용여부",new Padding(1,1,1,1)); // 비가동 - 비가동 코드 - 비가동 사용여부
+            dgv.AddNewBtnCol("비가동 사용여부", "선택",new Padding(1,1,1,1)); // 비가동 - 비가동 코드 - 비가동 사용여부
             dgv.AddNewColumns("비가동 총 시간", "", 100, true); // 비가동 - 비가동 코드 - 시간계산 적용
             dgv.AddNewColumns("최초등록시각", "", 100, true);
             dgv.AddNewColumns("최초등록사원", "", 100, true);
