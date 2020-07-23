@@ -12,6 +12,7 @@ namespace WinMSFactory.BOM
 {
     public partial class BOMManageForm : BasicForm
     {
+        // BOM 등록 및 수정
         public BOMManageForm()
         {
             InitializeComponent();
@@ -19,21 +20,18 @@ namespace WinMSFactory.BOM
 
         private void BOMManageForm_Load(object sender, EventArgs e)
         {
+            // 왼쪽 그리드 뷰에는 반재품, 재료 만 조회 가능
+
             //dgv.AddNewColumns("품목 코드", "", 100, true);
             //dgv.AddNewColumns("제품 그룹 코드", "", 100, true);
             dgv.AddNewColumns("제품 순번", "", 100, true);
-            dgv.AddNewColumns("품명", "", 100, true);
-            dgv.AddNewColumns("제품 사용 여부", "", 100, true);
+            dgv.AddNewColumns("제품 그룹 명칭", "", 100, true);
+            dgv.AddNewColumns("제품명", "", 100, true);
             dgv.AddNewColumns("품명 스펙", "", 100, true);
             dgv.AddNewColumns("기본 단위", "", 100, true);
-            dgv.AddNewColumns("안전 재고량", "", 100, true);
             dgv.AddNewColumns("품목 타입", "", 100, true);
             dgv.AddNewColumns("비고 1", "", 100, true);
             dgv.AddNewColumns("비고 2", "", 100, true);
-            dgv.AddNewColumns("최초등록시각", "", 100, true);
-            dgv.AddNewColumns("최초등록사원", "", 100, true);
-            dgv.AddNewColumns("최종등록시각", "", 100, true);
-            dgv.AddNewColumns("최종등록사원", "", 100, true);
         }
     }
 }

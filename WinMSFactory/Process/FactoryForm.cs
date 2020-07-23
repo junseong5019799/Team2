@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory
+namespace WinMSFactory.Process
 {
-    public partial class CompanyForm : ListForm
+    public partial class FactoryForm : ListForm
     {
-        //거래처관리폼
-        public CompanyForm()
+        public FactoryForm()
         {
             InitializeComponent();
         }
+
+       
     }
 }

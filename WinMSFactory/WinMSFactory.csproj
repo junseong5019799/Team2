@@ -104,6 +104,12 @@
     <Compile Include="BOM%28Nam%29\BOMSelectForm.designer.cs">
       <DependentUpon>BOMSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderForm\OrderPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\OrderPlanForm.Designer.cs">
+      <DependentUpon>OrderPlanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmPStock.resx">
       <DependentUpon>frmPStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\OrderPlanForm.resx">
+      <DependentUpon>OrderPlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

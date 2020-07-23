@@ -20,23 +20,36 @@ namespace WinMSFactory.BOM
 
         private void BOMCopyForm_Load(object sender, EventArgs e)
         {
-            //dgv.AddNewColumns("품목 코드", "", 100, true);
-            //dgv.AddNewColumns("제품 그룹 코드", "", 100, true);
+            // 제품 목록은 완재품, 반제품 의 목록만 나온다.
+
+            // 복사 목록은 완제품, 반제품 의 재료의 목록만 나온다.
+
+            // 제품 목록, 재료 목록의 사용여부가 N일 경우 나오지 않는다.
+
+
+
+            // 제품 그룹 명칭이 완제품, 반제품 인 경우에만 나온다.
+
             dgv.AddNewColumns("제품 순번", "", 100, true);
+            //dgv.AddNewColumns("제품 그룹 코드", "", 100, true);
+            //dgv.AddNewColumns("제품 그룹 명칭", "", 100, true);
+            //dgv.AddNewColumns("품목 코드", "", 100, true);
             dgv.AddNewColumns("품명", "", 100, true);
-            dgv.AddNewColumns("제품 사용 여부", "", 100, true);
             dgv.AddNewColumns("품명 스펙", "", 100, true);
             dgv.AddNewColumns("기본 단위", "", 100, true);
-            dgv.AddNewColumns("안전 재고량", "", 100, true);
             dgv.AddNewColumns("품목 타입", "", 100, true);
             dgv.AddNewColumns("비고 1", "", 100, true);
             dgv.AddNewColumns("비고 2", "", 100, true);
-            dgv.AddNewColumns("최초등록시각", "", 100, true);
-            dgv.AddNewColumns("최초등록사원", "", 100, true);
-            dgv.AddNewColumns("최종등록시각", "", 100, true);
-            dgv.AddNewColumns("최종등록사원", "", 100, true);
 
-
+            // 제품 그룹 명칭이 재료인 경우에만 나온다.
+            dgv2.AddNewColumns("제품 순번", "", 100, true);
+            //dgv2.AddNewColumns("제품 그룹 명칭", "", 100, true);
+            dgv2.AddNewColumns("품명", "", 100, true);
+            dgv2.AddNewColumns("품명 스펙", "", 100, true);
+            dgv2.AddNewColumns("기본 단위", "", 100, true);
+            dgv2.AddNewColumns("품목 타입", "", 100, true);
+            dgv2.AddNewColumns("비고 1", "", 100, true);
+            dgv2.AddNewColumns("비고 2", "", 100, true);
 
         }
     }

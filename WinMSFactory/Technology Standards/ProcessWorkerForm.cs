@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory
+namespace WinMSFactory.Technology_Standards
 {
-    public partial class BOMSelectForm : BasicForm
+    public partial class ProcessWorkerForm : ListDetailForm
     {
-        public BOMSelectForm()
+        public ProcessWorkerForm()
         {
             InitializeComponent();
         }

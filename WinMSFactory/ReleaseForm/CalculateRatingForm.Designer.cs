@@ -30,29 +30,54 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.panel2.SuspendLayout();
+            this.dgv = new WinMSFactory.DataGridViewControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.fromToDateControl2 = new WinMSFactory.Control.FromToDateControl();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnCalculate = new WinMSFactory.ButtonControl();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel2
-            // 
-            this.panel2.Size = new System.Drawing.Size(1364, 170);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.treeView1);
-            this.panel1.Size = new System.Drawing.Size(467, 591);
-            this.panel1.Controls.SetChildIndex(this.GuidLabel2, 0);
-            this.panel1.Controls.SetChildIndex(this.treeView1, 0);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.btnCalculate);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Size = new System.Drawing.Size(1364, 170);
+            this.panel1.Controls.SetChildIndex(this.label9, 0);
+            this.panel1.Controls.SetChildIndex(this.label7, 0);
+            this.panel1.Controls.SetChildIndex(this.panel2, 0);
+            this.panel1.Controls.SetChildIndex(this.btnCalculate, 0);
+            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
+            this.panel1.Controls.SetChildIndex(this.comboBox2, 0);
+            this.panel1.Controls.SetChildIndex(this.label6, 0);
             // 
-            // dataGridViewControl1
+            // GuidLabel1
             // 
-            this.dataGridViewControl1.AllowUserToAddRows = false;
-            this.dataGridViewControl1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.GuidLabel1.Location = new System.Drawing.Point(811, 57);
+            // 
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.BackgroundColor = System.Drawing.Color.White;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -60,8 +85,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewControl1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -69,49 +94,186 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewControl1.Location = new System.Drawing.Point(467, 170);
-            this.dataGridViewControl1.MultiSelect = false;
-            this.dataGridViewControl1.Name = "dataGridViewControl1";
-            this.dataGridViewControl1.RowTemplate.Height = 23;
-            this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewControl1.Size = new System.Drawing.Size(897, 591);
-            this.dataGridViewControl1.TabIndex = 6;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.Location = new System.Drawing.Point(0, 170);
+            this.dgv.MultiSelect = false;
+            this.dgv.Name = "dgv";
+            this.dgv.RowTemplate.Height = 23;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv.Size = new System.Drawing.Size(1364, 591);
+            this.dgv.TabIndex = 6;
             // 
-            // treeView1
+            // label1
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(467, 591);
-            this.treeView1.TabIndex = 7;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(74, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "작업일자";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(154, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(121, 21);
+            this.textBox1.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 94);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 16);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "출고 계획 번호";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(441, 91);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(121, 21);
+            this.textBox2.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(378, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 16);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "품목";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.fromToDateControl1);
+            this.panel3.Location = new System.Drawing.Point(149, 40);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(230, 33);
+            this.panel3.TabIndex = 27;
+            // 
+            // fromToDateControl1
+            // 
+            this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl1.Name = "fromToDateControl1";
+            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl1.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(23, 147);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 18);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "자재 소요 계획";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.fromToDateControl2);
+            this.panel2.Location = new System.Drawing.Point(168, 40);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(230, 33);
+            this.panel2.TabIndex = 29;
+            // 
+            // fromToDateControl2
+            // 
+            this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
+            this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl2.Name = "fromToDateControl2";
+            this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl2.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(74, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 16);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "출고계획 번호";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(100, 47);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 16);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "작업일자";
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.BackColor = System.Drawing.Color.White;
+            this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalculate.ForeColor = System.Drawing.Color.Black;
+            this.btnCalculate.Location = new System.Drawing.Point(814, 124);
+            this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(88, 26);
+            this.btnCalculate.TabIndex = 32;
+            this.btnCalculate.Text = "발주";
+            this.btnCalculate.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(74, 134);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(265, 16);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "출고 계획 번호 : 기생성된 수요 계획 PlanID 리스트 ";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(173, 100);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.TabIndex = 33;
             // 
             // CalculateRatingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 761);
-            this.Controls.Add(this.dataGridViewControl1);
+            this.Controls.Add(this.dgv);
             this.Name = "CalculateRatingForm";
-            this.Text = "CalculateRatingForm";
-            this.Controls.SetChildIndex(this.panel2, 0);
+            this.Text = "수요 계획";
+            this.Load += new System.EventHandler(this.CalculateRatingForm_Load);
+            this.Controls.SetChildIndex(this.GuidLabel2, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.GuidLabel3, 0);
-            this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Controls.SetChildIndex(this.dgv, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TreeView treeView1;
-        private DataGridViewControl dataGridViewControl1;
+        private DataGridViewControl dgv;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel3;
+        private Control.FromToDateControl fromToDateControl1;
+        private System.Windows.Forms.Panel panel2;
+        private Control.FromToDateControl fromToDateControl2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private ButtonControl btnCalculate;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

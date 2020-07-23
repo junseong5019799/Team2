@@ -8,22 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory
+namespace WinMSFactory.OrderForm
 {
-    public partial class CalculateRatingForm : ListForm
+    public partial class OrderPlanForm : ListForm
     {
-        public CalculateRatingForm()
+        public OrderPlanForm()
         {
             InitializeComponent();
         }
 
-        private void CalculateRatingForm_Load(object sender, EventArgs e)
+        private void OrderPlanForm_Load(object sender, EventArgs e)
         {
             dgv.AddNewColumns("출고예정 번호", "", 100, true);
             dgv.AddNewColumns("품목 코드", "", 100, true);
-            dgv.AddNewColumns("Plan ID", "", 100, true);
+            dgv.AddNewColumns("품목 명", "", 100, true);
             dgv.AddNewColumns("카테고리", "", 100, true);
 
+            
         }
     }
 }

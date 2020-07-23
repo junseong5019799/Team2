@@ -10,21 +10,17 @@ using System.Windows.Forms;
 
 namespace WinMSFactory
 {
-    public partial class BOMForm : BasicForm
+    public partial class BOMMaterialForm : BasicForm
     {
-        public BOMForm()
+        // 재료 목록 조회 및 역전개 실시
+        public BOMMaterialForm()
         {
             InitializeComponent();
         }
 
         private void BOMForm_Load(object sender, EventArgs e)
         {
-            // 제품은 완제품, 반제품 목록이 나옴
-            // 정전개는 완제품, 반제품의 재료가 나옴
-
-
-
-            // 체크, 버튼 추가할 것
+            // BOMListForm 참고
 
             // 상위, 하위 품목 코드는 제품관리의 품목코드와 Inner join 할 것
             //dgv.AddNewColumns("상위 품목 코드", "", 100, true);
@@ -48,11 +44,6 @@ namespace WinMSFactory
             //}
 
             
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
