@@ -80,11 +80,79 @@
     <Compile Include="BaseForm\PopUpDialogForm.Designer.cs">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BOM%28Nam%29\BOMCopyForm.cs" />
+    <Compile Include="BOM%28Nam%29\BOMCopyForm.Designer.cs">
+      <DependentUpon>BOMCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMForm.cs" />
+    <Compile Include="BOM%28Nam%29\BOMForm.designer.cs">
+      <DependentUpon>BOMForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMLogForm.designer.cs">
+      <DependentUpon>BOMLogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BOM%28Nam%29\BOMManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BOM%28Nam%29\BOMManageForm.designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMSelectAllForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMSelectAllForm.Designer.cs">
+      <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\ProductInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\ProductInfoForm.Designer.cs">
+      <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePriceForm\SellPriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePriceForm\SellPriceForm.Designer.cs">
+      <DependentUpon>SellPriceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\DueDatePopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\DueDatePopUpForm.Designer.cs">
+      <DependentUpon>DueDatePopUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\OrderListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\OrderListForm.Designer.cs">
+      <DependentUpon>OrderListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\OrderPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\OrderPlanForm.Designer.cs">
+      <DependentUpon>OrderPlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\OrderPopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\OrderPopUpForm.Designer.cs">
+      <DependentUpon>OrderPopUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\WareHouseListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\WareHouseListForm.Designer.cs">
+      <DependentUpon>WareHouseListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm\WareHouseWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\WareHouseWaitForm.Designer.cs">
+      <DependentUpon>WareHouseWaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\CorporationForm.cs">
       <SubType>Form</SubType>
@@ -181,42 +249,61 @@
     <Compile Include="ReleaseForm\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\ReleaseService.cs" />
+    <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
+    <Compile Include="Services\ReleaseService.cs" />
+    <Compile Include="StockForm\InOutListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm\InOutListForm.Designer.cs">
+      <DependentUpon>InOutListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StockForm\StockListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm\StockListForm.Designer.cs">
+      <DependentUpon>StockListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StockForm\StockMoveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm\StockMoveForm.Designer.cs">
+      <DependentUpon>StockMoveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnologyStandards\CompanyForm.cs">
+    <Compile Include="Technology Standards\CompanyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnologyStandards\CompanyForm.Designer.cs">
+    <Compile Include="Technology Standards\CompanyForm.Designer.cs">
       <DependentUpon>CompanyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnologyStandards\DefectiveTypeForm.cs">
+    <Compile Include="Technology Standards\DefectiveTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnologyStandards\DefectiveTypeForm.Designer.cs">
+    <Compile Include="Technology Standards\DefectiveTypeForm.Designer.cs">
       <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnologyStandards\DowntimeTyreForm.cs">
+    <Compile Include="Technology Standards\DowntimeTyreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnologyStandards\DowntimeTyreForm.Designer.cs">
+    <Compile Include="Technology Standards\DowntimeTyreForm.Designer.cs">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnologyStandards\ProcessWorkerForm.cs">
+    <Compile Include="Technology Standards\ProcessWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnologyStandards\ProcessWorkerForm.Designer.cs">
+    <Compile Include="Technology Standards\ProcessWorkerForm.Designer.cs">
       <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnologyStandards\StorageForm.cs">
+    <Compile Include="Technology Standards\StorageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnologyStandards\StorageForm.Designer.cs">
+    <Compile Include="Technology Standards\StorageForm.Designer.cs">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
@@ -259,8 +346,26 @@
     <EmbeddedResource Include="BaseForm\PopUpDialogForm.resx">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMCopyForm.resx">
+      <DependentUpon>BOMCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMForm.resx">
+      <DependentUpon>BOMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMLogForm.resx">
+      <DependentUpon>BOMLogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectAllForm.resx">
+      <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\ProductInfoForm.resx">
+      <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagePriceForm\SellPriceForm.resx">
+      <DependentUpon>SellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DataGridViewControl.resx">
       <DependentUpon>DataGridViewControl.cs</DependentUpon>
@@ -289,6 +394,24 @@
     <EmbeddedResource Include="Nam\frmPStock.resx">
       <DependentUpon>frmPStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\DueDatePopUpForm.resx">
+      <DependentUpon>DueDatePopUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\OrderListForm.resx">
+      <DependentUpon>OrderListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\OrderPlanForm.resx">
+      <DependentUpon>OrderPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\OrderPopUpForm.resx">
+      <DependentUpon>OrderPopUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\WareHouseListForm.resx">
+      <DependentUpon>WareHouseListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\WareHouseWaitForm.resx">
+      <DependentUpon>WareHouseWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\CorporationForm.resx">
       <DependentUpon>CorporationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,22 +438,31 @@
     <EmbeddedResource Include="ReleaseForm\ReleasePlanForm.resx">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockForm\InOutListForm.resx">
+      <DependentUpon>InOutListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockForm\StockListForm.resx">
+      <DependentUpon>StockListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockForm\StockMoveForm.resx">
+      <DependentUpon>StockMoveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnologyStandards\CompanyForm.resx">
+    <EmbeddedResource Include="Technology Standards\CompanyForm.resx">
       <DependentUpon>CompanyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnologyStandards\DefectiveTypeForm.resx">
+    <EmbeddedResource Include="Technology Standards\DefectiveTypeForm.resx">
       <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnologyStandards\DowntimeTyreForm.resx">
+    <EmbeddedResource Include="Technology Standards\DowntimeTyreForm.resx">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnologyStandards\ProcessWorkerForm.resx">
+    <EmbeddedResource Include="Technology Standards\ProcessWorkerForm.resx">
       <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnologyStandards\StorageForm.resx">
+    <EmbeddedResource Include="Technology Standards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -363,8 +495,6 @@
       <Name>MSFactoryVO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OrderForm\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
