@@ -78,8 +78,8 @@
             // 
             // GuidLabel2
             // 
-            this.GuidLabel2.Size = new System.Drawing.Size(422, 16);
-            this.GuidLabel2.Text = "DGV 거래처리스트 거래처코드, 거래처유형, 거래처순번, 거래처사용여부, 최초 최종";
+            this.GuidLabel2.Size = new System.Drawing.Size(342, 16);
+            this.GuidLabel2.Text = "DGV 거래처리스트 거래처코드, 거래처유형, 거래처순번,  최초 최종";
             // 
             // btnClear
             // 

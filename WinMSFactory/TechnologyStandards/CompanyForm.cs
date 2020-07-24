@@ -24,7 +24,6 @@ namespace WinMSFactory.Technology_Standards
             dgvCompanyList.AddNewColumns("거래처명칭", "", 100, true);
             dgvCompanyList.AddNewColumns("거래처유형", "", 100, true);
             dgvCompanyList.AddNewColumns("거래처순번", "", 100, true);
-            dgvCompanyList.AddNewColumns("사용여부", "", 100, true);
             dgvCompanyList.AddNewColumns("최초등록 시각", "", 100, true);
             dgvCompanyList.AddNewColumns("최초등록 사원", "", 100, true);
             dgvCompanyList.AddNewColumns("최종등록 시각", "", 100, true);

@@ -6,8 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
-using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
