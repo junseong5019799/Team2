@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
-
+using WinMSFactory.ReleaseForm;
 
 namespace WinMSFactory
 {
@@ -59,7 +59,8 @@ namespace WinMSFactory
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
-
+            ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
+            popfrm.Show();
         }
     }
 }
