@@ -32,6 +32,8 @@ namespace WinMSFactory
             this.MultiSelect = false;
             this.AutoGenerateColumns = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            this.ReadOnly = true;
         }
 
         

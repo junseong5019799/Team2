@@ -110,6 +110,12 @@
     <Compile Include="ManagePriceForm\SellPriceForm.Designer.cs">
       <DependentUpon>SellPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyControl\NumericControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControl\NumericControl.Designer.cs">
+      <DependentUpon>NumericControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderForm\DueDatePopUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </Compile>
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
+    <Compile Include="Services\DefectiveService.cs" />
+    <Compile Include="Services\ProductGroupService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="StockForm\InOutListForm.cs">
       <SubType>Form</SubType>
@@ -352,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\SellPriceForm.resx">
       <DependentUpon>SellPriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\NumericControl.resx">
+      <DependentUpon>NumericControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DataGridViewControl.resx">
       <DependentUpon>DataGridViewControl.cs</DependentUpon>
