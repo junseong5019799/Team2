@@ -17,9 +17,9 @@ namespace WinMSFactory
 
         private char UseChar;
 
-        BomForm frm;
+        BOMManageForm frm;
         SendInfoVO vo;
-        public ProductInfoForm(BomForm frm, SendInfoVO vo)
+        public ProductInfoForm(BOMManageForm frm, SendInfoVO vo)
         {
             InitializeComponent();
 

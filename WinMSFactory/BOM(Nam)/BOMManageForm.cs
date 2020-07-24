@@ -10,12 +10,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
-using WinMSFactory.Services;
 
 namespace WinMSFactory.BOM
 {
     
-    public partial class BomForm : BasicForm
+    public partial class BOMManageForm : BasicForm
     {
         BomService service = new BomService();
         List<BomVO> SelectedAllMaterial;
@@ -24,7 +23,7 @@ namespace WinMSFactory.BOM
         public ProductInsertVO ProductInfo { get; set; }
 
         // BOM 등록 및 수정
-        public BomForm()
+        public BOMManageForm()
         {
             InitializeComponent();
             CheckMaterialList = new List<BomVO>();

@@ -12,22 +12,14 @@ namespace WinMSFactory
     public class BomService
     {
         BomDAC dac = new BomDAC();
-        public static List<ProductType> CboProductType(string Category = null)
+        public static List<ProductType> CboProductType()
         {
             List<ProductType> list = new List<ProductType>();
-            if (Category == "AllSearch")
-            {
-                list.Add(new ProductType { Member = "전체" });
-                list.Add(new ProductType { Member = "완제품" });
-                list.Add(new ProductType { Member = "반제품" });
-                list.Add(new ProductType { Member = "재료" });
-            }
-            else
-            {
-                list.Add(new ProductType { Member = "전체" });
-                list.Add(new ProductType { Member = "반제품" });
-                list.Add(new ProductType { Member = "재료" });
-            }
+            
+            list.Add(new ProductType { Member = "전체" });
+            list.Add(new ProductType { Member = "반제품" });
+            list.Add(new ProductType { Member = "재료" });
+            
             return list;
         }
 
