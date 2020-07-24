@@ -38,5 +38,15 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록시각", "", 100, true);
             dgv.AddNewColumns("최종등록사원", "", 100, true);
         }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            ProductInfoForm frm = new ProductInfoForm(this);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
