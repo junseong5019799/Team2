@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WinMSFactory.TechnologyStandards
 {
-    public partial class CompanyProductPopupForm : Form
+    public partial class CompanyProductPopupForm : PopUpDialogForm
     {
         public CompanyProductPopupForm()
         {
