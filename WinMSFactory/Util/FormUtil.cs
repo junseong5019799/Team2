@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -256,18 +257,18 @@ namespace WinCoffeePrince2nd.Util
 		#endregion
 
 		#region comboBox 바인딩 관련
-		//public static void ComboBinding(this ComboBox combo, List<CommonCodeVO> list, string blankText = "", string blankValue = "")
-		//{
-		//	if (list == null)
-		//		list = new List<CommonCodeVO>();
+		public static void ComboBinding(this ComboBox combo, List<CommonCodeVO> list, string blankText = "", string blankValue = "")
+		{
+			if (list == null)
+				list = new List<CommonCodeVO>();
 
-		//	if (!string.IsNullOrEmpty(blankText))
-		//		list.Insert(0, new CommonCodeVO { Common_name = blankText, Common_code = blankValue});
+			if (!string.IsNullOrEmpty(blankText))
+				list.Insert(0, new CommonCodeVO { Common_name = blankText, Common_id = blankValue });
 
-		//	combo.DataSource = list;
-		//	combo.DisplayMember = "Common_name";
-		//	combo.ValueMember = "Common_code";
-		//}
+			combo.DataSource = list;
+			combo.DisplayMember = "Common_name";
+			combo.ValueMember = "Common_id";
+		}
 
 		public static void ComboBinding<T>(this ComboBox combo, List<T> list, string Code, string CodeNm)
 		{

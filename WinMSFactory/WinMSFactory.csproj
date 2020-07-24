@@ -98,12 +98,6 @@
     <Compile Include="BOM%28Nam%29\BOMManageForm.designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectForm.designer.cs">
-      <DependentUpon>BOMSelectForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="OrderForm\OrderPlanForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,9 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectForm.resx">
-      <DependentUpon>BOMSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DataGridViewControl.resx">
       <DependentUpon>DataGridViewControl.cs</DependentUpon>

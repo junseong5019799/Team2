@@ -65,7 +65,6 @@
     <Content Include="MSFactory_DEV.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sample_DEV.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
