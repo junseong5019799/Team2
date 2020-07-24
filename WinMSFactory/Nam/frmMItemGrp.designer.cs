@@ -32,13 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -79,6 +79,7 @@
             this.dgv.Location = new System.Drawing.Point(0, 176);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -98,6 +99,15 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(878, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "제품 그룹 등록";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -154,15 +164,6 @@
             this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 30;
             this.label3.Text = "제품 그룹명";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(878, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 23);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "제품 그룹 등록";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmMItemGrp
             // 

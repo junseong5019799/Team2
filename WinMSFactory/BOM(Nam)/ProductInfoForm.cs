@@ -51,7 +51,7 @@ namespace WinMSFactory
 
         private void buttonControl1_Click(object sender, EventArgs e)
         {
-            if(txtInformation.TextLength<1 || txtNote1.TextLength<1 || txtNote2.TextLength<1 || txtUnit.TextLength<1)
+            if(txtInformation.TextLength<1 || txtUnit.TextLength<1)
             {
                 MessageBox.Show("전부 입력해주시기 바랍니다.");
                 return;

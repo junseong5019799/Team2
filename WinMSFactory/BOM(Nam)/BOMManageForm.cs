@@ -33,17 +33,17 @@ namespace WinMSFactory.BOM
         private void BOMManageForm_Load(object sender, EventArgs e)
         {
             // 왼쪽 그리드 뷰에는 반제품, 재료 만 조회 가능
-            cboSearch.ComboBinding(BomService.CboProductType("Search"), "Member", "");
+            cboSearch.ComboBinding(BomService.CboProductType(), "Member", "");
             cboType.ComboBinding(service.SelectAllGroup(),"Product_Group_ID", "Product_Group_Name");
 
             rdoActive.Checked = true;
             btnSubmit.Enabled = false;
-
+            dgv.ReadOnly = true;
+            
             MaterialColumns();
-
             SelectedAllMaterial = service.SelectMaterialSettings("반제품", "재료");
-
             dgv.DataSource = SelectedAllMaterial; // 반제품, 재료만 조회
+
         }
 
         private void MaterialColumns()
@@ -73,8 +73,10 @@ namespace WinMSFactory.BOM
                     dgv.DataSource = SelectedAllMaterial;
                 else
                 {
+
                     var SortedList = (from sort in SelectedAllMaterial
-                                      where sort.Product_Name.Contains(txtSearch.Text)
+                                      where sort.Product_Name.Contains(txtSearch.Text) && (sort.Product_Group_Name == "반제품"
+                                      || sort.Product_Group_Name == "재료")
                                       select sort).ToList();
                     
                     dgv.DataSource = SortedList;
@@ -100,11 +102,15 @@ namespace WinMSFactory.BOM
             {
                 int dgvNum = dgv[0, i].Value.ToInt();
                 List<BomVO> slist = (List<BomVO>)dgv2.DataSource;
-
-                if(slist.FindAll(p => p.Product_ID == dgvNum).Count>0)
+                if(slist != null)
                 {
-                    dgv[1, i].Value = "선택 취소";
+                    if (slist.FindAll(p => p.Product_ID == dgvNum).Count > 0)
+                    {
+                        dgv[1, i].Value = "선택 취소";
+                        continue; 
+                    }
                 }
+                break; // slist가 null일때 중단 ,slist가 존재하나, 데이터가 존재하지 않은 경우
             }
            
         }
@@ -121,12 +127,9 @@ namespace WinMSFactory.BOM
             
             if (e.ColumnIndex == 1)
             {
-                NumericUpDown num = new NumericUpDown();
-                num.Minimum = 1;
-                num.Maximum = 100000;
+                NumericControl num = new NumericControl();
                 num.Location = new Point(0, 21 * pnlNumeric.Controls.Count);
-                num.Size = new Size(63, 21);
-
+               
                 BomVO bo = new BomVO
                 {
                     Product_ID = dgv[0, e.RowIndex].Value.ToInt(),
@@ -176,7 +179,8 @@ namespace WinMSFactory.BOM
 
             pnlNumeric.Controls.Clear();
             txtProductName.Clear();
-
+            groupBox1.Enabled = groupBox2.Enabled = true;
+            lblMessage.Text = "제품 정보 등록을 진행해주시기 바랍니다.";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -196,8 +200,6 @@ namespace WinMSFactory.BOM
             // BOM 테이블에 등록
             List<BOMInsertVO> InsertBOMLists = new List<BOMInsertVO>();
             
-
-
             for (int i = 0; i < dgv2.Rows.Count; i++)
             {
                 NumericUpDown ctrl = (NumericUpDown)pnlNumeric.Controls[i];
@@ -206,10 +208,10 @@ namespace WinMSFactory.BOM
                     Product_ID = dgv2[i, 0].Value.ToInt(),   // 재료들의 ID
                     Bom_Use_Quantity = ctrl.Value.ToInt(),
                     // Bom_Seq =          ??
-                    //Bom_Use = UseCheck  ??
+                    // Bom_Use = UseCheck  ??
                 });
             }
-            //if (service.InsertProducts())
+            //if (service.InsertProducts(ProductInsertInfo, InsertBomLists))
             {
                 // Insert, ProductInsertInfo, InsertBomLists를 매개변수로 넘겨줄 것
                 // 등록되면 로그에 추가되도록 설정할 것
@@ -245,6 +247,7 @@ namespace WinMSFactory.BOM
                 btnSubmit.Enabled = true;
                 btnInsertInfo.Visible = false;
                 groupBox1.Enabled = groupBox2.Enabled = false;
+                lblMessage.Text = "등록을 진행해주세요";
             }
         }
     }
