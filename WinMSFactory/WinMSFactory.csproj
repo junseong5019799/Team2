@@ -277,34 +277,40 @@
     <Compile Include="SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology Standards\CompanyForm.cs">
+    <Compile Include="TechnologyStandards\CompanyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology Standards\CompanyForm.Designer.cs">
+    <Compile Include="TechnologyStandards\CompanyForm.Designer.cs">
       <DependentUpon>CompanyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology Standards\DefectiveTypeForm.cs">
+    <Compile Include="TechnologyStandards\CompanyProductPopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology Standards\DefectiveTypeForm.Designer.cs">
+    <Compile Include="TechnologyStandards\CompanyProductPopupForm.Designer.cs">
+      <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnologyStandards\DefectiveTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnologyStandards\DefectiveTypeForm.Designer.cs">
       <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology Standards\DowntimeTyreForm.cs">
+    <Compile Include="TechnologyStandards\DowntimeTyreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology Standards\DowntimeTyreForm.Designer.cs">
+    <Compile Include="TechnologyStandards\DowntimeTyreForm.Designer.cs">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology Standards\ProcessWorkerForm.cs">
+    <Compile Include="TechnologyStandards\ProcessWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology Standards\ProcessWorkerForm.Designer.cs">
+    <Compile Include="TechnologyStandards\ProcessWorkerForm.Designer.cs">
       <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology Standards\StorageForm.cs">
+    <Compile Include="TechnologyStandards\StorageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology Standards\StorageForm.Designer.cs">
+    <Compile Include="TechnologyStandards\StorageForm.Designer.cs">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
@@ -448,19 +454,22 @@
     <EmbeddedResource Include="SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology Standards\CompanyForm.resx">
+    <EmbeddedResource Include="TechnologyStandards\CompanyForm.resx">
       <DependentUpon>CompanyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology Standards\DefectiveTypeForm.resx">
+    <EmbeddedResource Include="TechnologyStandards\CompanyProductPopupForm.resx">
+      <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnologyStandards\DefectiveTypeForm.resx">
       <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology Standards\DowntimeTyreForm.resx">
+    <EmbeddedResource Include="TechnologyStandards\DowntimeTyreForm.resx">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology Standards\ProcessWorkerForm.resx">
+    <EmbeddedResource Include="TechnologyStandards\ProcessWorkerForm.resx">
       <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology Standards\StorageForm.resx">
+    <EmbeddedResource Include="TechnologyStandards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
