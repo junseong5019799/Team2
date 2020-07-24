@@ -80,15 +80,11 @@
     <Compile Include="BaseForm\PopUpDialogForm.Designer.cs">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMCopyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMCopyForm.cs" />
     <Compile Include="BOM%28Nam%29\BOMCopyForm.Designer.cs">
       <DependentUpon>BOMCopyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMForm.cs" />
     <Compile Include="BOM%28Nam%29\BOMForm.designer.cs">
       <DependentUpon>BOMForm.cs</DependentUpon>
     </Compile>
@@ -169,7 +165,6 @@
     <Compile Include="ReleaseForm\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
