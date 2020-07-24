@@ -42,6 +42,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnRegist = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel2.SuspendLayout();
@@ -49,6 +50,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnRegist);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnCalculate);
@@ -67,6 +69,7 @@
             this.panel1.Controls.SetChildIndex(this.btnSave, 0);
             this.panel1.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
+            this.panel1.Controls.SetChildIndex(this.btnRegist, 0);
             // 
             // GuidLabel1
             // 
@@ -97,6 +100,7 @@
             this.dgv.Location = new System.Drawing.Point(0, 176);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -204,6 +208,20 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "출고 계획 상태 : 출고 요청, 출고 중 \r\n";
             // 
+            // btnRegist
+            // 
+            this.btnRegist.BackColor = System.Drawing.Color.White;
+            this.btnRegist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegist.ForeColor = System.Drawing.Color.Black;
+            this.btnRegist.Location = new System.Drawing.Point(604, 81);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRegist.Name = "btnRegist";
+            this.btnRegist.Size = new System.Drawing.Size(102, 26);
+            this.btnRegist.TabIndex = 20;
+            this.btnRegist.Text = "등록하기";
+            this.btnRegist.UseVisualStyleBackColor = false;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
+            // 
             // ReleasePlanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -243,5 +261,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label7;
+        private ButtonControl btnRegist;
     }
 }

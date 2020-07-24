@@ -9,16 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
-using WinMSFactory.Services;
+
 
 namespace WinMSFactory
 {
     public partial class ReleasePlanForm : ListForm
     {
-        ReleaseService releaseService = new ReleaseService();
-        List<CommonCodeVO> list = new List<CommonCodeVO>();
-        CommonCodeService commonService = new CommonCodeService();
-
+        ReleaseService releaseService = new ReleaseService();       
+        
         public ReleasePlanForm()
         {
             InitializeComponent();
@@ -41,8 +39,8 @@ namespace WinMSFactory
 
             dgv.DataSource = releaseService.GetReleasePlan();
 
-            cboProduct.ComboBinding(BomService.CboProductType("Search"), "Member", "");
-
+            cboProduct.ComboBinding(releaseService.SelectProductGroup(), "Product_Group_ID", "Product_Group_Name"); 
+                        
         }
 
 
@@ -59,6 +57,9 @@ namespace WinMSFactory
             }
         }
 
-      
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

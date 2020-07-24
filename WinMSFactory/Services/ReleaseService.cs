@@ -17,6 +17,11 @@ namespace WinMSFactory
             return dac.GetReleasePlan();    
         }
 
+        public List<GroupComboVO> SelectProductGroup()
+        {
+            return dac.SelectProductGroup();
+        }
+
         public bool SaveReleasePlan(ReleaseVO release)
         {
             return dac.SaveReleasePlan(release);
