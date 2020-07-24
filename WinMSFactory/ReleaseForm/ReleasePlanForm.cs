@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -40,14 +41,24 @@ namespace WinMSFactory
 
             dgv.DataSource = releaseService.GetReleasePlan();
 
-            //list = commonService.GetCommonCodes();
+            cboProduct.ComboBinding(BomService.CboProductType("Search"), "Member", "");
+
         }
 
 
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(cboProduct.SelectedIndex > 0)
+            {
+               // var productList = 
+            }
+        }
+
+      
     }
 }

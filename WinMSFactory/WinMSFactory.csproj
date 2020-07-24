@@ -80,14 +80,6 @@
     <Compile Include="BaseForm\PopUpDialogForm.Designer.cs">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMCopyForm.cs" />
-    <Compile Include="BOM%28Nam%29\BOMCopyForm.Designer.cs">
-      <DependentUpon>BOMCopyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMForm.cs" />
-    <Compile Include="BOM%28Nam%29\BOMForm.designer.cs">
-      <DependentUpon>BOMForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="BOM%28Nam%29\BOMLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,12 +337,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\PopUpDialogForm.resx">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMCopyForm.resx">
-      <DependentUpon>BOMCopyForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMForm.resx">
-      <DependentUpon>BOMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMLogForm.resx">
       <DependentUpon>BOMLogForm.cs</DependentUpon>

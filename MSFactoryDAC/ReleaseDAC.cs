@@ -19,6 +19,7 @@ namespace MSFactoryDAC
             {
                 using(SqlCommand cmd = new SqlCommand())
                 {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = "SP_SELECT_RELEASE_PLAN";
                     cmd.CommandType = CommandType.StoredProcedure;
 
