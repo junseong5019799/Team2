@@ -8,16 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory.Services;
+using WinCoffeePrince2nd.Util;
+
 
 namespace WinMSFactory
 {
     public partial class ReleasePlanForm : ListForm
     {
-        ReleaseService releaseService = new ReleaseService();
-        List<CommonCodeVO> list = new List<CommonCodeVO>();
-        CommonCodeService commonService = new CommonCodeService();
-
+        ReleaseService releaseService = new ReleaseService();       
+        
         public ReleasePlanForm()
         {
             InitializeComponent();
@@ -40,12 +39,25 @@ namespace WinMSFactory
 
             dgv.DataSource = releaseService.GetReleasePlan();
 
-            //list = commonService.GetCommonCodes();
+            cboProduct.ComboBinding(releaseService.SelectProductGroup(), "Product_Group_ID", "Product_Group_Name"); 
+                        
         }
 
 
+        private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(cboProduct.SelectedIndex > 0)
+            {
+               // var productList = 
+            }
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
         {
 
         }

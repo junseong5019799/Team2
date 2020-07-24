@@ -37,12 +37,20 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
+            this.buttonControl5 = new WinMSFactory.ButtonControl();
+            this.buttonControl4 = new WinMSFactory.ButtonControl();
+            this.buttonControl3 = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonControl5);
+            this.panel1.Controls.Add(this.buttonControl4);
+            this.panel1.Controls.Add(this.buttonControl3);
+            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox2);
@@ -56,6 +64,10 @@
             this.panel1.Controls.SetChildIndex(this.textBox2, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.textBox3, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl3, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl4, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl5, 0);
             // 
             // GuidLabel1
             // 
@@ -151,6 +163,50 @@
             this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 761);
             this.dataGridViewControl1.TabIndex = 4;
             // 
+            // buttonControl5
+            // 
+            this.buttonControl5.BackColor = System.Drawing.Color.White;
+            this.buttonControl5.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl5.Location = new System.Drawing.Point(1075, 75);
+            this.buttonControl5.Name = "buttonControl5";
+            this.buttonControl5.Size = new System.Drawing.Size(55, 23);
+            this.buttonControl5.TabIndex = 37;
+            this.buttonControl5.Text = "초기화";
+            this.buttonControl5.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl4
+            // 
+            this.buttonControl4.BackColor = System.Drawing.Color.White;
+            this.buttonControl4.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl4.Location = new System.Drawing.Point(793, 75);
+            this.buttonControl4.Name = "buttonControl4";
+            this.buttonControl4.Size = new System.Drawing.Size(57, 23);
+            this.buttonControl4.TabIndex = 36;
+            this.buttonControl4.Text = "조회";
+            this.buttonControl4.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl3
+            // 
+            this.buttonControl3.BackColor = System.Drawing.Color.White;
+            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl3.Location = new System.Drawing.Point(986, 75);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(46, 23);
+            this.buttonControl3.TabIndex = 35;
+            this.buttonControl3.Text = "삭제";
+            this.buttonControl3.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(893, 75);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(50, 23);
+            this.buttonControl1.TabIndex = 34;
+            this.buttonControl1.Text = "저장";
+            this.buttonControl1.UseVisualStyleBackColor = false;
+            // 
             // FactoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -181,5 +237,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private DataGridViewControl dataGridViewControl1;
+        private ButtonControl buttonControl5;
+        private ButtonControl buttonControl4;
+        private ButtonControl buttonControl3;
+        private ButtonControl buttonControl1;
     }
 }

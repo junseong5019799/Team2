@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +39,6 @@
             this.buttonControl4 = new WinMSFactory.ButtonControl();
             this.buttonControl3 = new WinMSFactory.ButtonControl();
             this.buttonControl2 = new WinMSFactory.ButtonControl();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +49,6 @@
             this.panel1.Controls.Add(this.buttonControl4);
             this.panel1.Controls.Add(this.buttonControl3);
             this.panel1.Controls.Add(this.buttonControl2);
-            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox1);
@@ -60,7 +58,6 @@
             this.panel1.Controls.SetChildIndex(this.textBox1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.textBox2, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
             this.panel1.Controls.SetChildIndex(this.buttonControl2, 0);
             this.panel1.Controls.SetChildIndex(this.buttonControl3, 0);
             this.panel1.Controls.SetChildIndex(this.buttonControl4, 0);
@@ -81,23 +78,23 @@
             this.dataGridViewControl1.AllowUserToAddRows = false;
             this.dataGridViewControl1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewControl1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewControl1.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewControl1.MultiSelect = false;
@@ -147,7 +144,7 @@
             // 
             this.buttonControl5.BackColor = System.Drawing.Color.White;
             this.buttonControl5.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl5.Location = new System.Drawing.Point(1175, 73);
+            this.buttonControl5.Location = new System.Drawing.Point(1174, 73);
             this.buttonControl5.Name = "buttonControl5";
             this.buttonControl5.Size = new System.Drawing.Size(55, 23);
             this.buttonControl5.TabIndex = 26;
@@ -169,7 +166,7 @@
             // 
             this.buttonControl3.BackColor = System.Drawing.Color.White;
             this.buttonControl3.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl3.Location = new System.Drawing.Point(1094, 73);
+            this.buttonControl3.Location = new System.Drawing.Point(1050, 73);
             this.buttonControl3.Name = "buttonControl3";
             this.buttonControl3.Size = new System.Drawing.Size(46, 23);
             this.buttonControl3.TabIndex = 24;
@@ -180,23 +177,12 @@
             // 
             this.buttonControl2.BackColor = System.Drawing.Color.White;
             this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(996, 73);
+            this.buttonControl2.Location = new System.Drawing.Point(924, 73);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(48, 23);
             this.buttonControl2.TabIndex = 23;
-            this.buttonControl2.Text = "수정";
+            this.buttonControl2.Text = "저장";
             this.buttonControl2.UseVisualStyleBackColor = false;
-            // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(896, 73);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(50, 23);
-            this.buttonControl1.TabIndex = 22;
-            this.buttonControl1.Text = "추가";
-            this.buttonControl1.UseVisualStyleBackColor = false;
             // 
             // DefectiveTypeForm
             // 
@@ -205,7 +191,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1534, 761);
             this.Controls.Add(this.dataGridViewControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "DefectiveTypeForm";
             this.Text = "불량유형관리";
             this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
@@ -230,6 +216,5 @@
         private ButtonControl buttonControl4;
         private ButtonControl buttonControl3;
         private ButtonControl buttonControl2;
-        private ButtonControl buttonControl1;
     }
 }
