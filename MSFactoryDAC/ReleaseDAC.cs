@@ -37,6 +37,33 @@ namespace MSFactoryDAC
             }
         }
 
+        /// <summary>
+        /// 품목 바인딩 
+        /// </summary>
+        /// <returns></returns>
+        public List<GroupComboVO> SelectProductGroup()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT PRODUCT_GROUP_ID, PRODUCT_GROUP_NAME 
+                                   FROM TBL_PRODUCT_GROUP_MANAGEMENT 
+                                   WHERE product_group_name NOT IN('재료')";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
         public bool SaveReleasePlan(ReleaseVO release)
         {
             try
