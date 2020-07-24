@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory.Control
+namespace WinMSFactory.ResultForm
 {
-    public partial class FromToDateControl : UserControl
+    public partial class ResultListForm : ListForm
     {
-        public FromToDateControl()
+        public ResultListForm()
         {
             InitializeComponent();
-        }
-
-        private void FromToDateControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

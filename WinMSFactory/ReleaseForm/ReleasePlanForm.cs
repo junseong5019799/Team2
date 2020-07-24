@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
     public partial class ReleasePlanForm : ListForm
     {
+        ReleaseService releaseService = new ReleaseService();
+        List<CommonCodeVO> list = new List<CommonCodeVO>();
+        CommonCodeService commonService = new CommonCodeService();
+
         public ReleasePlanForm()
         {
             InitializeComponent();
@@ -31,6 +37,17 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록 시각", "", 100, true);
             dgv.AddNewColumns("최초등록 시각", "", 100, true);
             dgv.AddNewColumns("최종등록 사원", "", 100, true);
+
+            dgv.DataSource = releaseService.GetReleasePlan();
+
+            //list = commonService.GetCommonCodes();
+        }
+
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

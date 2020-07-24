@@ -69,6 +69,7 @@
             this.Controls.Add(this.dtpFrom);
             this.Name = "FromToDateControl";
             this.Size = new System.Drawing.Size(202, 30);
+            this.Load += new System.EventHandler(this.FromToDateControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
