@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 
-
 namespace WinMSFactory
 {
     public partial class ReleasePlanForm : ListForm
@@ -59,7 +58,8 @@ namespace WinMSFactory
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
-
+            //ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
+            //popfrm.Show();
         }
     }
 }

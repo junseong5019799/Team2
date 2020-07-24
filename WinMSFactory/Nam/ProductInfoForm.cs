@@ -17,28 +17,13 @@ namespace WinMSFactory
 
         private char UseChar;
 
-        BOMManageForm frm;
-        SendInfoVO vo;
-        public ProductInfoForm(BOMManageForm frm, SendInfoVO vo)
+        frmMItem frm;
+        public ProductInfoForm(frmMItem frm)
         {
             InitializeComponent();
 
             this.frm = frm;
-            this.vo = vo;
 
-            lblProductName.Text = vo.ProductName;
-            lblGroupName.Text = vo.ProductGroup;
-            lblGroupNum.Text = vo.ProductGroupNum.ToString();
-            if(vo.UseCheck == true)
-            {
-                UseChar = 'Y';
-                lblUsable.Text = "사용";
-            }
-            else
-            {
-                UseChar = 'N';
-                lblUsable.Text = "미사용";
-            }
         }
 
         private void ProductInfoForm_Load(object sender, EventArgs e)
@@ -60,8 +45,8 @@ namespace WinMSFactory
             {
                 ProductInsertVO ProductInsert = new ProductInsertVO
                 {
-                    Product_Name = vo.ProductName,
-                    Product_Group_ID = vo.ProductGroupNum, // 그룹명 대신 그룹 ID를 넘겨줌
+                    Product_Name = lblProductName.Text,
+                    Product_Group_ID = lblGroupNum.Text.ToInt(), // 그룹명 대신 그룹 ID를 넘겨줌
                     Product_Information = txtInformation.Text,
                     Product_Unit = txtUnit.Text,
                     Product_Standards = Convert.ToInt32(numUnit.Value),
@@ -71,7 +56,7 @@ namespace WinMSFactory
                     Product_Use = UseChar
                 };
 
-                frm.ProductInfo = ProductInsert;
+                //frm.ProductInfo = ProductInsert;   // 수정할 것
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

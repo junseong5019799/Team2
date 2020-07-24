@@ -213,10 +213,10 @@
             this.btnRegist.BackColor = System.Drawing.Color.White;
             this.btnRegist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegist.ForeColor = System.Drawing.Color.Black;
-            this.btnRegist.Location = new System.Drawing.Point(604, 81);
+            this.btnRegist.Location = new System.Drawing.Point(711, 78);
             this.btnRegist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegist.Name = "btnRegist";
-            this.btnRegist.Size = new System.Drawing.Size(102, 26);
+            this.btnRegist.Size = new System.Drawing.Size(101, 26);
             this.btnRegist.TabIndex = 20;
             this.btnRegist.Text = "등록하기";
             this.btnRegist.UseVisualStyleBackColor = false;

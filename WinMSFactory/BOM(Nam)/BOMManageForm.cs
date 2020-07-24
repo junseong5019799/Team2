@@ -36,7 +36,6 @@ namespace WinMSFactory.BOM
             cboType.ComboBinding(service.SelectAllGroup(),"Product_Group_ID", "Product_Group_Name");
 
             rdoActive.Checked = true;
-            btnSubmit.Enabled = false;
             dgv.ReadOnly = true;
             
             MaterialColumns();
@@ -72,14 +71,12 @@ namespace WinMSFactory.BOM
                     dgv.DataSource = SelectedAllMaterial;
                 else
                 {
-
                     var SortedList = (from sort in SelectedAllMaterial
                                       where sort.Product_Name.Contains(txtSearch.Text) && (sort.Product_Group_Name == "반제품"
                                       || sort.Product_Group_Name == "재료")
                                       select sort).ToList();
                     
                     dgv.DataSource = SortedList;
-
                 }
             }
             else
@@ -178,8 +175,6 @@ namespace WinMSFactory.BOM
 
             pnlNumeric.Controls.Clear();
             txtProductName.Clear();
-            groupBox1.Enabled = groupBox2.Enabled = true;
-            lblMessage.Text = "제품 정보 등록을 진행해주시기 바랍니다.";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -189,11 +184,6 @@ namespace WinMSFactory.BOM
                 MessageBox.Show("등록할 제품명을 입력해주세요");
                 return;
             }
-            // 제품 관리에 등록
-            ProductInsertVO ProductInsertInfo = ProductInfo;
-
-            ProductInsertInfo.First_Regist_Time = ProductInsertInfo.Final_Regist_Time = DateTime.Now;
-            ProductInsertInfo.First_Regist_Employee = ProductInsertInfo.Final_Regist_Employee = "직원명";     // 나중에 여기에 직원명 써줄 것
             // 이 값을 넘겨주면 제품 관리에 들어감!!!
 
             // BOM 테이블에 등록
@@ -206,13 +196,12 @@ namespace WinMSFactory.BOM
                 {
                     Product_ID = dgv2[i, 0].Value.ToInt(),   // 재료들의 ID
                     Bom_Use_Quantity = ctrl.Value.ToInt(),
-                    // Bom_Seq =          ??
-                    // Bom_Use = UseCheck  ??
+                    // Bom_Use = UseCheck  // BOM 사용 여부 넣어줄 것
                 });
             }
-            //if (service.InsertProducts(ProductInsertInfo, InsertBomLists))
+            //if (service.InsertProducts(InsertBomLists))
             {
-                // Insert, ProductInsertInfo, InsertBomLists를 매개변수로 넘겨줄 것
+                // Insert    =>  InsertBomLists를 매개변수로 넘겨줄 것
                 // 등록되면 로그에 추가되도록 설정할 것
             }
         }
@@ -231,23 +220,8 @@ namespace WinMSFactory.BOM
                 MessageBox.Show("조합할 재료를 등록해주시기 바랍니다.");
                 return;
             }
-            SendInfoVO send = new SendInfoVO
-            {
-                UseCheck = rdoActive.Checked,
-                ProductName = txtProductName.Text,
-                ProductGroup = cboType.Text,
-                ProductGroupNum = cboType.SelectedValue.ToInt()
-            };
 
-            ProductInfoForm frm = new ProductInfoForm(this, send);
-
-            if(frm.ShowDialog() == DialogResult.OK)
-            {
-                btnSubmit.Enabled = true;
-                btnInsertInfo.Visible = false;
-                groupBox1.Enabled = groupBox2.Enabled = false;
-                lblMessage.Text = "등록을 진행해주세요";
-            }
+            
         }
     }
     
