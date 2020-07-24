@@ -61,11 +61,4 @@ namespace MSFactoryVO
         public string Product_Group_Name { get; set; }
     }
 
-    public class SendInfoVO
-    {
-        public bool UseCheck { get; set; }
-        public string ProductName { get; set; }
-        public string ProductGroup { get; set; }
-        public int ProductGroupNum { get; set; }
-    }
 }

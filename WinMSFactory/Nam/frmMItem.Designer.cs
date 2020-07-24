@@ -186,8 +186,9 @@
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(144, 43);
             this.buttonControl1.TabIndex = 6;
-            this.buttonControl1.Text = "buttonControl1";
+            this.buttonControl1.Text = "제품 등록";
             this.buttonControl1.UseVisualStyleBackColor = false;
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // frmMItem
             // 
