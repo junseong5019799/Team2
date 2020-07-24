@@ -48,6 +48,7 @@
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
