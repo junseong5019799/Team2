@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory.Technology_Standards;
+using WinMSFactory.BOM;
 
 namespace WinMSFactory
 {
@@ -17,7 +17,7 @@ namespace WinMSFactory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CompanyForm());
+            Application.Run(new BomForm());
         }
     }
 }

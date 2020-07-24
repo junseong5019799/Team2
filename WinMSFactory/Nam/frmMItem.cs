@@ -32,7 +32,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("순번", "", 100, true);
             dgv.AddNewColumns("비고 1", "", 100, true);
             dgv.AddNewColumns("비고 2", "", 100, true);
-            dgv.AddNewBtnCol("사용 여부", new Padding(1, 1, 1, 1));
+            dgv.AddNewBtnCol("사용 여부","사용", new Padding(1, 1, 1, 1));
             dgv.AddNewColumns("최초등록시각", "", 100, true);
             dgv.AddNewColumns("최초등록사원", "", 100, true);
             dgv.AddNewColumns("최종등록시각", "", 100, true);
