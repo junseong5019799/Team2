@@ -39,7 +39,7 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btnInsert = new System.Windows.Forms.ToolStripButton();
+			this.btnAdd = new System.Windows.Forms.ToolStripButton();
 			this.btnDelete = new System.Windows.Forms.ToolStripButton();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -103,6 +103,7 @@
 			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 290);
 			this.dataGridViewControl1.TabIndex = 0;
 			this.dataGridViewControl1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewControl1_CellValueChanged);
+			this.dataGridViewControl1.Sorted += new System.EventHandler(this.dataGridViewControl1_Sorted);
 			// 
 			// dataGridViewControl2
 			// 
@@ -163,11 +164,12 @@
 			this.button3.TabIndex = 1;
 			this.button3.Text = "저장";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnInsert,
+            this.btnAdd,
             this.btnDelete});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
@@ -175,18 +177,18 @@
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// btnInsert
+			// btnAdd
 			// 
-			this.btnInsert.AutoSize = false;
-			this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
-			this.btnInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnInsert.Name = "btnInsert";
-			this.btnInsert.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.btnInsert.Size = new System.Drawing.Size(50, 50);
-			this.btnInsert.Text = "추가";
-			this.btnInsert.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-			this.btnInsert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+			this.btnAdd.AutoSize = false;
+			this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+			this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.btnAdd.Size = new System.Drawing.Size(50, 50);
+			this.btnAdd.Text = "추가";
+			this.btnAdd.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+			this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// btnDelete
 			// 
@@ -228,7 +230,7 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripButton btnInsert;
+		private System.Windows.Forms.ToolStripButton btnAdd;
 		private System.Windows.Forms.ToolStripButton btnDelete;
 	}
 }

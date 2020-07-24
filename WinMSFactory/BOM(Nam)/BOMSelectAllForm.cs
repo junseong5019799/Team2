@@ -80,5 +80,10 @@ namespace WinMSFactory.BOM_Nam_
             //    }
             //}
         }
+
+        private void buttonControl4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
