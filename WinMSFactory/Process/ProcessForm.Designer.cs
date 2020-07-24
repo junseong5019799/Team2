@@ -41,12 +41,20 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
+            this.buttonControl5 = new WinMSFactory.ButtonControl();
+            this.buttonControl4 = new WinMSFactory.ButtonControl();
+            this.buttonControl3 = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonControl5);
+            this.panel1.Controls.Add(this.buttonControl4);
+            this.panel1.Controls.Add(this.buttonControl3);
+            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.textBox4);
@@ -69,10 +77,14 @@
             this.panel1.Controls.SetChildIndex(this.textBox4, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
             this.panel1.Controls.SetChildIndex(this.textBox5, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl3, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl4, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl5, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(939, 45);
+            this.GuidLabel1.Location = new System.Drawing.Point(932, 9);
             // 
             // GuidLabel2
             // 
@@ -200,6 +212,50 @@
             this.dataGridViewControl1.Size = new System.Drawing.Size(1753, 1015);
             this.dataGridViewControl1.TabIndex = 4;
             // 
+            // buttonControl5
+            // 
+            this.buttonControl5.BackColor = System.Drawing.Color.White;
+            this.buttonControl5.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl5.Location = new System.Drawing.Point(1209, 39);
+            this.buttonControl5.Name = "buttonControl5";
+            this.buttonControl5.Size = new System.Drawing.Size(55, 23);
+            this.buttonControl5.TabIndex = 39;
+            this.buttonControl5.Text = "초기화";
+            this.buttonControl5.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl4
+            // 
+            this.buttonControl4.BackColor = System.Drawing.Color.White;
+            this.buttonControl4.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl4.Location = new System.Drawing.Point(927, 39);
+            this.buttonControl4.Name = "buttonControl4";
+            this.buttonControl4.Size = new System.Drawing.Size(57, 23);
+            this.buttonControl4.TabIndex = 38;
+            this.buttonControl4.Text = "조회";
+            this.buttonControl4.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl3
+            // 
+            this.buttonControl3.BackColor = System.Drawing.Color.White;
+            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl3.Location = new System.Drawing.Point(1120, 39);
+            this.buttonControl3.Name = "buttonControl3";
+            this.buttonControl3.Size = new System.Drawing.Size(46, 23);
+            this.buttonControl3.TabIndex = 37;
+            this.buttonControl3.Text = "삭제";
+            this.buttonControl3.UseVisualStyleBackColor = false;
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(1027, 39);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(50, 23);
+            this.buttonControl1.TabIndex = 36;
+            this.buttonControl1.Text = "저장";
+            this.buttonControl1.UseVisualStyleBackColor = false;
+            // 
             // ProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -207,7 +263,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1753, 1015);
             this.Controls.Add(this.dataGridViewControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "ProcessForm";
             this.Text = "공정관리";
             this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
@@ -234,5 +290,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private DataGridViewControl dataGridViewControl1;
+        private ButtonControl buttonControl5;
+        private ButtonControl buttonControl4;
+        private ButtonControl buttonControl3;
+        private ButtonControl buttonControl1;
     }
 }

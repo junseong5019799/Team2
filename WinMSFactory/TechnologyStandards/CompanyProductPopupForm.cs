@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory.Technology_Standards
+namespace WinMSFactory.TechnologyStandards
 {
-    public partial class CompanyForm : ListForm
+    public partial class CompanyProductPopupForm : Form
     {
-        public CompanyForm()
+        public CompanyProductPopupForm()
         {
             InitializeComponent();
         }
