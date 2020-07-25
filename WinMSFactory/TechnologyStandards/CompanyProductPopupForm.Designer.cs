@@ -58,12 +58,12 @@
             // 
             // buttonControl2
             // 
-            this.buttonControl2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonControl2.Location = new System.Drawing.Point(98, 4);
+            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.Location = new System.Drawing.Point(98, 4);
             // 
             // buttonControl1
             // 
-            this.buttonControl1.Location = new System.Drawing.Point(250, 4);
+            this.btnCancel.Location = new System.Drawing.Point(250, 4);
             // 
             // label6
             // 

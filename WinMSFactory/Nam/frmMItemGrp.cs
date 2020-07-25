@@ -40,10 +40,53 @@ namespace WinMSFactory
             foreach(DataGridViewRow row in dgv.Rows)
             {
                 if (dgv[10, row.Index].Value.ToString() == "Y")
-                    dgv[1, row.Index].Value = "사용";
+                    dgv[2, row.Index].Value = "사용";
                 else 
-                    dgv[1, row.Index].Value = "미사용";
+                    dgv[2, row.Index].Value = "미사용";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProductGroupInfoForm frm = new ProductGroupInfoForm();
+
+            if(frm.ShowDialog()==DialogResult.OK)
+                dgv.DataSource = service.SelectAllProductGroups();
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int ItemNum = dgv[0, e.RowIndex].Value.ToInt();
+            if (e.ColumnIndex == 2)
+            {
+                if (dgv[2, e.RowIndex].Value.ToString() == "미사용")
+                {
+                    service.UpdateStatus(ItemNum,Convert.ToInt32(UseCheckNum.ProductUsed));
+                    dgv[2, e.RowIndex].Value = "사용";
+                }
+
+
+                else
+                {
+                    service.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUnUsed));
+                    dgv[2, e.RowIndex].Value = "미사용";
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e) // 삭제
+        {
+            string valueString = dgv.SelectedRows[0].Cells[1].Value.ToString();
+
+            if (valueString == "반제품" || valueString == "재료")
+            {
+                MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
+                return;
+            }
+
+
+
+
         }
     }
 }

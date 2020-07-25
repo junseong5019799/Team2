@@ -17,7 +17,7 @@ namespace WinMSFactory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReleasePlanForm());
+            Application.Run(new frmMItemGrp());
         }
     }
 }

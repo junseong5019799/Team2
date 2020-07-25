@@ -98,6 +98,12 @@
     <Compile Include="BOM%28Nam%29\BOMSelectAllForm.Designer.cs">
       <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nam\frmMItemGrp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nam\frmMItemGrp.designer.cs">
+      <DependentUpon>frmMItemGrp.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagePriceForm\SellPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     </Compile>
     <Compile Include="Process\ProcessForm.Designer.cs">
       <DependentUpon>ProcessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nam\ProductGroupInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
+      <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
@@ -356,6 +368,9 @@
     <EmbeddedResource Include="BOM%28Nam%29\BOMSelectAllForm.resx">
       <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Nam\frmMItemGrp.resx">
+      <DependentUpon>frmMItemGrp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\SellPriceForm.resx">
       <DependentUpon>SellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -418,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\ProcessForm.resx">
       <DependentUpon>ProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nam\ProductGroupInfoForm.resx">
+      <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,30 +16,36 @@ namespace WinMSFactory.BOM
     
     public partial class BOMManageForm : BasicForm
     {
-        BomService service = new BomService();
+        BomService bomSv = new BomService();
+        ProductGroupService pdgSv = new ProductGroupService();
+
         List<BomVO> SelectedAllMaterial;
         List<BomVO> CheckMaterialList;
+        char UseCheck = 'Y';
 
         public ProductInsertVO ProductInfo { get; set; }
+        public string ProductNm { get; set; }
 
         // BOM 등록 및 수정
         public BOMManageForm()
         {
             InitializeComponent();
+
             CheckMaterialList = new List<BomVO>();
+            
         }
 
         private void BOMManageForm_Load(object sender, EventArgs e)
         {
             // 왼쪽 그리드 뷰에는 반제품, 재료 만 조회 가능
             cboSearch.ComboBinding(BomService.CboProductType(), "Member", "");
-            cboType.ComboBinding(service.SelectAllGroup(),"Product_Group_ID", "Product_Group_Name");
+            cboType.ComboBinding(pdgSv.ProductGroupComboBindingsNotAll(),"Product_Group_ID", "Product_Group_Name");
 
             rdoActive.Checked = true;
-            dgv.ReadOnly = true;
-            
+            txtProductName.Text = ProductNm;
+
             MaterialColumns();
-            SelectedAllMaterial = service.SelectMaterialSettings("반제품", "재료");
+            SelectedAllMaterial = bomSv.SelectMaterialSettings("반제품", "재료");
             dgv.DataSource = SelectedAllMaterial; // 반제품, 재료만 조회
 
         }
@@ -59,6 +65,9 @@ namespace WinMSFactory.BOM
             dgv2.AddNewColumns("제품 그룹명", "Product_Group_Name", 100, true);
             dgv2.AddNewColumns("제품명", "Product_Name", 100, true);
             dgv2.AddNewColumns("품명 스펙", "Product_Information", 100, true);
+            dgv2.AddNewColumns("필요 수량", "1", 100, true);
+
+            
         }
 
 
@@ -123,8 +132,6 @@ namespace WinMSFactory.BOM
             
             if (e.ColumnIndex == 1)
             {
-                NumericControl num = new NumericControl();
-                num.Location = new Point(0, 21 * pnlNumeric.Controls.Count);
                
                 BomVO bo = new BomVO
                 {
@@ -137,24 +144,33 @@ namespace WinMSFactory.BOM
                 if (dgv[1, e.RowIndex].Value.ToString() == "선택")
                 {
                     dgv[1, e.RowIndex].Value = "선택 취소";
+                    dgv.CurrentRow.DefaultCellStyle.BackColor = Color.Beige;
 
                     CheckMaterialList.Add(bo);
-
-                    pnlNumeric.Controls.Add(num);
                 }
                 else 
                 {
                     dgv[1, e.RowIndex].Value = "선택";
+                    dgv.CurrentRow.DefaultCellStyle.BackColor = Color.White;
 
                     int DeleteIndex = CheckMaterialList.FindIndex(p => bo.Product_ID == p.Product_ID);
 
                     CheckMaterialList.RemoveAt(DeleteIndex);
-
-                    pnlNumeric.Controls.RemoveAt(dgv2.Rows.Count-1);
                 }
 
                 dgv2.DataSource = null;
                 dgv2.DataSource = CheckMaterialList;
+
+
+                // 수량 입력할 수 있도록 해줌
+                for (int i = 0; i < dgv2.Rows.Count; i++)
+                {
+                    for(int j = 1; j<dgv2.Columns.Count-1; j++)
+                    {
+                        dgv2[j, i].ReadOnly = true;
+                        dgv2[4, dgv2.Rows.Count-1].Value = 1;
+                    }
+                }
             }
         }
 
@@ -172,56 +188,47 @@ namespace WinMSFactory.BOM
 
             CheckMaterialList.Clear();
             dgv2.DataSource = null;
-
-            pnlNumeric.Controls.Clear();
             txtProductName.Clear();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (txtProductName.TextLength < 1)
+            if (dgv2.Rows.Count < 2)
             {
-                MessageBox.Show("등록할 제품명을 입력해주세요");
-                return;
+                MessageBox.Show("재료를 2개 이상 추가해주세요");
             }
             // 이 값을 넘겨주면 제품 관리에 들어감!!!
 
             // BOM 테이블에 등록
-            List<BOMInsertVO> InsertBOMLists = new List<BOMInsertVO>();
+            List<BOMInsertUpdateVO> InsertBOMLists = new List<BOMInsertUpdateVO>();
             
+            // dgv2에서 목록 Sorting
             for (int i = 0; i < dgv2.Rows.Count; i++)
             {
-                NumericUpDown ctrl = (NumericUpDown)pnlNumeric.Controls[i];
-                InsertBOMLists.Add(new BOMInsertVO
+                InsertBOMLists.Add(new BOMInsertUpdateVO
                 {
-                    Product_ID = dgv2[i, 0].Value.ToInt(),   // 재료들의 ID
-                    Bom_Use_Quantity = ctrl.Value.ToInt(),
-                    // Bom_Use = UseCheck  // BOM 사용 여부 넣어줄 것
-                });
+                    Higher_Product_ID = lblHigherID.Text.ToInt(),
+                    Lower_Product_ID = dgv2[i, 0].Value.ToInt(),   // 재료들의 ID
+                    Bom_Use_Quantity = dgv2[i, 4].Value.ToInt(),
+                    Final_Regist_Time = DateTime.Now.Date,
+                    Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
+                    Bom_Use = UseCheck  // BOM 사용 여부 넣어줄 것
+                }) ;
             }
-            //if (service.InsertProducts(InsertBomLists))
+            if (bomSv.InsertProducts(InsertBOMLists))
             {
+                
                 // Insert    =>  InsertBomLists를 매개변수로 넘겨줄 것
                 // 등록되면 로그에 추가되도록 설정할 것
             }
         }
 
-        
-
-        private void buttonControl2_Click(object sender, EventArgs e)
+        private void rdoActive_CheckedChanged(object sender, EventArgs e)
         {
-            if(txtProductName.TextLength<1)
-            {
-                MessageBox.Show("제품명을 등록해주시기 바랍니다.");
-                return;
-            }
-            if(dgv2.Rows.Count<1)
-            {
-                MessageBox.Show("조합할 재료를 등록해주시기 바랍니다.");
-                return;
-            }
-
-            
+            if (rdoActive.Checked)
+                UseCheck = 'Y';
+            else if (rdoDeActive.Checked)
+                UseCheck = 'N';
         }
     }
     

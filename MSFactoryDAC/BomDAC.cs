@@ -1,6 +1,7 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -37,24 +38,53 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<GroupComboVO> SelectAllGroup()
+        public bool InsertProducts(List<BOMInsertUpdateVO> lists)
         {
-            try
+            
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                conn.Open();
+                SqlTransaction trans = conn.BeginTransaction();
+                try
                 {
-                    conn.Open();
-                    string sql = @"SELECT PRODUCT_GROUP_ID, PRODUCT_GROUP_NAME FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE PRODUCT_GROUP_USE='Y'" ;
+                    
+                    
+                    string sql = "SP_BOM_INSERT_UPDATE";
+                    
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        
+                        foreach (var voList in lists)
+                        {
+                            cmd.Transaction = trans;
+
+                            cmd.Parameters.AddWithValue("@P_HIGHER_PRODUCTID", voList.Higher_Product_ID);
+                            cmd.Parameters.AddWithValue("@P_LOWER_PRODUCTID", voList.Lower_Product_ID);
+                            cmd.Parameters.AddWithValue("@P_QUANTITY", voList.Bom_Use_Quantity);
+                            cmd.Parameters.AddWithValue("@P_REGIST_TIME", voList.Final_Regist_Time);
+                            cmd.Parameters.AddWithValue("@P_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
+
+                            if (cmd.ExecuteNonQuery() > 0)
+                                continue;
+                            else
+                                throw new Exception();
+                        }
+
+                        trans.Commit();
+                        return true;
                     }
                 }
+                catch (Exception err)
+                {
+                    string msg = err.Message;
+                    trans.Rollback();
+                    return false;
+                }
             }
-            catch (Exception err)
-            {
-                throw err;
-            }
+            
         }
+
+        
     }
 }
