@@ -19,12 +19,12 @@ namespace WinMSFactory.Control
 
         private void FromToDateControl_Load(object sender, EventArgs e)
         {
-            if (dtpFrom.Value >= dtpTo.Value)
-            {
-                MessageBox.Show("날짜를 잘못 입력하셨습니다.");
-                dtpFrom.Value = dtpTo.Value.AddDays(-1);
-                return;
-            }
+            //if (dtpFrom.Value > dtpTo.Value)
+            //{
+            //    MessageBox.Show("날짜를 잘못 입력하셨습니다.");
+            //    dtpFrom.Value = dtpTo.Value.AddDays(-1);
+            //    return;
+            //}
         }
 
     }

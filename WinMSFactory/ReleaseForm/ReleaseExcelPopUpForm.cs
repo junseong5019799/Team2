@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +8,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinCoffeePrince2nd.Util;
 
 namespace WinMSFactory.ReleaseForm
 {
     public partial class ReleaseExcelPopUpForm : PopUpDialogForm
     {
-        public ReleaseExcelPopUpForm()
-        {
-            InitializeComponent();
+        ReleaseService releaseService = new ReleaseService();
+
+        public string CompanyName 
+        { 
+            get { return CompanyName; } 
+            set {txtCompany.Text = value; } 
         }
+        public int RequestNum
+        {
+            get { return RequestNum; }
+            set { txtOrderNum.Text = value.ToString(); }
+        }
+        public string ProductName
+        {
+            get { return ProductName; }
+            set { cboProduct.SelectedItem = value; }
+        }
+        public DateTime RequestDate
+        {
+            get { return RequestDate; }
+            set { dtpRequest.Value = value; }
+        }
+        public int PlanID
+        {
+            get { return PlanID; }
+            set { PlanID = value; }
+        }
+
+        public ReleaseExcelPopUpForm()
+        {           
+
+            //InitializeComponent();
+            
+        }
+
+        private void ReleaseExcelPopUpForm_Load(object sender, EventArgs e)
+        {
+            cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name");
+
+        }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// 등록
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonControl2_Click(object sender, EventArgs e)
+        {
+            ReleaseVO release = new ReleaseVO();
+            release.release_no = PlanID;
+            release.product_id = releaseService.GetProductID(cboProduct.SelectedItem.ToString());
+            release.release_date = dtpOut.Value;
+            release.release_plan_date = dtpRequest.Value;
+            release.order_request_quantity = Convert.ToInt32(txtOrderNum);
+
+            releaseService.SaveReleasePlan(release);
+        }
+
+
     }
 }

@@ -229,6 +229,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReleaseForm\ReleaseExcelPopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReleaseForm\ReleaseExcelPopUpForm.Designer.cs">
+      <DependentUpon>ReleaseExcelPopUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReleaseForm\ReleaseOutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -426,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReleaseForm\CalculateRatingForm.resx">
       <DependentUpon>CalculateRatingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReleaseForm\ReleaseExcelPopUpForm.resx">
+      <DependentUpon>ReleaseExcelPopUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReleaseForm\ReleaseOutForm.resx">
       <DependentUpon>ReleaseOutForm.cs</DependentUpon>

@@ -22,9 +22,24 @@ namespace WinMSFactory
             return dac.SelectProductGroup();
         }
 
+        public List<GroupComboVO> SelectPlanID ()
+        {
+            return dac.SelectPlanID();
+        }
+         
+        public List<BomVO> SelectProduct()
+        {
+            return dac.SelectProduct();
+        }
+
         public bool SaveReleasePlan(ReleaseVO release)
         {
             return dac.SaveReleasePlan(release);
+        }
+
+        public int GetProductID(string name)
+        {
+            return dac.GetProductID(name);
         }
     }
 }
