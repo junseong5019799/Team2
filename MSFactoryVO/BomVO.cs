@@ -23,11 +23,10 @@ namespace MSFactoryVO
         public string Product_Note2 { get; set; }
     }
 
-    public class BOMInsertVO
+    public class BOMInsertUpdateVO
     {
-        //public int Higher_Product_ID { get; set; }
-        //public int Lower_Product_ID { get; set; }
-        public int Product_ID { get; set; }
+        public int Higher_Product_ID { get; set; }
+        public int Lower_Product_ID { get; set; }
         public int Bom_Use_Quantity { get; set; }
         public int Bom_Seq { get; set; }
         public char Bom_Use { get; set; }
@@ -55,10 +54,6 @@ namespace MSFactoryVO
         public string Final_Regist_Employee { get; set; }
     }
 
-    public class GroupComboVO
-    {
-        public int Product_Group_Id { get; set; }
-        public string Product_Group_Name { get; set; }
-    }
+    
 
 }

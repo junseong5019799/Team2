@@ -24,4 +24,17 @@ namespace MSFactoryVO
         public char Product_Group_Use { get; set; }
         public string Product_Group_Use_String { get; set; }
     }
+
+    public class GroupComboVO
+    {
+        public int Product_Group_Id { get; set; }
+        public string Product_Group_Name { get; set; }
+
+        public GroupComboVO() { }
+        public GroupComboVO(int Product_Group_Id, string Product_Group_Name)
+        {
+            this.Product_Group_Id = Product_Group_Id;
+            this.Product_Group_Name = Product_Group_Name;
+        }
+    }
 }

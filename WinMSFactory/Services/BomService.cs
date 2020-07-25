@@ -28,9 +28,11 @@ namespace WinMSFactory
             return dac.SelectMaterialSettings(Category1, Category2);
        }
 
-        public List<GroupComboVO> SelectAllGroup()
+        
+
+        public bool InsertProducts(List<BOMInsertUpdateVO> insertBOMLists)
         {
-            return dac.SelectAllGroup();
+            return dac.InsertProducts(insertBOMLists);
         }
     }
 }

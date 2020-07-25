@@ -1,6 +1,7 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,78 @@ namespace MSFactoryDAC
 {
     public class ProductGroupDAC : ConnectionAccess
     {
+        public List<GroupComboVO> ProductGroupComboBindingsNotAll()
+        {
+            return ComboBinding();
+        }
+
+        
+
+        public List<GroupComboVO> ProductGroupComboBindings()
+        {
+            List<GroupComboVO> list = ComboBinding();
+            list.Insert(0, new GroupComboVO(0, "전체"));
+            return list;
+        }
+
+        private List<GroupComboVO> ComboBinding()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT PRODUCT_GROUP_ID, PRODUCT_GROUP_NAME FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE PRODUCT_GROUP_USE='Y'";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+        public void UpdateStatus(int itemNum, int statusNum)
+        {
+            ProductDAC dac = new ProductDAC();
+            string sql = "SP_PRODUCT_GROUP_STATUS_CHANGE";
+            dac.ProductAndGroupsStatusUpdate(itemNum, statusNum, sql);
+        }
+
+        public bool InsertGroup(ProductGroupVO pdgVO)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SP_PRODUCT_GROUP_INSERT";
+                                    
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_GROUP_NAME", pdgVO.Product_Group_Name);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE1", pdgVO.Product_Group_Note1);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE2", pdgVO.Product_Group_Note2);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_USE", pdgVO.Product_Group_Use);
+                        cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", pdgVO.Final_Regist_Time);
+                        cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", pdgVO.Final_Regist_Employee);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<ProductGroupVO> SelectAllProductGroups()
         {
             try

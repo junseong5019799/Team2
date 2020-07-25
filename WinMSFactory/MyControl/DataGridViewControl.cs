@@ -33,7 +33,6 @@ namespace WinMSFactory
             this.AutoGenerateColumns = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            this.ReadOnly = true;
         }
 
         
