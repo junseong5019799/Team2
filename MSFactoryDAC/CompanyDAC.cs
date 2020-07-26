@@ -50,11 +50,12 @@ namespace MSFactoryDAC
         //                                 where companyId =@companyId
         //                                   AND companyType =@companyType
         //                              Order by company_seq DESC";
+        //            cmd.Connection.Open();
         //        }
         //    }
         //    catch (Exception err)
         //    {
-        //        //ConnectionAccess.GetLogger().WriteError(err.Message, err);
+        //        ConnectionAccess.GetLogger().WriteError(err.Message, err);
         //        throw err;
         //    }
         //}
