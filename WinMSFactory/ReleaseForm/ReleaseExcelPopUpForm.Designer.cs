@@ -42,7 +42,7 @@
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpOut = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblPlanID = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,15 +52,14 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Size = new System.Drawing.Size(819, 53);
             // 
-            // buttonControl2
+            // btnConfirm
             // 
-            this.buttonControl2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonControl2.Text = "등록";
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
+            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // buttonControl1
+            // btnCancel
             // 
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label1
             // 
@@ -83,7 +82,6 @@
             // 
             this.txtCompany.Location = new System.Drawing.Point(153, 53);
             this.txtCompany.Name = "txtCompany";
-            this.txtCompany.ReadOnly = true;
             this.txtCompany.Size = new System.Drawing.Size(216, 26);
             this.txtCompany.TabIndex = 3;
             // 
@@ -177,22 +175,22 @@
             this.dtpOut.Size = new System.Drawing.Size(216, 26);
             this.dtpOut.TabIndex = 14;
             // 
-            // label8
+            // lblPlanID
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(651, 350);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "ID";
-            this.label8.Visible = false;
+            this.lblPlanID.AutoSize = true;
+            this.lblPlanID.Location = new System.Drawing.Point(651, 350);
+            this.lblPlanID.Name = "lblPlanID";
+            this.lblPlanID.Size = new System.Drawing.Size(26, 20);
+            this.lblPlanID.TabIndex = 16;
+            this.lblPlanID.Text = "ID";
+            this.lblPlanID.Visible = false;
             // 
             // ReleaseExcelPopUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 486);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblPlanID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpOut);
             this.Controls.Add(this.txtNote);
@@ -226,7 +224,7 @@
             this.Controls.SetChildIndex(this.txtNote, 0);
             this.Controls.SetChildIndex(this.dtpOut, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
+            this.Controls.SetChildIndex(this.lblPlanID, 0);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,6 +247,6 @@
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpOut;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblPlanID;
     }
 }

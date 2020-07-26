@@ -16,5 +16,10 @@ namespace WinMSFactory.StockForm
         {
             InitializeComponent();
         }
+
+        private void InOutListForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

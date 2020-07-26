@@ -159,11 +159,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fromToDateControl1.From = new System.DateTime(2020, 7, 26, 23, 33, 43, 166);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
+            this.fromToDateControl1.To = new System.DateTime(2020, 7, 26, 23, 33, 43, 166);
             // 
             // label4
             // 
@@ -187,11 +189,13 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fromToDateControl2.From = new System.DateTime(2020, 7, 25, 23, 33, 43, 242);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl2.TabIndex = 17;
+            this.fromToDateControl2.To = new System.DateTime(2020, 7, 26, 23, 33, 43, 242);
             // 
             // label7
             // 
@@ -241,6 +245,7 @@
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(136, 28);
             this.cboPlanID.TabIndex = 33;
+            this.cboPlanID.SelectedIndexChanged += new System.EventHandler(this.cboPlanID_SelectedIndexChanged);
             // 
             // CalculateRatingForm
             // 

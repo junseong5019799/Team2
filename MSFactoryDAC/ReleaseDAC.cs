@@ -38,8 +38,6 @@ namespace MSFactoryDAC
         }
 
 
-
-
         /// <summary>
         /// 품목명 바인딩
         /// </summary>
@@ -94,7 +92,7 @@ namespace MSFactoryDAC
         /// PlanID 바인딩
         /// </summary>
         /// <returns></returns>
-        public List<GroupComboVO> SelectPlanID()
+        public List<ReleaseVO> SelectPlanID()
         {
             try
             {
@@ -105,7 +103,7 @@ namespace MSFactoryDAC
                                    FROM TBL_RELEASE_DETAIL";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                        return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
                     }
                 }
             }
@@ -121,14 +119,30 @@ namespace MSFactoryDAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = "SP_SAVE_RELEASE_PLAN";
                     cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@release_no", release.release_no);
+                    cmd.Parameters.AddWithValue("@company_id", release.company_id);
+                    cmd.Parameters.AddWithValue("@first_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@first_regist_employee", release.first_regist_employee);
+                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@final_regist_employee", release.final_regist_employee);
+                    //cmd.Parameters.AddWithValue("@release_seq", release.release_no);
+                    cmd.Parameters.AddWithValue("@product_id", release.product_id);
+                    cmd.Parameters.AddWithValue("@release_plan_date", release.release_plan_date);
+                    cmd.Parameters.AddWithValue("@release_date", release.release_date);
+                    cmd.Parameters.AddWithValue("@order_request_quantity", release.order_request_quantity);
+                    cmd.Parameters.AddWithValue("@release_status", release.release_status);
+
+
 
                     cmd.Connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     list = SqlHelper.DataReaderMapToList<ReleaseVO>(reader);
                     cmd.Connection.Close();
-
+                                        
                     return true;
                 }
             }
@@ -144,6 +158,7 @@ namespace MSFactoryDAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = $@"SELECT product_id
                                          FROM TBL_PRODUCT
                                          WHERE product_name = @product_name ";

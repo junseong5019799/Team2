@@ -46,7 +46,7 @@ namespace WinMSFactory
             dgv2.AddNewColumns("품명", "", 150, true);
             dgv2.AddNewColumns("요청 수량", "", 150, true);
             dgv2.AddNewColumns("납기일", "", 200, true);
-            
+
             cboProduct.ComboBinding(releaseService.SelectProductGroup(), "Product_Group_ID", "Product_Group_Name"); 
                         
         }
@@ -57,19 +57,12 @@ namespace WinMSFactory
 
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if(cboProduct.SelectedIndex > 0)
-            {
-               // var productList = 
-            }
-        }
-
-        private void dgv2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
+        
+        /// <summary>
+        /// 등록하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRegist_Click(object sender, EventArgs e)
         {
             if (dgv2.SelectedCells.Count == 0)
@@ -80,6 +73,8 @@ namespace WinMSFactory
             else
             {
                 ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
+                //popfrm.CompanyName = dgv2.SelectedRows[0].Cells[2].Value.ToString();
+                //popfrm.PlanID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
                 popfrm.Show();
             }
         }
@@ -165,6 +160,17 @@ namespace WinMSFactory
             }
             dgv2.DataSource = null;
             dgv2.DataSource = rList;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            releaseService.GetReleasePlan();
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            CalculateRatingForm frm = new CalculateRatingForm();
+            frm.Show();
         }
     }
 }
