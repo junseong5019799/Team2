@@ -37,8 +37,35 @@ namespace MSFactoryDAC
             }
         }
 
+
+
+
         /// <summary>
-        /// 품목 바인딩 
+        /// 품목명 바인딩
+        /// </summary>
+        /// <returns></returns>
+        public List<BomVO> SelectProduct()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT product_id, product_name FROM TBL_PRODUCT";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// 품목 그룹 바인딩 
         /// </summary>
         /// <returns></returns>
         public List<GroupComboVO> SelectProductGroup()
@@ -63,14 +90,38 @@ namespace MSFactoryDAC
             }
         }
 
+        /// <summary>
+        /// PlanID 바인딩
+        /// </summary>
+        /// <returns></returns>
+        public List<GroupComboVO> SelectPlanID()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT release_no
+                                   FROM TBL_RELEASE_DETAIL";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
 
-        public bool SaveReleasePlan(ReleaseVO release)
+            public bool SaveReleasePlan(ReleaseVO release)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "SP_SELECT_RELEASE_PLAN";
+                    cmd.CommandText = "SP_SAVE_RELEASE_PLAN";
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Connection.Open();
@@ -85,6 +136,29 @@ namespace MSFactoryDAC
             {
                 throw err;
             }
+        }        
+        
+        public int GetProductID(string name)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = $@"SELECT product_id
+                                         FROM TBL_PRODUCT
+                                         WHERE product_name = @product_name ";
+                  
+                    cmd.Connection.Open();
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());                    
+                    cmd.Connection.Close();
+
+                    return id;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
         }
-    }
+    }    
 }
