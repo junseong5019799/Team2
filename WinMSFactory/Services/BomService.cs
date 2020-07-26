@@ -15,10 +15,10 @@ namespace WinMSFactory
         public static List<ProductType> CboProductType()
         {
             List<ProductType> list = new List<ProductType>();
-            
-            list.Add(new ProductType { Member = "전체" });
-            list.Add(new ProductType { Member = "반제품" });
-            list.Add(new ProductType { Member = "재료" });
+
+            list.Add(new ProductType { Member = "전체", ValueMember = 1 }) ;
+            list.Add(new ProductType { Member = "반제품", ValueMember=2 });
+            list.Add(new ProductType { Member = "재료", ValueMember = 3 });
             
             return list;
         }
@@ -33,6 +33,12 @@ namespace WinMSFactory
         public bool InsertProducts(List<BOMInsertUpdateVO> insertBOMLists)
         {
             return dac.InsertProducts(insertBOMLists);
+        }
+
+        internal List<BomVO> BOMEnrolledMaterial(int ProductID)
+        {
+            return dac.BOMEnrolledMaterial(ProductID);
+        
         }
     }
 }

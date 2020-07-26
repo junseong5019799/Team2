@@ -86,17 +86,23 @@
     <Compile Include="BOM%28Nam%29\BOMLogForm.designer.cs">
       <DependentUpon>BOMLogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.designer.cs">
-      <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="BOM%28Nam%29\BOMSelectAllForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BOM%28Nam%29\BOMSelectAllForm.Designer.cs">
       <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
+      <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOM%28Nam%29\BOMUpdateForm.Designer.cs">
+      <DependentUpon>BOMUpdateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Nam\frmMItemGrp.cs">
       <SubType>Form</SubType>
@@ -362,11 +368,14 @@
     <EmbeddedResource Include="BOM%28Nam%29\BOMLogForm.resx">
       <DependentUpon>BOMLogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectAllForm.resx">
+      <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectAllForm.resx">
-      <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
+    <EmbeddedResource Include="BOM%28Nam%29\BOMUpdateForm.resx">
+      <DependentUpon>BOMUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmMItemGrp.resx">
       <DependentUpon>frmMItemGrp.cs</DependentUpon>

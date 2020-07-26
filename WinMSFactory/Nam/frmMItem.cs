@@ -28,6 +28,7 @@ namespace WinMSFactory
         ProductGroupService pdgSv = new ProductGroupService();
 
         char UseCheck = 'Y';
+        char BomEnrollStatus = 'N';
         private List<ProductVO> CheckUseSortList;
 
         public frmMItem()
@@ -73,9 +74,10 @@ namespace WinMSFactory
 
         private void ReviewDGV()
         {
-            dgv.DataSource = null;
             
-            dgv.DataSource = SelectAllProducts;
+            dgv.DataSource = null;
+
+            dgv.DataSource = pdSv.SelectAllProducts();
         }
         
         private void buttonControl1_Click(object sender, EventArgs e)
@@ -84,7 +86,7 @@ namespace WinMSFactory
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("등록되었습니다."); 
+                MessageBox.Show("등록되었습니다.");
                 ReviewDGV();
             }
         }
@@ -99,17 +101,38 @@ namespace WinMSFactory
                     dgv[3, row.Index].Value = "미사용";           
 
 
+                
+
+                if(dgv[1,row.Index].Value.ToString() == "재료")
+                {
+                    dgv[4, row.Index].Value = "-";
+                    dgv[4, row.Index].ReadOnly = true;
+                }
                 // BOM에 등록되지 않았으면 등록이 나오고, 등록되어있으면 수정으로 나온다.
-                if(dgv[15, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                else if (dgv[15, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                {
                     dgv[4, row.Index].Value = "BOM 수정";
-                else
+                    BomEnrollStatus = 'Y';
+                }
+                    
+                else if(dgv[15, row.Index].Value.ToString() == "N")
+                {
                     dgv[4, row.Index].Value = "BOM 등록";
+                    BomEnrollStatus = 'N';
+                }
+                   
+                
             }
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+                return;
             int ItemNum = dgv[0, e.RowIndex].Value.ToInt();
+
+            
+
             if(e.ColumnIndex == 3)
             {
                 if (dgv[3, e.RowIndex].Value.ToString() == "미사용")
@@ -129,24 +152,36 @@ namespace WinMSFactory
             
             else if(e.ColumnIndex == 4)
             {
+                
                 if (dgv[4, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
                 {
                     BOMManageForm frm = new BOMManageForm();
                     frm.ProductNm = dgv[2, e.RowIndex].Value.ToString();
-                    if(frm.ShowDialog() == DialogResult.OK)
+                    frm.ProductID = dgv[0, e.RowIndex].Value.ToInt();
+                    frm.BOMEnrollStatus = BomEnrollStatus;
+
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        dgv[4, e.RowIndex].Value = "BOM 수정";
+                        frmMItem_Load(null, null);
                     }
 
+                }
+                else // 수정 상태일 때
+                {
+                    BOMUpdateForm frm = new BOMUpdateForm();
+                    frm.ProductNm = dgv[2, e.RowIndex].Value.ToString();
+                    frm.ProductID = dgv[0, e.RowIndex].Value.ToInt();
+                    frm.BOMEnrollStatus = BomEnrollStatus;
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frmMItem_Load(null, null);
+                    }
                 }
             }
             
         }
 
-        private void btn_Delete_Click(object sender, EventArgs e)
-        {
-
-        }
+        
         private void rdoActive_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoUse.Checked)
@@ -203,6 +238,10 @@ namespace WinMSFactory
                     dgv.DataSource = SortedList;
                 }
             }
+        }
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

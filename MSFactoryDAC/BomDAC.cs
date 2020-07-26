@@ -38,17 +38,39 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<BomVO> BOMEnrolledMaterial(int ProductID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    string sql = @"SELECT P.product_id, PRODUCT_NAME, G.PRODUCT_GROUP_NAME, PRODUCT_INFORMATION, B.BOM_USE_QUANTITY
+                                    FROM TBL_BOM B INNER JOIN TBL_PRODUCT P ON B.low_product_id = P.product_id
+                                                   INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.PRODUCT_GROUP_ID = G.PRODUCT_GROUP_ID
+                                    WHERE HIGH_PRODUCT_ID = @PRODUCTID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PRODUCTID", ProductID);
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+            }
+        }
+
         public bool InsertProducts(List<BOMInsertUpdateVO> lists)
         {
             
             using (SqlConnection conn = new SqlConnection(this.ConnectionString))
             {
                 conn.Open();
-                SqlTransaction trans = conn.BeginTransaction();
                 try
                 {
-                    
-                    
                     string sql = "SP_BOM_INSERT_UPDATE";
                     
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -56,30 +78,29 @@ namespace MSFactoryDAC
                         cmd.CommandType = CommandType.StoredProcedure;
                         
                         foreach (var voList in lists)
-                        {
-                            cmd.Transaction = trans;
-
+                        { 
+                            cmd.Parameters.Clear();
                             cmd.Parameters.AddWithValue("@P_HIGHER_PRODUCTID", voList.Higher_Product_ID);
                             cmd.Parameters.AddWithValue("@P_LOWER_PRODUCTID", voList.Lower_Product_ID);
                             cmd.Parameters.AddWithValue("@P_QUANTITY", voList.Bom_Use_Quantity);
-                            cmd.Parameters.AddWithValue("@P_REGIST_TIME", voList.Final_Regist_Time);
-                            cmd.Parameters.AddWithValue("@P_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
+                            cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", voList.Final_Regist_Time);
+                            cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
+                            cmd.Parameters.AddWithValue("@P_BOM_USE", voList.Bom_Use);
+                            cmd.Parameters.AddWithValue("@P_BOM_ENROLL_STATUS", voList.Bom_Status);
 
-                            if (cmd.ExecuteNonQuery() > 0)
-                                continue;
-                            else
+                            int count = cmd.ExecuteNonQuery();
+                            
+                            if(count==0)
                                 throw new Exception();
                         }
 
-                        trans.Commit();
                         return true;
                     }
                 }
                 catch (Exception err)
                 {
-                    string msg = err.Message;
-                    trans.Rollback();
                     return false;
+                    throw err;
                 }
             }
             

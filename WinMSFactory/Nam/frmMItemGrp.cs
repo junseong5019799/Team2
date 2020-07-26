@@ -61,14 +61,14 @@ namespace WinMSFactory
             {
                 if (dgv[2, e.RowIndex].Value.ToString() == "미사용")
                 {
-                    service.UpdateStatus(ItemNum,Convert.ToInt32(UseCheckNum.ProductUsed));
+                    service.UpdateStatus(ItemNum,Convert.ToInt32(UseCheckNum.ProductUnUsed));
                     dgv[2, e.RowIndex].Value = "사용";
                 }
 
 
                 else
                 {
-                    service.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUnUsed));
+                    service.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUsed));
                     dgv[2, e.RowIndex].Value = "미사용";
                 }
             }
