@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
+using WinMSFactory.Services;
 
 namespace WinMSFactory.BOM
 {
@@ -69,11 +70,11 @@ namespace WinMSFactory.BOM
             dgv.AddNewColumns("비고 1", "Product_Note1", 100, true);
             dgv.AddNewColumns("비고 2", "Product_Note2", 100, true);
 
-            dgv2.AddNewColumns("번호", "Product_ID", 100, true);
+            dgv2.AddNewColumns("번호", "Product_ID", 100, false);
             dgv2.AddNewColumns("제품 그룹명", "Product_Group_Name", 100, true);
             dgv2.AddNewColumns("제품명", "Product_Name", 100, true);
             dgv2.AddNewColumns("품명 스펙", "Product_Information", 100, true);
-            dgv2.AddNewColumns("필요 수량", "1", 100, true);
+            dgv2.AddNewColumns("필요 수량", "Bom_Use_Quantity", 100, true);
         }
 
 
@@ -152,7 +153,6 @@ namespace WinMSFactory.BOM
                             break;
                         }
                     }
-                    
                 }
                 
             }
@@ -179,6 +179,7 @@ namespace WinMSFactory.BOM
 
                     CheckMaterialList.Add(bo);
                 }
+
                 else 
                 {
                     dgv[1, e.RowIndex].Value = "선택";
@@ -244,9 +245,23 @@ namespace WinMSFactory.BOM
                     Bom_Status = BOMEnrollStatus
                 }) ;
             }
-            if (bomSv.InsertProducts(InsertBOMLists))
+            if (bomSv.InsertUpdateProduct(InsertBOMLists))
             {
-                MessageBox.Show("BOM이 등록되었습니다.");
+                BomLogVO AddLog = new BomLogVO 
+                {
+                    High_Product_ID = ProductID,
+                    Bom_Enroll_Date = DateTime.Now,
+                    Employee_ID = 1,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                    Bom_Use = UseCheck,
+                    Bom_Log_Status = "BUS",           // BOM 수정
+                    Bom_Exists = 'Y'
+                };
+
+                BomLogService service = new BomLogService();
+
+                service.InsertLogs(AddLog);
+
+                MessageBox.Show("BOM이 수정되었습니다.");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
                 // Insert    =>  InsertBomLists를 매개변수로 넘겨줄 것

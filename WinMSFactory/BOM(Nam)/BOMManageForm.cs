@@ -5,11 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
+using WinMSFactory.Services;
 
 namespace WinMSFactory.BOM
 {
@@ -122,7 +124,6 @@ namespace WinMSFactory.BOM
             }
            
         }
-        //int SelectedIndex = 0;
 
         private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -184,17 +185,21 @@ namespace WinMSFactory.BOM
 
             dgv.Columns.Clear();
             dgv2.Columns.Clear();
+            cboType.ComboBinding(pdgSv.ProductGroupComboBindingsNotAll(), "Product_Group_ID", "Product_Group_Name");
+            CheckMaterialList.Clear();
             BOMManageForm_Load(null, null);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            
             if (dgv2.Rows.Count < 2)
             {
                 MessageBox.Show("재료를 2개 이상 추가해주세요");
+                return;
             }
-            // 이 값을 넘겨주면 제품 관리에 들어감!!!
-
+            if (MessageBox.Show("등록을 진행하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
             // BOM 테이블에 등록
             List<BOMInsertUpdateVO> InsertBOMLists = new List<BOMInsertUpdateVO>();
             
@@ -204,19 +209,35 @@ namespace WinMSFactory.BOM
                 InsertBOMLists.Add(new BOMInsertUpdateVO
                 {
                     Higher_Product_ID = ProductID,
-                    Lower_Product_ID = dgv2[i, 0].Value.ToInt(),   // 재료들의 ID
-                    Bom_Use_Quantity = dgv2[i, 4].Value.ToInt(),
+                    Lower_Product_ID = dgv2[0,i].Value.ToInt(),   // 재료들의 ID
+                    Bom_Use_Quantity = dgv2[4,i].Value.ToInt(),
                     Final_Regist_Time = DateTime.Now.Date,
                     Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
                     Bom_Use = UseCheck,
                     Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
                 }) ;
             }
-            if (bomSv.InsertProducts(InsertBOMLists))
+
+
+            if (bomSv.InsertUpdateProduct(InsertBOMLists))
             {
-                
-                // Insert    =>  InsertBomLists를 매개변수로 넘겨줄 것
-                // 등록되면 로그에 추가되도록 설정할 것
+                // BOM Log에 등록
+                BomLogVO AddLog = new BomLogVO
+                {
+                    High_Product_ID = ProductID,
+                    Bom_Enroll_Date = DateTime.Now,
+                    Employee_ID = 1,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                    Bom_Use = UseCheck,
+                    Bom_Log_Status = "BIS",             // BOM 입력
+                    Bom_Exists = 'Y'
+                };
+                BomLogService service = new BomLogService();
+
+                service.InsertLogs(AddLog);
+
+                MessageBox.Show("BOM 등록이 완료되었습니다.");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 

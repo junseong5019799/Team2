@@ -9,6 +9,8 @@ using System.Text;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.BOM;
+using WinMSFactory.Nam;
+using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
@@ -57,7 +59,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록시각", "final_regist_time", 100, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
             dgv.AddNewColumns("사용 여부", "product_use", 100, false);
-            dgv.AddNewColumns("BOM 등록 여부", "bom_check", 100, false);
+            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
             dgv.AddNewColumns("순번", "product_seq", 100, false);
 
             SelectAllProducts = pdSv.SelectAllProducts();
@@ -101,8 +103,6 @@ namespace WinMSFactory
                     dgv[3, row.Index].Value = "미사용";           
 
 
-                
-
                 if(dgv[1,row.Index].Value.ToString() == "재료")
                 {
                     dgv[4, row.Index].Value = "-";
@@ -141,7 +141,7 @@ namespace WinMSFactory
                     dgv[3, e.RowIndex].Value = "사용";
                 }
                     
-
+                
                 else
                 {
                     pdSv.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUsed));
@@ -161,22 +161,21 @@ namespace WinMSFactory
                     frm.BOMEnrollStatus = BomEnrollStatus;
 
                     if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frmMItem_Load(null, null);
-                    }
+                        ReviewDGV();
 
                 }
-                else // 수정 상태일 때
+                else if(dgv[4, e.RowIndex].Value.ToString() == "BOM 수정") // 수정 상태일 때
                 {
                     BOMUpdateForm frm = new BOMUpdateForm();
                     frm.ProductNm = dgv[2, e.RowIndex].Value.ToString();
                     frm.ProductID = dgv[0, e.RowIndex].Value.ToInt();
                     frm.BOMEnrollStatus = BomEnrollStatus;
+
                     if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frmMItem_Load(null, null);
-                    }
+                        ReviewDGV();
                 }
+                
+                // 재료의 - 상태는 return됨
             }
             
         }
@@ -241,8 +240,52 @@ namespace WinMSFactory
         }
         private void btn_Delete_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
 
+            int ProductNo = dgv.SelectedRows[0].Cells[0].Value.ToInt();
+
+            
+
+            if (pdSv.DeleteProducts(ProductNo))
+            {
+                // BOM이 수정 될 경우에만 BOM 로그 추가
+                if(dgv.SelectedRows[0].Cells[4].Value.ToString() == "BOM 수정")
+                {
+                    List<ProductVO> DeleteHighProductList = new List<ProductVO>();
+                    List<ProductVO> DeleteLowProductList = new List<ProductVO>();
+
+                    pdSv.DeleteList(ProductNo, ref DeleteHighProductList, ref DeleteLowProductList);
+
+                    BomLogVO AddLog = new BomLogVO
+                    {
+                        High_Product_ID = ProductNo,
+                        Bom_Enroll_Date = DateTime.Now,
+                        Employee_ID = 1,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                        Bom_Use = UseCheck,
+                        Bom_Log_Status = "BDS",             // BOM 입력
+                        Bom_Exists = 'N'
+                    };
+
+                    BomLogService service = new BomLogService();
+
+                    service.InsertLogs(AddLog);
+
+                    ItemDeleteList frm = new ItemDeleteList(DeleteHighProductList, DeleteLowProductList);
+                    frm.ShowDialog();
+                    ReviewDGV();
+                    return;
+                }
+
+                MessageBox.Show("삭제가 완료되었습니다.");
+                
+            }
         }
 
+        private void txtProductSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnConfirm.PerformClick();
+        }
     }
 }

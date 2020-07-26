@@ -38,6 +38,8 @@ namespace MSFactoryDAC
             }
         }
 
+        
+
         public List<BomVO> BOMEnrolledMaterial(int ProductID)
         {
             using (SqlConnection conn = new SqlConnection(this.ConnectionString))
@@ -75,6 +77,7 @@ namespace MSFactoryDAC
                     
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
+                        int numCount = 1;
                         cmd.CommandType = CommandType.StoredProcedure;
                         
                         foreach (var voList in lists)
@@ -87,9 +90,12 @@ namespace MSFactoryDAC
                             cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
                             cmd.Parameters.AddWithValue("@P_BOM_USE", voList.Bom_Use);
                             cmd.Parameters.AddWithValue("@P_BOM_ENROLL_STATUS", voList.Bom_Status);
+                            cmd.Parameters.AddWithValue("@P_DATA_COUNT", numCount);
 
                             int count = cmd.ExecuteNonQuery();
-                            
+
+                            numCount++;
+
                             if(count==0)
                                 throw new Exception();
                         }

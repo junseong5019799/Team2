@@ -54,13 +54,13 @@
             // 
             // buttonControl2
             // 
-            this.buttonControl2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonControl2.Text = "등록";
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
+            //this.buttonControl2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            //this.buttonControl2.Text = "등록";
+            //this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
             // 
             // buttonControl1
             // 
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
+            //this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // label1
             // 

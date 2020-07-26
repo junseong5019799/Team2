@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BomDAC.cs" />
+    <Compile Include="BomLogDAC.cs" />
     <Compile Include="CommonCodeDAC.cs" />
     <Compile Include="CompanyDAC.cs" />
     <Compile Include="ConnectionAccess.cs" />

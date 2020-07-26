@@ -30,7 +30,7 @@ namespace WinMSFactory
 
         
 
-        public bool InsertProducts(List<BOMInsertUpdateVO> insertBOMLists)
+        public bool InsertUpdateProduct(List<BOMInsertUpdateVO> insertBOMLists)
         {
             return dac.InsertProducts(insertBOMLists);
         }

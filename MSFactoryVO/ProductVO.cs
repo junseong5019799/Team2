@@ -22,7 +22,7 @@ namespace MSFactoryVO
         public DateTime Final_Regist_Time { get; set; }
         public string Final_Regist_Employee { get; set; }
         public string Product_Use { get; set; }
-        public string Bom_Check { get; set; }
+        public string Bom_Exists { get; set; }
 
 
     }

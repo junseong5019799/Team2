@@ -122,6 +122,12 @@
     <Compile Include="MyControl\NumericControl.Designer.cs">
       <DependentUpon>NumericControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nam\ItemDeleteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nam\ItemDeleteList.Designer.cs">
+      <DependentUpon>ItemDeleteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nam\ProductInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,7 @@
     <Compile Include="ReleaseForm\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\BomLogService.cs" />
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
@@ -415,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmPStock.resx">
       <DependentUpon>frmPStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nam\ItemDeleteList.resx">
+      <DependentUpon>ItemDeleteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>

@@ -161,6 +161,7 @@
             this.txtProductSearch.Name = "txtProductSearch";
             this.txtProductSearch.Size = new System.Drawing.Size(169, 22);
             this.txtProductSearch.TabIndex = 29;
+            this.txtProductSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductSearch_KeyDown);
             // 
             // label3
             // 

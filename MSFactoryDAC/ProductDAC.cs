@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Management.Instrumentation;
 
 namespace MSFactoryDAC
 {
@@ -35,6 +36,76 @@ namespace MSFactoryDAC
             {
                 throw err;
             }
+        }
+
+        public void DeleteList(int ProductNo, ref List<ProductVO> deleteHighProductList, ref List<ProductVO> deleteLowProductList)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SELECT P.PRODUCT_NAME Product_Name FROM TBL_BOM B INNER JOIN TBL_PRODUCT P ON B.HIGH_PRODUCT_ID = P.PRODUCT_ID
+			                       WHERE B.LOW_PRODUCT_ID =@P_PRODUCT_NO";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_NO", ProductNo);
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        deleteHighProductList = SqlHelper.DataReaderMapToList<ProductVO>(reader);
+                        reader.Close();
+
+                        cmd.CommandText = @"SELECT P.PRODUCT_NAME Product_Name FROM TBL_BOM B INNER JOIN TBL_PRODUCT P ON B.LOW_PRODUCT_ID = P.PRODUCT_ID
+			                                WHERE B.HIGH_PRODUCT_ID =@P_PRODUCT_NO";
+
+                        deleteLowProductList = SqlHelper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                        
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool DeleteProducts(int ProductNo)
+        {
+            try
+            {
+                
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SP_DELETE_PRODUCTS";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_NO", ProductNo);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                            
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
         }
 
         public bool InsertProducts(ProductInsertVO InsertData)
