@@ -22,7 +22,7 @@ namespace WinMSFactory
             return dac.SelectProductGroup();
         }
 
-        public List<GroupComboVO> SelectPlanID ()
+        public List<ReleaseVO> SelectPlanID ()
         {
             return dac.SelectPlanID();
         }

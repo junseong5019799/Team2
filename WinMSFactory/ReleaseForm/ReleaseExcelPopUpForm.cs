@@ -45,7 +45,7 @@ namespace WinMSFactory.ReleaseForm
         public ReleaseExcelPopUpForm()
         {           
 
-            //InitializeComponent();
+            InitializeComponent();
             
         }
 
@@ -55,7 +55,7 @@ namespace WinMSFactory.ReleaseForm
 
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -65,18 +65,23 @@ namespace WinMSFactory.ReleaseForm
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonControl2_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
             ReleaseVO release = new ReleaseVO();
-            release.release_no = PlanID;
-            release.product_id = releaseService.GetProductID(cboProduct.SelectedItem.ToString());
+            release.release_no = 10;    //planID
+            release.product_id = 1; //releaseService.GetProductID(cboProduct.SelectedItem.ToString());
             release.release_date = dtpOut.Value;
             release.release_plan_date = dtpRequest.Value;
-            release.order_request_quantity = Convert.ToInt32(txtOrderNum);
+            release.release_status = "출고예정";
+            release.final_regist_employee = "aa";
+            release.first_regist_employee = "aa";
+            release.order_request_quantity = Convert.ToInt32(txtOrderNum.Text);
 
-            releaseService.SaveReleasePlan(release);
+            if (releaseService.SaveReleasePlan(release))
+            {
+                MessageBox.Show("등록되었습니다.");                
+                this.Close();
+            }
         }
-
-
     }
 }
