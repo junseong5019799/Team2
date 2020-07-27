@@ -15,32 +15,44 @@ namespace WinMSFactory.ReleaseForm
     public partial class ReleaseExcelPopUpForm : PopUpDialogForm
     {
         ReleaseService releaseService = new ReleaseService();
+        ReleaseVO release = new ReleaseVO();
 
-        public string CompanyName 
-        { 
-            get { return CompanyName; } 
-            set {txtCompany.Text = value; } 
+        private int companyID;
+        private int requestNum;
+        private int releaseNo;
+        private string productName;
+        private string requestDate;
+
+        public int CompanyID
+        {
+            get { return companyID; }
+            set { companyID = value; }
         }
+
         public int RequestNum
         {
-            get { return RequestNum; }
-            set { txtOrderNum.Text = value.ToString(); }
+            get { return requestNum; }
+            set { requestNum = value; }
         }
+
         public string ProductName
         {
-            get { return ProductName; }
-            set { cboProduct.SelectedItem = value; }
+            get { return productName; }
+            set { productName = value; }
         }
-        public DateTime RequestDate
+
+        public string RequestDate
         {
-            get { return RequestDate; }
-            set { dtpRequest.Value = value; }
+            get { return requestDate; }
+            set { requestDate = value; }
         }
-        public int PlanID
+
+        public int ReleaseNo
         {
-            get { return PlanID; }
-            set { PlanID = value; }
+            get { return releaseNo; }
+            set { releaseNo = value; }
         }
+
 
         public ReleaseExcelPopUpForm()
         {           
@@ -53,6 +65,7 @@ namespace WinMSFactory.ReleaseForm
         {
             cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name");
 
+            txtCompany.Text = companyID.ToString(); 
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -67,9 +80,9 @@ namespace WinMSFactory.ReleaseForm
         /// <param name="e"></param>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            ReleaseVO release = new ReleaseVO();
-            release.release_no = 10;    //planID
-            release.product_id = 1; //releaseService.GetProductID(cboProduct.SelectedItem.ToString());
+            release.release_no = releaseNo;
+            release.company_id = companyID; 
+            release.product_id = Convert.ToInt32(cboProduct.SelectedValue);
             release.release_date = dtpOut.Value;
             release.release_plan_date = dtpRequest.Value;
             release.release_status = "출고예정";
