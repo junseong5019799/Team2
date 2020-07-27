@@ -33,9 +33,5 @@ namespace WinMSFactory
             return dac.DeleteProducts(ProductNo);
         }
 
-        public void DeleteList(int ProductID,ref List<ProductVO> deleteHighProductList, ref List<ProductVO> deleteLowProductList)
-        {
-            dac.DeleteList(ProductID, ref deleteHighProductList, ref deleteLowProductList);
-        }
     }
 }

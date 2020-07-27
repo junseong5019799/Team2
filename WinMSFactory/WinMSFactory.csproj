@@ -98,12 +98,6 @@
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMUpdateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BOM%28Nam%29\BOMUpdateForm.Designer.cs">
-      <DependentUpon>BOMUpdateForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyControl\BasicDataGridViewControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -394,9 +388,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMUpdateForm.resx">
-      <DependentUpon>BOMUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\BasicDataGridViewControl.resx">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>

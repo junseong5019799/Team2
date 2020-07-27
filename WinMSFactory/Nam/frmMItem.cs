@@ -24,6 +24,7 @@ namespace WinMSFactory
         // 제품 관리
 
         List<ProductVO> SelectAllProducts;
+        List<ProductVO> CheckUseSortList;
 
         ProductService pdSv = new ProductService();
 
@@ -31,8 +32,9 @@ namespace WinMSFactory
 
         char UseCheck = 'Y';
         char BomEnrollStatus = 'N';
-        private List<ProductVO> CheckUseSortList;
 
+        bool BomEnrollCheck;
+        
         public frmMItem()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace WinMSFactory
 
         private void frmMItem_Load(object sender, EventArgs e)
         {
-            
+            dgv.IsAllCheckColumnHeader = true;
             // 사용 여부 변경 가능, BOM 확인
             dgv.AddNewColumns("제품코드", "product_id", 100, true);
             dgv.AddNewColumns("제품그룹명", "product_group_name", 100, true);
@@ -58,9 +60,9 @@ namespace WinMSFactory
             dgv.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgv.AddNewColumns("최종등록시각", "final_regist_time", 100, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
-            dgv.AddNewColumns("사용 여부", "product_use", 100, false);
+            dgv.AddNewColumns("사용 여부", "product_use", 100, true);
             dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
-            dgv.AddNewColumns("순번", "product_seq", 100, false);
+            dgv.AddNewColumns("순번", "product_seq", 100, true);
 
             SelectAllProducts = pdSv.SelectAllProducts();
 
@@ -96,27 +98,27 @@ namespace WinMSFactory
         {
             foreach(DataGridViewRow row in dgv.Rows)
             {
-                if (dgv[14, row.Index].Value.ToString() == "Y") // 사용 여부 확인
-                    dgv[3,row.Index].Value = "사용";
+                if (dgv[15, row.Index].Value.ToString() == "Y") // 사용 여부 확인
+                    dgv[4,row.Index].Value = "사용";
                 else
-                    dgv[3, row.Index].Value = "미사용";           
+                    dgv[4, row.Index].Value = "미사용";           
 
 
-                if(dgv[1,row.Index].Value.ToString() == "재료")
+                if(dgv[2,row.Index].Value.ToString() == "재료")
                 {
-                    dgv[4, row.Index].Value = "-";
-                    dgv[4, row.Index].ReadOnly = true;
+                    dgv[5, row.Index].Value = "-";
+                    dgv[5, row.Index].ReadOnly = true;
                 }
                 // BOM에 등록되지 않았으면 등록이 나오고, 등록되어있으면 수정으로 나온다.
-                else if (dgv[15, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                else if (dgv[16, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
                 {
-                    dgv[4, row.Index].Value = "BOM 수정";
+                    dgv[5, row.Index].Value = "BOM 수정";
                     BomEnrollStatus = 'Y';
                 }
                     
-                else if(dgv[15, row.Index].Value.ToString() == "N")
+                else if(dgv[16, row.Index].Value.ToString() == "N")
                 {
-                    dgv[4, row.Index].Value = "BOM 등록";
+                    dgv[5, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';
                 }
             }
@@ -126,50 +128,40 @@ namespace WinMSFactory
         {
             if (e.RowIndex < 0)
                 return;
-            int ItemNum = dgv[0, e.RowIndex].Value.ToInt();
-
-            if(e.ColumnIndex == 3)
+            int ProductID = dgv[1, e.RowIndex].Value.ToInt();
+            string ProductName = dgv[3, e.RowIndex].Value.ToString();
+            if (e.ColumnIndex == 4)
             {
-                if (dgv[3, e.RowIndex].Value.ToString() == "미사용")
+                if (dgv[4, e.RowIndex].Value.ToString() == "미사용")
                 {
-                    pdSv.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUnUsed));
-                    dgv[3, e.RowIndex].Value = "사용";
+                    pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUnUsed));
+                    dgv[4, e.RowIndex].Value = "사용";
                 }
                     
                 
                 else
                 {
-                    pdSv.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUsed));
-                    dgv[3, e.RowIndex].Value = "미사용";
+                    pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUsed));
+                    dgv[4, e.RowIndex].Value = "미사용";
                 }
 
             }
             
-            else if(e.ColumnIndex == 4)
+            else if(e.ColumnIndex == 5)
             {
+                if (dgv[5, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
+                    BomEnrollCheck = false; // bom 미등록 상태
+
+                else if (dgv[5, e.RowIndex].Value.ToString() == "BOM 수정") // 수정 상태일 때
+                    BomEnrollCheck = true;
+
+                else // 재료의 - 상태일 때
+                    return;
+
+                BOMManageForm frm = new BOMManageForm(BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
                 
-                if (dgv[4, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
-                {
-                    BOMManageForm frm = new BOMManageForm();
-                    frm.ProductNm = dgv[2, e.RowIndex].Value.ToString();
-                    frm.ProductID = dgv[0, e.RowIndex].Value.ToInt();
-                    frm.BOMEnrollStatus = BomEnrollStatus;
-
-                    if (frm.ShowDialog() == DialogResult.OK)
-                        ReviewDGV();
-
-                }
-                else if(dgv[4, e.RowIndex].Value.ToString() == "BOM 수정") // 수정 상태일 때
-                {
-                    BOMUpdateForm frm = new BOMUpdateForm();
-                    frm.ProductNm = dgv[2, e.RowIndex].Value.ToString();
-                    frm.ProductID = dgv[0, e.RowIndex].Value.ToInt();
-                    frm.BOMEnrollStatus = BomEnrollStatus;
-
-                    if (frm.ShowDialog() == DialogResult.OK)
-                        ReviewDGV();
-                }
-                
+                if (frm.ShowDialog() == DialogResult.OK)
+                    ReviewDGV();
                 // 재료의 - 상태는 return됨
             }
             
@@ -233,31 +225,57 @@ namespace WinMSFactory
                 }
             }
         }
+
         private void btn_Delete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
 
-            int ProductNo = dgv.SelectedRows[0].Cells[0].Value.ToInt();
+            List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
 
-            
 
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                if (chk.Value == null)
+                    continue;
+
+                else if ((bool)chk.Value == true)
+                    CheckList.Add(dgv[1, row.Index].Value.ToInt());
+            }
+
+            // 목록을 선택한 경우(파란색으로, 1개만 가능)
+            if (CheckList.Count < 1)
+            {
+                int ProductNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
+                ProductDelete(ProductNo);
+            }
+            else
+            {
+                foreach (int ProductNum in CheckList)
+                {
+                    ProductDelete(ProductNum);
+                }
+                    
+            }
+
+            MessageBox.Show("삭제가 완료되었습니다.");
+            ReviewDGV();
+        }
+
+        private void ProductDelete(int ProductNo)
+        {
             if (pdSv.DeleteProducts(ProductNo))
             {
                 // BOM이 수정 될 경우에만 BOM 로그 추가
-                if(dgv.SelectedRows[0].Cells[4].Value.ToString() == "BOM 수정")
+                if (dgv.SelectedRows[0].Cells[5].Value.ToString() == "BOM 수정")
                 {
-                    List<ProductVO> DeleteHighProductList = new List<ProductVO>();
-                    List<ProductVO> DeleteLowProductList = new List<ProductVO>();
-
-                    pdSv.DeleteList(ProductNo, ref DeleteHighProductList, ref DeleteLowProductList);
-
                     BomLogVO AddLog = new BomLogVO
                     {
                         High_Product_ID = ProductNo,
                         Bom_Enroll_Date = DateTime.Now,
-                        Employee_ID = 1,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
-                        Bom_Use = UseCheck,
+                        Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
                         Bom_Log_Status = "BDS",             // BOM 입력
                         Bom_Exists = 'N'
                     };
@@ -266,13 +284,9 @@ namespace WinMSFactory
 
                     service.InsertLogs(AddLog);
 
-                    ItemDeleteList frm = new ItemDeleteList(DeleteHighProductList, DeleteLowProductList);
-                    frm.ShowDialog();
-                    ReviewDGV();
                     return;
                 }
 
-                MessageBox.Show("삭제가 완료되었습니다.");
                 
             }
         }

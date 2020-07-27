@@ -14,10 +14,9 @@ namespace MSFactoryVO
         public int Low_Product_ID { get; set; }
         public string Low_Product_Name { get; set; }
         public string Bom_Log_Status { get; set; }
-        public char Bom_Use { get; set; }
         public int Bom_Seq { get; set; }
         public DateTime Bom_Enroll_Date { get; set; }
-        public int Employee_ID { get; set; }
+        public string Employee_ID { get; set; } // 사번은 NVARCHAR임
         public string Employee_Name { get; set; }
         public char Bom_Exists { get; set; }
 

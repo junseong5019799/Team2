@@ -32,7 +32,6 @@ namespace MSFactoryVO
         public int Lower_Product_ID { get; set; }
         public int Bom_Use_Quantity { get; set; }
         public int Bom_Seq { get; set; }
-        public char Bom_Use { get; set; }
         public DateTime First_Regist_Time { get; set; }
         public string First_Regist_Employee { get; set; }
         public DateTime Final_Regist_Time { get; set; }

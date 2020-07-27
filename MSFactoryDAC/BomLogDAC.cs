@@ -11,7 +11,7 @@ namespace MSFactoryDAC
 {
     public class BomLogDAC : ConnectionAccess
     {
-        public List<BomLogVO> SelectAllLogs(int CorporationID)
+        public List<BomLogVO> SelectAllLogs()
         {
             try
             {
@@ -24,7 +24,6 @@ namespace MSFactoryDAC
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@P_CORPORATION_ID", CorporationID);
 
                         return SqlHelper.DataReaderMapToList<BomLogVO>(cmd.ExecuteReader());
                     }
@@ -53,7 +52,6 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_HIGH_PRODUCT_ID", AddLogs.High_Product_ID);
                         cmd.Parameters.AddWithValue("@P_BOM_ENROLL_DATE", AddLogs.Bom_Enroll_Date);
                         cmd.Parameters.AddWithValue("@P_EMPLOYEE_ID", AddLogs.Employee_ID);
-                        cmd.Parameters.AddWithValue("@P_BOM_USE", AddLogs.Bom_Use);
                         cmd.Parameters.AddWithValue("@P_BOM_LOG_STATUS_CODE", AddLogs.Bom_Log_Status);
                         cmd.Parameters.AddWithValue("@P_BOM_EXISTS", AddLogs.Bom_Exists);
 

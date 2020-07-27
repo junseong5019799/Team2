@@ -88,7 +88,6 @@ namespace MSFactoryDAC
                             cmd.Parameters.AddWithValue("@P_QUANTITY", voList.Bom_Use_Quantity);
                             cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", voList.Final_Regist_Time);
                             cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
-                            cmd.Parameters.AddWithValue("@P_BOM_USE", voList.Bom_Use);
                             cmd.Parameters.AddWithValue("@P_BOM_ENROLL_STATUS", voList.Bom_Status);
                             cmd.Parameters.AddWithValue("@P_DATA_COUNT", numCount);
 

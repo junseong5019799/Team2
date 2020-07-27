@@ -11,9 +11,9 @@ namespace WinMSFactory.Services
     public class BomLogService
     {
         BomLogDAC dac = new BomLogDAC();
-        public List<BomLogVO> SelectAllLogs(int Corporation_id)
+        public List<BomLogVO> SelectAllLogs()
         {
-            return dac.SelectAllLogs(Corporation_id);
+            return dac.SelectAllLogs();
         }
 
         public void InsertLogs(BomLogVO AddLogs)
