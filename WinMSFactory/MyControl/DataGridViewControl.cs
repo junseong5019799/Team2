@@ -24,7 +24,7 @@ namespace WinMSFactory
             {
                 _allCheckHeader = value;
 
-                if (_allCheckHeader)
+                if (_allCheckHeader && this.Columns.Count < 1)
                 {
                     this.AddNewChkCol(HeaderCheckBox_Clicked, ref headerCheckBox);
                 }

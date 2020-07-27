@@ -58,9 +58,10 @@ namespace WinMSFactory
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
             chk.HeaderText = "";
             chk.Name = "chk";
-            chk.Width = 30;
-            chk.Frozen = true;
+            chk.Width = 30;            
             dgv.Columns.Add(chk);
+
+            dgv.Columns[0].Frozen = true;
 
             if (HeaderChk_Clicked != null) // 이벤트를 정의할 때
             {
