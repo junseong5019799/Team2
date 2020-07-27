@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace WinMSFactory
 {
-    public partial class DataGridViewControl : DataGridView
+    public partial class BasicDataGridViewControl : DataGridView
     {
-        public DataGridViewControl()
+        public BasicDataGridViewControl()
         {                  
             InitializeComponent();
 
