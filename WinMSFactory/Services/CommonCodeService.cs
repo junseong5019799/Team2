@@ -34,5 +34,34 @@ namespace WinMSFactory
 
 			return list;
 		}
+
+		public bool SaveCommonCodes(DataTable commonGroupDt, DataTable commonDt)
+		{
+			bool flag = false;
+
+			using (CommonCodeDAC dac = new CommonCodeDAC())
+			{
+				if (dac.SaveCommonGroups(commonGroupDt) && dac.SaveCommonCodes(commonDt))
+					flag = true;
+			}
+
+			return flag;
+		}
+
+		public bool DeleteCommonGroup(string sort_id)
+		{
+			using (CommonCodeDAC dac = new CommonCodeDAC())
+			{
+				return dac.DeleteCommonGroup(sort_id);
+			}
+		}
+
+		public bool DeleteCommonCode(string common_id)
+		{
+			using (CommonCodeDAC dac = new CommonCodeDAC())
+			{
+				return dac.DeleteCommonCode(common_id);
+			}
+		}
 	}
 }

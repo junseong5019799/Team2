@@ -41,5 +41,67 @@ namespace MSFactoryDAC
 
 			return list;
 		}
+
+		public bool SaveCommonGroups(DataTable commonGroupDt)
+		{
+			SqlCommand cmd = new SqlCommand("SP_SAVE_COMMON_GROUP", conn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.Add("@SORT_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@SORT_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@NOTE", SqlDbType.NVarChar, 200);
+
+			foreach (DataRow dr in commonGroupDt.Rows)
+			{
+				cmd.Parameters["@SORT_ID"].Value = dr["SORT_ID"].ToString();
+				cmd.Parameters["@SORT_NAME"].Value = dr["SORT_NAME"].ToString();
+				cmd.Parameters["@NOTE"].Value = dr["NOTE"].ToString();
+
+				if (cmd.ExecuteNonQuery() == 0)
+					return false;
+			}
+
+			return true;
+		}
+
+		public bool SaveCommonCodes(DataTable commonDt)
+		{
+			SqlCommand cmd = new SqlCommand("SP_SAVE_COMMON", conn);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.Add("@COMMON_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@SORT_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@COMMON_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@NOTE", SqlDbType.NVarChar, 200);
+
+			foreach (DataRow dr in commonDt.Rows)
+			{
+				cmd.Parameters["@COMMON_ID"].Value = dr["COMMON_ID"].ToString();
+				cmd.Parameters["@SORT_ID"].Value = dr["SORT_ID"].ToString();
+				cmd.Parameters["@COMMON_NAME"].Value = dr["COMMON_NAME"].ToString();
+				cmd.Parameters["@NOTE"].Value = dr["NOTE"].ToString();
+
+				if (cmd.ExecuteNonQuery() == 0)
+					return false;
+			}
+
+			return true;
+		}
+
+		public bool DeleteCommonGroup(string sort_id)
+		{
+			string sql = "DELETE FROM TBL_COMMON_GROUP WHERE SORT_ID = @SORT_ID";
+			SqlCommand cmd = new SqlCommand(sql, conn);
+			cmd.Parameters.AddWithValue("@SORT_ID", sort_id);
+
+			return cmd.ExecuteNonQuery() > 0;
+		}
+
+		public bool DeleteCommonCode(string common_id)
+		{
+			string sql = "DELETE FROM TBL_COMMON WHERE COMMON_ID = @COMMON_ID";
+			SqlCommand cmd = new SqlCommand(sql, conn);
+			cmd.Parameters.AddWithValue("@COMMON_ID", common_id);
+
+			return cmd.ExecuteNonQuery() > 0;
+		}
 	}
 }
