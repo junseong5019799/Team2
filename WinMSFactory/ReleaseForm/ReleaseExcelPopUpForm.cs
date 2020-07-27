@@ -64,7 +64,6 @@ namespace WinMSFactory.ReleaseForm
         private void ReleaseExcelPopUpForm_Load(object sender, EventArgs e)
         {
             cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name");
-
             txtCompany.Text = companyID.ToString(); 
         }
 
@@ -90,11 +89,11 @@ namespace WinMSFactory.ReleaseForm
             release.first_regist_employee = "aa";
             release.order_request_quantity = Convert.ToInt32(txtOrderNum.Text);
 
-            if (releaseService.SaveReleasePlan(release))
-            {
-                MessageBox.Show("등록되었습니다.");                
-                this.Close();
-            }
+            //if (releaseService.SaveReleasePlan(release))
+            //{
+            //    MessageBox.Show("등록되었습니다.");                
+            //    this.Close();
+            //}
         }
     }
 }

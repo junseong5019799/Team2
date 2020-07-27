@@ -37,9 +37,10 @@ namespace WinMSFactory
         {
             return dac.GetReleasePlanDetail(release_no);
         }
-        public bool SaveReleasePlan(ReleaseVO release)
+
+        public bool SaveReleasePlan(DataTable dgv, ReleaseVO release)
         {
-            return dac.SaveReleasePlan(release);
+            return dac.SaveReleasePlan(dgv, release);
         }
 
         public int GetProductID(string name)

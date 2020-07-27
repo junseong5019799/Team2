@@ -158,7 +158,7 @@ namespace MSFactoryDAC
         /// </summary>
         /// <param name="release"></param>
         /// <returns></returns>
-        public bool SaveReleasePlan(ReleaseVO release)
+        public bool SaveReleasePlan(DataTable dgv, ReleaseVO release)
         {            
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -175,26 +175,38 @@ namespace MSFactoryDAC
                     cmd.Parameters.AddWithValue("@release_no", release.release_no);
                     cmd.Parameters.AddWithValue("@company_id", release.company_id);
                     cmd.Parameters.AddWithValue("@first_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@first_regist_employee", release.first_regist_employee);
+                    cmd.Parameters.AddWithValue("@first_regist_employee", "사원명");
                     cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@final_regist_employee", release.final_regist_employee);
-
+                    cmd.Parameters.AddWithValue("@final_regist_employee", "사원명");
+                                            
                     int num = Convert.ToInt32(cmd.ExecuteScalar());
 
                     cmd.CommandText = "SP_SAVE_RELEASEDETAIL";
                     cmd.Parameters.Clear();
-
-                    cmd.Parameters.AddWithValue("@release_no", num);
-                    cmd.Parameters.AddWithValue("@release_seq", release.release_seq);
-                    cmd.Parameters.AddWithValue("@product_id", release.product_id);
-                    cmd.Parameters.AddWithValue("@release_plan_date", release.release_plan_date);
-                    cmd.Parameters.AddWithValue("@release_date", release.release_date);
-                    cmd.Parameters.AddWithValue("@order_request_quantity", release.order_request_quantity);
-                    cmd.Parameters.AddWithValue("@release_quantity", release.release_quantity);
-                    cmd.Parameters.AddWithValue("@release_status", release.release_status);
-
                     
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@release_no", num);
+                    cmd.Parameters.Add("@release_seq", SqlDbType.Int);
+                    cmd.Parameters.Add("@product_id", SqlDbType.Int);
+                    cmd.Parameters.Add("@release_plan_date", SqlDbType.DateTime);
+                    cmd.Parameters.Add("@release_date", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
+                    cmd.Parameters.Add("@release_quantity", SqlDbType.Int);
+                    cmd.Parameters.Add("@release_status", SqlDbType.NVarChar);
+
+                    foreach (DataRow dr in dgv.Rows)
+                    {                                
+                        cmd.Parameters["@release_seq"].Value = dr["release_seq"];
+                        cmd.Parameters["@product_id"].Value = dr["product_id"];
+                        cmd.Parameters["@release_plan_date"].Value = dr["release_plan_date"];
+                        cmd.Parameters["@release_date"].Value = "";
+                        cmd.Parameters["@order_request_quantity"].Value = dr["order_request_quantity"];
+                        cmd.Parameters["@release_quantity"].Value = 0;
+                        cmd.Parameters["@release_status"].Value = "출고예정";
+                              
+                        cmd.ExecuteNonQuery();
+                    }                    
+                    
+                    
                     tran.Commit();
                     cmd.Connection.Close();
                                         

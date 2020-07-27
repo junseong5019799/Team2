@@ -35,9 +35,9 @@ namespace WinMSFactory
         {
             DgvLoad();
             
-            //cboPlanID.SelectedValue = release_no.ToString();
+            cboPlanID.SelectedItem = release_no;
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
-            //cboPlanID.DisplayMember = release_no;
+            
         }
 
         private void DgvLoad()
@@ -46,7 +46,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("거래처", "company_id", 100, true);
             dgv.AddNewColumns("품목 코드", "product_id", 100, true);
 
-            
+            dgv.DataSource = releaseService.GetReleasePlanDetail(release_no);
         }
 
 

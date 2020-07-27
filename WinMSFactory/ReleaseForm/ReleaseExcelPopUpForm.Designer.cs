@@ -99,7 +99,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "취소수량";
+            this.label2.Text = "출고수량";
             // 
             // label4
             // 

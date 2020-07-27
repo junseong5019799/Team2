@@ -202,39 +202,16 @@ namespace WinMSFactory
             ReleaseVO release = new ReleaseVO();
             release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
 
-            bool bFlag = false;
-
             DataTable dt = (DataTable)dgv2.DataSource;
-            for (int i = 0; i < dgv2.RowCount; i++)
-            {
-                if (dgv2.Rows[i].Cells[0].Value.ToString().Length > 0)
-                {
-                    release.release_seq = Convert.ToInt32(dgv2.Rows[i].Cells[1].Value);
-                    release.company_id = Convert.ToInt32(dgv2.Rows[i].Cells[2].Value);
-                    release.product_id = Convert.ToInt32(dgv2.Rows[i].Cells[3].Value);
-                    release.order_request_quantity = Convert.ToInt32(dgv2.Rows[i].Cells[4].Value);
-                    release.release_quantity = 0;
-                    release.release_date = Convert.ToDateTime(DateTime.Now.AddDays(14));
-                    release.release_plan_date = Convert.ToDateTime(dgv2.Rows[i].Cells[5].Value);
-                    release.release_status = "출고예정";
-                    release.final_regist_employee = "aa";
-                    release.first_regist_employee = "aa";
 
-                    releaseService.SaveReleasePlan(release);
-                    bFlag = true;
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            if (bFlag)
+            release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
+            if(releaseService.SaveReleasePlan(dt, release))
             {
                 MessageBox.Show("성공");
                 dgv.DataSource = releaseService.GetReleasePlan();
                 return;
             }
+            
         }
     }
 }
