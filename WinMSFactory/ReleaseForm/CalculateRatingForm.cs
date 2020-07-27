@@ -17,6 +17,15 @@ namespace WinMSFactory
         ReleaseService releaseService = new ReleaseService();
         List<ReleaseVO> releaseList = null;
         
+        int date;
+
+        private int release_no;
+        public int Release_no
+        {
+            get { return release_no; }
+            set { release_no = value; }
+        }
+
         public CalculateRatingForm()
         {
             InitializeComponent();
@@ -24,32 +33,46 @@ namespace WinMSFactory
 
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
-            fromToDateControl2.From = DateTime.Now.AddDays(-3);
-            dgv.AddNewColumns("출고예정 번호", "", 100, true);
-            dgv.AddNewColumns("거래처", "", 100, true);
-            dgv.AddNewColumns("품목 코드", "", 100, true);
-
-            TimeSpan cnt = fromToDateControl2.To.Date - fromToDateControl1.From.Date;
-            int date = cnt.Days;
-
-            for (int i = 0; i < date; i++)
-            {
-                dgv.AddNewColumns(fromToDateControl2.From.AddDays(i).ToString("yyyy-MM-dd"),"",100,true);
-            }
-
-            cboPlanID.ComboBinding(releaseService.SelectPlanID(),"release_no","release_no");
-
+            DgvLoad();
+            
+            //cboPlanID.SelectedValue = release_no.ToString();
+            cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
+            //cboPlanID.DisplayMember = release_no;
         }
+
+        private void DgvLoad()
+        {
+            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
+            dgv.AddNewColumns("거래처", "company_id", 100, true);
+            dgv.AddNewColumns("품목 코드", "product_id", 100, true);
+
+            
+        }
+
 
         private void cboPlanID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<ReleaseVO> AllList = releaseService.GetReleasePlan();
+            //List<ReleaseVO> AllList = releaseService.GetReleasePlan();
 
-            releaseList = (from rlist in AllList
-                           where rlist.release_no == Convert.ToInt32(cboPlanID.SelectedItem)
-                           select rlist).ToList();
+            //releaseList = (from rlist in AllList
+            //               where rlist.release_no == Convert.ToInt32(cboPlanID.SelectedValue)
+            //               select rlist).ToList();
 
-            dgv.DataSource = releaseList;
+            //dgv.DataSource = null;
+            //dgv.DataSource = releaseList;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgv.DataSource = null;
+
+            TimeSpan cnt = fromToDateControl2.To - fromToDateControl2.From;
+            date = cnt.Days;
+
+            for (int i = 0; i < date; i++)
+            {
+                dgv.AddNewColumns(fromToDateControl2.From.AddDays(i).ToString("yyyy-MM-dd"), "release_plan_date", 100, true);
+            }
         }
     }
 }

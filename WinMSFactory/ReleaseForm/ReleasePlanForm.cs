@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using MSFactoryDAC;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,8 @@ namespace WinMSFactory
 {
     public partial class ReleasePlanForm : ListForm
     {
-        ReleaseService releaseService = new ReleaseService();       
+        ReleaseService releaseService = new ReleaseService();
+        int company_id; 
         
         public ReleasePlanForm()
         {
@@ -24,28 +26,27 @@ namespace WinMSFactory
         }
 
         private void ReleasePlanForm_Load(object sender, EventArgs e)
-        {
-            dgv.AddNewColumns("출고예정 번호", "", 100, true);
-            dgv.AddNewColumns("거래처", "", 100, true);
-            dgv.AddNewColumns("거래처명", "", 100, true);
-            dgv.AddNewColumns("출고 요청일", "", 100, true);
-            dgv.AddNewColumns("품목 코드", "", 100, true);
-            dgv.AddNewColumns("요청 수량", "", 100, true);
-            dgv.AddNewColumns("출고 상태", "", 100, true);
-            dgv.AddNewColumns("출고일", "", 100, true);
-            dgv.AddNewColumns("최초등록 시각", "", 100, true);
-            dgv.AddNewColumns("최종등록 시각", "", 100, true);
-            dgv.AddNewColumns("최초등록 시각", "", 100, true);
-            dgv.AddNewColumns("최종등록 사원", "", 100, true);
+        {            
+            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
+            dgv.AddNewColumns("거래처", "company_id", 100, true);
+            dgv.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
+            dgv.AddNewColumns("품목 코드", "product_id", 100, true);
+
 
             dgv.DataSource = releaseService.GetReleasePlan();
 
-            dgv2.AddNewColumns("순번", "", 80, true);
-            dgv2.AddNewColumns("출고예정 번호", "", 150, true);
-            dgv2.AddNewColumns("거래처", "", 150, true);
-            dgv2.AddNewColumns("품명", "", 150, true);
-            dgv2.AddNewColumns("요청 수량", "", 150, true);
-            dgv2.AddNewColumns("납기일", "", 200, true);
+            dgv2.AddNewColumns("출고예정 번호", "release_no", 120, true);
+            dgv2.AddNewColumns("순번", "release_seq", 80, true);
+            dgv2.AddNewColumns("거래처", "company_id", 100, true);
+            dgv2.AddNewColumns("품명", "product_id", 150, true);
+            dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
+            dgv2.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
+            dgv2.AddNewColumns("출고일", "release_date", 100, true);
+            dgv2.AddNewColumns("출고 상태", "release_status", 100, true);
+            dgv2.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
+            dgv2.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true);
+            dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
+            dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
 
             cboProduct.ComboBinding(releaseService.SelectProductGroup(), "Product_Group_ID", "Product_Group_Name"); 
                         
@@ -73,12 +74,14 @@ namespace WinMSFactory
             else
             {
                 ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
-                //popfrm.CompanyName = dgv2.SelectedRows[0].Cells[2].Value.ToString();
-                //popfrm.PlanID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
+                popfrm.CompanyID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[2].Value);
+                popfrm.ReleaseNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
+                
                 popfrm.Show();
             }
         }
 
+        //엑셀 불러오기
         private void btnExcel_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "엑셀 파일 불러오기";
@@ -108,10 +111,10 @@ namespace WinMSFactory
             // 확장자로 구분하여 커넥션 스트링을 가져옮
             switch (fileExtension)
             {
-                case ".xls":    //Excel 97-03
+                case ".xls":    
                     connectionString = string.Format(Excel03ConString, filePath, "Yes");//header 포함여부
                     break;
-                case ".xlsx":  //Excel 07
+                case ".xlsx": 
                     connectionString = string.Format(Excel07ConString, filePath, "Yes");
                     break;
             }
@@ -130,22 +133,26 @@ namespace WinMSFactory
                 }
             }
 
-            // 첫 번째 쉬트의 데이타를 읽어서 datagridview 에 보이게 함.
+            // 첫 번째 시트의 데이타를 읽어서 datagridview 에 보이게 함.
             using (OleDbConnection conn = new OleDbConnection(connectionString))
             {
                 using (OleDbDataAdapter oda = new OleDbDataAdapter())
                 {
                     DataTable dt = new DataTable();
+
                     oda.SelectCommand = new OleDbCommand("SELECT * From [" + sheetName + "]", conn);
                     conn.Open();
+
                     oda.Fill(dt);
                     conn.Close();
 
-                    dgv2.DataSource = dt;
+                    dgv2.DataSource = dt;                    
                 }
             }
         }
 
+
+        //찾기 버튼
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<ReleaseVO> rList = new List<ReleaseVO>();
@@ -162,15 +169,72 @@ namespace WinMSFactory
             dgv2.DataSource = rList;
         }
 
+
+        //새로 고침
         private void btnNew_Click(object sender, EventArgs e)
         {
             releaseService.GetReleasePlan();
         }
 
+
+        //수요 계획
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             CalculateRatingForm frm = new CalculateRatingForm();
+            frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
             frm.Show();
+        }
+
+
+        //dgv detail
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+
+            DataTable dt = releaseService.GetReleasePlanDetail(release_no);
+            dgv2.DataSource = dt;
+
+        }
+
+        //저장 버튼
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            ReleaseVO release = new ReleaseVO();
+            release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
+
+            bool bFlag = false;
+
+            DataTable dt = (DataTable)dgv2.DataSource;
+            for (int i = 0; i < dgv2.RowCount; i++)
+            {
+                if (dgv2.Rows[i].Cells[0].Value.ToString().Length > 0)
+                {
+                    release.release_seq = Convert.ToInt32(dgv2.Rows[i].Cells[1].Value);
+                    release.company_id = Convert.ToInt32(dgv2.Rows[i].Cells[2].Value);
+                    release.product_id = Convert.ToInt32(dgv2.Rows[i].Cells[3].Value);
+                    release.order_request_quantity = Convert.ToInt32(dgv2.Rows[i].Cells[4].Value);
+                    release.release_quantity = 0;
+                    release.release_date = Convert.ToDateTime(DateTime.Now.AddDays(14));
+                    release.release_plan_date = Convert.ToDateTime(dgv2.Rows[i].Cells[5].Value);
+                    release.release_status = "출고예정";
+                    release.final_regist_employee = "aa";
+                    release.first_regist_employee = "aa";
+
+                    releaseService.SaveReleasePlan(release);
+                    bFlag = true;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (bFlag)
+            {
+                MessageBox.Show("성공");
+                dgv.DataSource = releaseService.GetReleasePlan();
+                return;
+            }
         }
     }
 }

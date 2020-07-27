@@ -2,6 +2,7 @@
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,10 @@ namespace WinMSFactory
             return dac.SelectProduct();
         }
 
+        public DataTable GetReleasePlanDetail(int release_no)
+        {
+            return dac.GetReleasePlanDetail(release_no);
+        }
         public bool SaveReleasePlan(ReleaseVO release)
         {
             return dac.SaveReleasePlan(release);
