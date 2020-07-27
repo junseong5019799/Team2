@@ -12,18 +12,20 @@ namespace WinMSFactory
     {/// <summary>
      /// Columns (Text) 추가 확장 메서드
      /// </summary>
-        public static void AddNewColumns(this DataGridView dgv, string HeaderText, string PropertyName, int Width = 100, bool Visible = true, bool ReadOnly = false,
-            DataGridViewContentAlignment Center = DataGridViewContentAlignment.MiddleCenter)
+        public static void AddNewColumns(this DataGridView dgv, string HeaderText, string PropertyName, int Width = 100, bool Visible = true, 
+                                         bool ReadOnly = true, bool Frozen = false, DataGridViewContentAlignment Center = DataGridViewContentAlignment.MiddleCenter)
         {
             // 기본 셀 정렬 : 가운데정렬
 
             DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = PropertyName;
             col.HeaderText = HeaderText;
             col.DataPropertyName = PropertyName;
             col.Width = Width;
             col.Visible = Visible;
             col.ReadOnly = ReadOnly;
             col.DefaultCellStyle.Alignment = Center;
+            col.Frozen = Frozen;
 
             dgv.Columns.Add(col);
         }
@@ -54,10 +56,11 @@ namespace WinMSFactory
         {
             // 데이터그리드뷰의 헤더의 위치할 체크박스
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            chk.HeaderText = "";
+            chk.Name = "chk";
             chk.Width = 30;
+            chk.Frozen = true;
             dgv.Columns.Add(chk);
-
-            
 
             if (HeaderChk_Clicked != null) // 이벤트를 정의할 때
             {
