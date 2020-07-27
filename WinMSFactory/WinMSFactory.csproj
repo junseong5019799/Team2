@@ -278,23 +278,24 @@
     <Compile Include="Services\ProductGroupService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
-    <Compile Include="StockForm\InOutListForm.cs">
+    <Compile Include="Services\StorageService.cs" />
+    <Compile Include="ResultForm\InOutListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StockForm\InOutListForm.Designer.cs">
+    <Compile Include="ResultForm\InOutListForm.Designer.cs">
       <DependentUpon>InOutListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StockForm\StockListForm.cs">
+    <Compile Include="ResultForm\ResultListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StockForm\StockListForm.Designer.cs">
-      <DependentUpon>StockListForm.cs</DependentUpon>
+    <Compile Include="ResultForm\ResultListForm.Designer.cs">
+      <DependentUpon>ResultListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StockForm\StockMoveForm.cs">
+    <Compile Include="ResultForm\ResultMoveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StockForm\StockMoveForm.Designer.cs">
-      <DependentUpon>StockMoveForm.cs</DependentUpon>
+    <Compile Include="ResultForm\ResultMoveForm.Designer.cs">
+      <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemCodeForm.cs">
       <SubType>Form</SubType>
@@ -479,14 +480,14 @@
     <EmbeddedResource Include="ReleaseForm\ReleasePlanForm.resx">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StockForm\InOutListForm.resx">
+    <EmbeddedResource Include="ResultForm\InOutListForm.resx">
       <DependentUpon>InOutListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StockForm\StockListForm.resx">
-      <DependentUpon>StockListForm.cs</DependentUpon>
+    <EmbeddedResource Include="ResultForm\ResultListForm.resx">
+      <DependentUpon>ResultListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StockForm\StockMoveForm.resx">
-      <DependentUpon>StockMoveForm.cs</DependentUpon>
+    <EmbeddedResource Include="ResultForm\ResultMoveForm.resx">
+      <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
