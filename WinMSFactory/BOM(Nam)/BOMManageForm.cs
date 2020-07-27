@@ -172,7 +172,7 @@ namespace WinMSFactory.BOM
                     for(int j = 1; j<dgv2.Columns.Count-1; j++)
                     {
                         dgv2[j, i].ReadOnly = true;
-                        dgv2[4, dgv2.Rows.Count-1].Value = 1;
+                        dgv2[4, i].Value = 1;
                     }
                 }
             }
@@ -185,7 +185,6 @@ namespace WinMSFactory.BOM
 
             dgv.Columns.Clear();
             dgv2.Columns.Clear();
-            cboType.ComboBinding(pdgSv.ProductGroupComboBindingsNotAll(), "Product_Group_ID", "Product_Group_Name");
             CheckMaterialList.Clear();
             BOMManageForm_Load(null, null);
         }
@@ -198,6 +197,16 @@ namespace WinMSFactory.BOM
                 MessageBox.Show("재료를 2개 이상 추가해주세요");
                 return;
             }
+            // 재료 수량이 입력이 안된 경우 중단 시킴
+            foreach(DataGridViewRow row in dgv2.Rows)
+            { 
+                if(dgv2[4,row.Index].Value == null)
+                {
+                    MessageBox.Show("수량을 모두 입력해주세요");
+                    return;
+                }
+            }
+
             if (MessageBox.Show("등록을 진행하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
             // BOM 테이블에 등록

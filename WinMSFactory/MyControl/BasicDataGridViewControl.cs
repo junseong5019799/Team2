@@ -12,39 +12,9 @@ using System.Windows.Forms;
 
 namespace WinMSFactory
 {
-    public partial class DataGridViewControl : DataGridView
+    public partial class BasicDataGridViewControl : DataGridView
     {
-        CheckBox headerCheckBox = new CheckBox();
-        bool _allCheckHeader;
-
-        public bool IsAllCheckColumnHeader
-        {
-            get { return _allCheckHeader; }
-            set
-            {
-                _allCheckHeader = value;
-
-                if (_allCheckHeader)
-                {
-                    this.AddNewChkCol(HeaderCheckBox_Clicked, ref headerCheckBox);
-                }
-            }
-        }
-
-        private void HeaderCheckBox_Clicked(object sender, EventArgs e)
-        {
-            //Necessary to end the edit mode of the Cell.
-            this.EndEdit();
-
-            //Loop and check and uncheck all row CheckBoxes based on Header Cell CheckBox.
-            foreach (DataGridViewRow row in this.Rows)
-            {
-                DataGridViewCheckBoxCell checkBox = (row.Cells["chk"] as DataGridViewCheckBoxCell);
-                checkBox.Value = headerCheckBox.Checked;
-            }
-        }
-
-		public DataGridViewControl()
+        public BasicDataGridViewControl()
         {                  
             InitializeComponent();
 
@@ -62,7 +32,10 @@ namespace WinMSFactory
             this.MultiSelect = false;
             this.AutoGenerateColumns = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
         }
+
+        
 
         protected override void OnPaint(PaintEventArgs pe)
         {

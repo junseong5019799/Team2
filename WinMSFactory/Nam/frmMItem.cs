@@ -76,7 +76,6 @@ namespace WinMSFactory
 
         private void ReviewDGV()
         {
-            
             dgv.DataSource = null;
 
             dgv.DataSource = pdSv.SelectAllProducts();
@@ -120,8 +119,6 @@ namespace WinMSFactory
                     dgv[4, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';
                 }
-                   
-                
             }
         }
 
@@ -130,8 +127,6 @@ namespace WinMSFactory
             if (e.RowIndex < 0)
                 return;
             int ItemNum = dgv[0, e.RowIndex].Value.ToInt();
-
-            
 
             if(e.ColumnIndex == 3)
             {

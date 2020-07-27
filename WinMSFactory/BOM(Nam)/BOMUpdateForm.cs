@@ -35,7 +35,6 @@ namespace WinMSFactory.BOM
             InitializeComponent();
 
             CheckMaterialList = new List<BomVO>();
-            
         }
 
         private void BOMManageForm_Load(object sender, EventArgs e)
@@ -53,9 +52,6 @@ namespace WinMSFactory.BOM
             dgv2.DataBindingComplete += dgv2_DataBindingComplete;
 
             dgv2.DataSource = bomSv.BOMEnrolledMaterial(ProductID);
-
-            
-
         }
 
         private void MaterialColumns()
@@ -220,7 +216,15 @@ namespace WinMSFactory.BOM
                 MessageBox.Show("재료를 2개 이상 추가해주세요");
                 return;
             }
-                
+
+            foreach (DataGridViewRow row in dgv2.Rows)
+            {
+                if (dgv2[4, row.Index].Value == null)
+                {
+                    MessageBox.Show("수량을 모두 입력해주세요");
+                    return;
+                }
+            }
 
             if (MessageBox.Show("정말로 등록하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
