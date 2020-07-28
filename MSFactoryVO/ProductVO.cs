@@ -23,7 +23,7 @@ namespace MSFactoryVO
         public string Final_Regist_Employee { get; set; }
         public string Product_Use { get; set; }
         public string Bom_Exists { get; set; }
-
+        public int Bom_Seq { get; set; }
 
     }
 }
