@@ -12,7 +12,7 @@ namespace MSFactoryDAC
 {
     public class BomDAC : ConnectionAccess
     {
-        public List<BomVO> SelectMaterialSettings(string category1, string category2)
+        public List<BomVO> SelectMaterialSettings(string category1, string category2, int ProductID)
         {
             try
             {
@@ -21,11 +21,12 @@ namespace MSFactoryDAC
                     conn.Open();
                     string sql = @"SELECT p.PRODUCT_ID, G.PRODUCT_GROUP_NAME, p.PRODUCT_NAME, p.PRODUCT_INFORMATION, p.PRODUCT_UNIT, p.PRODUCT_NOTE1, p.PRODUCT_NOTE2
                                    FROM TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.PRODUCT_GROUP_ID = G.PRODUCT_GROUP_ID
-                                   WHERE G.PRODUCT_GROUP_NAME IN(@CATEGORY1, @CATEGORY2) AND PRODUCT_USE = 'Y'";
+                                   WHERE G.PRODUCT_GROUP_NAME IN(@CATEGORY1, @CATEGORY2) AND PRODUCT_USE = 'Y' AND PRODUCT_ID <> @PRODUCTID";
                     using(SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@CATEGORY1", category1);
                         cmd.Parameters.AddWithValue("@CATEGORY2", category2);
+                        cmd.Parameters.AddWithValue("@PRODUCTID", ProductID);
 
                         return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
                     }
@@ -38,7 +39,28 @@ namespace MSFactoryDAC
             }
         }
 
-        
+        public List<BomVO> SelectAllBomProducts()
+        {
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    string sql = "";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        //cmd.Parameters.AddWithValue("@PRODUCTID", ProductID);
+
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+            }
+        }
 
         public List<BomVO> BOMEnrolledMaterial(int ProductID)
         {

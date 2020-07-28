@@ -62,7 +62,6 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
             dgv.AddNewColumns("사용 여부", "product_use", 100, true);
             dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
-            dgv.AddNewColumns("순번", "product_seq", 100, true);
 
             SelectAllProducts = pdSv.SelectAllProducts();
 
@@ -128,8 +127,11 @@ namespace WinMSFactory
         {
             if (e.RowIndex < 0)
                 return;
+
             int ProductID = dgv[1, e.RowIndex].Value.ToInt();
+
             string ProductName = dgv[3, e.RowIndex].Value.ToString();
+
             if (e.ColumnIndex == 4)
             {
                 if (dgv[4, e.RowIndex].Value.ToString() == "미사용")

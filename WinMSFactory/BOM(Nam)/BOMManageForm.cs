@@ -41,6 +41,12 @@ namespace WinMSFactory.BOM
             this.ProductID = ProductID;
             this.ProductName = ProductName;
             this.BOMEnrollStatus = BOMEnrollStatus;
+
+            if(BomEnrollCheck == true)
+            {
+                this.Text = "BOM 수정";
+                btnSubmit.Text = "수정";
+            }
         }
 
         private void BOMManageForm_Load(object sender, EventArgs e)
@@ -55,15 +61,15 @@ namespace WinMSFactory.BOM
             dgv2.IsAllCheckColumnHeader = true;
 
             MaterialColumns();
-            SelectedAllMaterial = bomSv.SelectMaterialSettings("반제품", "재료");
+            SelectedAllMaterial = bomSv.SelectMaterialSettings("반제품", "재료", ProductID);
             dgv.DataSource = SelectedAllMaterial; // 반제품, 재료만 조회
 
             if(BomEnrollCheck == true)
             {
-                dgv2.DataSource = bomSv.BOMEnrolledMaterial(ProductID);
+                CheckedList = bomSv.BOMEnrolledMaterial(ProductID);
             }
-                
 
+            dgv2.DataSource = CheckedList;
         }
 
         private void MaterialColumns()
@@ -195,7 +201,7 @@ namespace WinMSFactory.BOM
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            InitListCheck();
+            //InitListCheck();
 
             List<object> NullCheck = new List<object>();
             bool ShowMessage = false;
@@ -204,7 +210,7 @@ namespace WinMSFactory.BOM
             foreach(DataGridViewRow row in dgv.Rows)
             {
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
-
+                // 체크 상태가 아닌 경우
                 if (chk.Value == null)
                 {
                     NullCheck.Add(chk.Value); // null일때 list에 추가
@@ -221,7 +227,7 @@ namespace WinMSFactory.BOM
                     Product_Information = dgv[4, row.Index].Value.ToString(),
                     Bom_Use_Quantity = 1
                 };
-
+                // 체크 상태인 경우
                 if((bool)chk.Value == true)
                 {
                     bool check = false;
@@ -278,7 +284,7 @@ namespace WinMSFactory.BOM
 
         private void btnUnRegister_Click_1(object sender, EventArgs e) // 재료 삭제
         {
-            InitListCheck();
+            //InitListCheck();
 
             List<int> DelList = new List<int>();
             for (int i = dgv2.Rows.Count - 1; i > -1; i--)
@@ -302,7 +308,7 @@ namespace WinMSFactory.BOM
 
             dgv2.DataSource = null;
             dgv2.DataSource = CheckedList;
-
+            // dgv2가 체크된 것이 모두 해제
             foreach (DataGridViewRow row in dgv2.Rows)
                 dgv2[0, row.Index].Value = null;
         }
