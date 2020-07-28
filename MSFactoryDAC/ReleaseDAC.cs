@@ -39,7 +39,7 @@ namespace MSFactoryDAC
 
 
         /// <summary>
-        /// dataTable 바인딩
+        /// 출고 DETAIL -> dataTable 바인딩
         /// </summary>
         /// <param name="release_no"></param>
         /// <returns></returns>
@@ -51,8 +51,10 @@ namespace MSFactoryDAC
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter())
                     {
-                        string sql = @"SELECT r.release_no, release_seq, company_id, release_plan_date, product_id, order_request_quantity, release_status, release_date
-                                       	 , r.first_regist_time, r.first_regist_employee, r.final_regist_time, r.final_regist_employee
+                        string sql = @"SELECT r.release_no, release_seq, company_id, release_plan_date, product_id
+                                            , (SELECT product_name FROM [dbo].[TBL_PRODUCT] WHERE product_id = rd.product_id) AS product_name
+                                            , order_request_quantity, release_status, release_date
+                                       	    , r.first_regist_time, r.first_regist_employee, r.final_regist_time, r.final_regist_employee
                                        FROM TBL_RELEASE_DETAIL rd INNER JOIN TBL_RELEASE r ON rd.release_no = r.release_no
                                        WHERE r.release_no = @release_no
                                        ORDER BY release_plan_date";
@@ -74,12 +76,46 @@ namespace MSFactoryDAC
             }
         }
 
-
         /// <summary>
-        /// 품목명 바인딩
+        /// 수요계획 -> DataTable 바인딩
         /// </summary>
+        /// <param name="release_no"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
         /// <returns></returns>
-        public List<BomVO> SelectProduct()
+        public DataTable Calculate_ReleasePlan(int release_no, DateTime from, DateTime to)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {                                             
+                        da.SelectCommand = new SqlCommand("SP_CALCULATE_RELEASE", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.AddWithValue("@release_no", release_no);
+                        da.SelectCommand.Parameters.AddWithValue("@First_data", from);
+                        da.SelectCommand.Parameters.AddWithValue("@ETC_data", to);
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch(Exception err)
+            {
+                throw err;
+            }
+        }
+            /// <summary>
+            /// 품목명 바인딩
+            /// </summary>
+            /// <returns></returns>
+            public List<BomVO> SelectProduct()
         {
             try
             {
