@@ -23,9 +23,9 @@ namespace WinMSFactory
             return list;
         }
 
-       public List<BomVO> SelectMaterialSettings(string Category1, string Category2)
+       public List<BomVO> SelectMaterialSettings(string Category1, string Category2, int ProductID)
        {
-            return dac.SelectMaterialSettings(Category1, Category2);
+            return dac.SelectMaterialSettings(Category1, Category2, ProductID);
        }
 
         
@@ -39,6 +39,11 @@ namespace WinMSFactory
         {
             return dac.BOMEnrolledMaterial(ProductID);
         
+        }
+
+        public List<BomVO> SelectAllBomProducts()
+        {
+            return dac.SelectAllBomProducts();
         }
     }
 }
