@@ -1,6 +1,7 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -46,25 +47,26 @@ namespace MSFactoryDAC
         /// <summary>
         /// 전체데이타그리드뷰에 바인딩
         /// </summary>
-        public List<CompanyVO> GetCompanyList()
+        public DataTable GetCompany(string type)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"select company_id, company_name, company_type, company_seq
-                                             , first_regist_time, first_regist_employee, final_regist_time, final_regist_employee 
-                                          FROM TBL_COMPANY cp 
-                                    INNER JOIN ";
+                    cmd.CommandText = @"SELECT company_id, company_name, company_type, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
+                                          FROM TBL_COMPANY
+                                         WHERE company_type = isnull(company_type, @company_type) or company_type = @company_type 
+                                         ORDER BY company_seq";
 
+                    cmd.Parameters.AddWithValue("@company_type", type);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
                     cmd.Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    list = SqlHelper.DataReaderMapToList<CompanyVO>(reader);
+                    da.Fill(dt);
                     cmd.Connection.Close();
 
-                    return list;
-                    
+                    return dt; 
                 }
             }
             catch (Exception err)

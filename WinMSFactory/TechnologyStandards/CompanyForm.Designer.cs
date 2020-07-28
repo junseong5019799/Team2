@@ -102,6 +102,7 @@
             this.btnSelect.TabIndex = 32;
             this.btnSelect.Text = "조회";
             this.btnSelect.UseVisualStyleBackColor = false;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnDelect
             // 
