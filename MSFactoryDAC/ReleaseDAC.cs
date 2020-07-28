@@ -138,7 +138,7 @@ namespace MSFactoryDAC
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"SELECT release_no
+                    string sql = @"SELECT DISTINCT release_no
                                    FROM TBL_RELEASE_DETAIL";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -223,6 +223,11 @@ namespace MSFactoryDAC
         }        
         
 
+        /// <summary>
+        /// 품목ID
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public int GetProductID(string name)
         {
             try
