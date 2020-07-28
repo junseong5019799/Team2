@@ -32,8 +32,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("거래처명", "company_name", 100, true);
             dgv.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
             dgv.AddNewColumns("출고 상태", "release_status", 100, true);
-
-
+            
             dgv.DataSource = releaseService.GetReleasePlan();
 
             dgv2.AddNewColumns("출고예정 번호", "release_no", 120, true);

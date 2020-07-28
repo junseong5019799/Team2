@@ -95,8 +95,10 @@ namespace MSFactoryDAC
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                         da.SelectCommand.Parameters.AddWithValue("@release_no", release_no);
-                        da.SelectCommand.Parameters.AddWithValue("@First_data", from);
-                        da.SelectCommand.Parameters.AddWithValue("@ETC_data", to);
+                        da.SelectCommand.Parameters.AddWithValue("@From_date", from);
+                        da.SelectCommand.Parameters.AddWithValue("@To_date", to);
+                        //da.SelectCommand.Parameters.AddWithValue("@First_data", from);
+                        //da.SelectCommand.Parameters.AddWithValue("@ETC_data", to);
                         DataTable dt = new DataTable();
                         con.Open();
                         da.Fill(dt);

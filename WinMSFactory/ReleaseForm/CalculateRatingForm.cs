@@ -36,15 +36,19 @@ namespace WinMSFactory
 
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
-            DgvLoad();
-                        
+            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
+            dgv.AddNewColumns("순서", "release_seq", 100, true);
+            dgv.AddNewColumns("거래처", "company_id", 100, false);
+            dgv.AddNewColumns("거래처명", "company_name", 100, true);
+            dgv.AddNewColumns("품목", "product_id", 100, false);
+            dgv.AddNewColumns("품명", "product_name", 100, true);
+
+            dgv.AddNewColumns(fromToDateControl2.From.ToShortDateString(), "release_plan_date", 100, true);
+
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
-        }
 
-        private void DgvLoad()
-        {
-            
+
         }
 
 
@@ -72,6 +76,7 @@ namespace WinMSFactory
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             OrderPlanForm frm = new OrderPlanForm();
+            frm.Release_no = release_no;
             frm.Show();
         }
     }
