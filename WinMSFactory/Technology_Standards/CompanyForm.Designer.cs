@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClear = new WinMSFactory.ButtonControl();
             this.btnSelect = new WinMSFactory.ButtonControl();
-            this.btnDelect = new WinMSFactory.ButtonControl();
-            this.btnSave = new WinMSFactory.ButtonControl();
             this.cboCompany_Type = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCompany_Id = new System.Windows.Forms.TextBox();
@@ -42,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvCompanyList = new WinMSFactory.DataGridViewControl();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDelect = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanyList)).BeginInit();
             this.panel2.SuspendLayout();
@@ -49,10 +48,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDelect);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnSelect);
-            this.panel1.Controls.Add(this.btnDelect);
-            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.cboCompany_Type);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtCompany_Id);
@@ -67,10 +65,9 @@
             this.panel1.Controls.SetChildIndex(this.txtCompany_Id, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.cboCompany_Type, 0);
-            this.panel1.Controls.SetChildIndex(this.btnSave, 0);
-            this.panel1.Controls.SetChildIndex(this.btnDelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnSelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnClear, 0);
+            this.panel1.Controls.SetChildIndex(this.btnDelect, 0);
             // 
             // GuidLabel1
             // 
@@ -85,7 +82,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.White;
             this.btnClear.ForeColor = System.Drawing.Color.Black;
-            this.btnClear.Location = new System.Drawing.Point(890, 91);
+            this.btnClear.Location = new System.Drawing.Point(703, 91);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(55, 23);
             this.btnClear.TabIndex = 33;
@@ -103,28 +100,6 @@
             this.btnSelect.Text = "조회";
             this.btnSelect.UseVisualStyleBackColor = false;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // btnDelect
-            // 
-            this.btnDelect.BackColor = System.Drawing.Color.White;
-            this.btnDelect.ForeColor = System.Drawing.Color.Black;
-            this.btnDelect.Location = new System.Drawing.Point(801, 91);
-            this.btnDelect.Name = "btnDelect";
-            this.btnDelect.Size = new System.Drawing.Size(46, 23);
-            this.btnDelect.TabIndex = 31;
-            this.btnDelect.Text = "삭제";
-            this.btnDelect.UseVisualStyleBackColor = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.White;
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(708, 91);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(50, 23);
-            this.btnSave.TabIndex = 29;
-            this.btnSave.Text = "저장";
-            this.btnSave.UseVisualStyleBackColor = false;
             // 
             // cboCompany_Type
             // 
@@ -206,6 +181,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCompanyList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCompanyList.IsAllCheckColumnHeader = false;
             this.dgvCompanyList.Location = new System.Drawing.Point(12, 156);
             this.dgvCompanyList.MultiSelect = false;
             this.dgvCompanyList.Name = "dgvCompanyList";
@@ -213,6 +189,8 @@
             this.dgvCompanyList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompanyList.Size = new System.Drawing.Size(1531, 577);
             this.dgvCompanyList.TabIndex = 4;
+            this.dgvCompanyList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellClick);
+            this.dgvCompanyList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellDoubleClick);
             // 
             // panel2
             // 
@@ -222,6 +200,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1534, 761);
             this.panel2.TabIndex = 5;
+            // 
+            // btnDelect
+            // 
+            this.btnDelect.BackColor = System.Drawing.Color.White;
+            this.btnDelect.ForeColor = System.Drawing.Color.Black;
+            this.btnDelect.Location = new System.Drawing.Point(793, 91);
+            this.btnDelect.Name = "btnDelect";
+            this.btnDelect.Size = new System.Drawing.Size(55, 23);
+            this.btnDelect.TabIndex = 34;
+            this.btnDelect.Text = "삭제";
+            this.btnDelect.UseVisualStyleBackColor = false;
             // 
             // CompanyForm
             // 
@@ -250,8 +239,6 @@
 
         private ButtonControl btnClear;
         private ButtonControl btnSelect;
-        private ButtonControl btnDelect;
-        private ButtonControl btnSave;
         private System.Windows.Forms.ComboBox cboCompany_Type;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCompany_Id;
@@ -260,5 +247,6 @@
         private System.Windows.Forms.Label label1;
         private DataGridViewControl dgvCompanyList;
         private System.Windows.Forms.Panel panel2;
+        private ButtonControl btnDelect;
     }
 }

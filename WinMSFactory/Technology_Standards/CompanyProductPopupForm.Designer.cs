@@ -59,11 +59,11 @@
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(98, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(72, 4);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(250, 4);
+            this.btnCancel.Location = new System.Drawing.Point(232, 4);
             // 
             // label6
             // 
