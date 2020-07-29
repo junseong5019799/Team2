@@ -18,7 +18,6 @@ namespace WinMSFactory
     public partial class ReleasePlanForm : ListForm
     {
         ReleaseService releaseService = new ReleaseService();
-        int company_id; 
         
         public ReleasePlanForm()
         {

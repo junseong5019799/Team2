@@ -21,6 +21,20 @@ namespace WinMSFactory.OrderForm
             get { return release_no; }
             set { release_no = value; }
         }
+        private DateTime dtpFrom;
+                
+        public DateTime DtpFrom
+        {
+            get { return dtpFrom; }
+            set { dtpFrom = value; }
+        }
+        private DateTime dtpTo;
+
+        public DateTime DtpTo
+        {
+            get { return dtpTo; }
+            set { dtpTo = value; }
+        }
 
         public OrderPlanForm()
         {
@@ -38,21 +52,9 @@ namespace WinMSFactory.OrderForm
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
 
-            DataTable dt = releaseService.GetReleasePlanDetail(release_no);
+            DataTable dt = releaseService.Calculate_ReleasePlan(release_no, dtpFrom, DtpTo);
             dgv.DataSource = dt;
-
-            string d = $@"SELECT release_no, product_id, (SELECT product_name FROM [dbo].[TBL_PRODUCT] WHERE product_id = rd.product_id) AS product_name, '소요량' AS category
-                          FROM TBL_RELEASE_DETAIL rd
-                          WHERE release_no = 40
-                          UNION
-                          SELECT release_no, product_id, (SELECT product_name FROM [dbo].[TBL_PRODUCT] WHERE product_id = rd.product_id) AS product_name, 'balanace' AS category
-                          FROM TBL_RELEASE_DETAIL rd
-                          WHERE release_no = 40
-                          UNION
-                          SELECT release_no, product_id, (SELECT product_name FROM [dbo].[TBL_PRODUCT] WHERE product_id = rd.product_id) AS product_name, '발주제안' AS category
-                          FROM TBL_RELEASE_DETAIL rd
-                          WHERE release_no = 40";
-
+            
         }
     }
 }
