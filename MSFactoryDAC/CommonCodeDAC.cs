@@ -13,8 +13,8 @@ namespace MSFactoryDAC
 	{
 		public DataSet GetAllCommonCodes()
 		{
-			string sql = @"SELECT SORT_ID, SORT_NAME, NOTE, 'Y' FLAG FROM TBL_COMMON_GROUP;
-						   SELECT COMMON_ID, SORT_ID, COMMON_NAME, NOTE, 'Y' FLAG FROM TBL_COMMON";
+			string sql = @"SELECT SORT_ID + 'Y' FLAG, SORT_ID, SORT_NAME, NOTE FROM TBL_COMMON_GROUP WHERE SORT_ID = '';
+						   SELECT COMMON_ID + 'Y' FLAG, COMMON_ID, SORT_ID, COMMON_NAME, NOTE FROM TBL_COMMON WHERE SORT_ID = ''";
 			DataSet ds = new DataSet();
 			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
 
@@ -46,15 +46,15 @@ namespace MSFactoryDAC
 		{
 			SqlCommand cmd = new SqlCommand("SP_SAVE_COMMON_GROUP", conn);
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.Add("@SORT_ID", SqlDbType.NVarChar, 20);
-			cmd.Parameters.Add("@SORT_NAME", SqlDbType.NVarChar, 20);
-			cmd.Parameters.Add("@NOTE", SqlDbType.NVarChar, 200);
+			cmd.Parameters.Add("@P_SORT_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_SORT_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_NOTE", SqlDbType.NVarChar, 200);
 
 			foreach (DataRow dr in commonGroupDt.Rows)
 			{
-				cmd.Parameters["@SORT_ID"].Value = dr["SORT_ID"].ToString();
-				cmd.Parameters["@SORT_NAME"].Value = dr["SORT_NAME"].ToString();
-				cmd.Parameters["@NOTE"].Value = dr["NOTE"].ToString();
+				cmd.Parameters["@P_SORT_ID"].Value = dr["SORT_ID"].ToString();
+				cmd.Parameters["@P_SORT_NAME"].Value = dr["SORT_NAME"].ToString();
+				cmd.Parameters["@P_NOTE"].Value = dr["NOTE"].ToString();
 
 				if (cmd.ExecuteNonQuery() == 0)
 					return false;
@@ -67,17 +67,17 @@ namespace MSFactoryDAC
 		{
 			SqlCommand cmd = new SqlCommand("SP_SAVE_COMMON", conn);
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.Add("@COMMON_ID", SqlDbType.NVarChar, 20);
-			cmd.Parameters.Add("@SORT_ID", SqlDbType.NVarChar, 20);
-			cmd.Parameters.Add("@COMMON_NAME", SqlDbType.NVarChar, 20);
-			cmd.Parameters.Add("@NOTE", SqlDbType.NVarChar, 200);
+			cmd.Parameters.Add("@P_COMMON_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_SORT_ID", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_COMMON_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_NOTE", SqlDbType.NVarChar, 200);
 
 			foreach (DataRow dr in commonDt.Rows)
 			{
-				cmd.Parameters["@COMMON_ID"].Value = dr["COMMON_ID"].ToString();
-				cmd.Parameters["@SORT_ID"].Value = dr["SORT_ID"].ToString();
-				cmd.Parameters["@COMMON_NAME"].Value = dr["COMMON_NAME"].ToString();
-				cmd.Parameters["@NOTE"].Value = dr["NOTE"].ToString();
+				cmd.Parameters["@P_COMMON_ID"].Value = dr["COMMON_ID"].ToString();
+				cmd.Parameters["@P_SORT_ID"].Value = dr["SORT_ID"].ToString();
+				cmd.Parameters["@P_COMMON_NAME"].Value = dr["COMMON_NAME"].ToString();
+				cmd.Parameters["@P_NOTE"].Value = dr["NOTE"].ToString();
 
 				if (cmd.ExecuteNonQuery() == 0)
 					return false;
