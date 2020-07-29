@@ -39,20 +39,47 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<BomVO> SelectAllBomProducts()
+        public List<BomVO> BOMDeployeeBinding()
         {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"Select  G.sort_name Combo_Display_Member, G.sort_id Combo_Value_Member
+                                    from tbl_common C INNER JOIN TBL_COMMON_GROUP G ON C.SORT_ID = G.SORT_ID
+                                    where COMMON_ID BETWEEN 'BOMDEPLOYEESTATUS001' AND 'BOMDEPLOYEESTATUS002'";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public DataTable SelectAllBomProducts(char IsBomStatusForward)
+        {
+            DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(this.ConnectionString))
             {
                 conn.Open();
                 try
                 {
-                    string sql = "";
-
+                    string sql = "SP_BOM_ALL_SELECT";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        //cmd.Parameters.AddWithValue("@PRODUCTID", ProductID);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                        cmd.Parameters.AddWithValue("@P_DEPLOY_METHOD", IsBomStatusForward);
+
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        data.Fill(dt);
+                        return dt;
                     }
                 }
                 catch (Exception err)
@@ -124,10 +151,9 @@ namespace MSFactoryDAC
                         return true;
                     }
                 }
-                catch (Exception err)
+                catch
                 {
-                    return false;
-                    throw err;
+                    return true;
                 }
             }
             

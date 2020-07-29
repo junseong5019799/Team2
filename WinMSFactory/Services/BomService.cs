@@ -2,6 +2,7 @@
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,12 @@ namespace WinMSFactory
             return list;
         }
 
-       public List<BomVO> SelectMaterialSettings(string Category1, string Category2, int ProductID)
+        public List<BomVO> BOMDeployeeBinding()
+        {
+            return dac.BOMDeployeeBinding();
+        }
+
+        public List<BomVO> SelectMaterialSettings(string Category1, string Category2, int ProductID)
        {
             return dac.SelectMaterialSettings(Category1, Category2, ProductID);
        }
@@ -41,9 +47,9 @@ namespace WinMSFactory
         
         }
 
-        public List<BomVO> SelectAllBomProducts()
+        public DataTable SelectAllBomProducts(char IsBomStatusForward)
         {
-            return dac.SelectAllBomProducts();
+            return dac.SelectAllBomProducts(IsBomStatusForward);
         }
     }
 }

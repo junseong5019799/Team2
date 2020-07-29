@@ -29,16 +29,17 @@ namespace WinMSFactory
         {            
             dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
             dgv.AddNewColumns("거래처", "company_id", 100, true);
+            dgv.AddNewColumns("거래처명", "company_name", 100, true);
             dgv.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
-            dgv.AddNewColumns("품목 코드", "product_id", 100, true);
-
-
+            dgv.AddNewColumns("출고 상태", "release_status", 100, true);
+            
             dgv.DataSource = releaseService.GetReleasePlan();
 
             dgv2.AddNewColumns("출고예정 번호", "release_no", 120, true);
             dgv2.AddNewColumns("순번", "release_seq", 80, true);
             dgv2.AddNewColumns("거래처", "company_id", 100, true);
-            dgv2.AddNewColumns("품명", "product_id", 150, true);
+            dgv2.AddNewColumns("품명", "product_id", 150, false);
+            dgv2.AddNewColumns("품명", "product_name", 150, true);
             dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
             dgv2.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
             dgv2.AddNewColumns("출고일", "release_date", 100, true);

@@ -98,6 +98,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.Location = new System.Drawing.Point(0, 170);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -160,13 +161,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 26, 13, 2, 38, 720);
+            this.fromToDateControl1.From = new System.DateTime(2020, 7, 27, 16, 59, 45, 440);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 7, 27, 13, 2, 38, 720);
+            this.fromToDateControl1.To = new System.DateTime(2020, 7, 28, 16, 59, 45, 440);
             // 
             // label4
             // 
@@ -189,18 +190,18 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl2.From = new System.DateTime(2020, 7, 26, 13, 50, 26, 790);
+            this.fromToDateControl2.From = new System.DateTime(2020, 7, 27, 16, 59, 15, 81);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl2.TabIndex = 17;
-            this.fromToDateControl2.To = new System.DateTime(2020, 7, 27, 13, 50, 26, 790);
+            this.fromToDateControl2.To = new System.DateTime(2020, 7, 28, 16, 59, 15, 81);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(74, 103);
+            this.label7.Location = new System.Drawing.Point(75, 92);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 22;
@@ -227,6 +228,7 @@
             this.btnCalculate.TabIndex = 32;
             this.btnCalculate.Text = "발주";
             this.btnCalculate.UseVisualStyleBackColor = false;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // label6
             // 
@@ -240,7 +242,7 @@
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(173, 100);
+            this.cboPlanID.Location = new System.Drawing.Point(173, 89);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(121, 24);
             this.cboPlanID.TabIndex = 33;
@@ -250,9 +252,9 @@
             // 
             this.btnSearch.BackColor = System.Drawing.Color.White;
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(452, 47);
+            this.btnSearch.Location = new System.Drawing.Point(707, 124);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(90, 26);
             this.btnSearch.TabIndex = 34;
             this.btnSearch.Text = "찾기";
             this.btnSearch.UseVisualStyleBackColor = false;

@@ -38,6 +38,11 @@ namespace WinMSFactory
             return dac.GetReleasePlanDetail(release_no);
         }
 
+        public DataTable Calculate_ReleasePlan(int release_no, DateTime from, DateTime to)
+        {
+            return dac.Calculate_ReleasePlan(release_no, from, to);
+        }
+
         public bool SaveReleasePlan(DataTable dgv, ReleaseVO release)
         {
             return dac.SaveReleasePlan(dgv, release);

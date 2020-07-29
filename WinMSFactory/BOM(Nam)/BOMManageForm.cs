@@ -30,7 +30,6 @@ namespace WinMSFactory.BOM
         char BOMEnrollStatus; // DB에 Insert
 
         bool BomEnrollCheck; // 등록, 수정 결정
-        bool IsBomUpdateData = false;
 
         // BOM 등록 및 수정
         public BOMManageForm(bool BomEnrollCheck, int ProductID, string ProductName, char BOMEnrollStatus)
@@ -201,8 +200,6 @@ namespace WinMSFactory.BOM
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            //InitListCheck();
-
             List<object> NullCheck = new List<object>();
             bool ShowMessage = false;
             bool IsAllNull = true;
@@ -284,7 +281,6 @@ namespace WinMSFactory.BOM
 
         private void btnUnRegister_Click_1(object sender, EventArgs e) // 재료 삭제
         {
-            //InitListCheck();
 
             List<int> DelList = new List<int>();
             for (int i = dgv2.Rows.Count - 1; i > -1; i--)
@@ -311,18 +307,6 @@ namespace WinMSFactory.BOM
             // dgv2가 체크된 것이 모두 해제
             foreach (DataGridViewRow row in dgv2.Rows)
                 dgv2[0, row.Index].Value = null;
-        }
-
-        private void InitListCheck()
-        {
-            if (BomEnrollCheck == true && IsBomUpdateData == false)
-            {
-                foreach (var a in ((List<BomVO>)dgv2.DataSource))
-                {
-                    CheckedList.Add(a);
-                }
-                IsBomUpdateData = true;
-            }
         }
     }
     
