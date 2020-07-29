@@ -52,19 +52,23 @@ namespace WinMSFactory
             return dac.SelectAllBomProducts(IsBomStatusForward);
         }
 
+        
+
+       
+
+        public DataTable BOMDeployDGVBinding(bool IsBOMForward, int SelectedValue)
+        {
+            return dac.BomDeployDGVBinding(IsBOMForward, SelectedValue);
+        }
+
         public List<BomVO> BOMTypeBinding(bool IsBOMForward)
         {
-            return dac.BOMTypeBinding(IsBOMForward);
+            return dac.BomTypeBinding(IsBOMForward);
         }
 
-        public List<BomVO> BOMProductBinding(int productGroupNum)
+        public List<BomVO> BOMProductBinding(string product)
         {
-            return dac.BOMProductBinding(productGroupNum);
-        }
-
-        public List<BomVO> BOMDeployDGVBinding(int SelectedValue)
-        {
-            return dac.BomDeployDGVBinding(SelectedValue);
+            return dac.BOMProductBinding(product);
         }
     }
 }

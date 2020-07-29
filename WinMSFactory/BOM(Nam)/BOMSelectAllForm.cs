@@ -27,8 +27,8 @@ namespace WinMSFactory
         {
             // 콤보박스 바인딩
             cboSelect.ComboBinding(service.BOMDeployeeBinding(), "Combo_Value_Member", "Combo_Display_Member");
-            dgv.IsAllCheckColumnHeader = true;
-
+            dgv.IsAllCheckColumnHeader = false;
+            dgv.AddNewColumns("제품번호", "Product_ID", 50, false);
             dgv.AddNewColumns("제품명", "Product_Name", 250, true);
             dgv.AddNewColumns("제품 스펙", "Product_Information", 200, true);
             dgv.AddNewColumns("제품 수량", "Bom_Use_Quantity", 100, true);
@@ -41,16 +41,14 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종 수정 직원", "Final_Regist_Employee", 110, true);
 
             dgv.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            // DB Select 진행할 것
-            
 
+            string ValueMember = cboSelectType.SelectedValue.ToString();
 
+            cboSelectName.ComboBinding(service.BOMProductBinding(ValueMember), "PRODUCT_ID", "PRODUCT_NAME");
         }
 
         private void cboSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
             if(cboSelect.SelectedIndex == 0)
                 IsBOMForward = true;
                 
@@ -58,29 +56,14 @@ namespace WinMSFactory
                 IsBOMForward = false;
 
             cboSelectType.ComboBinding(service.BOMTypeBinding(IsBOMForward), "Combo_Value_Member", "Combo_Display_Member");
-            cboSelectType.SelectedIndex = 1;
         }
 
         private void cboSelectType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ProductGroupNum = 0;
+            string ValueMember = cboSelectType.SelectedValue.ToString();
 
-            if(IsBOMForward == true)
-            {
-                if (cboSelectType.SelectedIndex == 0) // 완제품
-                    ProductGroupNum = 0;
+            cboSelectName.ComboBinding(service.BOMProductBinding(ValueMember), "PRODUCT_ID", "PRODUCT_NAME");
 
-                else// 반제품
-                    ProductGroupNum = 1;
-            }
-            else
-            {
-                if (cboSelectType.SelectedIndex == 0) // 원재료
-                    ProductGroupNum = 2;
-                else // 반제품
-                    ProductGroupNum = 1;
-            }
-            cboSelectName.ComboBinding(service.BOMProductBinding(ProductGroupNum), "PRODUCT_ID", "PRODUCT_NAME");
         }
 
         private void buttonControl1_Click(object sender, EventArgs e)
@@ -88,7 +71,20 @@ namespace WinMSFactory
             if (cboSelectName.Text.Length < 1)
                 MessageBox.Show("재료를 선택한 후 진행해주세요");
             else
-                dgv.DataSource = service.BOMDeployDGVBinding(cboSelect.SelectedValue.ToInt());
+                dgv.DataSource = service.BOMDeployDGVBinding(IsBOMForward, cboSelectName.SelectedValue.ToInt());
+
+            if (cboSelect.SelectedIndex == 0 && dgv.Rows.Count == 1)
+                MessageBox.Show("bom 미등록이거나 하위 재료가 존재하지 않습니다.");
+            else if (cboSelect.SelectedIndex == 1 && dgv.Rows.Count == 1)
+                MessageBox.Show("bom 미등록이거나 상위 재료가 존재하지 않습니다.");
+        }
+
+        private void buttonControl2_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("정말로 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //service.BOMDelete(dgv[0, 0].Value.ToInt());
+            }
         }
     }
 }
