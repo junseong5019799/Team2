@@ -112,11 +112,14 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+
+
             /// <summary>
             /// 품목명 바인딩
             /// </summary>
             /// <returns></returns>
-            public List<BomVO> SelectProduct()
+        public List<BomVO> SelectProduct()
         {
             try
             {
