@@ -44,24 +44,25 @@ namespace WinMSFactory
         {
             dgv.IsAllCheckColumnHeader = true;
             // 사용 여부 변경 가능, BOM 확인
-            dgv.AddNewColumns("제품코드", "product_id", 100, true);
+            dgv.AddNewColumns("제품코드", "product_id", 80, true);
             dgv.AddNewColumns("제품그룹명", "product_group_name", 100, true);
-            dgv.AddNewColumns("제품명", "product_name", 100, true);
-
-            dgv.AddNewBtnCol("사용", "사용 여부", new Padding(1, 1, 1, 1));
-            dgv.AddNewBtnCol("", "BOM 등록 여부", new Padding(1, 1, 1, 1));
-
-            dgv.AddNewColumns("제품스펙", "product_information", 100, true);
-            dgv.AddNewColumns("기본단위", "product_unit", 100, true);
-            dgv.AddNewColumns("생산기준량", "product_standards", 100, true);
-            dgv.AddNewColumns("비고 1", "product_note1", 100, true);
-            dgv.AddNewColumns("비고 2", "product_note2", 100, true);
-            dgv.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
+            dgv.AddNewColumns("제품명", "product_name", 150, true);
+            dgv.AddNewBtnCol("사용", "사용 여부", new Padding(1, 1, 1, 1)); // 버튼
+            dgv.AddNewBtnCol("", "BOM 등록 여부", new Padding(1, 1, 1, 1)); // 버튼
+            dgv.AddNewColumns("제품스펙", "product_information", 200, true);
+            dgv.AddNewColumns("기본단위", "product_unit", 80, true);
+            dgv.AddNewColumns("생산기준량", "product_standards", 90, true);
+            dgv.AddNewColumns("Tact Time", "product_tact_time", 100, true);
+            dgv.AddNewColumns("Lead Time", "product_lead_time", 100, true);
+            dgv.AddNewColumns("비고 1", "product_note1", 200, true);
+            dgv.AddNewColumns("비고 2", "product_note2", 200, true);
+            dgv.AddNewColumns("최초등록시각", "first_regist_time", 130, true);
             dgv.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
-            dgv.AddNewColumns("최종등록시각", "final_regist_time", 100, true);
+            dgv.AddNewColumns("최종등록시각", "final_regist_time", 130, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
-            dgv.AddNewColumns("사용 여부", "product_use", 100, true);
-            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
+            dgv.AddNewColumns("사용 여부", "product_use", 100, false);
+            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
+            
 
             SelectAllProducts = pdSv.SelectAllProducts();
 
@@ -97,7 +98,7 @@ namespace WinMSFactory
         {
             foreach(DataGridViewRow row in dgv.Rows)
             {
-                if (dgv[15, row.Index].Value.ToString() == "Y") // 사용 여부 확인
+                if (dgv[17, row.Index].Value.ToString() == "Y") // 사용 여부 확인
                     dgv[4,row.Index].Value = "사용";
                 else
                     dgv[4, row.Index].Value = "미사용";           
@@ -109,13 +110,13 @@ namespace WinMSFactory
                     dgv[5, row.Index].ReadOnly = true;
                 }
                 // BOM에 등록되지 않았으면 등록이 나오고, 등록되어있으면 수정으로 나온다.
-                else if (dgv[16, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                else if (dgv[18, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
                 {
                     dgv[5, row.Index].Value = "BOM 수정";
                     BomEnrollStatus = 'Y';
                 }
                     
-                else if(dgv[16, row.Index].Value.ToString() == "N")
+                else if(dgv[18, row.Index].Value.ToString() == "N")
                 {
                     dgv[5, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';

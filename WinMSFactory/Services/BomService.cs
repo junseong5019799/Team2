@@ -51,5 +51,20 @@ namespace WinMSFactory
         {
             return dac.SelectAllBomProducts(IsBomStatusForward);
         }
+
+        public List<BomVO> BOMTypeBinding(bool IsBOMForward)
+        {
+            return dac.BOMTypeBinding(IsBOMForward);
+        }
+
+        public List<BomVO> BOMProductBinding(int productGroupNum)
+        {
+            return dac.BOMProductBinding(productGroupNum);
+        }
+
+        public List<BomVO> BOMDeployDGVBinding(int SelectedValue)
+        {
+            return dac.BomDeployDGVBinding(SelectedValue);
+        }
     }
 }

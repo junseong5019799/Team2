@@ -15,7 +15,9 @@ namespace WinMSFactory
     public partial class DataGridViewControl : DataGridView
     {
         CheckBox headerCheckBox = new CheckBox();
+        
         bool _allCheckHeader;
+        bool _autoGenerateColumns;
 
         public bool IsAllCheckColumnHeader
         {
@@ -28,6 +30,20 @@ namespace WinMSFactory
                 {
                     this.AddNewChkCol(HeaderCheckBox_Clicked, ref headerCheckBox);
                 }
+            }
+        }
+
+        public bool IsAutoGenerateColumns
+        {
+            get { return _autoGenerateColumns; }
+            set
+            {
+                _autoGenerateColumns = value;
+                if (_autoGenerateColumns)
+                    this.AutoGenerateColumns = true;
+                else
+                    this.AutoGenerateColumns = false;
+
             }
         }
 
@@ -60,8 +76,12 @@ namespace WinMSFactory
 
             this.AllowUserToAddRows = false;
             this.MultiSelect = false;
-            this.AutoGenerateColumns = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (IsAutoGenerateColumns)
+                this.AutoGenerateColumns = true;
+            else
+                this.AutoGenerateColumns = false;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

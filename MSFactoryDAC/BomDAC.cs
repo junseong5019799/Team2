@@ -39,6 +39,93 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<BomVO> BOMTypeBinding(bool IsBomForward)
+        {
+            string SelectCode = string.Empty;
+
+            if (IsBomForward == true)
+                SelectCode = "PRO,MPR";
+
+            else
+                SelectCode = "MPR,MTR";
+
+            string[] sp_SelectCode = SelectCode.Split(',');
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"Select  sort_name Combo_Display_Member, sort_id Combo_Value_Member
+                                    from tbl_common_group
+                                    where sort_id = @CODE1 or sort_id = @CODE2";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CODE1", sp_SelectCode[0]);
+                        cmd.Parameters.AddWithValue("@CODE2", sp_SelectCode[1]);
+
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<BomVO> BomDeployDGVBinding(int SelectedValue)
+        {
+            try
+            {
+                string sql = string.Empty;
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    sql = @"SP_BOM_SELECT";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_SELECTED_VALUE", SelectedValue);
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<BomVO> BOMProductBinding(int productGroupNum)
+        {
+            try
+            {
+                string sql = string.Empty;
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    
+                    if(productGroupNum == 0)
+                        sql = @"SELECT PRODUCT_NAME, PRODUCT_ID FROM TBL_PRODUCT WHERE PRODUCT_GROUP_ID <> 1 AND PRODUCT_GROUP_ID <> 2";
+                    else
+                        sql = @"SELECT PRODUCT_NAME, PRODUCT_ID FROM TBL_PRODUCT WHERE PRODUCT_GROUP_ID = @GROUP_ID";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@GROUP_ID", productGroupNum);
+                        return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<BomVO> BOMDeployeeBinding()
         {
             try

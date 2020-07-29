@@ -24,6 +24,8 @@ namespace MSFactoryVO
         public string Product_Use { get; set; }
         public string Bom_Exists { get; set; }
         public int Bom_Seq { get; set; }
+        public int Product_Tact_Time { get; set; }
+        public int Product_Lead_Time { get; set; }
 
     }
 }
