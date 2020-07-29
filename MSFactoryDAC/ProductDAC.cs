@@ -101,6 +101,8 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_PRODUCT_USE", InsertData.Product_Use);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", InsertData.Final_Regist_Time);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", InsertData.Final_Regist_Employee);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_TACT_TIME", InsertData.Product_Tact_Time);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_LEAD_TIME", InsertData.Product_Lead_Time);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;

@@ -40,7 +40,7 @@ namespace WinMSFactory
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.HeaderText = HeaderText;
             btn.Text = text;
-            btn.Width = 80;
+            btn.Width = 100;
             btn.DefaultCellStyle.Padding = padding;
             btn.UseColumnTextForButtonValue = false;
 

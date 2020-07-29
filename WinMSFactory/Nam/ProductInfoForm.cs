@@ -55,7 +55,9 @@ namespace WinMSFactory
                     Product_Note2 = txtNote2.Text,
                     Product_Use = UseChar,
                     Final_Regist_Employee = "직원명",           // 나중에 직원 명을 가져올 것 (필수)
-                    Final_Regist_Time = DateTime.Now
+                    Final_Regist_Time = DateTime.Now,
+                    Product_Tact_Time = txtTactTime.Text.ToInt(),
+                    Product_Lead_Time = txtLeadTime.Text.ToInt()
                 };
 
                 if (pdSv.InsertProducts(ProductInsert))
@@ -77,6 +79,10 @@ namespace WinMSFactory
                 UseChar = 'N';
         }
 
-        
+        private void txtTactTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+                e.Handled = true;
+        }
     }
 }
