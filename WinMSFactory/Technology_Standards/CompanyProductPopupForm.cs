@@ -16,5 +16,7 @@ namespace WinMSFactory.TechnologyStandards
         {
             InitializeComponent();
         }
+
+       
     }
 }

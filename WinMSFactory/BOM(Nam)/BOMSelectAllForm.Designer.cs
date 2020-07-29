@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonControl1 = new WinMSFactory.ButtonControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.cboSelect = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.buttonControl2 = new WinMSFactory.ButtonControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboSelectType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboSelectName = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
@@ -47,18 +49,22 @@
             // 
             this.panel2.Controls.Add(this.buttonControl2);
             this.panel2.Controls.Add(this.buttonControl1);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.cboSelectName);
+            this.panel2.Controls.Add(this.cboSelectType);
             this.panel2.Controls.Add(this.cboSelect);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Size = new System.Drawing.Size(1534, 109);
-            this.panel2.Controls.SetChildIndex(this.label5, 0);
             this.panel2.Controls.SetChildIndex(this.label12, 0);
+            this.panel2.Controls.SetChildIndex(this.label2, 0);
+            this.panel2.Controls.SetChildIndex(this.label3, 0);
             this.panel2.Controls.SetChildIndex(this.cboSelect, 0);
-            this.panel2.Controls.SetChildIndex(this.textBox1, 0);
-            this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
+            this.panel2.Controls.SetChildIndex(this.cboSelectType, 0);
+            this.panel2.Controls.SetChildIndex(this.cboSelectName, 0);
             this.panel2.Controls.SetChildIndex(this.buttonControl1, 0);
             this.panel2.Controls.SetChildIndex(this.buttonControl2, 0);
+            this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
             // GuidLabel1
             // 
@@ -69,23 +75,23 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.Location = new System.Drawing.Point(0, 149);
             this.dgv.MultiSelect = false;
@@ -118,58 +124,80 @@
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.White;
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(830, 56);
+            this.buttonControl1.Location = new System.Drawing.Point(1132, 59);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 20);
             this.buttonControl1.TabIndex = 39;
             this.buttonControl1.Text = "검색";
             this.buttonControl1.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(576, 55);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 21);
-            this.textBox1.TabIndex = 38;
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // cboSelect
             // 
             this.cboSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSelect.FormattingEnabled = true;
-            this.cboSelect.Location = new System.Drawing.Point(148, 56);
+            this.cboSelect.Location = new System.Drawing.Point(215, 55);
             this.cboSelect.Name = "cboSelect";
             this.cboSelect.Size = new System.Drawing.Size(121, 20);
             this.cboSelect.TabIndex = 37;
             this.cboSelect.SelectedIndexChanged += new System.EventHandler(this.cboSelect_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(526, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "이름";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(85, 60);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 12);
+            this.label12.Size = new System.Drawing.Size(115, 12);
             this.label12.TabIndex = 36;
-            this.label12.Text = "품목 타입";
+            this.label12.Text = "정전개/ 역전개 선택";
             // 
             // buttonControl2
             // 
             this.buttonControl2.BackColor = System.Drawing.Color.White;
             this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(1038, 48);
+            this.buttonControl2.Location = new System.Drawing.Point(1241, 50);
             this.buttonControl2.Name = "buttonControl2";
             this.buttonControl2.Size = new System.Drawing.Size(89, 33);
             this.buttonControl2.TabIndex = 39;
             this.buttonControl2.Text = "BOM 삭제";
             this.buttonControl2.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(376, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 12);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "품목 타입";
+            // 
+            // cboSelectType
+            // 
+            this.cboSelectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSelectType.FormattingEnabled = true;
+            this.cboSelectType.Location = new System.Drawing.Point(454, 55);
+            this.cboSelectType.Name = "cboSelectType";
+            this.cboSelectType.Size = new System.Drawing.Size(122, 20);
+            this.cboSelectType.TabIndex = 37;
+            this.cboSelectType.SelectedIndexChanged += new System.EventHandler(this.cboSelectType_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(596, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 12);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "품목 이름";
+            // 
+            // cboSelectName
+            // 
+            this.cboSelectName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSelectName.FormattingEnabled = true;
+            this.cboSelectName.Location = new System.Drawing.Point(674, 55);
+            this.cboSelectName.Name = "cboSelectName";
+            this.cboSelectName.Size = new System.Drawing.Size(344, 20);
+            this.cboSelectName.TabIndex = 37;
             // 
             // BOMSelectAllForm
             // 
@@ -200,10 +228,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private ButtonControl buttonControl1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cboSelect;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label5;
         private ButtonControl buttonControl2;
+        private System.Windows.Forms.ComboBox cboSelectName;
+        private System.Windows.Forms.ComboBox cboSelectType;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

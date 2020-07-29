@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Technology_Standards;
 
 namespace WinMSFactory
 {
@@ -82,7 +83,7 @@ namespace WinMSFactory
 
 		private void toolStripButton11_Click(object sender, EventArgs e)
 		{
-            SystemCodeForm frm = new SystemCodeForm();
+            CompanyForm frm = new CompanyForm();
             frm.MdiParent = this;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;

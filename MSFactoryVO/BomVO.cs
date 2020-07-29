@@ -61,6 +61,8 @@ namespace MSFactoryVO
         public string First_Regist_Employee { get; set; }
         public DateTime Final_Regist_Time { get; set; }
         public string Final_Regist_Employee { get; set; }
+        public int Product_Tact_Time { get; set; }
+        public int Product_Lead_Time { get; set; }
     }
 
     

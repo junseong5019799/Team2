@@ -17,7 +17,7 @@ namespace WinMSFactory
     {
         BomService service = new BomService();
 
-        char IsBomStatusForward = 'Y';
+        bool IsBOMForward;
         public BOMSelectAllForm()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace WinMSFactory
 
         private void BOMSelectAllForm_Load(object sender, EventArgs e)
         {
-            
+            // 콤보박스 바인딩
             cboSelect.ComboBinding(service.BOMDeployeeBinding(), "Combo_Value_Member", "Combo_Display_Member");
             dgv.IsAllCheckColumnHeader = true;
 
@@ -49,13 +49,46 @@ namespace WinMSFactory
 
         private void cboSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboSelect.SelectedIndex == 0)
-                IsBomStatusForward = 'Y';
+            
 
+            if(cboSelect.SelectedIndex == 0)
+                IsBOMForward = true;
+                
             else
-                IsBomStatusForward = 'N';
+                IsBOMForward = false;
 
-            dgv.DataSource = service.SelectAllBomProducts(IsBomStatusForward);
+            cboSelectType.ComboBinding(service.BOMTypeBinding(IsBOMForward), "Combo_Value_Member", "Combo_Display_Member");
+            cboSelectType.SelectedIndex = 1;
+        }
+
+        private void cboSelectType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int ProductGroupNum = 0;
+
+            if(IsBOMForward == true)
+            {
+                if (cboSelectType.SelectedIndex == 0) // 완제품
+                    ProductGroupNum = 0;
+
+                else// 반제품
+                    ProductGroupNum = 1;
+            }
+            else
+            {
+                if (cboSelectType.SelectedIndex == 0) // 원재료
+                    ProductGroupNum = 2;
+                else // 반제품
+                    ProductGroupNum = 1;
+            }
+            cboSelectName.ComboBinding(service.BOMProductBinding(ProductGroupNum), "PRODUCT_ID", "PRODUCT_NAME");
+        }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            if (cboSelectName.Text.Length < 1)
+                MessageBox.Show("재료를 선택한 후 진행해주세요");
+            else
+                dgv.DataSource = service.BOMDeployDGVBinding(cboSelect.SelectedValue.ToInt());
         }
     }
 }
