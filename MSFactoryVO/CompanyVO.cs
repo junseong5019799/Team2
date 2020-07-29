@@ -17,5 +17,10 @@ namespace MSFactoryVO
        public string final_regist_time { get; set; }
        public string final_regist_employee { get; set; }
 
+       public int product_group_id { get; set; }
+
+
     }
+
+    
 }

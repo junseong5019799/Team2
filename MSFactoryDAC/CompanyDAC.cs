@@ -88,13 +88,13 @@ namespace MSFactoryDAC
         //                                  From TBL_COMPANY
         //                                 where companyId =@companyId
         //                                   AND companyType =@companyType
-        //                              Order by company_seq DESC";
+        //                                Order by company_seq ";
         //            cmd.Connection.Open();
         //        }
         //    }
         //    catch (Exception err)
         //    {
-        //        ConnectionAccess.GetLogger().WriteError(err.Message, err);
+                
         //        throw err;
         //    }
         //}
