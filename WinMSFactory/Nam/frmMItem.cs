@@ -299,5 +299,12 @@ namespace WinMSFactory
             if (e.KeyCode == Keys.Enter)
                 btnConfirm.PerformClick();
         }
+
+        private void buttonControl2_Click_1(object sender, EventArgs e)
+        {
+            BOMSelectAllForm frm = new BOMSelectAllForm(); // 상황에 따라 this.MdiParent로 바꿀 것
+            frm.Show();
+            
+        }
     }
 }

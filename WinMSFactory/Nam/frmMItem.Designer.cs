@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMItem));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnConfirm = new WinMSFactory.ButtonControl();
@@ -45,11 +45,11 @@
             this.rdoUse = new System.Windows.Forms.RadioButton();
             this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.btn_Delete = new WinMSFactory.ButtonControl();
-            this.label5 = new System.Windows.Forms.Label();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonControl2 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -63,7 +63,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.buttonControl2);
             this.panel1.Controls.Add(this.btn_Delete);
             this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.groupBox1);
@@ -72,7 +72,7 @@
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
             this.panel1.Controls.SetChildIndex(this.btn_Delete, 0);
-            this.panel1.Controls.SetChildIndex(this.label5, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl2, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox2, 0);
             // 
@@ -215,39 +215,31 @@
             this.btn_Delete.UseVisualStyleBackColor = false;
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1315, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 16);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "제품 + 해당되는 BOM까지 삭제";
-            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgv.IsAllCheckColumnHeader = false;
+            this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(0, 179);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -281,6 +273,18 @@
             this.pictureBox2.TabIndex = 47;
             this.pictureBox2.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBox2, "발주할 원재료가 오는 시간");
+            // 
+            // buttonControl2
+            // 
+            this.buttonControl2.BackColor = System.Drawing.Color.White;
+            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl2.Location = new System.Drawing.Point(1387, 91);
+            this.buttonControl2.Name = "buttonControl2";
+            this.buttonControl2.Size = new System.Drawing.Size(135, 43);
+            this.buttonControl2.TabIndex = 6;
+            this.buttonControl2.Text = "BOM 확인";
+            this.buttonControl2.UseVisualStyleBackColor = false;
+            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click_1);
             // 
             // frmMItem
             // 
@@ -319,7 +323,6 @@
         private System.Windows.Forms.ComboBox cboProductType;
         private System.Windows.Forms.Label label2;
         private ButtonControl buttonControl1;
-        private System.Windows.Forms.Label label5;
         private ButtonControl btn_Delete;
         private ButtonControl btnConfirm;
         private System.Windows.Forms.RadioButton rdoAll;
@@ -327,5 +330,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private ButtonControl buttonControl2;
     }
 }

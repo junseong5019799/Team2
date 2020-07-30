@@ -70,5 +70,10 @@ namespace WinMSFactory
         {
             return dac.BOMProductBinding(product);
         }
+
+        internal bool BOMDelete(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
