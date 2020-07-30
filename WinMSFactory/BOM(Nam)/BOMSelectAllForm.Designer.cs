@@ -36,18 +36,20 @@
             this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.cboSelect = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.buttonControl2 = new WinMSFactory.ButtonControl();
+            this.btnDelete = new WinMSFactory.ButtonControl();
             this.label2 = new System.Windows.Forms.Label();
             this.cboSelectType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboSelectName = new System.Windows.Forms.ComboBox();
+            this.btnInsertUpdate = new WinMSFactory.ButtonControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.buttonControl2);
+            this.panel2.Controls.Add(this.btnInsertUpdate);
+            this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.buttonControl1);
             this.panel2.Controls.Add(this.cboSelectName);
             this.panel2.Controls.Add(this.cboSelectType);
@@ -63,7 +65,8 @@
             this.panel2.Controls.SetChildIndex(this.cboSelectType, 0);
             this.panel2.Controls.SetChildIndex(this.cboSelectName, 0);
             this.panel2.Controls.SetChildIndex(this.buttonControl1, 0);
-            this.panel2.Controls.SetChildIndex(this.buttonControl2, 0);
+            this.panel2.Controls.SetChildIndex(this.btnDelete, 0);
+            this.panel2.Controls.SetChildIndex(this.btnInsertUpdate, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
             // GuidLabel1
@@ -125,9 +128,9 @@
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.White;
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(1132, 59);
+            this.buttonControl1.Location = new System.Drawing.Point(1056, 41);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 20);
+            this.buttonControl1.Size = new System.Drawing.Size(75, 47);
             this.buttonControl1.TabIndex = 39;
             this.buttonControl1.Text = "검색";
             this.buttonControl1.UseVisualStyleBackColor = false;
@@ -152,17 +155,17 @@
             this.label12.TabIndex = 36;
             this.label12.Text = "정전개/ 역전개 선택";
             // 
-            // buttonControl2
+            // btnDelete
             // 
-            this.buttonControl2.BackColor = System.Drawing.Color.White;
-            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(1241, 50);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(89, 33);
-            this.buttonControl2.TabIndex = 39;
-            this.buttonControl2.Text = "BOM 삭제";
-            this.buttonControl2.UseVisualStyleBackColor = false;
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(1375, 53);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(89, 33);
+            this.btnDelete.TabIndex = 39;
+            this.btnDelete.Text = "BOM 삭제";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.buttonControl2_Click);
             // 
             // label2
             // 
@@ -201,6 +204,18 @@
             this.cboSelectName.Size = new System.Drawing.Size(344, 20);
             this.cboSelectName.TabIndex = 37;
             // 
+            // btnInsertUpdate
+            // 
+            this.btnInsertUpdate.BackColor = System.Drawing.Color.White;
+            this.btnInsertUpdate.ForeColor = System.Drawing.Color.Black;
+            this.btnInsertUpdate.Location = new System.Drawing.Point(1236, 53);
+            this.btnInsertUpdate.Name = "btnInsertUpdate";
+            this.btnInsertUpdate.Size = new System.Drawing.Size(122, 33);
+            this.btnInsertUpdate.TabIndex = 39;
+            this.btnInsertUpdate.Text = "BOM 등록 / 수정";
+            this.btnInsertUpdate.UseVisualStyleBackColor = false;
+            this.btnInsertUpdate.Click += new System.EventHandler(this.btnInsertUpdate_Click);
+            // 
             // BOMSelectAllForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -232,10 +247,11 @@
         private ButtonControl buttonControl1;
         private System.Windows.Forms.ComboBox cboSelect;
         private System.Windows.Forms.Label label12;
-        private ButtonControl buttonControl2;
+        private ButtonControl btnDelete;
         private System.Windows.Forms.ComboBox cboSelectName;
         private System.Windows.Forms.ComboBox cboSelectType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private ButtonControl btnInsertUpdate;
     }
 }

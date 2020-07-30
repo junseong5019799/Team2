@@ -28,6 +28,7 @@ namespace WinMSFactory
             // 제품과는 관련없이 BOM 정보
             dgv.AddNewColumns("로그 번호", "Log_no", 100, true);
             dgv.AddNewColumns("제품 ID", "HIGH_PRODUCT_ID", 100, true); // 상위 제품 코드 - 품목코드 - 품명
+            //dgv.AddNewColumns("제품 이름")
             dgv.AddNewColumns("활동명", "Bom_Log_Status", 100, true);
             dgv.AddNewColumns("로그 순번", "Bom_SEQ", 100, true);
             dgv.AddNewColumns("등록일", "BOM_Enroll_Date", 100, true);

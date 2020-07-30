@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
+using WinMSFactory.BOM;
 
 namespace WinMSFactory
 {
@@ -71,20 +72,43 @@ namespace WinMSFactory
             if (cboSelectName.Text.Length < 1)
                 MessageBox.Show("재료를 선택한 후 진행해주세요");
             else
+            {
                 dgv.DataSource = service.BOMDeployDGVBinding(IsBOMForward, cboSelectName.SelectedValue.ToInt());
 
-            if (cboSelect.SelectedIndex == 0 && dgv.Rows.Count == 1)
-                MessageBox.Show("bom 미등록이거나 하위 재료가 존재하지 않습니다.");
-            else if (cboSelect.SelectedIndex == 1 && dgv.Rows.Count == 1)
-                MessageBox.Show("bom 미등록이거나 상위 재료가 존재하지 않습니다.");
+                if (cboSelect.SelectedIndex == 0 && dgv.Rows.Count == 1) // 정전개를 선택했는데 원재료 1개만 나오는 경우
+                {
+                    // 이는 bom이 등록되지 않았거나 하위 재료가 등록되지 않았다는 것을 의미함
+                    dgv.DataSource = null;
+                    MessageBox.Show("bom 미등록이거나 하위 재료가 존재하지 않습니다.");
+                }
+                    
+                else if (cboSelect.SelectedIndex == 1 && dgv.Rows.Count == 1)
+                {
+                    // 이는 bom이 등록되지 않았거나 상위 재료가 등록되지 않았다는 것을 의미함
+                    dgv.DataSource = null;
+                    MessageBox.Show("bom 미등록이거나 상위 재료가 존재하지 않습니다.");
+                }
+            }
+                 
         }
 
         private void buttonControl2_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("정말로 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                //service.BOMDelete(dgv[0, 0].Value.ToInt());
+                if(service.BOMDelete(dgv[0, 0].Value.ToInt()) == true)
+                {
+                    MessageBox.Show("해당하는 BOM이 삭제되었습니다. 그에 따른 상위 / 하위 목록도 같이 삭제되었습니다.");
+                }
             }
+        }
+
+        private void btnInsertUpdate_Click(object sender, EventArgs e)
+        {
+            frmMItem frm = new frmMItem(); // 상황에 따라 this.MdiParent로 바꿀 것
+            frm.Show();
+            this.Close();
+
         }
     }
 }
