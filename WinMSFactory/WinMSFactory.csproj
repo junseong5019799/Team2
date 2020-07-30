@@ -122,12 +122,6 @@
     <Compile Include="MyControl\NumericControl.Designer.cs">
       <DependentUpon>NumericControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\ItemDeleteList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\ItemDeleteList.Designer.cs">
-      <DependentUpon>ItemDeleteList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Nam\ProductInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,9 +419,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmPStock.resx">
       <DependentUpon>frmPStock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nam\ItemDeleteList.resx">
-      <DependentUpon>ItemDeleteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
