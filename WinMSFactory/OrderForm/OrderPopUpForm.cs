@@ -28,6 +28,8 @@ namespace WinMSFactory.OrderForm
 
             DataTable dt = orderService.GetOrderPlanList();
             dgvOrder.DataSource = dt;
+
+            dgvOrder.Columns[8].DefaultCellStyle.BackColor = Color.AliceBlue;
         }
 
         private void btnOrder_Click(object sender, EventArgs e)

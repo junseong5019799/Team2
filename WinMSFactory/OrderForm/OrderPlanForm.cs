@@ -42,19 +42,28 @@ namespace WinMSFactory.OrderForm
         }
 
         private void OrderPlanForm_Load(object sender, EventArgs e)
-        {
-            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
-            dgv.AddNewColumns("순서", "release_seq", 100, false);
-            dgv.AddNewColumns("품목", "product_id", 100, true);
-            dgv.AddNewColumns("품명", "product_name", 100, true);
-            dgv.AddNewColumns("카테고리", "category", 100, true);
+        {         
+            fromToDateControl1.From = dtpFrom;
+            fromToDateControl1.To = DtpTo;
 
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
 
             DataTable dt = releaseService.Calculate_ReleasePlan(release_no, dtpFrom, DtpTo);
             dgv.DataSource = dt;
+
+            for (int i = 0; i < dgv.Rows.Count; i+=3)
+            {
+                dgv.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgv.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+            }
             
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            OrderPopUpForm frm = new OrderPopUpForm();
+            frm.Show();
         }
     }
 }

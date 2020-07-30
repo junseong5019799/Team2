@@ -27,8 +27,8 @@ namespace WinMSFactory
         private void ReleasePlanForm_Load(object sender, EventArgs e)
         {            
             dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
-            dgv.AddNewColumns("거래처", "company_id", 100, true);
-            dgv.AddNewColumns("거래처명", "company_name", 100, true);
+            dgv.AddNewColumns("고객사", "company_id", 100, true);
+            dgv.AddNewColumns("고객사명", "company_name", 100, true);
             dgv.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
             dgv.AddNewColumns("출고 상태", "release_status", 100, true);
             
@@ -36,7 +36,7 @@ namespace WinMSFactory
 
             dgv2.AddNewColumns("출고예정 번호", "release_no", 120, true);
             dgv2.AddNewColumns("순번", "release_seq", 80, true);
-            dgv2.AddNewColumns("거래처", "company_id", 100, true);
+            dgv2.AddNewColumns("고객사", "company_id", 100, true);
             dgv2.AddNewColumns("품명", "product_id", 150, false);
             dgv2.AddNewColumns("품명", "product_name", 150, true);
             dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
@@ -173,7 +173,7 @@ namespace WinMSFactory
         //새로 고침
         private void btnNew_Click(object sender, EventArgs e)
         {
-            releaseService.GetReleasePlan();
+            dgv.DataSource = releaseService.GetReleasePlan();
         }
 
 
