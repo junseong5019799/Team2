@@ -40,11 +40,16 @@ namespace WinMSFactory
         {
             return dac.InsertProducts(insertBOMLists);
         }
-
-        internal List<BomVO> BOMEnrolledMaterial(int ProductID)
+        // Bom 수정(한개만 수정)
+        public  List<BomVO> BOMEnrolledMaterial(int ProductID)
         {
             return dac.BOMEnrolledMaterial(ProductID);
         
+        }
+        // BOM 복사(여러개 가능)
+        public List<BomVO> BOMEnrolledMaterial(List<int> ProductIDs)
+        {
+            return dac.BOMEnrolledMaterial(ProductIDs);
         }
 
         public DataTable SelectAllBomProducts(char IsBomStatusForward)
@@ -74,6 +79,11 @@ namespace WinMSFactory
         internal bool BOMDelete(int v)
         {
             throw new NotImplementedException();
+        }
+
+        public bool InsertUpdateProductByBomCopy(List<BOMInsertUpdateVO> insertBOMLists, string Product_Name)
+        {
+            return dac.InsertUpdateProductByBomCopy(insertBOMLists, Product_Name);
         }
     }
 }

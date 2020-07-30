@@ -9,7 +9,6 @@ using System.Text;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.BOM;
-using WinMSFactory.Nam;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -161,7 +160,7 @@ namespace WinMSFactory
                 else // 재료의 - 상태일 때
                     return;
 
-                BOMManageForm frm = new BOMManageForm(BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
+                BOMManageForm frm = new BOMManageForm(BomEnrollCheck,  ProductID, ProductName, BomEnrollStatus);
                 
                 if (frm.ShowDialog() == DialogResult.OK)
                     ReviewDGV();
@@ -195,8 +194,6 @@ namespace WinMSFactory
 
         private void buttonControl2_Click(object sender, EventArgs e) // 검색 버튼
         {
-            
-
             if (cboProductType.SelectedIndex == 0) // 전체 선택시
             {
                 if (txtProductSearch.Text.Length < 1)
@@ -235,7 +232,6 @@ namespace WinMSFactory
                 return;
 
             List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
-
 
             foreach (DataGridViewRow row in dgv.Rows)
             {
@@ -305,6 +301,36 @@ namespace WinMSFactory
             BOMSelectAllForm frm = new BOMSelectAllForm(); // 상황에 따라 this.MdiParent로 바꿀 것
             frm.Show();
             
+        }
+
+        private void btnBOMCopy_Click(object sender, EventArgs e)
+        {
+            List<int> Selectedlist = new List<int>();
+
+            foreach(DataGridViewRow row in dgv.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                // 체크되면 해당되는 제품 번호를 가져옴
+                
+                if (chk.Value == null)
+                    continue;
+                    
+
+                if((bool)chk.Value == true)
+                {
+                    if (dgv[2, chk.RowIndex].Value.ToString() == "재료")
+                    {
+                        MessageBox.Show("재료는 BOM 정보가 없습니다. 복사는 반제품, 완제품만 가능합니다.");
+                        return;
+                    }
+                    Selectedlist.Add(dgv[1, row.Index].Value.ToInt());
+                }
+            }
+            BOMManageForm frm = new BOMManageForm(Selectedlist, true);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+                ReviewDGV();
         }
     }
 }

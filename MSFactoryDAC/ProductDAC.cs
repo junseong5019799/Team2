@@ -75,7 +75,7 @@ namespace MSFactoryDAC
 
         }
 
-        public bool InsertProducts(ProductInsertVO InsertData)
+        public bool InsertProducts(ProductInsertVO InsertData, char IsBomCopy)
         {
             try
             {
@@ -103,6 +103,7 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", InsertData.Final_Regist_Employee);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_TACT_TIME", InsertData.Product_Tact_Time);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_LEAD_TIME", InsertData.Product_Lead_Time);
+                        cmd.Parameters.AddWithValue("@P_IS_BOM_COPY", IsBomCopy);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;
