@@ -49,6 +49,7 @@
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="CompanyVO.cs" />
+    <Compile Include="OrderVO.cs" />
     <Compile Include="ProductGroupVO.cs" />
     <Compile Include="ProductVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

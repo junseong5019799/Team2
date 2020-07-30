@@ -54,6 +54,7 @@
     <Compile Include="CompanyDAC.cs" />
     <Compile Include="ConnectionAccess.cs" />
     <Compile Include="LoggingUtility.cs" />
+    <Compile Include="OrderDAC.cs" />
     <Compile Include="ProductDAC.cs" />
     <Compile Include="ProductGroupDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

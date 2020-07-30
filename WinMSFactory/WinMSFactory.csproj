@@ -276,6 +276,7 @@
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
