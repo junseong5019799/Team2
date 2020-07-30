@@ -37,6 +37,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvCompany = new WinMSFactory.DataGridViewControl();
             this.btnOrder = new WinMSFactory.ButtonControl();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -46,13 +47,19 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 591);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(1071, 50);
+            this.panel1.Location = new System.Drawing.Point(0, 532);
+            this.panel1.Size = new System.Drawing.Size(1129, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.Location = new System.Drawing.Point(888, 3);
+            this.btnConfirm.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(1007, 3);
+            this.btnCancel.Text = "닫기";
             // 
             // dgvOrder
             // 
@@ -68,6 +75,8 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -77,25 +86,23 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOrder.IsAllCheckColumnHeader = true;
-            this.dgvOrder.IsAutoGenerateColumns = false;
-            this.dgvOrder.Location = new System.Drawing.Point(17, 34);
-            this.dgvOrder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvOrder.IsAutoGenerateColumns = true;
+            this.dgvOrder.Location = new System.Drawing.Point(11, 27);
             this.dgvOrder.MultiSelect = false;
             this.dgvOrder.Name = "dgvOrder";
+            this.dgvOrder.RowHeadersVisible = false;
             this.dgvOrder.RowHeadersWidth = 51;
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrder.Size = new System.Drawing.Size(740, 526);
+            this.dgvOrder.Size = new System.Drawing.Size(842, 421);
             this.dgvOrder.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvOrder);
-            this.groupBox1.Location = new System.Drawing.Point(284, 48);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(252, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(774, 580);
+            this.groupBox1.Size = new System.Drawing.Size(865, 464);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "발주";
@@ -103,11 +110,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvCompany);
-            this.groupBox2.Location = new System.Drawing.Point(14, 48);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Location = new System.Drawing.Point(12, 38);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(248, 580);
+            this.groupBox2.Size = new System.Drawing.Size(220, 464);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "발주 업체";
@@ -136,38 +141,43 @@
             this.dgvCompany.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCompany.IsAllCheckColumnHeader = false;
             this.dgvCompany.IsAutoGenerateColumns = false;
-            this.dgvCompany.Location = new System.Drawing.Point(12, 34);
-            this.dgvCompany.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvCompany.Location = new System.Drawing.Point(11, 27);
             this.dgvCompany.MultiSelect = false;
             this.dgvCompany.Name = "dgvCompany";
             this.dgvCompany.RowHeadersVisible = false;
             this.dgvCompany.RowHeadersWidth = 51;
             this.dgvCompany.RowTemplate.Height = 23;
             this.dgvCompany.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCompany.Size = new System.Drawing.Size(223, 526);
+            this.dgvCompany.Size = new System.Drawing.Size(198, 421);
             this.dgvCompany.TabIndex = 0;
             // 
             // btnOrder
             // 
             this.btnOrder.BackColor = System.Drawing.Color.White;
             this.btnOrder.ForeColor = System.Drawing.Color.Black;
-            this.btnOrder.Location = new System.Drawing.Point(960, 12);
-            this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOrder.Location = new System.Drawing.Point(1007, 12);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(98, 36);
+            this.btnOrder.Size = new System.Drawing.Size(87, 29);
             this.btnOrder.TabIndex = 4;
             this.btnOrder.Text = "발주";
             this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.Frozen = true;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 30;
             // 
             // OrderPopUpForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1071, 641);
+            this.ClientSize = new System.Drawing.Size(1129, 572);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "OrderPopUpForm";
             this.Text = "발주 ";
             this.Load += new System.EventHandler(this.OrderPopUpForm_Load);
@@ -191,5 +201,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private DataGridViewControl dgvCompany;
         private ButtonControl btnOrder;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
     }
 }
