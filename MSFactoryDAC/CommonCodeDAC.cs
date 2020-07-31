@@ -13,8 +13,8 @@ namespace MSFactoryDAC
 	{
 		public DataSet GetAllCommonCodes()
 		{
-			string sql = @"SELECT SORT_ID + 'Y' FLAG, SORT_ID, SORT_NAME, NOTE FROM TBL_COMMON_GROUP WHERE SORT_ID = '';
-						   SELECT COMMON_ID + 'Y' FLAG, COMMON_ID, SORT_ID, COMMON_NAME, NOTE FROM TBL_COMMON WHERE SORT_ID = ''";
+			string sql = @"SELECT SORT_ID + 'Y' FLAG, SORT_ID, SORT_NAME, NOTE FROM TBL_COMMON_GROUP;
+						   SELECT COMMON_ID + 'Y' FLAG, COMMON_ID, SORT_ID, COMMON_NAME, NOTE FROM TBL_COMMON";
 			DataSet ds = new DataSet();
 			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
 
@@ -88,7 +88,7 @@ namespace MSFactoryDAC
 
 		public bool DeleteCommonGroup(string sort_id)
 		{
-			string sql = "DELETE FROM TBL_COMMON_GROUP WHERE SORT_ID = @SORT_ID";
+			string sql = "DELETE FROM TBL_COMMON_GROUP WHERE SORT_ID IN (SELECT * FROM  SPLITSTRING(@SORT_ID, '@'))";
 			SqlCommand cmd = new SqlCommand(sql, conn);
 			cmd.Parameters.AddWithValue("@SORT_ID", sort_id);
 
@@ -97,7 +97,7 @@ namespace MSFactoryDAC
 
 		public bool DeleteCommonCode(string common_id)
 		{
-			string sql = "DELETE FROM TBL_COMMON WHERE COMMON_ID = @COMMON_ID";
+			string sql = "DELETE FROM TBL_COMMON WHERE COMMON_ID IN (SELECT * FROM  SPLITSTRING(@COMMON_ID, '@'))";
 			SqlCommand cmd = new SqlCommand(sql, conn);
 			cmd.Parameters.AddWithValue("@COMMON_ID", common_id);
 
