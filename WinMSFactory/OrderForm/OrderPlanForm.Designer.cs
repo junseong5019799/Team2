@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboPlanID = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnOrder = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -45,27 +46,31 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnOrder);
             this.panel1.Controls.Add(this.cboPlanID);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Size = new System.Drawing.Size(1726, 170);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.panel3, 0);
             this.panel1.Controls.SetChildIndex(this.label7, 0);
             this.panel1.Controls.SetChildIndex(this.cboPlanID, 0);
+            this.panel1.Controls.SetChildIndex(this.btnOrder, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(1077, 44);
+            this.GuidLabel1.Location = new System.Drawing.Point(1212, 55);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 170);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1534, 642);
+            this.panel2.Size = new System.Drawing.Size(1726, 845);
             this.panel2.TabIndex = 4;
             // 
             // dgv
@@ -92,64 +97,81 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.IsAllCheckColumnHeader = false;
+            this.dgv.IsAutoGenerateColumns = true;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 642);
+            this.dgv.Size = new System.Drawing.Size(1726, 845);
             this.dgv.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
-            this.panel3.Location = new System.Drawing.Point(162, 44);
+            this.panel3.Location = new System.Drawing.Point(182, 55);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(230, 33);
+            this.panel3.Size = new System.Drawing.Size(259, 41);
             this.panel3.TabIndex = 28;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 27, 18, 1, 35, 521);
+            this.fromToDateControl1.From = new System.DateTime(2020, 7, 29, 22, 58, 41, 294);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 7, 28, 18, 1, 35, 521);
+            this.fromToDateControl1.To = new System.DateTime(2020, 7, 30, 22, 58, 41, 294);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(107, 52);
+            this.label1.Location = new System.Drawing.Point(120, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 27;
             this.label1.Text = "작업일자";
             // 
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(168, 99);
+            this.cboPlanID.Location = new System.Drawing.Point(189, 124);
+            this.cboPlanID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboPlanID.Name = "cboPlanID";
-            this.cboPlanID.Size = new System.Drawing.Size(121, 24);
+            this.cboPlanID.Size = new System.Drawing.Size(136, 28);
             this.cboPlanID.TabIndex = 35;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 103);
+            this.label7.Location = new System.Drawing.Point(92, 129);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 16);
+            this.label7.Size = new System.Drawing.Size(86, 20);
             this.label7.TabIndex = 34;
             this.label7.Text = "출고계획 번호";
             // 
+            // btnOrder
+            // 
+            this.btnOrder.BackColor = System.Drawing.Color.White;
+            this.btnOrder.ForeColor = System.Drawing.Color.Black;
+            this.btnOrder.Location = new System.Drawing.Point(684, 120);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(88, 29);
+            this.btnOrder.TabIndex = 36;
+            this.btnOrder.Text = "발주";
+            this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            // 
             // OrderPlanForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 812);
+            this.ClientSize = new System.Drawing.Size(1726, 1015);
             this.Controls.Add(this.panel2);
             this.Name = "OrderPlanForm";
             this.Text = "정규 발주";
@@ -176,5 +198,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboPlanID;
         private System.Windows.Forms.Label label7;
+        private ButtonControl btnOrder;
     }
 }

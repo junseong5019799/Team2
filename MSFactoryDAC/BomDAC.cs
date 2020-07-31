@@ -75,6 +75,43 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool InsertUpdateProductByBomCopy(List<BOMInsertUpdateVO> insertBOMLists, string Product_Name)
+        {
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    string sql = "SP_BOM_INSERT_BY_BOM_COPY";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        foreach (var voList in insertBOMLists)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@P_HIGHER_PRODUCT_NAME", Product_Name);
+                            cmd.Parameters.AddWithValue("@P_LOWER_PRODUCTID", voList.Lower_Product_ID);
+                            cmd.Parameters.AddWithValue("@P_QUANTITY", voList.Bom_Use_Quantity);
+                            cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", voList.Final_Regist_Time);
+                            cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", voList.Final_Regist_Employee);
+                            cmd.Parameters.AddWithValue("@P_BOM_ENROLL_STATUS", voList.Bom_Status);
+
+                            int count = cmd.ExecuteNonQuery();
+
+
+                            if (count == 0)
+                                throw new Exception();
+                        }
+                        return true;
+                    }
+                }
+                catch (Exception err)
+                {
+                    return false;
+                }
+            }
+        }
+
         public List<BomVO> BOMProductBinding(string ValueMember)
         {
             try
@@ -205,6 +242,58 @@ namespace MSFactoryDAC
                     {
                         cmd.Parameters.AddWithValue("@PRODUCTID", ProductID);
                         return SqlHelper.DataReaderMapToList<BomVO>(cmd.ExecuteReader());
+                    }
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+            }
+        }
+        public List<BomVO> BOMEnrolledMaterial(List<int> ProductIDs)
+        {
+            List<BomVO> returnList = new List<BomVO>();
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                try
+                {
+                    string sql = @"SELECT P.product_id, PRODUCT_NAME, G.PRODUCT_GROUP_NAME, PRODUCT_INFORMATION, B.BOM_USE_QUANTITY
+                                    FROM TBL_BOM B INNER JOIN TBL_PRODUCT P ON B.low_product_id = P.product_id
+                                                   INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.PRODUCT_GROUP_ID = G.PRODUCT_GROUP_ID
+                                    WHERE HIGH_PRODUCT_ID = @PRODUCTID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        
+
+                        foreach(int listCount in ProductIDs)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@PRODUCTID", listCount);
+
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt);
+
+                            for(int i = 0; i<dt.Rows.Count; i++)
+                            {
+                                if (returnList.FindAll(p => p.Product_ID == Convert.ToInt32(dt.Rows[i][0])).Count > 0)
+                                    continue;
+
+                                returnList.Add(new BomVO
+                                {
+                                    Product_ID = Convert.ToInt32(dt.Rows[i][0]),
+                                    Product_Name = dt.Rows[i][1].ToString(),
+                                    Product_Group_Name = dt.Rows[i][2].ToString(),
+                                    Product_Information = dt.Rows[i][3].ToString(),
+                                    Bom_Use_Quantity = Convert.ToInt32(dt.Rows[i][4])
+                                });
+                            }
+                        }
+
+
+                        return returnList;
                     }
                 }
                 catch (Exception err)

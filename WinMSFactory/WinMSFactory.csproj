@@ -122,12 +122,6 @@
     <Compile Include="MyControl\NumericControl.Designer.cs">
       <DependentUpon>NumericControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\ItemDeleteList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\ItemDeleteList.Designer.cs">
-      <DependentUpon>ItemDeleteList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Nam\ProductInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,22 +275,22 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StorageService.cs" />
-    <Compile Include="ResultForm\InOutListForm.cs">
+    <Compile Include="ResultsForm\InOutListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResultForm\InOutListForm.Designer.cs">
+    <Compile Include="ResultsForm\InOutListForm.Designer.cs">
       <DependentUpon>InOutListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ResultForm\ResultListForm.cs">
+    <Compile Include="ResultsForm\ResultListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResultForm\ResultListForm.Designer.cs">
+    <Compile Include="ResultsForm\ResultListForm.Designer.cs">
       <DependentUpon>ResultListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ResultForm\ResultMoveForm.cs">
+    <Compile Include="ResultsForm\ResultMoveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResultForm\ResultMoveForm.Designer.cs">
+    <Compile Include="ResultsForm\ResultMoveForm.Designer.cs">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemCodeForm.cs">
@@ -426,9 +420,6 @@
     <EmbeddedResource Include="Nam\frmPStock.resx">
       <DependentUpon>frmPStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\ItemDeleteList.resx">
-      <DependentUpon>ItemDeleteList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,13 +473,13 @@
     <EmbeddedResource Include="ReleaseForm\ReleasePlanForm.resx">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResultForm\InOutListForm.resx">
+    <EmbeddedResource Include="ResultsForm\InOutListForm.resx">
       <DependentUpon>InOutListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResultForm\ResultListForm.resx">
+    <EmbeddedResource Include="ResultsForm\ResultListForm.resx">
       <DependentUpon>ResultListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResultForm\ResultMoveForm.resx">
+    <EmbeddedResource Include="ResultsForm\ResultMoveForm.resx">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemCodeForm.resx">

@@ -17,7 +17,7 @@ namespace WinMSFactory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BOMLogForm());
+            Application.Run(new BOMSelectAllForm());
         }
     }
 }

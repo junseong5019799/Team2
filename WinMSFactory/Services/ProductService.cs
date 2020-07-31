@@ -23,9 +23,9 @@ namespace WinMSFactory
             dac.UpdateStatus(ItemNum, StatusNum);
         }
 
-        public bool InsertProducts(ProductInsertVO InsertData)
+        public bool InsertProducts(ProductInsertVO InsertData, char IsBomCopy)
         {
-            return dac.InsertProducts(InsertData);
+            return dac.InsertProducts(InsertData, IsBomCopy);
         }
 
         public bool DeleteProducts(int ProductNo)

@@ -68,5 +68,41 @@ namespace MSFactoryDAC
             }
         }
 
+
+        /// <summary>
+        /// 발주 등록
+        /// </summary>
+        public void InsertOrder()
+        {
+//            SET ANSI_NULLS ON
+//GO
+//SET QUOTED_IDENTIFIER ON
+//GO
+//-- =============================================
+//--Author:		< Author,,Name >
+//--Create date: < Create Date,,>
+//--Description:	< Description,,>
+//-- =============================================
+//CREATE PROCEDURE SP_ORDER_INSERT
+
+//     @company_id INT
+//    , @first_regist_employee     NVARCHAR(20)
+//	,@final_regist_employee NVARCHAR(20)
+
+//AS
+//BEGIN
+
+//    INSERT INTO TBL_ORDER(company_id, first_regist_employee, final_regist_employee)
+
+//    VALUES(20, '황인성', '황인성')
+
+
+//    INSERT INTO dbo.TBL_ORDER_DETAIL(order_no, order_seq, product_id, order_request_quantity, order_status)
+
+//    VALUES(20, 1, 5, 100, '발주')
+//END
+//GO
+        }
+
     }
 }

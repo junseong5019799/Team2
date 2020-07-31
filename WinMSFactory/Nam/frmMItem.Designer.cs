@@ -43,13 +43,14 @@
             this.rdoUnUse = new System.Windows.Forms.RadioButton();
             this.rdoAll = new System.Windows.Forms.RadioButton();
             this.rdoUse = new System.Windows.Forms.RadioButton();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
+            this.btnEnroll = new WinMSFactory.ButtonControl();
             this.btn_Delete = new WinMSFactory.ButtonControl();
-            this.label5 = new System.Windows.Forms.Label();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnBomShow = new WinMSFactory.ButtonControl();
+            this.btnBOMCopy = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -63,16 +64,18 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.btnBOMCopy);
+            this.panel1.Controls.Add(this.btnBomShow);
             this.panel1.Controls.Add(this.btn_Delete);
-            this.panel1.Controls.Add(this.buttonControl1);
+            this.panel1.Controls.Add(this.btnEnroll);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Size = new System.Drawing.Size(1534, 179);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
+            this.panel1.Controls.SetChildIndex(this.btnEnroll, 0);
             this.panel1.Controls.SetChildIndex(this.btn_Delete, 0);
-            this.panel1.Controls.SetChildIndex(this.label5, 0);
+            this.panel1.Controls.SetChildIndex(this.btnBomShow, 0);
+            this.panel1.Controls.SetChildIndex(this.btnBOMCopy, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox2, 0);
             // 
@@ -191,38 +194,29 @@
             this.rdoUse.Text = "Yes";
             this.rdoUse.UseVisualStyleBackColor = true;
             // 
-            // buttonControl1
+            // btnEnroll
             // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(1064, 92);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(144, 43);
-            this.buttonControl1.TabIndex = 6;
-            this.buttonControl1.Text = "제품 등록";
-            this.buttonControl1.UseVisualStyleBackColor = false;
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
+            this.btnEnroll.BackColor = System.Drawing.Color.White;
+            this.btnEnroll.ForeColor = System.Drawing.Color.Black;
+            this.btnEnroll.Location = new System.Drawing.Point(1066, 69);
+            this.btnEnroll.Name = "btnEnroll";
+            this.btnEnroll.Size = new System.Drawing.Size(126, 43);
+            this.btnEnroll.TabIndex = 6;
+            this.btnEnroll.Text = "제품 등록";
+            this.btnEnroll.UseVisualStyleBackColor = false;
+            this.btnEnroll.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // btn_Delete
             // 
             this.btn_Delete.BackColor = System.Drawing.Color.White;
             this.btn_Delete.ForeColor = System.Drawing.Color.Black;
-            this.btn_Delete.Location = new System.Drawing.Point(1214, 92);
+            this.btn_Delete.Location = new System.Drawing.Point(1198, 69);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(144, 43);
             this.btn_Delete.TabIndex = 6;
             this.btn_Delete.Text = "제품 삭제";
             this.btn_Delete.UseVisualStyleBackColor = false;
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1315, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 16);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "제품 + 해당되는 BOM까지 삭제";
             // 
             // dgv
             // 
@@ -248,6 +242,7 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgv.IsAllCheckColumnHeader = false;
+            this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(0, 179);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -281,6 +276,30 @@
             this.pictureBox2.TabIndex = 47;
             this.pictureBox2.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBox2, "발주할 원재료가 오는 시간");
+            // 
+            // btnBomShow
+            // 
+            this.btnBomShow.BackColor = System.Drawing.Color.White;
+            this.btnBomShow.ForeColor = System.Drawing.Color.Black;
+            this.btnBomShow.Location = new System.Drawing.Point(1377, 48);
+            this.btnBomShow.Name = "btnBomShow";
+            this.btnBomShow.Size = new System.Drawing.Size(135, 43);
+            this.btnBomShow.TabIndex = 6;
+            this.btnBomShow.Text = "BOM 확인";
+            this.btnBomShow.UseVisualStyleBackColor = false;
+            this.btnBomShow.Click += new System.EventHandler(this.buttonControl2_Click_1);
+            // 
+            // btnBOMCopy
+            // 
+            this.btnBOMCopy.BackColor = System.Drawing.Color.White;
+            this.btnBOMCopy.ForeColor = System.Drawing.Color.Black;
+            this.btnBOMCopy.Location = new System.Drawing.Point(1377, 112);
+            this.btnBOMCopy.Name = "btnBOMCopy";
+            this.btnBOMCopy.Size = new System.Drawing.Size(135, 43);
+            this.btnBOMCopy.TabIndex = 6;
+            this.btnBOMCopy.Text = "BOM 복사";
+            this.btnBOMCopy.UseVisualStyleBackColor = false;
+            this.btnBOMCopy.Click += new System.EventHandler(this.btnBOMCopy_Click);
             // 
             // frmMItem
             // 
@@ -318,8 +337,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboProductType;
         private System.Windows.Forms.Label label2;
-        private ButtonControl buttonControl1;
-        private System.Windows.Forms.Label label5;
+        private ButtonControl btnEnroll;
         private ButtonControl btn_Delete;
         private ButtonControl btnConfirm;
         private System.Windows.Forms.RadioButton rdoAll;
@@ -327,5 +345,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private ButtonControl btnBomShow;
+        private ButtonControl btnBOMCopy;
     }
 }
