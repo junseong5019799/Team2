@@ -63,6 +63,9 @@ namespace WinMSFactory.OrderForm
         private void btnOrder_Click(object sender, EventArgs e)
         {
             OrderPopUpForm frm = new OrderPopUpForm();
+
+            //SELECT RELEASE_NO AS 출고번호, RELEASE_SEQ AS 순서, p.PRODUCT_ID AS 품목, p.product_name AS 품명
+            //FROM TBL_RELEASE_DETAIL rd INNER JOIN dbo.TBL_BOM B ON rd.product_id = B.high_product_id INNER JOIN TBL_PRODUCT p ON p.product_id = b.low_product_id
             frm.Show();
         }
     }
