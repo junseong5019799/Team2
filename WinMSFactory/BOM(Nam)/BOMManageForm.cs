@@ -24,12 +24,14 @@ namespace WinMSFactory.BOM
 
         List<BomVO> SelectedAllMaterial;
         List<BomVO> CheckedList;
+        List<int> ProductIDs = null;
+
         new string ProductName;
         int ProductID;
         char BOMEnrollStatus; // DB에 Insert
         bool BomEnrollCheck; // 등록, 수정 결정
         bool IsBomCopy = false;
-        List<int> ProductIDs = null;
+        
 
         public ProductInsertVO ProductInformation { get; set; } // Bom Copy에서 사용
 
@@ -77,14 +79,19 @@ namespace WinMSFactory.BOM
             SelectedAllMaterial = bomSv.SelectMaterialSettings("반제품", "재료", ProductID);
             dgv.DataSource = SelectedAllMaterial; // 반제품, 재료만 조회
 
-            if(BomEnrollCheck == true && IsBomCopy == false)
+            DataSourceBinding();
+        }
+
+        private void DataSourceBinding()
+        {
+            if (BomEnrollCheck == true && IsBomCopy == false)
             {
                 CheckedList = bomSv.BOMEnrolledMaterial(ProductID);
                 dgv2.DataSource = CheckedList;
             }
 
             // BOM Copy
-            if(IsBomCopy == true)
+            else if (IsBomCopy == true)
             {
                 dgv2.DataSource = bomSv.BOMEnrolledMaterial(ProductIDs);
                 CheckedList = (List<BomVO>)dgv2.DataSource;
@@ -169,18 +176,21 @@ namespace WinMSFactory.BOM
             if(IsBomCopy == false)
             {
                 cboSearch.SelectedIndex = 0;
-                cboSearch.ComboBinding(BomService.CboProductType(), "ValueMember", "Member");
-                dgv.Columns.Clear();
-                dgv2.Columns.Clear();
-                BOMManageForm_Load(null, null);
+                dgv.headerCheckBox.Checked = false;
+                dgv2.headerCheckBox.Checked = false;
             }
             else // IsBomCopy == true
             {
-                BOMManageForm_Load(null, null);
+                cboSearch.SelectedIndex = 0;
+                
                 ProductInformation = null;
                 btnInformation.Visible = true;
                 btnSubmit.Visible = false;
+                dgv.headerCheckBox.Checked = false;
+                dgv2.headerCheckBox.Checked = false;
             }
+
+            DataSourceBinding();
             
         }
 
@@ -213,63 +223,26 @@ namespace WinMSFactory.BOM
             // BOM 테이블에 등록
             List<BOMInsertUpdateVO> InsertBOMLists = new List<BOMInsertUpdateVO>();
             
-            if(IsBomCopy == true)
+            if(IsBomCopy == true) // BOM COPY
             {
                 // 정보 등록이 완료되면
                 if(pdSv.InsertProducts(ProductInformation, 'Y'))
                 {
-                    foreach(DataGridViewRow row in dgv2.Rows)
-                    {
-                        InsertBOMLists.Add(new BOMInsertUpdateVO
-                        {
-                            Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
-                            Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
-                            Final_Regist_Time = DateTime.Now.Date,
-                            Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
-                            Bom_Status = 'Y'
-                        }) ;
-                    }
+                    ListSortings(InsertBOMLists);
 
                     if(bomSv.InsertUpdateProductByBomCopy(InsertBOMLists, txtProductName.Text))
                     {
                         string Status_String = "BIS";
 
                         // BOM Log에 등록
-                        BomLogVO AddLog = new BomLogVO
-                        {
-                            High_Product_ID = ProductID,
-                            Bom_Enroll_Date = DateTime.Now,
-                            Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
-                            Bom_Log_Status = Status_String,             // BOM 입력
-                            Bom_Exists = 'Y'
-                        };
-                        BomLogService service = new BomLogService();
-
-                        service.InsertLogs(AddLog);
-
-                        MessageBox.Show("BOM 등록이 완료되었습니다.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        BomAddLogs(Status_String);
                     }
-
                 }
             }
             else
             {
                 // dgv2에서 목록 Sorting
-                foreach (DataGridViewRow row in dgv2.Rows)
-                {
-                    InsertBOMLists.Add(new BOMInsertUpdateVO
-                    {
-                        Higher_Product_ID = ProductID,
-                        Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
-                        Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
-                        Final_Regist_Time = DateTime.Now.Date,
-                        Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
-                        Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
-                    });
-                }
-
+                ListSortings(InsertBOMLists, ProductID);
 
                 if (bomSv.InsertUpdateProduct(InsertBOMLists))
                 {
@@ -279,26 +252,47 @@ namespace WinMSFactory.BOM
                         Status_String = "BUS";
                     else
                         Status_String = "BIS";
-
+                    
                     // BOM Log에 등록
-                    BomLogVO AddLog = new BomLogVO
-                    {
-                        High_Product_ID = ProductID,
-                        Bom_Enroll_Date = DateTime.Now,
-                        Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
-                        Bom_Log_Status = Status_String,             // BOM 입력
-                        Bom_Exists = 'Y'
-                    };
-                    BomLogService service = new BomLogService();
-
-                    service.InsertLogs(AddLog);
-
-                    MessageBox.Show("BOM 등록이 완료되었습니다.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    BomAddLogs(Status_String);
                 }
-            
+
             }
+        }
+
+        private void ListSortings(List<BOMInsertUpdateVO> InsertBOMLists, int ProductIDNum = 0) // BOM List Sorting
+        {
+            foreach (DataGridViewRow row in dgv2.Rows)
+            {
+                InsertBOMLists.Add(new BOMInsertUpdateVO
+                {
+                    Higher_Product_ID = ProductIDNum,
+                    Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
+                    Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
+                    Final_Regist_Time = DateTime.Now.Date,
+                    Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
+                    Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
+                });
+            }
+        }
+
+        private void BomAddLogs(string Status_String) // BomLog 저장
+        {
+            BomLogVO AddLog = new BomLogVO
+            {
+                High_Product_ID = ProductID,
+                Bom_Enroll_Date = DateTime.Now,
+                Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                Bom_Log_Status = Status_String,             // BOM 입력
+                Bom_Exists = 'Y'
+            };
+            BomLogService service = new BomLogService();
+
+            service.InsertLogs(AddLog);
+
+            MessageBox.Show("BOM 등록이 완료되었습니다.");
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -351,8 +345,6 @@ namespace WinMSFactory.BOM
                         CheckedList.Add(InsertData);
                 }
             }
-
-            
 
             foreach (object row in NullCheck)
             {
@@ -410,12 +402,6 @@ namespace WinMSFactory.BOM
             // dgv2가 체크된 것이 모두 해제
             foreach (DataGridViewRow row in dgv2.Rows)
                 dgv2[0, row.Index].Value = null;
-        }
-
-        private void dgv2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-                return;
         }
 
         

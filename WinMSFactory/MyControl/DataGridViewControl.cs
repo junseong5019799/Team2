@@ -14,7 +14,7 @@ namespace WinMSFactory
 {
     public partial class DataGridViewControl : DataGridView
     {
-        CheckBox headerCheckBox = new CheckBox();
+        public CheckBox headerCheckBox = new CheckBox();
         
         bool _allCheckHeader;
         bool _autoGenerateColumns;
@@ -47,7 +47,7 @@ namespace WinMSFactory
             }
         }
 
-        private void HeaderCheckBox_Clicked(object sender, EventArgs e)
+        public void HeaderCheckBox_Clicked(object sender, EventArgs e)
         {
             //Necessary to end the edit mode of the Cell.
             this.EndEdit();
