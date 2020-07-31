@@ -306,6 +306,8 @@ namespace WinMSFactory
         private void btnBOMCopy_Click(object sender, EventArgs e)
         {
             List<int> Selectedlist = new List<int>();
+            List<object> CheckNull = new List<object>();
+            
 
             foreach(DataGridViewRow row in dgv.Rows)
             {
@@ -314,12 +316,16 @@ namespace WinMSFactory
                 // 체크되면 해당되는 제품 번호를 가져옴
                 
                 if (chk.Value == null)
+                {
+                    CheckNull.Add(chk.Value);
                     continue;
+                }
+                    
                     
 
                 if((bool)chk.Value == true)
                 {
-                    if (dgv[2, chk.RowIndex].Value.ToString() == "재료")
+                    if (dgv[2, chk.RowIndex].Value.ToString() == "재료") // 재료를 체크하고 복사를 진행하는 경우
                     {
                         MessageBox.Show("재료는 BOM 정보가 없습니다. 복사는 반제품, 완제품만 가능합니다.");
                         return;
@@ -327,6 +333,14 @@ namespace WinMSFactory
                     Selectedlist.Add(dgv[1, row.Index].Value.ToInt());
                 }
             }
+
+            // 체크를 안하고 복사를 진행하는 경우
+            if(CheckNull.Count == dgv.Rows.Count)
+            {
+                MessageBox.Show("체크를 한 후 복사를 진행해주시기 바랍니다.");
+                return;
+            }
+
             BOMManageForm frm = new BOMManageForm(Selectedlist, true);
 
             if (frm.ShowDialog() == DialogResult.OK)
