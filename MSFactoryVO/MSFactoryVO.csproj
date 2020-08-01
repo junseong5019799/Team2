@@ -49,12 +49,15 @@
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="CompanyVO.cs" />
+    <Compile Include="DefectiveVO.cs" />
+    <Compile Include="DownTimeVO.cs" />
     <Compile Include="OrderVO.cs" />
     <Compile Include="ProductGroupVO.cs" />
     <Compile Include="ProductVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseVO.cs" />
     <Compile Include="StockVO.cs" />
+    <Compile Include="StorageVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

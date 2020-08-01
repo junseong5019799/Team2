@@ -212,17 +212,17 @@
     <Compile Include="MyControl\ButtonControl.Designer.cs">
       <DependentUpon>ButtonControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmABad.cs">
+    <Compile Include="Nam\DefectiveSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmABad.designer.cs">
-      <DependentUpon>frmABad.cs</DependentUpon>
+    <Compile Include="Nam\DefectiveSelectForm.designer.cs">
+      <DependentUpon>DefectiveSelectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmAStop.cs">
+    <Compile Include="Nam\DownTimeSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmAStop.designer.cs">
-      <DependentUpon>frmAStop.cs</DependentUpon>
+    <Compile Include="Nam\DownTimeSelectForm.designer.cs">
+      <DependentUpon>DownTimeSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Nam\frmAWoHis.cs">
       <SubType>Form</SubType>
@@ -235,12 +235,6 @@
     </Compile>
     <Compile Include="Nam\frmMItem.designer.cs">
       <DependentUpon>frmMItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Nam\frmPStock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nam\frmPStock.designer.cs">
-      <DependentUpon>frmPStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -270,6 +264,7 @@
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
+    <Compile Include="Services\DownTimeService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
     <Compile Include="Services\ProductService.cs" />
@@ -405,20 +400,17 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmABad.resx">
-      <DependentUpon>frmABad.cs</DependentUpon>
+    <EmbeddedResource Include="Nam\DefectiveSelectForm.resx">
+      <DependentUpon>DefectiveSelectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmAStop.resx">
-      <DependentUpon>frmAStop.cs</DependentUpon>
+    <EmbeddedResource Include="Nam\DownTimeSelectForm.resx">
+      <DependentUpon>DownTimeSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmAWoHis.resx">
       <DependentUpon>frmAWoHis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\frmMItem.resx">
       <DependentUpon>frmMItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmPStock.resx">
-      <DependentUpon>frmPStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>

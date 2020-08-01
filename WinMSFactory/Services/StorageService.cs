@@ -10,11 +10,15 @@ namespace WinMSFactory.Services
 {
     public class StorageService
     {
-        StorageDAC storagedac = new StorageDAC();
+        StorageDAC dac = new StorageDAC();
 
         public List<StorageVO> GetStorage()
         {
-            return storagedac.GetStorage();
+            return dac.GetStorage();
+        }
+        public List<StorageVO> SelectProductAll(int selectStorage)
+        {
+            return dac.SelectProductAll(selectStorage);
         }
     }
 }

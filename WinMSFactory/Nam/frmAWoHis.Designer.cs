@@ -38,12 +38,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.chkFactory = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
             this.dgv2 = new WinMSFactory.DataGridViewControl();
@@ -54,7 +48,6 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv3)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +67,7 @@
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -91,6 +85,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.IsAllCheckColumnHeader = false;
+            this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(4, 186);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -103,9 +99,6 @@
             // 
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.fromToDateControl1);
             this.groupBox1.Location = new System.Drawing.Point(59, 28);
@@ -117,7 +110,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(929, 52);
+            this.textBox1.Location = new System.Drawing.Point(430, 50);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(203, 21);
             this.textBox1.TabIndex = 27;
@@ -125,67 +118,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(886, 57);
+            this.label3.Location = new System.Drawing.Point(387, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 26;
             this.label3.Text = "품명";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(402, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "명칭";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(641, 52);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(191, 21);
-            this.textBox2.TabIndex = 35;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.checkBox2);
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Controls.Add(this.chkFactory);
-            this.panel5.Location = new System.Drawing.Point(445, 49);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(169, 26);
-            this.panel5.TabIndex = 36;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(116, 5);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(48, 16);
-            this.checkBox2.TabIndex = 19;
-            this.checkBox2.Text = "라인";
-            this.checkBox2.UseVisualStyleBackColor = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(61, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "공정";
-            this.checkBox1.UseVisualStyleBackColor = false;
-            // 
-            // chkFactory
-            // 
-            this.chkFactory.AutoSize = true;
-            this.chkFactory.Location = new System.Drawing.Point(6, 5);
-            this.chkFactory.Name = "chkFactory";
-            this.chkFactory.Size = new System.Drawing.Size(48, 16);
-            this.chkFactory.TabIndex = 21;
-            this.chkFactory.Text = "공장";
-            this.chkFactory.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -198,15 +135,18 @@
             // 
             // fromToDateControl1
             // 
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 1, 1, 0, 48, 631);
             this.fromToDateControl1.Location = new System.Drawing.Point(155, 47);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(205, 30);
             this.fromToDateControl1.TabIndex = 27;
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 2, 1, 0, 48, 631);
             // 
             // dgv2
             // 
             this.dgv2.AllowUserToAddRows = false;
             this.dgv2.BackgroundColor = System.Drawing.Color.White;
+            this.dgv2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -224,6 +164,8 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv2.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv2.IsAllCheckColumnHeader = false;
+            this.dgv2.IsAutoGenerateColumns = false;
             this.dgv2.Location = new System.Drawing.Point(4, 488);
             this.dgv2.MultiSelect = false;
             this.dgv2.Name = "dgv2";
@@ -236,6 +178,7 @@
             // 
             this.dgv3.AllowUserToAddRows = false;
             this.dgv3.BackgroundColor = System.Drawing.Color.White;
+            this.dgv3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -253,6 +196,8 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv3.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgv3.IsAllCheckColumnHeader = false;
+            this.dgv3.IsAutoGenerateColumns = false;
             this.dgv3.Location = new System.Drawing.Point(795, 488);
             this.dgv3.MultiSelect = false;
             this.dgv3.Name = "dgv3";
@@ -315,8 +260,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv3)).EndInit();
             this.ResumeLayout(false);
@@ -330,12 +273,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private Control.FromToDateControl fromToDateControl1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox chkFactory;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private DataGridViewControl dgv2;
