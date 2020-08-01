@@ -22,5 +22,20 @@ namespace WinMSFactory.Services
         {
             return dac.GetOrderPlanList();
         }
+
+        public DataTable GetOrderList()
+        {
+            return dac.GetOrderList();
+        }
+
+        public bool InsertOrder(OrderVO order)
+        {
+            return dac.InsertOrder(order);
+        }
+
+        public bool UpdateOrderDate(DateTime dt, int release_no)
+        {
+            return dac.UpdateOrderDate(dt, release_no);
+        }
     }
 }

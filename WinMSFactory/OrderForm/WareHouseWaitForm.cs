@@ -16,5 +16,10 @@ namespace WinMSFactory.OrderForm
         {
             InitializeComponent();
         }
+
+        private void WareHouseWaitForm_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MSFactoryDAC
 {
-    public class OrderDAC:ConnectionAccess
+    public class OrderDAC : ConnectionAccess
     {
 
         /// <summary>
@@ -70,39 +70,127 @@ namespace MSFactoryDAC
 
 
         /// <summary>
-        /// 발주 등록
+        /// SELECT 발주 LIST
         /// </summary>
-        public void InsertOrder()
+        /// <returns></returns>
+        public DataTable GetOrderList()
         {
-//            SET ANSI_NULLS ON
-//GO
-//SET QUOTED_IDENTIFIER ON
-//GO
-//-- =============================================
-//--Author:		< Author,,Name >
-//--Create date: < Create Date,,>
-//--Description:	< Description,,>
-//-- =============================================
-//CREATE PROCEDURE SP_ORDER_INSERT
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_ORDER_SELECT", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-//     @company_id INT
-//    , @first_regist_employee     NVARCHAR(20)
-//	,@final_regist_employee NVARCHAR(20)
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
 
-//AS
-//BEGIN
-
-//    INSERT INTO TBL_ORDER(company_id, first_regist_employee, final_regist_employee)
-
-//    VALUES(20, '황인성', '황인성')
-
-
-//    INSERT INTO dbo.TBL_ORDER_DETAIL(order_no, order_seq, product_id, order_request_quantity, order_status)
-
-//    VALUES(20, 1, 5, 100, '발주')
-//END
-//GO
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
         }
 
+
+        /// <summary>
+        /// 발주등록
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public bool InsertOrder(OrderVO order)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(this.ConnectionString);
+                cmd.Connection.Open();
+                SqlTransaction tran = cmd.Connection.BeginTransaction();
+
+                try
+                {
+                    cmd.CommandText = "SP_ORDER_INSERT";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.AddWithValue("@company_id", order.company_id);
+                    cmd.Parameters.AddWithValue("@first_regist_employee", order.first_regist_employee);
+                    cmd.Parameters.AddWithValue("@final_regist_employee", order.final_regist_employee);
+
+                    int num = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    cmd.CommandText = "SP_ORDERDETAIL_INSERT";
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@order_no", order.order_no);
+                    cmd.Parameters.AddWithValue("@product_id", order.product_id);
+                    cmd.Parameters.AddWithValue("@order_request_quantity", order.order_request_quantity);
+                    cmd.Parameters.AddWithValue("@order_status", order.order_status);
+
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    return true;
+                }
+                catch (Exception err)
+                {
+                    tran.Rollback();
+                    throw err;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 납기일 변경
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public bool UpdateOrderDate(DateTime dt, int release_no)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(this.ConnectionString);
+                cmd.Connection.Open();
+                SqlTransaction tran = cmd.Connection.BeginTransaction();
+
+                try
+                {
+                    cmd.CommandText = @"UPDATE TBL_RELEASE_DETAIL
+                                       SET release_date = @dt
+                                       WHERE release_no = @release_no";
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.AddWithValue("@release_date", dt);
+                    cmd.Parameters.AddWithValue("@release_no", release_no);                    
+                                       
+
+                    cmd.CommandText = @"UPDATE TBL_RELEASE
+                                       SET final_regist_employee = @final_regist_employee
+                                         , final_regist_time = @final_regist_time
+                                       WHERE release_no = @release_no";
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
+                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    return true;
+                }
+                catch (Exception err)
+                {
+                    tran.Rollback();
+                    throw err;
+                }
+            }
+        }
     }
 }
