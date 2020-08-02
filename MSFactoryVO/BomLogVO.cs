@@ -19,6 +19,7 @@ namespace MSFactoryVO
         public string Employee_ID { get; set; } // 사번은 NVARCHAR임
         public string Employee_Name { get; set; }
         public char Bom_Exists { get; set; }
+        public string Product_Name { get; set; }
 
     }
 }

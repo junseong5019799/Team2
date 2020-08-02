@@ -104,11 +104,11 @@
     <Compile Include="MyControl\BasicDataGridViewControl.Designer.cs">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmMItemGrp.cs">
+    <Compile Include="Nam\GroupManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmMItemGrp.designer.cs">
-      <DependentUpon>frmMItemGrp.cs</DependentUpon>
+    <Compile Include="Nam\GroupManagementForm.designer.cs">
+      <DependentUpon>GroupManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\SellPriceForm.cs">
       <SubType>Form</SubType>
@@ -224,17 +224,17 @@
     <Compile Include="Nam\DownTimeSelectForm.designer.cs">
       <DependentUpon>DownTimeSelectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmAWoHis.cs">
+    <Compile Include="Nam\ProductionStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmAWoHis.designer.cs">
-      <DependentUpon>frmAWoHis.cs</DependentUpon>
+    <Compile Include="Nam\ProductionStatusForm.designer.cs">
+      <DependentUpon>ProductionStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\frmMItem.cs">
+    <Compile Include="Nam\ProductManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\frmMItem.designer.cs">
-      <DependentUpon>frmMItem.cs</DependentUpon>
+    <Compile Include="Nam\ProductManagementForm.designer.cs">
+      <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -267,6 +267,7 @@
     <Compile Include="Services\DownTimeService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
+    <Compile Include="Services\ProductionService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StorageService.cs" />
@@ -382,8 +383,8 @@
     <EmbeddedResource Include="MyControl\BasicDataGridViewControl.resx">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmMItemGrp.resx">
-      <DependentUpon>frmMItemGrp.cs</DependentUpon>
+    <EmbeddedResource Include="Nam\GroupManagementForm.resx">
+      <DependentUpon>GroupManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\SellPriceForm.resx">
       <DependentUpon>SellPriceForm.cs</DependentUpon>
@@ -406,11 +407,11 @@
     <EmbeddedResource Include="Nam\DownTimeSelectForm.resx">
       <DependentUpon>DownTimeSelectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmAWoHis.resx">
-      <DependentUpon>frmAWoHis.cs</DependentUpon>
+    <EmbeddedResource Include="Nam\ProductionStatusForm.resx">
+      <DependentUpon>ProductionStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\frmMItem.resx">
-      <DependentUpon>frmMItem.cs</DependentUpon>
+    <EmbeddedResource Include="Nam\ProductManagementForm.resx">
+      <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>

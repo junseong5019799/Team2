@@ -1,6 +1,6 @@
 ﻿namespace WinMSFactory
 {
-    partial class frmMItem
+    partial class ProductManagementForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMItem));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagementForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnConfirm = new WinMSFactory.ButtonControl();
             this.cboProductType = new System.Windows.Forms.ComboBox();

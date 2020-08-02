@@ -44,6 +44,34 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public bool DeleteGroups(int deleteNum)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"DELETE FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE PRODUCT_GROUP_ID = @GROUP_ID";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@GROUP_ID", deleteNum);
+                        int i = cmd.ExecuteNonQuery();
+
+                        if (i > 0)
+                            return true;
+                        else
+                            return false;
+
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public void UpdateStatus(int itemNum, int statusNum)
         {
             ProductDAC dac = new ProductDAC();

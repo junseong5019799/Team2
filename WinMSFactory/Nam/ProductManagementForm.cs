@@ -18,7 +18,7 @@ namespace WinMSFactory
         // 사용 Y, 사용 N, BOM 미등록된 상태
         ProductUsed = 1, ProductUnUsed
     }
-    public partial class frmMItem : ListForm
+    public partial class ProductManagementForm : ListForm
     {
         // 제품 관리
 
@@ -34,7 +34,7 @@ namespace WinMSFactory
 
         bool BomEnrollCheck;
         
-        public frmMItem()
+        public ProductManagementForm()
         {
             InitializeComponent();
         }

@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
-    public partial class frmAWoHis : BasicForm
+    public partial class ProductionStatusForm : BasicForm
     {
+        ProductionService service = new ProductionService();
         // 생산 실적 현황
-        public frmAWoHis()
+        
+        public ProductionStatusForm()
         {
             InitializeComponent();
         }
@@ -24,6 +27,10 @@ namespace WinMSFactory
             FirstGridViewColumns();
             SecondGridViewColumns();
             ThirdGridViewColumns();
+
+            dgv.DataSource = service.ProductionStatusSelect();
+            dgv2.DataSource = service.DefectiveSelect();
+            
         }
 
         private void ThirdGridViewColumns()
@@ -40,20 +47,17 @@ namespace WinMSFactory
 
         private void SecondGridViewColumns()
         {
-            dgv2.AddNewColumns("불량코드", "", 100, false);
-            dgv2.AddNewColumns("불량명", "", 100, true);
+            dgv2.AddNewColumns("불량코드", "defection_code", 100, false);
+            dgv2.AddNewColumns("불량명", "defection_name", 100, true);
             dgv2.AddNewColumns("불량 수량", "", 100, true);
             dgv2.AddNewColumns("불량 일자", "", 100, true);
+            dgv2.AddNewColumns("비고", "", 100, true);
         }
 
         private void FirstGridViewColumns()
         {
             dgv.AddNewColumns("작업지시 번호", "", 100, true);
-            dgv.AddNewColumns("생산일자", "", 100, true);
-            dgv.AddNewColumns("법인명칭", "", 100, true); // 로그인한 작업자 정보에서 법인 명칭을 가져옴
-            dgv.AddNewColumns("공장명칭", "", 100, true);
-            dgv.AddNewColumns("라인명칭", "", 100, true);
-            dgv.AddNewColumns("공정명칭", "", 100, true);
+            dgv.AddNewColumns("작업일자", "", 100, true);
             dgv.AddNewColumns("품목명칭", "", 100, true);
             dgv.AddNewColumns("지시수량", "", 100, true);
             dgv.AddNewColumns("양품수량", "", 100, true);
@@ -62,5 +66,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("작업시작시간", "", 100, true);
             dgv.AddNewColumns("작업종료시간", "", 100, true);
         }
+        
+        
     }
 }

@@ -76,9 +76,9 @@ namespace WinMSFactory
             return dac.BOMProductBinding(product);
         }
 
-        internal bool BOMDelete(int v)
+        public bool BOMDelete(int DeleteBomNum)
         {
-            throw new NotImplementedException();
+            return dac.BomDelete(DeleteBomNum);
         }
 
         public bool InsertUpdateProductByBomCopy(List<BOMInsertUpdateVO> insertBOMLists, string Product_Name)
