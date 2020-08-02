@@ -24,10 +24,25 @@ namespace WinMSFactory.Services
         ///<summary>
         ///전체데이타그리드뷰에 바인딩
         ///</summary>
+        CompanyDAC dac = new CompanyDAC();
         public DataTable GetCompany(string type)
         {
-            CompanyDAC dac = new CompanyDAC();
+
             return dac.GetCompany(type);
+        }
+
+        public List<CompanyVO> ProductBinding(string selectedItem)
+        {
+            return dac.ProductBinding(selectedItem);
+        }
+        ///<returns></returns>
+
+        /// <summary>
+        /// 저장하기
+        /// </summary>
+        public bool SaveCompany(CompanyVO company)
+        {
+            return dac.SaveCompany(company);
         }
         ///<returns></returns>
     }

@@ -41,6 +41,7 @@
             this.dgvCompanyList = new WinMSFactory.DataGridViewControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelect = new WinMSFactory.ButtonControl();
+            this.btnInsert = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanyList)).BeginInit();
             this.panel2.SuspendLayout();
@@ -48,6 +49,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnInsert);
             this.panel1.Controls.Add(this.btnDelect);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnSelect);
@@ -68,6 +70,7 @@
             this.panel1.Controls.SetChildIndex(this.btnSelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnClear, 0);
             this.panel1.Controls.SetChildIndex(this.btnDelect, 0);
+            this.panel1.Controls.SetChildIndex(this.btnInsert, 0);
             // 
             // GuidLabel1
             // 
@@ -103,26 +106,26 @@
             // 
             // cboCompany_Type
             // 
-            this.cboCompany_Type.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCompany_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCompany_Type.FormattingEnabled = true;
             this.cboCompany_Type.Location = new System.Drawing.Point(134, 117);
             this.cboCompany_Type.Name = "cboCompany_Type";
-            this.cboCompany_Type.Size = new System.Drawing.Size(151, 23);
+            this.cboCompany_Type.Size = new System.Drawing.Size(151, 24);
             this.cboCompany_Type.TabIndex = 28;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(57, 121);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 15);
+            this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 27;
             this.label3.Text = "거래처 유형";
             // 
             // txtCompany_Id
             // 
-            this.txtCompany_Id.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompany_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCompany_Id.Location = new System.Drawing.Point(134, 57);
             this.txtCompany_Id.Name = "txtCompany_Id";
             this.txtCompany_Id.Size = new System.Drawing.Size(151, 22);
@@ -130,7 +133,7 @@
             // 
             // txtCompany_Name
             // 
-            this.txtCompany_Name.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompany_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCompany_Name.Location = new System.Drawing.Point(416, 57);
             this.txtCompany_Name.Name = "txtCompany_Name";
             this.txtCompany_Name.Size = new System.Drawing.Size(151, 22);
@@ -139,20 +142,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(344, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 15);
+            this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 24;
             this.label2.Text = "거래처 명칭";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(57, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 15);
+            this.label1.Size = new System.Drawing.Size(66, 16);
             this.label1.TabIndex = 23;
             this.label1.Text = "거래처 코드";
             // 
@@ -182,6 +185,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCompanyList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCompanyList.IsAllCheckColumnHeader = false;
+            this.dgvCompanyList.IsAutoGenerateColumns = false;
             this.dgvCompanyList.Location = new System.Drawing.Point(12, 156);
             this.dgvCompanyList.MultiSelect = false;
             this.dgvCompanyList.Name = "dgvCompanyList";
@@ -211,6 +215,18 @@
             this.btnDelect.TabIndex = 34;
             this.btnDelect.Text = "삭제";
             this.btnDelect.UseVisualStyleBackColor = false;
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.Color.White;
+            this.btnInsert.ForeColor = System.Drawing.Color.Black;
+            this.btnInsert.Location = new System.Drawing.Point(883, 91);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(55, 23);
+            this.btnInsert.TabIndex = 35;
+            this.btnInsert.Text = "추가";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // CompanyForm
             // 
@@ -248,5 +264,6 @@
         private DataGridViewControl dgvCompanyList;
         private System.Windows.Forms.Panel panel2;
         private ButtonControl btnDelect;
+        private ButtonControl btnInsert;
     }
 }

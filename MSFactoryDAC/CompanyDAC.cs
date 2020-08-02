@@ -13,6 +13,35 @@ namespace MSFactoryDAC
     { 
         List<CompanyVO> list = null;
 
+        public List<CompanyVO> ProductBinding(string selectedItem)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    
+                    string sql = @"SP_COMPANY_PRODUCT_BINDINGS";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@P_SELECTED_ITEM", selectedItem);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+
+                        return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         /// <summary>
         /// 콤보박스바인딩
         /// </summary>
@@ -54,8 +83,8 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"SELECT company_id, company_name, company_type, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
-                                          FROM TBL_COMPANY
+                    cmd.CommandText = @"SELECT company_id, company_name, C.COMMON_NAME, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
+                                          FROM TBL_COMPANY CM INNER JOIN TBL_COMMON C ON CM.company_type = C.common_id
                                          WHERE company_type = isnull(company_type, @company_type) or company_type = @company_type 
                                          ORDER BY company_seq";
 
@@ -77,26 +106,45 @@ namespace MSFactoryDAC
         }
         /// <returns></returns>
 
-        //public List<CompanyVO> GetCompanyType(int companyId, string companyType)
-        //{
-        //    try
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand())
-        //        {
-        //            cmd.Connection = new SqlConnection(this.ConnectionString);
-        //            cmd.CommandText = @"select company_id, company_name, company_type, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee 
-        //                                  From TBL_COMPANY
-        //                                 where companyId =@companyId
-        //                                   AND companyType =@companyType
-        //                                Order by company_seq ";
-        //            cmd.Connection.Open();
-        //        }
-        //    }
-        //    catch (Exception err)
-        //    {
-                
-        //        throw err;
-        //    }
-        //}
+        ///<summary>
+        /// 저장하기
+        /// </summary
+        public bool SaveCompany(CompanyVO company)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"SP_SAVE_COMPANY";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_company_id", company.company_id);
+                        cmd.Parameters.AddWithValue("@P_company_name", company.company_name);
+                        cmd.Parameters.AddWithValue("@P_company_type", company.company_type);
+                        cmd.Parameters.AddWithValue("@P_first_regist_time", company.first_regist_time);
+                        cmd.Parameters.AddWithValue("@P_first_regist_employee", company.first_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_final_regist_time", company.final_regist_time);
+                        cmd.Parameters.AddWithValue("@P_final_regist_employee", company.final_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_product_id", company.Product_ID);
+
+                        int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+        /// <returns></returns>
     }
 }

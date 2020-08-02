@@ -20,7 +20,6 @@ namespace WinMSFactory.Technology_Standards
         CompanyService service;
         List<CommonCodeVO> list;
         DataTable dtOrg;
-
         public CompanyForm()
         {
             InitializeComponent();
@@ -29,24 +28,25 @@ namespace WinMSFactory.Technology_Standards
 
         private void CompanyForm_Load(object sender, EventArgs e)
         {
-            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            chk.HeaderText = "";
-            chk.Name = "chk";
-            chk.Width = 30;
-            dgvCompanyList.Columns.Add(chk);
+            dgvCompanyList.IsAllCheckColumnHeader = true;
+            //DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            //chk.HeaderText = "";
+            //chk.Name = "chk";
+            //chk.Width = 30;
+            //dgvCompanyList.Columns.Add(chk);
 
-            Point headerCellLocation = this.dgvCompanyList.GetCellDisplayRectangle(0, -1, true).Location;
+            //Point headerCellLocation = this.dgvCompanyList.GetCellDisplayRectangle(0, -1, true).Location;
 
-            headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
-            headerCheckBox.BackColor = Color.White;
-            headerCheckBox.Size = new Size(18, 18);
-            headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
-            dgvCompanyList.Controls.Add(headerCheckBox);
+            //headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
+            //headerCheckBox.BackColor = Color.White;
+            //headerCheckBox.Size = new Size(18, 18);
+            //headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
+            //dgvCompanyList.Controls.Add(headerCheckBox);
 
             //거래처리스트 거래처코드, 거래처명칭, 거래처유형, 거래처순번, 거래처사용여부, 최초 최종
             dgvCompanyList.AddNewColumns("거래처코드", "company_id", 100, true);
             dgvCompanyList.AddNewColumns("거래처명칭", "company_name", 100, true);
-            dgvCompanyList.AddNewColumns("거래처유형", "company_type", 100, true);
+            dgvCompanyList.AddNewColumns("거래처유형", "COMMON_NAME", 100, true);
             dgvCompanyList.AddNewColumns("거래처순번", "company_seq", 100, true);
             dgvCompanyList.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
             dgvCompanyList.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true);
@@ -91,12 +91,19 @@ namespace WinMSFactory.Technology_Standards
             DataView dv = new DataView(dtOrg);
             if (!string.IsNullOrEmpty(type))
             {
+                string RowData = string.Empty;
                 //List<CompanyVO> clist = new List<CompanyVO>();
                 //clist = (from selecttype in clist
                 //         where selecttype.company_type.Equals(type)
                 //         select selecttype).ToList();
-               
-                dv.RowFilter = "company_type='" + type + "'";                
+                if (type == "COP")
+                    RowData = "매입처";
+                else
+                    RowData = "매출처";
+
+
+                dv.RowFilter = $"common_name = '{RowData}'";
+               // dv.RowFilter = "company_type='" + type + "'";                
             }
             dgvCompanyList.DataSource = dv;
         }
@@ -122,22 +129,32 @@ namespace WinMSFactory.Technology_Standards
 
         private void dgvCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //업데이트 할떄 더블클릭
         {
+
             CompanyVO company = new CompanyVO();
             company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
             company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
             company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
-            company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
-            company.first_regist_time = dgvCompanyList.SelectedRows[0].Cells[5].Value.ToString();
+            company.first_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[5].Value);
             company.first_regist_employee = dgvCompanyList.SelectedRows[0].Cells[6].Value.ToString();
-            company.final_regist_time = dgvCompanyList.SelectedRows[0].Cells[7].Value.ToString();
+            company.final_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[7].Value);
             company.final_regist_employee = dgvCompanyList.SelectedRows[0].Cells[8].Value.ToString();
 
 
+            CompanyProductPopupForm cpp = new CompanyProductPopupForm(this, company);
+
+            if (cpp.ShowDialog() == DialogResult.OK)
+            {
+                dgvCompanyList.Columns.Clear();
+                CompanyForm_Load(null, null);
+            }
+
+
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
             CompanyProductPopupForm cpp = new CompanyProductPopupForm();
-            //cpp.companypop = company.
-            //cpp.Show();
-
-
+            cpp.ShowDialog();
         }
     }
 }
