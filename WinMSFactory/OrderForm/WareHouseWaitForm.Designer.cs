@@ -37,7 +37,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboCompany = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,8 +52,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnIn);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.cboCompany);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel4);
@@ -63,8 +64,9 @@
             this.panel1.Controls.SetChildIndex(this.panel4, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
-            this.panel1.Controls.SetChildIndex(this.comboBox2, 0);
+            this.panel1.Controls.SetChildIndex(this.cboCompany, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
+            this.panel1.Controls.SetChildIndex(this.btnIn, 0);
             // 
             // Guidlabel1
             // 
@@ -109,7 +111,7 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.IsAllCheckColumnHeader = false;
-            this.dgv.IsAutoGenerateColumns = false;
+            this.dgv.IsAutoGenerateColumns = true;
             this.dgv.Location = new System.Drawing.Point(0, 0);
             this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
@@ -119,6 +121,7 @@
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1726, 308);
             this.dgv.TabIndex = 0;
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // dgvDetail
             // 
@@ -144,7 +147,7 @@
             this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetail.IsAllCheckColumnHeader = false;
-            this.dgvDetail.IsAutoGenerateColumns = false;
+            this.dgvDetail.IsAutoGenerateColumns = true;
             this.dgvDetail.Location = new System.Drawing.Point(0, 0);
             this.dgvDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDetail.MultiSelect = false;
@@ -167,13 +170,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 31, 23, 57, 7, 813);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 1, 21, 21, 24, 99);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 1, 23, 57, 7, 813);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 2, 21, 21, 24, 99);
             // 
             // label1
             // 
@@ -184,14 +187,14 @@
             this.label1.TabIndex = 29;
             this.label1.Text = "납기일";
             // 
-            // comboBox2
+            // cboCompany
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(182, 108);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(136, 28);
-            this.comboBox2.TabIndex = 36;
+            this.cboCompany.FormattingEnabled = true;
+            this.cboCompany.Location = new System.Drawing.Point(182, 108);
+            this.cboCompany.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCompany.Name = "cboCompany";
+            this.cboCompany.Size = new System.Drawing.Size(136, 28);
+            this.cboCompany.TabIndex = 36;
             // 
             // label2
             // 
@@ -224,20 +227,20 @@
             // 
             this.btnIn.BackColor = System.Drawing.Color.White;
             this.btnIn.ForeColor = System.Drawing.Color.Black;
-            this.btnIn.Location = new System.Drawing.Point(1008, 551);
+            this.btnIn.Location = new System.Drawing.Point(1017, 170);
             this.btnIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(76, 30);
             this.btnIn.TabIndex = 41;
             this.btnIn.Text = "입고 처리";
             this.btnIn.UseVisualStyleBackColor = false;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // WareHouseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1534, 951);
-            this.Controls.Add(this.btnIn);
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "WareHouseWaitForm";
@@ -249,7 +252,6 @@
             this.Controls.SetChildIndex(this.Guidlabel2, 0);
             this.Controls.SetChildIndex(this.Guidlabel3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.btnIn, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -270,7 +272,7 @@
         private Control.FromToDateControl fromToDateControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboCompany;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private ButtonControl btnIn;

@@ -24,4 +24,15 @@ namespace MSFactoryVO
         public string order_status { get; set; }
 
     }
+
+    public class WareHouseVO
+    {
+        public int order_no { get; set; }
+        public DateTime warehouse_date { get; set; }
+        public int warehouse_quantity { get; set; }
+        public int storage_id { get; set; }
+        public int product_id { get; set; }
+        public int order_seq { get; set; }     
+
+    }
 }

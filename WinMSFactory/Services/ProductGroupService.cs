@@ -36,6 +36,9 @@ namespace WinMSFactory
             dac.UpdateStatus(itemNum, StatusNum);
         }
 
-        
+        public bool DeleteGroups(int deleteNum)
+        {
+            return dac.DeleteGroups(deleteNum);
+        }
     }
 }
