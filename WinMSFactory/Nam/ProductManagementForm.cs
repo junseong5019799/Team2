@@ -18,7 +18,7 @@ namespace WinMSFactory
         // 사용 Y, 사용 N, BOM 미등록된 상태
         ProductUsed = 1, ProductUnUsed
     }
-    public partial class frmMItem : ListForm
+    public partial class ProductManagementForm : ListForm
     {
         // 제품 관리
 
@@ -34,7 +34,7 @@ namespace WinMSFactory
 
         bool BomEnrollCheck;
         
-        public frmMItem()
+        public ProductManagementForm()
         {
             InitializeComponent();
         }
@@ -306,7 +306,7 @@ namespace WinMSFactory
         private void btnBOMCopy_Click(object sender, EventArgs e)
         {
             List<int> Selectedlist = new List<int>();
-            List<object> CheckNull = new List<object>();
+            List<object> IsCheckedList = new List<object>();
             
 
             foreach(DataGridViewRow row in dgv.Rows)
@@ -317,7 +317,7 @@ namespace WinMSFactory
                 
                 if (chk.Value == null)
                 {
-                    CheckNull.Add(chk.Value);
+                    IsCheckedList.Add(chk.Value);
                     continue;
                 }
                     
@@ -332,12 +332,18 @@ namespace WinMSFactory
                     }
                     Selectedlist.Add(dgv[1, row.Index].Value.ToInt());
                 }
+                else
+                {
+                    chk.Value = null;
+                    IsCheckedList.Add(chk.Value);
+                }
             }
 
             // 체크를 안하고 복사를 진행하는 경우
-            if(CheckNull.Count == dgv.Rows.Count)
+            if(IsCheckedList.Count == dgv.Rows.Count)
             {
                 MessageBox.Show("체크를 한 후 복사를 진행해주시기 바랍니다.");
+                
                 return;
             }
 

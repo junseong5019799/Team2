@@ -99,13 +99,14 @@ namespace WinMSFactory
                 if(service.BOMDelete(dgv[0, 0].Value.ToInt()) == true)
                 {
                     MessageBox.Show("해당하는 BOM이 삭제되었습니다. 그에 따른 상위 / 하위 목록도 같이 삭제되었습니다.");
+                    cboSelect.SelectedIndex = 0;
                 }
             }
         }
 
         private void btnInsertUpdate_Click(object sender, EventArgs e)
         {
-            frmMItem frm = new frmMItem(); // 상황에 따라 this.MdiParent로 바꿀 것
+            ProductManagementForm frm = new ProductManagementForm(); // 상황에 따라 this.MdiParent로 바꿀 것
             frm.Show();
             this.Close();
 

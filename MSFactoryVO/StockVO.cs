@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace MSFactoryVO
 {
-    public class StockVO
+    public class StockVO // 재고
     {
 
-    }
-
-    public class StorageVO
-    {
-        public int storage_id { get; set; }
-        public string storage_name { get; set; }
     }
 }

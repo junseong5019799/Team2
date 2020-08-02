@@ -44,24 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationVO.cs" />
-    <Compile Include="AuthorityGroupVO.cs" />
-    <Compile Include="BaseVO.cs" />
     <Compile Include="BomLogVO.cs" />
     <Compile Include="BomVO.cs" />
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="CompanyVO.cs" />
-    <Compile Include="EmployeeVO.cs" />
-    <Compile Include="ModuleVO.cs" />
+    <Compile Include="DefectiveVO.cs" />
+    <Compile Include="DownTimeVO.cs" />
     <Compile Include="OrderVO.cs" />
     <Compile Include="ProductGroupVO.cs" />
+    <Compile Include="ProductionVO.cs" />
     <Compile Include="ProductVO.cs" />
-    <Compile Include="ProgramAthVO.cs" />
-    <Compile Include="ProgramVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseVO.cs" />
     <Compile Include="StockVO.cs" />
+    <Compile Include="StorageVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

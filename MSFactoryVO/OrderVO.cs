@@ -8,6 +8,7 @@ namespace MSFactoryVO
 {
     public class OrderVO
     {
+        public int release_no { get; set; }
         public int order_no { get; set; }
         public int company_id { get; set; }
         public string company_name { get; set; }
@@ -17,10 +18,21 @@ namespace MSFactoryVO
         public string final_regist_employee { get; set; }
 
         public int order_seq { get; set; }
-        public int item_id { get; set; }
+        public int product_id { get; set; }
         public DateTime order_request_date { get; set; }
         public int order_request_quantity { get; set; }
         public string order_status { get; set; }
+
+    }
+
+    public class WareHouseVO
+    {
+        public int order_no { get; set; }
+        public DateTime warehouse_date { get; set; }
+        public int warehouse_quantity { get; set; }
+        public int storage_id { get; set; }
+        public int product_id { get; set; }
+        public int order_seq { get; set; }     
 
     }
 }

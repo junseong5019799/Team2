@@ -1,6 +1,6 @@
 ﻿namespace WinMSFactory
 {
-    partial class BOMLogForm
+    partial class DownTimeSelectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,24 +30,29 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgv = new WinMSFactory.BasicDataGridViewControl();
-            this.fromToDate = new WinMSFactory.Control.FromToDateControl();
+            this.dgv = new WinMSFactory.DataGridViewControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FromToDate = new WinMSFactory.Control.FromToDateControl();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtProductName = new System.Windows.Forms.TextBox();
             this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.buttonControl1);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.fromToDate);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Size = new System.Drawing.Size(1534, 176);
+            this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel2.Controls.SetChildIndex(this.fromToDate, 0);
-            this.panel2.Controls.SetChildIndex(this.label1, 0);
-            this.panel2.Controls.SetChildIndex(this.buttonControl1, 0);
+            // 
+            // GuidLabel1
+            // 
+            this.GuidLabel1.Location = new System.Drawing.Point(79, 9);
             // 
             // dgv
             // 
@@ -71,71 +76,105 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv.Location = new System.Drawing.Point(0, 183);
+            this.dgv.IsAllCheckColumnHeader = false;
+            this.dgv.IsAutoGenerateColumns = false;
+            this.dgv.Location = new System.Drawing.Point(0, 176);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1753, 641);
+            this.dgv.Size = new System.Drawing.Size(1534, 583);
             this.dgv.TabIndex = 5;
-            // 
-            // fromToDate
-            // 
-            this.fromToDate.From = new System.DateTime(2020, 8, 1, 21, 13, 57, 765);
-            this.fromToDate.Location = new System.Drawing.Point(273, 83);
-            this.fromToDate.Name = "fromToDate";
-            this.fromToDate.Size = new System.Drawing.Size(231, 33);
-            this.fromToDate.TabIndex = 5;
-            this.fromToDate.To = new System.DateTime(2020, 8, 2, 21, 13, 57, 765);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(166, 91);
+            this.label1.Location = new System.Drawing.Point(356, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 14);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "로그 발생 일자";
+            this.label1.Size = new System.Drawing.Size(125, 12);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "비가동 작업 시작 일자";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonControl1);
+            this.groupBox1.Controls.Add(this.FromToDate);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtProductName);
+            this.groupBox1.Location = new System.Drawing.Point(81, 33);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1235, 121);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "검색 조건";
+            // 
+            // FromToDate
+            // 
+            this.FromToDate.From = new System.DateTime(2020, 7, 31, 22, 5, 48, 464);
+            this.FromToDate.Location = new System.Drawing.Point(484, 36);
+            this.FromToDate.Name = "FromToDate";
+            this.FromToDate.Size = new System.Drawing.Size(202, 30);
+            this.FromToDate.TabIndex = 35;
+            this.FromToDate.To = new System.DateTime(2020, 8, 1, 22, 5, 48, 464);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(73, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "품목명";
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.Location = new System.Drawing.Point(127, 41);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(191, 21);
+            this.txtProductName.TabIndex = 23;
             // 
             // buttonControl1
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.White;
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(546, 83);
+            this.buttonControl1.Location = new System.Drawing.Point(732, 39);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 30);
-            this.buttonControl1.TabIndex = 7;
+            this.buttonControl1.Size = new System.Drawing.Size(75, 23);
+            this.buttonControl1.TabIndex = 36;
             this.buttonControl1.Text = "검색";
             this.buttonControl1.UseVisualStyleBackColor = false;
             this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
-            // BOMLogForm
+            // DownTimeSelectForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1753, 824);
+            this.ClientSize = new System.Drawing.Size(1534, 761);
             this.Controls.Add(this.dgv);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "BOMLogForm";
-            this.Text = "BOM 기록 로그";
-            this.Load += new System.EventHandler(this.BOMLogForm_Load);
-            this.Controls.SetChildIndex(this.panel2, 0);
+            this.Name = "DownTimeSelectForm";
+            this.Text = "비가동 현황";
+            this.Load += new System.EventHandler(this.frmAStop_Load);
             this.Controls.SetChildIndex(this.dgv, 0);
+            this.Controls.SetChildIndex(this.panel2, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private BasicDataGridViewControl dgv;
-        private Control.FromToDateControl fromToDate;
+        private DataGridViewControl dgv;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Control.FromToDateControl FromToDate;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtProductName;
         private ButtonControl buttonControl1;
     }
 }
