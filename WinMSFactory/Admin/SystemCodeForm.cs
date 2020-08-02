@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WinCoffeePrince2nd.Util;
 
 namespace WinMSFactory
 {
@@ -86,7 +87,7 @@ namespace WinMSFactory
 		{
 			try
 			{
-				string ids = GetCheckIDs(dataGridViewControl1, "SORT_ID");
+				string ids = dataGridViewControl1.GetCheckIDs("SORT_ID");
 
 				if (string.IsNullOrEmpty(ids))
 					return;
@@ -141,7 +142,7 @@ namespace WinMSFactory
 		{
 			try
 			{
-				string ids = GetCheckIDs(dataGridViewControl2, "COMMON_ID");
+				string ids = dataGridViewControl2.GetCheckIDs("COMMON_ID");
 
 				if (string.IsNullOrEmpty(ids))
 					return;
@@ -292,21 +293,6 @@ namespace WinMSFactory
 			}
 
 			return false;
-		}
-
-		private string GetCheckIDs(DataGridView dgv, string id)
-		{
-			string ids = "";
-
-			dgv.EndEdit();
-
-			foreach (DataGridViewRow dgvr in dgv.Rows) 
-			{
-				if (dgvr.Cells["chk"].Value.ToBool())
-					ids += dgvr.Cells[id].Value + "@";
-			}
-
-			return ids;
 		}
 	}
 }

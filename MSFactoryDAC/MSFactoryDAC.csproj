@@ -48,15 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDAC.cs" />
+    <Compile Include="AuthorityDAC.cs" />
     <Compile Include="BomDAC.cs" />
     <Compile Include="BomLogDAC.cs" />
     <Compile Include="CommonCodeDAC.cs" />
     <Compile Include="CompanyDAC.cs" />
     <Compile Include="ConnectionAccess.cs" />
     <Compile Include="LoggingUtility.cs" />
+    <Compile Include="ModuleDAC.cs" />
     <Compile Include="OrderDAC.cs" />
     <Compile Include="ProductDAC.cs" />
     <Compile Include="ProductGroupDAC.cs" />
+    <Compile Include="ProgramDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseDAC.cs" />
     <Compile Include="SqlHelper.cs" />

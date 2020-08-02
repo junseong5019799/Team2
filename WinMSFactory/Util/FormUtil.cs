@@ -294,8 +294,21 @@ namespace WinCoffeePrince2nd.Util
 			combo.DataSource = list;
 			combo.DisplayMember = CodeNm;
 			combo.ValueMember = Code;
-			
-			
+		}
+
+		public static void ComboBinding(this ComboBox cbo, DataTable dt, string DisplayMember, string ValueMember, string emptyName = null, object emptyValue = null)
+		{
+			if (!string.IsNullOrEmpty(emptyName))
+			{
+				DataRow dr = dt.NewRow();
+				dr[DisplayMember] = emptyName;
+				dr[ValueMember] = emptyValue;
+				dt.Rows.InsertAt(dr, 0);
+			}
+
+			cbo.DataSource = dt;
+			cbo.DisplayMember = DisplayMember;
+			cbo.ValueMember = ValueMember;
 		}
 		#endregion
 
@@ -363,6 +376,21 @@ namespace WinCoffeePrince2nd.Util
 			}
 
 			return false;
+		}
+
+		public static string GetCheckIDs(this DataGridView dgv, string id)
+		{
+			string ids = "";
+
+			dgv.EndEdit();
+
+			foreach (DataGridViewRow dgvr in dgv.Rows)
+			{
+				if (dgvr.Cells["chk"].Value.ToBool())
+					ids += dgvr.Cells[id].Value + "@";
+			}
+
+			return ids;
 		}
 	}
 }

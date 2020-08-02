@@ -139,6 +139,18 @@ namespace MSFactoryDAC
 				return cmd.ExecuteNonQuery() > 0;
 			}
 		}
+		public bool NotSelectSPJ<T>(string sql, T vo, string name, SqlDbType dbType, params string[] names) where T : class, new()
+		{
+			using (SqlCommand cmd = new SqlCommand(sql, conn))
+			{
+				cmd.CommandType = CommandType.StoredProcedure;
+				SpParametersJ<T>(cmd, vo, names);
+				cmd.Parameters.Add("@P_" + name, dbType);
+				cmd.Parameters["@P_" + name].Direction = ParameterDirection.Output;
+
+				return cmd.ExecuteNonQuery() > 0;
+			}
+		}
 
 
 		public static List<T> DataReaderMapToList<T>(IDataReader dr)

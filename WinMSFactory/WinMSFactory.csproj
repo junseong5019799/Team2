@@ -50,6 +50,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ApplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ApplicationForm.Designer.cs">
+      <DependentUpon>ApplicationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ModuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleForm.Designer.cs">
+      <DependentUpon>ModuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AuthorityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\AuthorityForm.Designer.cs">
+      <DependentUpon>AuthorityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\AuthorityGroupPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\AuthorityGroupPopupForm.Designer.cs">
+      <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ModulePopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ModulePopupForm.Designer.cs">
+      <DependentUpon>ModulePopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ApplicationPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ApplicationPopupForm.Designer.cs">
+      <DependentUpon>ApplicationPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseForm\BasicForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +230,24 @@
     <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ProgramForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ProgramForm.Designer.cs">
+      <DependentUpon>ProgramForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ProgramPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ProgramPopupForm.Designer.cs">
+      <DependentUpon>ProgramPopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ProgramAthPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ProgramAthPopupForm.Designer.cs">
+      <DependentUpon>ProgramAthPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,14 +319,18 @@
     <Compile Include="ReleaseForm\ReleasePlanForm.Designer.cs">
       <DependentUpon>ReleasePlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\ApplicationService.cs" />
+    <Compile Include="Services\AuthorityService.cs" />
     <Compile Include="Services\BomLogService.cs" />
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
+    <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ProgramService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StorageService.cs" />
     <Compile Include="ResultsForm\InOutListForm.cs">
@@ -293,10 +351,10 @@
     <Compile Include="ResultsForm\ResultMoveForm.Designer.cs">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemCodeForm.cs">
+    <Compile Include="Admin\SystemCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SystemCodeForm.Designer.cs">
+    <Compile Include="Admin\SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Technology_Standards\CompanyForm.cs">
@@ -360,6 +418,24 @@
     <Compile Include="Util\EventUtil.cs" />
     <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\FormUtil.cs" />
+    <EmbeddedResource Include="Admin\ApplicationForm.resx">
+      <DependentUpon>ApplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ModuleForm.resx">
+      <DependentUpon>ModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\AuthorityForm.resx">
+      <DependentUpon>AuthorityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\AuthorityGroupPopupForm.resx">
+      <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ModulePopupForm.resx">
+      <DependentUpon>ModulePopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ApplicationPopupForm.resx">
+      <DependentUpon>ApplicationPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\BasicForm.resx">
       <DependentUpon>BasicForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,6 +517,12 @@
     <EmbeddedResource Include="OrderForm\WareHouseWaitForm.resx">
       <DependentUpon>WareHouseWaitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ProgramAthPopupForm.resx">
+      <DependentUpon>ProgramAthPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ProgramPopupForm.resx">
+      <DependentUpon>ProgramPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\CorporationForm.resx">
       <DependentUpon>CorporationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -455,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductGroupInfoForm.resx">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ProgramForm.resx">
+      <DependentUpon>ProgramForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -482,7 +567,7 @@
     <EmbeddedResource Include="ResultsForm\ResultMoveForm.resx">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SystemCodeForm.resx">
+    <EmbeddedResource Include="Admin\SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\CompanyForm.resx">
