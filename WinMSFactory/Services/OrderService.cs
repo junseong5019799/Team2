@@ -28,6 +28,16 @@ namespace WinMSFactory.Services
             return dac.GetOrderList();
         }
 
+        public DataTable GetWareHouseList()
+        {
+            return dac.GetWareHouseList();
+        }
+
+        public DataTable GetWareHouseDetail(int order_no)
+        {
+            return dac.GetWareHouseDetail(order_no);
+        }
+
         public bool InsertOrder(OrderVO order)
         {
             return dac.InsertOrder(order);
@@ -36,6 +46,11 @@ namespace WinMSFactory.Services
         public bool UpdateOrderDate(DateTime dt, int release_no)
         {
             return dac.UpdateOrderDate(dt, release_no);
+        }
+
+        public bool InsertWareHouse(WareHouseVO vo)
+        {
+            return dac.InsertWareHouse(vo);
         }
     }
 }

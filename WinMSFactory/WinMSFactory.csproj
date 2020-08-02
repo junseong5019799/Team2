@@ -158,6 +158,12 @@
     <Compile Include="OrderForm\WareHouseListForm.Designer.cs">
       <DependentUpon>WareHouseListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderForm\WareHousePopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm\WareHousePopUpForm.Designer.cs">
+      <DependentUpon>WareHousePopUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderForm\WareHouseWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderForm\WareHouseListForm.resx">
       <DependentUpon>WareHouseListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm\WareHousePopUpForm.resx">
+      <DependentUpon>WareHousePopUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderForm\WareHouseWaitForm.resx">
       <DependentUpon>WareHouseWaitForm.cs</DependentUpon>

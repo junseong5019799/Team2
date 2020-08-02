@@ -38,6 +38,8 @@ namespace MSFactoryDAC
         }
 
 
+
+
         /// <summary>
         /// SELECT 발주 제안 리스트
         /// </summary>
@@ -101,11 +103,73 @@ namespace MSFactoryDAC
 
 
         /// <summary>
-        /// 발주등록
+        /// SELECT 입고 대기 리스트
         /// </summary>
-        /// <param name="order"></param>
         /// <returns></returns>
-        public bool InsertOrder(OrderVO order)
+        public DataTable GetWareHouseList()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_WAREHOUSE_SELECT", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+        /// <summary>
+        /// SELECT 입고 DETAIL LIST
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetWareHouseDetail(int order_no)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_WAREHOUSEDETAIL_SELECT", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        da.SelectCommand.Parameters.AddWithValue("@order_no", order_no);
+
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+            /// <summary>
+            /// 발주등록
+            /// </summary>
+            /// <param name="order"></param>
+            /// <returns></returns>
+            public bool InsertOrder(OrderVO order)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -145,6 +209,52 @@ namespace MSFactoryDAC
                 }
             }
         }
+
+
+
+        public bool InsertWareHouse(WareHouseVO vo)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(this.ConnectionString);
+                cmd.Connection.Open();
+                SqlTransaction tran = cmd.Connection.BeginTransaction();
+
+                try
+                {
+                    cmd.CommandText = "SP_WAREHOUSE_INSERT";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.AddWithValue("@order_no", vo.order_no);
+                    cmd.Parameters.AddWithValue("@order_seq", vo.order_seq);
+                    cmd.Parameters.AddWithValue("@warehouse_date", vo.warehouse_date);
+                    cmd.Parameters.AddWithValue("@warehouse_quantity", vo.warehouse_quantity);
+                    cmd.Parameters.AddWithValue("@waste_date", vo.storage_id);
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "SP_STOCK_UPDATE";
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@order_no", vo.order_no);
+                    cmd.Parameters.AddWithValue("@product_id",vo.product_id);
+                    cmd.Parameters.AddWithValue("@stock_quantity", vo.warehouse_quantity);
+
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    return true;
+                }
+                catch (Exception err)
+                {
+                    tran.Rollback();
+                    throw err;
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// 납기일 변경
