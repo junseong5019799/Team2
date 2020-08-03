@@ -29,19 +29,6 @@ namespace WinMSFactory.Technology_Standards
         private void CompanyForm_Load(object sender, EventArgs e)
         {
             dgvCompanyList.IsAllCheckColumnHeader = true;
-            //DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            //chk.HeaderText = "";
-            //chk.Name = "chk";
-            //chk.Width = 30;
-            //dgvCompanyList.Columns.Add(chk);
-
-            //Point headerCellLocation = this.dgvCompanyList.GetCellDisplayRectangle(0, -1, true).Location;
-
-            //headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
-            //headerCheckBox.BackColor = Color.White;
-            //headerCheckBox.Size = new Size(18, 18);
-            //headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
-            //dgvCompanyList.Controls.Add(headerCheckBox);
 
             //거래처리스트 거래처코드, 거래처명칭, 거래처유형, 거래처순번, 거래처사용여부, 최초 최종
             dgvCompanyList.AddNewColumns("거래처코드", "company_id", 100, true);
@@ -87,6 +74,9 @@ namespace WinMSFactory.Technology_Standards
         {
             
             string type = (cboCompany_Type.SelectedValue).ToString();
+
+            CompanyService service = new CompanyService();
+            dtOrg = service.GetCompany(type);
 
             DataView dv = new DataView(dtOrg);
             if (!string.IsNullOrEmpty(type))
@@ -138,6 +128,7 @@ namespace WinMSFactory.Technology_Standards
             company.first_regist_employee = dgvCompanyList.SelectedRows[0].Cells[6].Value.ToString();
             company.final_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[7].Value);
             company.final_regist_employee = dgvCompanyList.SelectedRows[0].Cells[8].Value.ToString();
+            company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
 
 
             CompanyProductPopupForm cpp = new CompanyProductPopupForm(this, company);

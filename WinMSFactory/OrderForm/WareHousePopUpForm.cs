@@ -73,7 +73,7 @@ namespace WinMSFactory.OrderForm
 
             vo.order_no = order_no;
             vo.product_id= product_id;
-            vo.warehouse_date = dtpIN.Value;
+            vo.warehouse_date = Convert.ToDateTime(dtpIN.Value.ToShortDateString());
             vo.warehouse_quantity = Convert.ToInt32(txtquantity.Text);
             vo.storage_id = Convert.ToInt32(cboStorage.SelectedValue);
 

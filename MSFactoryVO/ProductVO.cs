@@ -26,6 +26,28 @@ namespace MSFactoryVO
         public int Bom_Seq { get; set; }
         public int Product_Tact_Time { get; set; }
         public int Product_Lead_Time { get; set; }
+    }
 
+    public class ProductPriceManageVO
+    {
+        
+        public int Company_ID { get; set; } // 등록할 때 사용
+        public int Product_ID { get; set; } // 등록할 때 사용
+        public string Company_Name { get; set; }
+        public string Product_Name { get; set; }
+        public string Product_Information { get; set; }
+        public string Product_Unit { get; set; }
+        public int Product_Current_Price { get; set; }
+        public int Product_Previous_Price { get; set; }
+        public DateTime Start_Date { get; set; }
+        public DateTime End_Date { get; set; }
+        public string Note { get; set; }
+
+    }
+
+    public class ProductSimpleVO
+    {
+        public int Product_ID { get; set; }
+        public string Product_Name { get; set; }
     }
 }

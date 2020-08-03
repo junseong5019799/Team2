@@ -22,7 +22,6 @@ namespace WinMSFactory.ResultForm
 
         private void ResultMoveForm_Load(object sender, EventArgs e)
         {
-            dgv.IsAllCheckColumnHeader = true;
 
             dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
@@ -51,7 +50,7 @@ namespace WinMSFactory.ResultForm
             dgv.DataSource = service.SelectProductAll(SelectStorage);
 
             for (int i = 0; i < dgv.Rows.Count; i++)
-                dgv[6,i].ReadOnly = false;
+                dgv[5,i].ReadOnly = false;
         }
 
 
@@ -61,14 +60,14 @@ namespace WinMSFactory.ResultForm
             // 희망 수량 체크
             foreach(DataGridViewRow row in dgv.Rows)
             {
-                int dgvQuantity = dgv[4, row.Index].Value.ToString().Replace(" 개", "").ToInt();
+                int dgvQuantity = dgv[3, row.Index].Value.ToString().Replace(" 개", "").ToInt();
 
-                if (dgv[6, row.Index].Value == null)
+                if (dgv[5, row.Index].Value == null)
                 {
                     MessageBox.Show("희망 수량을 모두 입력해주세요");
                     return;
                 }
-                else if (dgvQuantity <= dgv[6, row.Index].Value.ToString().ToInt())
+                else if (dgvQuantity <= dgv[5, row.Index].Value.ToString().ToInt())
                 {
                     MessageBox.Show("희망 수량을 잘못 입력하셨습니다.");
                     return;

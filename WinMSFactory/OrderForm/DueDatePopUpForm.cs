@@ -53,7 +53,10 @@ namespace WinMSFactory.OrderForm
             OrderService service = new OrderService();
 
             if (service.UpdateOrderDate(dt, release_no))
+            {
+                MessageBox.Show("납기일이 변경되었습니다.");
                 this.Close();
+            }
         }
         
         

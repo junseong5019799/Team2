@@ -28,6 +28,11 @@ namespace WinMSFactory.Services
             return dac.GetOrderList();
         }
 
+        public DataTable GetInOutList()
+        {
+            return dac.GetInOutList();
+        }
+
         public DataTable GetWareHouseList()
         {
             return dac.GetWareHouseList();
@@ -52,5 +57,7 @@ namespace WinMSFactory.Services
         {
             return dac.InsertWareHouse(vo);
         }
+
+     
     }
 }

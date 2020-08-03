@@ -35,15 +35,26 @@ namespace WinMSFactory.Services
         {
             return dac.ProductBinding(selectedItem);
         }
+
+        public List<CompanyVO> SelectCompanyBindings()
+        {
+            return dac.SelectCompanyBindings();
+        }
+
         ///<returns></returns>
 
         /// <summary>
         /// 저장하기
         /// </summary>
-        public bool SaveCompany(CompanyVO company)
+        public bool SaveCompany(CompanyVO company, List<ProductSimpleVO> prodListVO)
         {
-            return dac.SaveCompany(company);
+            return dac.SaveCompany(company, prodListVO);
         }
         ///<returns></returns>
+        
+        public List<ProductSimpleVO> SelectProductByCompanyID(int companyId)
+        {
+            return dac.SelectProductByCompanyID(companyId);
+        }
     }
 }

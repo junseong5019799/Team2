@@ -55,6 +55,7 @@
     <Compile Include="CommonCodeDAC.cs" />
     <Compile Include="CompanyDAC.cs" />
     <Compile Include="ConnectionAccess.cs" />
+    <Compile Include="CorporationDAC.cs" />
     <Compile Include="DefectiveDAC.cs" />
     <Compile Include="DownTimeDAC.cs" />
     <Compile Include="EmployeeDAC.cs" />
