@@ -17,7 +17,15 @@ namespace WinMSFactory.Services
 			{
 				return programDAC.GetAllPrograms();
 			}
-		}			
+		}
+
+		public DataTable GetPrograms(int module_id)
+		{
+			using (ProgramDAC programDAC = new ProgramDAC())
+			{
+				return programDAC.GetPrograms(module_id);
+			}
+		}
 
 		public ProgramVO GetProgram(int prog_id)
 		{

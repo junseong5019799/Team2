@@ -25,7 +25,7 @@ namespace WinMSFactory
 				InitializeComponent();
 				this.employeeVO = employeeVO;
 				this.Text = module_id > 0 ? "모듈 수정" : "모듈 등록";
-				cboApp_id.ComboBinding(new ApplicationService().GetAllApplications(), "APP_NAME", "APP_ID");
+				cboApp_id.ComboBinding(new ApplicationService().GetAllApplications(true), "APP_NAME", "APP_ID");
 			}
 			catch (Exception err)
 			{

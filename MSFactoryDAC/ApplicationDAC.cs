@@ -11,15 +11,19 @@ namespace MSFactoryDAC
 {
 	public class ApplicationDAC : SqlHelper
 	{
-		public DataTable GetAllApplications()
+		public DataTable GetAllApplications(bool isUse = false)
 		{
 			string sql = @"SELECT APP_ID, APP_NAME, APP_SEQ, APP_USE
 									, FIRST_REGIST_TIME, FIRST_REGIST_EMPLOYEE
 									, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FIRST_REGIST_EMPLOYEE) FIRST_REGIST_EMPLOYEE_NAME
 									, FINAL_REGIST_TIME, FINAL_REGIST_EMPLOYEE
 									, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FINAL_REGIST_EMPLOYEE ) FINAL_REGIST_EMPLOYEE_NAME
-						   FROM TBL_APPLICATION
-						   ORDER BY APP_SEQ";
+						   FROM TBL_APPLICATION";
+
+			if (isUse)
+				sql += "WHERE APP_USE = 'Y'"
+
+			sql += " ORDER BY APP_SEQ";
 			DataTable dt = new DataTable();
 			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
 

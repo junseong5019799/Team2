@@ -128,6 +128,18 @@
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\EmployeePopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\EmployeePopForm.Designer.cs">
+      <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\BasicDataGridViewControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -333,6 +345,7 @@
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
     <Compile Include="Services\DownTimeService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
@@ -459,6 +472,9 @@
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyControl\BasicDataGridViewControl.resx">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -521,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\AuthorityGroupPopupForm.resx">
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\EmployeePopForm.resx">
+      <DependentUpon>EmployeePopForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>

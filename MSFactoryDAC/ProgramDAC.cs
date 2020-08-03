@@ -27,6 +27,25 @@ namespace MSFactoryDAC
 			return dt;
 		}
 
+		public DataTable GetPrograms(int module_id)
+		{
+			string sql = @"SELECT PROG_ID, MODULE_ID, (SELECT MODULE_NAME FROM TBL_MODULE WHERE MODULE_ID = P.MODULE_ID) MODULE_NAME
+									, PROG_NAME, PROG_EXPL, PROG_SEQ, PROG_USE
+									, FIRST_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FIRST_REGIST_EMPLOYEE) FIRST_REGIST_EMPLOYEE_NAME
+									, FINAL_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FINAL_REGIST_EMPLOYEE ) FINAL_REGIST_EMPLOYEE_NAME
+						   FROM TBL_PROGRAM P  
+						   WHERE MODULE_ID = @MODULE_ID
+						   AND PROG_USE = 'Y'
+						   ORDER BY PROG_SEQ";
+			DataTable dt = new DataTable();
+			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+			da.SelectCommand.Parameters.AddWithValue("@MODULE_ID", module_id);
+
+			da.Fill(dt);
+
+			return dt;
+		}
+
 		public ProgramVO GetProgram(int prog_id)
 		{
 			string sql = @"SELECT PROG_ID, MODULE_ID, PROG_NAME, PROG_EXPL, PROG_SEQ, PROG_USE

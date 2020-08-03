@@ -13,7 +13,7 @@ namespace WinMSFactory
      /// Columns (Text) 추가 확장 메서드
      /// </summary>
         public static void AddNewColumns(this DataGridView dgv, string HeaderText, string PropertyName, int Width = 100, bool Visible = true, 
-                                         bool ReadOnly = true, bool Frozen = false, DataGridViewContentAlignment Center = DataGridViewContentAlignment.MiddleCenter)
+                                         bool ReadOnly = true, bool Frozen = false, DataGridViewContentAlignment Align = DataGridViewContentAlignment.MiddleLeft)
         {
             // 기본 셀 정렬 : 가운데정렬
 
@@ -24,7 +24,7 @@ namespace WinMSFactory
             col.Width = Width;
             col.Visible = Visible;
             col.ReadOnly = ReadOnly;
-            col.DefaultCellStyle.Alignment = Center;
+            col.DefaultCellStyle.Alignment = Align;
             col.Frozen = Frozen;
 
             dgv.Columns.Add(col);

@@ -19,6 +19,14 @@ namespace WinMSFactory.Services
 			}
 		}
 
+		internal DataTable GetModules(int app_id)
+		{
+			using (ModuleDAC moduleDAC = new ModuleDAC())
+			{
+				return moduleDAC.GetModules(app_id);
+			}
+		}
+
 		public ModuleVO GetModule(int module_id)
 		{
 			using (ModuleDAC moduleDAC = new ModuleDAC())

@@ -11,11 +11,11 @@ namespace WinMSFactory.Services
 {
 	public class ApplicationService
 	{
-		public DataTable GetAllApplications()
+		public DataTable GetAllApplications(bool isUse = false)
 		{
 			using (ApplicationDAC applicationDAC = new ApplicationDAC())
 			{
-				return applicationDAC.GetAllApplications();
+				return applicationDAC.GetAllApplications(isUse);
 			}
 		}
 

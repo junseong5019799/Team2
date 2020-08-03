@@ -77,6 +77,7 @@ namespace WinMSFactory
             this.AllowUserToAddRows = false;
             this.MultiSelect = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.RowHeadersVisible = false;
 
             if (IsAutoGenerateColumns)
                 this.AutoGenerateColumns = true;

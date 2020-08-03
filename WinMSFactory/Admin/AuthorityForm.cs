@@ -17,6 +17,7 @@ namespace WinMSFactory
 		DataTable athGrpDt;
 		DataTable ProgAthDt;
 		int ath_grp_id;
+		string ath_grp_name;
 
 		public AuthorityForm()
 		{
@@ -102,7 +103,7 @@ namespace WinMSFactory
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			ProgramAthPopupForm frm = new ProgramAthPopupForm();
+			ProgramAthPopupForm frm = new ProgramAthPopupForm(ath_grp_id, ath_grp_name);
 
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
@@ -136,6 +137,7 @@ namespace WinMSFactory
 			try
 			{
 				ath_grp_id = dataGridViewControl1["ATH_GRP_ID", e.RowIndex].Value.ToInt();
+				ath_grp_name = dataGridViewControl1["ATH_GRP_NAME", e.RowIndex].Value.ToString();
 				ProgAthDt = AuthorityService.GetProgramAths(ath_grp_id);
 				dataGridViewControl2.DataSource = ProgAthDt;
 			}
@@ -165,7 +167,7 @@ namespace WinMSFactory
 				return;
 
 			int prog_id = dataGridViewControl2["PROG_ID", e.RowIndex].Value.ToInt();
-			ProgramAthPopupForm frm = new ProgramAthPopupForm(ath_grp_id, prog_id);
+			ProgramAthPopupForm frm = new ProgramAthPopupForm(ath_grp_id, ath_grp_name, prog_id);
 
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
