@@ -44,4 +44,10 @@ namespace MSFactoryVO
         public string Note { get; set; }
 
     }
+
+    public class ProductSimpleVO
+    {
+        public int Product_ID { get; set; }
+        public string Product_Name { get; set; }
+    }
 }

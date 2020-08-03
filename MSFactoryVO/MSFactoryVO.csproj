@@ -52,6 +52,7 @@
     <Compile Include="CommonCodeVO.cs" />
     <Compile Include="CommonGroupVO.cs" />
     <Compile Include="CompanyVO.cs" />
+    <Compile Include="CorporationVO.cs" />
     <Compile Include="DefectiveVO.cs" />
     <Compile Include="DownTimeVO.cs" />
     <Compile Include="EmployeeVO.cs" />
