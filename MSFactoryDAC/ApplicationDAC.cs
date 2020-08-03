@@ -21,7 +21,7 @@ namespace MSFactoryDAC
 						   FROM TBL_APPLICATION";
 
 			if (isUse)
-				sql += "WHERE APP_USE = 'Y'"
+				sql += "WHERE APP_USE = 'Y'";
 
 			sql += " ORDER BY APP_SEQ";
 			DataTable dt = new DataTable();

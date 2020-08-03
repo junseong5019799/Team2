@@ -24,19 +24,19 @@ namespace WinMSFactory.ResultForm
         {
 
             dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
+            dgv.AddNewColumns("품목", "Product_Id", 150, false);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
             dgv.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv.AddNewColumns("총 재고수량", "Stock_Quantity", 100, true);
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
             dgv.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
-            dgv.AddNewColumns("이동 수량", "", 100, true);
 
-            dgv2.IsAllCheckColumnHeader = true;
 
             dgv2.AddNewColumns("재고번호", "Stock_No", 100, true);
-            dgv2.AddNewColumns("창고명", "Stock_No", 100, true);                   // 다른 창고 물품들을 이동할 수도 있어서
+            dgv2.AddNewColumns("창고명", "Storage_id", 100, false);
+            dgv2.AddNewColumns("창고명", "Storage_Name", 100, true);                   // 다른 창고 물품들을 이동할 수도 있어서
             dgv2.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
             dgv2.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv2.AddNewColumns("이동 수량", "Stock_Quantity", 100, true);          // dgv에서 입력한 이동 수량을 표시
+            dgv2.AddNewColumns("재고수량", "Stock_Quantity", 100, true);          // dgv에서 입력한 이동 수량을 표시
             dgv2.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
 
             cboStorage.ComboBinding(service.GetStorage(), "Storage_ID", "Storage_Name");
@@ -49,32 +49,17 @@ namespace WinMSFactory.ResultForm
 
             dgv.DataSource = service.SelectProductAll(SelectStorage);
 
-            for (int i = 0; i < dgv.Rows.Count; i++)
-                dgv[5,i].ReadOnly = false;
         }
 
 
 
         private void buttonControl1_Click(object sender, EventArgs e) // 재고 이동
         {
-            // 희망 수량 체크
-            foreach(DataGridViewRow row in dgv.Rows)
-            {
-                int dgvQuantity = dgv[3, row.Index].Value.ToString().Replace(" 개", "").ToInt();
-
-                if (dgv[5, row.Index].Value == null)
-                {
-                    MessageBox.Show("희망 수량을 모두 입력해주세요");
-                    return;
-                }
-                else if (dgvQuantity <= dgv[5, row.Index].Value.ToString().ToInt())
-                {
-                    MessageBox.Show("희망 수량을 잘못 입력하셨습니다.");
-                    return;
-                }
-            }
-
-            // 계속~~
+            ResultListForm frm = new ResultListForm();
+            frm.ProductID = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
+            frm.StorageID = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+            frm.Quantity = Convert.ToInt32(dgv.SelectedRows[0].Cells[4].Value);
+            frm.Show();
 
         }
     }

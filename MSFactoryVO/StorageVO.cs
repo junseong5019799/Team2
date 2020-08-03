@@ -9,6 +9,7 @@ namespace MSFactoryVO
     public class StorageVO // 창고
     {
         public int Storage_Id { get; set; }
+        public int Product_Id { get; set; }
         public string Storage_Name { get; set; }
         public int Stock_No { get; set; }
         public string Product_Name { get; set; }

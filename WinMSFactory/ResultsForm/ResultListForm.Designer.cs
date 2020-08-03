@@ -28,158 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
-            this.cboStorage = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblStorageID = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.cboProduct = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
+            this.cboStorage = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.txtMoveQuantity = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.cboStorage);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cboProduct);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(0, 272);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(1534, 212);
-            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel1.Controls.SetChildIndex(this.label2, 0);
-            this.panel1.Controls.SetChildIndex(this.cboProduct, 0);
-            this.panel1.Controls.SetChildIndex(this.label3, 0);
-            this.panel1.Controls.SetChildIndex(this.cboStorage, 0);
-            this.panel1.Controls.SetChildIndex(this.panel4, 0);
-            this.panel1.Controls.SetChildIndex(this.label1, 0);
+            this.panel1.Size = new System.Drawing.Size(690, 58);
             // 
-            // GuidLabel1
+            // btnConfirm
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(1114, 80);
+            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             // 
-            // dataGridViewControl1
+            // lblStorageID
             // 
-            this.dataGridViewControl1.AllowUserToAddRows = false;
-            this.dataGridViewControl1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewControl1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewControl1.Location = new System.Drawing.Point(0, 212);
-            this.dataGridViewControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridViewControl1.MultiSelect = false;
-            this.dataGridViewControl1.Name = "dataGridViewControl1";
-            this.dataGridViewControl1.RowHeadersWidth = 51;
-            this.dataGridViewControl1.RowTemplate.Height = 23;
-            this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 739);
-            this.dataGridViewControl1.TabIndex = 4;
+            this.lblStorageID.AutoSize = true;
+            this.lblStorageID.Location = new System.Drawing.Point(324, 201);
+            this.lblStorageID.Name = "lblStorageID";
+            this.lblStorageID.Size = new System.Drawing.Size(26, 20);
+            this.lblStorageID.TabIndex = 31;
+            this.lblStorageID.Text = "ID";
+            this.lblStorageID.Visible = false;
             // 
-            // cboStorage
+            // label5
             // 
-            this.cboStorage.FormattingEnabled = true;
-            this.cboStorage.Location = new System.Drawing.Point(163, 99);
-            this.cboStorage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboStorage.Name = "cboStorage";
-            this.cboStorage.Size = new System.Drawing.Size(164, 28);
-            this.cboStorage.TabIndex = 45;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(102, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 20);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "창고";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(59, 128);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "품목";
             // 
             // cboProduct
             // 
             this.cboProduct.FormattingEnabled = true;
-            this.cboProduct.Location = new System.Drawing.Point(163, 151);
-            this.cboProduct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboProduct.Location = new System.Drawing.Point(134, 127);
             this.cboProduct.Name = "cboProduct";
-            this.cboProduct.Size = new System.Drawing.Size(164, 28);
-            this.cboProduct.TabIndex = 43;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(102, 155);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 20);
-            this.label2.TabIndex = 42;
-            this.label2.Text = "품목";
+            this.cboProduct.Size = new System.Drawing.Size(216, 28);
+            this.cboProduct.TabIndex = 18;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 45);
+            this.label1.Location = new System.Drawing.Point(59, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "수불 일자";
+            this.label1.Size = new System.Drawing.Size(33, 20);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "창고";
             // 
-            // panel4
+            // cboStorage
             // 
-            this.panel4.Controls.Add(this.fromToDateControl1);
-            this.panel4.Location = new System.Drawing.Point(158, 35);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(259, 41);
-            this.panel4.TabIndex = 46;
+            this.cboStorage.FormattingEnabled = true;
+            this.cboStorage.Location = new System.Drawing.Point(134, 68);
+            this.cboStorage.Name = "cboStorage";
+            this.cboStorage.Size = new System.Drawing.Size(216, 28);
+            this.cboStorage.TabIndex = 32;
             // 
-            // fromToDateControl1
+            // label2
             // 
-            this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 25, 23, 45, 35, 884);
-            this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
-            this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 7, 26, 23, 45, 35, 884);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(411, 130);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 20);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "이동 재고량";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(423, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 20);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "현 재고량";
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Location = new System.Drawing.Point(522, 65);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(95, 26);
+            this.txtQuantity.TabIndex = 26;
+            // 
+            // txtMoveQuantity
+            // 
+            this.txtMoveQuantity.Location = new System.Drawing.Point(522, 125);
+            this.txtMoveQuantity.Name = "txtMoveQuantity";
+            this.txtMoveQuantity.Size = new System.Drawing.Size(95, 26);
+            this.txtMoveQuantity.TabIndex = 27;
             // 
             // ResultListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 951);
-            this.Controls.Add(this.dataGridViewControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ClientSize = new System.Drawing.Size(690, 330);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboStorage);
+            this.Controls.Add(this.lblStorageID);
+            this.Controls.Add(this.txtMoveQuantity);
+            this.Controls.Add(this.txtQuantity);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboProduct);
             this.Name = "ResultListForm";
-            this.Text = "재고 현황";
+            this.Text = "재고 이동";
             this.Load += new System.EventHandler(this.ResultListForm_Load);
+            this.Controls.SetChildIndex(this.cboProduct, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.txtQuantity, 0);
+            this.Controls.SetChildIndex(this.txtMoveQuantity, 0);
+            this.Controls.SetChildIndex(this.lblStorageID, 0);
+            this.Controls.SetChildIndex(this.cboStorage, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.GuidLabel2, 0);
-            this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,13 +161,14 @@
 
         #endregion
 
-        private DataGridViewControl dataGridViewControl1;
-        private System.Windows.Forms.ComboBox cboStorage;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblStorageID;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboProduct;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel4;
-        private Control.FromToDateControl fromToDateControl1;
+        private System.Windows.Forms.ComboBox cboStorage;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.TextBox txtMoveQuantity;
     }
 }
