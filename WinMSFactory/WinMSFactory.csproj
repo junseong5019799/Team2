@@ -295,12 +295,6 @@
     <Compile Include="ResultsForm\ResultMoveForm.Designer.cs">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemCodeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SystemCodeForm.Designer.cs">
-      <DependentUpon>SystemCodeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Technology_Standards\CompanyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,9 +477,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResultsForm\ResultMoveForm.resx">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SystemCodeForm.resx">
-      <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\CompanyForm.resx">
       <DependentUpon>CompanyForm.cs</DependentUpon>

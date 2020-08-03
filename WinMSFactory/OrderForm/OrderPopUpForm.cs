@@ -38,24 +38,30 @@ namespace WinMSFactory.OrderForm
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dgvOrder.RowCount; i++)
-            {            
-                bool IsCheck = (bool)dgvOrder.Rows[i].Cells[0].Value;
-           
-                if (IsCheck)
-                {
-                    orderVO.company_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[2].Value);
-                    orderVO.first_regist_employee = "사원명";
-                    orderVO.final_regist_employee = "사원명";
-                    orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[4].Value);
-                    orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[7].Value);
-                    orderVO.order_status = "발주중";
-                    orderVO.order_seq = 1;
+            dgvOrder.EndEdit();
 
-                    if (orderService.InsertOrder(orderVO))
-                        MessageBox.Show("등록");
-                }                
+            for (int i = 0; i < dgvOrder.RowCount; i++)
+            {
+                if (dgvOrder.Rows[i].Cells[0].Value != null)
+                {
+                    bool IsCheck = (bool)dgvOrder.Rows[i].Cells[0].Value;
+
+                    if (IsCheck)
+                    {
+                        orderVO.company_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[2].Value);
+                        orderVO.first_regist_employee = "사원명";
+                        orderVO.final_regist_employee = "사원명";
+                        orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[4].Value);
+                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[7].Value);
+                        orderVO.order_status = "발주중";
+                        orderVO.order_seq = 1;
+ 
+                        orderService.InsertOrder(orderVO);
+                    }
+                }
             }
+            MessageBox.Show("발주 되었습니다. ");
+            this.Close();
         
             
         }

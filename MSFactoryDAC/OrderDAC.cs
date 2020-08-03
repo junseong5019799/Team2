@@ -38,6 +38,39 @@ namespace MSFactoryDAC
         }
 
 
+        /// <summary>
+        /// SELECT 수불현황 (입출고 현황)
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetInOutList()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_INOUT_SELECT", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+      
+
 
 
         /// <summary>
@@ -165,7 +198,7 @@ namespace MSFactoryDAC
         }
 
             /// <summary>
-            /// 발주등록
+            /// 발주 등록
             /// </summary>
             /// <param name="order"></param>
             /// <returns></returns>
@@ -192,7 +225,7 @@ namespace MSFactoryDAC
                     cmd.CommandText = "SP_ORDERDETAIL_INSERT";
                     cmd.Parameters.Clear();
 
-                    cmd.Parameters.AddWithValue("@order_no", order.order_no);
+                    cmd.Parameters.AddWithValue("@order_no", num);
                     cmd.Parameters.AddWithValue("@product_id", order.product_id);
                     cmd.Parameters.AddWithValue("@order_request_quantity", order.order_request_quantity);
                     cmd.Parameters.AddWithValue("@order_status", order.order_status);
@@ -211,7 +244,11 @@ namespace MSFactoryDAC
         }
 
 
-
+        /// <summary>
+        /// 입고 처리
+        /// </summary>
+        /// <param name="vo"></param>
+        /// <returns></returns>
         public bool InsertWareHouse(WareHouseVO vo)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -230,7 +267,7 @@ namespace MSFactoryDAC
                     cmd.Parameters.AddWithValue("@order_seq", vo.order_seq);
                     cmd.Parameters.AddWithValue("@warehouse_date", vo.warehouse_date);
                     cmd.Parameters.AddWithValue("@warehouse_quantity", vo.warehouse_quantity);
-                    cmd.Parameters.AddWithValue("@waste_date", vo.storage_id);
+                    cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
 
                     cmd.ExecuteNonQuery();
 
@@ -272,13 +309,14 @@ namespace MSFactoryDAC
                 try
                 {
                     cmd.CommandText = @"UPDATE TBL_RELEASE_DETAIL
-                                       SET release_date = @dt
+                                       SET release_plan_date = @release_plan_date
                                        WHERE release_no = @release_no";
                     cmd.Transaction = tran;
 
-                    cmd.Parameters.AddWithValue("@release_date", dt);
-                    cmd.Parameters.AddWithValue("@release_no", release_no);                    
-                                       
+                    cmd.Parameters.AddWithValue("@release_plan_date", dt);
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+
+                    cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"UPDATE TBL_RELEASE
                                        SET final_regist_employee = @final_regist_employee
