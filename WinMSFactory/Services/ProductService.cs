@@ -33,5 +33,19 @@ namespace WinMSFactory
             return dac.DeleteProducts(ProductNo);
         }
 
+        public List<ProductPriceManageVO> ProductPriceSelect()
+        {
+            return dac.ProductPriceSelect();
+        }
+
+        public List<CompanyVO> SelectProductBindings(int SelectedCompanyValue)
+        {
+            return dac.SelectProductBindings(SelectedCompanyValue);
+        }
+
+        public bool InsertMaterialPrice(ProductPriceManageVO InsertData)
+        {
+            return dac.InsertMaterialPrice(InsertData);
+        }
     }
 }
