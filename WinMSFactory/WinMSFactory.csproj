@@ -128,6 +128,18 @@
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagePriceForm\ProductPriceDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePriceForm\ProductPriceDialogForm.Designer.cs">
+      <DependentUpon>ProductPriceDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePriceForm\ProductPriceManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePriceForm\ProductPriceManageForm.Designer.cs">
+      <DependentUpon>ProductPriceManageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\BasicDataGridViewControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -458,6 +470,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagePriceForm\ProductPriceDialogForm.resx">
+      <DependentUpon>ProductPriceDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagePriceForm\ProductPriceManageForm.resx">
+      <DependentUpon>ProductPriceManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\BasicDataGridViewControl.resx">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>

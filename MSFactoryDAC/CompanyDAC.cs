@@ -42,6 +42,26 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<CompanyVO> SelectCompanyBindings()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT COMPANY_ID, COMPANY_NAME FROM TBL_COMPANY";
+
+                    return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                //ConnectionAccess.GetLogger().WriteError(err.Message, err);
+                throw err;
+            }
+        }
+
         /// <summary>
         /// 콤보박스바인딩
         /// </summary>

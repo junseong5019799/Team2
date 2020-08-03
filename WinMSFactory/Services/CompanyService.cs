@@ -35,6 +35,12 @@ namespace WinMSFactory.Services
         {
             return dac.ProductBinding(selectedItem);
         }
+
+        public List<CompanyVO> SelectCompanyBindings()
+        {
+            return dac.SelectCompanyBindings();
+        }
+
         ///<returns></returns>
 
         /// <summary>
