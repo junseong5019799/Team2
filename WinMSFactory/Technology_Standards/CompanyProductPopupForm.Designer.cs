@@ -49,6 +49,7 @@
             this.cboCompany_Type = new System.Windows.Forms.ComboBox();
             this.txtCompany_Seq = new System.Windows.Forms.TextBox();
             this.dtpFirst_Regist_Time = new System.Windows.Forms.DateTimePicker();
+            this.btnDelete = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -191,6 +192,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnProductAdd);
             this.groupBox1.Controls.Add(this.listBoxProduct);
             this.groupBox1.Controls.Add(this.cboCompany_Product);
@@ -265,6 +267,18 @@
             this.dtpFirst_Regist_Time.Name = "dtpFirst_Regist_Time";
             this.dtpFirst_Regist_Time.Size = new System.Drawing.Size(150, 22);
             this.dtpFirst_Regist_Time.TabIndex = 66;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(176, 43);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(54, 25);
+            this.btnDelete.TabIndex = 57;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // CompanyProductPopupForm
             // 
@@ -341,5 +355,6 @@
         private System.Windows.Forms.ComboBox cboCompany_Type;
         private System.Windows.Forms.TextBox txtCompany_Seq;
         private System.Windows.Forms.DateTimePicker dtpFirst_Regist_Time;
+        private ButtonControl btnDelete;
     }
 }

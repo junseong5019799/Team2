@@ -28,4 +28,10 @@ namespace MSFactoryVO
         public int Product_Lead_Time { get; set; }
 
     }
+
+    public class ProductSimpleVO
+    {
+        public int Product_ID { get; set; }
+        public string Product_Name { get; set; }
+    }
 }

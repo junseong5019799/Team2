@@ -40,10 +40,15 @@ namespace WinMSFactory.Services
         /// <summary>
         /// 저장하기
         /// </summary>
-        public bool SaveCompany(CompanyVO company)
+        public bool SaveCompany(CompanyVO company, List<ProductSimpleVO> prodListVO)
         {
-            return dac.SaveCompany(company);
+            return dac.SaveCompany(company, prodListVO);
         }
         ///<returns></returns>
+        
+        public List<ProductSimpleVO> SelectProductByCompanyID(int companyId)
+        {
+            return dac.SelectProductByCompanyID(companyId);
+        }
     }
 }

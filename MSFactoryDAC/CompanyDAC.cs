@@ -109,7 +109,7 @@ namespace MSFactoryDAC
         ///<summary>
         /// 저장하기
         /// </summary
-        public bool SaveCompany(CompanyVO company)
+        public bool SaveCompany(CompanyVO company, List<ProductSimpleVO> prodListVO)
         {
             try
             {
@@ -126,18 +126,61 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_company_id", company.company_id);
                         cmd.Parameters.AddWithValue("@P_company_name", company.company_name);
                         cmd.Parameters.AddWithValue("@P_company_type", company.company_type);
-                        cmd.Parameters.AddWithValue("@P_first_regist_time", company.first_regist_time);
+                        cmd.Parameters.AddWithValue("@P_company_seq", company.company_seq);
                         cmd.Parameters.AddWithValue("@P_first_regist_employee", company.first_regist_employee);
-                        cmd.Parameters.AddWithValue("@P_final_regist_time", company.final_regist_time);
                         cmd.Parameters.AddWithValue("@P_final_regist_employee", company.final_regist_employee);
-                        cmd.Parameters.AddWithValue("@P_product_id", company.Product_ID);
 
                         int result = cmd.ExecuteNonQuery();
                         if (result > 0)
-                            return true;
-                        else
-                            return false;
-                    }
+                        {
+                            string sqlDelete = @"Delete from TBL_COMPANY_PRODUCT where company_id = @company_id";
+                            cmd.CommandText = sqlDelete;
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@company_id", company.company_id);
+                            cmd.ExecuteNonQuery();
+
+                            foreach (var item in prodListVO)
+                            {
+                                string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
+                                cmd.CommandText = sqlInsert;
+                                cmd.Parameters.Clear();
+                                cmd.Parameters.AddWithValue("@company_id", company.company_id);
+                                cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            
+
+                        }
+                    }                    
+                }
+
+                return true;
+            }
+            catch (Exception err)
+            {
+                throw err;
+                return false;
+            }
+        }
+        /// <returns></returns>
+        /// 
+
+        public List<ProductSimpleVO> SelectProductByCompanyID(int companyId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"select p.product_id, product_name  
+                                      from TBL_COMPANY_PRODUCT c inner join TBL_PRODUCT p on c.product_id= p.product_id
+                                     where c.company_id = @company_id ";
+                    cmd.Parameters.AddWithValue("@company_id", companyId);
+
+                    cmd.Connection.Open();
+                    return SqlHelper.DataReaderMapToList<ProductSimpleVO>(cmd.ExecuteReader());
                 }
             }
             catch (Exception err)
@@ -145,6 +188,5 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
-        /// <returns></returns>
     }
 }
