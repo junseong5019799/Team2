@@ -67,7 +67,47 @@ namespace MSFactoryDAC
             }
         }
 
-        public bool InsertMaterialPrice(ProductPriceManageVO insertData)
+        public bool SelectPriceData(int CompanyID, int ProductID, ref ProductPriceManageVO vo)
+        {
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+
+                // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                string sql = @"select TOP 1 material_price_code, material_current_price, start_date, end_date from TBL_MATERIAL_PRICE_MANAGEMENT 
+                                where company_id = @CompanyID and product_id = @ProductID
+                                order by material_price_code desc";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                    cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+
+                    
+                    if (reader.Read()) // 데이터가 존재하는 경우 데이터를 불러옴
+                    {
+                        vo = new ProductPriceManageVO
+                        {
+                            Material_Price_Code = Convert.ToInt32(reader[0]),
+                            Material_Current_Price = Convert.ToInt32(reader[1]),
+                            Start_Date = Convert.ToDateTime(reader[2]),
+                            End_Date = reader[3].ToString()
+                        };
+                        
+                        return true;
+                    }
+                    // 데이터가 없을 경우 null, false 처리
+                    vo = null;
+                    return false; 
+                }
+
+            }
+        }
+
+        public bool InsertMaterialPrice(ProductPriceManageVO insertData, int? MaterialPrice)
         {
             try
             {
@@ -76,13 +116,31 @@ namespace MSFactoryDAC
                     conn.Open();
 
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+                    object EndDate;
+                    int Code = 0;
+                    string sql = @"SP_MATERIAL_PRICE_INSERT";
+                    
 
-                    string sql = @"Insert into [TBL_MATERIAL_PRICE_MANAGEMENT]([company_id], [product_id], [material_current_price], [material_previous_price], [start_date], [end_date], [note])
-                                    values([company_id], [product_id], [material_current_price], [material_previous_price], [start_date], [end_date], [note])";
+                    if (insertData.End_Date == "-")
+                        EndDate = DBNull.Value;
+                    else
+                        EndDate = insertData.End_Date;
+
+                    if (MaterialPrice == null)
+                        MaterialPrice = 0;
+
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@COMPANY_ID", insertData);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", MaterialPrice);
+                        cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
+                        cmd.Parameters.AddWithValue("@P_Product_ID", insertData.Product_ID);
+                        cmd.Parameters.AddWithValue("@P_Material_Current_Price", insertData.Material_Current_Price);
+                        cmd.Parameters.AddWithValue("@P_material_previous_price", insertData.Material_Previous_Price);
+                        cmd.Parameters.AddWithValue("@P_start_date", insertData.Start_Date);
+                        cmd.Parameters.AddWithValue("@P_note", insertData.Note);
 
                         int result = cmd.ExecuteNonQuery();
 

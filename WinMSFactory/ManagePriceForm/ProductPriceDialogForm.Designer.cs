@@ -37,10 +37,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPreviousPrice = new System.Windows.Forms.TextBox();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtEndDate = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -152,16 +152,6 @@
             this.dtpStartDate.Size = new System.Drawing.Size(246, 29);
             this.dtpStartDate.TabIndex = 4;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(512, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 24);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "종료일";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -191,6 +181,16 @@
             this.label7.Size = new System.Drawing.Size(40, 24);
             this.label7.TabIndex = 1;
             this.label7.Text = "비고";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(512, 193);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 24);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "종료일";
             // 
             // txtEndDate
             // 
@@ -236,8 +236,8 @@
             this.Controls.SetChildIndex(this.txtNote, 0);
             this.Controls.SetChildIndex(this.txtPreviousPrice, 0);
             this.Controls.SetChildIndex(this.dtpStartDate, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.txtEndDate, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -255,10 +255,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPreviousPrice;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEndDate;
     }
 }
