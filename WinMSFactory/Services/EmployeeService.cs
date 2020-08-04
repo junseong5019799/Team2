@@ -27,6 +27,14 @@ namespace WinMSFactory.Services
 			}
 		}
 
+		public EmployeeVO GetLoginEmployee(string employee_id, string employee_pwd)
+		{
+			using (EmployeeDAC employeeDAC = new EmployeeDAC())
+			{
+				return employeeDAC.GetLoginEmployee(employee_id, employee_pwd);
+			}
+		}
+
 		public bool SaveEmployee(EmployeeVO employeeVO)
 		{
 			using (EmployeeDAC employeeDAC = new EmployeeDAC())

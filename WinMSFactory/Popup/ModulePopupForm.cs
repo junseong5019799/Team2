@@ -22,10 +22,7 @@ namespace WinMSFactory
 		{
 			try
 			{
-				InitializeComponent();
-				this.employeeVO = employeeVO;
-				this.Text = module_id > 0 ? "모듈 수정" : "모듈 등록";
-				cboApp_id.ComboBinding(new ApplicationService().GetAllApplications(true), "APP_NAME", "APP_ID");
+				
 			}
 			catch (Exception err)
 			{
@@ -33,21 +30,29 @@ namespace WinMSFactory
 			}
 		}
 
-		public ModulePopupForm(EmployeeVO employeeVO, int module_id) : this(employeeVO)
+		public ModulePopupForm(EmployeeVO employeeVO, int module_id = 0)
 		{
 			try
 			{
+				InitializeComponent();
+				this.employeeVO = employeeVO;
 				this.module_id = module_id;
-				ModuleVO moduleVO = moduleService.GetModule(module_id);
+				this.Text = module_id > 0 ? "모듈 수정" : "모듈 등록";
+				cboApp_id.ComboBinding(new ApplicationService().GetAllApplications(true), "APP_NAME", "APP_ID");
 
-				cboApp_id.SelectedItem = moduleVO.App_id;
-				txtModule.Text = moduleVO.Module_name;
-				nudModule_seq.Value = moduleVO.Module_seq;
+				if (module_id > 0)
+				{
+					ModuleVO moduleVO = moduleService.GetModule(module_id);
 
-				if (moduleVO.Module_use == "Y")
-					rdoModule_useY.Checked = true;
-				else
-					rdoModule_useN.Checked = true;
+					cboApp_id.SelectedItem = moduleVO.App_id;
+					txtModule.Text = moduleVO.Module_name;
+					nudModule_seq.Value = moduleVO.Module_seq;
+
+					if (moduleVO.Module_use == "Y")
+						rdoModule_useY.Checked = true;
+					else
+						rdoModule_useN.Checked = true;
+				}
 			}
 			catch (Exception err)
 			{
@@ -66,7 +71,7 @@ namespace WinMSFactory
 				{
 					Module_id = module_id,
 					App_id = cboApp_id.SelectedValue.ToInt(),
-					Module_name = txtModule.Text,
+					Module_name = txtModule.Text.Trim(),
 					Module_seq = (int)nudModule_seq.Value,
 					Module_use = rdoModule_useY.Checked ? "Y" : "N",
 					Regist_employee = employeeVO.Employee_id

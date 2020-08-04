@@ -39,13 +39,15 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.txtProg_expl = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtProg_form_name = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudProg_seq)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.Location = new System.Drawing.Point(0, 380);
+			this.panel1.Location = new System.Drawing.Point(0, 430);
 			this.panel1.Size = new System.Drawing.Size(402, 40);
 			// 
 			// btnConfirm
@@ -70,10 +72,10 @@
 			// rdoProg_useN
 			// 
 			this.rdoProg_useN.AutoSize = true;
-			this.rdoProg_useN.Location = new System.Drawing.Point(233, 224);
+			this.rdoProg_useN.Location = new System.Drawing.Point(233, 265);
 			this.rdoProg_useN.Name = "rdoProg_useN";
 			this.rdoProg_useN.Size = new System.Drawing.Size(76, 20);
-			this.rdoProg_useN.TabIndex = 4;
+			this.rdoProg_useN.TabIndex = 5;
 			this.rdoProg_useN.Text = "사용 안 함";
 			this.rdoProg_useN.UseVisualStyleBackColor = true;
 			// 
@@ -81,24 +83,24 @@
 			// 
 			this.rdoProg_useY.AutoSize = true;
 			this.rdoProg_useY.Checked = true;
-			this.rdoProg_useY.Location = new System.Drawing.Point(162, 224);
+			this.rdoProg_useY.Location = new System.Drawing.Point(162, 265);
 			this.rdoProg_useY.Name = "rdoProg_useY";
 			this.rdoProg_useY.Size = new System.Drawing.Size(48, 20);
-			this.rdoProg_useY.TabIndex = 3;
+			this.rdoProg_useY.TabIndex = 4;
 			this.rdoProg_useY.TabStop = true;
 			this.rdoProg_useY.Text = "사용";
 			this.rdoProg_useY.UseVisualStyleBackColor = true;
 			// 
 			// nudProg_seq
 			// 
-			this.nudProg_seq.Location = new System.Drawing.Point(162, 164);
+			this.nudProg_seq.Location = new System.Drawing.Point(162, 210);
 			this.nudProg_seq.Name = "nudProg_seq";
 			this.nudProg_seq.Size = new System.Drawing.Size(77, 22);
-			this.nudProg_seq.TabIndex = 2;
+			this.nudProg_seq.TabIndex = 3;
 			// 
 			// txtProg_name
 			// 
-			this.txtProg_name.Location = new System.Drawing.Point(162, 106);
+			this.txtProg_name.Location = new System.Drawing.Point(162, 102);
 			this.txtProg_name.Name = "txtProg_name";
 			this.txtProg_name.Size = new System.Drawing.Size(147, 22);
 			this.txtProg_name.TabIndex = 1;
@@ -107,7 +109,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(78, 225);
+			this.label3.Location = new System.Drawing.Point(78, 267);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(52, 16);
 			this.label3.TabIndex = 14;
@@ -116,7 +118,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(53, 109);
+			this.label4.Location = new System.Drawing.Point(53, 105);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(77, 16);
 			this.label4.TabIndex = 16;
@@ -125,7 +127,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(100, 167);
+			this.label2.Location = new System.Drawing.Point(100, 213);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(30, 16);
 			this.label2.TabIndex = 15;
@@ -143,7 +145,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(100, 278);
+			this.label5.Location = new System.Drawing.Point(100, 321);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(30, 16);
 			this.label5.TabIndex = 14;
@@ -151,23 +153,42 @@
 			// 
 			// txtProg_expl
 			// 
-			this.txtProg_expl.Location = new System.Drawing.Point(162, 275);
+			this.txtProg_expl.Location = new System.Drawing.Point(162, 321);
 			this.txtProg_expl.Multiline = true;
 			this.txtProg_expl.Name = "txtProg_expl";
 			this.txtProg_expl.Size = new System.Drawing.Size(200, 78);
-			this.txtProg_expl.TabIndex = 5;
+			this.txtProg_expl.TabIndex = 6;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(89, 159);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(41, 16);
+			this.label6.TabIndex = 16;
+			this.label6.Text = "폼이름";
+			// 
+			// txtProg_form_name
+			// 
+			this.txtProg_form_name.Location = new System.Drawing.Point(162, 156);
+			this.txtProg_form_name.Name = "txtProg_form_name";
+			this.txtProg_form_name.Size = new System.Drawing.Size(147, 22);
+			this.txtProg_form_name.TabIndex = 2;
+			this.txtProg_form_name.Tag = "폼이름을 입력해주세요.";
 			// 
 			// ProgramPopupForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.ClientSize = new System.Drawing.Size(402, 420);
-			this.Controls.Add(this.txtProg_expl);
+			this.ClientSize = new System.Drawing.Size(402, 470);
 			this.Controls.Add(this.cboModule_id);
+			this.Controls.Add(this.txtProg_name);
+			this.Controls.Add(this.txtProg_form_name);
+			this.Controls.Add(this.txtProg_expl);
 			this.Controls.Add(this.rdoProg_useN);
 			this.Controls.Add(this.rdoProg_useY);
 			this.Controls.Add(this.nudProg_seq);
-			this.Controls.Add(this.txtProg_name);
 			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
@@ -178,8 +199,10 @@
 			this.Controls.SetChildIndex(this.label2, 0);
 			this.Controls.SetChildIndex(this.label4, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
+			this.Controls.SetChildIndex(this.label6, 0);
 			this.Controls.SetChildIndex(this.label5, 0);
 			this.Controls.SetChildIndex(this.txtProg_name, 0);
+			this.Controls.SetChildIndex(this.txtProg_form_name, 0);
 			this.Controls.SetChildIndex(this.nudProg_seq, 0);
 			this.Controls.SetChildIndex(this.rdoProg_useY, 0);
 			this.Controls.SetChildIndex(this.rdoProg_useN, 0);
@@ -205,5 +228,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox txtProg_expl;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txtProg_form_name;
 	}
 }

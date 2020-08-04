@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,45 +8,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinCoffeePrince2nd.Util;
+using WinMSFactory.Popup;
+using WinMSFactory.Services;
 using WinMSFactory.Technology_Standards;
 
 namespace WinMSFactory
 {
     public partial class MainForm : Form
     {
+        public event EventHandler Search;
+        public event EventHandler Add;
+        public event EventHandler Delete;
+        public event EventHandler Save;
+        public event EventHandler Excel;
+        public event EventHandler Print;
+        public event EventHandler Clear;
+
+        public EmployeeVO Employee { get; set; }
+        public bool BtnSearchVisible
+        {
+            set { btnSearch.Visible = value; }
+        }
+        public bool BtnAddVisible
+        {
+            set { btnAdd.Visible = value; }
+        }
+        public bool BtnSaveVisible
+        {
+            set { btnSave.Visible = value; }
+        }
+        public bool BtnDeleteVisible
+        {
+            set { btnDelete.Visible = value; }
+        }
+        public bool BtnExcelVisible
+        {
+            set { btnExcel.Visible = value; }
+        }
+        public bool BtnPrintVisible
+        {
+            set { btnPrint.Visible = value; }
+        }
+        public bool BtnClearVisible
+        {
+            set { btnClear.Visible = value; }
+        }
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            ListForm frm = new ListForm();
-            frm.MdiParent = this;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            mainTabControl1.Visible = true;
-            frm.Show();
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            ListListForm frm = new ListListForm();
-            frm.MdiParent = this;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            mainTabControl1.Visible = true;
-            frm.Show();
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            ListDetailForm frm = new ListDetailForm();
-            frm.MdiParent = this;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            mainTabControl1.Visible = true;
-            frm.Show();
+            ShowLoginForm();
         }
 
         private void MainForm_MdiChildActivate(object sender, EventArgs e)
@@ -54,7 +71,6 @@ namespace WinMSFactory
                 mainTabControl1.Visible = false;
             else
             {
-
                 if (this.ActiveMdiChild.Tag == null)
                 {
                     TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
@@ -83,7 +99,7 @@ namespace WinMSFactory
 
 		private void toolStripButton11_Click(object sender, EventArgs e)
 		{
-            CompanyForm frm = new CompanyForm();
+            AuthorityForm frm = new AuthorityForm();
             frm.MdiParent = this;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;
@@ -111,5 +127,104 @@ namespace WinMSFactory
                 }
             }
         }
-    }
+
+
+        private void tsbLogOut_Click(object sender, EventArgs e)
+        {
+            ShowLoginForm();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (Search != null)
+                Search(sender, new EventArgs());
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (Add != null)
+                Add(Add, new EventArgs());
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (Delete != null)
+                Delete(sender, new EventArgs());
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (Save != null)
+                Save(sender, new EventArgs());
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            if (Excel != null)
+                Excel(sender, new EventArgs());
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (Print != null)
+                Print(sender, new EventArgs());
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (Clear != null)
+                Clear(sender, new EventArgs());
+        }
+
+        private void ShowLoginForm()
+        {
+            this.Hide();
+
+            foreach (Form form in this.MdiChildren)
+            {
+                form.Close();
+            }
+
+            LoginForm frm = new LoginForm();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                if (!this.Visible)
+                    this.Visible = true;
+
+                this.Employee = frm.Employee;
+                ShowMenu();
+            }
+            else
+                this.Close();
+        }
+
+        private void ShowMenu()
+        {
+            DataTable dt = new AuthorityService().GetProgramAths(Employee.Ath_grp_id);
+            string moduleID;
+            ToolStripButton tsbPrent = null;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                moduleID = dr["MODULE_ID"].ToString();
+
+                if (tsbPrent == null || tsbPrent.Tag?.ToString() != moduleID)
+                {
+                    ToolStripButton tsbM = new ToolStripButton();
+                    tsbM.Text = dr["MODULE_NAME"].ToString();
+                    tsbM.Tag = moduleID;
+                    tsbM.BackColor = Color.AliceBlue;
+                    tsMenu.Items.Add(tsbM);
+                    tsbPrent = tsbM;
+                    //tsmiPrent.DropDownItems.Add(tsmi);
+                }
+
+                ToolStripButton tsbP = new ToolStripButton();
+                tsbP.Text = dr["PROG_NAME"].ToString();
+                tsbP.Click += (sender, e) => this.MdiChildrenShow(mainTabControl1, dr);
+				tsMenu.Items.Add(tsbP);
+            }
+        }
+	}
 }

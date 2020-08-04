@@ -13,12 +13,13 @@ namespace MSFactoryDAC
 	{
 		public DataTable GetAllPrograms()
 		{
-			string sql = @"SELECT PROG_ID, MODULE_ID, (SELECT MODULE_NAME FROM TBL_MODULE WHERE MODULE_ID = P.MODULE_ID) MODULE_NAME
-									, PROG_NAME, PROG_EXPL, PROG_SEQ, PROG_USE
-									, FIRST_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FIRST_REGIST_EMPLOYEE) FIRST_REGIST_EMPLOYEE_NAME
-									, FINAL_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = FINAL_REGIST_EMPLOYEE ) FINAL_REGIST_EMPLOYEE_NAME
-						   FROM TBL_PROGRAM P           
-						   ORDER BY PROG_SEQ";
+			string sql = @"SELECT PROG_ID, P.MODULE_ID, MODULE_NAME, PROG_NAME, PROG_EXPL, PROG_SEQ, PROG_USE
+									, P.FIRST_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = P.FIRST_REGIST_EMPLOYEE) FIRST_REGIST_EMPLOYEE_NAME
+									, P.FINAL_REGIST_TIME, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = P.FINAL_REGIST_EMPLOYEE) FINAL_REGIST_EMPLOYEE_NAME
+						   FROM TBL_PROGRAM P      
+								INNER JOIN TBL_MODULE M
+									ON P.MODULE_ID = M.MODULE_ID
+						   ORDER BY MODULE_SEQ, PROG_SEQ";
 			DataTable dt = new DataTable();
 			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
 
@@ -48,7 +49,7 @@ namespace MSFactoryDAC
 
 		public ProgramVO GetProgram(int prog_id)
 		{
-			string sql = @"SELECT PROG_ID, MODULE_ID, PROG_NAME, PROG_EXPL, PROG_SEQ, PROG_USE
+			string sql = @"SELECT PROG_ID, MODULE_ID, PROG_NAME, PROG_FORM_NAME, PROG_EXPL, PROG_SEQ, PROG_USE
 						   FROM TBL_PROGRAM
 						   WHERE PROG_ID = @PROG_ID";
 			return SqlExecutionJ<ProgramVO>(sql, new ProgramVO { Prog_id = prog_id })?[0];
@@ -56,7 +57,8 @@ namespace MSFactoryDAC
 
 		public bool SaveProgram(ProgramVO programVO)
 		{
-			return NotSelectSPJ<ProgramVO>("SP_SAVE_PROGRAM", programVO, "Prog_id", "Module_id", "Prog_name", "Prog_expl", "Prog_seq", "Prog_use", "Regist_employee");
+			return NotSelectSPJ<ProgramVO>("SP_SAVE_PROGRAM", programVO, "Prog_id", "Module_id", "Prog_name",
+										   "Prog_form_name", "Prog_expl", "Prog_seq", "Prog_use", "Regist_employee");
 		}
 
 		public bool DeleteProgram(string prog_id)

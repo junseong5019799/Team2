@@ -63,8 +63,8 @@
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Admin\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
@@ -231,10 +231,16 @@
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\EmployeePopForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -558,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>
