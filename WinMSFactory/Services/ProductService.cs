@@ -43,9 +43,14 @@ namespace WinMSFactory
             return dac.SelectProductBindings(SelectedCompanyValue);
         }
 
-        public bool InsertMaterialPrice(ProductPriceManageVO InsertData)
+        public bool InsertMaterialPrice(ProductPriceManageVO InsertData, int? Material_Price)
         {
-            return dac.InsertMaterialPrice(InsertData);
+            return dac.InsertMaterialPrice(InsertData, Material_Price);
+        }
+
+        public bool SelectPriceData(int companyID, int productID, ref ProductPriceManageVO vo)
+        {
+            return dac.SelectPriceData(companyID, productID, ref vo);
         }
     }
 }
