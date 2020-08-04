@@ -33,6 +33,8 @@ namespace WinMSFactory.TechnologyStandards
         {
             InitializeComponent();
             IsDataExists = false;
+
+            txtCompany_Id.Enabled = false;
         }
 
         private void CompanyProductPopupForm_Load(object sender, EventArgs e)
@@ -46,7 +48,10 @@ namespace WinMSFactory.TechnologyStandards
 
             if (IsDataExists == true)
             {
-                txtCompany_Id.Text = companyVO.company_id.ToString();
+                txtCompany_Id.Enabled = false;
+                dtpFirst_Regist_Time.Enabled = false;
+                txtFirst_Regist_Employee.Enabled = false;
+
                 txtCompany_Id.Text = companyVO.company_id.ToString();
                 txtCompany_Name.Text = companyVO.company_name;
                 cboCompany_Type.Text = companyVO.company_type;
