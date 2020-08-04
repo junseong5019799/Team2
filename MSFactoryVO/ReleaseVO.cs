@@ -11,6 +11,8 @@ namespace MSFactoryVO
         public int release_no { get; set; }
         public int release_seq { get; set; }
         public int product_id { get; set; }
+        public string Product_Group_Name { get; set; }
+        public int Product_Group_ID { get; set; }
         public string product_name { get; set; }
         public DateTime release_plan_date { get; set; }
         public DateTime release_date { get; set; }

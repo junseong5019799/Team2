@@ -76,6 +76,7 @@ namespace MSFactoryDAC
             }
         }
 
+
         /// <summary>
         /// 수요계획 -> DataTable 바인딩
         /// </summary>
@@ -144,19 +145,19 @@ namespace MSFactoryDAC
         /// 품목 그룹 바인딩 
         /// </summary>
         /// <returns></returns>
-        public List<GroupComboVO> SelectProductGroup()
+        public List<ReleaseVO> SelectProductGroup()
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"SELECT PRODUCT_GROUP_ID, PRODUCT_GROUP_NAME 
-                                   FROM TBL_PRODUCT_GROUP_MANAGEMENT 
+                    string sql = @"SELECT PRODUCT_ID, PRODUCT_NAME
+                                   FROM TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id
                                    WHERE product_group_name NOT IN('재료')";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        return SqlHelper.DataReaderMapToList<GroupComboVO>(cmd.ExecuteReader());
+                        return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
                     }
                 }
             }

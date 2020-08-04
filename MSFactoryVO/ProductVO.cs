@@ -30,17 +30,18 @@ namespace MSFactoryVO
 
     public class ProductPriceManageVO
     {
-        
+
+        public int Material_Price_Code { get; set; }
         public int Company_ID { get; set; } // 등록할 때 사용
         public int Product_ID { get; set; } // 등록할 때 사용
         public string Company_Name { get; set; }
         public string Product_Name { get; set; }
         public string Product_Information { get; set; }
         public string Product_Unit { get; set; }
-        public int Product_Current_Price { get; set; }
-        public int Product_Previous_Price { get; set; }
+        public int Material_Current_Price { get; set; }
+        public int Material_Previous_Price { get; set; }
         public DateTime Start_Date { get; set; }
-        public DateTime End_Date { get; set; }
+        public string End_Date { get; set; }
         public string Note { get; set; }
 
     }
