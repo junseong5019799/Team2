@@ -67,6 +67,53 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool UpdateMaterialPrice(ProductPriceManageVO insertData)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SP_MATERIAL_PRICE_UPDATE";
+
+                    DateTime? EndDateTime;
+
+                    // 여기 수정
+                    if (insertData.End_Date == null)
+                        EndDateTime = insertData.End_Date;
+                    else
+                        EndDateTime = insertData.End_Date.Value;
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", insertData.Material_Price_Code);
+                        cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_ID", insertData.Product_ID);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_CURRENT_PRICE", insertData.Material_Current_Price);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_PREVIOUS_PRICE", insertData.Material_Previous_Price);
+                        cmd.Parameters.AddWithValue("@P_START_DATE", insertData.Start_Date);
+                        cmd.Parameters.AddWithValue("@P_END_DATE", EndDateTime);
+                        cmd.Parameters.AddWithValue("@P_NOTE", insertData.Note);
+
+                        int cnt = cmd.ExecuteNonQuery();
+
+                        if (cnt > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool SelectPriceData(int CompanyID, int ProductID, ref ProductPriceManageVO vo)
         {
             using (SqlConnection conn = new SqlConnection(this.ConnectionString))
@@ -94,7 +141,7 @@ namespace MSFactoryDAC
                             Material_Price_Code = Convert.ToInt32(reader[0]),
                             Material_Current_Price = Convert.ToInt32(reader[1]),
                             Start_Date = Convert.ToDateTime(reader[2]),
-                            End_Date = reader[3].ToString()
+                            End_Date_String = reader[3].ToString()
                         };
                         
                         return true;
@@ -107,7 +154,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public bool InsertMaterialPrice(ProductPriceManageVO insertData, int? MaterialPrice)
+        public bool InsertMaterialPrice(ProductPriceManageVO insertData)
         {
             try
             {
@@ -121,20 +168,15 @@ namespace MSFactoryDAC
                     string sql = @"SP_MATERIAL_PRICE_INSERT";
                     
 
-                    if (insertData.End_Date == "-")
+                    if (insertData.End_Date_String == "-")
                         EndDate = DBNull.Value;
                     else
-                        EndDate = insertData.End_Date;
-
-                    if (MaterialPrice == null)
-                        MaterialPrice = 0;
-
+                        EndDate = insertData.End_Date.Value;
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", MaterialPrice);
                         cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
                         cmd.Parameters.AddWithValue("@P_Product_ID", insertData.Product_ID);
                         cmd.Parameters.AddWithValue("@P_Material_Current_Price", insertData.Material_Current_Price);
@@ -169,7 +211,11 @@ namespace MSFactoryDAC
                     conn.Open();
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
 
-                    string sql = @"SELECT C.COMPANY_ID, C.COMPANY_NAME, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_UNIT, P.PRODUCT_INFORMATION, M.MATERIAL_CURRENT_PRICE, M.MATERIAL_PREVIOUS_PRICE, M.START_DATE, M.END_DATE, M.NOTE
+                    string sql = @"SELECT M.MATERIAL_PRICE_CODE, C.COMPANY_ID, C.COMPANY_NAME, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_UNIT, P.PRODUCT_INFORMATION, CONCAT(FORMAT(M.MATERIAL_CURRENT_PRICE,'#,0'),' 원') MATERIAL_CURRENT_PRICE_STRING, 
+                                    CASE WHEN M.material_previous_price IS NULL
+									THEN '-' 
+                                    ELSE
+									CONCAT(FORMAT(M.MATERIAL_PREVIOUS_PRICE,'#,0'),' 원')END  MATERIAL_PREVIOUS_PRICE_STRING , M.START_DATE, M.END_DATE END_DATE, M.NOTE
                                     FROM TBL_MATERIAL_PRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.PRODUCT_ID = P.PRODUCT_ID
 	                               INNER JOIN TBL_COMPANY C ON C.company_id = M.COMPANY_ID";
 
