@@ -25,11 +25,11 @@ namespace WinMSFactory
         }
 
         private void ReleasePlanForm_Load(object sender, EventArgs e)
-        {            
-            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true);
-            dgv.AddNewColumns("고객사", "company_id", 100, true);
-            dgv.AddNewColumns("고객사명", "company_name", 100, true);
-            dgv.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
+        {
+            dgv.AddNewColumns("출고예정 번호", "release_no", 100, true, true, false, DataGridViewContentAlignment.MiddleRight) ;
+            dgv.AddNewColumns("고객사", "company_id", 100, false, true, false, DataGridViewContentAlignment.MiddleRight);
+            dgv.AddNewColumns("고객사명", "company_name", 200, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv.AddNewColumns("출고 요청일", "release_plan_date", 150, true);
             dgv.AddNewColumns("출고 상태", "release_status", 100, true);
             
             dgv.DataSource = releaseService.GetReleasePlan();
@@ -48,14 +48,8 @@ namespace WinMSFactory
             dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
             dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
 
-            cboProduct.ComboBinding(releaseService.SelectProductGroup(), "Product_Group_ID", "Product_Group_Name"); 
+            cboProduct.ComboBinding(releaseService.SelectProductGroup(), "product_id", "product_name", "전체"); 
                         
-        }
-
-
-        private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         
@@ -156,17 +150,18 @@ namespace WinMSFactory
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<ReleaseVO> rList = new List<ReleaseVO>();
+            rList = releaseService.GetReleasePlan();
 
-            string searchType = Convert.ToString(cboProduct.SelectedValue);
+            int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
 
-            if (!string.IsNullOrEmpty(searchType))
+            if (!string.IsNullOrEmpty(searchProduct.ToString()))
             {
                 rList = (from item in rList
-                         where item.product_id.Equals(searchType)
+                         where item.product_id.Equals(searchProduct)
                          select item).ToList();
             }
-            dgv2.DataSource = null;
-            dgv2.DataSource = rList;
+            dgv.DataSource = null;
+            dgv.DataSource = rList;
         }
 
 

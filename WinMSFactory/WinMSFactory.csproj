@@ -62,6 +62,12 @@
     <Compile Include="Admin\AuthorityForm.Designer.cs">
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EmployeeForm.cs">
+	  <SubType>Form</SubType>
+	</Compile>
+    <Compile Include="Admin\EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ModuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,12 @@
     <Compile Include="Popup\AuthorityGroupPopupForm.Designer.cs">
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popup\EmployeePopForm.cs">
+	  <SubType>Form</SubType>
+	</Compile>
+    <Compile Include="Popup\EmployeePopForm.Designer.cs">
+      <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +364,7 @@
     <Compile Include="Services\CorporationService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
     <Compile Include="Services\DownTimeService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
@@ -444,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\AuthorityForm.resx">
       <DependentUpon>AuthorityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\ModuleForm.resx">
       <DependentUpon>ModuleForm.cs</DependentUpon>
@@ -546,6 +562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\AuthorityGroupPopupForm.resx">
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\EmployeePopForm.resx">
+      <DependentUpon>EmployeePopForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>
