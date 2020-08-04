@@ -48,7 +48,6 @@ namespace WinMSFactory.ResultForm
             int SelectStorage = cboStorage.SelectedValue.ToInt();
 
             dgv.DataSource = service.SelectProductAll(SelectStorage);
-
         }
 
 
@@ -56,11 +55,35 @@ namespace WinMSFactory.ResultForm
         private void buttonControl1_Click(object sender, EventArgs e) // 재고 이동
         {
             ResultListForm frm = new ResultListForm();
-            frm.ProductID = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
-            frm.StorageID = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-            frm.Quantity = Convert.ToInt32(dgv.SelectedRows[0].Cells[4].Value);
+            List<int> list = new List<int>();
+
+            dgv.EndEdit();
+
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if (dgv.Rows[i].Cells[0].Value != null)
+                {
+                    bool IsCheck = (bool)dgv.Rows[i].Cells[0].Value;
+
+                    if (IsCheck)
+                    {
+                        list.Add(Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
+                    }
+                }
+            }
+            frm.ID = list;
             frm.Show();
 
+        }
+
+
+        //재고 detail 보여주기 
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int storage_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+
+            //DataTable dt = releaseService.GetReleasePlanDetail(storage_id);
+            //dgv2.DataSource = dt;
         }
     }
 }

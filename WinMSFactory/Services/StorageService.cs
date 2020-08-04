@@ -20,5 +20,9 @@ namespace WinMSFactory.Services
         {
             return dac.SelectProductAll(selectStorage);
         }
+        public List<InOutVO> SelectInOut()
+        {
+            return dac.SelectInOut(); 
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,30 +16,8 @@ namespace WinMSFactory.ResultForm
 {
     public partial class ResultListForm : PopUpDialogForm
     {
-        private int storageID;
-
-        public int StorageID
-        {
-            get { return storageID; }
-            set { storageID = value; }
-        }
-
-        private int productID;
-
-        public int ProductID
-        {
-            get { return productID; }
-            set { productID = value; }
-        }
-
-        private int quantity;
-
-        public int Quantity
-        {
-            get { return quantity; }
-            set { quantity = value; }
-        }
-
+        public List<int> ID { get; set; }
+        StorageService service = new StorageService();
 
         public ResultListForm()
         {
@@ -47,16 +26,18 @@ namespace WinMSFactory.ResultForm
 
         private void ResultListForm_Load(object sender, EventArgs e)
         {
-            lblStorageID.Text = storageID.ToString();
+            dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
+            dgv.AddNewColumns("품목", "Product_Id", 150, false);
+            dgv.AddNewColumns("품목명", "Product_Name", 200, true);
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
+            dgv.AddNewColumns("창고명", "Storage_id", 100, false);
+            dgv.AddNewColumns("현 창고", "Storage_Name", 100, true);
 
-            ReleaseService releaseService = new ReleaseService();
-            cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name");
-            cboProduct.SelectedValue = productID;
-
-            StorageService storageService = new StorageService();
-            cboStorage.ComboBinding(storageService.GetStorage(), "Storage_ID", "Storage_Name");
-
-            txtQuantity.Text = quantity.ToString();
+            for (int i = 0; i < ID.Count; i++)
+            {
+                dgv.DataSource = service.SelectProductAll(i);
+            }
+            
         }
     }
 }

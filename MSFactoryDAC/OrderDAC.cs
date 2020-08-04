@@ -69,15 +69,44 @@ namespace MSFactoryDAC
         }
 
 
-      
-
-
-
         /// <summary>
-        /// SELECT 발주 제안 리스트
+        /// 입출고 BINDING
         /// </summary>
         /// <returns></returns>
-        public DataTable GetOrderPlanList()
+        public List<InOutVO> GetInOutListBinding()
+        {
+            try
+            {
+                List<InOutVO> list = null;
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = "SP_INOUT_SELECT";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    list = SqlHelper.DataReaderMapToList<InOutVO>(reader);
+                    cmd.Connection.Close();
+
+                    return list;
+                }               
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+
+
+            /// <summary>
+            /// SELECT 발주 제안 리스트
+            /// </summary>
+            /// <returns></returns>
+            public DataTable GetOrderPlanList()
         {
             try
             {

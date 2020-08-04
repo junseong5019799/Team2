@@ -33,6 +33,11 @@ namespace WinMSFactory.Services
             return dac.GetInOutList();
         }
 
+        public List<InOutVO> GetInOutListBinding()
+        {
+            return dac.GetInOutListBinding();
+        }
+
         public DataTable GetWareHouseList()
         {
             return dac.GetWareHouseList();
