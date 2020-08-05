@@ -23,30 +23,26 @@ namespace WinMSFactory.ManagePriceForm
 
         private void ProductPriceForm_Load(object sender, EventArgs e)
         {
-            //Company_ID = cboCompany.SelectedValue.ToInt(),
-            //        Product_ID = cboProduct.SelectedValue.ToInt(),
-            //        Product_Previous_Price = txtPreviousPrice.Text.ToInt(),
-            //        Product_Current_Price = txtCurrentPrice.Text.ToInt(),
-            //        Start_Date = dtpStartDate.Value,
-            //        End_Date = EndDate,
-            //        Note = txtNote.Text
-
             MainColumns();
+
             SelectList = service.ProductPriceSelect();
             dgv.DataSource = SelectList;
         }
 
         private void MainColumns()
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+           
             dgv.AddNewColumns("업체명", "Company_Name", 150, true);
-            dgv.AddNewColumns("품목명", "Product_Name", 150, true);
-            dgv.AddNewColumns("품목 스펙(규격)", "Product_Information", 150, true);
-            dgv.AddNewColumns("품목 단위", "Product_unit", 150, true);
-            dgv.AddNewColumns("현재 단가", "Material_Current_Price", 150, true);
-            dgv.AddNewColumns("이전 단가", "Material_Previous_Price", 150, true);
-            dgv.AddNewColumns("시작일", "Start_Date", 150, true);
-            dgv.AddNewColumns("종료일", "End_Date", 150, true);
-            dgv.AddNewColumns("비고", "Note", 150, true);
+            dgv.AddNewColumns("품목명", "Product_Name", 200, true);
+            dgv.AddNewColumns("품목 스펙(규격)", "Product_Information", 200, true);
+            dgv.AddNewColumns("품목 단위", "Product_unit", 80, true);
+            dgv.AddNewColumns("현재 단가", "Material_Current_Price_String", 120, true, true, false, RightAlign);
+            dgv.AddNewColumns("이전 단가", "Material_Previous_Price_String", 120, true, true, false, RightAlign);
+            dgv.AddNewColumns("시작일", "Start_Date", 80, true);
+            dgv.AddNewColumns("종료일", "End_Date", 80, true);
+            dgv.AddNewColumns("비고", "Note", 300, true);
+            dgv.AddNewColumns("코드번호", "Material_Price_Code", 150, false);    // 코드 번호
         }
 
 
@@ -60,12 +56,31 @@ namespace WinMSFactory.ManagePriceForm
             if (e.RowIndex < 0)
                 return;
 
-            SettingFormOpen(false);
+            string StartDate = Convert.ToDateTime(dgv[6, e.RowIndex].Value).ToShortDateString();
+
+            string EndDate = string.Empty;
+
+            if (dgv[7, e.RowIndex].Value == null)
+                EndDate = null;
+
+            ProductPriceManageVO ManageVO = new ProductPriceManageVO
+            {
+                Company_Name = dgv[0, e.RowIndex].Value.ToString(),
+                Product_Name = dgv[1, e.RowIndex].Value.ToString(),
+                Product_Information = dgv[2, e.RowIndex].Value.ToString(),
+                Material_Current_Price_String = dgv[4, e.RowIndex].Value.ToString().Replace(" 원", ""),
+                Material_Previous_Price_String = dgv[5, e.RowIndex].Value.ToString().Replace(" 원", ""),
+                Start_Date_String = StartDate,
+                End_Date_String = EndDate,
+                Note = dgv[8, e.RowIndex].Value.ToString(),
+                Material_Price_Code = dgv[9, e.RowIndex].Value.ToInt()
+            };
+            SettingFormOpen(false, ManageVO);
         }
 
-        private void SettingFormOpen(bool IsInsert) // 등록 / 수정에 따른 폼 open
+        private void SettingFormOpen(bool IsInsert, ProductPriceManageVO ManageVO = null) // 등록 / 수정에 따른 폼 open
         {
-            ProductPriceDialogForm frm = new ProductPriceDialogForm(IsInsert);
+            ProductPriceDialogForm frm = new ProductPriceDialogForm(IsInsert, ManageVO);
 
             if (frm.ShowDialog() == DialogResult.OK) // 정상적으로 실행 후 종료된 경우
             {

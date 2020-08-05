@@ -193,7 +193,7 @@
             this.dgvCompanyList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompanyList.Size = new System.Drawing.Size(1531, 577);
             this.dgvCompanyList.TabIndex = 4;
-            this.dgvCompanyList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellClick);
+            //this.dgvCompanyList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellClick);
             this.dgvCompanyList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellDoubleClick);
             // 
             // panel2

@@ -14,6 +14,7 @@ using WinMSFactory.TechnologyStandards;
 
 namespace WinMSFactory.Technology_Standards
 {
+    //테스트박스 조회, 삭제 만들기, 팝업창에서 추가할때는 코드 텍스트 비져블 저장할때는 코드, 최초등록 비져블
     public partial class CompanyForm : ListForm
     {
         CheckBox headerCheckBox = new CheckBox();
@@ -98,25 +99,6 @@ namespace WinMSFactory.Technology_Standards
             dgvCompanyList.DataSource = dv;
         }
 
-        private void dgvCompanyList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Check to ensure that the row CheckBox is clicked.
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
-            {
-                //Loop to verify whether all row CheckBoxes are checked or not.
-                bool isChecked = true;
-                foreach (DataGridViewRow row in dgvCompanyList.Rows)
-                {
-                    if (Convert.ToBoolean(row.Cells["chk"].EditedFormattedValue) == false)
-                    {
-                        isChecked = false;
-                        break;
-                    }
-                }
-                headerCheckBox.Checked = isChecked;
-            }
-        }
-
         private void dgvCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //업데이트 할떄 더블클릭
         {
 
@@ -147,5 +129,24 @@ namespace WinMSFactory.Technology_Standards
             CompanyProductPopupForm cpp = new CompanyProductPopupForm();
             cpp.ShowDialog();
         }
+
+        //private void dgvCompanyList_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    //Check to ensure that the row CheckBox is clicked.
+        //    if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+        //    {
+        //        //Loop to verify whether all row CheckBoxes are checked or not.
+        //        bool isChecked = true;
+        //        foreach (DataGridViewRow row in dgvCompanyList.Rows)
+        //        {
+        //            if (Convert.ToBoolean(row.Cells["chk"].EditedFormattedValue) == false)
+        //            {
+        //                isChecked = false;
+        //                break;
+        //            }
+        //        }
+        //        headerCheckBox.Checked = isChecked;
+        //    }
+        //}
     }
 }
