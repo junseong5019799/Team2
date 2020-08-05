@@ -39,9 +39,13 @@ namespace MSFactoryVO
         public string Product_Information { get; set; }
         public string Product_Unit { get; set; }
         public int Material_Current_Price { get; set; }
+        public string Material_Current_Price_String { get; set; }
         public int Material_Previous_Price { get; set; }
+        public string Material_Previous_Price_String { get; set; }
         public DateTime Start_Date { get; set; }
-        public string End_Date { get; set; }
+        public string Start_Date_String { get; set; }
+        public DateTime? End_Date { get; set; }
+        public string End_Date_String { get; set; }
         public string Note { get; set; }
 
     }

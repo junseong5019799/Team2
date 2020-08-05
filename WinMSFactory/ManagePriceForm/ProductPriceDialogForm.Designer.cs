@@ -42,6 +42,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEndDate = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +122,8 @@
             this.txtCurrentPrice.Name = "txtCurrentPrice";
             this.txtCurrentPrice.Size = new System.Drawing.Size(246, 29);
             this.txtCurrentPrice.TabIndex = 3;
+            this.txtCurrentPrice.TextChanged += new System.EventHandler(this.txtCurrentPrice_TextChanged);
+            this.txtCurrentPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPrice_KeyPress);
             // 
             // label4
             // 
@@ -200,11 +203,22 @@
             this.txtEndDate.Size = new System.Drawing.Size(244, 29);
             this.txtEndDate.TabIndex = 5;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label8.Location = new System.Drawing.Point(425, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 24);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "원";
+            // 
             // ProductPriceDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 486);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.txtPreviousPrice);
@@ -238,6 +252,7 @@
             this.Controls.SetChildIndex(this.dtpStartDate, 0);
             this.Controls.SetChildIndex(this.txtEndDate, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label8, 0);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,5 +275,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEndDate;
+        private System.Windows.Forms.Label label8;
     }
 }
