@@ -24,16 +24,32 @@ namespace WinMSFactory.OrderForm
 
         private void OrderPopUpForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+            DataGridViewContentAlignment LeftAlign = DataGridViewContentAlignment.MiddleLeft;
+
             dgvCompany.AddNewColumns("업체코드", "company_id", 80, true);
             dgvCompany.AddNewColumns("발주업체", "company_name", 100, true);
 
             dgvCompany.DataSource = orderService.GetCompanyList();
 
-            DataTable dt = orderService.GetOrderPlanList();
-            dgvOrder.DataSource = dt;
+            dgvOrder.AddNewColumns("PlanID", "release_no", 65, true, true, false, RightAlign);
+            //dgvOrder.AddNewColumns("순서", "release_seq", 55, true, true, false, RightAlign);
+            dgvOrder.AddNewColumns("업체코드", "company_id", 80, false);
+            dgvOrder.AddNewColumns("거래처", "company_name", 80, true, true, false, LeftAlign);
+            dgvOrder.AddNewColumns("품목", "product_id", 60, false);
+            dgvOrder.AddNewColumns("품명", "product_name", 120, true, true, false, LeftAlign);
+            dgvOrder.AddNewColumns("품목", "_product_id", 65, false);
+            dgvOrder.AddNewColumns("품명", "_product_name", 120, true, true, false, LeftAlign);
+            dgvOrder.AddNewColumns("발주제안 수량", "order_request_quantity", 100, true, true, false, RightAlign);
+            dgvOrder.AddNewColumns("발주량", "", 70, true, true, false, RightAlign);
+            dgvOrder.AddNewColumns("재고량", "stock_quantity", 70, true, true, false, RightAlign);
+            dgvOrder.AddNewColumns("납기일", "release_plan_date", 110, true);
             
 
-            dgvOrder.Columns[7].DefaultCellStyle.BackColor = Color.AliceBlue;
+            DataTable dt = orderService.GetOrderPlanList();
+            dgvOrder.DataSource = dt;            
+
+            dgvOrder.Columns[11].DefaultCellStyle.BackColor = Color.AliceBlue;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -51,8 +67,8 @@ namespace WinMSFactory.OrderForm
                         orderVO.company_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[2].Value);
                         orderVO.first_regist_employee = "사원명";
                         orderVO.final_regist_employee = "사원명";
-                        orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[4].Value);
-                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[7].Value);
+                        orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[6].Value);
+                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[11].Value);
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
  
