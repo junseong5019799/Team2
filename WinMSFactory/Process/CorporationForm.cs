@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinCoffeePrince2nd.Util;
 using WinMSFactory.Process;
 using WinMSFactory.Services;
 
@@ -15,7 +16,7 @@ namespace WinMSFactory
 {
     //법인 관리
     public partial class CorporationForm : ListForm
-    {        
+    {
         List<CorporationVO> search;
         public CorporationForm()
         {
@@ -89,8 +90,65 @@ namespace WinMSFactory
         private void btnSave_Click(object sender, EventArgs e)
         {
             CorporationPopupForm cp = new CorporationPopupForm();
-            cp.ShowDialog();
 
+            if (cp.ShowDialog() == DialogResult.OK)
+                LoadData();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtNameSearch.Text = "";
+            LoadData();
+        }
+
+        private void btnDelere_Click(object sender, EventArgs e)
+        {
+            CorporationService service = new CorporationService();
+
+            if (MessageBox.Show("법인을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+            try
+            {
+                dgvCorporationlist.EndEdit();
+
+                List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
+
+                foreach (DataGridViewRow row in dgvCorporationlist.Rows)
+                {
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCorporationlist[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgvCorporationlist[1, row.Index].Value.ToInt());
+
+                }
+
+                int corporation_id = Convert.ToInt32(dgvCorporationlist.SelectedRows[0].Cells[1].Value);
+
+                if (CheckList.Count > 0)
+                {
+                    service.Delete(CheckList);
+                 
+                    LoadData();
+                }
+                //else if (CheckList.Count > 1)
+                //{
+                //    foreach (int item in CheckList)
+                //    {
+                //        service.Delete(corporation_id);
+                //    }
+                //}
+                else
+                {
+                    MessageBox.Show("다시 선택해주세요");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
         }
     }
 }

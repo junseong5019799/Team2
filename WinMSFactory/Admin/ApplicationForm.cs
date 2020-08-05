@@ -49,12 +49,12 @@ namespace WinMSFactory
 			dataGridViewControl1.DataSource = dt;
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void button1_Click(object sender, EventArgs e) //조회
 		{
 
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e) //추가
 		{
 			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
 			ApplicationPopupForm frm = new ApplicationPopupForm(employeeVO);
@@ -65,7 +65,7 @@ namespace WinMSFactory
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void button3_Click(object sender, EventArgs e)  //삭제
 		{
 			try
 			{
