@@ -16,5 +16,6 @@ namespace MSFactoryVO
         public string Stock_Quantity { get; set; }
         public DateTime Stock_Regist_Date { get; set; }
         public string Product_Group_Name { get; set; }
+        public string Factory_name { get; set; }
     }
 }

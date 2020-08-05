@@ -16,7 +16,7 @@ namespace WinMSFactory.ResultForm
 {
     public partial class ResultListForm : PopUpDialogForm
     {
-        public List<int> ID { get; set; }
+        public List<int> IDList { get; set; }
         StorageService service = new StorageService();
 
         public ResultListForm()
@@ -32,12 +32,30 @@ namespace WinMSFactory.ResultForm
             dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
             dgv.AddNewColumns("창고명", "Storage_id", 100, false);
             dgv.AddNewColumns("현 창고", "Storage_Name", 100, true);
+                        
+            dgv.DataSource = service.SelectStockID(IDList);
 
-            for (int i = 0; i < ID.Count; i++)
+            cboStorage.ComboBinding(service.GetStorage(), "Storage_ID", "Storage_Name");
+        }
+
+
+        //창고 이동 
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {           
+            int storage_id = Convert.ToInt32(cboStorage.SelectedValue);
+
+            if(service.UpdateStorageID(IDList, storage_id))
             {
-                dgv.DataSource = service.SelectProductAll(i);
+                MessageBox.Show($"재고가 이동합니다.");                
+                this.Close();
             }
+
             
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

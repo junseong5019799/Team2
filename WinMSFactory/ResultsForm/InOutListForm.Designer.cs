@@ -70,7 +70,6 @@
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
-            this.dgv.AutoGenerateColumns = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -123,13 +122,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 3, 16, 8, 17, 92);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 4, 17, 21, 51, 945);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 4, 16, 8, 17, 92);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 5, 17, 21, 51, 945);
             // 
             // cboGubun
             // 
@@ -173,7 +172,7 @@
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.White;
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(918, 51);
+            this.buttonControl1.Location = new System.Drawing.Point(929, 32);
             this.buttonControl1.Name = "buttonControl1";
             this.buttonControl1.Size = new System.Drawing.Size(75, 23);
             this.buttonControl1.TabIndex = 54;

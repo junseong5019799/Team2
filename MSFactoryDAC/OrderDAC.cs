@@ -117,6 +117,19 @@ namespace MSFactoryDAC
                         da.SelectCommand = new SqlCommand("SP_ORDERPLAN_SELECT", con);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
+//                        SELECT
+//                              company_id AS 거래처
+//                              , (SELECT company_name FROM TBL_COMPANY c WHERE company_id = o.company_id)AS 거래처명
+//                              , od.product_id AS 품목
+//	   , product_name
+//	   	   , (SELECT FLOOR(od.order_request_quantity)
+
+//          FROM TBL_PRODUCT pr WHERE pr.product_id = od.product_id) AS '발주제안 수량'
+//	   , '' AS '발주 수량'
+//	   , (SELECT stock_quantity FROM TBL_STOCK s WHERE s.product_id = od.product_id)AS 재고량
+//FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON o.order_no = od.order_no
+
+                         //INNER JOIN TBL_PRODUCT p ON od.product_id = p.product_id
                         DataTable dt = new DataTable();
                         con.Open();
                         da.Fill(dt);
@@ -303,6 +316,7 @@ namespace MSFactoryDAC
                     cmd.CommandText = "SP_STOCK_UPDATE";
                     cmd.Parameters.Clear();
 
+                    cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
                     cmd.Parameters.AddWithValue("@order_no", vo.order_no);
                     cmd.Parameters.AddWithValue("@product_id",vo.product_id);
                     cmd.Parameters.AddWithValue("@stock_quantity", vo.warehouse_quantity);

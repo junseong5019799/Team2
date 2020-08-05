@@ -47,7 +47,6 @@ namespace WinMSFactory.OrderForm
         }
 
 
-
         public WareHousePopUpForm()
         {
             InitializeComponent();
