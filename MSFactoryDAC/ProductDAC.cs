@@ -79,14 +79,6 @@ namespace MSFactoryDAC
 
                     string sql = @"SP_MATERIAL_PRICE_UPDATE";
 
-                    DateTime? EndDateTime;
-
-                    // 여기 수정
-                    if (insertData.End_Date == null)
-                        EndDateTime = insertData.End_Date;
-                    else
-                        EndDateTime = insertData.End_Date.Value;
-
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", insertData.Material_Price_Code);
@@ -95,8 +87,8 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_PRODUCT_CURRENT_PRICE", insertData.Material_Current_Price);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_PREVIOUS_PRICE", insertData.Material_Previous_Price);
                         cmd.Parameters.AddWithValue("@P_START_DATE", insertData.Start_Date);
-                        cmd.Parameters.AddWithValue("@P_END_DATE", EndDateTime);
                         cmd.Parameters.AddWithValue("@P_NOTE", insertData.Note);
+                        cmd.Parameters.AddWithValue("@P_CATEGORY", insertData.Category);
 
                         int cnt = cmd.ExecuteNonQuery();
 
@@ -164,8 +156,7 @@ namespace MSFactoryDAC
 
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
                     object EndDate;
-                    int Code = 0;
-                    string sql = @"SP_MATERIAL_PRICE_INSERT";
+                    string sql = @"SP_MATERIAL_PRICE_UPSERT";
                     
 
                     if (insertData.End_Date_String == "-")
@@ -176,14 +167,15 @@ namespace MSFactoryDAC
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
+                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", insertData.Material_Price_Code);
                         cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
                         cmd.Parameters.AddWithValue("@P_Product_ID", insertData.Product_ID);
                         cmd.Parameters.AddWithValue("@P_Material_Current_Price", insertData.Material_Current_Price);
                         cmd.Parameters.AddWithValue("@P_material_previous_price", insertData.Material_Previous_Price);
                         cmd.Parameters.AddWithValue("@P_start_date", insertData.Start_Date);
+                        cmd.Parameters.AddWithValue("@P_End_date", EndDate);
                         cmd.Parameters.AddWithValue("@P_note", insertData.Note);
-
+                        cmd.Parameters.AddWithValue("@P_Category", insertData.Category);
                         int result = cmd.ExecuteNonQuery();
 
                         if (result > 0)
@@ -211,13 +203,20 @@ namespace MSFactoryDAC
                     conn.Open();
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
 
-                    string sql = @"SELECT M.MATERIAL_PRICE_CODE, C.COMPANY_ID, C.COMPANY_NAME, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_UNIT, P.PRODUCT_INFORMATION, CONCAT(FORMAT(M.MATERIAL_CURRENT_PRICE,'#,0'),' 원') MATERIAL_CURRENT_PRICE_STRING, 
-                                    CASE WHEN M.material_previous_price IS NULL
-									THEN '-' 
-                                    ELSE
-									CONCAT(FORMAT(M.MATERIAL_PREVIOUS_PRICE,'#,0'),' 원')END  MATERIAL_PREVIOUS_PRICE_STRING , M.START_DATE, M.END_DATE END_DATE, M.NOTE
-                                    FROM TBL_MATERIAL_PRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.PRODUCT_ID = P.PRODUCT_ID
-	                               INNER JOIN TBL_COMPANY C ON C.company_id = M.COMPANY_ID";
+                    string sql = @"SELECT material_price_code, company_name, product_name, product_unit, product_information, MATERIAL_CURRENT_PRICE_STRING, MATERIAL_PREVIOUS_PRICE_STRING, START_DATE, END_DATE, NOTE
+	                                , CASE RANKS WHEN 1 THEN 'Y'  ELSE 'N' END AS ISREADONLY
+	                                FROM
+	                                (
+	                                SELECT M.MATERIAL_PRICE_CODE, C.COMPANY_ID, C.COMPANY_NAME, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_UNIT, P.PRODUCT_INFORMATION, CONCAT(FORMAT(M.MATERIAL_CURRENT_PRICE,'#,0'),' 원') MATERIAL_CURRENT_PRICE_STRING, 
+			                                CASE WHEN M.material_previous_price IS NULL
+			                                THEN '-' 
+			                                ELSE
+			                                CONCAT(FORMAT(M.MATERIAL_PREVIOUS_PRICE,'#,0'),' 원') END  MATERIAL_PREVIOUS_PRICE_STRING , M.START_DATE, M.END_DATE END_DATE, M.NOTE
+			                                , RANK() OVER (PARTITION BY C.COMPANY_ID, P.PRODUCT_ID ORDER BY MATERIAL_PRICE_CODE DESC) RANKS	
+	                                FROM TBL_MATERIAL_PRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.PRODUCT_ID = P.PRODUCT_ID
+	                                INNER JOIN TBL_COMPANY C ON C.company_id = M.COMPANY_ID
+	                                ) TBL
+                                      ORDER BY RANKS DESC  ";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
