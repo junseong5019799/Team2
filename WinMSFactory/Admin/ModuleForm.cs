@@ -57,7 +57,7 @@ namespace WinMSFactory
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			ModulePopupForm frm = new ModulePopupForm(employeeVO);
 
 			if (frm.ShowDialog() == DialogResult.OK)
@@ -92,7 +92,7 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			int module_id = dataGridViewControl1["MODULE_ID", e.RowIndex].Value.ToInt();
 			ModulePopupForm frm = new ModulePopupForm(employeeVO, module_id);
 

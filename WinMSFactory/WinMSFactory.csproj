@@ -63,8 +63,8 @@
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Admin\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
@@ -231,10 +231,16 @@
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\EmployeePopForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -259,6 +265,12 @@
     </Compile>
     <Compile Include="Process\CorporationForm.Designer.cs">
       <DependentUpon>CorporationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\CorporationPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\CorporationPopupForm.Designer.cs">
+      <DependentUpon>CorporationPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\FactoryForm.cs">
       <SubType>Form</SubType>
@@ -355,6 +367,7 @@
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\CommonCodeService.cs" />
     <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\CorporationService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
     <Compile Include="Services\DownTimeService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
@@ -559,6 +572,9 @@
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Popup\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -570,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\CorporationForm.resx">
       <DependentUpon>CorporationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\CorporationPopupForm.resx">
+      <DependentUpon>CorporationPopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FactoryForm.resx">
       <DependentUpon>FactoryForm.cs</DependentUpon>

@@ -27,7 +27,7 @@ namespace WinMSFactory
 			{
 				dataGridViewControl1.IsAllCheckColumnHeader = true;
 				dataGridViewControl1.AddNewColumns("프로그램 코드", "PROG_ID", 100, false);
-				dataGridViewControl1.AddNewColumns("모듈", "MODULE_ID", 100);
+				dataGridViewControl1.AddNewColumns("모듈", "MODULE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("프로그램 명칭", "PROG_NAME", 100);
 				dataGridViewControl1.AddNewColumns("사용여부", "PROG_USE", 100);
 				dataGridViewControl1.AddNewColumns("순번", "PROG_SEQ", 100);
@@ -57,7 +57,7 @@ namespace WinMSFactory
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			ProgramPopupForm frm = new ProgramPopupForm(employeeVO);
 
 			if (frm.ShowDialog() == DialogResult.OK)
@@ -92,7 +92,7 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			int prog_id = dataGridViewControl1["PROG_ID", e.RowIndex].Value.ToInt();
 			ProgramPopupForm frm = new ProgramPopupForm(employeeVO, prog_id);
 

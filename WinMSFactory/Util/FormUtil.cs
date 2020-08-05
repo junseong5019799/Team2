@@ -139,34 +139,37 @@ namespace WinCoffeePrince2nd.Util
 		#endregion
 
 		#region Form
-		//public static Form MdiChildrenShow(this MainForm mdiParent, string formName, IEnumerable<MethodVO> methods)
-		//{
-		//	Type type = Type.GetType("WinCoffeePrince2nd." + formName);
+		public static Form MdiChildrenShow(this MainForm mdiParent, TabControl mainTabControl, DataRow authDr)
+		{
+			Type type = Type.GetType("WinMSFactory." + authDr["PROG_FORM_NAME"]);
 
-		//	if (type != null)
-		//	{ 
-		//		foreach (Form frm in Application.OpenForms)
-		//		{
-		//			if (frm.GetType() == type && frm.IsMdiChild)
-		//			{
-		//				frm.Activate();
-		//				return frm;
-		//			}
-		//		}
-						
-		//		Form f = (Form)Activator.CreateInstance(type);
-		//		f.MdiParent = mdiParent;
-		//		f.WindowState = FormWindowState.Maximized;
+			if (type != null)
+			{
+				foreach (TabPage tp in mainTabControl.TabPages)
+				{
+					Form frm = (Form)tp.Tag;
 
-		//		new EventUtil().CommonEvent(f, methods);
+					if (frm.GetType() == type && frm.IsMdiChild)
+					{
+						mainTabControl.SelectedTab = tp;
+						return frm;
+					}
+				}
 
-		//		f.Show();
+				Form f = (Form)Activator.CreateInstance(type);
+				f.MdiParent = mdiParent;
+				f.FormBorderStyle = FormBorderStyle.None;
+				f.Dock = DockStyle.Fill;
 
-		//		return f;
-		//	}
+				new EventUtil().CommonEvent(f, authDr);
 
-		//	return null;
-		//}
+				f.Show();
+
+				return f;
+			}
+
+			return null;
+		}
 
 		public static bool HasEmptyTxt(this Form frm)
 		{
@@ -244,16 +247,16 @@ namespace WinCoffeePrince2nd.Util
 			return frm.MdiParent as MainForm;
 		}
 
-		//public static CompanyVO GetLoginVO(this Form frm)
-		//{
-		//	CompanyVO loginVO = null;
-		//	MainForm mainForm = GetMdiParent(frm);
+		public static EmployeeVO GetEmployee(this Form frm)
+		{
+			EmployeeVO employee = null;
+			MainForm mainForm = GetMdiParent(frm);
 
-		//	if (mainForm != null)
-		//		loginVO = mainForm.LoginVO;
+			if (mainForm != null)
+				employee = mainForm.Employee;
 
-		//	return loginVO;
-		//}
+			return employee;
+		}
 		#endregion
 
 		#region comboBox 바인딩 관련

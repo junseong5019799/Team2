@@ -76,6 +76,7 @@
 			this.dataGridViewControl1.Location = new System.Drawing.Point(0, 170);
 			this.dataGridViewControl1.MultiSelect = false;
 			this.dataGridViewControl1.Name = "dataGridViewControl1";
+			this.dataGridViewControl1.RowHeadersVisible = false;
 			this.dataGridViewControl1.RowTemplate.Height = 23;
 			this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 591);
@@ -118,7 +119,7 @@
 			this.ClientSize = new System.Drawing.Size(1534, 761);
 			this.Controls.Add(this.dataGridViewControl1);
 			this.Name = "ModuleForm";
-			this.Text = "모듈";
+			this.Text = "모듈 관리";
 			this.Load += new System.EventHandler(this.ModuleForm_Load);
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.GuidLabel2, 0);

@@ -12,6 +12,7 @@ namespace MSFactoryVO
 		public int Module_id { get; set; }
 		public string Module_name { get; set; }
 		public string Prog_name { get; set; }
+		public string Prog_form_name { get; set; }
 		public string Prog_expl { get; set; }
 		public int Prog_seq { get; set; }
 		public string Prog_use { get; set; }

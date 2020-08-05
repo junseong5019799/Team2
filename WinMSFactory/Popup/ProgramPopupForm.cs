@@ -17,37 +17,31 @@ namespace WinMSFactory
 		int prog_id;
 		ProgramService programService = new ProgramService();
 
-		public ProgramPopupForm(EmployeeVO employeeVO)
+		public ProgramPopupForm(EmployeeVO employeeVO, int prog_id = 0)
 		{
 			try
 			{
 				InitializeComponent();
 				this.employeeVO = employeeVO;
+				this.prog_id = prog_id;
 				this.Text = prog_id > 0 ? "프로그램 수정" : "프로그램 등록";
 				cboModule_id.ComboBinding(new ModuleService().GetModules(1), "MODULE_NAME", "MODULE_ID");
-			}
-			catch (Exception err)
-			{
-				MessageBox.Show(err.Message);
-			}
-		}
 
-		public ProgramPopupForm(EmployeeVO employeeVO, int prog_id) : this(employeeVO)
-		{
-			try
-			{
-				this.prog_id = prog_id;
-				ProgramVO programVO = programService.GetProgram(prog_id);
+				if (prog_id > 0)
+				{
+					ProgramVO programVO = programService.GetProgram(prog_id);
 
-				cboModule_id.SelectedValue = programVO.Module_id;
-				txtProg_name.Text = programVO.Prog_name;
-				nudProg_seq.Value = programVO.Prog_seq;
-				txtProg_expl.Text = programVO.Prog_expl;
+					cboModule_id.SelectedValue = programVO.Module_id;
+					txtProg_name.Text = programVO.Prog_name;
+					txtProg_form_name.Text = programVO.Prog_form_name;
+					nudProg_seq.Value = programVO.Prog_seq;
+					txtProg_expl.Text = programVO.Prog_expl;
 
-				if (programVO.Prog_use == "Y")
-					rdoProg_useY.Checked = true;
-				else
-					rdoProg_useN.Checked = true;
+					if (programVO.Prog_use == "Y")
+						rdoProg_useY.Checked = true;
+					else
+						rdoProg_useN.Checked = true;
+				}
 			}
 			catch (Exception err)
 			{
@@ -66,10 +60,11 @@ namespace WinMSFactory
 				{
 					Prog_id = prog_id,
 					Module_id = cboModule_id.SelectedValue.ToInt(),
-					Prog_name = txtProg_name.Text,
+					Prog_name = txtProg_name.Text.Trim(),
+					Prog_form_name = txtProg_form_name.Text.Trim(),
 					Prog_seq = (int)nudProg_seq.Value,
 					Prog_use = rdoProg_useY.Checked ? "Y" : "N",
-					Prog_expl = txtProg_expl.Text,
+					Prog_expl = txtProg_expl.Text.Trim(),
 					Regist_employee = employeeVO.Employee_id
 				};
 

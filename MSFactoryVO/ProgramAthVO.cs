@@ -14,10 +14,12 @@ namespace MSFactoryVO
 		public string Prog_name { get; set; }
 		public int Module_id { get; set; }
 		public string Module_name { get; set; }
-		public string Prog_select { get; set; }
-		public string Prog_insert { get; set; }
+		public string Prog_search { get; set; }
+		public string Prog_add { get; set; }
 		public string Prog_delect { get; set; }
 		public string Prog_save { get; set; }
 		public string Prog_excel { get; set; }
+		public string Prog_print { get; set; }
+		public string Prog_clear { get; set; }
 	}
 }
