@@ -32,19 +32,19 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
 			this.label1 = new System.Windows.Forms.Label();
-			this.txtApp_name = new System.Windows.Forms.TextBox();
+			this.txtSearch = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.txtApp_name);
+			this.panel1.Controls.Add(this.txtSearch);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Size = new System.Drawing.Size(1534, 80);
 			this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
 			this.panel1.Controls.SetChildIndex(this.label1, 0);
-			this.panel1.Controls.SetChildIndex(this.txtApp_name, 0);
+			this.panel1.Controls.SetChildIndex(this.txtSearch, 0);
 			// 
 			// dataGridViewControl1
 			// 
@@ -90,12 +90,12 @@
 			this.label1.TabIndex = 5;
 			this.label1.Text = "어플리케이션";
 			// 
-			// txtApp_name
+			// txtSearch
 			// 
-			this.txtApp_name.Location = new System.Drawing.Point(130, 30);
-			this.txtApp_name.Name = "txtApp_name";
-			this.txtApp_name.Size = new System.Drawing.Size(183, 22);
-			this.txtApp_name.TabIndex = 6;
+			this.txtSearch.Location = new System.Drawing.Point(130, 30);
+			this.txtSearch.Name = "txtSearch";
+			this.txtSearch.Size = new System.Drawing.Size(183, 22);
+			this.txtSearch.TabIndex = 6;
 			// 
 			// ApplicationForm
 			// 
@@ -119,7 +119,7 @@
 		#endregion
 
 		private DataGridViewControl dataGridViewControl1;
-		private System.Windows.Forms.TextBox txtApp_name;
+		private System.Windows.Forms.TextBox txtSearch;
 		private System.Windows.Forms.Label label1;
 	}
 }

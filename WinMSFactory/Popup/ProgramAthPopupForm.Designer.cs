@@ -34,7 +34,7 @@
 			this.cboProg_id = new System.Windows.Forms.ComboBox();
 			this.chkProg_search = new System.Windows.Forms.CheckBox();
 			this.chkProg_add = new System.Windows.Forms.CheckBox();
-			this.chkProg_delect = new System.Windows.Forms.CheckBox();
+			this.chkProg_delete = new System.Windows.Forms.CheckBox();
 			this.chkProg_save = new System.Windows.Forms.CheckBox();
 			this.chkProg_excel = new System.Windows.Forms.CheckBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -115,15 +115,15 @@
 			this.chkProg_add.Text = "추가";
 			this.chkProg_add.UseVisualStyleBackColor = true;
 			// 
-			// chkProg_delect
+			// chkProg_delete
 			// 
-			this.chkProg_delect.AutoSize = true;
-			this.chkProg_delect.Location = new System.Drawing.Point(265, 198);
-			this.chkProg_delect.Name = "chkProg_delect";
-			this.chkProg_delect.Size = new System.Drawing.Size(49, 20);
-			this.chkProg_delect.TabIndex = 4;
-			this.chkProg_delect.Text = "삭제";
-			this.chkProg_delect.UseVisualStyleBackColor = true;
+			this.chkProg_delete.AutoSize = true;
+			this.chkProg_delete.Location = new System.Drawing.Point(265, 198);
+			this.chkProg_delete.Name = "chkProg_delete";
+			this.chkProg_delete.Size = new System.Drawing.Size(49, 20);
+			this.chkProg_delete.TabIndex = 4;
+			this.chkProg_delete.Text = "삭제";
+			this.chkProg_delete.UseVisualStyleBackColor = true;
 			// 
 			// chkProg_save
 			// 
@@ -187,7 +187,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.ClientSize = new System.Drawing.Size(350, 327);
-			this.Controls.Add(this.chkProg_delect);
+			this.Controls.Add(this.chkProg_delete);
 			this.Controls.Add(this.chkProg_clear);
 			this.Controls.Add(this.chkProg_print);
 			this.Controls.Add(this.chkProg_excel);
@@ -214,7 +214,7 @@
 			this.Controls.SetChildIndex(this.chkProg_excel, 0);
 			this.Controls.SetChildIndex(this.chkProg_print, 0);
 			this.Controls.SetChildIndex(this.chkProg_clear, 0);
-			this.Controls.SetChildIndex(this.chkProg_delect, 0);
+			this.Controls.SetChildIndex(this.chkProg_delete, 0);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -229,7 +229,7 @@
 		private System.Windows.Forms.ComboBox cboProg_id;
 		private System.Windows.Forms.CheckBox chkProg_search;
 		private System.Windows.Forms.CheckBox chkProg_add;
-		private System.Windows.Forms.CheckBox chkProg_delect;
+		private System.Windows.Forms.CheckBox chkProg_delete;
 		private System.Windows.Forms.CheckBox chkProg_save;
 		private System.Windows.Forms.CheckBox chkProg_excel;
 		private System.Windows.Forms.Label label2;

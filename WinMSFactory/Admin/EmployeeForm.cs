@@ -34,7 +34,7 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("최초등록사원", "FIRST_REGIST_EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록시간", "FINAL_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록사원", "FINAL_REGIST_EMPLOYEE_NAME", 100);
-
+				
 				LoadData();
 			}
 			catch (Exception err)
@@ -47,14 +47,25 @@ namespace WinMSFactory
 		{
 			dt = employeeService.GetAllEmployees();
 			dataGridViewControl1.DataSource = dt;
+			EmpClear();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Search(object sender, EventArgs e)
 		{
-			
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				dt.CaseSensitive = false;
+				DataView dv = dt.DefaultView;
+				string search = txtSearch.Text.Trim();
+
+				if (search.Length > 0)
+					dv.RowFilter = $"EMPLOYEE_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
+			}
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Add(object sender, EventArgs e)
 		{
 			EmployeeVO employeeVO = this.GetEmployee();
 			EmployeePopForm frm = new EmployeePopForm(employeeVO);
@@ -65,25 +76,41 @@ namespace WinMSFactory
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Delete(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string employee_id = dataGridViewControl1.GetCheckIDs("EMPLOYEE_ID");
-
-				if (string.IsNullOrEmpty(employee_id))
-					return;
-
-				if (employeeService.DeleteEmployee(employee_id))
+				try
 				{
-					MessageBox.Show("정상적으로 삭제되었습니다.");
-					LoadData();
+					string employee_id = dataGridViewControl1.GetCheckIDs("EMPLOYEE_ID");
+
+					if (string.IsNullOrEmpty(employee_id))
+						return;
+
+					if (employeeService.DeleteEmployee(employee_id))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
 				}
 			}
-			catch (Exception err)
+		}
+
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				MessageBox.Show(err.Message);
+				LoadData();
 			}
+		}
+
+		private void EmpClear()
+		{
+			this.Clear();
 		}
 
 		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -99,6 +126,12 @@ namespace WinMSFactory
 			{
 				LoadData();
 			}
+		}
+
+		private void txtEmployee_name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				Search(null, null);
 		}
 	}
 }

@@ -48,14 +48,25 @@ namespace WinMSFactory
 		{
 			dt = programService.GetAllPrograms();
 			dataGridViewControl1.DataSource = dt;
+			ProgClear();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Search(object sender, EventArgs e)
 		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				dt.CaseSensitive = false;
+				DataView dv = dt.DefaultView;
+				string search = txtSearch.Text.Trim();
 
+				if (search.Length > 0)
+					dv.RowFilter = $"PROG_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
+			}
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Add(object sender, EventArgs e)
 		{
 			EmployeeVO employeeVO = this.GetEmployee();
 			ProgramPopupForm frm = new ProgramPopupForm(employeeVO);
@@ -66,25 +77,41 @@ namespace WinMSFactory
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Delete(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string prog_id = dataGridViewControl1.GetCheckIDs("PROG_ID");
-
-				if (string.IsNullOrEmpty(prog_id))
-					return;
-
-				if (programService.DeleteProgram(prog_id))
+				try
 				{
-					MessageBox.Show("정상적으로 삭제되었습니다.");
-					LoadData();
+					string prog_id = dataGridViewControl1.GetCheckIDs("PROG_ID");
+
+					if (string.IsNullOrEmpty(prog_id))
+						return;
+
+					if (programService.DeleteProgram(prog_id))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
 				}
 			}
-			catch (Exception err)
+		}
+
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				MessageBox.Show(err.Message);
+				LoadData();
 			}
+		}
+
+		private void ProgClear()
+		{
+			this.Clear();
 		}
 
 		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -100,6 +127,12 @@ namespace WinMSFactory
 			{
 				LoadData();
 			}
+		}
+
+		private void txtProg_name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				Search(null, null);
 		}
 	}
 }

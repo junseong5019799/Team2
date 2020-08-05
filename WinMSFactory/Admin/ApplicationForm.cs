@@ -54,14 +54,14 @@ namespace WinMSFactory
 		{
 			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string app_name = txtApp_name.Text.Trim();
+				dt.CaseSensitive = false;
+				DataView dv = dt.DefaultView;
+				string search = txtSearch.Text.Trim();
 
-				if (app_name.Length > 0)
-				{
-					dt.CaseSensitive = false;
-					DataView dv = dt.DefaultView;
-					dv.RowFilter = $"APP_NAME LIKE '%{app_name}%'";
-				}
+				if (search.Length > 0)
+					dv.RowFilter = $"APP_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
 			}
 		}
 

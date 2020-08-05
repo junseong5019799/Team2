@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.btnSearch = new System.Windows.Forms.ToolStripButton();
@@ -46,11 +47,10 @@
 			this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-			this.mainTabControl1 = new WinMSFactory.MainTabControl();
-			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
 			this.tsMenu = new System.Windows.Forms.ToolStrip();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.mainTabControl1 = new WinMSFactory.MainTabControl();
 			this.toolStrip2.SuspendLayout();
-			this.tsMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolStrip2
@@ -229,6 +229,22 @@
 			this.toolStripButton10.Name = "toolStripButton10";
 			this.toolStripButton10.Size = new System.Drawing.Size(23, 23);
 			// 
+			// tsMenu
+			// 
+			this.tsMenu.AutoSize = false;
+			this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
+			this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
+			this.tsMenu.Location = new System.Drawing.Point(0, 65);
+			this.tsMenu.Name = "tsMenu";
+			this.tsMenu.Size = new System.Drawing.Size(219, 752);
+			this.tsMenu.TabIndex = 2;
+			this.tsMenu.Text = "toolStrip1";
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 25;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
 			// mainTabControl1
 			// 
 			this.mainTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -241,24 +257,6 @@
 			this.mainTabControl1.Visible = false;
 			this.mainTabControl1.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
 			this.mainTabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainTabControl1_MouseDown);
-			// 
-			// toolStripLabel1
-			// 
-			this.toolStripLabel1.Name = "toolStripLabel1";
-			this.toolStripLabel1.Size = new System.Drawing.Size(217, 0);
-			// 
-			// tsMenu
-			// 
-			this.tsMenu.AutoSize = false;
-			this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
-			this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-			this.tsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1});
-			this.tsMenu.Location = new System.Drawing.Point(0, 65);
-			this.tsMenu.Name = "tsMenu";
-			this.tsMenu.Size = new System.Drawing.Size(219, 752);
-			this.tsMenu.TabIndex = 2;
-			this.tsMenu.Text = "toolStrip1";
 			// 
 			// MainForm
 			// 
@@ -277,8 +275,6 @@
 			this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
 			this.toolStrip2.ResumeLayout(false);
 			this.toolStrip2.PerformLayout();
-			this.tsMenu.ResumeLayout(false);
-			this.tsMenu.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -304,8 +300,8 @@
 		private System.Windows.Forms.ToolStripButton btnLogOut;
 		private System.Windows.Forms.ToolStripButton btnPrint;
 		private System.Windows.Forms.ToolStripButton btnClear;
-		private System.Windows.Forms.ToolStripLabel toolStripLabel1;
 		private System.Windows.Forms.ToolStrip tsMenu;
+		private System.Windows.Forms.Timer timer1;
 	}
 }
 

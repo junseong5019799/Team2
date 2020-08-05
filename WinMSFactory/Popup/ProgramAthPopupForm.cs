@@ -37,7 +37,7 @@ namespace WinMSFactory
 					cboProg_id.SelectedValue = programAthVO.Prog_id;
 					chkProg_search.Checked = programAthVO.Prog_search == "Y";
 					chkProg_add.Checked = programAthVO.Prog_add == "Y";
-					chkProg_delect.Checked = programAthVO.Prog_delect == "Y";
+					chkProg_delete.Checked = programAthVO.Prog_delete == "Y";
 					chkProg_save.Checked = programAthVO.Prog_save == "Y";
 					chkProg_excel.Checked = programAthVO.Prog_excel == "Y";
 					chkProg_print.Checked = programAthVO.Prog_print == "Y";
@@ -71,7 +71,7 @@ namespace WinMSFactory
 					Prog_id = cboProg_id.SelectedValue.ToInt(),
 					Prog_search = chkProg_search.Checked ? "Y" : "N",
 					Prog_add = chkProg_add.Checked ? "Y" : "N",
-					Prog_delect = chkProg_delect.Checked ? "Y" : "N",
+					Prog_delete = chkProg_delete.Checked ? "Y" : "N",
 					Prog_save = chkProg_save.Checked ? "Y" : "N",
 					Prog_excel = chkProg_excel.Checked ? "Y" : "N",
 					Prog_print = chkProg_print.Checked ? "Y" : "N",

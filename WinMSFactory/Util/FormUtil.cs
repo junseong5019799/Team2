@@ -217,8 +217,8 @@ namespace WinCoffeePrince2nd.Util
 		{
 			foreach (Control contorl in controls)
 			{
-				if (!contorl.Name.Contains("Search"))
-				{
+				//if (!contorl.Name.Contains("Search"))
+				//{
 					if (contorl is NumericUpDown)
 						((NumericUpDown)contorl).Value = 0;
 					else if (contorl is TextBox)
@@ -238,7 +238,7 @@ namespace WinCoffeePrince2nd.Util
 						((DateTimePicker)contorl).Value = DateTime.Now;
 					else if (contorl.Controls.Count > 0)
 						Clear(contorl.Controls);
-				}
+				//}
 			}
 		}
 

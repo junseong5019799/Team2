@@ -16,7 +16,7 @@ namespace MSFactoryVO
 		public string Module_name { get; set; }
 		public string Prog_search { get; set; }
 		public string Prog_add { get; set; }
-		public string Prog_delect { get; set; }
+		public string Prog_delete { get; set; }
 		public string Prog_save { get; set; }
 		public string Prog_excel { get; set; }
 		public string Prog_print { get; set; }

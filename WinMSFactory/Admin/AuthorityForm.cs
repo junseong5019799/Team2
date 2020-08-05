@@ -28,6 +28,7 @@ namespace WinMSFactory
 		{
 			try
 			{
+				
 				dataGridViewControl1.IsAllCheckColumnHeader = true;
 				dataGridViewControl1.AddNewColumns("권한그룹 코드", "ATH_GRP_ID", 100, false);
 				dataGridViewControl1.AddNewColumns("권한그룹 명칭", "ATH_GRP_NAME", 100);
@@ -64,14 +65,25 @@ namespace WinMSFactory
 			dataGridViewControl1.DataSource = athGrpDt;
 			dataGridViewControl2.DataSource = null;
 			ath_grp_id = 0;
+			AuthClear();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Search(object sender, EventArgs e)
 		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				athGrpDt.CaseSensitive = false;
+				DataView dv = athGrpDt.DefaultView;
+				string search = txtSearch.Text.Trim();
 
+				if (search.Length > 0)
+					dv.RowFilter = $"ATH_GRP_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
+			}
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Add(object sender, EventArgs e)
 		{
 			EmployeeVO employeeVO = this.GetEmployee();
 			AuthorityGroupPopupForm frm = new AuthorityGroupPopupForm(employeeVO);
@@ -82,25 +94,43 @@ namespace WinMSFactory
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Delete(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string ath_grp_id = dataGridViewControl1.GetCheckIDs("ATH_GRP_ID");
-
-				if (string.IsNullOrEmpty(ath_grp_id))
-					return;
-
-				if (authorityService.DeleteAuthorityGroup(ath_grp_id))
+				try
 				{
-					MessageBox.Show("정상적으로 삭제되었습니다.");
-					LoadData();
+					string ath_grp_id = dataGridViewControl1.GetCheckIDs("ATH_GRP_ID");
+
+					if (string.IsNullOrEmpty(ath_grp_id))
+						return;
+
+					if (authorityService.DeleteAuthorityGroup(ath_grp_id))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
 				}
 			}
-			catch (Exception err)
+		}
+
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				MessageBox.Show(err.Message);
+				LoadData();
 			}
+		}
+
+		private void AuthClear()
+		{
+			this.Clear();
+			ath_grp_id = 0;
+			ath_grp_name = string.Empty;
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
@@ -180,6 +210,12 @@ namespace WinMSFactory
 			{
 				LoadData();
 			}
+		}
+
+		private void txtAth_grp_name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				Search(null, null);
 		}
 	}
 }

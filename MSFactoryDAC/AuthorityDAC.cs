@@ -37,7 +37,7 @@ namespace MSFactoryDAC
 		public DataTable GetProgramAths(int ath_grp_id)
 		{
 			string sql = @"SELECT PA.ATH_GRP_ID, AG.ATH_GRP_NAME, PA.PROG_ID, P.PROG_NAME, P.PROG_FORM_NAME, M.MODULE_ID, M.MODULE_NAME
-									, PA.PROG_SEARCH, PA.PROG_ADD, PA.PROG_DELECT, PA.PROG_SAVE, PA.PROG_EXCEL, PROG_PRINT, PROG_CLEAR
+									, PA.PROG_SEARCH, PA.PROG_ADD, PA.PROG_DELETE, PA.PROG_SAVE, PA.PROG_EXCEL, PROG_PRINT, PROG_CLEAR
 						   FROM TBL_PROGRAM_ATH PA
 								INNER JOIN TBL_AUTHORITY_GROUP AG
 									ON AG.ATH_GRP_ID = PA.ATH_GRP_ID
@@ -58,7 +58,7 @@ namespace MSFactoryDAC
 
 		public ProgramAthVO GetProgramAth(int ath_grp_id, int prog_id)
 		{
-			string sql = @"SELECT PA.ATH_GRP_ID, PA.PROG_ID, PA.PROG_SEARCH, PA.PROG_ADD, PA.PROG_DELECT
+			string sql = @"SELECT PA.ATH_GRP_ID, PA.PROG_ID, PA.PROG_SEARCH, PA.PROG_ADD, PA.PROG_DELETE
 								, PA.PROG_SAVE, PA.PROG_EXCEL, PA.PROG_PRINT, PA.PROG_CLEAR, P.MODULE_ID
 						   FROM TBL_PROGRAM_ATH PA
 								INNER JOIN TBL_PROGRAM P
@@ -75,7 +75,7 @@ namespace MSFactoryDAC
 
 		public bool SaveProgramAth(ProgramAthVO programAthVO)
 		{
-			return NotSelectSPJ<ProgramAthVO>("SP_SAVE_PROGRAM_ATH", programAthVO, "Ath_grp_id", "Prog_id", "Prog_search", "Prog_add", "Prog_delect", "Prog_save", "Prog_excel", "Prog_print", "Prog_clear");
+			return NotSelectSPJ<ProgramAthVO>("SP_SAVE_PROGRAM_ATH", programAthVO, "Ath_grp_id", "Prog_id", "Prog_search", "Prog_add", "Prog_delete", "Prog_save", "Prog_excel", "Prog_print", "Prog_clear");
 		}
 
 		public bool DeleteAuthorityGroup(string ath_grp_id)

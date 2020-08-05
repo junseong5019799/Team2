@@ -11,7 +11,7 @@ using WinMSFactory.Services;
 
 namespace WinMSFactory.Popup
 {
-	public partial class LoginForm : WinMSFactory.PopUpDialogForm
+	public partial class LoginForm : Form
 	{
 		EmployeeService employeeService = new EmployeeService();
 
@@ -22,7 +22,8 @@ namespace WinMSFactory.Popup
 			InitializeComponent();
 		}
 
-		private void btnConfirm_Click(object sender, EventArgs e)
+
+		private void btnLogin_Click(object sender, EventArgs e)
 		{
 			try
 			{
@@ -40,7 +41,7 @@ namespace WinMSFactory.Popup
 					this.Close();
 				}
 				else
-				{ 
+				{
 					MessageBox.Show("로그인에 실패했습니다. ID혹은 비밀번호를 확인해주세요.");
 					txtEmployee_pwd.Focus();
 				}
@@ -51,16 +52,16 @@ namespace WinMSFactory.Popup
 			}
 		}
 
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
 		private void button1_Click(object sender, EventArgs e)
 		{
 			txtEmployee_id.Text = "admin";
 			txtEmployee_pwd.Text = "1234";
-			btnConfirm.PerformClick();
-		}
-
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			this.Close();
+			btnLogin.PerformClick();
 		}
 	}
 }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
@@ -24,6 +25,7 @@ namespace WinMSFactory
         public event EventHandler Excel;
         public event EventHandler Print;
         public event EventHandler Clear;
+        int index;  // 메뉴 모듈 index(timer에서 사용)
 
         public EmployeeVO Employee { get; set; }
         public bool BtnSearchVisible
@@ -65,7 +67,8 @@ namespace WinMSFactory
             ShowLoginForm();
         }
 
-        private void MainForm_MdiChildActivate(object sender, EventArgs e)
+		#region tab
+		private void MainForm_MdiChildActivate(object sender, EventArgs e)
         {
             if (this.ActiveMdiChild == null)
                 mainTabControl1.Visible = false;
@@ -127,13 +130,9 @@ namespace WinMSFactory
                 }
             }
         }
+		#endregion
 
-
-        private void tsbLogOut_Click(object sender, EventArgs e)
-        {
-            ShowLoginForm();
-        }
-
+		#region menuBtn
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (Search != null)
@@ -176,7 +175,13 @@ namespace WinMSFactory
                 Clear(sender, new EventArgs());
         }
 
-        private void ShowLoginForm()
+        private void tsbLogOut_Click(object sender, EventArgs e)
+        {
+            ShowLoginForm();
+        }
+		#endregion
+
+		private void ShowLoginForm()
         {
             this.Hide();
 
@@ -202,28 +207,50 @@ namespace WinMSFactory
         private void ShowMenu()
         {
             DataTable dt = new AuthorityService().GetProgramAths(Employee.Ath_grp_id);
-            string moduleID;
-            ToolStripButton tsbPrent = null;
+            int cnt = 0;
+            string moduleID = string.Empty;
 
             foreach (DataRow dr in dt.Rows)
             {
-                moduleID = dr["MODULE_ID"].ToString();
-
-                if (tsbPrent == null || tsbPrent.Tag?.ToString() != moduleID)
+                if (string.IsNullOrEmpty(moduleID) || dr["MODULE_ID"].ToString() != moduleID)
                 {
+                    moduleID = dr["MODULE_ID"].ToString();
                     ToolStripButton tsbM = new ToolStripButton();
+                    tsbM.Tag = ++cnt;
                     tsbM.Text = dr["MODULE_NAME"].ToString();
-                    tsbM.Tag = moduleID;
                     tsbM.BackColor = Color.AliceBlue;
+                    tsbM.Click += (sender, e) =>
+                    {
+                        if (!timer1.Enabled)
+                        { 
+                            index = ((ToolStripButton)sender).Tag.ToInt();
+                            timer1.Start();
+                        }
+                    };
                     tsMenu.Items.Add(tsbM);
-                    tsbPrent = tsbM;
-                    //tsmiPrent.DropDownItems.Add(tsmi);
                 }
 
                 ToolStripButton tsbP = new ToolStripButton();
                 tsbP.Text = dr["PROG_NAME"].ToString();
                 tsbP.Click += (sender, e) => this.MdiChildrenShow(mainTabControl1, dr);
-				tsMenu.Items.Add(tsbP);
+                tsbP.Visible = false;
+                tsMenu.Items.Add(tsbP);
+                cnt++;
+            }
+        }
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+            ToolStripItem tsi;
+
+            if (index < tsMenu.Items.Count && (tsi = tsMenu.Items[index]).Tag.ToInt() == 0)
+            {
+                tsi.Visible = !tsi.Visible;
+                index++;
+            }
+            else
+            { 
+                timer1.Stop();
             }
         }
 	}

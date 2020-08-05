@@ -10,6 +10,7 @@ namespace MSFactoryVO
 	{
 		public string Sort_id { get; set; }
 		public string Sort_name { get; set; }
+		public int Sort_seq { get; set; }
 		public string Note { get; set; }
 	}
 }

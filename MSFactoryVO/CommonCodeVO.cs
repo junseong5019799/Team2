@@ -11,6 +11,7 @@ namespace MSFactoryVO
 		public string Common_id { get; set; }
 		public string Sort_id { get; set; }
 		public string Common_name { get; set; }
+		public int Common_seq { get; set; }
 		public string Note { get; set; }
 		public string Sort_name { get; set; }
 	}
