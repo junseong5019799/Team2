@@ -270,31 +270,5 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
-
-        public DataTable CompanyPrint(string selCompany)
-        {
-            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-            {
-                DataTable dt = new DataTable();
-
-                string sql = @"with cp as (
-	                                select company_id, product_name
-	                                  from TBL_COMPANY_PRODUCT cp, TBL_PRODUCT p 
-                                     where cp.product_id = p.product_id
-                                )
-                                select company_id, company_name, company_type, 
-                                      (SELECT distinct STUFF((SELECT ',' + product_name 
-	                                     FROM cp where cp.company_id = c.company_id FOR XML PATH('')), 1, 1, '') AS DD 
-		                                 FROM cp where cp.company_id = c.company_id ) as company_product
-                                from TBL_COMPANY C
-                                where company_id in (" + selCompany + ")";
-
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                da.Fill(dt);
-                conn.Close();
-
-                return dt;
-            }
-        }
     }
 }

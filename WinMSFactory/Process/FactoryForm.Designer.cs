@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory
+﻿namespace WinMSFactory.Process
 {
     partial class FactoryForm
     {

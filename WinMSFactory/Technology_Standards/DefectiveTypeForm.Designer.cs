@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory
+﻿namespace WinMSFactory.Technology_Standards
 {
     partial class DefectiveTypeForm
     {

@@ -107,23 +107,23 @@
     <Compile Include="Admin\SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BarcodePortSettingPopForm.cs">
+    <Compile Include="Popup\BarcodePortSettingPopForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BarcodePortSettingPopForm.Designer.cs">
+    <Compile Include="Popup\BarcodePortSettingPopForm.Designer.cs">
       <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Barcode\BarcodeEmployee.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Barcode\BarcodeEmployee.Designer.cs">
+      <DependentUpon>BarcodeEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Barcode\BarcodeOrder.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Barcode\BarcodeOrder.Designer.cs">
       <DependentUpon>BarcodeOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Barcode\ReportPreviewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Barcode\ReportPreviewForm.Designer.cs">
-      <DependentUpon>ReportPreviewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseForm\BasicForm.cs">
       <SubType>Form</SubType>
@@ -172,12 +172,6 @@
     </Compile>
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyXtraReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CompanyXtraReport.Designer.cs">
-      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\ProductPriceDialogForm.cs">
       <SubType>Form</SubType>
@@ -280,6 +274,12 @@
     </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -516,14 +516,14 @@
     <EmbeddedResource Include="Admin\SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BarcodePortSettingPopForm.resx">
+    <EmbeddedResource Include="Popup\BarcodePortSettingPopForm.resx">
       <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\BarcodeEmployee.resx">
+      <DependentUpon>BarcodeEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\BarcodeOrder.resx">
       <DependentUpon>BarcodeOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Barcode\ReportPreviewForm.resx">
-      <DependentUpon>ReportPreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\BasicForm.resx">
       <DependentUpon>BasicForm.cs</DependentUpon>
@@ -548,9 +548,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CompanyXtraReport.resx">
-      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\ProductPriceDialogForm.resx">
       <DependentUpon>ProductPriceDialogForm.cs</DependentUpon>
@@ -623,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>

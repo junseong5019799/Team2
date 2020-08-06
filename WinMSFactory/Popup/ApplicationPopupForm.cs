@@ -17,34 +17,27 @@ namespace WinMSFactory
 		int app_id;
 		ApplicationService applicationService = new ApplicationService();
 
-		public ApplicationPopupForm(EmployeeVO employeeVO)
+		public ApplicationPopupForm(EmployeeVO employeeVO, int app_id = 0)
 		{
 			try
 			{
 				InitializeComponent();
 				this.employeeVO = employeeVO;
-				this.Text = app_id > 0 ? "어플리케이션 수정" : "어플리케이션 등록";
-			}
-			catch (Exception err)
-			{
-				MessageBox.Show(err.Message);
-			}
-		}
-
-		public ApplicationPopupForm(EmployeeVO employeeVO, int app_id) : this(employeeVO)
-		{
-			try
-			{
 				this.app_id = app_id;
-				ApplicationVO applicationVO = applicationService.GetApplication(app_id);
+				this.Text = app_id > 0 ? "어플리케이션 수정" : "어플리케이션 등록";
 
-				txtApp_name.Text = applicationVO.App_name;
-				nudApp_seq.Value = applicationVO.App_seq;
+				if (app_id > 0)
+				{
+					ApplicationVO applicationVO = applicationService.GetApplication(app_id);
 
-				if (applicationVO.App_use == "Y")
-					rdoApp_useY.Checked = true;
-				else
-					rdoApp_useN.Checked = true;
+					txtApp_name.Text = applicationVO.App_name;
+					nudApp_seq.Value = applicationVO.App_seq;
+
+					if (applicationVO.App_use == "Y")
+						rdoApp_useY.Checked = true;
+					else
+						rdoApp_useN.Checked = true;
+				}
 			}
 			catch (Exception err)
 			{
@@ -62,14 +55,14 @@ namespace WinMSFactory
 				ApplicationVO applicationVO = new ApplicationVO
 				{
 					App_id = app_id,
-					App_name = txtApp_name.Text,
+					App_name = txtApp_name.Text.Trim(),
 					App_seq = (int)nudApp_seq.Value,
 					App_use = rdoApp_useY.Checked ? "Y" : "N",
 					Regist_employee = employeeVO.Employee_id
 				};
 
 				if (applicationService.SaveApplication(applicationVO))
-				{ 
+				{
 					MessageBox.Show("정상적으로 저장되었습니다.");
 					this.DialogResult = DialogResult.OK;
 					this.Close();
@@ -86,4 +79,4 @@ namespace WinMSFactory
 			this.Close();
 		}
 	}
-} 
+}

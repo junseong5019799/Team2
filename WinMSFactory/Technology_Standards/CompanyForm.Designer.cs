@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory
+﻿namespace WinMSFactory.Technology_Standards
 {
     partial class CompanyForm
     {
@@ -219,7 +219,6 @@
             this.buttonControl1.TabIndex = 36;
             this.buttonControl1.Text = "바코드 생성";
             this.buttonControl1.UseVisualStyleBackColor = false;
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // CompanyForm
             // 

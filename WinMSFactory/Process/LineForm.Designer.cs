@@ -1,5 +1,5 @@
-﻿namespace WinMSFactory
-{ 
+﻿namespace WinMSFactory.Process
+{
     partial class LineForm
     {
         /// <summary>

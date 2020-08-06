@@ -32,13 +32,16 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cboProg_id = new System.Windows.Forms.ComboBox();
-			this.chkProg_select = new System.Windows.Forms.CheckBox();
-			this.chkProg_insert = new System.Windows.Forms.CheckBox();
-			this.chkProg_delect = new System.Windows.Forms.CheckBox();
+			this.chkProg_search = new System.Windows.Forms.CheckBox();
+			this.chkProg_add = new System.Windows.Forms.CheckBox();
+			this.chkProg_delete = new System.Windows.Forms.CheckBox();
 			this.chkProg_save = new System.Windows.Forms.CheckBox();
 			this.chkProg_excel = new System.Windows.Forms.CheckBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.lblAth_grp_name = new System.Windows.Forms.Label();
+			this.chkProg_print = new System.Windows.Forms.CheckBox();
+			this.chkProg_barcode = new System.Windows.Forms.CheckBox();
+			this.chkProg_clear = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -93,35 +96,35 @@
 			this.cboProg_id.Size = new System.Drawing.Size(121, 24);
 			this.cboProg_id.TabIndex = 1;
 			// 
-			// chkProg_select
+			// chkProg_search
 			// 
-			this.chkProg_select.AutoSize = true;
-			this.chkProg_select.Location = new System.Drawing.Point(129, 198);
-			this.chkProg_select.Name = "chkProg_select";
-			this.chkProg_select.Size = new System.Drawing.Size(49, 20);
-			this.chkProg_select.TabIndex = 2;
-			this.chkProg_select.Text = "조회";
-			this.chkProg_select.UseVisualStyleBackColor = true;
+			this.chkProg_search.AutoSize = true;
+			this.chkProg_search.Location = new System.Drawing.Point(129, 198);
+			this.chkProg_search.Name = "chkProg_search";
+			this.chkProg_search.Size = new System.Drawing.Size(49, 20);
+			this.chkProg_search.TabIndex = 2;
+			this.chkProg_search.Text = "조회";
+			this.chkProg_search.UseVisualStyleBackColor = true;
 			// 
-			// chkProg_insert
+			// chkProg_add
 			// 
-			this.chkProg_insert.AutoSize = true;
-			this.chkProg_insert.Location = new System.Drawing.Point(197, 198);
-			this.chkProg_insert.Name = "chkProg_insert";
-			this.chkProg_insert.Size = new System.Drawing.Size(49, 20);
-			this.chkProg_insert.TabIndex = 3;
-			this.chkProg_insert.Text = "추가";
-			this.chkProg_insert.UseVisualStyleBackColor = true;
+			this.chkProg_add.AutoSize = true;
+			this.chkProg_add.Location = new System.Drawing.Point(197, 198);
+			this.chkProg_add.Name = "chkProg_add";
+			this.chkProg_add.Size = new System.Drawing.Size(49, 20);
+			this.chkProg_add.TabIndex = 3;
+			this.chkProg_add.Text = "추가";
+			this.chkProg_add.UseVisualStyleBackColor = true;
 			// 
-			// chkProg_delect
+			// chkProg_delete
 			// 
-			this.chkProg_delect.AutoSize = true;
-			this.chkProg_delect.Location = new System.Drawing.Point(265, 198);
-			this.chkProg_delect.Name = "chkProg_delect";
-			this.chkProg_delect.Size = new System.Drawing.Size(49, 20);
-			this.chkProg_delect.TabIndex = 4;
-			this.chkProg_delect.Text = "삭제";
-			this.chkProg_delect.UseVisualStyleBackColor = true;
+			this.chkProg_delete.AutoSize = true;
+			this.chkProg_delete.Location = new System.Drawing.Point(265, 198);
+			this.chkProg_delete.Name = "chkProg_delete";
+			this.chkProg_delete.Size = new System.Drawing.Size(49, 20);
+			this.chkProg_delete.TabIndex = 4;
+			this.chkProg_delete.Text = "삭제";
+			this.chkProg_delete.UseVisualStyleBackColor = true;
 			// 
 			// chkProg_save
 			// 
@@ -161,15 +164,48 @@
 			this.lblAth_grp_name.TabIndex = 21;
 			this.lblAth_grp_name.Text = "권한그룹";
 			// 
+			// chkProg_print
+			// 
+			this.chkProg_print.AutoSize = true;
+			this.chkProg_print.Location = new System.Drawing.Point(265, 229);
+			this.chkProg_print.Name = "chkProg_print";
+			this.chkProg_print.Size = new System.Drawing.Size(49, 20);
+			this.chkProg_print.TabIndex = 7;
+			this.chkProg_print.Text = "출력";
+			this.chkProg_print.UseVisualStyleBackColor = true;
+			// 
+			// chkProg_barcode
+			// 
+			this.chkProg_barcode.AutoSize = true;
+			this.chkProg_barcode.Location = new System.Drawing.Point(129, 256);
+			this.chkProg_barcode.Name = "chkProg_barcode";
+			this.chkProg_barcode.Size = new System.Drawing.Size(60, 20);
+			this.chkProg_barcode.TabIndex = 8;
+			this.chkProg_barcode.Text = "바코드";
+			this.chkProg_barcode.UseVisualStyleBackColor = true;
+			// 
+			// chkProg_clear
+			// 
+			this.chkProg_clear.AutoSize = true;
+			this.chkProg_clear.Location = new System.Drawing.Point(197, 256);
+			this.chkProg_clear.Name = "chkProg_clear";
+			this.chkProg_clear.Size = new System.Drawing.Size(60, 20);
+			this.chkProg_clear.TabIndex = 8;
+			this.chkProg_clear.Text = "초기화";
+			this.chkProg_clear.UseVisualStyleBackColor = true;
+			// 
 			// ProgramAthPopupForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.ClientSize = new System.Drawing.Size(350, 327);
-			this.Controls.Add(this.chkProg_delect);
+			this.Controls.Add(this.chkProg_delete);
+			this.Controls.Add(this.chkProg_clear);
+			this.Controls.Add(this.chkProg_barcode);
+			this.Controls.Add(this.chkProg_print);
 			this.Controls.Add(this.chkProg_excel);
 			this.Controls.Add(this.chkProg_save);
-			this.Controls.Add(this.chkProg_insert);
-			this.Controls.Add(this.chkProg_select);
+			this.Controls.Add(this.chkProg_add);
+			this.Controls.Add(this.chkProg_search);
 			this.Controls.Add(this.cboProg_id);
 			this.Controls.Add(this.cboModule_id);
 			this.Controls.Add(this.label4);
@@ -184,11 +220,14 @@
 			this.Controls.SetChildIndex(this.label4, 0);
 			this.Controls.SetChildIndex(this.cboModule_id, 0);
 			this.Controls.SetChildIndex(this.cboProg_id, 0);
-			this.Controls.SetChildIndex(this.chkProg_select, 0);
-			this.Controls.SetChildIndex(this.chkProg_insert, 0);
+			this.Controls.SetChildIndex(this.chkProg_search, 0);
+			this.Controls.SetChildIndex(this.chkProg_add, 0);
 			this.Controls.SetChildIndex(this.chkProg_save, 0);
 			this.Controls.SetChildIndex(this.chkProg_excel, 0);
-			this.Controls.SetChildIndex(this.chkProg_delect, 0);
+			this.Controls.SetChildIndex(this.chkProg_print, 0);
+			this.Controls.SetChildIndex(this.chkProg_barcode, 0);
+			this.Controls.SetChildIndex(this.chkProg_clear, 0);
+			this.Controls.SetChildIndex(this.chkProg_delete, 0);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -201,12 +240,15 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cboProg_id;
-		private System.Windows.Forms.CheckBox chkProg_select;
-		private System.Windows.Forms.CheckBox chkProg_insert;
-		private System.Windows.Forms.CheckBox chkProg_delect;
+		private System.Windows.Forms.CheckBox chkProg_search;
+		private System.Windows.Forms.CheckBox chkProg_add;
+		private System.Windows.Forms.CheckBox chkProg_delete;
 		private System.Windows.Forms.CheckBox chkProg_save;
 		private System.Windows.Forms.CheckBox chkProg_excel;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblAth_grp_name;
+		private System.Windows.Forms.CheckBox chkProg_print;
+		private System.Windows.Forms.CheckBox chkProg_barcode;
+		private System.Windows.Forms.CheckBox chkProg_clear;
 	}
 }

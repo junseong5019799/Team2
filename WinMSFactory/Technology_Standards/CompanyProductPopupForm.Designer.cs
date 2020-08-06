@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory
+﻿namespace WinMSFactory.TechnologyStandards
 {
     partial class CompanyProductPopupForm
     {

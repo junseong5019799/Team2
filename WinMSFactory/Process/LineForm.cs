@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory
+namespace WinMSFactory.Process
 {
     public partial class LineForm : ListForm
     {

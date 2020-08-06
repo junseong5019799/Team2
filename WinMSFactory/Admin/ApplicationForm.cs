@@ -29,7 +29,7 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("어플리케이션 코드", "APP_ID", 100, false);
 				dataGridViewControl1.AddNewColumns("어플리케이션", "APP_NAME", 100);
 				dataGridViewControl1.AddNewColumns("사용여부", "APP_USE", 100);
-				dataGridViewControl1.AddNewColumns("순번", "APP_SEQ", 100);
+				dataGridViewControl1.AddNewColumns("순번", "APP_SEQ", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("최초등록시간", "FIRST_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최초등록사원", "FIRST_REGIST_EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록시간", "FINAL_REGIST_TIME", 100);
@@ -47,43 +47,73 @@ namespace WinMSFactory
 		{
 			dt = applicationService.GetAllApplications();
 			dataGridViewControl1.DataSource = dt;
+			AppClear();
 		}
 
-		private void button1_Click(object sender, EventArgs e) //조회
+		private void Search(object sender, EventArgs e)
 		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				dt.CaseSensitive = false;
+				DataView dv = dt.DefaultView;
+				string search = txtSearch.Text.Trim();
 
+				if (search.Length > 0)
+					dv.RowFilter = $"APP_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
+			}
 		}
 
-		private void button2_Click(object sender, EventArgs e) //추가
+		private void Add(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
-			ApplicationPopupForm frm = new ApplicationPopupForm(employeeVO);
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				EmployeeVO employeeVO = this.GetEmployee();
+				ApplicationPopupForm frm = new ApplicationPopupForm(employeeVO);
 
-			if (frm.ShowDialog() == DialogResult.OK)
+				if (frm.ShowDialog() == DialogResult.OK)
+				{
+					LoadData();
+				}
+			}
+		}
+
+		private void Delete(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				try
+				{
+					string app_id = dataGridViewControl1.GetCheckIDs("APP_ID");
+
+					if (string.IsNullOrEmpty(app_id))
+						return;
+
+					if (applicationService.DeleteApplication(app_id))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
+				}
+			}
+		}
+
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
 				LoadData();
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)  //삭제
+		private void AppClear()
 		{
-			try
-			{
-				string app_id = dataGridViewControl1.GetCheckIDs("APP_ID");
-
-				if (string.IsNullOrEmpty(app_id))
-					return;
-
-				if (applicationService.DeleteApplication(app_id))
-				{ 
-					MessageBox.Show("정상적으로 삭제되었습니다.");
-					LoadData();
-				}
-			}
-			catch (Exception err)
-			{
-				MessageBox.Show(err.Message);
-			}
+			this.Clear();
 		}
 
 		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -91,7 +121,7 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			int app_id = dataGridViewControl1["APP_ID", e.RowIndex].Value.ToInt();
 			ApplicationPopupForm frm = new ApplicationPopupForm(employeeVO, app_id);
 

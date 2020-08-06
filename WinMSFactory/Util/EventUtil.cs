@@ -15,60 +15,75 @@ namespace WinCoffeePrince2nd.Util
 {
 	public class EventUtil
 	{
-		private List<MethodInfo> mInfoList;
-		private bool tsbSearchVisible;
-		private bool tsbSaveVisible;
-		private bool tsbDeleteVisible;
-		private bool tsbNewVisible;
+		List<MethodInfo> mInfoList;
+		bool btnSearchVisible;
+		bool btnAddVisible;
+		bool btnSaveVisible;
+		bool btnDeleteVisible;
+		bool btnExcelVisible;
+		bool btnPrintVisible;
+		bool btnBarcodeVisible;
+		bool btnClearVisible;
 
-		//private void New(object sender, EventArgs e)
+		//private void Search(object sender, EventArgs e)
 		//{
 		//	if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 		//	{
-		//		btnNew.PerformClick();
+
 		//	}
 		//}
 
-		//public void CommonEvent(Form frm, IEnumerable<MethodVO> methods)
-		//{
-		//	this.mInfoList = new List<MethodInfo>();
-		//	Type type = frm.GetType();
-		//	Type thisType = this.GetType();
+		public void CommonEvent(Form frm, DataRow authDr)
+		{
+			this.mInfoList = new List<MethodInfo>();
+			Type type = frm.GetType();
+			Type thisType = this.GetType();
 
-		//	foreach (var method in methods)
-		//	{
-		//		string methodID = method.Method_id;
-		//		FieldInfo fieldInfo = thisType.GetField("tsb" + methodID + "Visible", BindingFlags.NonPublic | BindingFlags.Instance);
+			foreach (DataColumn dc in authDr.Table.Columns)
+			{
+				string columnName = dc.ColumnName;
 
-		//		if (fieldInfo != null)
-		//		{
-		//			if (method.Method_usable == "Y")
-		//			{
-		//				MethodInfo mInfo = type.GetMethod(methodID, BindingFlags.NonPublic | BindingFlags.Instance);
+				if (!columnName.Contains("PROG_"))
+					continue;
 
-		//				if (mInfo != null && mInfo.ReturnType == typeof(void) && IsBtnEventParameters(mInfo))
-		//				{
-		//					mInfoList.Add(mInfo);
-		//				}
+				string methodName = GetMethodName(columnName);
+				FieldInfo fieldInfo = thisType.GetField("btn" + methodName + "Visible", BindingFlags.NonPublic | BindingFlags.Instance);
 
-		//				fieldInfo.SetValue(this, true);
-		//			}
-		//			else
-		//				fieldInfo.SetValue(this, false);
-		//		}
-		//	}
+				if (fieldInfo != null)
+				{
+					if (authDr[columnName].ToString() == "Y")
+					{
+						MethodInfo mInfo = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
 
-		//	frm.Load += Form_load;
-		//	frm.FormClosing += Form_FormClosing;
-		//	frm.Activated += Form_Activated;
-		//	frm.Deactivate += Form_Deactivate;
-		//	frm.Shown += Form_Shown_dgvClearSelection;
-		//}
+						AddMethod(type, methodName);
+						fieldInfo.SetValue(this, true);
+					}
+					else
+						fieldInfo.SetValue(this, false);
+				}
+			}
+
+			AddMethod(type, "Readed");
+
+			frm.Load += Form_load;
+			frm.FormClosing += Form_FormClosing;
+			frm.Activated += Form_Activated;
+			frm.Deactivate += Form_Deactivate;
+			frm.Shown += Form_Shown_dgvClearSelection;
+		}
+
+		private void AddMethod(Type type, string methodName)
+		{
+			MethodInfo mInfo = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+			if (mInfo != null && mInfo.ReturnType == typeof(void) && IsBtnEventParameters(mInfo))
+				mInfoList.Add(mInfo);
+		}
 
 		private bool IsBtnEventParameters(MethodInfo mInfo)
 		{
 			ParameterInfo[] pInfos = mInfo.GetParameters();
-			Type[] parameterTypes = { typeof(object), typeof(EventArgs) };
+			Type[] parameterTypes = { typeof(object), typeof(EventArgs), typeof(ReadEventArgs) };
 
 			foreach (ParameterInfo pInfo in pInfos)
 			{
@@ -114,25 +129,33 @@ namespace WinCoffeePrince2nd.Util
 			}
 		}
 
-		//private void Form_Activated(object sender, EventArgs e)
-		//{
-		//	MainForm mainFrm = GetMdiParent(sender);
+		private void Form_Activated(object sender, EventArgs e)
+		{
+			MainForm mainFrm = GetMdiParent(sender);
 
-		//	mainFrm.TsbSearchVisible = tsbSearchVisible;
-		//	mainFrm.TsbSaveVisible = tsbSaveVisible;
-		//	mainFrm.TsbDeleteVisible = tsbDeleteVisible;
-		//	mainFrm.TsbNewVisible = tsbNewVisible;
-		//}
+			mainFrm.BtnSearchVisible = btnSearchVisible;
+			mainFrm.BtnAddVisible = btnAddVisible;
+			mainFrm.BtnSaveVisible = btnSaveVisible;
+			mainFrm.BtnDeleteVisible = btnDeleteVisible;
+			mainFrm.BtnExcelVisible = btnExcelVisible;
+			mainFrm.BtnPrintVisible = btnPrintVisible;
+			mainFrm.BtnBarcodeVisible = btnBarcodeVisible;
+			mainFrm.BtnClearVisible = btnClearVisible;
+		}
 
-		//private void Form_Deactivate(object sender, EventArgs e)
-		//{
-		//	MainForm mainFrm = GetMdiParent(sender);
+		private void Form_Deactivate(object sender, EventArgs e)
+		{
+			MainForm mainFrm = GetMdiParent(sender);
 
-		//	mainFrm.TsbSearchVisible = false;
-		//	mainFrm.TsbSaveVisible = false;
-		//	mainFrm.TsbDeleteVisible = false;
-		//	mainFrm.TsbNewVisible = false;
-		//}
+			mainFrm.BtnSearchVisible = false;
+			mainFrm.BtnAddVisible = false;
+			mainFrm.BtnSaveVisible = false;
+			mainFrm.BtnDeleteVisible = false;
+			mainFrm.BtnExcelVisible = false;
+			mainFrm.BtnPrintVisible = false;
+			mainFrm.BtnBarcodeVisible = false;
+			mainFrm.BtnClearVisible = false;
+		}
 
 		private MainForm GetMdiParent(object sender)
 		{
@@ -168,6 +191,18 @@ namespace WinCoffeePrince2nd.Util
 				if (ctr is DataGridView)
 					((DataGridView)ctr).ClearSelection();
 			}
+		}
+
+		private string GetMethodName(string methodName)
+		{
+			if (!string.IsNullOrEmpty(methodName) && methodName.Length > 1)
+			{
+				methodName = methodName.ToLower();
+				methodName = methodName.Replace("prog_", "");
+				methodName = methodName.Substring(0, 1).ToUpper() + methodName.Substring(1, methodName.Length - 1);
+			}
+
+			return methodName;
 		}
 	}
 }

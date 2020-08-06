@@ -27,6 +27,22 @@ namespace WinMSFactory.Services
 			}
 		}
 
+		public DataTable GetEmployees(string employee_id)
+		{
+			using (EmployeeDAC employeeDAC = new EmployeeDAC())
+			{
+				return employeeDAC.GetEmployees(employee_id);
+			}
+		}
+
+		public EmployeeVO GetLoginEmployee(string employee_id, string employee_pwd)
+		{
+			using (EmployeeDAC employeeDAC = new EmployeeDAC())
+			{
+				return employeeDAC.GetLoginEmployee(employee_id, employee_pwd);
+			}
+		}
+
 		public bool SaveEmployee(EmployeeVO employeeVO)
 		{
 			using (EmployeeDAC employeeDAC = new EmployeeDAC())

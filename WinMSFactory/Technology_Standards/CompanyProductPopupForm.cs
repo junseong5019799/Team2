@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
-using WinMSFactory;
+using WinMSFactory.Technology_Standards;
 
-namespace WinMSFactory
+namespace WinMSFactory.TechnologyStandards
 {
     public partial class CompanyProductPopupForm : PopUpDialogForm
     {
