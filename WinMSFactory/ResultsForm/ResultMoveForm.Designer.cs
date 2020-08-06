@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.ResultForm
+﻿namespace WinMSFactory
 {
     partial class ResultMoveForm
     {
