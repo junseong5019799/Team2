@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory
-{ 
+namespace WinMSFactory.OrderForm
+{
     public partial class OrderPopUpForm : PopUpDialogForm
     {
         OrderService orderService = new OrderService();

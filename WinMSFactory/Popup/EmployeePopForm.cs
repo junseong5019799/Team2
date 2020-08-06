@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -22,6 +21,7 @@ namespace WinMSFactory
 			{
 				InitializeComponent();
 				this.employeeVO = employeeVO;
+				txtEmployee_id.Text = employee_id;
 				this.Text = !string.IsNullOrEmpty(txtEmployee_id.Text) ? "사원 수정" : "사원 등록";
 				cboAth_grp_id.ComboBinding(new AuthorityService().GetAllAuthorityGroups(), "ATH_GRP_NAME", "ATH_GRP_ID", "선택", 0);
 

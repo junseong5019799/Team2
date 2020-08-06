@@ -10,10 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
 using WinMSFactory.Popup;
 using WinMSFactory.Services;
-using WinMSFactory.Technology_Standards;
 
 namespace WinMSFactory
 {
@@ -333,7 +331,8 @@ namespace WinMSFactory
 
                 try
                 {
-                    Port.Open();
+                    if (IsHasPort(Port.PortName))
+                        Port.Open();
                 }
                 catch (Exception err)
                 {
@@ -365,6 +364,17 @@ namespace WinMSFactory
 		{
             if (Port.IsOpen)
                 Port.Close();
+        }
+
+        private bool IsHasPort(string portName)
+        {
+            foreach (string name in SerialPort.GetPortNames())
+            {
+                if (name == portName)
+                    return true;
+            }
+
+            return false;
         }
 	}
 }

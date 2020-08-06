@@ -9,9 +9,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory;
 
-namespace WinCoffeePrince2nd.Util
+namespace WinMSFactory
 {
 	public class EventUtil
 	{
@@ -186,7 +185,7 @@ namespace WinCoffeePrince2nd.Util
 		{
 			Form frm = (Form)sender;
 
-			foreach (Control ctr in frm.Controls)
+			foreach (System.Windows.Forms.Control ctr in frm.Controls)
 			{
 				if (ctr is DataGridView)
 					((DataGridView)ctr).ClearSelection();

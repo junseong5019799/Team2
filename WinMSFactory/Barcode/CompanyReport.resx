@@ -117,4 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="customSqlQuery1.Sql" xml:space="preserve">
+    <value>with cp as (
+	select company_id, product_name
+	  from TBL_COMPANY_PRODUCT cp, TBL_PRODUCT p 
+     where cp.product_id = p.product_id
+)
+select company_id, company_name, company_type, 
+      (SELECT distinct STUFF((SELECT ',' + product_name 
+	     FROM cp where cp.company_id = c.company_id FOR XML PATH('')), 1, 1, '') AS DD 
+		 FROM cp where cp.company_id = c.company_id ) as company_product
+from TBL_COMPANY C
+where company_id in (12,13,14)</value>
+  </data>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iY29tcGFueV9pZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9ImNvbXBhbnlfbmFtZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJjb21wYW55X3R5cGUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iY29tcGFueV9wcm9kdWN0IiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+  </data>
 </root>

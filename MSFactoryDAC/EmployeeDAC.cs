@@ -36,6 +36,19 @@ namespace MSFactoryDAC
 						   WHERE EMPLOYEE_ID = @EMPLOYEE_ID";
 			return SqlExecutionJ<EmployeeVO>(sql, new EmployeeVO { Employee_id = employee_id })?[0];
 		}
+		public DataTable GetEmployees(string employee_id)
+		{
+			string sql = @"SELECT EMPLOYEE_ID, CORPORATION_ID, ATH_GRP_ID, EMPLOYEE_NAME, EMPLOYEE_USE
+						   FROM TBL_EMPLOYEE
+						   WHERE EMPLOYEE_ID IN (SELECT * FROM  SPLITSTRING(@EMPLOYEE_ID, '@'))";
+			DataTable dt = new DataTable();
+			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+			da.SelectCommand.Parameters.AddWithValue("@EMPLOYEE_ID", employee_id);
+
+			da.Fill(dt);
+
+			return dt;
+		}
 
 		public EmployeeVO GetLoginEmployee(string employee_id, string employee_pwd)
 		{

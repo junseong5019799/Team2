@@ -1,12 +1,14 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.XtraReports.UI;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -40,14 +42,6 @@ namespace WinMSFactory
 			catch (Exception err)
 			{
 				MessageBox.Show(err.Message);
-			}
-		}
-
-		private void Readed(object sender, ReadEventArgs e)
-		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-			{
-				MessageBox.Show(e.ReadMsg);
 			}
 		}
 
@@ -108,12 +102,55 @@ namespace WinMSFactory
 			}
 		}
 
+		private void Barcode(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				string employee_id = dataGridViewControl1.GetCheckIDs("EMPLOYEE_ID");
+
+				if (string.IsNullOrEmpty(employee_id))
+					return;
+
+				DataTable barcodeDt = employeeService.GetEmployees(employee_id);
+				BarcodeEmployee barcodeEmployee = new BarcodeEmployee();
+				barcodeEmployee.DataSource = barcodeDt;
+
+				ReportPreviewForm frm = new ReportPreviewForm(barcodeEmployee);
+			}
+		}
+
 		private void Clear(object sender, EventArgs e)
 		{
 			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
 				LoadData();
 			}
+		}
+
+		private void Readed(object sender, ReadEventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				string employee_id = e.ReadMsg.Trim().Replace("\r", "").Replace("\n", "").Replace("+", "");
+				bool flag = false;
+
+				foreach (DataGridViewRow dgvr in dataGridViewControl1.Rows)
+				{
+					if (dgvr.Cells["EMPLOYEE_ID"].Value.ToString().ToUpper().Equals(employee_id))
+					{
+						dgvr.Selected = true;
+						flag = true;
+						break;
+					}
+				}
+
+				if (!flag)
+					MessageBox.Show("찾는 사원이 없습니다.");
+				else if (MessageBox.Show("수정페이지로 이동 하시겠습니까?", "수정", MessageBoxButtons.YesNo) == DialogResult.Yes)
+					ShowEmployee(employee_id);
+			}
+
+			((MainForm)this.MdiParent).ClearStrs();
 		}
 
 		private void EmpClear()
@@ -126,20 +163,25 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = this.GetEmployee();
 			string employee_id = dataGridViewControl1["EMPLOYEE_ID", e.RowIndex].Value.ToString();
-			EmployeePopForm frm = new EmployeePopForm(employeeVO, employee_id);
-
-			if (frm.ShowDialog() == DialogResult.OK)
-			{
-				LoadData();
-			}
+			ShowEmployee(employee_id);
 		}
 
 		private void txtEmployee_name_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (e.KeyChar == 13)
 				Search(null, null);
+		}
+
+		private void ShowEmployee(string employee_id)
+		{
+			EmployeeVO employeeVO = this.GetEmployee();
+			EmployeePopForm frm = new EmployeePopForm(employeeVO, employee_id);
+
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				LoadData();
+			}
 		}
 	}
 }
