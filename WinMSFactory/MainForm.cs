@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory.Technology_Standards;
+using WinMSFactory;
 
 namespace WinMSFactory
 {
