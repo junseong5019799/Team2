@@ -2,6 +2,7 @@
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace WinMSFactory
         {
             return dac.SelectAllProducts();
         }
-        
+
 
         public void UpdateStatus(int ItemNum, int StatusNum)
         {
@@ -26,6 +27,11 @@ namespace WinMSFactory
         public bool InsertProducts(ProductInsertVO InsertData, char IsBomCopy)
         {
             return dac.InsertProducts(InsertData, IsBomCopy);
+        }
+
+        public string SelectProductName(int codeNum)
+        {
+            return dac.SelectProductName(codeNum);
         }
 
         public bool DeleteProducts(int ProductNo)
@@ -56,6 +62,11 @@ namespace WinMSFactory
         public bool UpdateMaterialPrice(ProductPriceManageVO insertData)
         {
             return dac.UpdateMaterialPrice(insertData);
+        }
+
+        public DataTable SelectAllProductsToTable()
+        {
+            return dac.SelectAllProductsToTable();
         }
     }
 }

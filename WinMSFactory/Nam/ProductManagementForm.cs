@@ -1,11 +1,8 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.BOM;
@@ -33,7 +30,7 @@ namespace WinMSFactory
         char BomEnrollStatus = 'N';
 
         bool BomEnrollCheck;
-        
+        List<ProductVO> BarcodeList = new List<ProductVO>();
         public ProductManagementForm()
         {
             InitializeComponent();
@@ -61,7 +58,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
             dgv.AddNewColumns("사용 여부", "product_use", 100, false);
             dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
-            
+
+            dgvBarCodeColumns();
 
             SelectAllProducts = pdSv.SelectAllProducts();
 
@@ -73,6 +71,15 @@ namespace WinMSFactory
             rdoUse.CheckedChanged += rdoActive_CheckedChanged;
 
             rdoAll.Checked = true;
+
+            ((MainForm)this.MdiParent).Readed += Readed_Completed;
+
+        }
+
+        private void dgvBarCodeColumns()
+        {
+            dgvBarcode.AddNewColumns("제품 코드", "Product_ID", 100, true);
+            dgvBarcode.AddNewColumns("바코드 제품명", "Product_Name", 330, true);
         }
 
         private void ReviewDGV()
@@ -81,7 +88,7 @@ namespace WinMSFactory
 
             dgv.DataSource = pdSv.SelectAllProducts();
         }
-        
+
         private void buttonControl1_Click(object sender, EventArgs e)
         {
             ProductInfoForm frm = new ProductInfoForm();
@@ -95,15 +102,15 @@ namespace WinMSFactory
 
         private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            foreach(DataGridViewRow row in dgv.Rows)
+            foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (dgv[17, row.Index].Value.ToString() == "Y") // 사용 여부 확인
-                    dgv[4,row.Index].Value = "사용";
+                    dgv[4, row.Index].Value = "사용";
                 else
-                    dgv[4, row.Index].Value = "미사용";           
+                    dgv[4, row.Index].Value = "미사용";
 
 
-                if(dgv[2,row.Index].Value.ToString() == "재료")
+                if (dgv[2, row.Index].Value.ToString() == "재료")
                 {
                     dgv[5, row.Index].Value = "-";
                     dgv[5, row.Index].ReadOnly = true;
@@ -114,8 +121,8 @@ namespace WinMSFactory
                     dgv[5, row.Index].Value = "BOM 수정";
                     BomEnrollStatus = 'Y';
                 }
-                    
-                else if(dgv[18, row.Index].Value.ToString() == "N")
+
+                else if (dgv[18, row.Index].Value.ToString() == "N")
                 {
                     dgv[5, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';
@@ -139,8 +146,8 @@ namespace WinMSFactory
                     pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUnUsed));
                     dgv[4, e.RowIndex].Value = "사용";
                 }
-                    
-                
+
+
                 else
                 {
                     pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUsed));
@@ -148,8 +155,8 @@ namespace WinMSFactory
                 }
 
             }
-            
-            else if(e.ColumnIndex == 5)
+
+            else if (e.ColumnIndex == 5)
             {
                 if (dgv[5, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
                     BomEnrollCheck = false; // bom 미등록 상태
@@ -160,16 +167,16 @@ namespace WinMSFactory
                 else // 재료의 - 상태일 때
                     return;
 
-                BOMManageForm frm = new BOMManageForm(BomEnrollCheck,  ProductID, ProductName, BomEnrollStatus);
-                
+                BOMManageForm frm = new BOMManageForm(BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
+
                 if (frm.ShowDialog() == DialogResult.OK)
                     ReviewDGV();
                 // 재료의 - 상태는 return됨
             }
-            
+
         }
 
-        
+
         private void rdoActive_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoUse.Checked)
@@ -177,19 +184,19 @@ namespace WinMSFactory
                 UseCheck = 'Y';
                 CheckUseSortList = SelectAllProducts.FindAll(p => p.Product_Use == UseCheck.ToString());
             }
-                
+
             else if (rdoUnUse.Checked)
             {
                 UseCheck = 'N';
                 CheckUseSortList = SelectAllProducts.FindAll(p => p.Product_Use == UseCheck.ToString());
             }
-                
+
             else if (rdoAll.Checked)
             {
                 UseCheck = 'A';
                 CheckUseSortList = SelectAllProducts;
             }
-                
+
         }
 
         private void buttonControl2_Click(object sender, EventArgs e) // 검색 버튼
@@ -200,7 +207,7 @@ namespace WinMSFactory
                 {
                     dgv.DataSource = CheckUseSortList;
                 }
-                    
+
                 else
                 {
                     var SortedList = (from sort in CheckUseSortList
@@ -256,7 +263,7 @@ namespace WinMSFactory
                 {
                     ProductDelete(ProductNum);
                 }
-                    
+
             }
 
             MessageBox.Show("삭제가 완료되었습니다.");
@@ -286,7 +293,7 @@ namespace WinMSFactory
                     return;
                 }
 
-                
+
             }
         }
 
@@ -300,30 +307,27 @@ namespace WinMSFactory
         {
             BOMSelectAllForm frm = new BOMSelectAllForm(); // 상황에 따라 this.MdiParent로 바꿀 것
             frm.Show();
-            
+
         }
 
         private void btnBOMCopy_Click(object sender, EventArgs e)
         {
             List<int> Selectedlist = new List<int>();
             List<object> IsCheckedList = new List<object>();
-            
 
-            foreach(DataGridViewRow row in dgv.Rows)
+
+            foreach (DataGridViewRow row in dgv.Rows)
             {
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
 
                 // 체크되면 해당되는 제품 번호를 가져옴
-                
+
                 if (chk.Value == null)
                 {
                     IsCheckedList.Add(chk.Value);
                     continue;
                 }
-                    
-                    
-
-                if((bool)chk.Value == true)
+                if ((bool)chk.Value == true)
                 {
                     if (dgv[2, chk.RowIndex].Value.ToString() == "재료") // 재료를 체크하고 복사를 진행하는 경우
                     {
@@ -340,10 +344,10 @@ namespace WinMSFactory
             }
 
             // 체크를 안하고 복사를 진행하는 경우
-            if(IsCheckedList.Count == dgv.Rows.Count)
+            if (IsCheckedList.Count == dgv.Rows.Count)
             {
                 MessageBox.Show("체크를 한 후 복사를 진행해주시기 바랍니다.");
-                
+
                 return;
             }
 
@@ -351,6 +355,58 @@ namespace WinMSFactory
 
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
+        }
+
+        private void buttonControl1_Click_1(object sender, EventArgs e)
+        {
+            BarCodeProductBOM report = new BarCodeProductBOM();
+
+            report.DataSource = pdSv.SelectAllProductsToTable();
+            report.CreateDocument();
+
+            ReportPreviewForm frm = new ReportPreviewForm(report);
+
+        }
+
+        private void Readed_Completed(object sender, ReadEventArgs e)
+        {
+            ((MainForm)this.MdiParent).ClearStrs();
+
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                if (e.ReadMsg.Contains("N")) // 재료 선택시
+                {
+                    MessageBox.Show("재료의 BOM 정보가 없으므로 복사를 진행하실 수 없습니다.");
+                    return;
+                }
+                int CodeNum = e.ReadMsg.Substring(0, 4).ToInt();
+
+                BarcodeList.Add(new ProductVO
+                {
+                    Product_ID = CodeNum,
+                    Product_Name = pdSv.SelectProductName(CodeNum)
+                });
+            }
+
+            dgvBarcode.DataSource = null;
+            dgvBarcode.DataSource = BarcodeList;
+
+        }
+        private void btnBOMBarcodeCopy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnbarCopy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBarDelete_Click(object sender, EventArgs e)
+        {
+            dgvBarcode.DataSource = null;
+            BarcodeList.Clear();
+            dgvBarCodeColumns();
         }
     }
 }

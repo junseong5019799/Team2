@@ -115,7 +115,8 @@ namespace WinMSFactory
 				DataTable barcodeDt = employeeService.GetEmployees(employee_id);
 				BarcodeEmployee barcodeEmployee = new BarcodeEmployee();
 				barcodeEmployee.DataSource = barcodeDt;
-				barcodeEmployee.ShowRibbonPreviewDialog();
+
+				ReportPreviewForm frm = new ReportPreviewForm(barcodeEmployee);
 			}
 		}
 
