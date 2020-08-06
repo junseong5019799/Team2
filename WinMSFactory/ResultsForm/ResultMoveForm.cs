@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.ResultForm
+namespace WinMSFactory
 {
     public partial class ResultMoveForm : ListListForm
     {
@@ -21,7 +21,6 @@ namespace WinMSFactory.ResultForm
 
         private void ResultMoveForm_Load(object sender, EventArgs e)
         {
-
             dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
             dgv.AddNewColumns("품목", "Product_Id", 150, false);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
@@ -71,8 +70,7 @@ namespace WinMSFactory.ResultForm
                 }
             }
             frm.ID = list;
-            frm.Show();
-
+            frm.Show();            
         }
 
 

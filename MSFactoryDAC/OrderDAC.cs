@@ -231,12 +231,12 @@ namespace MSFactoryDAC
             }
         }
 
-            /// <summary>
-            /// 발주 등록
-            /// </summary>
-            /// <param name="order"></param>
-            /// <returns></returns>
-            public bool InsertOrder(OrderVO order)
+        /// <summary>
+        /// 발주 등록
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public bool InsertOrder(OrderVO order)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -303,17 +303,32 @@ namespace MSFactoryDAC
                     cmd.Parameters.AddWithValue("@warehouse_quantity", vo.warehouse_quantity);
                     cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
 
-                    cmd.ExecuteNonQuery();
+                    int num = Convert.ToInt32(cmd.ExecuteScalar());
 
                     cmd.CommandText = "SP_STOCK_UPDATE";
                     cmd.Parameters.Clear();
 
+                    cmd.Parameters.AddWithValue("@warehouse_no", num);
+                    cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
                     cmd.Parameters.AddWithValue("@order_no", vo.order_no);
                     cmd.Parameters.AddWithValue("@product_id",vo.product_id);
                     cmd.Parameters.AddWithValue("@stock_quantity", vo.warehouse_quantity);
 
                     cmd.ExecuteNonQuery();
                     tran.Commit();
+
+
+       //             SELECT od.order_no ,od.order_seq ,(SELECT storage_name FROM TBL_STORAGE WHERE storage_id = w.storage_id) storage_name, od.product_id , (SELECT product_name FROM TBL_PRODUCT WHERE product_id = od.product_id) product_name
+				   //   ,due_date, w.warehouse_quantity , stock_quantity
+					  //, (SELECT final_regist_time FROM TBL_ORDER WHERE order_no = od.order_no) final_regist_time
+					  //, (SELECT final_regist_employee FROM TBL_ORDER WHERE order_no = od.order_no) final_regist_employee
+       //         FROM TBL_ORDER_DETAIL od INNER JOIN TBL_WAREHOUSE w ON od.order_no = w.order_no
+
+       //                                  INNER JOIN TBL_STOCK s ON s.stock_no = w.
+
+       //         where od.order_no = 4 and od.order_seq = 4
+
+       //         ORDER BY final_regist_time desc
 
                     return true;
                 }
@@ -373,6 +388,28 @@ namespace MSFactoryDAC
                     throw err;
                 }
             }
+        }
+
+
+        public DataTable CheckBarcode()
+        {
+            string sql = @" SELECT CONCAT(od.order_no,'_', od.product_id,'_', order_request_quantity) Barcode
+                            		,od.product_id,product_name, od.order_no, order_request_quantity  
+                            FROM TBL_ORDER_DETAIL od left outer join TBL_PRODUCT p on od.product_id = p.product_id
+                            left outer  join TBL_STOCK s on s.product_id = p.product_id
+                            WHERE order_status = '발주중'";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(sql, con);
+                da.Fill(dt);
+                con.Close();
+               
+                return dt;
+            }                      
         }
     }
 }

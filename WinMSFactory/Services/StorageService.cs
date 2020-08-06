@@ -20,9 +20,17 @@ namespace WinMSFactory.Services
         {
             return dac.SelectProductAll(selectStorage);
         }
+        public List<StorageVO> MoveStockList(List<int> stock_no)
+        {
+            return dac.MoveStockList(stock_no);
+        }
         public List<InOutVO> SelectInOut()
         {
             return dac.SelectInOut(); 
+        }
+        public bool MoveStorage(int storage_id, int stock_no)
+        {
+            return dac.MoveStorage(storage_id, stock_no);
         }
     }
 }
