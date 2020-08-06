@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.XtraReports.UI;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -17,6 +19,7 @@ namespace WinMSFactory
     {
         OrderService orderService = new OrderService();
         string orderString = "";
+        string productString = "";
 
         public WareHouseWaitForm()
         {
@@ -43,13 +46,33 @@ namespace WinMSFactory
             dgvDetail.AddNewColumns("최종등록사원", "final_regist_employee", 100, true, true, false, LeftAlign);
         }
 
+        private void Readed(object sender, ReadEventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                MessageBox.Show(e.ReadMsg);
 
-        //private void Readed_BarCode(object sender, ReadEventArgs e)
-        //{
-        //    string barID = e.Readmsg;
-        //    barID.Replace("%0", "-");
-        //    orderString = barID.Substring(0, barID.IndexOf('-'));
-        //}
+                string barID = e.ReadMsg;
+                barID = barID.Replace("%O", "-");
+                string[] str = barID.Split('-');
+
+                orderString = str[0];
+                productString = str[1];
+
+                for (int i = 0; i < dgv.RowCount; i++)
+                {
+                    if(dgv.Rows[i].Cells[0].Value.ToString() == orderString)
+                    {
+                        if(dgv.Rows[i].Cells[4].Value.ToString() == productString)
+                        {
+                            dgv.Rows[i].Selected = true;
+                            btnIn.PerformClick();                            
+                        }
+                    }                    
+                }     
+                ((MainForm)this.MdiParent).ClearStrs();           
+            }
+        }
 
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -90,18 +113,16 @@ namespace WinMSFactory
             }
         }
 
-        /// <summary>
-        /// 바코드 입고 처리
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnBarcode_Click(object sender, EventArgs e)
         {
-            WareHouseVO vo = new WareHouseVO();
+            DataTable dt = orderService.CheckBarcode();
+            BarcodeOrder rpt = new BarcodeOrder();
+            rpt.DataSource = dt;
 
-            vo.order_no = Convert.ToInt32(orderString);
-
-            //orderService.InsertWareHouse();
+            using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+            {               
+                printTool.ShowRibbonPreviewDialog();
+            }
         }
     }
 }
