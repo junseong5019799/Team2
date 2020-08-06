@@ -44,18 +44,20 @@ namespace WinMSFactory
                 Final_Regist_Time = DateTime.Now
             };
 
-            if(service.InsertGroup(list))
+            if(MessageBox.Show("그룹을 등록하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("그룹이 등록되었습니다.");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                if (service.InsertGroup(list))
+                {
+                    MessageBox.Show("그룹이 등록되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("중복된 그룹이름입니다. 다른 이름을 입력해주세요");
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("중복된 그룹이름입니다. 다른 이름을 입력해주세요");
-                return;
-            }
-
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -65,6 +67,9 @@ namespace WinMSFactory
                 UseChar = 'N';
         }
 
-        
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

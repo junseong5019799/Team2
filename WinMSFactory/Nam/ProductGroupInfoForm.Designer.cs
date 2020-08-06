@@ -55,6 +55,10 @@
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNote2);

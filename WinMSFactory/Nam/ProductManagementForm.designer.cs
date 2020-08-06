@@ -45,33 +45,25 @@
             this.rdoUnUse = new System.Windows.Forms.RadioButton();
             this.rdoAll = new System.Windows.Forms.RadioButton();
             this.rdoUse = new System.Windows.Forms.RadioButton();
-            this.btnEnroll = new WinMSFactory.ButtonControl();
-            this.btn_Delete = new WinMSFactory.ButtonControl();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnBomShow = new WinMSFactory.ButtonControl();
-            this.btnBOMCopy = new WinMSFactory.ButtonControl();
-            this.btnPrint = new WinMSFactory.ButtonControl();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dgvBarcode = new WinMSFactory.DataGridViewControl();
-            this.btnBarDelete = new WinMSFactory.ButtonControl();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnBOMCopy = new WinMSFactory.ButtonControl();
+            this.btnBomShow = new WinMSFactory.ButtonControl();
             this.btnbarCopy = new WinMSFactory.ButtonControl();
+            this.btnBarDelete = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,8 +72,6 @@
             this.panel1.Controls.Add(this.btnbarCopy);
             this.panel1.Controls.Add(this.btnBarDelete);
             this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.groupBox1);
@@ -89,10 +79,8 @@
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox2, 0);
-            this.panel1.Controls.SetChildIndex(this.groupBox2, 0);
-            this.panel1.Controls.SetChildIndex(this.groupBox3, 0);
-            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox4, 0);
+            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.btnBarDelete, 0);
             this.panel1.Controls.SetChildIndex(this.btnbarCopy, 0);
             // 
@@ -211,30 +199,6 @@
             this.rdoUse.Text = "Yes";
             this.rdoUse.UseVisualStyleBackColor = true;
             // 
-            // btnEnroll
-            // 
-            this.btnEnroll.BackColor = System.Drawing.Color.White;
-            this.btnEnroll.ForeColor = System.Drawing.Color.Black;
-            this.btnEnroll.Location = new System.Drawing.Point(6, 21);
-            this.btnEnroll.Name = "btnEnroll";
-            this.btnEnroll.Size = new System.Drawing.Size(126, 35);
-            this.btnEnroll.TabIndex = 6;
-            this.btnEnroll.Text = "제품 등록";
-            this.btnEnroll.UseVisualStyleBackColor = false;
-            this.btnEnroll.Click += new System.EventHandler(this.buttonControl1_Click);
-            // 
-            // btn_Delete
-            // 
-            this.btn_Delete.BackColor = System.Drawing.Color.White;
-            this.btn_Delete.ForeColor = System.Drawing.Color.Black;
-            this.btn_Delete.Location = new System.Drawing.Point(135, 21);
-            this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(144, 33);
-            this.btn_Delete.TabIndex = 6;
-            this.btn_Delete.Text = "제품 삭제";
-            this.btn_Delete.UseVisualStyleBackColor = false;
-            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
@@ -259,13 +223,13 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(323, 179);
+            this.dgv.Location = new System.Drawing.Point(0, 179);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1211, 582);
+            this.dgv.Size = new System.Drawing.Size(1133, 526);
             this.dgv.TabIndex = 4;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             this.dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_DataBindingComplete);
@@ -274,7 +238,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(1008, 156);
+            this.pictureBox1.Location = new System.Drawing.Point(977, 156);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(17, 17);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -286,98 +250,13 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(1104, 156);
+            this.pictureBox2.Location = new System.Drawing.Point(1073, 156);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 17);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 47;
             this.pictureBox2.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBox2, "발주할 원재료가 오는 시간");
-            // 
-            // btnBomShow
-            // 
-            this.btnBomShow.BackColor = System.Drawing.Color.White;
-            this.btnBomShow.ForeColor = System.Drawing.Color.Black;
-            this.btnBomShow.Location = new System.Drawing.Point(6, 16);
-            this.btnBomShow.Name = "btnBomShow";
-            this.btnBomShow.Size = new System.Drawing.Size(135, 43);
-            this.btnBomShow.TabIndex = 6;
-            this.btnBomShow.Text = "BOM 확인";
-            this.btnBomShow.UseVisualStyleBackColor = false;
-            this.btnBomShow.Click += new System.EventHandler(this.buttonControl2_Click_1);
-            // 
-            // btnBOMCopy
-            // 
-            this.btnBOMCopy.BackColor = System.Drawing.Color.White;
-            this.btnBOMCopy.ForeColor = System.Drawing.Color.Black;
-            this.btnBOMCopy.Location = new System.Drawing.Point(144, 16);
-            this.btnBOMCopy.Name = "btnBOMCopy";
-            this.btnBOMCopy.Size = new System.Drawing.Size(135, 43);
-            this.btnBOMCopy.TabIndex = 6;
-            this.btnBOMCopy.Text = "BOM 복사";
-            this.btnBOMCopy.UseVisualStyleBackColor = false;
-            this.btnBOMCopy.Click += new System.EventHandler(this.btnBOMCopy_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.Color.White;
-            this.btnPrint.ForeColor = System.Drawing.Color.Black;
-            this.btnPrint.Location = new System.Drawing.Point(66, 17);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(129, 37);
-            this.btnPrint.TabIndex = 48;
-            this.btnPrint.Text = "제품 목록 인쇄";
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.buttonControl1_Click_1);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnEnroll);
-            this.groupBox2.Controls.Add(this.btn_Delete);
-            this.groupBox2.Location = new System.Drawing.Point(926, 26);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(285, 65);
-            this.groupBox2.TabIndex = 49;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "제품 그룹";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnPrint);
-            this.groupBox3.Location = new System.Drawing.Point(926, 90);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(285, 65);
-            this.groupBox3.TabIndex = 49;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "바코드";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnBomShow);
-            this.groupBox4.Controls.Add(this.buttonControl1);
-            this.groupBox4.Controls.Add(this.btnBOMCopy);
-            this.groupBox4.Location = new System.Drawing.Point(1237, 26);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(285, 129);
-            this.groupBox4.TabIndex = 50;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "BOM";
-            // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(72, 72);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(135, 43);
-            this.buttonControl1.TabIndex = 6;
-            this.buttonControl1.Text = "BOM 바코드로 복사";
-            this.buttonControl1.UseVisualStyleBackColor = false;
-            this.buttonControl1.Click += new System.EventHandler(this.btnBOMBarcodeCopy_Click);
-            // 
-            // serialPort1
-            // 
-            this.serialPort1.PortName = "COM3";
             // 
             // dgvBarcode
             // 
@@ -403,38 +282,86 @@
             this.dgvBarcode.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBarcode.IsAllCheckColumnHeader = false;
             this.dgvBarcode.IsAutoGenerateColumns = false;
-            this.dgvBarcode.Location = new System.Drawing.Point(1, 180);
+            this.dgvBarcode.Location = new System.Drawing.Point(1167, 179);
             this.dgvBarcode.MultiSelect = false;
             this.dgvBarcode.Name = "dgvBarcode";
             this.dgvBarcode.RowHeadersVisible = false;
             this.dgvBarcode.RowTemplate.Height = 23;
             this.dgvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBarcode.Size = new System.Drawing.Size(319, 580);
+            this.dgvBarcode.Size = new System.Drawing.Size(202, 526);
             this.dgvBarcode.TabIndex = 5;
             // 
-            // btnBarDelete
+            // groupBox4
             // 
-            this.btnBarDelete.BackColor = System.Drawing.Color.White;
-            this.btnBarDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnBarDelete.Location = new System.Drawing.Point(191, 139);
-            this.btnBarDelete.Name = "btnBarDelete";
-            this.btnBarDelete.Size = new System.Drawing.Size(129, 37);
-            this.btnBarDelete.TabIndex = 48;
-            this.btnBarDelete.Text = "Clear";
-            this.btnBarDelete.UseVisualStyleBackColor = false;
-            this.btnBarDelete.Click += new System.EventHandler(this.btnBarDelete_Click);
+            this.groupBox4.Controls.Add(this.buttonControl1);
+            this.groupBox4.Controls.Add(this.btnBOMCopy);
+            this.groupBox4.Controls.Add(this.btnBomShow);
+            this.groupBox4.Location = new System.Drawing.Point(926, 53);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(285, 81);
+            this.groupBox4.TabIndex = 51;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "BOM";
+            // 
+            // btnBOMCopy
+            // 
+            this.btnBOMCopy.BackColor = System.Drawing.Color.White;
+            this.btnBOMCopy.ForeColor = System.Drawing.Color.Black;
+            this.btnBOMCopy.Location = new System.Drawing.Point(92, 46);
+            this.btnBOMCopy.Name = "btnBOMCopy";
+            this.btnBOMCopy.Size = new System.Drawing.Size(104, 26);
+            this.btnBOMCopy.TabIndex = 6;
+            this.btnBOMCopy.Text = "BOM 복사";
+            this.btnBOMCopy.UseVisualStyleBackColor = false;
+            this.btnBOMCopy.Click += new System.EventHandler(this.btnBOMCopy_Click);
+            // 
+            // btnBomShow
+            // 
+            this.btnBomShow.BackColor = System.Drawing.Color.White;
+            this.btnBomShow.ForeColor = System.Drawing.Color.Black;
+            this.btnBomShow.Location = new System.Drawing.Point(36, 14);
+            this.btnBomShow.Name = "btnBomShow";
+            this.btnBomShow.Size = new System.Drawing.Size(109, 29);
+            this.btnBomShow.TabIndex = 6;
+            this.btnBomShow.Text = "정전개 / 역전개";
+            this.btnBomShow.UseVisualStyleBackColor = false;
+            this.btnBomShow.Click += new System.EventHandler(this.buttonControl2_Click_1);
             // 
             // btnbarCopy
             // 
             this.btnbarCopy.BackColor = System.Drawing.Color.White;
             this.btnbarCopy.ForeColor = System.Drawing.Color.Black;
-            this.btnbarCopy.Location = new System.Drawing.Point(36, 139);
+            this.btnbarCopy.Location = new System.Drawing.Point(1127, 152);
             this.btnbarCopy.Name = "btnbarCopy";
-            this.btnbarCopy.Size = new System.Drawing.Size(129, 37);
-            this.btnbarCopy.TabIndex = 48;
-            this.btnbarCopy.Text = "복사";
+            this.btnbarCopy.Size = new System.Drawing.Size(120, 24);
+            this.btnbarCopy.TabIndex = 52;
+            this.btnbarCopy.Text = "바코드 BOM Copy";
             this.btnbarCopy.UseVisualStyleBackColor = false;
             this.btnbarCopy.Click += new System.EventHandler(this.btnbarCopy_Click);
+            // 
+            // btnBarDelete
+            // 
+            this.btnBarDelete.BackColor = System.Drawing.Color.White;
+            this.btnBarDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnBarDelete.Location = new System.Drawing.Point(1253, 152);
+            this.btnBarDelete.Name = "btnBarDelete";
+            this.btnBarDelete.Size = new System.Drawing.Size(85, 25);
+            this.btnBarDelete.TabIndex = 53;
+            this.btnBarDelete.Text = "바코드 Clear";
+            this.btnBarDelete.UseVisualStyleBackColor = false;
+            this.btnBarDelete.Click += new System.EventHandler(this.btnBarDelete_Click);
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(151, 14);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(108, 29);
+            this.buttonControl1.TabIndex = 7;
+            this.buttonControl1.Text = "BOM 로그";
+            this.buttonControl1.UseVisualStyleBackColor = false;
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // ProductManagementForm
             // 
@@ -459,10 +386,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).EndInit();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,24 +403,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboProductType;
         private System.Windows.Forms.Label label2;
-        private ButtonControl btnEnroll;
-        private ButtonControl btn_Delete;
         private ButtonControl btnConfirm;
         private System.Windows.Forms.RadioButton rdoAll;
         private DataGridViewControl dgv;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private ButtonControl btnBomShow;
-        private ButtonControl btnBOMCopy;
-        private ButtonControl btnPrint;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private ButtonControl buttonControl1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.IO.Ports.SerialPort serialPort1;
         private DataGridViewControl dgvBarcode;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private ButtonControl btnBOMCopy;
+        private ButtonControl btnBomShow;
         private ButtonControl btnbarCopy;
         private ButtonControl btnBarDelete;
+        private ButtonControl buttonControl1;
     }
 }

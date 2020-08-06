@@ -77,8 +77,8 @@ namespace WinMSFactory
 
         private void dgvBarCodeColumns()
         {
-            dgvBarcode.AddNewColumns("제품 코드", "Product_ID", 100, true);
-            dgvBarcode.AddNewColumns("바코드 제품명", "Product_Name", 330, true);
+            dgvBarcode.AddNewColumns("제품 코드", "Product_ID", 100, false);
+            dgvBarcode.AddNewColumns("바코드 제품명", "Product_Name", 150, true);
         }
 
         private void ReviewDGV()
@@ -88,16 +88,6 @@ namespace WinMSFactory
             dgv.DataSource = pdSv.SelectAllProducts();
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
-        {
-            ProductInfoForm frm = new ProductInfoForm();
-
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show("등록되었습니다.");
-                ReviewDGV();
-            }
-        }
 
         private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -231,9 +221,19 @@ namespace WinMSFactory
                 }
             }
         }
-
-        private void btn_Delete_Click(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
+            ProductInfoForm frm = new ProductInfoForm();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("등록되었습니다.");
+                ReviewDGV();
+            }
+        }
+        private void Delete(object sender, EventArgs e)
+        {
+            dgv.EndEdit();
             if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
 
@@ -296,6 +296,8 @@ namespace WinMSFactory
             }
         }
 
+        
+
         private void txtProductSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -311,6 +313,7 @@ namespace WinMSFactory
 
         private void btnBOMCopy_Click(object sender, EventArgs e)
         {
+            dgv.EndEdit();
             List<int> Selectedlist = new List<int>();
             List<object> IsCheckedList = new List<object>();
 
@@ -356,7 +359,7 @@ namespace WinMSFactory
                 ReviewDGV();
         }
 
-        private void buttonControl1_Click_1(object sender, EventArgs e)
+        private void Barcode(object sender, EventArgs e)
         {
             BarCodeProductBOM report = new BarCodeProductBOM();
 
@@ -391,21 +394,42 @@ namespace WinMSFactory
             dgvBarcode.DataSource = BarcodeList;
 
         }
-        private void btnBOMBarcodeCopy_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnbarCopy_Click(object sender, EventArgs e)
         {
+            if(dgvBarcode.Rows.Count<1)
+            {
+                MessageBox.Show("데이터가 존재하지 않습니다.");
+                return;
+            }
 
+            List<int> productNum = new List<int>();
+
+            foreach(DataGridViewRow row in dgvBarcode.Rows)
+            {
+                productNum.Add(dgvBarcode[0, row.Index].Value.ToInt());
+            }
+            BOMManageForm frm = new BOMManageForm(productNum, true);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+                ReviewDGV();
         }
 
         private void btnBarDelete_Click(object sender, EventArgs e)
         {
+            if (dgvBarcode.Rows.Count < 1)
+            {
+                MessageBox.Show("데이터가 존재하지 않습니다.");
+                return;
+            }
             dgvBarcode.DataSource = null;
             BarcodeList.Clear();
             dgvBarCodeColumns();
+        }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            BOMLogForm frm = new BOMLogForm();
+            frm.ShowDialog();
         }
     }
 }
