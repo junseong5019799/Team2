@@ -102,11 +102,11 @@ namespace MSFactoryDAC
 
 
 
-            /// <summary>
-            /// SELECT 발주 제안 리스트
-            /// </summary>
-            /// <returns></returns>
-            public DataTable GetOrderPlanList()
+        /// <summary>
+        /// SELECT 발주 제안 리스트
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetOrderPlanList()
         {
             try
             {
@@ -116,7 +116,6 @@ namespace MSFactoryDAC
                     {
                         da.SelectCommand = new SqlCommand("SP_ORDERPLAN_SELECT", con);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
-
 
                         DataTable dt = new DataTable();
                         con.Open();
@@ -200,7 +199,7 @@ namespace MSFactoryDAC
         /// SELECT 입고 DETAIL LIST
         /// </summary>
         /// <returns></returns>
-        public DataTable GetWareHouseDetail(int order_no)
+        public DataTable GetWareHouseDetail(int order_no, int product_id)
         {
             try
             {
@@ -211,7 +210,7 @@ namespace MSFactoryDAC
                         da.SelectCommand = new SqlCommand("SP_WAREHOUSEDETAIL_SELECT", con);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
                         da.SelectCommand.Parameters.AddWithValue("@order_no", order_no);
-
+                        da.SelectCommand.Parameters.AddWithValue("@product_id", product_id);
                         DataTable dt = new DataTable();
                         con.Open();
                         da.Fill(dt);

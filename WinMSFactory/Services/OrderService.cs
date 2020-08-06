@@ -43,9 +43,9 @@ namespace WinMSFactory.Services
             return dac.GetWareHouseList();
         }
 
-        public DataTable GetWareHouseDetail(int order_no)
+        public DataTable GetWareHouseDetail(int order_no, int product_id)
         {
-            return dac.GetWareHouseDetail(order_no);
+            return dac.GetWareHouseDetail(order_no, product_id);
         }
 
         public bool InsertOrder(OrderVO order)
