@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.OrderForm
+﻿namespace WinMSFactory
 {
     partial class OrderPopUpForm
     {

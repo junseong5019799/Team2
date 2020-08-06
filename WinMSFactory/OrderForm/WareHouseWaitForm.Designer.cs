@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.OrderForm
+﻿namespace WinMSFactory
 {
     partial class WareHouseWaitForm
     {
@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnIn = new WinMSFactory.ButtonControl();
+            this.btnBarcode = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnBarcode);
             this.panel1.Controls.Add(this.btnIn);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cboCompany);
@@ -66,6 +68,7 @@
             this.panel1.Controls.SetChildIndex(this.cboCompany, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
             this.panel1.Controls.SetChildIndex(this.btnIn, 0);
+            this.panel1.Controls.SetChildIndex(this.btnBarcode, 0);
             // 
             // Guidlabel1
             // 
@@ -123,7 +126,6 @@
             // dgvDetail
             // 
             this.dgvDetail.AllowUserToAddRows = false;
-            this.dgvDetail.AutoGenerateColumns = false;
             this.dgvDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgvDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -167,13 +169,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 5, 12, 6, 44, 49);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 5, 14, 17, 31, 548);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 6, 12, 6, 44, 49);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 6, 14, 17, 31, 548);
             // 
             // label1
             // 
@@ -231,6 +233,18 @@
             this.btnIn.UseVisualStyleBackColor = false;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
+            // btnBarcode
+            // 
+            this.btnBarcode.BackColor = System.Drawing.Color.White;
+            this.btnBarcode.ForeColor = System.Drawing.Color.Black;
+            this.btnBarcode.Location = new System.Drawing.Point(978, 136);
+            this.btnBarcode.Name = "btnBarcode";
+            this.btnBarcode.Size = new System.Drawing.Size(68, 24);
+            this.btnBarcode.TabIndex = 42;
+            this.btnBarcode.Text = "바코드";
+            this.btnBarcode.UseVisualStyleBackColor = false;
+            this.btnBarcode.Click += new System.EventHandler(this.btnBarcode_Click);
+            // 
             // WareHouseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -270,5 +284,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private ButtonControl btnIn;
+        private ButtonControl btnBarcode;
     }
 }
