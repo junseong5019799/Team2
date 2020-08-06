@@ -86,6 +86,12 @@
     <Compile Include="Admin\SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BarcodePortSettingPopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BarcodePortSettingPopForm.Designer.cs">
+      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseForm\BasicForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +302,7 @@
     <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReadEventArgs.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,6 +482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BarcodePortSettingPopForm.resx">
+      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\BasicForm.resx">
       <DependentUpon>BasicForm.cs</DependentUpon>

@@ -40,6 +40,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.lblAth_grp_name = new System.Windows.Forms.Label();
 			this.chkProg_print = new System.Windows.Forms.CheckBox();
+			this.chkProg_barcode = new System.Windows.Forms.CheckBox();
 			this.chkProg_clear = new System.Windows.Forms.CheckBox();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -173,10 +174,20 @@
 			this.chkProg_print.Text = "출력";
 			this.chkProg_print.UseVisualStyleBackColor = true;
 			// 
+			// chkProg_barcode
+			// 
+			this.chkProg_barcode.AutoSize = true;
+			this.chkProg_barcode.Location = new System.Drawing.Point(129, 256);
+			this.chkProg_barcode.Name = "chkProg_barcode";
+			this.chkProg_barcode.Size = new System.Drawing.Size(60, 20);
+			this.chkProg_barcode.TabIndex = 8;
+			this.chkProg_barcode.Text = "바코드";
+			this.chkProg_barcode.UseVisualStyleBackColor = true;
+			// 
 			// chkProg_clear
 			// 
 			this.chkProg_clear.AutoSize = true;
-			this.chkProg_clear.Location = new System.Drawing.Point(129, 256);
+			this.chkProg_clear.Location = new System.Drawing.Point(197, 256);
 			this.chkProg_clear.Name = "chkProg_clear";
 			this.chkProg_clear.Size = new System.Drawing.Size(60, 20);
 			this.chkProg_clear.TabIndex = 8;
@@ -189,6 +200,7 @@
 			this.ClientSize = new System.Drawing.Size(350, 327);
 			this.Controls.Add(this.chkProg_delete);
 			this.Controls.Add(this.chkProg_clear);
+			this.Controls.Add(this.chkProg_barcode);
 			this.Controls.Add(this.chkProg_print);
 			this.Controls.Add(this.chkProg_excel);
 			this.Controls.Add(this.chkProg_save);
@@ -213,6 +225,7 @@
 			this.Controls.SetChildIndex(this.chkProg_save, 0);
 			this.Controls.SetChildIndex(this.chkProg_excel, 0);
 			this.Controls.SetChildIndex(this.chkProg_print, 0);
+			this.Controls.SetChildIndex(this.chkProg_barcode, 0);
 			this.Controls.SetChildIndex(this.chkProg_clear, 0);
 			this.Controls.SetChildIndex(this.chkProg_delete, 0);
 			this.panel1.ResumeLayout(false);
@@ -235,6 +248,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblAth_grp_name;
 		private System.Windows.Forms.CheckBox chkProg_print;
+		private System.Windows.Forms.CheckBox chkProg_barcode;
 		private System.Windows.Forms.CheckBox chkProg_clear;
 	}
 }

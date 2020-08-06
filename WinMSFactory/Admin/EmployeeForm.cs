@@ -43,6 +43,14 @@ namespace WinMSFactory
 			}
 		}
 
+		private void Readed(object sender, ReadEventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				MessageBox.Show(e.ReadMsg);
+			}
+		}
+
 		private void LoadData()
 		{
 			dt = employeeService.GetAllEmployees();
