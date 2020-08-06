@@ -39,7 +39,8 @@ namespace MSFactoryDAC
                 {
                     conn.Open();
                     string sql = @"SELECT corporation_id, corporation_name, corporation_note1, corporation_note2, corporation_seq, corporation_use, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
-                                     FROM TBL_CORPORATION ";
+                                     FROM TBL_CORPORATION 
+                                     Order by corporation_seq ASC";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         //cmd.Parameters.AddWithValue("@corporation_name", corporation_name);
@@ -89,5 +90,33 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public bool Delete(List<int> corporation_idList)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string selNum = string.Join(",", corporation_idList);
+
+                    string sql = "Delete From TBL_CORPORATION where corporation_id in (" + selNum + ") ;"; //여러개의 값을 삭제하고온다.
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {                        
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+
+        }
+
+        
     }
 }

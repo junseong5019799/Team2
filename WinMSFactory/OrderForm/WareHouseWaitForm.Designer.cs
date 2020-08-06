@@ -58,8 +58,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(1534, 211);
+            this.panel1.Size = new System.Drawing.Size(1364, 169);
             this.panel1.Controls.SetChildIndex(this.Guidlabel1, 0);
             this.panel1.Controls.SetChildIndex(this.panel4, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
@@ -70,22 +69,20 @@
             // 
             // Guidlabel1
             // 
-            this.Guidlabel1.Location = new System.Drawing.Point(1053, 111);
+            this.Guidlabel1.Location = new System.Drawing.Point(936, 89);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.None;
-            this.panel2.Location = new System.Drawing.Point(0, 208);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Size = new System.Drawing.Size(1726, 308);
+            this.panel2.Location = new System.Drawing.Point(0, 166);
+            this.panel2.Size = new System.Drawing.Size(1534, 246);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.dgvDetail);
-            this.panel3.Location = new System.Drawing.Point(0, 589);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel3.Size = new System.Drawing.Size(1534, 362);
+            this.panel3.Location = new System.Drawing.Point(0, 471);
+            this.panel3.Size = new System.Drawing.Size(1364, 290);
             // 
             // dgv
             // 
@@ -113,19 +110,20 @@
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = true;
             this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1726, 308);
+            this.dgv.Size = new System.Drawing.Size(1534, 246);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // dgvDetail
             // 
             this.dgvDetail.AllowUserToAddRows = false;
+            this.dgvDetail.AutoGenerateColumns = false;
             this.dgvDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgvDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -147,79 +145,77 @@
             this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetail.IsAllCheckColumnHeader = false;
-            this.dgvDetail.IsAutoGenerateColumns = true;
+            this.dgvDetail.IsAutoGenerateColumns = false;
             this.dgvDetail.Location = new System.Drawing.Point(0, 0);
-            this.dgvDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDetail.MultiSelect = false;
             this.dgvDetail.Name = "dgvDetail";
+            this.dgvDetail.RowHeadersVisible = false;
             this.dgvDetail.RowHeadersWidth = 51;
             this.dgvDetail.RowTemplate.Height = 23;
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetail.Size = new System.Drawing.Size(1534, 362);
+            this.dgvDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgvDetail.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.fromToDateControl1);
-            this.panel4.Location = new System.Drawing.Point(177, 49);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel4.Location = new System.Drawing.Point(157, 39);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(259, 41);
+            this.panel4.Size = new System.Drawing.Size(230, 33);
             this.panel4.TabIndex = 28;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 1, 21, 21, 24, 99);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 5, 12, 6, 44, 49);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
+            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 2, 21, 21, 24, 99);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 6, 12, 6, 44, 49);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(109, 59);
+            this.label1.Location = new System.Drawing.Point(97, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 29;
             this.label1.Text = "납기일";
             // 
             // cboCompany
             // 
             this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(182, 108);
-            this.cboCompany.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCompany.Location = new System.Drawing.Point(162, 86);
             this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(136, 28);
+            this.cboCompany.Size = new System.Drawing.Size(121, 24);
             this.cboCompany.TabIndex = 36;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(97, 111);
+            this.label2.Location = new System.Drawing.Point(86, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 35;
             this.label2.Text = "납품업체";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 565);
+            this.label3.Location = new System.Drawing.Point(12, 452);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 20);
+            this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 38;
             this.label3.Text = "입고처리";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 184);
+            this.label4.Location = new System.Drawing.Point(12, 147);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 20);
+            this.label4.Size = new System.Drawing.Size(52, 16);
             this.label4.TabIndex = 39;
             this.label4.Text = "입고현황";
             // 
@@ -227,10 +223,9 @@
             // 
             this.btnIn.BackColor = System.Drawing.Color.White;
             this.btnIn.ForeColor = System.Drawing.Color.Black;
-            this.btnIn.Location = new System.Drawing.Point(1017, 170);
-            this.btnIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnIn.Location = new System.Drawing.Point(904, 136);
             this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(76, 30);
+            this.btnIn.Size = new System.Drawing.Size(68, 24);
             this.btnIn.TabIndex = 41;
             this.btnIn.Text = "입고 처리";
             this.btnIn.UseVisualStyleBackColor = false;
@@ -238,11 +233,10 @@
             // 
             // WareHouseWaitForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 951);
+            this.ClientSize = new System.Drawing.Size(1364, 761);
             this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "WareHouseWaitForm";
             this.Text = "입고 대기";
             this.Load += new System.EventHandler(this.WareHouseWaitForm_Load);

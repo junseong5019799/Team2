@@ -51,7 +51,8 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Size = new System.Drawing.Size(1364, 170);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Size = new System.Drawing.Size(1534, 212);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.panel3, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
@@ -61,14 +62,15 @@
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(541, 53);
+            this.GuidLabel1.Location = new System.Drawing.Point(609, 66);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
-            this.panel2.Location = new System.Drawing.Point(0, 176);
+            this.panel2.Location = new System.Drawing.Point(0, 220);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1364, 585);
+            this.panel2.Size = new System.Drawing.Size(1534, 731);
             this.panel2.TabIndex = 4;
             // 
             // dgv
@@ -97,67 +99,70 @@
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = true;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
-            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1364, 585);
+            this.dgv.Size = new System.Drawing.Size(1534, 731);
             this.dgv.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
-            this.panel3.Location = new System.Drawing.Point(131, 36);
+            this.panel3.Location = new System.Drawing.Point(147, 45);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(230, 33);
+            this.panel3.Size = new System.Drawing.Size(259, 41);
             this.panel3.TabIndex = 27;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 4, 18, 16, 49, 876);
+            this.fromToDateControl1.From = new System.DateTime(2020, 7, 31, 23, 25, 56, 77);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 5, 18, 16, 49, 876);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 1, 23, 25, 56, 77);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 44);
+            this.label1.Location = new System.Drawing.Point(88, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 16);
+            this.label1.Size = new System.Drawing.Size(45, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "납기일";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 99);
+            this.label2.Location = new System.Drawing.Point(75, 124);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 16);
+            this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 29;
             this.label2.Text = "납품업체";
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(135, 96);
+            this.comboBox2.Location = new System.Drawing.Point(152, 120);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.Size = new System.Drawing.Size(136, 28);
             this.comboBox2.TabIndex = 34;
             // 
             // btnDueDate
             // 
             this.btnDueDate.BackColor = System.Drawing.Color.White;
             this.btnDueDate.ForeColor = System.Drawing.Color.Black;
-            this.btnDueDate.Location = new System.Drawing.Point(1086, 134);
+            this.btnDueDate.Location = new System.Drawing.Point(1222, 168);
+            this.btnDueDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDueDate.Name = "btnDueDate";
-            this.btnDueDate.Size = new System.Drawing.Size(101, 25);
+            this.btnDueDate.Size = new System.Drawing.Size(114, 31);
             this.btnDueDate.TabIndex = 35;
             this.btnDueDate.Text = "납기 일자 변경";
             this.btnDueDate.UseVisualStyleBackColor = false;
@@ -165,9 +170,9 @@
             // 
             // OrderListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1364, 761);
+            this.ClientSize = new System.Drawing.Size(1534, 951);
             this.Controls.Add(this.panel2);
             this.Name = "OrderListForm";
             this.Text = "발주 현황";

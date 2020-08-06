@@ -33,6 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -63,8 +81,8 @@
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+	  <SubType>Form</SubType>
+	</Compile>
     <Compile Include="Admin\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
@@ -86,11 +104,11 @@
     <Compile Include="Admin\SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BarcodePortSettingPopForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Barcode\BarcodeOrder.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BarcodePortSettingPopForm.Designer.cs">
-      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    <Compile Include="Barcode\BarcodeOrder.Designer.cs">
+      <DependentUpon>BarcodeOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseForm\BasicForm.cs">
       <SubType>Form</SubType>
@@ -237,16 +255,10 @@
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\EmployeePopForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+	  <SubType>Form</SubType>
+	</Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Popup\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Popup\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -302,7 +314,6 @@
     <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReadEventArgs.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,8 +494,8 @@
     <EmbeddedResource Include="Admin\SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BarcodePortSettingPopForm.resx">
-      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    <EmbeddedResource Include="Barcode\BarcodeOrder.resx">
+      <DependentUpon>BarcodeOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\BasicForm.resx">
       <DependentUpon>BasicForm.cs</DependentUpon>
@@ -582,9 +593,6 @@
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Popup\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -612,6 +620,7 @@
     <EmbeddedResource Include="Nam\ProductGroupInfoForm.resx">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

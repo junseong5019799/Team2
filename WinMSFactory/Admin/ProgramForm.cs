@@ -27,7 +27,7 @@ namespace WinMSFactory
 			{
 				dataGridViewControl1.IsAllCheckColumnHeader = true;
 				dataGridViewControl1.AddNewColumns("프로그램 코드", "PROG_ID", 100, false);
-				dataGridViewControl1.AddNewColumns("모듈", "MODULE_NAME", 100);
+				dataGridViewControl1.AddNewColumns("모듈", "MODULE_ID", 100);
 				dataGridViewControl1.AddNewColumns("프로그램 명칭", "PROG_NAME", 100);
 				dataGridViewControl1.AddNewColumns("사용여부", "PROG_USE", 100);
 				dataGridViewControl1.AddNewColumns("순번", "PROG_SEQ", 100);
@@ -48,27 +48,16 @@ namespace WinMSFactory
 		{
 			dt = programService.GetAllPrograms();
 			dataGridViewControl1.DataSource = dt;
-			ProgClear();
 		}
 
-		private void Search(object sender, EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-			{
-				dt.CaseSensitive = false;
-				DataView dv = dt.DefaultView;
-				string search = txtSearch.Text.Trim();
 
-				if (search.Length > 0)
-					dv.RowFilter = $"PROG_NAME LIKE '%{search}%'";
-				else
-					dv.RowFilter = "";
-			}
 		}
 
-		private void Add(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = this.GetEmployee();
+			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
 			ProgramPopupForm frm = new ProgramPopupForm(employeeVO);
 
 			if (frm.ShowDialog() == DialogResult.OK)
@@ -77,41 +66,25 @@ namespace WinMSFactory
 			}
 		}
 
-		private void Delete(object sender, EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			try
 			{
-				try
-				{
-					string prog_id = dataGridViewControl1.GetCheckIDs("PROG_ID");
+				string prog_id = dataGridViewControl1.GetCheckIDs("PROG_ID");
 
-					if (string.IsNullOrEmpty(prog_id))
-						return;
+				if (string.IsNullOrEmpty(prog_id))
+					return;
 
-					if (programService.DeleteProgram(prog_id))
-					{
-						MessageBox.Show("정상적으로 삭제되었습니다.");
-						LoadData();
-					}
-				}
-				catch (Exception err)
+				if (programService.DeleteProgram(prog_id))
 				{
-					MessageBox.Show(err.Message);
+					MessageBox.Show("정상적으로 삭제되었습니다.");
+					LoadData();
 				}
 			}
-		}
-
-		private void Clear(object sender, EventArgs e)
-		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			catch (Exception err)
 			{
-				LoadData();
+				MessageBox.Show(err.Message);
 			}
-		}
-
-		private void ProgClear()
-		{
-			this.Clear();
 		}
 
 		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -119,7 +92,7 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = this.GetEmployee();
+			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
 			int prog_id = dataGridViewControl1["PROG_ID", e.RowIndex].Value.ToInt();
 			ProgramPopupForm frm = new ProgramPopupForm(employeeVO, prog_id);
 
@@ -127,12 +100,6 @@ namespace WinMSFactory
 			{
 				LoadData();
 			}
-		}
-
-		private void txtProg_name_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if (e.KeyChar == 13)
-				Search(null, null);
 		}
 	}
 }

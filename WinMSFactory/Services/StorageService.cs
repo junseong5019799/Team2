@@ -16,30 +16,13 @@ namespace WinMSFactory.Services
         {
             return dac.GetStorage();
         }
-        
         public List<StorageVO> SelectProductAll(int selectStorage)
         {
             return dac.SelectProductAll(selectStorage);
         }
-        
-        public List<StorageVO> SelectStockID(List<int> IDList)
-        {
-            return dac.SelectStockID(IDList);
-        }
-
-        public List<StorageVO> GetStorageDetailList(int product_id)
-        {
-            return dac.GetStorageDetailList(product_id);
-        }
-
         public List<InOutVO> SelectInOut()
         {
             return dac.SelectInOut(); 
-        }
-
-        public bool UpdateStorageID(List<int> IDList, int storage_id)
-        {
-            return dac.UpdateStorageID(IDList, storage_id);
         }
     }
 }

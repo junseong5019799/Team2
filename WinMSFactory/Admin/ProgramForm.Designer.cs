@@ -31,20 +31,22 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
-			this.txtSearch = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.txtSearch);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Size = new System.Drawing.Size(1534, 80);
+			this.panel1.Controls.Add(this.button3);
+			this.panel1.Controls.Add(this.button2);
+			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-			this.panel1.Controls.SetChildIndex(this.label1, 0);
-			this.panel1.Controls.SetChildIndex(this.txtSearch, 0);
+			this.panel1.Controls.SetChildIndex(this.button1, 0);
+			this.panel1.Controls.SetChildIndex(this.button2, 0);
+			this.panel1.Controls.SetChildIndex(this.button3, 0);
 			// 
 			// dataGridViewControl1
 			// 
@@ -71,32 +73,44 @@
 			this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewControl1.IsAllCheckColumnHeader = false;
 			this.dataGridViewControl1.IsAutoGenerateColumns = false;
-			this.dataGridViewControl1.Location = new System.Drawing.Point(0, 80);
+			this.dataGridViewControl1.Location = new System.Drawing.Point(0, 170);
 			this.dataGridViewControl1.MultiSelect = false;
 			this.dataGridViewControl1.Name = "dataGridViewControl1";
-			this.dataGridViewControl1.RowHeadersVisible = false;
 			this.dataGridViewControl1.RowTemplate.Height = 23;
 			this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 681);
+			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 591);
 			this.dataGridViewControl1.TabIndex = 4;
 			this.dataGridViewControl1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewControl1_CellDoubleClick);
 			// 
-			// txtSearch
+			// button1
 			// 
-			this.txtSearch.Location = new System.Drawing.Point(108, 30);
-			this.txtSearch.Name = "txtSearch";
-			this.txtSearch.Size = new System.Drawing.Size(183, 22);
-			this.txtSearch.TabIndex = 12;
-			this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProg_name_KeyPress);
+			this.button1.Location = new System.Drawing.Point(332, 105);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 5;
+			this.button1.Text = "조회";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// label1
+			// button2
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(50, 33);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(52, 16);
-			this.label1.TabIndex = 11;
-			this.label1.Text = "프로그램";
+			this.button2.Location = new System.Drawing.Point(413, 105);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 5;
+			this.button2.Text = "추가";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(494, 105);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 5;
+			this.button3.Text = "삭제";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// ProgramForm
 			// 
@@ -104,7 +118,6 @@
 			this.ClientSize = new System.Drawing.Size(1534, 761);
 			this.Controls.Add(this.dataGridViewControl1);
 			this.Name = "ProgramForm";
-			this.Text = "프로그램 관리";
 			this.Load += new System.EventHandler(this.ProgramForm_Load);
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.GuidLabel2, 0);
@@ -120,7 +133,8 @@
 		#endregion
 
 		private DataGridViewControl dataGridViewControl1;
-		private System.Windows.Forms.TextBox txtSearch;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button1;
 	}
 }

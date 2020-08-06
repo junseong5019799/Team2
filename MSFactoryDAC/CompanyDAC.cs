@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MSFactoryDAC
 {
-    public class CompanyDAC : ConnectionAccess
+    public class CompanyDAC : SqlHelper
     { 
         List<CompanyVO> list = null;
 
@@ -170,8 +170,6 @@ namespace MSFactoryDAC
                                 cmd.ExecuteNonQuery();
                             }
 
-                            
-
                         }
                     }                    
                 }
@@ -181,12 +179,76 @@ namespace MSFactoryDAC
             catch (Exception err)
             {
                 throw err;
+                //return false;
+            }
+        }
+        /// <summary>
+        /// 삭제 오류
+        /// </summary>
+        //public bool Delete(List<int> company_idList)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+        //    {
+        //        conn.Open();
+
+        //        string sql = "SP_DELETE_COMPANY";
+
+        //        using (SqlCommand cmd = new SqlCommand(sql, conn))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+
+        //            cmd.Parameters.AddWithValue("@P_company_id", company_idList);
+
+        //            return cmd.ExecuteNonQuery() > 0;
+        //        }
+
+        //    }
+        //}
+
+        public bool DeleteCompany(string company_id)
+        {
+            string[] company_ids = company_id?.TrimEnd('@')?.Split('@');
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                if (company_ids?.Length > 0)
+                {
+                    SqlTransaction sTran = null;
+
+                    try
+                    {
+                        sTran = conn.BeginTransaction();
+
+                        string sql = " DELETE FROM TBL_COMPANY WHERE company_id= @company_id";
+                        string sqls = "DELETE FROM TBL_COMPANY_PRODUCT WHERE company_id= @company_id";
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = conn;
+                        cmd.Parameters.Add("@company_id", SqlDbType.Int);
+                        cmd.Transaction = sTran;
+                        foreach (var elem in company_ids)
+                        {
+                            cmd.Parameters["@company_id"].Value = int.Parse(elem);
+                            cmd.CommandText = sql;
+                            cmd.ExecuteNonQuery();
+
+                            cmd.CommandText = sqls;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        sTran.Commit();
+                        return true;
+                    }
+                    catch (Exception err)
+                    {
+                        sTran.Rollback();
+                        throw err;
+                    }
+                }
+
                 return false;
             }
         }
-        /// <returns></returns>
-        /// 
-
+        
         public List<ProductSimpleVO> SelectProductByCompanyID(int companyId)
         {
             try

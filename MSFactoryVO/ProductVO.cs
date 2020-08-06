@@ -47,8 +47,6 @@ namespace MSFactoryVO
         public DateTime? End_Date { get; set; }
         public string End_Date_String { get; set; }
         public string Note { get; set; }
-        public char Category { get; set; }
-        public string IsReadOnly { get; set; }
 
     }
 

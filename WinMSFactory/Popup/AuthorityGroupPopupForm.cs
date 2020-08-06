@@ -17,28 +17,28 @@ namespace WinMSFactory
 		int ath_grp_id;
 		AuthorityService authorityService = new AuthorityService();
 
-		public AuthorityGroupPopupForm(EmployeeVO employeeVO, int ath_grp_id = 0)
+		public AuthorityGroupPopupForm(EmployeeVO employeeVO)
+		{
+			InitializeComponent();
+			this.employeeVO = employeeVO;
+			this.Text = ath_grp_id > 0 ? "권한그룹 수정" : "권한그룹 등록";
+		}
+
+		public AuthorityGroupPopupForm(EmployeeVO employeeVO, int ath_grp_id) : this(employeeVO)
 		{
 			try
 			{
-				InitializeComponent();
-				this.employeeVO = employeeVO;
 				this.ath_grp_id = ath_grp_id;
-				this.Text = ath_grp_id > 0 ? "권한그룹 수정" : "권한그룹 등록";
+				AuthorityGroupVO AuthorityGroupVO = authorityService.GetAuthorityGroup(ath_grp_id);
 
-				if (ath_grp_id > 0)
-				{ 
-					AuthorityGroupVO AuthorityGroupVO = authorityService.GetAuthorityGroup(ath_grp_id);
+				txtAth_grp_name.Text = AuthorityGroupVO.Ath_grp_name;
+				nudAth_grp_seq.Value = AuthorityGroupVO.Ath_grp_seq;
+				txtAth_grp_expl.Text = AuthorityGroupVO.Ath_grp_expl;
 
-					txtAth_grp_name.Text = AuthorityGroupVO.Ath_grp_name;
-					nudAth_grp_seq.Value = AuthorityGroupVO.Ath_grp_seq;
-					txtAth_grp_expl.Text = AuthorityGroupVO.Ath_grp_expl;
-
-					if (AuthorityGroupVO.Ath_grp_use == "Y")
-						rdoAth_grp_useY.Checked = true;
-					else
-						rdoAth_grp_useN.Checked = true;
-				}
+				if (AuthorityGroupVO.Ath_grp_use == "Y")
+					rdoAth_grp_useY.Checked = true;
+				else
+					rdoAth_grp_useN.Checked = true;
 			}
 			catch (Exception err)
 			{
@@ -55,12 +55,10 @@ namespace WinMSFactory
 
 				AuthorityGroupVO AuthorityGroupVO = new AuthorityGroupVO
 				{
-					Ath_grp_id = ath_grp_id,
-					Ath_grp_name = txtAth_grp_name.Text.Trim(),
+					Ath_grp_name = txtAth_grp_name.Text,
 					Ath_grp_seq = (int)nudAth_grp_seq.Value,
-					Ath_grp_expl = txtAth_grp_expl.Text.Trim(),
+					Ath_grp_expl = txtAth_grp_expl.Text,
 					Ath_grp_use = rdoAth_grp_useY.Checked ? "Y" : "N",
-					Regist_employee = employeeVO.Employee_id
 				};
 
 				if (authorityService.SaveAuthorityGroup(AuthorityGroupVO))
