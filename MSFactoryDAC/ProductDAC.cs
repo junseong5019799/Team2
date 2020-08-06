@@ -38,6 +38,39 @@ namespace MSFactoryDAC
             }
         }
 
+        public string SelectProductName(int codeNum)
+        {
+            try
+            {
+                string ProductName = string.Empty;
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SELECT PRODUCT_NAME FROM TBL_PRODUCT WHERE PRODUCT_ID = @PRODUCT_ID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PRODUCT_ID",codeNum);
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if(reader.Read())
+                        {
+                            ProductName = reader[0].ToString();
+                        }
+                    }
+
+                    return ProductName;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<CompanyVO> SelectProductBindings(int Company_id)
         {
             try

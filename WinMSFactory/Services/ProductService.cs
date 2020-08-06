@@ -29,6 +29,11 @@ namespace WinMSFactory
             return dac.InsertProducts(InsertData, IsBomCopy);
         }
 
+        public string SelectProductName(int codeNum)
+        {
+            return dac.SelectProductName(codeNum);
+        }
+
         public bool DeleteProducts(int ProductNo)
         {
             return dac.DeleteProducts(ProductNo);

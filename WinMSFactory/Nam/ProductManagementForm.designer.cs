@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagementForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnConfirm = new WinMSFactory.ButtonControl();
             this.cboProductType = new System.Windows.Forms.ComboBox();
@@ -56,6 +58,10 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.buttonControl1 = new WinMSFactory.ButtonControl();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.dgvBarcode = new WinMSFactory.DataGridViewControl();
+            this.btnBarDelete = new WinMSFactory.ButtonControl();
+            this.btnbarCopy = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -65,11 +71,14 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnbarCopy);
+            this.panel1.Controls.Add(this.btnBarDelete);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
@@ -84,6 +93,8 @@
             this.panel1.Controls.SetChildIndex(this.groupBox3, 0);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox4, 0);
+            this.panel1.Controls.SetChildIndex(this.btnBarDelete, 0);
+            this.panel1.Controls.SetChildIndex(this.btnbarCopy, 0);
             // 
             // groupBox1
             // 
@@ -229,33 +240,32 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 179);
+            this.dgv.Location = new System.Drawing.Point(323, 179);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 582);
+            this.dgv.Size = new System.Drawing.Size(1211, 582);
             this.dgv.TabIndex = 4;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             this.dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_DataBindingComplete);
@@ -316,7 +326,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(129, 37);
             this.btnPrint.TabIndex = 48;
-            this.btnPrint.Text = "바코드 인쇄";
+            this.btnPrint.Text = "제품 목록 인쇄";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.buttonControl1_Click_1);
             // 
@@ -365,10 +375,72 @@
             this.buttonControl1.UseVisualStyleBackColor = false;
             this.buttonControl1.Click += new System.EventHandler(this.btnBOMBarcodeCopy_Click);
             // 
+            // serialPort1
+            // 
+            this.serialPort1.PortName = "COM3";
+            // 
+            // dgvBarcode
+            // 
+            this.dgvBarcode.AllowUserToAddRows = false;
+            this.dgvBarcode.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBarcode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvBarcode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBarcode.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvBarcode.IsAllCheckColumnHeader = false;
+            this.dgvBarcode.IsAutoGenerateColumns = false;
+            this.dgvBarcode.Location = new System.Drawing.Point(1, 180);
+            this.dgvBarcode.MultiSelect = false;
+            this.dgvBarcode.Name = "dgvBarcode";
+            this.dgvBarcode.RowHeadersVisible = false;
+            this.dgvBarcode.RowTemplate.Height = 23;
+            this.dgvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBarcode.Size = new System.Drawing.Size(319, 580);
+            this.dgvBarcode.TabIndex = 5;
+            // 
+            // btnBarDelete
+            // 
+            this.btnBarDelete.BackColor = System.Drawing.Color.White;
+            this.btnBarDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnBarDelete.Location = new System.Drawing.Point(191, 139);
+            this.btnBarDelete.Name = "btnBarDelete";
+            this.btnBarDelete.Size = new System.Drawing.Size(129, 37);
+            this.btnBarDelete.TabIndex = 48;
+            this.btnBarDelete.Text = "Clear";
+            this.btnBarDelete.UseVisualStyleBackColor = false;
+            this.btnBarDelete.Click += new System.EventHandler(this.btnBarDelete_Click);
+            // 
+            // btnbarCopy
+            // 
+            this.btnbarCopy.BackColor = System.Drawing.Color.White;
+            this.btnbarCopy.ForeColor = System.Drawing.Color.Black;
+            this.btnbarCopy.Location = new System.Drawing.Point(36, 139);
+            this.btnbarCopy.Name = "btnbarCopy";
+            this.btnbarCopy.Size = new System.Drawing.Size(129, 37);
+            this.btnbarCopy.TabIndex = 48;
+            this.btnbarCopy.Text = "복사";
+            this.btnbarCopy.UseVisualStyleBackColor = false;
+            this.btnbarCopy.Click += new System.EventHandler(this.btnbarCopy_Click);
+            // 
             // ProductManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.Controls.Add(this.dgvBarcode);
             this.Controls.Add(this.dgv);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "ProductManagementForm";
@@ -377,6 +449,7 @@
             this.Controls.SetChildIndex(this.dgv, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.GuidLabel2, 0);
+            this.Controls.SetChildIndex(this.dgvBarcode, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -389,6 +462,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +493,9 @@
         private ButtonControl buttonControl1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.IO.Ports.SerialPort serialPort1;
+        private DataGridViewControl dgvBarcode;
+        private ButtonControl btnbarCopy;
+        private ButtonControl btnBarDelete;
     }
 }
