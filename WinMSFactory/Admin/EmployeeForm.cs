@@ -34,12 +34,20 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("최초등록사원", "FIRST_REGIST_EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록시간", "FINAL_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록사원", "FINAL_REGIST_EMPLOYEE_NAME", 100);
-				
+
 				LoadData();
 			}
 			catch (Exception err)
 			{
 				MessageBox.Show(err.Message);
+			}
+		}
+
+		private void Readed(object sender, ReadEventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				MessageBox.Show(e.ReadMsg);
 			}
 		}
 

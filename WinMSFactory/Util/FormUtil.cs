@@ -219,25 +219,25 @@ namespace WinCoffeePrince2nd.Util
 			{
 				//if (!contorl.Name.Contains("Search"))
 				//{
-					if (contorl is NumericUpDown)
-						((NumericUpDown)contorl).Value = 0;
-					else if (contorl is TextBox)
-					{
-						contorl.Text = "";
-						contorl.Enabled = true;
-					}
-					else if (contorl is ComboBox)
-						((ComboBox)contorl).SelectedIndex = 0;
-					else if (contorl is DataGridView)
-						((DataGridView)contorl).ClearSelection();
-					else if (contorl is CheckBox)
-						((CheckBox)contorl).Checked = false;
-					else if (contorl is RadioButton)
-						((RadioButton)contorl).Checked = false;
-					else if (contorl is DateTimePicker)
-						((DateTimePicker)contorl).Value = DateTime.Now;
-					else if (contorl.Controls.Count > 0)
-						Clear(contorl.Controls);
+				if (contorl is NumericUpDown)
+					((NumericUpDown)contorl).Value = 0;
+				else if (contorl is TextBox)
+				{
+					contorl.Text = "";
+					contorl.Enabled = true;
+				}
+				else if (contorl is ComboBox)
+					((ComboBox)contorl).SelectedIndex = 0;
+				else if (contorl is DataGridView)
+					((DataGridView)contorl).ClearSelection();
+				else if (contorl is CheckBox)
+					((CheckBox)contorl).Checked = false;
+				else if (contorl is RadioButton)
+					((RadioButton)contorl).Checked = false;
+				else if (contorl is DateTimePicker)
+					((DateTimePicker)contorl).Value = DateTime.Now;
+				else if (contorl.Controls.Count > 0)
+					Clear(contorl.Controls);
 				//}
 			}
 		}

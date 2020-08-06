@@ -185,11 +185,11 @@
 			this.Controls.Add(this.cboAth_grp_id);
 			this.Controls.Add(this.rdoEmployee_useN);
 			this.Controls.Add(this.rdoEmployee_useY);
-			this.Controls.Add(this.txtEmployee_id);
-			this.Controls.Add(this.txtEmployee_name);
-			this.Controls.Add(this.txtEmployee_pwd);
 			this.Controls.Add(this.txtEmployee_pwd_confirm);
+			this.Controls.Add(this.txtEmployee_pwd);
+			this.Controls.Add(this.txtEmployee_name);
 			this.Controls.Add(this.label6);
+			this.Controls.Add(this.txtEmployee_id);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label3);

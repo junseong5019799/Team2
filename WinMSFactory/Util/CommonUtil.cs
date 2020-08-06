@@ -9,8 +9,8 @@ namespace WinMSFactory
 	/// <summary>
 	// 확장 메서드
 	/// </summary>
-    public static class CommonUtil
-    {
+	public static class CommonUtil
+	{
 		// Convert.To~ 대신 사용
 
 		public static int ToInt(this object obj)
@@ -45,7 +45,7 @@ namespace WinMSFactory
 			StringBuilder builder = new StringBuilder();
 
 			if (!string.IsNullOrEmpty(str.Trim()))
-			{ 
+			{
 				using (System.Security.Cryptography.SHA256 mySHA256 = System.Security.Cryptography.SHA256.Create())
 				{
 					try

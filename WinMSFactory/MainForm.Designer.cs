@@ -31,17 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.btnSearch = new System.Windows.Forms.ToolStripButton();
-			this.btnAdd = new System.Windows.Forms.ToolStripButton();
-			this.btnDelete = new System.Windows.Forms.ToolStripButton();
-			this.btnSave = new System.Windows.Forms.ToolStripButton();
-			this.btnExcel = new System.Windows.Forms.ToolStripButton();
-			this.btnLogOut = new System.Windows.Forms.ToolStripButton();
-			this.btnPrint = new System.Windows.Forms.ToolStripButton();
-			this.btnClear = new System.Windows.Forms.ToolStripButton();
-			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
@@ -49,6 +39,17 @@
 			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
 			this.tsMenu = new System.Windows.Forms.ToolStrip();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.btnSearch = new System.Windows.Forms.ToolStripButton();
+			this.btnAdd = new System.Windows.Forms.ToolStripButton();
+			this.btnDelete = new System.Windows.Forms.ToolStripButton();
+			this.btnSave = new System.Windows.Forms.ToolStripButton();
+			this.btnExcel = new System.Windows.Forms.ToolStripButton();
+			this.btnLogOut = new System.Windows.Forms.ToolStripButton();
+			this.btnPrint = new System.Windows.Forms.ToolStripButton();
+			this.btnBarcode = new System.Windows.Forms.ToolStripButton();
+			this.btnClear = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.mainTabControl1 = new WinMSFactory.MainTabControl();
 			this.toolStrip2.SuspendLayout();
 			this.SuspendLayout();
@@ -65,12 +66,62 @@
             this.btnExcel,
             this.btnLogOut,
             this.btnPrint,
+            this.btnBarcode,
             this.btnClear});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip2.Name = "toolStrip2";
 			this.toolStrip2.Size = new System.Drawing.Size(1561, 65);
 			this.toolStrip2.TabIndex = 1;
 			this.toolStrip2.Text = "toolStrip2";
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Location = new System.Drawing.Point(0, 817);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(1561, 22);
+			this.statusStrip1.TabIndex = 4;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripButton6
+			// 
+			this.toolStripButton6.Name = "toolStripButton6";
+			this.toolStripButton6.Size = new System.Drawing.Size(23, 23);
+			// 
+			// toolStripButton7
+			// 
+			this.toolStripButton7.Name = "toolStripButton7";
+			this.toolStripButton7.Size = new System.Drawing.Size(23, 23);
+			// 
+			// toolStripButton8
+			// 
+			this.toolStripButton8.Name = "toolStripButton8";
+			this.toolStripButton8.Size = new System.Drawing.Size(23, 23);
+			// 
+			// toolStripButton9
+			// 
+			this.toolStripButton9.Name = "toolStripButton9";
+			this.toolStripButton9.Size = new System.Drawing.Size(23, 23);
+			// 
+			// toolStripButton10
+			// 
+			this.toolStripButton10.Name = "toolStripButton10";
+			this.toolStripButton10.Size = new System.Drawing.Size(23, 23);
+			// 
+			// tsMenu
+			// 
+			this.tsMenu.AutoSize = false;
+			this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
+			this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
+			this.tsMenu.Location = new System.Drawing.Point(0, 65);
+			this.tsMenu.Name = "tsMenu";
+			this.tsMenu.Size = new System.Drawing.Size(219, 752);
+			this.tsMenu.TabIndex = 2;
+			this.tsMenu.Text = "toolStrip1";
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 25;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// btnSearch
 			// 
@@ -166,6 +217,18 @@
 			this.btnPrint.Visible = false;
 			this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
 			// 
+			// btnBarcode
+			// 
+			this.btnBarcode.AutoSize = false;
+			this.btnBarcode.Image = ((System.Drawing.Image)(resources.GetObject("btnBarcode.Image")));
+			this.btnBarcode.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnBarcode.Name = "btnBarcode";
+			this.btnBarcode.Size = new System.Drawing.Size(50, 50);
+			this.btnBarcode.Text = "바코드";
+			this.btnBarcode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.btnBarcode.Visible = false;
+			this.btnBarcode.Click += new System.EventHandler(this.btnBarcode_Click);
+			// 
 			// btnClear
 			// 
 			this.btnClear.AutoSize = false;
@@ -187,14 +250,6 @@
 			this.toolStripButton5.Size = new System.Drawing.Size(217, 19);
 			this.toolStripButton5.Text = "PopUpDialog";
 			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Location = new System.Drawing.Point(0, 817);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(1561, 22);
-			this.statusStrip1.TabIndex = 4;
-			this.statusStrip1.Text = "statusStrip1";
-			// 
 			// toolStripButton1
 			// 
 			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -203,47 +258,6 @@
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 62);
 			this.toolStripButton1.Text = "toolStripButton1";
-			// 
-			// toolStripButton6
-			// 
-			this.toolStripButton6.Name = "toolStripButton6";
-			this.toolStripButton6.Size = new System.Drawing.Size(23, 23);
-			// 
-			// toolStripButton7
-			// 
-			this.toolStripButton7.Name = "toolStripButton7";
-			this.toolStripButton7.Size = new System.Drawing.Size(23, 23);
-			// 
-			// toolStripButton8
-			// 
-			this.toolStripButton8.Name = "toolStripButton8";
-			this.toolStripButton8.Size = new System.Drawing.Size(23, 23);
-			// 
-			// toolStripButton9
-			// 
-			this.toolStripButton9.Name = "toolStripButton9";
-			this.toolStripButton9.Size = new System.Drawing.Size(23, 23);
-			// 
-			// toolStripButton10
-			// 
-			this.toolStripButton10.Name = "toolStripButton10";
-			this.toolStripButton10.Size = new System.Drawing.Size(23, 23);
-			// 
-			// tsMenu
-			// 
-			this.tsMenu.AutoSize = false;
-			this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
-			this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-			this.tsMenu.Location = new System.Drawing.Point(0, 65);
-			this.tsMenu.Name = "tsMenu";
-			this.tsMenu.Size = new System.Drawing.Size(219, 752);
-			this.tsMenu.TabIndex = 2;
-			this.tsMenu.Text = "toolStrip1";
-			// 
-			// timer1
-			// 
-			this.timer1.Interval = 25;
-			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// mainTabControl1
 			// 
@@ -271,6 +285,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "MainForm";
 			this.Text = "Main";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
 			this.toolStrip2.ResumeLayout(false);
@@ -302,6 +317,7 @@
 		private System.Windows.Forms.ToolStripButton btnClear;
 		private System.Windows.Forms.ToolStrip tsMenu;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.ToolStripButton btnBarcode;
 	}
 }
 

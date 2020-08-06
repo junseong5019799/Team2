@@ -34,14 +34,13 @@
             this.btnSelect = new WinMSFactory.ButtonControl();
             this.cboCompany_Type = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCompany_Id = new System.Windows.Forms.TextBox();
             this.txtCompany_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvCompanyList = new WinMSFactory.DataGridViewControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelect = new WinMSFactory.ButtonControl();
             this.btnInsert = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanyList)).BeginInit();
             this.panel2.SuspendLayout();
@@ -49,32 +48,30 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.btnInsert);
             this.panel1.Controls.Add(this.btnDelect);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnSelect);
             this.panel1.Controls.Add(this.cboCompany_Type);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtCompany_Id);
             this.panel1.Controls.Add(this.txtCompany_Name);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Size = new System.Drawing.Size(1534, 160);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.txtCompany_Name, 0);
-            this.panel1.Controls.SetChildIndex(this.txtCompany_Id, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.cboCompany_Type, 0);
             this.panel1.Controls.SetChildIndex(this.btnSelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnClear, 0);
             this.panel1.Controls.SetChildIndex(this.btnDelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnInsert, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(932, 40);
+            this.GuidLabel1.Location = new System.Drawing.Point(591, 9);
             // 
             // GuidLabel2
             // 
@@ -85,12 +82,13 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.White;
             this.btnClear.ForeColor = System.Drawing.Color.Black;
-            this.btnClear.Location = new System.Drawing.Point(703, 91);
+            this.btnClear.Location = new System.Drawing.Point(695, 91);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(55, 23);
             this.btnClear.TabIndex = 33;
             this.btnClear.Text = "초기화";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSelect
             // 
@@ -108,7 +106,7 @@
             // 
             this.cboCompany_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCompany_Type.FormattingEnabled = true;
-            this.cboCompany_Type.Location = new System.Drawing.Point(134, 117);
+            this.cboCompany_Type.Location = new System.Drawing.Point(124, 91);
             this.cboCompany_Type.Name = "cboCompany_Type";
             this.cboCompany_Type.Size = new System.Drawing.Size(151, 24);
             this.cboCompany_Type.TabIndex = 28;
@@ -117,24 +115,16 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(57, 121);
+            this.label3.Location = new System.Drawing.Point(47, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 27;
             this.label3.Text = "거래처 유형";
             // 
-            // txtCompany_Id
-            // 
-            this.txtCompany_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompany_Id.Location = new System.Drawing.Point(134, 57);
-            this.txtCompany_Id.Name = "txtCompany_Id";
-            this.txtCompany_Id.Size = new System.Drawing.Size(151, 22);
-            this.txtCompany_Id.TabIndex = 26;
-            // 
             // txtCompany_Name
             // 
             this.txtCompany_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompany_Name.Location = new System.Drawing.Point(416, 57);
+            this.txtCompany_Name.Location = new System.Drawing.Point(394, 91);
             this.txtCompany_Name.Name = "txtCompany_Name";
             this.txtCompany_Name.Size = new System.Drawing.Size(151, 22);
             this.txtCompany_Name.TabIndex = 25;
@@ -143,21 +133,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(344, 60);
+            this.label2.Location = new System.Drawing.Point(322, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 24;
             this.label2.Text = "거래처 명칭";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 16);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "거래처 코드";
             // 
             // dgvCompanyList
             // 
@@ -186,14 +166,14 @@
             this.dgvCompanyList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCompanyList.IsAllCheckColumnHeader = false;
             this.dgvCompanyList.IsAutoGenerateColumns = false;
-            this.dgvCompanyList.Location = new System.Drawing.Point(12, 156);
+            this.dgvCompanyList.Location = new System.Drawing.Point(12, 166);
             this.dgvCompanyList.MultiSelect = false;
             this.dgvCompanyList.Name = "dgvCompanyList";
+            this.dgvCompanyList.RowHeadersVisible = false;
             this.dgvCompanyList.RowTemplate.Height = 23;
             this.dgvCompanyList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompanyList.Size = new System.Drawing.Size(1531, 577);
             this.dgvCompanyList.TabIndex = 4;
-            //this.dgvCompanyList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellClick);
             this.dgvCompanyList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanyList_CellDoubleClick);
             // 
             // panel2
@@ -209,24 +189,36 @@
             // 
             this.btnDelect.BackColor = System.Drawing.Color.White;
             this.btnDelect.ForeColor = System.Drawing.Color.Black;
-            this.btnDelect.Location = new System.Drawing.Point(793, 91);
+            this.btnDelect.Location = new System.Drawing.Point(780, 91);
             this.btnDelect.Name = "btnDelect";
             this.btnDelect.Size = new System.Drawing.Size(55, 23);
             this.btnDelect.TabIndex = 34;
             this.btnDelect.Text = "삭제";
             this.btnDelect.UseVisualStyleBackColor = false;
+            this.btnDelect.Click += new System.EventHandler(this.btnDelect_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.White;
             this.btnInsert.ForeColor = System.Drawing.Color.Black;
-            this.btnInsert.Location = new System.Drawing.Point(883, 91);
+            this.btnInsert.Location = new System.Drawing.Point(856, 91);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(55, 23);
             this.btnInsert.TabIndex = 35;
             this.btnInsert.Text = "추가";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(935, 91);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(82, 23);
+            this.buttonControl1.TabIndex = 36;
+            this.buttonControl1.Text = "바코드 생성";
+            this.buttonControl1.UseVisualStyleBackColor = false;
             // 
             // CompanyForm
             // 
@@ -257,13 +249,12 @@
         private ButtonControl btnSelect;
         private System.Windows.Forms.ComboBox cboCompany_Type;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCompany_Id;
         private System.Windows.Forms.TextBox txtCompany_Name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private DataGridViewControl dgvCompanyList;
         private System.Windows.Forms.Panel panel2;
         private ButtonControl btnDelect;
         private ButtonControl btnInsert;
+        private ButtonControl buttonControl1;
     }
 }

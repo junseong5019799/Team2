@@ -26,8 +26,8 @@ namespace WinMSFactory
 				cboAth_grp_id.ComboBinding(new AuthorityService().GetAllAuthorityGroups(), "ATH_GRP_NAME", "ATH_GRP_ID", "선택", 0);
 
 				if (!string.IsNullOrEmpty(txtEmployee_id.Text))
-				{ 
-					EmployeeVO employee =  employeeService.GetEmployee(employee_id);
+				{
+					EmployeeVO employee = employeeService.GetEmployee(employee_id);
 
 					cboAth_grp_id.SelectedValue = employee.Ath_grp_id;
 					txtEmployee_id.Enabled = false;

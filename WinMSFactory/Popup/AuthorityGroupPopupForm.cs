@@ -27,7 +27,7 @@ namespace WinMSFactory
 				this.Text = ath_grp_id > 0 ? "권한그룹 수정" : "권한그룹 등록";
 
 				if (ath_grp_id > 0)
-				{ 
+				{
 					AuthorityGroupVO AuthorityGroupVO = authorityService.GetAuthorityGroup(ath_grp_id);
 
 					txtAth_grp_name.Text = AuthorityGroupVO.Ath_grp_name;

@@ -196,10 +196,12 @@
             // 
             // txtSeq
             // 
+            this.txtSeq.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSeq.Location = new System.Drawing.Point(126, 96);
             this.txtSeq.Name = "txtSeq";
             this.txtSeq.Size = new System.Drawing.Size(119, 22);
             this.txtSeq.TabIndex = 15;
+            this.txtSeq.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSeq_KeyPress);
             // 
             // txtNote1
             // 

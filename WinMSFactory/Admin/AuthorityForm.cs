@@ -45,10 +45,11 @@ namespace WinMSFactory
 				dataGridViewControl2.AddNewColumns("프로그램 명칭", "PROG_NAME", 100);
 				dataGridViewControl2.AddNewColumns("조회", "PROG_SEARCH", 100);
 				dataGridViewControl2.AddNewColumns("추가", "PROG_ADD", 100);
-				dataGridViewControl2.AddNewColumns("삭제", "PROG_DELECT", 100);
+				dataGridViewControl2.AddNewColumns("삭제", "PROG_DELETE", 100);
 				dataGridViewControl2.AddNewColumns("저장", "PROG_SAVE", 100);
 				dataGridViewControl2.AddNewColumns("엑셀", "PROG_EXCEL", 100);
 				dataGridViewControl2.AddNewColumns("출력", "PROG_PRINT", 100);
+				dataGridViewControl2.AddNewColumns("바코드", "PROG_BARCODE", 100);
 				dataGridViewControl2.AddNewColumns("초기화", "PROG_CLEAR", 100);
 
 				LoadData();

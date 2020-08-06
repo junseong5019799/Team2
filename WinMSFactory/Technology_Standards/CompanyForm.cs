@@ -14,11 +14,11 @@ using WinMSFactory.TechnologyStandards;
 
 namespace WinMSFactory.Technology_Standards
 {
-    //테스트박스 조회, 삭제 만들기, 팝업창에서 추가할때는 코드 텍스트 비져블 저장할때는 코드, 최초등록 비져블
+    //테스트박스 조회, 전체 체크 박스 풀기
     public partial class CompanyForm : ListForm
     {
         CheckBox headerCheckBox = new CheckBox();
-        CompanyService service;
+        //CompanyService service;
         List<CommonCodeVO> list;
         DataTable dtOrg;
         public CompanyForm()
@@ -51,11 +51,7 @@ namespace WinMSFactory.Technology_Standards
             else
                 type = cboCompany_Type.SelectedValue.ToString();
 
-            CompanyService service = new CompanyService();
-            dtOrg = service.GetCompany(type);
-
-            DataView dv = new DataView(dtOrg);
-            dgvCompanyList.DataSource = dv;
+            LoadData();
         }
 
         private void HeaderCheckBox_Clicked(object sender, EventArgs e)
@@ -127,25 +123,106 @@ namespace WinMSFactory.Technology_Standards
         private void btnInsert_Click(object sender, EventArgs e)
         {
             CompanyProductPopupForm cpp = new CompanyProductPopupForm();
-            cpp.ShowDialog();
+
+            if (cpp.ShowDialog() == DialogResult.OK)
+                LoadData();
         }
 
-        //private void dgvCompanyList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCompanyList_CellClick(object sender, DataGridViewCellEventArgs e) //전체 체크박스풀기
+        {
+            //Check to ensure that the row CheckBox is clicked.
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                //Loop to verify whether all row CheckBoxes are checked or not.
+                bool isChecked = true;
+                foreach (DataGridViewRow row in dgvCompanyList.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells["chk"].EditedFormattedValue) == false)
+                    {
+                        isChecked = false;
+                        break;
+                    }
+                }
+                headerCheckBox.Checked = isChecked;
+            }
+        }
+
+        private void btnDelect_Click(object sender, EventArgs e)
+        {
+            CompanyService service = new CompanyService();
+            try
+            {
+                string company_id = dgvCompanyList.GetCheckIDs("company_id");
+
+                if (string.IsNullOrEmpty(company_id))
+                    return;
+
+                if (service.DeleteCompany(company_id))
+                {
+                    MessageBox.Show("정상적으로 삭제되었습니다.");
+                    LoadData();
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void LoadData()
+        {
+            CompanyService service = new CompanyService();
+            dtOrg = service.GetCompany("");
+
+            DataView dv = new DataView(dtOrg);
+            dgvCompanyList.DataSource = dv;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCompany_Name.Text = "";
+            LoadData();
+            cboCompany_Type.SelectedIndex = 0;
+        }
+
+        //오류//private void btnDelect_Click(object sender, EventArgs e)
         //{
-        //    //Check to ensure that the row CheckBox is clicked.
-        //    if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+        //    CompanyService service = new CompanyService();
+
+        //    if (MessageBox.Show("거래처를 삭제 하시겠습니까? 거래처 품목도 같이 삭제 됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
+        //        return;
+        //    try
         //    {
-        //        //Loop to verify whether all row CheckBoxes are checked or not.
-        //        bool isChecked = true;
-        //        foreach (DataGridViewRow row in dgvCompanyList.Rows)
+        //         List<int> CheckList = new List<int>();
+
+        //         foreach (DataGridViewRow row in dgvCompanyList.Rows)
+        //         {
+        //             DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
+
+        //                 if (chk.Value == null)
+        //                     continue;
+        //                 else if ((bool)chk.Value == true)
+        //                     CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
+        //         }
+
+        //          int company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
+
+        //        if (CheckList.Count > 0)
         //        {
-        //            if (Convert.ToBoolean(row.Cells["chk"].EditedFormattedValue) == false)
-        //            {
-        //                isChecked = false;
-        //                break;
-        //            }
+        //            service.Delete(CheckList);
+
+        //            DataView dv = new DataView(dtOrg);
+        //            dgvCompanyList.DataSource = dv;
+
         //        }
-        //        headerCheckBox.Checked = isChecked;
+        //        else
+        //        {
+        //            MessageBox.Show("다시 선택해주세요");
+        //        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        throw err;
         //    }
         //}
     }
