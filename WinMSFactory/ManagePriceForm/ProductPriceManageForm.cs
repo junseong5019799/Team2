@@ -27,21 +27,6 @@ namespace WinMSFactory.ManagePriceForm
 
             SelectList = service.ProductPriceSelect();
             dgv.DataSource = SelectList;
-
-            List<ProductPriceManageVO> manageVO = (List<ProductPriceManageVO>)dgv.DataSource;
-            List<string> comboList = new List<string>();
-
-            comboList.Add("전체");
-
-            foreach(var list in manageVO)
-            {
-                if (comboList.FindIndex(p => p.Equals(list.Company_Name))>0)
-                    continue;
-
-                comboList.Add(list.Company_Name);
-            }
-
-            comboBox1.DataSource = comboList;
         }
 
         private void MainColumns()
@@ -60,20 +45,7 @@ namespace WinMSFactory.ManagePriceForm
             dgv.AddNewColumns("코드번호", "Material_Price_Code", 150, false);    // 코드 번호
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e) // 검색
-        {
-            if (comboBox1.SelectedIndex == 0)
-            {
-                dgv.DataSource = SelectList;
-                return;
-            }
-                
-            var SortedList = (from sortList in SelectList
-                              where sortList.Company_Name == comboBox1.Text
-                              select sortList).ToList();
 
-            dgv.DataSource = SortedList;
-        }
         private void btn_Insert_Click(object sender, EventArgs e) // 등록
         {
             SettingFormOpen(true);
@@ -129,7 +101,5 @@ namespace WinMSFactory.ManagePriceForm
         {
             
         }
-
-        
     }
 }

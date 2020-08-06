@@ -9,8 +9,8 @@ namespace WinMSFactory
 	/// <summary>
 	// 확장 메서드
 	/// </summary>
-	public static class CommonUtil
-	{
+    public static class CommonUtil
+    {
 		// Convert.To~ 대신 사용
 
 		public static int ToInt(this object obj)
@@ -38,35 +38,6 @@ namespace WinMSFactory
 			bool flag;
 
 			return bool.TryParse(str, out flag) && flag;
-		}
-
-		public static string GetSHA256(this string str)
-		{
-			StringBuilder builder = new StringBuilder();
-
-			if (!string.IsNullOrEmpty(str.Trim()))
-			{
-				using (System.Security.Cryptography.SHA256 mySHA256 = System.Security.Cryptography.SHA256.Create())
-				{
-					try
-					{
-						// ComputeHash - returns byte array  
-						byte[] bytes = mySHA256.ComputeHash(Encoding.UTF8.GetBytes(str));
-
-						// Convert byte array to a string   
-						for (int i = 0; i < bytes.Length; i++)
-						{
-							builder.Append(bytes[i].ToString("x2"));
-						}
-					}
-					catch (UnauthorizedAccessException err)
-					{
-						throw err;
-					}
-				}
-			}
-
-			return builder.ToString();
 		}
 	}
 }

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
-namespace WinMSFactory
+namespace WinMSFactory.BOM
 {
     
     public partial class BOMManageForm : BasicForm

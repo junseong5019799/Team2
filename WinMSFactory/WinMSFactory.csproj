@@ -119,12 +119,6 @@
     <Compile Include="Barcode\BarcodeOrder.Designer.cs">
       <DependentUpon>BarcodeOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Barcode\BarCodeProductBOM.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Barcode\BarCodeProductBOM.Designer.cs">
-      <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
-    </Compile>
     <Compile Include="Barcode\ReportPreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +172,12 @@
     </Compile>
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyXtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CompanyXtraReport.Designer.cs">
+      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\ProductPriceDialogForm.cs">
       <SubType>Form</SubType>
@@ -280,12 +280,6 @@
     </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Popup\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Popup\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -528,9 +522,6 @@
     <EmbeddedResource Include="Barcode\BarcodeOrder.resx">
       <DependentUpon>BarcodeOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Barcode\BarCodeProductBOM.resx">
-      <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Barcode\ReportPreviewForm.resx">
       <DependentUpon>ReportPreviewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -557,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanyXtraReport.resx">
+      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\ProductPriceDialogForm.resx">
       <DependentUpon>ProductPriceDialogForm.cs</DependentUpon>
@@ -629,9 +623,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Popup\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>

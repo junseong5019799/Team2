@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinMSFactory.Technology_Standards
+namespace WinMSFactory
 {
     public partial class DowntimeTyreForm : ListForm
     {

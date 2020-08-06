@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
-namespace WinMSFactory
+namespace WinMSFactory.OrderForm
 {
     public partial class WareHousePopUpForm : PopUpDialogForm
     {

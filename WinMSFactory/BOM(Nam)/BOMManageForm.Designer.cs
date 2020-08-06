@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory
+﻿namespace WinMSFactory.BOM
 {
     partial class BOMManageForm
     {

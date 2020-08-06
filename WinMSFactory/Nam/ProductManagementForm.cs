@@ -1,10 +1,14 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
+using WinMSFactory.BOM;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -29,7 +33,7 @@ namespace WinMSFactory
         char BomEnrollStatus = 'N';
 
         bool BomEnrollCheck;
-        List<ProductVO> BarcodeList = new List<ProductVO>();
+        
         public ProductManagementForm()
         {
             InitializeComponent();
@@ -57,8 +61,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
             dgv.AddNewColumns("사용 여부", "product_use", 100, false);
             dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
-
-            dgvBarCodeColumns();
+            
 
             SelectAllProducts = pdSv.SelectAllProducts();
 
@@ -70,15 +73,6 @@ namespace WinMSFactory
             rdoUse.CheckedChanged += rdoActive_CheckedChanged;
 
             rdoAll.Checked = true;
-
-            ((MainForm)this.MdiParent).Readed += Readed_Completed;
-
-        }
-
-        private void dgvBarCodeColumns()
-        {
-            dgvBarcode.AddNewColumns("제품 코드", "Product_ID", 100, true);
-            dgvBarcode.AddNewColumns("바코드 제품명", "Product_Name", 330, true);
         }
 
         private void ReviewDGV()
@@ -326,6 +320,9 @@ namespace WinMSFactory
                     IsCheckedList.Add(chk.Value);
                     continue;
                 }
+                    
+                    
+
                 if((bool)chk.Value == true)
                 {
                     if (dgv[2, chk.RowIndex].Value.ToString() == "재료") // 재료를 체크하고 복사를 진행하는 경우
@@ -354,58 +351,6 @@ namespace WinMSFactory
 
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
-        }
-
-        private void buttonControl1_Click_1(object sender, EventArgs e)
-        {
-            BarCodeProductBOM report = new BarCodeProductBOM();
-
-            report.DataSource = pdSv.SelectAllProductsToTable(); 
-            report.CreateDocument();
-
-            ReportPreviewForm frm = new ReportPreviewForm(report);
-            
-        }
-
-        private void Readed_Completed(object sender, ReadEventArgs e)
-        {
-            ((MainForm)this.MdiParent).ClearStrs();
-
-            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-            {
-                if (e.ReadMsg.Contains("N")) // 재료 선택시
-                {
-                    MessageBox.Show("재료의 BOM 정보가 없으므로 복사를 진행하실 수 없습니다.");
-                    return;
-                }
-                int CodeNum = e.ReadMsg.Substring(0, 4).ToInt();
-
-                BarcodeList.Add(new ProductVO
-                {
-                    Product_ID = CodeNum,
-                    Product_Name =  pdSv.SelectProductName(CodeNum) 
-                });
-            }
-            
-            dgvBarcode.DataSource = null;
-            dgvBarcode.DataSource = BarcodeList;
-            
-        }
-        private void btnBOMBarcodeCopy_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnbarCopy_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnBarDelete_Click(object sender, EventArgs e)
-        {
-            dgvBarcode.DataSource = null;
-            BarcodeList.Clear();
-            dgvBarCodeColumns();
         }
     }
 }

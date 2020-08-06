@@ -139,37 +139,34 @@ namespace WinCoffeePrince2nd.Util
 		#endregion
 
 		#region Form
-		public static Form MdiChildrenShow(this MainForm mdiParent, TabControl mainTabControl, DataRow authDr)
-		{
-			Type type = Type.GetType("WinMSFactory." + authDr["PROG_FORM_NAME"]);
+		//public static Form MdiChildrenShow(this MainForm mdiParent, string formName, IEnumerable<MethodVO> methods)
+		//{
+		//	Type type = Type.GetType("WinCoffeePrince2nd." + formName);
 
-			if (type != null)
-			{
-				foreach (TabPage tp in mainTabControl.TabPages)
-				{
-					Form frm = (Form)tp.Tag;
+		//	if (type != null)
+		//	{ 
+		//		foreach (Form frm in Application.OpenForms)
+		//		{
+		//			if (frm.GetType() == type && frm.IsMdiChild)
+		//			{
+		//				frm.Activate();
+		//				return frm;
+		//			}
+		//		}
+						
+		//		Form f = (Form)Activator.CreateInstance(type);
+		//		f.MdiParent = mdiParent;
+		//		f.WindowState = FormWindowState.Maximized;
 
-					if (frm.GetType() == type && frm.IsMdiChild)
-					{
-						mainTabControl.SelectedTab = tp;
-						return frm;
-					}
-				}
+		//		new EventUtil().CommonEvent(f, methods);
 
-				Form f = (Form)Activator.CreateInstance(type);
-				f.MdiParent = mdiParent;
-				f.FormBorderStyle = FormBorderStyle.None;
-				f.Dock = DockStyle.Fill;
+		//		f.Show();
 
-				new EventUtil().CommonEvent(f, authDr);
+		//		return f;
+		//	}
 
-				f.Show();
-
-				return f;
-			}
-
-			return null;
-		}
+		//	return null;
+		//}
 
 		public static bool HasEmptyTxt(this Form frm)
 		{
@@ -217,28 +214,28 @@ namespace WinCoffeePrince2nd.Util
 		{
 			foreach (Control contorl in controls)
 			{
-				//if (!contorl.Name.Contains("Search"))
-				//{
-				if (contorl is NumericUpDown)
-					((NumericUpDown)contorl).Value = 0;
-				else if (contorl is TextBox)
+				if (!contorl.Name.Contains("Search"))
 				{
-					contorl.Text = "";
-					contorl.Enabled = true;
+					if (contorl is NumericUpDown)
+						((NumericUpDown)contorl).Value = 0;
+					else if (contorl is TextBox)
+					{
+						contorl.Text = "";
+						contorl.Enabled = true;
+					}
+					else if (contorl is ComboBox)
+						((ComboBox)contorl).SelectedIndex = 0;
+					else if (contorl is DataGridView)
+						((DataGridView)contorl).ClearSelection();
+					else if (contorl is CheckBox)
+						((CheckBox)contorl).Checked = false;
+					else if (contorl is RadioButton)
+						((RadioButton)contorl).Checked = false;
+					else if (contorl is DateTimePicker)
+						((DateTimePicker)contorl).Value = DateTime.Now;
+					else if (contorl.Controls.Count > 0)
+						Clear(contorl.Controls);
 				}
-				else if (contorl is ComboBox)
-					((ComboBox)contorl).SelectedIndex = 0;
-				else if (contorl is DataGridView)
-					((DataGridView)contorl).ClearSelection();
-				else if (contorl is CheckBox)
-					((CheckBox)contorl).Checked = false;
-				else if (contorl is RadioButton)
-					((RadioButton)contorl).Checked = false;
-				else if (contorl is DateTimePicker)
-					((DateTimePicker)contorl).Value = DateTime.Now;
-				else if (contorl.Controls.Count > 0)
-					Clear(contorl.Controls);
-				//}
 			}
 		}
 
@@ -247,16 +244,16 @@ namespace WinCoffeePrince2nd.Util
 			return frm.MdiParent as MainForm;
 		}
 
-		public static EmployeeVO GetEmployee(this Form frm)
-		{
-			EmployeeVO employee = null;
-			MainForm mainForm = GetMdiParent(frm);
+		//public static CompanyVO GetLoginVO(this Form frm)
+		//{
+		//	CompanyVO loginVO = null;
+		//	MainForm mainForm = GetMdiParent(frm);
 
-			if (mainForm != null)
-				employee = mainForm.Employee;
+		//	if (mainForm != null)
+		//		loginVO = mainForm.LoginVO;
 
-			return employee;
-		}
+		//	return loginVO;
+		//}
 		#endregion
 
 		#region comboBox 바인딩 관련

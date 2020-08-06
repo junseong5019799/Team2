@@ -263,5 +263,7 @@ namespace WinMSFactory.ManagePriceForm
             // 
             
         }
+
+        
     }
 }
