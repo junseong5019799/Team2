@@ -35,6 +35,7 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("업데이트 구분용", "FLAG", 100, false);
 				dataGridViewControl1.AddNewColumns("*분류코드", "SORT_ID", 100, true, true);
 				dataGridViewControl1.AddNewColumns("*분류명", "SORT_NAME", 100, true, false);
+				dataGridViewControl1.AddNewColumns("순번", "SORT_SEQ", 100, true, false, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("비고", "NOTE", 100, true, false);
 
 				LoadcmmGroupData();
@@ -42,8 +43,9 @@ namespace WinMSFactory
 				dataGridViewControl2.IsAllCheckColumnHeader = true;
 				dataGridViewControl2.AddNewColumns("업데이트 구분용", "FLAG", 100, false);
 				dataGridViewControl2.AddNewComCol("*분류명", "SORT_ID", commonGroupDt, "SORT_NAME", "SORT_ID");
-				dataGridViewControl2.AddNewColumns("*코드", "COMMON_ID", 100, true, false);
+				dataGridViewControl2.AddNewColumns("*코드", "COMMON_ID", 100, true, true);
 				dataGridViewControl2.AddNewColumns("*코드명", "COMMON_NAME", 100, true, false);
+				dataGridViewControl2.AddNewColumns("순번", "COMMON_SEQ", 100, true, false, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl2.AddNewColumns("비고", "NOTE", 100, true, false);
 
 				LoadcmmData();
@@ -66,6 +68,7 @@ namespace WinMSFactory
 			commonGroupDt = ds.Tables[0];
 			storeCmmGroup = commonGroupDt.Clone();
 			dataGridViewControl1.DataSource = commonGroupDt;
+			cboSearch.ComboBinding(commonCodeService.GetCommonCodes("SEARCH"), "Common_id", "Common_name", "전체", "");
 		}
 
 		private void LoadcmmData()
@@ -75,53 +78,100 @@ namespace WinMSFactory
 			dataGridViewControl2.DataSource = commonDt;
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+
+		private void Search(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				commonGroupDt.CaseSensitive = false;
+				DataView dv = commonGroupDt.DefaultView;
+				string search = txtSearch.Text.Trim();
+
+				if (search.Length > 0)
+				{
+					if (cboSearch.SelectedValue.Equals("SEARCH_CMM_1"))
+						dv.RowFilter = $"SORT_ID LIKE '%{search}%'";
+					else if (cboSearch.SelectedValue.Equals("SEARCH_CMM_2"))
+						dv.RowFilter = $"SORT_NAME LIKE '%{search}%'";
+					else
+						dv.RowFilter = $"SORT_ID LIKE '%{search}%' OR SORT_NAME LIKE '%{search}%'";
+				}
+				else
+					dv.RowFilter = "";
+			}
+		}
+
+		private void Add(object sender, EventArgs e)
 		{
 			DataRow dr = commonGroupDt.NewRow();
-			
+
 			commonGroupDt.Rows.Add(dr);
 			SetNewRowReadOnly(dataGridViewControl1, "SORT_ID");
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Delete(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string ids = dataGridViewControl1.GetCheckIDs("SORT_ID");
-
-				if (string.IsNullOrEmpty(ids))
-					return;
-
-				if (commonCodeService.DeleteCommonGroup(ids))
+				try
 				{
-					MessageBox.Show("정상적으로 삭제 되었습니다.");
-					LoadData();
+					dataGridViewControl1.EndEdit();
+
+					string ids = dataGridViewControl1.GetCheckIDs("SORT_ID");
+
+					if (string.IsNullOrEmpty(ids))
+						return;
+
+					if (commonCodeService.DeleteCommonGroup(ids))
+					{
+						MessageBox.Show("정상적으로 삭제 되었습니다.");
+						LoadData();
+					}
 				}
-			}
-			catch (Exception err)
-			{
-				MessageBox.Show(err.Message);
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
+				}
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Save(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				if (IsEmptys(storeCmmGroup, cmmGrpChks, dataGridViewControl1, "SORT_ID") || IsEmptys(storeCmm, cmmChks, dataGridViewControl2, "COMMON_ID"))
-					return;
+				try
+				{
+					dataGridViewControl1.EndEdit();
+					dataGridViewControl2.EndEdit();
 
-				if (commonCodeService.SaveCommonCodes(storeCmmGroup, storeCmm))
-				{ 
-					MessageBox.Show("정상적으로 저장 되었습니다.");
-					LoadData();
+					if (IsEmptys(storeCmmGroup, cmmGrpChks, dataGridViewControl1, "SORT_ID") || IsEmptys(storeCmm, cmmChks, dataGridViewControl2, "COMMON_ID"))
+						return;
+
+					if (commonCodeService.SaveCommonCodes(storeCmmGroup, storeCmm))
+					{
+						MessageBox.Show("정상적으로 저장 되었습니다.");
+						LoadData();
+					}
+
 				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
+				}
+			}
+		}
 
-			}
-			catch (Exception err)
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				MessageBox.Show(err.Message);
+				LoadData();
 			}
+		}
+
+		private void CmmClear()
+		{
+			this.Clear();
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
@@ -142,6 +192,8 @@ namespace WinMSFactory
 		{
 			try
 			{
+				dataGridViewControl2.EndEdit();
+
 				string ids = dataGridViewControl2.GetCheckIDs("COMMON_ID");
 
 				if (string.IsNullOrEmpty(ids))
@@ -157,7 +209,7 @@ namespace WinMSFactory
 			{
 				MessageBox.Show(err.Message);
 			}
-}
+		}
 
 		private void dataGridViewControl1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
@@ -196,7 +248,7 @@ namespace WinMSFactory
 			DataRow dr = dt.AsEnumerable().FirstOrDefault(item => item[id].Equals(dgvg.Cells[id].Value));
 
 			if (dr != null)
-			{ 
+			{
 				if (dgvg.DefaultCellStyle.BackColor == Color.AliceBlue)
 				{
 					for (int i = storeDt.Rows.Count - 1; i >= 0; i--)
@@ -210,7 +262,7 @@ namespace WinMSFactory
 				}
 
 				if (storeDt.AsEnumerable().Where(item => !string.IsNullOrEmpty(item["FLAG"]?.ToString()) && item["FLAG"].Equals(dr[id])).Count() > 0 ||
-					(!dgvg.Cells[id].ReadOnly && dt.AsEnumerable().Where(item => item[id].Equals(dr[id])).Count() > 0))
+					(!dgvg.Cells[id].ReadOnly && dt.AsEnumerable().Where(item => item[id].Equals(dr[id])).Count() > 1))
 				{
 					MessageBox.Show("코드를 확인해주세요.");
 					isSortIDCheck = true;
@@ -293,6 +345,12 @@ namespace WinMSFactory
 			}
 
 			return false;
+		}
+
+		private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				Search(null, null);
 		}
 	}
 }

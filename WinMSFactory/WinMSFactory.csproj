@@ -81,8 +81,8 @@
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Admin\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
@@ -103,6 +103,12 @@
     </Compile>
     <Compile Include="Admin\SystemCodeForm.Designer.cs">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BarcodePortSettingPopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BarcodePortSettingPopForm.Designer.cs">
+      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Barcode\BarcodeOrder.cs">
       <SubType>Component</SubType>
@@ -255,10 +261,16 @@
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\EmployeePopForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\ModulePopupForm.cs">
       <SubType>Form</SubType>
@@ -314,6 +326,7 @@
     <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReadEventArgs.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,6 +507,9 @@
     <EmbeddedResource Include="Admin\SystemCodeForm.resx">
       <DependentUpon>SystemCodeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BarcodePortSettingPopForm.resx">
+      <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Barcode\BarcodeOrder.resx">
       <DependentUpon>BarcodeOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -592,6 +608,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\EmployeePopForm.resx">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\ModulePopupForm.resx">
       <DependentUpon>ModulePopupForm.cs</DependentUpon>

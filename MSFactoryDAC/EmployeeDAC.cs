@@ -31,15 +31,30 @@ namespace MSFactoryDAC
 
 		public EmployeeVO GetEmployee(string employee_id)
 		{
-			string sql = @"EMPLOYEE_ID, CORPORATION_ID, ATH_GRP_ID, EMPLOYEE_NAME, EMPLOYEE_USE
+			string sql = @"SELECT EMPLOYEE_ID, CORPORATION_ID, ATH_GRP_ID, EMPLOYEE_NAME, EMPLOYEE_USE
 						   FROM TBL_EMPLOYEE
 						   WHERE EMPLOYEE_ID = @EMPLOYEE_ID";
 			return SqlExecutionJ<EmployeeVO>(sql, new EmployeeVO { Employee_id = employee_id })?[0];
 		}
 
+		public EmployeeVO GetLoginEmployee(string employee_id, string employee_pwd)
+		{
+			string sql = @"SELECT EMPLOYEE_ID, CORPORATION_ID, ATH_GRP_ID, EMPLOYEE_NAME, EMPLOYEE_USE
+						   FROM TBL_EMPLOYEE
+						   WHERE EMPLOYEE_ID = @EMPLOYEE_ID
+						   AND EMPLOYEE_PWD = @EMPLOYEE_PWD";
+			EmployeeVO employeeVO = null;
+			var list = SqlExecutionJ<EmployeeVO>(sql, new EmployeeVO { Employee_id = employee_id, Employee_pwd = employee_pwd });
+
+			if (list?.Count > 0)
+				employeeVO = list[0];
+
+			return employeeVO;
+		}
+
 		public bool SaveEmployee(EmployeeVO employeeVO)
 		{
-			return NotSelectSPJ<EmployeeVO>("SP_SAVE_EMPLOYEE", employeeVO, "Employee_id", "Corporation_id", "Ath_grp_id", "Employee_name", "Employee_use", "Regist_employee");
+			return NotSelectSPJ<EmployeeVO>("SP_SAVE_EMPLOYEE", employeeVO, "Employee_id", "Corporation_id", "Ath_grp_id", "Employee_name", "Employee_pwd", "Employee_use", "Regist_employee");
 		}
 
 		public bool DeleteEmployee(string employee_id)

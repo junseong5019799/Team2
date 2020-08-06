@@ -48,16 +48,27 @@ namespace WinMSFactory
 		{
 			dt = moduleService.GetAllModules();
 			dataGridViewControl1.DataSource = dt;
+			ModuleClear();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Search(object sender, EventArgs e)
 		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				dt.CaseSensitive = false;
+				DataView dv = dt.DefaultView;
+				string search = txtSearch.Text.Trim();
 
+				if (search.Length > 0)
+					dv.RowFilter = $"MODULE_NAME LIKE '%{search}%'";
+				else
+					dv.RowFilter = "";
+			}
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Add(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			ModulePopupForm frm = new ModulePopupForm(employeeVO);
 
 			if (frm.ShowDialog() == DialogResult.OK)
@@ -66,25 +77,41 @@ namespace WinMSFactory
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Delete(object sender, EventArgs e)
 		{
-			try
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				string module_id = dataGridViewControl1.GetCheckIDs("MODULE_ID");
-
-				if (string.IsNullOrEmpty(module_id))
-					return;
-
-				if (moduleService.DeleteModule(module_id))
+				try
 				{
-					MessageBox.Show("정상적으로 삭제되었습니다.");
-					LoadData();
+					string module_id = dataGridViewControl1.GetCheckIDs("MODULE_ID");
+
+					if (string.IsNullOrEmpty(module_id))
+						return;
+
+					if (moduleService.DeleteModule(module_id))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
 				}
 			}
-			catch (Exception err)
+		}
+
+		private void Clear(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				MessageBox.Show(err.Message);
+				LoadData();
 			}
+		}
+
+		private void ModuleClear()
+		{
+			this.Clear();
 		}
 
 		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -92,7 +119,7 @@ namespace WinMSFactory
 			if (e.RowIndex < 0)
 				return;
 
-			EmployeeVO employeeVO = new EmployeeVO { Employee_id = "A" };
+			EmployeeVO employeeVO = this.GetEmployee();
 			int module_id = dataGridViewControl1["MODULE_ID", e.RowIndex].Value.ToInt();
 			ModulePopupForm frm = new ModulePopupForm(employeeVO, module_id);
 
@@ -100,6 +127,12 @@ namespace WinMSFactory
 			{
 				LoadData();
 			}
+		}
+
+		private void txtModule_name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				Search(null, null);
 		}
 	}
 }

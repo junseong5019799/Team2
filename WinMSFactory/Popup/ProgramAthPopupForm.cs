@@ -29,7 +29,7 @@ namespace WinMSFactory
 				cboModule_id.ComboBinding(new ModuleService().GetModules(1), "MODULE_NAME", "MODULE_ID", "선택", 0);
 
 				if (prog_id > 0)
-				{ 
+				{
 					ProgramAthVO programAthVO = authorityService.GetProgramAth(ath_grp_id, prog_id);
 
 					SetProgCombo(programAthVO.Module_id);
@@ -106,7 +106,7 @@ namespace WinMSFactory
 		private void SetProgCombo(int module_id)
 		{
 			if (module_id > 0)
-			{ 
+			{
 				cboProg_id.Enabled = true;
 				cboProg_id.ComboBinding(programService.GetPrograms(module_id), "PROG_NAME", "PROG_ID");
 			}

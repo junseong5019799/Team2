@@ -13,8 +13,12 @@ namespace MSFactoryDAC
 	{
 		public DataSet GetAllCommonCodes()
 		{
-			string sql = @"SELECT SORT_ID + 'Y' FLAG, SORT_ID, SORT_NAME, NOTE FROM TBL_COMMON_GROUP;
-						   SELECT COMMON_ID + 'Y' FLAG, COMMON_ID, SORT_ID, COMMON_NAME, NOTE FROM TBL_COMMON";
+			string sql = @"SELECT SORT_ID + 'Y' FLAG, SORT_ID, SORT_NAME, SORT_SEQ, NOTE FROM TBL_COMMON_GROUP ORDER BY SORT_SEQ;
+						   SELECT C.COMMON_ID + 'Y' FLAG, C.COMMON_ID, C.SORT_ID, C.COMMON_NAME, C.COMMON_SEQ, C.NOTE, CG.SORT_NAME
+						   FROM TBL_COMMON C
+							   INNER JOIN TBL_COMMON_GROUP CG
+								ON C.SORT_ID = CG.SORT_ID
+						   ORDER BY CG.SORT_SEQ, C.COMMON_SEQ";
 			DataSet ds = new DataSet();
 			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
 
@@ -26,11 +30,12 @@ namespace MSFactoryDAC
 		public List<CommonCodeVO> GetCommonCodes(string sort_ids)
 		{
 			List<CommonCodeVO> list;
-			string sql = @"SELECT C.COMMON_ID, C.SORT_ID, C.COMMON_NAME, C.NOTE, CG.SORT_NAME
+			string sql = @"SELECT C.COMMON_ID, C.SORT_ID, C.COMMON_NAME, C.COMMON_SEQ, C.NOTE, CG.SORT_NAME
 						   FROM TBL_COMMON C
 							   INNER JOIN TBL_COMMON_GROUP CG
 								ON C.SORT_ID = CG.SORT_ID
-						   WHERE C.SORT_ID IN (SELECT * FROM  SPLITSTRING(@SORT_IDS, '@'))";
+						   WHERE C.SORT_ID IN (SELECT * FROM  SPLITSTRING(@SORT_IDS, '@'))
+						   ORDER BY CG.SORT_SEQ, C.COMMON_SEQ";
 			SqlCommand cmd = new SqlCommand(sql, conn);
 			cmd.Parameters.AddWithValue("@SORT_IDS", sort_ids);
 
@@ -48,12 +53,14 @@ namespace MSFactoryDAC
 			cmd.CommandType = CommandType.StoredProcedure;
 			cmd.Parameters.Add("@P_SORT_ID", SqlDbType.NVarChar, 20);
 			cmd.Parameters.Add("@P_SORT_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_SORT_SEQ", SqlDbType.Int);
 			cmd.Parameters.Add("@P_NOTE", SqlDbType.NVarChar, 200);
 
 			foreach (DataRow dr in commonGroupDt.Rows)
 			{
 				cmd.Parameters["@P_SORT_ID"].Value = dr["SORT_ID"].ToString();
 				cmd.Parameters["@P_SORT_NAME"].Value = dr["SORT_NAME"].ToString();
+				cmd.Parameters["@P_SORT_SEQ"].Value = dr["SORT_SEQ"].ToString();
 				cmd.Parameters["@P_NOTE"].Value = dr["NOTE"].ToString();
 
 				if (cmd.ExecuteNonQuery() == 0)
@@ -70,6 +77,7 @@ namespace MSFactoryDAC
 			cmd.Parameters.Add("@P_COMMON_ID", SqlDbType.NVarChar, 20);
 			cmd.Parameters.Add("@P_SORT_ID", SqlDbType.NVarChar, 20);
 			cmd.Parameters.Add("@P_COMMON_NAME", SqlDbType.NVarChar, 20);
+			cmd.Parameters.Add("@P_COMMON_SEQ", SqlDbType.Int);
 			cmd.Parameters.Add("@P_NOTE", SqlDbType.NVarChar, 200);
 
 			foreach (DataRow dr in commonDt.Rows)
@@ -77,6 +85,7 @@ namespace MSFactoryDAC
 				cmd.Parameters["@P_COMMON_ID"].Value = dr["COMMON_ID"].ToString();
 				cmd.Parameters["@P_SORT_ID"].Value = dr["SORT_ID"].ToString();
 				cmd.Parameters["@P_COMMON_NAME"].Value = dr["COMMON_NAME"].ToString();
+				cmd.Parameters["@P_COMMON_SEQ"].Value = dr["COMMON_SEQ"].ToString();
 				cmd.Parameters["@P_NOTE"].Value = dr["NOTE"].ToString();
 
 				if (cmd.ExecuteNonQuery() == 0)
