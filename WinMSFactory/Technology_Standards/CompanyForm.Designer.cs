@@ -40,6 +40,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelect = new WinMSFactory.ButtonControl();
             this.btnInsert = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanyList)).BeginInit();
             this.panel2.SuspendLayout();
@@ -47,6 +48,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.btnInsert);
             this.panel1.Controls.Add(this.btnDelect);
             this.panel1.Controls.Add(this.btnClear);
@@ -65,10 +67,11 @@
             this.panel1.Controls.SetChildIndex(this.btnClear, 0);
             this.panel1.Controls.SetChildIndex(this.btnDelect, 0);
             this.panel1.Controls.SetChildIndex(this.btnInsert, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(932, 40);
+            this.GuidLabel1.Location = new System.Drawing.Point(591, 9);
             // 
             // GuidLabel2
             // 
@@ -198,13 +201,24 @@
             // 
             this.btnInsert.BackColor = System.Drawing.Color.White;
             this.btnInsert.ForeColor = System.Drawing.Color.Black;
-            this.btnInsert.Location = new System.Drawing.Point(865, 91);
+            this.btnInsert.Location = new System.Drawing.Point(856, 91);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(55, 23);
             this.btnInsert.TabIndex = 35;
             this.btnInsert.Text = "추가";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(935, 91);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(82, 23);
+            this.buttonControl1.TabIndex = 36;
+            this.buttonControl1.Text = "바코드 생성";
+            this.buttonControl1.UseVisualStyleBackColor = false;
             // 
             // CompanyForm
             // 
@@ -241,5 +255,6 @@
         private System.Windows.Forms.Panel panel2;
         private ButtonControl btnDelect;
         private ButtonControl btnInsert;
+        private ButtonControl buttonControl1;
     }
 }
