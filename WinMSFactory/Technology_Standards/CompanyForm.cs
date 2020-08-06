@@ -188,52 +188,28 @@ namespace WinMSFactory
 
         private void buttonControl1_Click(object sender, EventArgs e)
         {
-            //List<int> CheckList = new List<int>();
+            List<int> CheckList = new List<int>();
 
-            //foreach (DataGridViewRow row in dgvCompanyList.Rows)
-            //{
-            //    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
+            foreach (DataGridViewRow row in dgvCompanyList.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
 
-            //    if (chk.Value == null)
-            //        continue;
+                if (chk.Value == null)
+                    continue;
 
-            //    else if ((bool)chk.Value == true)
-            //        CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
+                else if ((bool)chk.Value == true)
+                    CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
 
-            //}
-
-            //for (int i = 0; i < dgvCompanyList.Rows.Count; i++)
-            //{
-            //    bool isCellChecked = (bool)dgvCompanyList.Rows[i].Cells[0].EditedFormattedValue;
-            //    if (isCellChecked)
-            //    {
-            //        chkList.Add(Convert.ToInt32(dgvCompanyList.Rows[i].Cells[1].Value));
-            //    }
-            //}
-            //if (chkList.Count == 0)
-            //{
-            //    MessageBox.Show("출력할 바코드를 출력해주세요!");
-            //    return;
-            //}
-
-            //string strChkBarcodes = string.Join(",", chkList);
-            //using (SqlConnection conn = new SqlConnection(strConn))
-            //{
-            //    DataTable dt = new DataTable();
-
-            //    string sql = @"SELECT replicate('0', 5 - len(cast(BarcodeID as varchar(5)))) +cast(BarcodeID as varchar(5)) as BarID, ProductName, QuantityPerUnit, Qty
-            //                     From BatCodeOutput b, products p
-            //                    Where b.ProductID = p.ProductID
-            //                      and b.BarcodeID in (" + strChkBarcodes + ")";
-
-            //    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-            //    da.Fill(dt);
-            //    conn.Close();
-
-            //    CompanyXtraReport xtra = new CompanyXtraReport();
-            //    xtra.DataSource = dt;
-            //    ReportPreviewForm frm = new ReportPreviewForm(xtra);
             }
+
+            string selList = string.Join(",", CheckList);
+            CompanyService service = new CompanyService();
+            DataTable dt = service.CompanyPrint(selList);
+
+            //XtraReport3 xtra = new XtraReport3();
+            //xtra.DataSource = dt;
+            //ReportPreviewForm frm = new ReportPreviewForm(xtra);
+        }
 
         //오류//private void btnDelect_Click(object sender, EventArgs e)
         //{
