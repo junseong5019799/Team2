@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.Technology_Standards
+﻿namespace WinMSFactory
 {
     partial class ProcessWorkerForm
     {

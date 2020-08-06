@@ -34,8 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -45,6 +47,7 @@
     <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -81,8 +84,8 @@
       <DependentUpon>AuthorityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Admin\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
@@ -157,6 +160,12 @@
     </Compile>
     <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyXtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CompanyXtraReport.Designer.cs">
+      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\ProductPriceDialogForm.cs">
       <SubType>Form</SubType>
@@ -255,8 +264,8 @@
       <DependentUpon>AuthorityGroupPopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\EmployeePopForm.cs">
-	  <SubType>Form</SubType>
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Popup\EmployeePopForm.Designer.cs">
       <DependentUpon>EmployeePopForm.cs</DependentUpon>
     </Compile>
@@ -520,6 +529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanyXtraReport.resx">
+      <DependentUpon>CompanyXtraReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\ProductPriceDialogForm.resx">
       <DependentUpon>ProductPriceDialogForm.cs</DependentUpon>

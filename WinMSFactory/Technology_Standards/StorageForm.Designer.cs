@@ -1,5 +1,5 @@
-﻿namespace WinMSFactory.Technology_Standards
-{
+﻿namespace WinMSFactory
+{ 
     partial class StorageForm
     {
         /// <summary>
