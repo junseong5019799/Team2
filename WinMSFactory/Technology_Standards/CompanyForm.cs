@@ -202,13 +202,19 @@ namespace WinMSFactory
 
             }
 
+            if (CheckList.Count == 0)
+            {
+                MessageBox.Show("거래처를 선택하여 주세요.");
+                return;
+            }
+
             string selList = string.Join(",", CheckList);
             CompanyService service = new CompanyService();
             DataTable dt = service.CompanyPrint(selList);
 
-            //XtraReport3 xtra = new XtraReport3();
-            //xtra.DataSource = dt;
-            //ReportPreviewForm frm = new ReportPreviewForm(xtra);
+            CompanyXtraReport xtra = new CompanyXtraReport();
+            xtra.DataSource = dt;
+            ReportPreviewForm frm = new ReportPreviewForm(xtra);
         }
 
         //오류//private void btnDelect_Click(object sender, EventArgs e)
