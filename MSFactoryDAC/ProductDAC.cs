@@ -67,6 +67,36 @@ namespace MSFactoryDAC
             }
         }
 
+        public DataTable SelectAllProductsToTable()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SELECT PRODUCT_NAME, CONCAT((REPLICATE('0',4-LEN(CAST (PRODUCT_ID AS VARCHAR(5)))) + CAST(PRODUCT_ID AS VARCHAR(5))),bom_exists) PRODUCT_ID
+                                    FROM  TBL_PRODUCT";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        data.Fill(dt);
+
+                        return dt;
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool UpdateMaterialPrice(ProductPriceManageVO insertData)
         {
             try

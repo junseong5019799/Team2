@@ -38,6 +38,7 @@
             this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
             this.btn_Insert = new WinMSFactory.ButtonControl();
             this.btn_Delete = new WinMSFactory.ButtonControl();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel4.SuspendLayout();
@@ -46,6 +47,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btn_Delete);
+            this.panel1.Controls.Add(this.buttonControl1);
             this.panel1.Controls.Add(this.btn_Insert);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label3);
@@ -58,6 +60,7 @@
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.comboBox1, 0);
             this.panel1.Controls.SetChildIndex(this.btn_Insert, 0);
+            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
             this.panel1.Controls.SetChildIndex(this.btn_Delete, 0);
             // 
             // GuidLabel1
@@ -136,13 +139,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 3, 21, 12, 8, 655);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 5, 12, 0, 46, 188);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 4, 21, 12, 8, 655);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 6, 12, 0, 46, 188);
             // 
             // btn_Insert
             // 
@@ -167,6 +170,18 @@
             this.btn_Delete.Text = "삭제";
             this.btn_Delete.UseVisualStyleBackColor = false;
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(360, 91);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(75, 23);
+            this.buttonControl1.TabIndex = 58;
+            this.buttonControl1.Text = "검색";
+            this.buttonControl1.UseVisualStyleBackColor = false;
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // ProductPriceManageForm
             // 
@@ -199,5 +214,6 @@
         private Control.FromToDateControl fromToDateControl1;
         private ButtonControl btn_Delete;
         private ButtonControl btn_Insert;
+        private ButtonControl buttonControl1;
     }
 }

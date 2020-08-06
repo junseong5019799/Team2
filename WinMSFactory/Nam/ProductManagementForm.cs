@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using MSFactoryDAC;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
-using WinMSFactory.BOM;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -351,6 +352,24 @@ namespace WinMSFactory
 
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
+        }
+
+        private void buttonControl1_Click_1(object sender, EventArgs e)
+        {
+            BarCodeProductBOM report = new BarCodeProductBOM();
+
+
+
+            report.DataSource = pdSv.SelectAllProductsToTable(); 
+            report.CreateDocument();
+
+            ReportPreviewForm frm = new ReportPreviewForm(report);
+            
+        }
+
+        private void btnBOMBarcodeCopy_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

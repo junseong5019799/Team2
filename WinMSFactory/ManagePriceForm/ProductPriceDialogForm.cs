@@ -236,7 +236,5 @@ namespace WinMSFactory.ManagePriceForm
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
         }
-
-        
     }
 }
