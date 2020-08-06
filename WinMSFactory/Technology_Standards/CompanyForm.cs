@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
-using WinMSFactory.TechnologyStandards;
+using WinMSFactory;
+using System.Data.SqlClient;
 
-namespace WinMSFactory.Technology_Standards
+namespace WinMSFactory
 {
     //테스트박스 조회, 전체 체크 박스 풀기
     public partial class CompanyForm : ListForm
@@ -183,6 +184,55 @@ namespace WinMSFactory.Technology_Standards
             txtCompany_Name.Text = "";
             LoadData();
             cboCompany_Type.SelectedIndex = 0;
+        }
+
+        private void Readed(object sender, ReadEventArgs e)
+        {
+
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                int comCode = int.Parse(e.ReadMsg.Trim().Replace("\r", "").Replace("\n", ""));
+
+                foreach (DataGridViewRow dgvr in dgvCompanyList.Rows)
+                {
+                    if (dgvr.Cells["company_id"].Value.ToInt() == comCode)
+                    {
+                        dgvr.Selected = true;
+                        break;
+                    }
+                }
+
+                this.GetMdiParent().ClearStrs();
+            }
+        }
+
+        private void buttonControl1_Click(object sender, EventArgs e)
+        {
+            List<int> CheckList = new List<int>();
+
+            foreach (DataGridViewRow row in dgvCompanyList.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
+
+                if (chk.Value == null)
+                    continue;
+                else if ((bool)chk.Value == true)
+                    CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
+            }
+
+            if (CheckList.Count == 0)
+            {
+                MessageBox.Show("거래처를 선택하여 주세요.");
+                return;
+            }
+
+            string selList = string.Join(",", CheckList);
+            CompanyService service = new CompanyService();
+			DataTable dt = service.CompanyPrint(selList);
+
+            CompanyReport xtra = new CompanyReport();
+            xtra.DataSource = dt;
+            ReportPreviewForm frm = new ReportPreviewForm(xtra);
         }
 
         //오류//private void btnDelect_Click(object sender, EventArgs e)

@@ -9,7 +9,6 @@ using System.Security.Authentication.ExtendedProtection.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
 using WinMSFactory.BOM;
 
 namespace WinMSFactory

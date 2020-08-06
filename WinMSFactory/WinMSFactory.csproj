@@ -113,6 +113,12 @@
     <Compile Include="Barcode\BarCodeProductBOM.designer.cs">
       <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Barcode\CompanyReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Barcode\CompanyReport.designer.cs">
+      <DependentUpon>CompanyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Barcode\ReportPreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -530,6 +536,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\BarCodeProductBOM.resx">
       <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\CompanyReport.resx">
+      <DependentUpon>CompanyReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\BarcodePortSettingPopForm.resx">
       <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>

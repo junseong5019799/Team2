@@ -8,8 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
-using WinMSFactory.Process;
+using WinMSFactory;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -124,6 +123,7 @@ namespace WinMSFactory
                         CheckList.Add(dgvCorporationlist[1, row.Index].Value.ToInt());
 
                 }
+
 
                 int corporation_id = Convert.ToInt32(dgvCorporationlist.SelectedRows[0].Cells[1].Value);
 

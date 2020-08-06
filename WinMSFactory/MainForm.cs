@@ -1,5 +1,4 @@
-﻿using DevExpress.DirectX.Common.Direct2D;
-using MSFactoryVO;
+﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,10 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
 using WinMSFactory.Popup;
 using WinMSFactory.Services;
-using WinMSFactory.Technology_Standards;
 
 namespace WinMSFactory
 {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinCoffeePrince2nd.Util
+namespace WinMSFactory
 {
 	public class FileUtil
 	{

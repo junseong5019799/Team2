@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.Process
+namespace WinMSFactory
 {
     public partial class CorporationPopupForm : PopUpDialogForm
     {

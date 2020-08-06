@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WinCoffeePrince2nd.Util;
 using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 

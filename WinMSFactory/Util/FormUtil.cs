@@ -10,9 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory;
 
-namespace WinCoffeePrince2nd.Util
+namespace WinMSFactory
 {
 	public static class FormUtil
 	{
@@ -186,11 +185,11 @@ namespace WinCoffeePrince2nd.Util
 			return false;
 		}
 
-		public static TextBox GetEmptyTxt(Control.ControlCollection controls, TextBox txt)
+		public static TextBox GetEmptyTxt(System.Windows.Forms.Control.ControlCollection controls, TextBox txt)
 		{
 			if (txt == null)
 			{
-				foreach (Control contorl in controls)
+				foreach (System.Windows.Forms.Control contorl in controls)
 				{
 					if (contorl is TextBox)
 					{
@@ -213,9 +212,9 @@ namespace WinCoffeePrince2nd.Util
 			Clear(frm.Controls);
 		}
 
-		public static void Clear(Control.ControlCollection controls)
+		public static void Clear(System.Windows.Forms.Control.ControlCollection controls)
 		{
-			foreach (Control contorl in controls)
+			foreach (System.Windows.Forms.Control contorl in controls)
 			{
 				//if (!contorl.Name.Contains("Search"))
 				//{
@@ -348,16 +347,16 @@ namespace WinCoffeePrince2nd.Util
 			}
 		}
 
-		public static Control GetControl(this Form frm, string name)
+		public static System.Windows.Forms.Control GetControl(this Form frm, string name)
 		{
 			return GetControl(name, frm.Controls);
 		}
 
-		public static Control GetControl(string name, Control.ControlCollection controls)
+		public static System.Windows.Forms.Control GetControl(string name, System.Windows.Forms.Control.ControlCollection controls)
 		{
-			Control control = null;
+			System.Windows.Forms.Control control = null;
 
-			foreach (Control c in controls)
+			foreach (System.Windows.Forms.Control c in controls)
 			{
 				if (control != null)
 					return control;
@@ -370,9 +369,9 @@ namespace WinCoffeePrince2nd.Util
 			return control;
 		}
 
-		public static bool IsRdoCheck(Control.ControlCollection controls)
+		public static bool IsRdoCheck(System.Windows.Forms.Control.ControlCollection controls)
 		{
-			foreach (Control c in controls)
+			foreach (System.Windows.Forms.Control c in controls)
 			{
 				if (c is RadioButton && ((c as RadioButton).Checked))
 					return true;

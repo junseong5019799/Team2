@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.Process
+﻿namespace WinMSFactory
 {
     partial class CorporationPopupForm
     {
