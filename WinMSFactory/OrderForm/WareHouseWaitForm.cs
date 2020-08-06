@@ -11,11 +11,12 @@ using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class WareHouseWaitForm : ListListForm
     {
         OrderService orderService = new OrderService();
+        string orderString = "";
 
         public WareHouseWaitForm()
         {
@@ -41,6 +42,15 @@ namespace WinMSFactory.OrderForm
             dgvDetail.AddNewColumns("최종등록시간", "final_regist_time", 100, true, true, false, LeftAlign);
             dgvDetail.AddNewColumns("최종등록사원", "final_regist_employee", 100, true, true, false, LeftAlign);
         }
+
+
+        //private void Readed_BarCode(object sender, ReadEventArgs e)
+        //{
+        //    string barID = e.Readmsg;
+        //    barID.Replace("%0", "-");
+        //    orderString = barID.Substring(0, barID.IndexOf('-'));
+        //}
+
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -78,6 +88,20 @@ namespace WinMSFactory.OrderForm
 
                 frm.Show();
             }
+        }
+
+        /// <summary>
+        /// 바코드 입고 처리
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBarcode_Click(object sender, EventArgs e)
+        {
+            WareHouseVO vo = new WareHouseVO();
+
+            vo.order_no = Convert.ToInt32(orderString);
+
+            //orderService.InsertWareHouse();
         }
     }
 }

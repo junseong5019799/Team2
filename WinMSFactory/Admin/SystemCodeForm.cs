@@ -88,7 +88,7 @@ namespace WinMSFactory
 				string search = txtSearch.Text.Trim();
 
 				if (search.Length > 0)
-				{ 
+				{
 					if (cboSearch.SelectedValue.Equals("SEARCH_CMM_1"))
 						dv.RowFilter = $"SORT_ID LIKE '%{search}%'";
 					else if (cboSearch.SelectedValue.Equals("SEARCH_CMM_2"))
@@ -209,7 +209,7 @@ namespace WinMSFactory
 			{
 				MessageBox.Show(err.Message);
 			}
-}
+		}
 
 		private void dataGridViewControl1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
@@ -248,7 +248,7 @@ namespace WinMSFactory
 			DataRow dr = dt.AsEnumerable().FirstOrDefault(item => item[id].Equals(dgvg.Cells[id].Value));
 
 			if (dr != null)
-			{ 
+			{
 				if (dgvg.DefaultCellStyle.BackColor == Color.AliceBlue)
 				{
 					for (int i = storeDt.Rows.Count - 1; i >= 0; i--)

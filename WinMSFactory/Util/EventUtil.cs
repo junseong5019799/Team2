@@ -22,6 +22,7 @@ namespace WinCoffeePrince2nd.Util
 		bool btnDeleteVisible;
 		bool btnExcelVisible;
 		bool btnPrintVisible;
+		bool btnBarcodeVisible;
 		bool btnClearVisible;
 
 		//private void Search(object sender, EventArgs e)
@@ -54,17 +55,15 @@ namespace WinCoffeePrince2nd.Util
 					{
 						MethodInfo mInfo = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
 
-						if (mInfo != null && mInfo.ReturnType == typeof(void) && IsBtnEventParameters(mInfo))
-						{
-							mInfoList.Add(mInfo);
-						}
-
+						AddMethod(type, methodName);
 						fieldInfo.SetValue(this, true);
 					}
 					else
 						fieldInfo.SetValue(this, false);
 				}
 			}
+
+			AddMethod(type, "Readed");
 
 			frm.Load += Form_load;
 			frm.FormClosing += Form_FormClosing;
@@ -73,10 +72,18 @@ namespace WinCoffeePrince2nd.Util
 			frm.Shown += Form_Shown_dgvClearSelection;
 		}
 
+		private void AddMethod(Type type, string methodName)
+		{
+			MethodInfo mInfo = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+			if (mInfo != null && mInfo.ReturnType == typeof(void) && IsBtnEventParameters(mInfo))
+				mInfoList.Add(mInfo);
+		}
+
 		private bool IsBtnEventParameters(MethodInfo mInfo)
 		{
 			ParameterInfo[] pInfos = mInfo.GetParameters();
-			Type[] parameterTypes = { typeof(object), typeof(EventArgs) };
+			Type[] parameterTypes = { typeof(object), typeof(EventArgs), typeof(ReadEventArgs) };
 
 			foreach (ParameterInfo pInfo in pInfos)
 			{
@@ -132,6 +139,7 @@ namespace WinCoffeePrince2nd.Util
 			mainFrm.BtnDeleteVisible = btnDeleteVisible;
 			mainFrm.BtnExcelVisible = btnExcelVisible;
 			mainFrm.BtnPrintVisible = btnPrintVisible;
+			mainFrm.BtnBarcodeVisible = btnBarcodeVisible;
 			mainFrm.BtnClearVisible = btnClearVisible;
 		}
 
@@ -145,6 +153,7 @@ namespace WinCoffeePrince2nd.Util
 			mainFrm.BtnDeleteVisible = false;
 			mainFrm.BtnExcelVisible = false;
 			mainFrm.BtnPrintVisible = false;
+			mainFrm.BtnBarcodeVisible = false;
 			mainFrm.BtnClearVisible = false;
 		}
 

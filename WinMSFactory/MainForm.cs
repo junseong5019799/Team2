@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,14 +19,19 @@ namespace WinMSFactory
 {
     public partial class MainForm : Form
     {
+        public delegate void BarCodeReadComplete(object sender, ReadEventArgs e);
         public event EventHandler Search;
         public event EventHandler Add;
         public event EventHandler Delete;
         public event EventHandler Save;
         public event EventHandler Excel;
         public event EventHandler Print;
+        public event EventHandler Barcode;
         public event EventHandler Clear;
+        public event BarCodeReadComplete Readed;
         int index;  // 메뉴 모듈 index(timer에서 사용)
+        SerialPort port;
+        StringBuilder strs;
 
         public EmployeeVO Employee { get; set; }
         public bool BtnSearchVisible
@@ -52,10 +58,45 @@ namespace WinMSFactory
         {
             set { btnPrint.Visible = value; }
         }
+        public bool BtnBarcodeVisible
+        {
+            set { btnBarcode.Visible = value; }
+        }
         public bool BtnClearVisible
         {
             set { btnClear.Visible = value; }
         }
+        public SerialPort Port
+        {
+            get
+            {
+                if (port == null)
+                {
+                    port = new SerialPort();
+                    port.DataReceived += Port_DataReceived;
+                }
+
+                return port;
+            }
+        }
+        public string Strs
+        {
+            set
+            {
+                if (strs == null)
+                    strs = new StringBuilder();
+
+                strs.AppendLine(value);
+
+                if (Readed != null)
+                {
+                    ReadEventArgs args = new ReadEventArgs();
+                    args.ReadMsg = strs.ToString();
+                    Readed(this, args);
+                }
+            }
+        }
+        public bool IsOpen { get; set; }
 
         public MainForm()
         {
@@ -65,6 +106,11 @@ namespace WinMSFactory
         private void MainForm_Load(object sender, EventArgs e)
         {
             ShowLoginForm();
+
+            if (Properties.Settings.Default.PortName.Length > 0)
+            {
+                SerialPortConnection();
+            }
         }
 
 		#region tab
@@ -169,6 +215,12 @@ namespace WinMSFactory
                 Print(sender, new EventArgs());
         }
 
+        private void btnBarcode_Click(object sender, EventArgs e)
+        {
+            if (Barcode != null)
+                Barcode(sender, new EventArgs());
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (Clear != null)
@@ -184,6 +236,7 @@ namespace WinMSFactory
 		private void ShowLoginForm()
         {
             this.Hide();
+            tsMenu.Items.Clear();
 
             foreach (Form form in this.MdiChildren)
             {
@@ -237,13 +290,27 @@ namespace WinMSFactory
                 tsMenu.Items.Add(tsbP);
                 cnt++;
             }
+
+            ToolStripButton tsb = new ToolStripButton();
+            tsb.Text = "바코드 설정";
+            tsb.Click += (sender, e) =>
+            {
+                BarcodePortSettingPopForm frm = new BarcodePortSettingPopForm();
+                frm.ShowDialog();
+
+                if (Properties.Settings.Default.PortName.Length > 0)
+                {
+                    SerialPortConnection();
+                }
+            };
+            tsMenu.Items.Add(tsb);
         }
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
             ToolStripItem tsi;
 
-            if (index < tsMenu.Items.Count && (tsi = tsMenu.Items[index]).Tag.ToInt() == 0)
+            if (index < tsMenu.Items.Count - 1 && (tsi = tsMenu.Items[index]).Tag.ToInt() == 0)
             {
                 tsi.Visible = !tsi.Visible;
                 index++;
@@ -252,6 +319,52 @@ namespace WinMSFactory
             { 
                 timer1.Stop();
             }
+        }
+
+        private void SerialPortConnection()
+        {
+            if (!Port.IsOpen)   // 연결
+            {
+                Port.PortName = Properties.Settings.Default.PortName;
+                Port.BaudRate = int.Parse(Properties.Settings.Default.Baudrate);
+                Port.DataBits = int.Parse(Properties.Settings.Default.DataSize);
+                Port.Parity = (Parity)Enum.Parse(typeof(Parity), Properties.Settings.Default.Parity);
+                Port.Handshake = (Handshake)Enum.Parse(typeof(Handshake), Properties.Settings.Default.Handshake);
+
+                try
+                {
+                    Port.Open();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            else // 연결 끊기
+            {
+                Port.Close();
+            }
+
+            IsOpen = port.IsOpen;
+        }
+
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Thread.Sleep(500);
+
+            string msg = Port.ReadExisting();
+            this.Invoke(new EventHandler(delegate { Strs = msg; }));
+        }
+
+        public void ClearStrs()
+        {
+            strs.Clear();
+        }
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+            if (Port.IsOpen)
+                Port.Close();
         }
 	}
 }

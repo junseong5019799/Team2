@@ -29,7 +29,7 @@ namespace WinMSFactory
 				cboModule_id.ComboBinding(new ModuleService().GetModules(1), "MODULE_NAME", "MODULE_ID", "선택", 0);
 
 				if (prog_id > 0)
-				{ 
+				{
 					ProgramAthVO programAthVO = authorityService.GetProgramAth(ath_grp_id, prog_id);
 
 					SetProgCombo(programAthVO.Module_id);
@@ -41,6 +41,7 @@ namespace WinMSFactory
 					chkProg_save.Checked = programAthVO.Prog_save == "Y";
 					chkProg_excel.Checked = programAthVO.Prog_excel == "Y";
 					chkProg_print.Checked = programAthVO.Prog_print == "Y";
+					chkProg_barcode.Checked = programAthVO.Prog_barcode == "Y";
 					chkProg_clear.Checked = programAthVO.Prog_clear == "Y";
 					cboModule_id.Enabled = false;
 				}
@@ -75,6 +76,7 @@ namespace WinMSFactory
 					Prog_save = chkProg_save.Checked ? "Y" : "N",
 					Prog_excel = chkProg_excel.Checked ? "Y" : "N",
 					Prog_print = chkProg_print.Checked ? "Y" : "N",
+					Prog_barcode = chkProg_barcode.Checked ? "Y" : "N",
 					Prog_clear = chkProg_clear.Checked ? "Y" : "N"
 				};
 
@@ -104,7 +106,7 @@ namespace WinMSFactory
 		private void SetProgCombo(int module_id)
 		{
 			if (module_id > 0)
-			{ 
+			{
 				cboProg_id.Enabled = true;
 				cboProg_id.ComboBinding(programService.GetPrograms(module_id), "PROG_NAME", "PROG_ID");
 			}

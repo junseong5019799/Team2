@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="customSqlQuery1.Sql" xml:space="preserve">
-    <value>select CONCAT("TBL_ORDER_DETAIL".order_no,'-',"TBL_ORDER_DETAIL".product_id,'-', stock_quantity) Barcode
-     , "TBL_ORDER_DETAIL".product_id, product_name, "TBL_ORDER_DETAIL".order_no, order_request_quantity, order_status
-  from (("dbo"."TBL_PRODUCT" "TBL_PRODUCT"
-  inner join "dbo"."TBL_ORDER_DETAIL"
-       "TBL_ORDER_DETAIL"
-       on ("TBL_ORDER_DETAIL"."product_id" = "TBL_PRODUCT"."product_id"))
-  inner join "dbo"."TBL_STOCK" "TBL_STOCK"
-       on ("TBL_STOCK"."product_id" = "TBL_ORDER_DETAIL"."product_id"))</value>
-  </data>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iQmFyY29kZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJwcm9kdWN0X2lkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0icHJvZHVjdF9uYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Im9yZGVyX25vIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ib3JkZXJfcmVxdWVzdF9xdWFudGl0eSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Im9yZGVyX3N0YXR1cyIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
-  </data>
 </root>

@@ -51,10 +51,21 @@ namespace WinMSFactory.Services
             return dac.SaveCompany(company, prodListVO);
         }
         ///<returns></returns>
-        
+
         public List<ProductSimpleVO> SelectProductByCompanyID(int companyId)
         {
             return dac.SelectProductByCompanyID(companyId);
         }
+
+        public bool DeleteCompany(string company_id)
+        {
+            return dac.DeleteCompany(company_id);
+        }
+
+            ///오류
+            //public bool Delete(List<int> company_idList)
+            //{
+            //    return dac.Delete(company_idList);
+            //}
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class WareHousePopUpForm : PopUpDialogForm
     {
@@ -45,6 +45,7 @@ namespace WinMSFactory.OrderForm
             get { return order_seq; }
             set { order_seq = value; }
         }
+
 
 
         public WareHousePopUpForm()

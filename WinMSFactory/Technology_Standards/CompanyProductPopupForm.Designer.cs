@@ -42,6 +42,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dtpFinal_Regist_Time = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new WinMSFactory.ButtonControl();
             this.btnProductAdd = new WinMSFactory.ButtonControl();
             this.listBoxProduct = new System.Windows.Forms.ListBox();
             this.cboCompany_Product = new System.Windows.Forms.ComboBox();
@@ -49,7 +50,6 @@
             this.cboCompany_Type = new System.Windows.Forms.ComboBox();
             this.txtCompany_Seq = new System.Windows.Forms.TextBox();
             this.dtpFirst_Regist_Time = new System.Windows.Forms.DateTimePicker();
-            this.btnDelete = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +202,18 @@
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(176, 43);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(54, 25);
+            this.btnDelete.TabIndex = 57;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnProductAdd
             // 
             this.btnProductAdd.BackColor = System.Drawing.Color.White;
@@ -255,10 +267,12 @@
             // txtCompany_Seq
             // 
             this.txtCompany_Seq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompany_Seq.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtCompany_Seq.Location = new System.Drawing.Point(145, 163);
             this.txtCompany_Seq.Name = "txtCompany_Seq";
             this.txtCompany_Seq.Size = new System.Drawing.Size(151, 22);
             this.txtCompany_Seq.TabIndex = 65;
+            this.txtCompany_Seq.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCompany_Seq_KeyPress);
             // 
             // dtpFirst_Regist_Time
             // 
@@ -267,18 +281,6 @@
             this.dtpFirst_Regist_Time.Name = "dtpFirst_Regist_Time";
             this.dtpFirst_Regist_Time.Size = new System.Drawing.Size(150, 22);
             this.dtpFirst_Regist_Time.TabIndex = 66;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(176, 43);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(54, 25);
-            this.btnDelete.TabIndex = 57;
-            this.btnDelete.Text = "삭제";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // CompanyProductPopupForm
             // 

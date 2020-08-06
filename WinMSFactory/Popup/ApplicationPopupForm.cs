@@ -27,7 +27,7 @@ namespace WinMSFactory
 				this.Text = app_id > 0 ? "어플리케이션 수정" : "어플리케이션 등록";
 
 				if (app_id > 0)
-				{ 
+				{
 					ApplicationVO applicationVO = applicationService.GetApplication(app_id);
 
 					txtApp_name.Text = applicationVO.App_name;
@@ -62,7 +62,7 @@ namespace WinMSFactory
 				};
 
 				if (applicationService.SaveApplication(applicationVO))
-				{ 
+				{
 					MessageBox.Show("정상적으로 저장되었습니다.");
 					this.DialogResult = DialogResult.OK;
 					this.Close();
@@ -79,4 +79,4 @@ namespace WinMSFactory
 			this.Close();
 		}
 	}
-} 
+}

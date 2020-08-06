@@ -95,7 +95,7 @@ namespace WinMSFactory.TechnologyStandards
 
         private void btnProductAdd_Click(object sender, EventArgs e) //리스트박스에도 처음 값을 보여주고 싶다 지금은 cboCompany_Type.SelectedIndex = 0;
         {
-            listBoxProduct.Items.Add(cboCompany_Product.SelectedValue.ToString() + "/" + cboCompany_Product.Text);            
+            listBoxProduct.Items.Add(cboCompany_Product.SelectedValue.ToString() + "/" + cboCompany_Product.Text);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -127,6 +127,7 @@ namespace WinMSFactory.TechnologyStandards
 
                 if(service.SaveCompany(vo, prodListVO))
                 {
+                    MessageBox.Show("정상적으로 저장되었습니다.");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -146,6 +147,14 @@ namespace WinMSFactory.TechnologyStandards
         private void btnDelete_Click(object sender, EventArgs e)
         {
             listBoxProduct.Items.RemoveAt(listBoxProduct.SelectedIndex);
+        }
+
+        private void txtCompany_Seq_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
+            {
+                e.Handled = true;
+            }
         }
     }
 }

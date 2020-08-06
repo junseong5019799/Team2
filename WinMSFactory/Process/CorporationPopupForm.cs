@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory.Process
 {
@@ -16,6 +17,7 @@ namespace WinMSFactory.Process
         CorporationVO corporationVO;
         CorporationForm frm;
         bool IsDataExists;
+        CorporationService service = new CorporationService();
         public CorporationPopupForm(CorporationForm frm, CorporationVO corporation)
         {
             InitializeComponent();
@@ -67,6 +69,37 @@ namespace WinMSFactory.Process
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            try
+            {
+                CorporationVO vo = new CorporationVO();
+
+                vo.corporation_id = Convert.ToInt32((txtID.Text.Length > 0) ? txtID.Text : "0");
+                vo.corporation_name = txtName.Text;
+                vo.corporation_seq = Convert.ToInt32((txtSeq.Text.Length > 0) ? txtSeq.Text : "0");
+                vo.corporation_note1 = txtNote1.Text;
+                vo.corporation_note2 = txtNote2.Text;
+                vo.corporation_use = (rboUse.Checked == true) ? "Y" : "N";
+                vo.first_regist_employee = txtFirst.Text;
+                vo.final_regist_employee = txtFinal.Text;
+
+                if (service.SaveCorporation(vo))
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        private void txtSeq_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
+            {
+                e.Handled = true;
+            }
 
         }
     }

@@ -303,7 +303,6 @@ namespace MSFactoryDAC
                     cmd.CommandText = "SP_STOCK_UPDATE";
                     cmd.Parameters.Clear();
 
-                    cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
                     cmd.Parameters.AddWithValue("@order_no", vo.order_no);
                     cmd.Parameters.AddWithValue("@product_id",vo.product_id);
                     cmd.Parameters.AddWithValue("@stock_quantity", vo.warehouse_quantity);
@@ -370,5 +369,6 @@ namespace MSFactoryDAC
                 }
             }
         }
+
     }
 }

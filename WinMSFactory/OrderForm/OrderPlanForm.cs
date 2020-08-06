@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinCoffeePrince2nd.Util;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class OrderPlanForm : ListForm
     {

@@ -58,7 +58,6 @@ namespace WinMSFactory.ManagePriceForm
             dgv.AddNewColumns("종료일", "End_Date", 80, true);
             dgv.AddNewColumns("비고", "Note", 300, true);
             dgv.AddNewColumns("코드번호", "Material_Price_Code", 150, false);    // 코드 번호
-            dgv.AddNewColumns("수정 가능 여부", "IsReadOnly", 150, false); // 10
         }
 
         private void buttonControl1_Click(object sender, EventArgs e) // 검색
@@ -85,12 +84,7 @@ namespace WinMSFactory.ManagePriceForm
             if (e.RowIndex < 0)
                 return;
 
-            if (dgv[10, e.RowIndex].Value.ToString() == "N")
-            {
-                MessageBox.Show("가장 최근에 등록한 데이터만 수정이 가능합니다.");
-                return;
-            }
-                
+            string StartDate = Convert.ToDateTime(dgv[6, e.RowIndex].Value).ToShortDateString();
 
             string EndDate = string.Empty;
 
@@ -104,12 +98,11 @@ namespace WinMSFactory.ManagePriceForm
                 Product_Information = dgv[2, e.RowIndex].Value.ToString(),
                 Material_Current_Price_String = dgv[4, e.RowIndex].Value.ToString().Replace(" 원", ""),
                 Material_Previous_Price_String = dgv[5, e.RowIndex].Value.ToString().Replace(" 원", ""),
-                Start_Date_String = Convert.ToDateTime(dgv[6, e.RowIndex].Value).ToShortDateString(),
+                Start_Date_String = StartDate,
                 End_Date_String = EndDate,
                 Note = dgv[8, e.RowIndex].Value.ToString(),
                 Material_Price_Code = dgv[9, e.RowIndex].Value.ToInt()
             };
-
             SettingFormOpen(false, ManageVO);
         }
 
@@ -125,6 +118,7 @@ namespace WinMSFactory.ManagePriceForm
 
         private void ReView()
         {
+            
             dgv.Columns.Clear();
             MainColumns();
             SelectList = service.ProductPriceSelect();

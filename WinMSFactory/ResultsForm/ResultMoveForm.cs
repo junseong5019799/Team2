@@ -22,25 +22,22 @@ namespace WinMSFactory.ResultForm
 
         private void ResultMoveForm_Load(object sender, EventArgs e)
         {
-            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
-            DataGridViewContentAlignment LeftAlign = DataGridViewContentAlignment.MiddleLeft;
 
-            dgv.AddNewColumns("재고번호", "Stock_No", 100, true, true, false, RightAlign);
+            dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
             dgv.AddNewColumns("품목", "Product_Id", 150, false);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
-            dgv.AddNewColumns("품목명", "Product_Name", 200, true, true, false, LeftAlign);
-            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true, true, false, RightAlign);
-            dgv.AddNewColumns("등록일", "Stock_Regist_Date", 150, true, true, false, LeftAlign);
+            dgv.AddNewColumns("품목명", "Product_Name", 200, true);
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
+            dgv.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
 
 
-            dgv2.AddNewColumns("재고번호", "Stock_No", 100, true, true, false, RightAlign);
-            dgv2.AddNewColumns("품목 코드", "product_id", 150, false);
-            dgv2.AddNewColumns("품명", "Product_Name", 200, true, true, false, LeftAlign);
-            dgv2.AddNewColumns("공장", "Factory_name", 100, true, true, false, LeftAlign);
-            dgv2.AddNewColumns("창고 코드", "Storage_id", 100, false);
-            dgv2.AddNewColumns("창고명", "Storage_Name", 100, true, true, false, LeftAlign);                      
-            dgv2.AddNewColumns("재고수량", "Stock_Quantity", 100, true, true, false, RightAlign);
-            dgv2.AddNewColumns("등록일", "Stock_Regist_Date", 150, true, true, false, LeftAlign);
+            dgv2.AddNewColumns("재고번호", "Stock_No", 100, true);
+            dgv2.AddNewColumns("창고명", "Storage_id", 100, false);
+            dgv2.AddNewColumns("창고명", "Storage_Name", 100, true);                   // 다른 창고 물품들을 이동할 수도 있어서
+            dgv2.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
+            dgv2.AddNewColumns("품목명", "Product_Name", 200, true);
+            dgv2.AddNewColumns("재고수량", "Stock_Quantity", 100, true);          // dgv에서 입력한 이동 수량을 표시
+            dgv2.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
 
             cboStorage.ComboBinding(service.GetStorage(), "Storage_ID", "Storage_Name");
 
@@ -70,11 +67,11 @@ namespace WinMSFactory.ResultForm
 
                     if (IsCheck)
                     {
-                        list.Add(Convert.ToInt32(dgv.Rows[i].Cells[2].Value));
+                        list.Add(Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
                     }
                 }
             }
-            frm.IDList = list;
+            frm.ID = list;
             frm.Show();
 
         }
@@ -83,8 +80,10 @@ namespace WinMSFactory.ResultForm
         //재고 detail 보여주기 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[2].Value);
-            dgv2.DataSource = service.GetStorageDetailList(product_id);            
+            int storage_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+
+            //DataTable dt = releaseService.GetReleasePlanDetail(storage_id);
+            //dgv2.DataSource = dt;
         }
     }
 }

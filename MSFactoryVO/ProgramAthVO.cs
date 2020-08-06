@@ -20,6 +20,7 @@ namespace MSFactoryVO
 		public string Prog_save { get; set; }
 		public string Prog_excel { get; set; }
 		public string Prog_print { get; set; }
+		public string Prog_barcode { get; set; }
 		public string Prog_clear { get; set; }
 	}
 }

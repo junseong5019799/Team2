@@ -28,5 +28,11 @@ namespace WinMSFactory.Services
         {
             return dac.SaveCorporation(corporationvo);
         }
+
+        public bool Delete(List<int> corporation_idList)
+        {
+            return dac.Delete(corporation_idList);
+        }
+
     }
 }
