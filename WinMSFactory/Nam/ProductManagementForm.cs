@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.XtraRichEdit.API.Native;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,16 +21,17 @@ namespace WinMSFactory
 
         List<ProductVO> SelectAllProducts;
         List<ProductVO> CheckUseSortList;
+        List<ProductVO> BarcodeList = new List<ProductVO>();
+        List<int> BarcodeAddList = new List<int>();
 
         ProductService pdSv = new ProductService();
-
         ProductGroupService pdgSv = new ProductGroupService();
 
         char UseCheck = 'Y';
         char BomEnrollStatus = 'N';
 
         bool BomEnrollCheck;
-        List<ProductVO> BarcodeList = new List<ProductVO>();
+        
         public ProductManagementForm()
         {
             InitializeComponent();
@@ -291,8 +293,6 @@ namespace WinMSFactory
 
                     return;
                 }
-
-
             }
         }
 
@@ -370,12 +370,33 @@ namespace WinMSFactory
 
         }
 
+       
+
         private void Readed_Completed(object sender, ReadEventArgs e)
         {
+            int readNum; // TryParse의 out에 이용
+            char readChar;
             ((MainForm)this.MdiParent).ClearStrs();
+
+            e.ReadMsg = e.ReadMsg.Replace("\r", "").Replace("\n", "");
 
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
+
+                if(e.ReadMsg.Length != 5)
+                {
+                    MessageBox.Show("잘못된 바코드를 입력하셨습니다.");
+                    return;
+                }
+                else if(e.ReadMsg.Length == 5) // 바코드 길이가 5글자
+                {
+                    if (! int.TryParse(e.ReadMsg.Substring(0, 4), out readNum) || ! char.TryParse(e.ReadMsg.Substring(4), out readChar))
+                    {
+                        MessageBox.Show("잘못된 바코드를 입력하셨습니다.");
+                        return;
+                    }
+                }
+
                 if (e.ReadMsg.Contains("N")) // 재료 선택시
                 {
                     MessageBox.Show("재료의 BOM 정보가 없으므로 복사를 진행하실 수 없습니다.");
@@ -423,7 +444,9 @@ namespace WinMSFactory
             }
             dgvBarcode.DataSource = null;
             BarcodeList.Clear();
+            dgvBarcode.Columns.Clear();
             dgvBarCodeColumns();
+            BarcodeAddList.Clear();
         }
 
         private void buttonControl1_Click(object sender, EventArgs e)
