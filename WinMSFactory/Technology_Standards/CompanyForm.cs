@@ -198,10 +198,31 @@ namespace WinMSFactory
                     if (dgvr.Cells["company_id"].Value.ToInt() == comCode)
                     {
                         dgvr.Selected = true;
+
+                        
                         break;
                     }
-                }
 
+                }
+                
+                CompanyVO company = new CompanyVO();
+                company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
+                company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
+                company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
+                company.first_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[5].Value);
+                company.first_regist_employee = dgvCompanyList.SelectedRows[0].Cells[6].Value.ToString();
+                company.final_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[7].Value);
+                company.final_regist_employee = dgvCompanyList.SelectedRows[0].Cells[8].Value.ToString();
+                company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
+
+
+                CompanyProductPopupForm cpp = new CompanyProductPopupForm(this, company);
+
+                if (cpp.ShowDialog() == DialogResult.OK)
+                {
+                    dgvCompanyList.Columns.Clear();
+                    CompanyForm_Load(null, null);
+                }
                 this.GetMdiParent().ClearStrs();
             }
         }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.BOM;
 
-
 namespace WinMSFactory
 {
     static class Program
