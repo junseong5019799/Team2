@@ -12,6 +12,7 @@ using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 using WinMSFactory;
 using System.Data.SqlClient;
+using MSFactoryDAC;
 
 namespace WinMSFactory
 {
@@ -94,6 +95,24 @@ namespace WinMSFactory
                // dv.RowFilter = "company_type='" + type + "'";                
             }
             dgvCompanyList.DataSource = dv;
+            DataTable dt = dv.ToTable();
+            List<CompanyVO> sortedData = SqlHelper.ConvertDataTableToList<CompanyVO>(dt);
+
+            if (txtCompany_Name.Text.Length < 1)
+            {
+                dgvCompanyList.DataSource = dv;
+            }
+            else 
+            {
+                //List<CompanyVO> clist = new List<CompanyVO>();
+                
+                var sortedList = (from name in sortedData
+                         where name.company_name.Contains(txtCompany_Name.Text)
+                                       select name).ToList();
+
+                dgvCompanyList.DataSource = null;
+                dgvCompanyList.DataSource = sortedList;
+            }
         }
 
         private void dgvCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //업데이트 할떄 더블클릭

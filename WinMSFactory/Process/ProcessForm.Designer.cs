@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.Process
+﻿namespace WinMSFactory
 {
     partial class ProcessForm
     {
@@ -204,9 +204,12 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewControl1.IsAllCheckColumnHeader = false;
+            this.dataGridViewControl1.IsAutoGenerateColumns = false;
             this.dataGridViewControl1.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewControl1.MultiSelect = false;
             this.dataGridViewControl1.Name = "dataGridViewControl1";
+            this.dataGridViewControl1.RowHeadersVisible = false;
             this.dataGridViewControl1.RowTemplate.Height = 23;
             this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewControl1.Size = new System.Drawing.Size(1753, 1015);
