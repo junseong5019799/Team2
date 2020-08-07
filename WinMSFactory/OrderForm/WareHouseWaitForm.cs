@@ -69,7 +69,7 @@ namespace WinMSFactory
                 {
                     if(dgv.Rows[i].Cells[0].Value.ToString() == orderString)
                     {
-                        if(dgv.Rows[i].Cells[4].Value.ToString() == productString)
+                        if(dgv.Rows[i].Cells[3].Value.ToString() == productString)
                         {
                             dgv.Rows[i].Selected = true;
                             btnIn.PerformClick();                            
