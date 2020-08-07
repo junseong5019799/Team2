@@ -277,9 +277,10 @@ namespace WinMSFactory
 			if (list == null)
 				list = new List<T>();
 
-			combo.DataSource = list;
+			
 			combo.DisplayMember = CodeNm;
 			combo.ValueMember = Code;
+			combo.DataSource = list;
 		}
 
 		public static void ComboBinding<T>(this ComboBox combo, List<T> list, string Code, string CodeNm, string blankText, object blankValue = null) where T : class, new()

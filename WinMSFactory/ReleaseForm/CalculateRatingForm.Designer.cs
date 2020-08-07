@@ -47,10 +47,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboPlanID = new System.Windows.Forms.ComboBox();
             this.btnSearch = new WinMSFactory.ButtonControl();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,7 +64,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Size = new System.Drawing.Size(1364, 170);
+            this.panel1.Size = new System.Drawing.Size(1364, 80);
             this.panel1.Controls.SetChildIndex(this.label9, 0);
             this.panel1.Controls.SetChildIndex(this.label7, 0);
             this.panel1.Controls.SetChildIndex(this.panel2, 0);
@@ -98,16 +100,18 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = true;
-            this.dgv.Location = new System.Drawing.Point(0, 170);
+            this.dgv.Location = new System.Drawing.Point(0, 0);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1364, 591);
+            this.dgv.Size = new System.Drawing.Size(1364, 675);
             this.dgv.TabIndex = 6;
             // 
             // label1
@@ -154,6 +158,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
+            this.panel3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panel3.Location = new System.Drawing.Point(149, 40);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(230, 33);
@@ -162,13 +167,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 27, 16, 59, 45, 440);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 6, 17, 30, 3, 889);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 7, 28, 16, 59, 45, 440);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 7, 17, 30, 3, 889);
             // 
             // label4
             // 
@@ -183,7 +188,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.fromToDateControl2);
-            this.panel2.Location = new System.Drawing.Point(168, 40);
+            this.panel2.Location = new System.Drawing.Point(112, 25);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(230, 33);
             this.panel2.TabIndex = 29;
@@ -191,18 +196,18 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl2.From = new System.DateTime(2020, 7, 28, 13, 29, 56, 12);
+            this.fromToDateControl2.From = new System.DateTime(2020, 8, 6, 17, 29, 42, 549);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl2.TabIndex = 17;
-            this.fromToDateControl2.To = new System.DateTime(2020, 7, 29, 13, 29, 56, 12);
+            this.fromToDateControl2.To = new System.DateTime(2020, 8, 7, 17, 29, 42, 549);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(75, 92);
+            this.label7.Location = new System.Drawing.Point(397, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 22;
@@ -211,7 +216,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(100, 47);
+            this.label9.Location = new System.Drawing.Point(50, 33);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 20;
@@ -222,7 +227,7 @@
             this.btnCalculate.BackColor = System.Drawing.Color.White;
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
-            this.btnCalculate.Location = new System.Drawing.Point(814, 124);
+            this.btnCalculate.Location = new System.Drawing.Point(842, 29);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(88, 26);
@@ -234,16 +239,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(74, 134);
+            this.label6.Location = new System.Drawing.Point(12, 61);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(265, 16);
             this.label6.TabIndex = 17;
             this.label6.Text = "출고 계획 번호 : 기생성된 수요 계획 PlanID 리스트 ";
+            this.label6.Visible = false;
             // 
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(173, 89);
+            this.cboPlanID.Location = new System.Drawing.Point(497, 29);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(121, 24);
             this.cboPlanID.TabIndex = 33;
@@ -253,7 +259,7 @@
             // 
             this.btnSearch.BackColor = System.Drawing.Color.White;
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(707, 124);
+            this.btnSearch.Location = new System.Drawing.Point(735, 29);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 26);
             this.btnSearch.TabIndex = 34;
@@ -261,23 +267,32 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dgv);
+            this.panel4.Location = new System.Drawing.Point(0, 86);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1364, 675);
+            this.panel4.TabIndex = 7;
+            // 
             // CalculateRatingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 761);
-            this.Controls.Add(this.dgv);
+            this.Controls.Add(this.panel4);
             this.Name = "CalculateRatingForm";
             this.Text = "수요 계획";
             this.Load += new System.EventHandler(this.CalculateRatingForm_Load);
+            this.Controls.SetChildIndex(this.panel4, 0);
             this.Controls.SetChildIndex(this.GuidLabel2, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.dgv, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +316,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboPlanID;
         private ButtonControl btnSearch;
+        private System.Windows.Forms.Panel panel4;
     }
 }

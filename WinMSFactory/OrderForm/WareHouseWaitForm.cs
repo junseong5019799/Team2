@@ -50,13 +50,16 @@ namespace WinMSFactory
             dgvDetail.AddNewColumns("입고량", "warehouse_quantity", 90, true, true, false, RightAlign);           
             dgvDetail.AddNewColumns("최종등록시간", "final_regist_time", 100, true, true, false, LeftAlign);
             dgvDetail.AddNewColumns("최종등록사원", "final_regist_employee", 100, true, true, false, LeftAlign);
+
+            CompanyService comService = new CompanyService();
+            cboCompany.ComboBinding(comService.GetCompany("cop"), "company_name", "company_id");
         }
 
         private void Readed(object sender, ReadEventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                MessageBox.Show(e.ReadMsg);
+                //MessageBox.Show(e.ReadMsg);
 
                 string barID = e.ReadMsg;
                 barID = barID.Replace("%O", "-");
@@ -115,7 +118,10 @@ namespace WinMSFactory
                 frm.Product_name = dgv.SelectedRows[0].Cells[4].Value.ToString();
                 frm.Order_seq = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
 
-                frm.Show();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    dgv.DataSource = orderService.GetWareHouseList();
+                }
             }
         }
 

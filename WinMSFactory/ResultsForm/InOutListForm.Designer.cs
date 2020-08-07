@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.StockForm
+﻿namespace WinMSFactory
 {
     partial class InOutListForm
     {
@@ -70,7 +70,6 @@
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
-            this.dgv.AutoGenerateColumns = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -123,19 +122,18 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 3, 16, 8, 17, 92);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 6, 17, 40, 12, 768);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 4, 16, 8, 17, 92);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 7, 17, 40, 12, 768);
             // 
             // cboGubun
             // 
             this.cboGubun.FormattingEnabled = true;
             this.cboGubun.Items.AddRange(new object[] {
-            "전체",
             "입고",
             "출고"});
             this.cboGubun.Location = new System.Drawing.Point(491, 31);
