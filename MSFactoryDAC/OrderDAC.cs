@@ -37,11 +37,6 @@ namespace MSFactoryDAC
             }
         }
 
-        public DataTable CheckBarcode()
-        {
-            throw new NotImplementedException();
-        }
-
 
         /// <summary>
         /// SELECT 수불현황 (입출고 현황)
