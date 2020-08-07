@@ -95,6 +95,7 @@ namespace WinMSFactory
             }
         }
         public bool IsOpen { get; set; }
+        public string MenuName { get; set; }
 
         public MainForm()
         {
@@ -120,7 +121,7 @@ namespace WinMSFactory
             {
                 if (this.ActiveMdiChild.Tag == null)
                 {
-                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
+                    TabPage tp = new TabPage(MenuName + "    ");
                     tp.Tag = this.ActiveMdiChild;
                     tp.Parent = mainTabControl1;
                     mainTabControl1.SelectedTab = tp;
@@ -142,16 +143,6 @@ namespace WinMSFactory
         {
             if ((mainTabControl1.SelectedTab != null) && (mainTabControl1.SelectedTab.Tag != null))
                 (mainTabControl1.SelectedTab.Tag as Form).Select();
-        }
-
-		private void toolStripButton11_Click(object sender, EventArgs e)
-		{
-            AuthorityForm frm = new AuthorityForm();
-            frm.MdiParent = this;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            mainTabControl1.Visible = true;
-            frm.Show();
         }
 
         private void mainTabControl1_MouseDown(object sender, MouseEventArgs e)

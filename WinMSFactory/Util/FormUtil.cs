@@ -159,6 +159,7 @@ namespace WinMSFactory
 				f.MdiParent = mdiParent;
 				f.FormBorderStyle = FormBorderStyle.None;
 				f.Dock = DockStyle.Fill;
+				mdiParent.MenuName = authDr["PROG_NAME"].ToString();
 
 				new EventUtil().CommonEvent(f, authDr);
 
