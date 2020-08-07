@@ -37,10 +37,6 @@ namespace MSFactoryDAC
             }
         }
 
-        public DataTable CheckBarcode()
-        {
-            throw new NotImplementedException();
-        }
 
 
         /// <summary>
