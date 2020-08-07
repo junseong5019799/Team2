@@ -47,14 +47,14 @@ namespace WinMSFactory
 			dgv.Columns.Add(gridCol);
 		}
 
-		public static void AddNewBtnCol(this DataGridView dgv, string text, Padding padding)
+		public static void AddNewBtnCol(this DataGridView dgv, string HeaderText, string text, Padding padding)
 		{
 			DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-
+			btn.HeaderText = HeaderText;
 			btn.Text = text;
-			btn.Width = 50;
+			btn.Width = 100;
 			btn.DefaultCellStyle.Padding = padding;
-			btn.UseColumnTextForButtonValue = true;
+			btn.UseColumnTextForButtonValue = false;
 
 			dgv.Columns.Add(btn);
 		}

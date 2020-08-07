@@ -125,6 +125,18 @@
     <Compile Include="Barcode\ReportPreviewForm.designer.cs">
       <DependentUpon>ReportPreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nam\DefectiveTypePopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nam\DefectiveTypePopupForm.Designer.cs">
+      <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nam\DefectiveTypeSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nam\DefectiveTypeSettingForm.Designer.cs">
+      <DependentUpon>DefectiveTypeSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popup\BarcodePortSettingPopForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,6 +551,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\CompanyReport.resx">
       <DependentUpon>CompanyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nam\DefectiveTypePopupForm.resx">
+      <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nam\DefectiveTypeSettingForm.resx">
+      <DependentUpon>DefectiveTypeSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\BarcodePortSettingPopForm.resx">
       <DependentUpon>BarcodePortSettingPopForm.cs</DependentUpon>
