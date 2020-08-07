@@ -49,13 +49,36 @@ namespace WinMSFactory
         }
 
 
-
-        private void buttonControl1_Click(object sender, EventArgs e) // 재고 이동
+        /// <summary>
+        /// 재고 이동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonControl1_Click(object sender, EventArgs e)
         {
             ResultListForm frm = new ResultListForm();
             List<int> list = new List<int>();
+            List<int> cnt = new List<int>();
 
             dgv.EndEdit();
+            
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                if (chk.Value == null)
+                    continue;
+
+                else if ((bool)chk.Value == true)
+                    cnt.Add(1);
+            }
+
+            if(cnt.Count < 1)
+            {
+                MessageBox.Show("재고 할 품목을 선택해주세요.");
+                return;
+            }
+
 
             for (int i = 0; i < dgv.RowCount; i++)
             {
@@ -65,22 +88,35 @@ namespace WinMSFactory
 
                     if (IsCheck)
                     {
-                        list.Add(Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
+                        int num = Convert.ToInt32(dgv.Rows[i].Cells[1].Value);
+                        list.Add(num);
                     }
                 }
             }
             frm.ID = list;
-            frm.Show();            
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                buttonControl2.PerformClick();                
+            }
+            
         }
 
 
         //재고 detail 보여주기 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int storage_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[2].Value);
+            int sum = 0;
 
-            //DataTable dt = releaseService.GetReleasePlanDetail(storage_id);
-            //dgv2.DataSource = dt;
+            lblName.Text = dgv.SelectedRows[0].Cells[4].Value.ToString();            
+            dgv2.DataSource = service.GetStorageDetailList(product_id);
+
+            for (int i = 0; i < dgv2.RowCount; i++)
+            {
+                sum += Convert.ToInt32(dgv2.Rows[i].Cells[5].Value.ToString().Replace("개",""));
+            }
+
+            lblstocks.Text = sum.ToString();
         }
     }
 }

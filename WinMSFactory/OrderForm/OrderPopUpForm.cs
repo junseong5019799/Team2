@@ -29,11 +29,24 @@ namespace WinMSFactory.OrderForm
 
             dgvCompany.DataSource = orderService.GetCompanyList();
 
+            dgvOrder.AddNewColumns("출고번호", "release_no", 80, true);
+            dgvOrder.AddNewColumns("순서", "release_seq", 70, true);
+            dgvOrder.AddNewColumns("거래처", "company_id", 100, false);
+            dgvOrder.AddNewColumns("납품업체", "company_name", 120, true);
+            dgvOrder.AddNewColumns("품목", "product_id", 80, false);
+            dgvOrder.AddNewColumns("품명", "product_name", 120, true);
+            dgvOrder.AddNewColumns("품목", "_product_id", 80, false);
+            dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
+            dgvOrder.AddNewColumns("발주제안", "order_request_quantity", 80, true);
+            dgvOrder.AddNewColumns("발주수량", "", 100, true);
+            dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
+            dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
+
             DataTable dt = orderService.GetOrderPlanList();
             dgvOrder.DataSource = dt;
             
 
-            dgvOrder.Columns[7].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvOrder.Columns[9].DefaultCellStyle.BackColor = Color.AliceBlue;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

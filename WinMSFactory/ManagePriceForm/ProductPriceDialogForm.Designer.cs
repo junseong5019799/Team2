@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.ManagePriceForm
+﻿namespace WinMSFactory
 {
     partial class ProductPriceDialogForm
     {

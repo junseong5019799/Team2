@@ -15,5 +15,25 @@ namespace WinMSFactory
         {
             return dac.DefectiveSelectAll();
         }
+
+        public List<DefectiveTypeVO> DefectiveTypeSelectAll()
+        {
+            return dac.DefectiveTypeSelectAll();
+        }
+
+        public bool DefectiveTypeUpsert(DefectiveTypeVO typeVO)
+        {
+            return dac.DefectiveTypeUpsert(typeVO);
+        }
+
+        public bool UseTypeChange(int productID, string IsTypeUse)
+        {
+            return dac.UseTypeChange(productID, IsTypeUse);
+        }
+
+        public void DefectiveDelete(int defectiveNo)
+        {
+            dac.DefectiveDelete(defectiveNo);
+        }
     }
 }

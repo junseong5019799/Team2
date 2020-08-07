@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.ManagePriceForm
+namespace WinMSFactory
 {
     public partial class ProductPriceDialogForm : PopUpDialogForm
     {

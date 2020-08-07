@@ -33,9 +33,9 @@ namespace WinMSFactory
             
             dgv.DataSource = releaseService.GetReleasePlan();
 
-            dgv2.AddNewColumns("출고예정 번호", "release_no", 120, true);
+            dgv2.AddNewColumns("출고예정 번호", "release_no", 120, false);
             dgv2.AddNewColumns("순번", "release_seq", 80, true);
-            dgv2.AddNewColumns("고객사", "company_id", 100, true);
+            dgv2.AddNewColumns("고객사", "company_id", 100, false);
             dgv2.AddNewColumns("품명", "product_id", 150, false);
             dgv2.AddNewColumns("품명", "product_name", 150, true);
             dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
@@ -79,8 +79,7 @@ namespace WinMSFactory
         {
             openFileDialog1.Title = "엑셀 파일 불러오기";
             openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            openFileDialog1.ShowDialog();
-            
+            openFileDialog1.ShowDialog();           
             
         }
 

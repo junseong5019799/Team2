@@ -35,10 +35,9 @@ namespace WinMSFactory
         /// <param name="dgv"></param>
         /// <param name="text">텍스트 지정</param>
         /// <param name="padding">여백 지정</param>
-        public static void AddNewBtnCol(this DataGridView dgv, string text, string HeaderText, Padding padding)
+        public static void AddNewBtnCol(this DataGridView dgv, string text,  Padding padding)
         {
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.HeaderText = HeaderText;
             btn.Text = text;
             btn.Width = 100;
             btn.DefaultCellStyle.Padding = padding;

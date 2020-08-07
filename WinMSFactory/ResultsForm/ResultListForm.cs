@@ -41,15 +41,18 @@ namespace WinMSFactory
 
         //재고이동
         private void btnConfirm_Click(object sender, EventArgs e)
-        {
+        {           
             int storage_id = Convert.ToInt32(cboStorage.SelectedValue);
-            int stock_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
 
-            if(service.MoveStorage(storage_id, stock_no))
-            {
-                MessageBox.Show($"재고가 {cboStorage.SelectedItem}으로 이동합니다.");
-                btnCancel.PerformClick();
+            for (int i = 0; i < dgv.RowCount; i++)
+            {                
+                int stock_no = Convert.ToInt32(dgv.Rows[i].Cells[0].Value);
+                service.MoveStorage(storage_id, stock_no);               
             }
+
+            MessageBox.Show($"재고가 {cboStorage.Text}으로 이동합니다.");
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
