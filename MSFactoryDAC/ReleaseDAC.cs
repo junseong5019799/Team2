@@ -38,6 +38,35 @@ namespace MSFactoryDAC
         }
 
 
+        //public List<ReleaseVO> SearchReleasePlan(int release_no)
+        //{
+        //    try
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand())
+        //        {
+        //            cmd.Connection = new SqlConnection(this.ConnectionString);
+        //            cmd.CommandText = @"SELECT r.release_no, r.company_id, (SELECT company_name FROM [dbo].[TBL_COMPANY] WHERE company_id = r.company_id) company_name, release_plan_date, release_status			 
+        //                                FROM TBL_RELEASE_DETAIL rd INNER JOIN TBL_RELEASE r ON rd.release_no = r.release_no
+        //                                WHERE r.release_no = @release_no
+        //                                GROUP BY r.release_no, r.company_id, release_plan_date, release_status
+        //                                ORDER BY release_plan_date DESC";
+        //            cmd.Parameters.AddWithValue("@release_no", release_no);
+
+        //            cmd.Connection.Open();
+        //            SqlDataReader reader = cmd.ExecuteReader();
+        //            list = SqlHelper.DataReaderMapToList<ReleaseVO>(reader);
+        //            cmd.Connection.Close();
+
+        //            return list;
+        //        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        throw err;
+        //    }
+        //}
+
+
         /// <summary>
         /// 출고 DETAIL -> dataTable 바인딩
         /// </summary>

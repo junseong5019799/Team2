@@ -75,11 +75,13 @@ namespace WinMSFactory
             vo.warehouse_date = Convert.ToDateTime(dtpIN.Value.ToShortDateString());
             vo.warehouse_quantity = Convert.ToInt32(txtquantity.Text);
             vo.storage_id = Convert.ToInt32(cboStorage.SelectedValue);
+            vo.order_seq = order_seq;
 
             OrderService service = new OrderService();
             if(service.InsertWareHouse(vo))
             {
                 MessageBox.Show("입고 처리 되었습니다.");
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             

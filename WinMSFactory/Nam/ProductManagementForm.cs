@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.XtraRichEdit.API.Native;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,16 +21,17 @@ namespace WinMSFactory
 
         List<ProductVO> SelectAllProducts;
         List<ProductVO> CheckUseSortList;
+        List<ProductVO> BarcodeList = new List<ProductVO>();
+        List<int> BarcodeAddList = new List<int>();
 
         ProductService pdSv = new ProductService();
-
         ProductGroupService pdgSv = new ProductGroupService();
 
         char UseCheck = 'Y';
         char BomEnrollStatus = 'N';
 
         bool BomEnrollCheck;
-        List<ProductVO> BarcodeList = new List<ProductVO>();
+        
         public ProductManagementForm()
         {
             InitializeComponent();
@@ -223,50 +225,56 @@ namespace WinMSFactory
         }
         private void Add(object sender, EventArgs e)
         {
-            ProductInfoForm frm = new ProductInfoForm();
-
-            if (frm.ShowDialog() == DialogResult.OK)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                MessageBox.Show("등록되었습니다.");
-                ReviewDGV();
+                ProductInfoForm frm = new ProductInfoForm();
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("등록되었습니다.");
+                    ReviewDGV();
+                }
             }
         }
         private void Delete(object sender, EventArgs e)
         {
-            dgv.EndEdit();
-            if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
-
-            foreach (DataGridViewRow row in dgv.Rows)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+                dgv.EndEdit();
+                if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                if (chk.Value == null)
-                    continue;
+                List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
 
-                else if ((bool)chk.Value == true)
-                    CheckList.Add(dgv[1, row.Index].Value.ToInt());
-            }
-
-            // 목록을 선택한 경우(파란색으로, 1개만 가능)
-            if (CheckList.Count < 1)
-            {
-                int ProductNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
-                ProductDelete(ProductNo);
-            }
-            else
-            {
-                foreach (int ProductNum in CheckList)
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    ProductDelete(ProductNum);
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgv[1, row.Index].Value.ToInt());
                 }
 
-            }
+                // 목록을 선택한 경우(파란색으로, 1개만 가능)
+                if (CheckList.Count < 1)
+                {
+                    int ProductNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
+                    ProductDelete(ProductNo);
+                }
+                else
+                {
+                    foreach (int ProductNum in CheckList)
+                    {
+                        ProductDelete(ProductNum);
+                    }
 
-            MessageBox.Show("삭제가 완료되었습니다.");
-            ReviewDGV();
+                }
+
+                MessageBox.Show("삭제가 완료되었습니다.");
+                ReviewDGV();
+            }
         }
 
         private void ProductDelete(int ProductNo)
@@ -291,8 +299,6 @@ namespace WinMSFactory
 
                     return;
                 }
-
-
             }
         }
 
@@ -361,21 +367,45 @@ namespace WinMSFactory
 
         private void Barcode(object sender, EventArgs e)
         {
-            BarCodeProductBOM report = new BarCodeProductBOM();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                BarCodeProductBOM report = new BarCodeProductBOM();
 
-            report.DataSource = pdSv.SelectAllProductsToTable();
-            report.CreateDocument();
+                report.DataSource = pdSv.SelectAllProductsToTable();
+                report.CreateDocument();
 
-            ReportPreviewForm frm = new ReportPreviewForm(report);
+                ReportPreviewForm frm = new ReportPreviewForm(report);
+            }
 
         }
 
+       
+
         private void Readed_Completed(object sender, ReadEventArgs e)
         {
+            int readNum; // TryParse의 out에 이용
+            char readChar;
             ((MainForm)this.MdiParent).ClearStrs();
+
+            e.ReadMsg = e.ReadMsg.Replace("\r", "").Replace("\n", "");
 
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
+
+                if(e.ReadMsg.Length != 5)
+                {
+                    MessageBox.Show("잘못된 바코드를 입력하셨습니다.");
+                    return;
+                }
+                else if(e.ReadMsg.Length == 5) // 바코드 길이가 5글자
+                {
+                    if (! int.TryParse(e.ReadMsg.Substring(0, 4), out readNum) || ! char.TryParse(e.ReadMsg.Substring(4), out readChar))
+                    {
+                        MessageBox.Show("잘못된 바코드를 입력하셨습니다.");
+                        return;
+                    }
+                }
+
                 if (e.ReadMsg.Contains("N")) // 재료 선택시
                 {
                     MessageBox.Show("재료의 BOM 정보가 없으므로 복사를 진행하실 수 없습니다.");
@@ -423,7 +453,9 @@ namespace WinMSFactory
             }
             dgvBarcode.DataSource = null;
             BarcodeList.Clear();
+            dgvBarcode.Columns.Clear();
             dgvBarCodeColumns();
+            BarcodeAddList.Clear();
         }
 
         private void buttonControl1_Click(object sender, EventArgs e)

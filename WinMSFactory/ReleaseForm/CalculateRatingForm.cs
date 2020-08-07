@@ -34,8 +34,7 @@ namespace WinMSFactory
         }
 
         private void CalculateRatingForm_Load(object sender, EventArgs e)
-        {            
-
+        {
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
         }
@@ -43,18 +42,15 @@ namespace WinMSFactory
 
         private void cboPlanID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //List<ReleaseVO> AllList = releaseService.GetReleasePlan();
+            
 
-            //releaseList = (from rlist in AllList
-            //               where rlist.release_no == Convert.ToInt32(cboPlanID.SelectedValue)
-            //               select rlist).ToList();
-
-            //dgv.DataSource = null;
-            //dgv.DataSource = releaseList;
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            release_no = Convert.ToInt32(cboPlanID.SelectedValue);
+
             from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
             to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());           
 

@@ -47,7 +47,6 @@
             this.dgv2 = new WinMSFactory.DataGridViewControl();
             this.btnExcel = new WinMSFactory.ButtonControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnNew = new WinMSFactory.ButtonControl();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSave = new WinMSFactory.ButtonControl();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -62,7 +61,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnNew);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtPlanID);
@@ -81,11 +79,10 @@
             this.panel1.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.Controls.SetChildIndex(this.btnSearch, 0);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel1.Controls.SetChildIndex(this.btnNew, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(968, 9);
+            this.GuidLabel1.Location = new System.Drawing.Point(781, 9);
             // 
             // dgv
             // 
@@ -171,7 +168,7 @@
             this.btnCalculate.BackColor = System.Drawing.Color.White;
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
-            this.btnCalculate.Location = new System.Drawing.Point(1142, 52);
+            this.btnCalculate.Location = new System.Drawing.Point(1202, 47);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(102, 26);
@@ -194,13 +191,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 3, 16, 58, 12, 848);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 6, 17, 34, 44, 655);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 4, 16, 58, 12, 848);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 7, 17, 34, 44, 655);
             // 
             // panel2
             // 
@@ -289,20 +286,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // btnNew
-            // 
-            this.btnNew.BackColor = System.Drawing.Color.White;
-            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.ForeColor = System.Drawing.Color.Black;
-            this.btnNew.Location = new System.Drawing.Point(1250, 52);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(102, 26);
-            this.btnNew.TabIndex = 19;
-            this.btnNew.Text = "새로 고침";
-            this.btnNew.UseVisualStyleBackColor = false;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnSearch
             // 
@@ -397,7 +380,6 @@
         private DataGridViewControl dgv2;
         private ButtonControl btnExcel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private ButtonControl btnNew;
         private System.Windows.Forms.Button btnSearch;
         private ButtonControl btnSave;
         private System.Windows.Forms.Panel panel3;

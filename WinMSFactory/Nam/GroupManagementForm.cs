@@ -67,94 +67,97 @@ namespace WinMSFactory
 
         private void Add(object sender, EventArgs e)
         {
-            ProductGroupInfoForm frm = new ProductGroupInfoForm();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                ProductGroupInfoForm frm = new ProductGroupInfoForm();
 
-            if (frm.ShowDialog() == DialogResult.OK)
-                ReviewDGV();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    ReviewDGV();
+            }
         }
         private void Delete(object sender, EventArgs e)
         {
-            dgv.EndEdit();
-
-            int DeleteNum;
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DeleteNum = dgv.SelectedRows[0].Cells[1].Value.ToInt();
-            }
-            catch
-            {
-                MessageBox.Show("체크박스를 체크하시거나, 목록을 선택해주세요");
-                return;
-            }
+                dgv.EndEdit();
 
-            List<int> CheckList = new List<int>();
-
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
-
-                if (chk.Value == null)
-                    continue;
-
-                else if ((bool)chk.Value == true)
-                    CheckList.Add(dgv[1, row.Index].Value.ToInt());
-                    
-            }
-
-            if (CheckList.Count < 1) // 체크가 안되어있을 때
-            {
-                
-                
-                string valueString = dgv.SelectedRows[0].Cells[2].Value.ToString();
-
-                if (valueString == "반제품" || valueString == "재료")
+                int DeleteNum;
+                try
                 {
-                    MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
+                    DeleteNum = dgv.SelectedRows[0].Cells[1].Value.ToInt();
+                }
+                catch
+                {
+                    MessageBox.Show("체크박스를 체크하시거나, 목록을 선택해주세요");
                     return;
                 }
 
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                List<int> CheckList = new List<int>();
+
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    if (service.DeleteGroups(DeleteNum))
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgv[1, row.Index].Value.ToInt());
+
+                }
+
+                if (CheckList.Count < 1) // 체크가 안되어있을 때
+                {
+                    string valueString = dgv.SelectedRows[0].Cells[2].Value.ToString();
+
+                    if (valueString == "반제품" || valueString == "재료")
                     {
+                        MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
+                        return;
+                    }
+
+                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (service.DeleteGroups(DeleteNum))
+                        {
+                            MessageBox.Show("그룹이 삭제되었습니다.");
+                            ReviewDGV();
+                        }
+                    }
+                }
+                else
+                {
+
+                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgv.Rows)
+                        {
+                            DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                            if (chk.Value == null)
+                                continue;
+
+                            if ((bool)chk.Value == true)
+                            {
+                                string ProductGroup = dgv[2, row.Index].Value.ToString();
+
+                                if (ProductGroup == "반제품" || ProductGroup == "재료")
+                                {
+                                    MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
+                                    return;
+                                }
+                            }
+                        }
+
+                        foreach (int numbers in CheckList)
+                        {
+                            service.DeleteGroups(numbers);
+                        }
                         MessageBox.Show("그룹이 삭제되었습니다.");
                         ReviewDGV();
                     }
                 }
             }
-            else
-            {
-
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    foreach (DataGridViewRow row in dgv.Rows)
-                    {
-                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
-
-                        if (chk.Value == null)
-                            continue;
-
-                        if ((bool)chk.Value == true)
-                        {
-                            string ProductGroup = dgv[2, row.Index].Value.ToString();
-
-                            if (ProductGroup == "반제품" || ProductGroup == "재료")
-                            {
-                                MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
-                                return;
-                            }
-                        }
-                    }
-
-                    foreach (int numbers in CheckList)
-                    {
-                        service.DeleteGroups(numbers);
-                    }
-                    MessageBox.Show("그룹이 삭제되었습니다.");
-                    ReviewDGV();
-                }
-            }
-
         }
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {

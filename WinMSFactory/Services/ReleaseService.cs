@@ -33,6 +33,11 @@ namespace WinMSFactory
             return dac.SelectProduct();
         }
 
+        //public List<ReleaseVO> SearchReleasePlan(int release_no)
+        //{
+        //    return dac.SearchReleasePlan(release_no);
+        //}
+
         public DataTable GetReleasePlanDetail(int release_no)
         {
             return dac.GetReleasePlanDetail(release_no);
