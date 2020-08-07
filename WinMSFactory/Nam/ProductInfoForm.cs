@@ -41,7 +41,6 @@ namespace WinMSFactory
             {
                 txtProductName.Text = ProductNameText;
                 txtProductName.Enabled = false;
-                
             }
                 
 

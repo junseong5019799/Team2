@@ -225,50 +225,56 @@ namespace WinMSFactory
         }
         private void Add(object sender, EventArgs e)
         {
-            ProductInfoForm frm = new ProductInfoForm();
-
-            if (frm.ShowDialog() == DialogResult.OK)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                MessageBox.Show("등록되었습니다.");
-                ReviewDGV();
+                ProductInfoForm frm = new ProductInfoForm();
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("등록되었습니다.");
+                    ReviewDGV();
+                }
             }
         }
         private void Delete(object sender, EventArgs e)
         {
-            dgv.EndEdit();
-            if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
-
-            foreach (DataGridViewRow row in dgv.Rows)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+                dgv.EndEdit();
+                if (MessageBox.Show("제품을 삭제하시겠습니까? BOM에 해당 제품이 있을 경우 같이 삭제됩니다.", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                if (chk.Value == null)
-                    continue;
+                List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
 
-                else if ((bool)chk.Value == true)
-                    CheckList.Add(dgv[1, row.Index].Value.ToInt());
-            }
-
-            // 목록을 선택한 경우(파란색으로, 1개만 가능)
-            if (CheckList.Count < 1)
-            {
-                int ProductNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
-                ProductDelete(ProductNo);
-            }
-            else
-            {
-                foreach (int ProductNum in CheckList)
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    ProductDelete(ProductNum);
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgv[1, row.Index].Value.ToInt());
                 }
 
-            }
+                // 목록을 선택한 경우(파란색으로, 1개만 가능)
+                if (CheckList.Count < 1)
+                {
+                    int ProductNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
+                    ProductDelete(ProductNo);
+                }
+                else
+                {
+                    foreach (int ProductNum in CheckList)
+                    {
+                        ProductDelete(ProductNum);
+                    }
 
-            MessageBox.Show("삭제가 완료되었습니다.");
-            ReviewDGV();
+                }
+
+                MessageBox.Show("삭제가 완료되었습니다.");
+                ReviewDGV();
+            }
         }
 
         private void ProductDelete(int ProductNo)
@@ -361,12 +367,15 @@ namespace WinMSFactory
 
         private void Barcode(object sender, EventArgs e)
         {
-            BarCodeProductBOM report = new BarCodeProductBOM();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                BarCodeProductBOM report = new BarCodeProductBOM();
 
-            report.DataSource = pdSv.SelectAllProductsToTable();
-            report.CreateDocument();
+                report.DataSource = pdSv.SelectAllProductsToTable();
+                report.CreateDocument();
 
-            ReportPreviewForm frm = new ReportPreviewForm(report);
+                ReportPreviewForm frm = new ReportPreviewForm(report);
+            }
 
         }
 
