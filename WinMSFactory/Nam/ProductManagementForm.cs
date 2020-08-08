@@ -45,7 +45,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("제품그룹명", "product_group_name", 100, true);
             dgv.AddNewColumns("제품명", "product_name", 150, true);
             dgv.AddNewBtnCol("사용", "사용 여부", new Padding(1, 1, 1, 1)); // 버튼
-            dgv.AddNewBtnCol("", "BOM 등록 여부", new Padding(1, 1, 1, 1)); // 버튼
+            dgv.AddNewBtnCol("BOM 등록 여부", "", new Padding(1, 1, 1, 1)); // 버튼
+            dgv.AddNewColumns("순번", "product_SEQ", 70, true);
             dgv.AddNewColumns("제품스펙", "product_information", 200, true);
             dgv.AddNewColumns("기본단위", "product_unit", 80, true);
             dgv.AddNewColumns("생산기준량", "product_standards", 90, true);
@@ -86,7 +87,6 @@ namespace WinMSFactory
         private void ReviewDGV()
         {
             dgv.DataSource = null;
-
             dgv.DataSource = pdSv.SelectAllProducts();
         }
 
@@ -95,7 +95,7 @@ namespace WinMSFactory
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (dgv[17, row.Index].Value.ToString() == "Y") // 사용 여부 확인
+                if (dgv[18, row.Index].Value.ToString() == "Y") // 사용 여부 확인
                     dgv[4, row.Index].Value = "사용";
                 else
                     dgv[4, row.Index].Value = "미사용";
@@ -107,13 +107,13 @@ namespace WinMSFactory
                     dgv[5, row.Index].ReadOnly = true;
                 }
                 // BOM에 등록되지 않았으면 등록이 나오고, 등록되어있으면 수정으로 나온다.
-                else if (dgv[18, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                else if (dgv[19, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
                 {
                     dgv[5, row.Index].Value = "BOM 수정";
                     BomEnrollStatus = 'Y';
                 }
 
-                else if (dgv[18, row.Index].Value.ToString() == "N")
+                else if (dgv[19, row.Index].Value.ToString() == "N")
                 {
                     dgv[5, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';
@@ -227,7 +227,7 @@ namespace WinMSFactory
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                ProductInfoForm frm = new ProductInfoForm();
+                ProductInfoForm frm = new ProductInfoForm(false);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -313,7 +313,8 @@ namespace WinMSFactory
         private void buttonControl2_Click_1(object sender, EventArgs e)
         {
             BOMSelectAllForm frm = new BOMSelectAllForm(); // 상황에 따라 this.MdiParent로 바꿀 것
-            frm.Show();
+            if(frm.ShowDialog() == DialogResult.OK)
+                ReviewDGV();
 
         }
 
@@ -462,6 +463,37 @@ namespace WinMSFactory
         {
             BOMLogForm frm = new BOMLogForm();
             frm.ShowDialog();
+        }
+
+        private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            else if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                return;
+            EmployeeVO employee = this.GetEmployee();
+            ProductVO vo = new ProductVO
+            {
+                Product_Name = dgv[3,e.RowIndex].Value.ToString(),
+                Product_ID = dgv[1, e.RowIndex].Value.ToInt(), // 그룹명 대신 그룹 ID를 넘겨줌
+                Product_Information = dgv[7, e.RowIndex].Value.ToString(),
+                Product_Unit = dgv[8, e.RowIndex].Value.ToString(),
+                Product_Standards = dgv[9, e.RowIndex].Value.ToInt(),
+                Product_Note1 = dgv[12,e.RowIndex].Value.ToString(),
+                Product_Note2 = dgv[13, e.RowIndex].Value.ToString(),
+                Product_Use = dgv[4, e.RowIndex].Value.ToString(),
+                Final_Regist_Employee = employee.Employee_name, // 나중에 직원 명을 가져올 것 (필수)
+                Final_Regist_Time = DateTime.Now,
+                Product_Tact_Time = dgv[10, e.RowIndex].Value.ToInt(),
+                Product_Lead_Time = dgv[11, e.RowIndex].Value.ToInt(),
+                Product_Seq = dgv[6, e.RowIndex].Value.ToInt(),
+                Product_Group_Name = dgv[2,e.RowIndex].Value.ToString()
+            };
+            
+            ProductInfoForm frm = new ProductInfoForm(true, vo);
+            if (frm.ShowDialog() == DialogResult.OK)
+                ReviewDGV();
         }
     }
 }

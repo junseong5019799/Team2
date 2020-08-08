@@ -23,6 +23,7 @@ namespace MSFactoryVO
         public int Product_Group_Seq { get; set; }
         public char Product_Group_Use { get; set; }
         public string Product_Group_Use_String { get; set; }
+        public string Category { get; set; }
     }
 
     public class GroupComboVO

@@ -63,12 +63,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.numSEQ = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSEQ)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -87,11 +91,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numSEQ);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -111,6 +117,7 @@
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label8);
@@ -234,9 +241,9 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Location = new System.Drawing.Point(481, 64);
+            this.groupBox2.Location = new System.Drawing.Point(386, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(111, 90);
+            this.groupBox2.Size = new System.Drawing.Size(142, 90);
             this.groupBox2.TabIndex = 43;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "사용여부 지정";
@@ -246,7 +253,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(80, 0);
+            this.label11.Location = new System.Drawing.Point(103, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(23, 29);
             this.label11.TabIndex = 44;
@@ -448,6 +455,50 @@
             this.label1.TabIndex = 29;
             this.label1.Text = "품명";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(383, 244);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(34, 18);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "순번";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(435, 244);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(23, 29);
+            this.label19.TabIndex = 45;
+            this.label19.Text = "*";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numSEQ
+            // 
+            this.numSEQ.Location = new System.Drawing.Point(464, 241);
+            this.numSEQ.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numSEQ.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSEQ.Name = "numSEQ";
+            this.numSEQ.Size = new System.Drawing.Size(108, 24);
+            this.numSEQ.TabIndex = 47;
+            this.numSEQ.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numSEQ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // ProductInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -468,6 +519,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSEQ)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -507,5 +559,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown numSEQ;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }

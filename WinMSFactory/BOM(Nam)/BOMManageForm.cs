@@ -262,6 +262,8 @@ namespace WinMSFactory.BOM
 
         private void ListSortings(List<BOMInsertUpdateVO> InsertBOMLists, int ProductIDNum = 0) // BOM List Sorting
         {
+            EmployeeVO employee = this.GetEmployee();
+
             foreach (DataGridViewRow row in dgv2.Rows)
             {
                 InsertBOMLists.Add(new BOMInsertUpdateVO
@@ -270,7 +272,7 @@ namespace WinMSFactory.BOM
                     Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
                     Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
                     Final_Regist_Time = DateTime.Now.Date,
-                    Final_Regist_Employee = "직원명",                        // 나중에 로그인 완성시 직원 명 넣어줄 것
+                    Final_Regist_Employee = employee.Employee_name,                        // 나중에 로그인 완성시 직원 명 넣어줄 것
                     Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
                 });
             }
@@ -278,11 +280,12 @@ namespace WinMSFactory.BOM
 
         private void BomAddLogs(string Status_String) // BomLog 저장
         {
+            EmployeeVO employee = this.GetEmployee();
             BomLogVO AddLog = new BomLogVO
             {
                 High_Product_ID = ProductID,
                 Bom_Enroll_Date = DateTime.Now,
-                Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                Employee_ID = employee.Employee_name,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
                 Bom_Log_Status = Status_String,             // BOM 입력
                 Bom_Exists = 'Y'
             };

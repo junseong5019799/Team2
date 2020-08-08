@@ -41,14 +41,12 @@
             this.cboSelectType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboSelectName = new System.Windows.Forms.ComboBox();
-            this.btnInsertUpdate = new WinMSFactory.ButtonControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnInsertUpdate);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.buttonControl1);
             this.panel2.Controls.Add(this.cboSelectName);
@@ -66,7 +64,6 @@
             this.panel2.Controls.SetChildIndex(this.cboSelectName, 0);
             this.panel2.Controls.SetChildIndex(this.buttonControl1, 0);
             this.panel2.Controls.SetChildIndex(this.btnDelete, 0);
-            this.panel2.Controls.SetChildIndex(this.btnInsertUpdate, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
             // GuidLabel1
@@ -100,6 +97,7 @@
             this.dgv.Location = new System.Drawing.Point(0, 161);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -205,18 +203,6 @@
             this.cboSelectName.Size = new System.Drawing.Size(393, 21);
             this.cboSelectName.TabIndex = 37;
             // 
-            // btnInsertUpdate
-            // 
-            this.btnInsertUpdate.BackColor = System.Drawing.Color.White;
-            this.btnInsertUpdate.ForeColor = System.Drawing.Color.Black;
-            this.btnInsertUpdate.Location = new System.Drawing.Point(1413, 57);
-            this.btnInsertUpdate.Name = "btnInsertUpdate";
-            this.btnInsertUpdate.Size = new System.Drawing.Size(139, 36);
-            this.btnInsertUpdate.TabIndex = 39;
-            this.btnInsertUpdate.Text = "BOM 등록 / 수정";
-            this.btnInsertUpdate.UseVisualStyleBackColor = false;
-            this.btnInsertUpdate.Click += new System.EventHandler(this.btnInsertUpdate_Click);
-            // 
             // BOMSelectAllForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
@@ -253,6 +239,5 @@
         private System.Windows.Forms.ComboBox cboSelectType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private ButtonControl btnInsertUpdate;
     }
 }

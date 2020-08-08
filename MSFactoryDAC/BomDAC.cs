@@ -83,10 +83,11 @@ namespace MSFactoryDAC
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"DELETE FROM TBL_BOM WHERE HIGH_PRODUCT_ID = @PRODUCT_ID AND LOW_PRODUCT_ID = @PRODUCT_ID";
+                    string sql = @"DELETE FROM TBL_BOM WHERE HIGH_PRODUCT_ID = @PRODUCT_ID OR LOW_PRODUCT_ID = @PRODUCT_ID
+                                   update tbl_product set bom_exists = 'N' where product_id = @PRODUCT_ID";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@LOW_PRODUCT_ID", deleteBomNum);
+                        cmd.Parameters.AddWithValue("@PRODUCT_ID", deleteBomNum);
 
                         if (cmd.ExecuteNonQuery() > 0)
                             return true;

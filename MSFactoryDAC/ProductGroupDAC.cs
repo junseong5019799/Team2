@@ -79,7 +79,7 @@ namespace MSFactoryDAC
             dac.ProductAndGroupsStatusUpdate(itemNum, statusNum, sql);
         }
 
-        public bool InsertGroup(ProductGroupVO pdgVO)
+        public bool UpsertGroup(ProductGroupVO pdgVO)
         {
             try
             {
@@ -91,12 +91,16 @@ namespace MSFactoryDAC
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_GROUP_ID", pdgVO.Product_Group_ID);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_GROUP_NAME", pdgVO.Product_Group_Name);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE1", pdgVO.Product_Group_Note1);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE2", pdgVO.Product_Group_Note2);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_USE", pdgVO.Product_Group_Use);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", pdgVO.Final_Regist_Time);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", pdgVO.Final_Regist_Employee);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_SEQ", pdgVO.Product_Group_Seq);
+                        cmd.Parameters.AddWithValue("@P_Category", pdgVO.Category);
 
                         if (cmd.ExecuteNonQuery() > 0)
                             return true;

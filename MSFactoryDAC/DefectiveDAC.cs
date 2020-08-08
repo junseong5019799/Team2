@@ -101,6 +101,7 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_Regist_Time", typeVO.Final_Regist_Time);
                         cmd.Parameters.AddWithValue("@P_Regist_Employee", typeVO.Final_Regist_Employee);
                         cmd.Parameters.AddWithValue("@P_CATEGORY", typeVO.P_Category);
+                        cmd.Parameters.AddWithValue("@P_SEQ", typeVO.Defective_Type_Seq);
 
                         if (cmd.ExecuteNonQuery() > 0)
                             return true;

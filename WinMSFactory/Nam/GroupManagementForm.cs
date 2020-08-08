@@ -39,13 +39,13 @@ namespace WinMSFactory
             dgv.AddNewColumns("번호", "Product_Group_ID", 100, true); // identity
             dgv.AddNewColumns("제품그룹 명칭", "Product_Group_Name", 200, true);
             dgv.AddNewBtnCol("", "사용 여부", new Padding(1, 1, 1, 1)); // 제품 그룹의 사용 여부를 결정
+            dgv.AddNewColumns("순번", "Product_Group_Seq", 100, true);
             dgv.AddNewColumns("비고1", "Product_Group_Note1", 150, true);
             dgv.AddNewColumns("비고2", "Product_Group_Note2", 150, true);
             dgv.AddNewColumns("최초등록시각", "First_Regist_Time", 170, true);
             dgv.AddNewColumns("최초등록사원", "First_Regist_Employee", 130, true);
             dgv.AddNewColumns("최종등록시각", "Final_Regist_Time", 170, true);
             dgv.AddNewColumns("최종등록사원", "Final_Regist_Employee", 130, true);
-            dgv.AddNewColumns("순번", "Product_Group_Seq", 100, false);
             dgv.AddNewColumns("사용여부", "Product_Group_Use_String", 100, false); // 이 값에 따라 사용 여부 버튼 텍스트가 달라짐
         }
 
@@ -191,6 +191,23 @@ namespace WinMSFactory
 
                 dgv.DataSource = List;
             }
+        }
+
+        private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ProductGroupVO vo = new ProductGroupVO
+            {
+                Product_Group_ID = dgv[1,e.RowIndex].Value.ToInt(),
+                Product_Group_Use_String = dgv[3,e.RowIndex].Value.ToString(),
+                Product_Group_Seq = dgv[4,e.RowIndex].Value.ToInt(),
+                Product_Group_Name = dgv[2,e.RowIndex].Value.ToString(),
+                Product_Group_Note1 = dgv[5,e.RowIndex].Value.ToString(),
+                Product_Group_Note2 = dgv[6,e.RowIndex].Value.ToString()
+            };
+            ProductGroupInfoForm frm = new ProductGroupInfoForm(true, vo);
+
+            if(frm.ShowDialog() == DialogResult.OK)
+                ReviewDGV();
         }
     }
 }

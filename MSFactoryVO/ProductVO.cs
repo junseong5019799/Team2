@@ -26,11 +26,11 @@ namespace MSFactoryVO
         public int Bom_Seq { get; set; }
         public int Product_Tact_Time { get; set; }
         public int Product_Lead_Time { get; set; }
+        public int Product_Seq { get; set; }
     }
 
     public class ProductPriceManageVO
     {
-
         public int Material_Price_Code { get; set; }
         public int Company_ID { get; set; } // 등록할 때 사용
         public int Product_ID { get; set; } // 등록할 때 사용
