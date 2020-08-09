@@ -47,7 +47,7 @@ namespace WinMSFactory
             dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
             dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
 
-            cboProduct.ComboBinding(releaseService.SelectProductGroup(), "product_id", "product_name", "전체"); 
+            //cboProduct.ComboBinding(releaseService.SelectProductGroup(), "product_id", "product_name", "전체"); 
                         
         }
 
@@ -144,22 +144,31 @@ namespace WinMSFactory
         }
 
 
-        //찾기 버튼
+        
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<ReleaseVO> rList = new List<ReleaseVO>();
             rList = releaseService.GetReleasePlan();
 
-            int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
+            //int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
 
-            if (!string.IsNullOrEmpty(searchProduct.ToString()))
+            //if (!string.IsNullOrEmpty(searchProduct.ToString()))
+            //{
+            //    rList = (from item in rList
+            //             where item.product_id.Equals(searchProduct)
+            //             select item).ToList();
+            //}
+            //dgv.DataSource = null;
+            //dgv.DataSource = rList;
+        }
+
+        //찾기 버튼
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                rList = (from item in rList
-                         where item.product_id.Equals(searchProduct)
-                         select item).ToList();
+               
             }
-            dgv.DataSource = null;
-            dgv.DataSource = rList;
         }
 
 

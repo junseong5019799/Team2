@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory.OrderForm
 {
     public partial class OrderPlanForm : ListForm
     {
         ReleaseService releaseService = new ReleaseService();
+        OrderService orderService = new OrderService();
+
         private int release_no;
 
         public int Release_no
@@ -48,7 +51,7 @@ namespace WinMSFactory.OrderForm
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
 
-            DataTable dt = releaseService.Calculate_ReleasePlan(release_no, dtpFrom, DtpTo);
+            DataTable dt = orderService.Calculate_OrderPlan(release_no, dtpFrom, DtpTo);
             dgv.DataSource = dt;
 
             for (int i = 0; i < dgv.Rows.Count; i+=3)

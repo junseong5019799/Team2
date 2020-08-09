@@ -50,6 +50,21 @@ namespace MSFactoryVO
 
     }
 
+    public class SellPriceManageVO
+    {
+        public int sellprice_code { get; set; }
+        public int product_id { get; set; }
+        public string product_name { get; set; }
+        public string product_group_name { get; set; }
+        public int sell_current_price { get; set; }
+        public int sell_previous_price { get; set; }
+        public DateTime start_date { get; set; }
+        public DateTime? end_date { get; set; }
+        public string note { get; set; }
+        public string product_unit { get; set; }
+        public string product_information { get; set; }
+
+    }
     public class ProductSimpleVO
     {
         public int Product_ID { get; set; }

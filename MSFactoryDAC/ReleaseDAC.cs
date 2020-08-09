@@ -144,11 +144,11 @@ namespace MSFactoryDAC
         }
 
 
-
-            /// <summary>
-            /// 품목명 바인딩
-            /// </summary>
-            /// <returns></returns>
+       
+        /// <summary>
+        /// 품목명 바인딩
+        /// </summary>
+        /// <returns></returns>
         public List<BomVO> SelectProduct()
         {
             try
@@ -171,10 +171,10 @@ namespace MSFactoryDAC
 
 
         /// <summary>
-        /// 품목 그룹 바인딩 
+        /// 품목 바인딩 
         /// </summary>
         /// <returns></returns>
-        public List<ReleaseVO> SelectProductGroup()
+        public List<ReleaseVO> SelectProducts()
         {
             try
             {
@@ -186,6 +186,60 @@ namespace MSFactoryDAC
                                    WHERE product_group_name NOT IN('재료')";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
+                        return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// 품목 그룹 바인딩 
+        /// </summary>
+        /// <returns></returns>
+        public List<ReleaseVO> SelectProductGroup()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT G.product_group_id, product_group_name
+                                   FROM TBL_PRODUCT_GROUP_MANAGEMENT G 
+                                   WHERE product_group_name NOT IN('재료')";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+        /// <summary>
+        /// 품목 그룹에 따라 품목 바인딩 
+        /// </summary>
+        /// <returns></returns>
+        public List<ReleaseVO> SelectProductByGroup(int groupID)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT P.product_id, P.product_name
+                                   FROM TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id
+                                   WHERE P.product_group_id = @product_group_id";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@product_group_id", groupID);
                         return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
                     }
                 }
