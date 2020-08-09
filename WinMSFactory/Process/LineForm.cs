@@ -74,7 +74,7 @@ namespace WinMSFactory
             DataView dv = dtDgv.DefaultView;
             if (fname.Length > 0)
             {
-                dv.RowFilter = $"factory_name like '%{fname}%'";
+                dv.RowFilter = $"line_name like '%{fname}%'";
             }
             dgvLinelist.DataSource = dv;
             DataTable dt = dv.ToTable();
