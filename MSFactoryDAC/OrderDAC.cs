@@ -100,6 +100,42 @@ namespace MSFactoryDAC
         }
 
 
+        /// <summary>
+        /// 정규 발주 소요 계획 (원자재)
+        /// </summary>
+        /// <param name="release_no"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public DataTable Calculate_OrderPlan(int release_no, DateTime from, DateTime to)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_CALCULATE_ORDER", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.AddWithValue("@release_no", release_no);
+                        da.SelectCommand.Parameters.AddWithValue("@From_date", from);
+                        da.SelectCommand.Parameters.AddWithValue("@To_date", to);
+
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
 
 
         /// <summary>
@@ -405,6 +441,29 @@ namespace MSFactoryDAC
                
                 return dt;
             }                      
+        }
+
+        /// <summary>
+        /// 납품업체 바인딩
+        /// </summary>
+        /// <returns></returns>
+        public List<CompanyVO> SelectCompanyBindingByType()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT COMPANY_ID, COMPANY_NAME FROM TBL_COMPANY WHERE company_type = 'cop'";
+
+                    return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {               
+                throw err;
+            }
         }
     }
 }

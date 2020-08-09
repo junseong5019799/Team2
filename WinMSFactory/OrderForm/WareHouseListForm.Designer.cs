@@ -94,6 +94,7 @@
             this.dataGridViewControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridViewControl1.MultiSelect = false;
             this.dataGridViewControl1.Name = "dataGridViewControl1";
+            this.dataGridViewControl1.RowHeadersVisible = false;
             this.dataGridViewControl1.RowHeadersWidth = 51;
             this.dataGridViewControl1.RowTemplate.Height = 23;
             this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -112,13 +113,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 7, 29, 23, 39, 44, 279);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 7, 23, 12, 36, 524);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 7, 30, 23, 39, 44, 279);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 8, 23, 12, 36, 524);
             // 
             // label1
             // 
@@ -173,6 +174,7 @@
             this.Controls.Add(this.dataGridViewControl1);
             this.Name = "WareHouseListForm";
             this.Text = "입고 현황";
+            this.Load += new System.EventHandler(this.WareHouseListForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.GuidLabel2, 0);
             this.Controls.SetChildIndex(this.dataGridViewControl1, 0);

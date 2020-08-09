@@ -43,6 +43,16 @@ namespace WinMSFactory.Services
             return dac.GetInOutListBinding();
         }
 
+        public List<CompanyVO> SelectCompanyBindingByType()
+        {
+            return dac.SelectCompanyBindingByType();
+        }
+
+        public DataTable Calculate_OrderPlan(int release_no, DateTime from, DateTime to)
+        {
+            return dac.Calculate_OrderPlan(release_no, from, to);
+        }
+        
         public DataTable GetWareHouseList()
         {
             return dac.GetWareHouseList();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class DueDatePopUpForm : PopUpDialogForm
     {

@@ -18,11 +18,20 @@ namespace WinMSFactory
             return dac.GetReleasePlan();    
         }
 
+        public List<ReleaseVO> SelectProducts()
+        {
+            return dac.SelectProducts();
+        }
+
         public List<ReleaseVO> SelectProductGroup()
         {
             return dac.SelectProductGroup();
         }
-
+        public List<ReleaseVO> SelectProductByGroup(int groupID)
+        {
+            return dac.SelectProductByGroup(groupID);
+        }
+           
         public List<ReleaseVO> SelectPlanID ()
         {
             return dac.SelectPlanID();

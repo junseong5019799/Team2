@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class OrderListForm : ListForm
     {
@@ -22,8 +22,7 @@ namespace WinMSFactory.OrderForm
 
         private void OrderListForm_Load(object sender, EventArgs e)
         {
-            dgv.AddNewColumns("발주번호", "order_no", 100, true);
-            dgv.AddNewColumns("출고번호", "release_no", 100, true);       
+            dgv.AddNewColumns("발주번호", "order_no", 100, true);             
             dgv.AddNewColumns("품명", "product_name", 100, true);
             dgv.AddNewColumns("발주량", "order_request_quantity", 100, true);
             dgv.AddNewColumns("발주상태", "order_status", 100, true);
@@ -33,6 +32,9 @@ namespace WinMSFactory.OrderForm
 
             DataTable dt = orderService.GetOrderList();
             dgv.DataSource = dt;
+
+            cboCompany.ComboBinding(orderService.SelectCompanyBindingByType(), "company_id", "company_name", "");              
+
         }
 
         private void btnDueDate_Click(object sender, EventArgs e)
@@ -50,6 +52,5 @@ namespace WinMSFactory.OrderForm
                 return;
             }
         }
-
     }
 }
