@@ -20,6 +20,8 @@ namespace MSFactoryVO
        public DateTime final_regist_time     { get; set; }
        public string final_regist_employee { get; set; }
 
+       public string corporation_name { get; set; }
+
     }
 
 }

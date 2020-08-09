@@ -50,6 +50,7 @@ namespace WinMSFactory
 			dt = employeeService.GetAllEmployees();
 			dataGridViewControl1.DataSource = dt;
 			EmpClear();
+			
 		}
 
 		private void Search(object sender, EventArgs e)

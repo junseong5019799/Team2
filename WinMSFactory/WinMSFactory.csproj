@@ -347,11 +347,23 @@
     <Compile Include="Process\FactoryForm.Designer.cs">
       <DependentUpon>FactoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FactoryPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FactoryPopupForm.Designer.cs">
+      <DependentUpon>FactoryPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\LineForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Process\LineForm.Designer.cs">
       <DependentUpon>LineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\LinePopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\LinePopupForm.Designer.cs">
+      <DependentUpon>LinePopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\ProcessForm.cs">
       <SubType>Form</SubType>
@@ -442,6 +454,7 @@
     <Compile Include="Services\DownTimeService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\FactoryService.cs" />
+    <Compile Include="Services\LineService.cs" />
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
@@ -479,12 +492,6 @@
     </Compile>
     <Compile Include="Technology_Standards\CompanyProductPopupForm.Designer.cs">
       <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Technology_Standards\DefectiveTypeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Technology_Standards\DefectiveTypeForm.Designer.cs">
-      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Technology_Standards\DowntimeTyreForm.cs">
       <SubType>Form</SubType>
@@ -685,8 +692,14 @@
     <EmbeddedResource Include="Process\FactoryForm.resx">
       <DependentUpon>FactoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\FactoryPopupForm.resx">
+      <DependentUpon>FactoryPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\LineForm.resx">
       <DependentUpon>LineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\LinePopupForm.resx">
+      <DependentUpon>LinePopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\ProcessForm.resx">
       <DependentUpon>ProcessForm.cs</DependentUpon>
@@ -726,9 +739,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\CompanyProductPopupForm.resx">
       <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Technology_Standards\DefectiveTypeForm.resx">
-      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\DowntimeTyreForm.resx">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>

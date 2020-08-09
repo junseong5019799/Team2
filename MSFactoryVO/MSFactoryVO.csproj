@@ -56,7 +56,9 @@
     <Compile Include="DefectiveVO.cs" />
     <Compile Include="DownTimeVO.cs" />
     <Compile Include="EmployeeVO.cs" />
+    <Compile Include="FactoryVO.cs" />
     <Compile Include="InOutVO.cs" />
+    <Compile Include="LineVO.cs" />
     <Compile Include="ModuleVO.cs" />
     <Compile Include="OrderVO.cs" />
     <Compile Include="ProductGroupVO.cs" />

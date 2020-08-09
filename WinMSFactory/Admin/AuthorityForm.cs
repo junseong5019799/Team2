@@ -85,12 +85,15 @@ namespace WinMSFactory
 
 		private void Add(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = this.GetEmployee();
-			AuthorityGroupPopupForm frm = new AuthorityGroupPopupForm(employeeVO);
-
-			if (frm.ShowDialog() == DialogResult.OK)
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				LoadData();
+				EmployeeVO employeeVO = this.GetEmployee();
+				AuthorityGroupPopupForm frm = new AuthorityGroupPopupForm(employeeVO);
+
+				if (frm.ShowDialog() == DialogResult.OK)
+				{
+					LoadData();
+				}
 			}
 		}
 

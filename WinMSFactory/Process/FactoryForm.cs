@@ -1,4 +1,6 @@
-﻿using MSFactoryDAC;
+﻿using DevExpress.XtraReports.UI;
+using DevExpress.XtraReports.Wizards;
+using MSFactoryDAC;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -17,8 +19,8 @@ namespace WinMSFactory
     {
         DataTable dtDgv;
         FactoryService service = new FactoryService();
-        List<FactoryForm> flist;
-        //FactoryVO vo = new FactoryVO();
+        //List<FactoryForm> flist;
+        
 
         public FactoryForm()
         {
@@ -35,7 +37,8 @@ namespace WinMSFactory
             dgvFactorylist.AddNewColumns("공장순번", "factory_seq", 100, true);
             dgvFactorylist.AddNewColumns("공장비고1", "factory_note1", 100, true);
             dgvFactorylist.AddNewColumns("공장비고2", "factory_note2", 100, true);
-            dgvFactorylist.AddNewColumns("사용여부", "factory_use", 100, true);
+            dgvFactorylist.AddNewBtnCol("사용여부", "", new Padding(1,1,1,1)); // 7 버튼
+            dgvFactorylist.AddNewColumns("사용여부", "factory_use", 100, true); // 명
             dgvFactorylist.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvFactorylist.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgvFactorylist.AddNewColumns("최종등록시각", "final_regist_time", 100, true);
@@ -43,28 +46,158 @@ namespace WinMSFactory
 
             LoadData();
 
-            //cboCorporationName.ComboBinding(service.ComboGet(), "corporation_id", "corporation_name", "선택", 0);
+            cboCorporationName.ComboBinding(service.ComboGet(), "corporation_id", "corporation_name", "선택", 0);
         }
 
         private void LoadData()
         {
 
-           //dtDgv= service.SelectFactory();
+           dtDgv= service.SelectFactory();
 
-           DataView dv = new DataView(dtDgv);
-           dgvFactorylist.DataSource = dv;
+            dgvFactorylist.DataSource = null;
+           dgvFactorylist.DataSource = dtDgv;
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
-            //vo = (FactoryVO)(cboCorporationName.SelectedValue);
+            string fname = txtFactoryName.Text.Trim();
+            FactoryVO vo = new FactoryVO()
+            {
+                corporation_id = cboCorporationName.SelectedValue.ToInt()
 
-            //dtDgv = service.SearchName(vo);
+            };
 
-            //DataView dv = new DataView(dtDgv);    
-            //dgvFactorylist.DataSource = dv;
-            //DataTable dt = dv.ToTable();
-            //List<FactoryVO> sortedData = SqlHelper.ConvertDataTableToList<FactoryVO>(dt);
+            dtDgv =  service.SearchName(vo);
+            
+
+            DataView dv = dtDgv.DefaultView;
+            if (fname.Length > 0)
+            {
+                dv.RowFilter = $"factory_name like '%{fname}%'";
+            }
+            dgvFactorylist.DataSource = dv;
+            DataTable dt = dv.ToTable();
+            List<FactoryVO> sortedData = SqlHelper.ConvertDataTableToList<FactoryVO>(dt);
+
+            dgvFactorylist.DataSource = sortedData;
+
+        }
+
+        private void OpenPopup(bool IsUpdate, FactoryVO vo = null)
+        {
+            FactoryPopupForm frm = new FactoryPopupForm(IsUpdate, vo);
+            if (frm.ShowDialog() == DialogResult.OK)
+                LoadData();
+        }
+
+        private void dgvFactorylist_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvFactorylist.Rows)
+            {
+                if (dgvFactorylist[8, row.Index].Value.ToString() == "Y")
+                    dgvFactorylist[7, row.Index].Value ="사용";
+                else if(dgvFactorylist[8, row.Index].Value.ToString() == "N")
+                    dgvFactorylist[7, row.Index].Value = "미사용";
+            }
+        }
+
+        private void dgvFactorylist_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 7)
+            {
+                int factory_id = dgvFactorylist[2, e.RowIndex].Value.ToInt();
+
+                if (dgvFactorylist[7, e.RowIndex].Value.ToString() == "사용")
+                { 
+                    if(service.UseTypeChange(factory_id, "N"))
+                            dgvFactorylist[7, e.RowIndex].Value = "미사용";
+                }
+                else if (dgvFactorylist[7, e.RowIndex].Value.ToString() == "미사용")
+                {
+                    if (service.UseTypeChange(factory_id, "Y"))
+                        dgvFactorylist[7, e.RowIndex].Value = "사용";
+                }
+                LoadData();
+                dgvFactorylist.ClearSelection();
+
+            }
+        }
+
+        private void dgvFactorylist_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex == 7)
+                return;
+
+            FactoryVO updatevo = new FactoryVO
+            {
+                factory_id = dgvFactorylist[2,e.RowIndex].Value.ToInt(),
+                corporation_name = dgvFactorylist[1, e.RowIndex].Value.ToString(),
+                factory_name = dgvFactorylist[3, e.RowIndex].Value.ToString(),
+                factory_seq = dgvFactorylist[4, e.RowIndex].Value.ToInt(),
+                factory_use = dgvFactorylist[8, e.RowIndex].Value.ToString(),
+                factory_note1 = dgvFactorylist[5, e.RowIndex].Value.ToString(),
+                factory_note2 = dgvFactorylist[6, e.RowIndex].Value.ToString()
+            };
+            OpenPopup(true, updatevo);
+
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            FactoryPopupForm frm = new FactoryPopupForm(false, null);
+            if (frm.ShowDialog() == DialogResult.OK)
+                LoadData();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+           
+                if (MessageBox.Show("공장을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
+            try
+            {
+                dgvFactorylist.EndEdit();
+
+                List<int> CheckList = new List<int>();
+
+                foreach (DataGridViewRow row in dgvFactorylist.Rows)
+                {
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvFactorylist[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgvFactorylist[2, row.Index].Value.ToInt());
+
+                }
+
+                int factory_id = Convert.ToInt32(dgvFactorylist.SelectedRows[0].Cells[2].Value);
+
+                if (CheckList.Count > 0)
+                {
+                    service.LineDelete(CheckList);
+
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("다시 선택해주세요");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            cboCorporationName.SelectedIndex = 0;
+            txtFactoryName.Text = "";
+            LoadData();
         }
     }
 }

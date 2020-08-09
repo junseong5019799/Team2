@@ -136,10 +136,11 @@ namespace WinMSFactory
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
                 if ((object)chk.Value == null)
                     continue;
-                else if((bool)chk.Value == true)
+                else if ((bool)chk.Value == true)
                 {
                     CheckList.Add(dgv[1, row.Index].Value.ToInt());
                 }
+                
             }
 
             if (CheckList.Count < 1)
