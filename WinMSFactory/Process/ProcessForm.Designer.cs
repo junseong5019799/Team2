@@ -30,57 +30,41 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtProcessName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
-            this.buttonControl5 = new WinMSFactory.ButtonControl();
-            this.buttonControl4 = new WinMSFactory.ButtonControl();
-            this.buttonControl3 = new WinMSFactory.ButtonControl();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvProcess = new WinMSFactory.DataGridViewControl();
+            this.cboCorporationName = new System.Windows.Forms.ComboBox();
+            this.cboLineName = new System.Windows.Forms.ComboBox();
+            this.cboFactoryName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcess)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.buttonControl5);
-            this.panel1.Controls.Add(this.buttonControl4);
-            this.panel1.Controls.Add(this.buttonControl3);
-            this.panel1.Controls.Add(this.buttonControl1);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.cboFactoryName);
+            this.panel1.Controls.Add(this.cboLineName);
+            this.panel1.Controls.Add(this.cboCorporationName);
+            this.panel1.Controls.Add(this.txtProcessName);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Size = new System.Drawing.Size(1753, 170);
+            this.panel1.Size = new System.Drawing.Size(1753, 80);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
-            this.panel1.Controls.SetChildIndex(this.textBox1, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
-            this.panel1.Controls.SetChildIndex(this.textBox3, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
-            this.panel1.Controls.SetChildIndex(this.textBox2, 0);
-            this.panel1.Controls.SetChildIndex(this.label4, 0);
-            this.panel1.Controls.SetChildIndex(this.textBox4, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
-            this.panel1.Controls.SetChildIndex(this.textBox5, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl1, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl3, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl4, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl5, 0);
+            this.panel1.Controls.SetChildIndex(this.txtProcessName, 0);
+            this.panel1.Controls.SetChildIndex(this.cboCorporationName, 0);
+            this.panel1.Controls.SetChildIndex(this.cboLineName, 0);
+            this.panel1.Controls.SetChildIndex(this.cboFactoryName, 0);
             // 
             // GuidLabel1
             // 
@@ -91,101 +75,68 @@
             this.GuidLabel2.Size = new System.Drawing.Size(532, 16);
             this.GuidLabel2.Text = "DGV 법인명칭, 공장명칭, 라인명칭, 공정코드, 공정명칭, 공정순번, 비고1, 비고2, 공정사용여부, 최초, 최종";
             // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(703, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 22);
-            this.textBox2.TabIndex = 31;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(626, 39);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(37, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 15);
+            this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 30;
             this.label2.Text = "라인 명칭";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(396, 36);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(151, 22);
-            this.textBox3.TabIndex = 29;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(319, 39);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(320, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 15);
+            this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 28;
             this.label3.Text = "공장 명칭";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(113, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 22);
-            this.textBox1.TabIndex = 27;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(36, 39);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(37, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 15);
+            this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 26;
             this.label1.Text = "법인 명칭";
             // 
-            // textBox4
+            // txtProcessName
             // 
-            this.textBox4.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(113, 88);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(151, 22);
-            this.textBox4.TabIndex = 33;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 91);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 15);
-            this.label4.TabIndex = 32;
-            this.label4.Text = "공정 코드";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(396, 88);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(151, 22);
-            this.textBox5.TabIndex = 35;
+            this.txtProcessName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProcessName.Location = new System.Drawing.Point(397, 50);
+            this.txtProcessName.Name = "txtProcessName";
+            this.txtProcessName.Size = new System.Drawing.Size(151, 22);
+            this.txtProcessName.TabIndex = 35;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(319, 91);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(320, 53);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 15);
+            this.label5.Size = new System.Drawing.Size(55, 16);
             this.label5.TabIndex = 34;
             this.label5.Text = "공정 명칭";
             // 
-            // dataGridViewControl1
+            // panel2
             // 
-            this.dataGridViewControl1.AllowUserToAddRows = false;
-            this.dataGridViewControl1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.panel2.Controls.Add(this.dgvProcess);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 80);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1753, 935);
+            this.panel2.TabIndex = 4;
+            // 
+            // dgvProcess
+            // 
+            this.dgvProcess.AllowUserToAddRows = false;
+            this.dgvProcess.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -193,8 +144,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewControl1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -202,62 +153,45 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewControl1.IsAllCheckColumnHeader = false;
-            this.dataGridViewControl1.IsAutoGenerateColumns = false;
-            this.dataGridViewControl1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewControl1.MultiSelect = false;
-            this.dataGridViewControl1.Name = "dataGridViewControl1";
-            this.dataGridViewControl1.RowHeadersVisible = false;
-            this.dataGridViewControl1.RowTemplate.Height = 23;
-            this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewControl1.Size = new System.Drawing.Size(1753, 1015);
-            this.dataGridViewControl1.TabIndex = 4;
+            this.dgvProcess.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProcess.IsAllCheckColumnHeader = false;
+            this.dgvProcess.IsAutoGenerateColumns = false;
+            this.dgvProcess.Location = new System.Drawing.Point(0, 0);
+            this.dgvProcess.MultiSelect = false;
+            this.dgvProcess.Name = "dgvProcess";
+            this.dgvProcess.RowHeadersVisible = false;
+            this.dgvProcess.RowTemplate.Height = 23;
+            this.dgvProcess.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProcess.Size = new System.Drawing.Size(1753, 935);
+            this.dgvProcess.TabIndex = 5;
+            this.dgvProcess.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_CellClick);
+            this.dgvProcess.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_CellDoubleClick);
+            this.dgvProcess.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvProcess_DataBindingComplete);
             // 
-            // buttonControl5
+            // cboCorporationName
             // 
-            this.buttonControl5.BackColor = System.Drawing.Color.White;
-            this.buttonControl5.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl5.Location = new System.Drawing.Point(1209, 39);
-            this.buttonControl5.Name = "buttonControl5";
-            this.buttonControl5.Size = new System.Drawing.Size(55, 23);
-            this.buttonControl5.TabIndex = 39;
-            this.buttonControl5.Text = "초기화";
-            this.buttonControl5.UseVisualStyleBackColor = false;
+            this.cboCorporationName.FormattingEnabled = true;
+            this.cboCorporationName.Location = new System.Drawing.Point(115, 16);
+            this.cboCorporationName.Name = "cboCorporationName";
+            this.cboCorporationName.Size = new System.Drawing.Size(151, 24);
+            this.cboCorporationName.TabIndex = 36;
             // 
-            // buttonControl4
+            // cboLineName
             // 
-            this.buttonControl4.BackColor = System.Drawing.Color.White;
-            this.buttonControl4.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl4.Location = new System.Drawing.Point(927, 39);
-            this.buttonControl4.Name = "buttonControl4";
-            this.buttonControl4.Size = new System.Drawing.Size(57, 23);
-            this.buttonControl4.TabIndex = 38;
-            this.buttonControl4.Text = "조회";
-            this.buttonControl4.UseVisualStyleBackColor = false;
+            this.cboLineName.FormattingEnabled = true;
+            this.cboLineName.Location = new System.Drawing.Point(115, 50);
+            this.cboLineName.Name = "cboLineName";
+            this.cboLineName.Size = new System.Drawing.Size(151, 24);
+            this.cboLineName.TabIndex = 37;
             // 
-            // buttonControl3
+            // cboFactoryName
             // 
-            this.buttonControl3.BackColor = System.Drawing.Color.White;
-            this.buttonControl3.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl3.Location = new System.Drawing.Point(1120, 39);
-            this.buttonControl3.Name = "buttonControl3";
-            this.buttonControl3.Size = new System.Drawing.Size(46, 23);
-            this.buttonControl3.TabIndex = 37;
-            this.buttonControl3.Text = "삭제";
-            this.buttonControl3.UseVisualStyleBackColor = false;
-            // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(1027, 39);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(50, 23);
-            this.buttonControl1.TabIndex = 36;
-            this.buttonControl1.Text = "저장";
-            this.buttonControl1.UseVisualStyleBackColor = false;
+            this.cboFactoryName.FormattingEnabled = true;
+            this.cboFactoryName.Location = new System.Drawing.Point(397, 16);
+            this.cboFactoryName.Name = "cboFactoryName";
+            this.cboFactoryName.Size = new System.Drawing.Size(151, 24);
+            this.cboFactoryName.TabIndex = 38;
             // 
             // ProcessForm
             // 
@@ -265,16 +199,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1753, 1015);
-            this.Controls.Add(this.dataGridViewControl1);
+            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "ProcessForm";
             this.Text = "공정관리";
-            this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
+            this.Load += new System.EventHandler(this.ProcessForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.GuidLabel2, 0);
+            this.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcess)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,20 +218,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtProcessName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private DataGridViewControl dataGridViewControl1;
-        private ButtonControl buttonControl5;
-        private ButtonControl buttonControl4;
-        private ButtonControl buttonControl3;
-        private ButtonControl buttonControl1;
+        private System.Windows.Forms.ComboBox cboFactoryName;
+        private System.Windows.Forms.ComboBox cboLineName;
+        private System.Windows.Forms.ComboBox cboCorporationName;
+        private System.Windows.Forms.Panel panel2;
+        private DataGridViewControl dgvProcess;
     }
 }

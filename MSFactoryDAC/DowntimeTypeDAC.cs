@@ -109,5 +109,30 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool DowntimeTypeDelete(List<int> DowntimeType_idList)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string selNum = string.Join(",", DowntimeType_idList);
+
+                    string sql = "Delete From TBL_DOWNTIME_TYPE where downtime_type_id in (" + selNum + ") ;";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+        }
+
     }
 }

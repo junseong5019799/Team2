@@ -31,11 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtStorage = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtFactory = new System.Windows.Forms.ComboBox();
+            this.cboFactory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdoUse = new System.Windows.Forms.RadioButton();
             this.rdoUnUse = new System.Windows.Forms.RadioButton();
+            this.rdoUse = new System.Windows.Forms.RadioButton();
             this.cboCorporation = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -65,13 +65,14 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "창고명칭";
             // 
-            // txtFactory
+            // cboFactory
             // 
-            this.txtFactory.FormattingEnabled = true;
-            this.txtFactory.Location = new System.Drawing.Point(93, 77);
-            this.txtFactory.Name = "txtFactory";
-            this.txtFactory.Size = new System.Drawing.Size(231, 20);
-            this.txtFactory.TabIndex = 2;
+            this.cboFactory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFactory.FormattingEnabled = true;
+            this.cboFactory.Location = new System.Drawing.Point(93, 77);
+            this.cboFactory.Name = "cboFactory";
+            this.cboFactory.Size = new System.Drawing.Size(231, 20);
+            this.cboFactory.TabIndex = 2;
             // 
             // label2
             // 
@@ -93,17 +94,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "사용 여부";
             // 
-            // rdoUse
-            // 
-            this.rdoUse.AutoSize = true;
-            this.rdoUse.Location = new System.Drawing.Point(55, 24);
-            this.rdoUse.Name = "rdoUse";
-            this.rdoUse.Size = new System.Drawing.Size(47, 16);
-            this.rdoUse.TabIndex = 0;
-            this.rdoUse.TabStop = true;
-            this.rdoUse.Text = "사용";
-            this.rdoUse.UseVisualStyleBackColor = true;
-            // 
             // rdoUnUse
             // 
             this.rdoUnUse.AutoSize = true;
@@ -115,8 +105,20 @@
             this.rdoUnUse.Text = "미사용";
             this.rdoUnUse.UseVisualStyleBackColor = true;
             // 
+            // rdoUse
+            // 
+            this.rdoUse.AutoSize = true;
+            this.rdoUse.Location = new System.Drawing.Point(55, 24);
+            this.rdoUse.Name = "rdoUse";
+            this.rdoUse.Size = new System.Drawing.Size(47, 16);
+            this.rdoUse.TabIndex = 0;
+            this.rdoUse.TabStop = true;
+            this.rdoUse.Text = "사용";
+            this.rdoUse.UseVisualStyleBackColor = true;
+            // 
             // cboCorporation
             // 
+            this.cboCorporation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCorporation.FormattingEnabled = true;
             this.cboCorporation.Location = new System.Drawing.Point(93, 37);
             this.cboCorporation.Name = "cboCorporation";
@@ -130,7 +132,7 @@
             this.ClientSize = new System.Drawing.Size(364, 234);
             this.Controls.Add(this.cboCorporation);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtFactory);
+            this.Controls.Add(this.cboFactory);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -149,7 +151,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtStorage;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox txtFactory;
+        private System.Windows.Forms.ComboBox cboFactory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoUnUse;

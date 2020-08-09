@@ -46,6 +46,8 @@ namespace WinMSFactory
                     rdoDowntimeType_useY.Checked = false;
                     rdoDowntimeType_useN.Checked = true;
                 }
+                txtName.Text = vo.downtime_type_name;
+                nudDowntimeType_seq.Value = vo.downtime_type_seq;
 
             }
 
@@ -64,9 +66,11 @@ namespace WinMSFactory
                     rboTimeuse.Checked = false;
                     rboTimeNotuse.Checked = true;
                 }
-            }
+
                 txtName.Text = vo.downtime_type_name;
                 nudDowntimeType_seq.Value = vo.downtime_type_seq;
+            }
+                
 
            
         }
@@ -146,5 +150,6 @@ namespace WinMSFactory
         {
             this.Close();
         }
+
     }
 }

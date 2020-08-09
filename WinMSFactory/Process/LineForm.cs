@@ -143,6 +143,16 @@ namespace WinMSFactory
                 LoadData();
         }
 
+        private void Add(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                LinePopupForm frm = new LinePopupForm(false, null);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
+        }
+
         private void Clear(object sender, EventArgs e)
         {
             cboFactoryName.SelectedIndex = 0;
@@ -174,7 +184,7 @@ namespace WinMSFactory
 
                 }
 
-                int factory_id = Convert.ToInt32(dgvLinelist.SelectedRows[0].Cells[3].Value);
+                int line_id = Convert.ToInt32(dgvLinelist.SelectedRows[0].Cells[3].Value);
 
                 if (CheckList.Count > 0)
                 {

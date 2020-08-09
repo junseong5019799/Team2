@@ -378,6 +378,12 @@
     <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\ProcessPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\ProcessPopupForm.Designer.cs">
+      <DependentUpon>ProcessPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReadEventArgs.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
@@ -459,6 +465,7 @@
     <Compile Include="Services\LineService.cs" />
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ProcessService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
     <Compile Include="Services\ProductionService.cs" />
     <Compile Include="Services\ProductService.cs" />
@@ -720,6 +727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\ProductGroupInfoForm.resx">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\ProcessPopupForm.resx">
+      <DependentUpon>ProcessPopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

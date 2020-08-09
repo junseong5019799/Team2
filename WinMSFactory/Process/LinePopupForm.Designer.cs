@@ -28,35 +28,232 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtNote2 = new System.Windows.Forms.TextBox();
+            this.txtNote1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboName = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rdoFactory_useN = new System.Windows.Forms.RadioButton();
+            this.rdoFactory_useY = new System.Windows.Forms.RadioButton();
+            this.nudFactory_seq = new System.Windows.Forms.NumericUpDown();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFactory_seq)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 410);
-            this.panel1.Size = new System.Drawing.Size(408, 40);
+            this.panel1.Size = new System.Drawing.Size(364, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(77, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(54, 4);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(239, 4);
+            this.btnCancel.Location = new System.Drawing.Point(205, 4);
+            // 
+            // txtNote2
+            // 
+            this.txtNote2.Location = new System.Drawing.Point(129, 310);
+            this.txtNote2.Multiline = true;
+            this.txtNote2.Name = "txtNote2";
+            this.txtNote2.Size = new System.Drawing.Size(187, 69);
+            this.txtNote2.TabIndex = 51;
+            // 
+            // txtNote1
+            // 
+            this.txtNote1.Location = new System.Drawing.Point(129, 216);
+            this.txtNote1.Multiline = true;
+            this.txtNote1.Name = "txtNote1";
+            this.txtNote1.Size = new System.Drawing.Size(187, 69);
+            this.txtNote1.TabIndex = 50;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(60, 310);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 16);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "비고2";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(60, 216);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 16);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "비고1";
+            // 
+            // cboName
+            // 
+            this.cboName.FormattingEnabled = true;
+            this.cboName.Location = new System.Drawing.Point(129, 48);
+            this.cboName.Name = "cboName";
+            this.cboName.Size = new System.Drawing.Size(147, 24);
+            this.cboName.TabIndex = 47;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "법인 명칭";
+            // 
+            // rdoFactory_useN
+            // 
+            this.rdoFactory_useN.AutoSize = true;
+            this.rdoFactory_useN.Location = new System.Drawing.Point(206, 175);
+            this.rdoFactory_useN.Name = "rdoFactory_useN";
+            this.rdoFactory_useN.Size = new System.Drawing.Size(76, 20);
+            this.rdoFactory_useN.TabIndex = 42;
+            this.rdoFactory_useN.Text = "사용 안 함";
+            this.rdoFactory_useN.UseVisualStyleBackColor = true;
+            // 
+            // rdoFactory_useY
+            // 
+            this.rdoFactory_useY.AutoSize = true;
+            this.rdoFactory_useY.Checked = true;
+            this.rdoFactory_useY.Location = new System.Drawing.Point(129, 175);
+            this.rdoFactory_useY.Name = "rdoFactory_useY";
+            this.rdoFactory_useY.Size = new System.Drawing.Size(48, 20);
+            this.rdoFactory_useY.TabIndex = 41;
+            this.rdoFactory_useY.TabStop = true;
+            this.rdoFactory_useY.Text = "사용";
+            this.rdoFactory_useY.UseVisualStyleBackColor = true;
+            // 
+            // nudFactory_seq
+            // 
+            this.nudFactory_seq.Location = new System.Drawing.Point(129, 132);
+            this.nudFactory_seq.Name = "nudFactory_seq";
+            this.nudFactory_seq.Size = new System.Drawing.Size(77, 22);
+            this.nudFactory_seq.TabIndex = 40;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(129, 92);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(147, 22);
+            this.txtName.TabIndex = 39;
+            this.txtName.Tag = "권한그룹 명칭을 입력해주세요.";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 177);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 16);
+            this.label3.TabIndex = 43;
+            this.label3.Text = "사용여부";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(43, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 16);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "공장 명칭";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(68, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 16);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "순번";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(129, 8);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(147, 24);
+            this.comboBox1.TabIndex = 53;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 16);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "법인 명칭";
             // 
             // LinePopupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 450);
+            this.ClientSize = new System.Drawing.Size(364, 450);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtNote2);
+            this.Controls.Add(this.txtNote1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cboName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.rdoFactory_useN);
+            this.Controls.Add(this.rdoFactory_useY);
+            this.Controls.Add(this.nudFactory_seq);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
             this.Name = "LinePopupForm";
             this.Text = "LinePopupForm";
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.txtName, 0);
+            this.Controls.SetChildIndex(this.nudFactory_seq, 0);
+            this.Controls.SetChildIndex(this.rdoFactory_useY, 0);
+            this.Controls.SetChildIndex(this.rdoFactory_useN, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.cboName, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.txtNote1, 0);
+            this.Controls.SetChildIndex(this.txtNote2, 0);
+            this.Controls.SetChildIndex(this.label7, 0);
+            this.Controls.SetChildIndex(this.comboBox1, 0);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudFactory_seq)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox txtNote2;
+        private System.Windows.Forms.TextBox txtNote1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton rdoFactory_useN;
+        private System.Windows.Forms.RadioButton rdoFactory_useY;
+        private System.Windows.Forms.NumericUpDown nudFactory_seq;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
     }
 }

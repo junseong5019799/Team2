@@ -49,29 +49,29 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 256);
-            this.panel1.Size = new System.Drawing.Size(418, 40);
+            this.panel1.Size = new System.Drawing.Size(358, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(86, 3);
+            this.btnConfirm.Location = new System.Drawing.Point(57, 3);
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(233, 3);
+            this.btnCancel.Location = new System.Drawing.Point(199, 3);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // nudDowntimeType_seq
             // 
-            this.nudDowntimeType_seq.Location = new System.Drawing.Point(186, 108);
+            this.nudDowntimeType_seq.Location = new System.Drawing.Point(155, 74);
             this.nudDowntimeType_seq.Name = "nudDowntimeType_seq";
             this.nudDowntimeType_seq.Size = new System.Drawing.Size(77, 22);
             this.nudDowntimeType_seq.TabIndex = 34;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(186, 62);
+            this.txtName.Location = new System.Drawing.Point(155, 28);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(147, 22);
             this.txtName.TabIndex = 33;
@@ -80,7 +80,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(89, 65);
+            this.label4.Location = new System.Drawing.Point(58, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 16);
             this.label4.TabIndex = 39;
@@ -89,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(125, 110);
+            this.label2.Location = new System.Drawing.Point(94, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 16);
             this.label2.TabIndex = 38;
@@ -131,9 +131,9 @@
             this.panel2.Controls.Add(this.rboTimeNotuse);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.rboTimeuse);
-            this.panel2.Location = new System.Drawing.Point(70, 146);
+            this.panel2.Location = new System.Drawing.Point(39, 112);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(270, 38);
+            this.panel2.Size = new System.Drawing.Size(279, 38);
             this.panel2.TabIndex = 45;
             // 
             // panel3
@@ -141,15 +141,15 @@
             this.panel3.Controls.Add(this.rdoDowntimeType_useN);
             this.panel3.Controls.Add(this.rdoDowntimeType_useY);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(70, 201);
+            this.panel3.Location = new System.Drawing.Point(39, 167);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(270, 35);
+            this.panel3.Size = new System.Drawing.Size(279, 35);
             this.panel3.TabIndex = 46;
             // 
             // rdoDowntimeType_useN
             // 
             this.rdoDowntimeType_useN.AutoSize = true;
-            this.rdoDowntimeType_useN.Location = new System.Drawing.Point(180, 7);
+            this.rdoDowntimeType_useN.Location = new System.Drawing.Point(198, 7);
             this.rdoDowntimeType_useN.Name = "rdoDowntimeType_useN";
             this.rdoDowntimeType_useN.Size = new System.Drawing.Size(76, 20);
             this.rdoDowntimeType_useN.TabIndex = 39;
@@ -160,7 +160,7 @@
             // 
             this.rdoDowntimeType_useY.AutoSize = true;
             this.rdoDowntimeType_useY.Checked = true;
-            this.rdoDowntimeType_useY.Location = new System.Drawing.Point(103, 7);
+            this.rdoDowntimeType_useY.Location = new System.Drawing.Point(121, 7);
             this.rdoDowntimeType_useY.Name = "rdoDowntimeType_useY";
             this.rdoDowntimeType_useY.Size = new System.Drawing.Size(48, 20);
             this.rdoDowntimeType_useY.TabIndex = 38;
@@ -171,7 +171,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 8);
+            this.label3.Location = new System.Drawing.Point(33, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 40;
@@ -181,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 296);
+            this.ClientSize = new System.Drawing.Size(358, 296);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.nudDowntimeType_seq);

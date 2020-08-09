@@ -24,5 +24,9 @@ namespace WinMSFactory.Services
         {
             return dac.SaveDowntimeType(vo);
         }
-    }
+        public bool DowntimeTypeDelete(List<int> DowntimeType_idList)
+        {
+            return dac.DowntimeTypeDelete(DowntimeType_idList);
+        }
+        }
 }

@@ -162,5 +162,66 @@ namespace WinMSFactory
 
             dgvDowntimeType.DataSource = sortedData;
         }
+
+        private void Add(object sender, EventArgs e)
+        {
+            if(((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                DowntimeTypePopupForm frm = new DowntimeTypePopupForm(false, null);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
+        }
+
+        private void Delete(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                if(MessageBox.Show("비가동명을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+                try
+                {
+                    dgvDowntimeType.EndEdit();
+
+                    List<int> CheckList = new List<int>();
+
+                    foreach (DataGridViewRow row in dgvDowntimeType.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvDowntimeType[0, row.Index];
+
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvDowntimeType[1, row.Index].Value.ToInt());
+
+                    }
+
+                    int downtime_type_id = Convert.ToInt32(dgvDowntimeType.SelectedRows[0].Cells[1].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.DowntimeTypeDelete(CheckList);
+
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        private void Clear(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            LoadData();
+        }
     }
 }

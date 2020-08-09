@@ -62,6 +62,7 @@
     <Compile Include="LineVO.cs" />
     <Compile Include="ModuleVO.cs" />
     <Compile Include="OrderVO.cs" />
+    <Compile Include="ProcessVO.cs" />
     <Compile Include="ProductGroupVO.cs" />
     <Compile Include="ProductionVO.cs" />
     <Compile Include="ProductVO.cs" />

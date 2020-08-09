@@ -19,12 +19,12 @@ namespace WinMSFactory.Services
 
         public List<CorporationVO> LineComboGet()
         {
-            return dac.LineComboGet();
+            return dac.CorporationCombo();
         }
 
         public List<FactoryVO> LineCombo()
         {
-            return dac.LineCombo();
+            return dac.FactoryCombo();
         }
 
         public bool UseTypeChange(int line_id, string isTypeUse)

@@ -37,7 +37,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<CorporationVO> LineComboGet()
+        public List<CorporationVO> CorporationCombo()
         {
             try
             {
@@ -65,7 +65,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<FactoryVO> LineCombo()
+        public List<FactoryVO> FactoryCombo()
         {
             try
             {

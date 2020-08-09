@@ -156,6 +156,17 @@ namespace WinMSFactory
                 ReviewDGV();
         }
 
+        private void Add(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                StorageInfoForm frm = new StorageInfoForm(false, null);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    ReviewDGV();
+            }
+            
+        }
+
         private void buttonControl4_Click(object sender, EventArgs e)
         {
             if (txtStorage.TextLength > 0)
