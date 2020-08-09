@@ -21,6 +21,8 @@ namespace MSFactoryVO
        public string final_regist_employee { get; set; }
 
        public string corporation_name { get; set; }
+       public string Company_Name { get; set; }
+        public int Company_id { get; set; }
 
     }
 

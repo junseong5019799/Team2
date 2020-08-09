@@ -37,6 +37,35 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<FactoryVO> CompanyComboBindings(int Corporation_ID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    string addString = string.Empty;
+                    if(Corporation_ID != 0)
+                    {
+                        addString = "WHERE P.CORPORATION_ID = @ID";
+                        cmd.Parameters.AddWithValue("@ID", Corporation_ID);
+                    }
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"select factory_name, factory_id 
+                                        from tbl_factory F INNER JOIN TBL_CORPORATION P ON F.CORPORATION_ID = P.CORPORATION_ID "
+                                        + addString;
+                    cmd.Connection.Open();
+
+                    
+                    return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<CorporationVO> ComboGet()
         {
             try

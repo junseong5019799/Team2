@@ -33,6 +33,11 @@ namespace WinMSFactory.Services
             return dac.UseTypeChange(factory_id, isTypeUse);
         }
 
+        public List<FactoryVO> FactoryComboBindings(int CorporationID)
+        {
+            return dac.CompanyComboBindings(CorporationID);
+        }
+
         public bool SaveFactory(FactoryVO vo)
         {
             return dac.SaveFactory(vo);

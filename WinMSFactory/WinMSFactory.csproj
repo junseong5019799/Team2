@@ -499,6 +499,12 @@
     <Compile Include="Technology_Standards\DowntimeTyreForm.Designer.cs">
       <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Technology_Standards\StorageInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technology_Standards\StorageInfoForm.Designer.cs">
+      <DependentUpon>StorageInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Technology_Standards\ProcessWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -748,6 +754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technology_Standards\StorageInfoForm.resx">
+      <DependentUpon>StorageInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

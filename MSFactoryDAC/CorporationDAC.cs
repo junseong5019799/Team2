@@ -117,6 +117,26 @@ namespace MSFactoryDAC
 
         }
 
-        
+        public List<CorporationVO> CorporationComboBinding()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = "select corporation_id, corporation_name from tbl_corporation"; //여러개의 값을 삭제하고온다.
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<CorporationVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
