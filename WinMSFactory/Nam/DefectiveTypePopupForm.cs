@@ -43,6 +43,7 @@ namespace WinMSFactory.Nam
                 }
                     
                 txtDefectiveString.Text = vo.Defective_Type_Name;
+                numericUpDown1.Value = vo.Defective_Type_Seq;
             }
             
         }
@@ -74,14 +75,16 @@ namespace WinMSFactory.Nam
         {
             if (MessageBox.Show($"불량 유형을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                EmployeeVO employee = this.GetEmployee();
                 DefectiveTypeVO typeVO = new DefectiveTypeVO
                 {
                     Defective_Type_ID = DefectiveID,
                     Defective_Type_Name = txtDefectiveString.Text,
                     Defective_Type_Use = UseCheck,
                     Final_Regist_Time = DateTime.Now,
-                    Final_Regist_Employee = "홍길동", // 로그인한 직원 명으로 등록할 것
-                    P_Category = Category
+                    Final_Regist_Employee = employee.Employee_name, // 로그인한 직원 명으로 등록할 것
+                    P_Category = Category,
+                    Defective_Type_Seq = numericUpDown1.Value.ToInt()
                 };
 
                 if (service.DefectiveTypeUpsert(typeVO))

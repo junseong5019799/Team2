@@ -26,9 +26,9 @@ namespace WinMSFactory
             return dac.SelectAllProductGroups();
         }
 
-        public bool InsertGroup(ProductGroupVO pdgVO)
+        public bool UpsertGroup(ProductGroupVO pdgVO)
         {
-            return dac.InsertGroup(pdgVO);
+            return dac.UpsertGroup(pdgVO);
         }
 
         public void UpdateStatus(int itemNum, int StatusNum)

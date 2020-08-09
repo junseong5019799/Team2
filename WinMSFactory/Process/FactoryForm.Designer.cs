@@ -77,16 +77,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(67, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 15);
+            this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 14;
             this.label1.Text = "법인 명칭";
             // 
             // txtFactoryName
             // 
-            this.txtFactoryName.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFactoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFactoryName.Location = new System.Drawing.Point(448, 72);
             this.txtFactoryName.Name = "txtFactoryName";
             this.txtFactoryName.Size = new System.Drawing.Size(151, 22);
@@ -95,10 +95,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(371, 75);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 15);
+            this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 18;
             this.label3.Text = "공장 명칭";
             // 
@@ -112,6 +112,7 @@
             this.btnClear.TabIndex = 37;
             this.btnClear.Text = "초기화";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSelect
             // 
@@ -123,7 +124,6 @@
             this.btnSelect.TabIndex = 36;
             this.btnSelect.Text = "조회";
             this.btnSelect.UseVisualStyleBackColor = false;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnDelete
             // 
@@ -135,6 +135,7 @@
             this.btnDelete.TabIndex = 35;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -144,8 +145,9 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(50, 23);
             this.btnSave.TabIndex = 34;
-            this.btnSave.Text = "저장";
+            this.btnSave.Text = "추가";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel2
             // 
@@ -189,6 +191,9 @@
             this.dgvFactorylist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFactorylist.Size = new System.Drawing.Size(1534, 591);
             this.dgvFactorylist.TabIndex = 5;
+            this.dgvFactorylist.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactorylist_CellClick);
+            this.dgvFactorylist.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactorylist_CellDoubleClick);
+            this.dgvFactorylist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvFactorylist_DataBindingComplete);
             // 
             // cboCorporationName
             // 

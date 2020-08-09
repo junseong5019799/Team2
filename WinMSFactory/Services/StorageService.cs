@@ -25,6 +25,12 @@ namespace WinMSFactory.Services
         {
             return dac.MoveStockList(stock_no);
         }
+
+        public List<StorageVO> SelectStorage(int? CorporationID = null, int? FactoryID = null)
+        {
+            return dac.SelectStorage(CorporationID, FactoryID);
+        }
+
         public List<InOutVO> SelectInOut()
         {
             return dac.SelectInOut(); 
@@ -38,6 +44,19 @@ namespace WinMSFactory.Services
             return dac.MoveStorage(storage_id, stock_no);
         }
 
+        public void UpdateStatus(int storage_ID, string storage_Status)
+        {
+            if (storage_Status == "Y")
+                storage_Status = "N";
+            else
+                storage_Status = "Y";
 
+            dac.UpdateStatus(storage_ID, storage_Status);
+        }
+
+        public List<StorageVO> StorageComboBindings(int corpValue, int facValue)
+        {
+            return dac.StorageComboBindings(corpValue, facValue);
+        }
     }
 }

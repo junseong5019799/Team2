@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagementForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnConfirm = new WinMSFactory.ButtonControl();
             this.cboProductType = new System.Windows.Forms.ComboBox();
@@ -51,11 +51,11 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dgvBarcode = new WinMSFactory.DataGridViewControl();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.btnBOMCopy = new WinMSFactory.ButtonControl();
             this.btnBomShow = new WinMSFactory.ButtonControl();
             this.btnbarCopy = new WinMSFactory.ButtonControl();
             this.btnBarDelete = new WinMSFactory.ButtonControl();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -75,7 +75,7 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Size = new System.Drawing.Size(1534, 179);
+            this.panel1.Size = new System.Drawing.Size(1534, 190);
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox2, 0);
@@ -93,9 +93,9 @@
             this.groupBox1.Controls.Add(this.txtProductSearch);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.panel5);
-            this.groupBox1.Location = new System.Drawing.Point(75, 23);
+            this.groupBox1.Location = new System.Drawing.Point(75, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(822, 111);
+            this.groupBox1.Size = new System.Drawing.Size(822, 118);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
@@ -104,9 +104,9 @@
             // 
             this.btnConfirm.BackColor = System.Drawing.Color.White;
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
-            this.btnConfirm.Location = new System.Drawing.Point(712, 76);
+            this.btnConfirm.Location = new System.Drawing.Point(712, 81);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirm.Size = new System.Drawing.Size(75, 24);
             this.btnConfirm.TabIndex = 31;
             this.btnConfirm.Text = "검색";
             this.btnConfirm.UseVisualStyleBackColor = false;
@@ -116,43 +116,43 @@
             // 
             this.cboProductType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProductType.FormattingEnabled = true;
-            this.cboProductType.Location = new System.Drawing.Point(344, 35);
+            this.cboProductType.Location = new System.Drawing.Point(344, 37);
             this.cboProductType.Name = "cboProductType";
-            this.cboProductType.Size = new System.Drawing.Size(172, 24);
+            this.cboProductType.Size = new System.Drawing.Size(172, 25);
             this.cboProductType.TabIndex = 30;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(531, 38);
+            this.label2.Location = new System.Drawing.Point(531, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 16);
+            this.label2.Size = new System.Drawing.Size(64, 18);
             this.label2.TabIndex = 28;
             this.label2.Text = "사용 여부";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 41);
+            this.label1.Location = new System.Drawing.Point(265, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 16);
+            this.label1.Size = new System.Drawing.Size(77, 18);
             this.label1.TabIndex = 28;
             this.label1.Text = "제품 그룹명";
             // 
             // txtProductSearch
             // 
-            this.txtProductSearch.Location = new System.Drawing.Point(76, 35);
+            this.txtProductSearch.Location = new System.Drawing.Point(76, 37);
             this.txtProductSearch.Name = "txtProductSearch";
-            this.txtProductSearch.Size = new System.Drawing.Size(169, 22);
+            this.txtProductSearch.Size = new System.Drawing.Size(169, 24);
             this.txtProductSearch.TabIndex = 29;
             this.txtProductSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductSearch_KeyDown);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 39);
+            this.label3.Location = new System.Drawing.Point(15, 41);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 16);
+            this.label3.Size = new System.Drawing.Size(47, 18);
             this.label3.TabIndex = 28;
             this.label3.Text = "제품명";
             // 
@@ -161,9 +161,9 @@
             this.panel5.Controls.Add(this.rdoUnUse);
             this.panel5.Controls.Add(this.rdoAll);
             this.panel5.Controls.Add(this.rdoUse);
-            this.panel5.Location = new System.Drawing.Point(615, 30);
+            this.panel5.Location = new System.Drawing.Point(615, 32);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(176, 33);
+            this.panel5.Size = new System.Drawing.Size(176, 35);
             this.panel5.TabIndex = 27;
             // 
             // rdoUnUse
@@ -171,7 +171,7 @@
             this.rdoUnUse.AutoSize = true;
             this.rdoUnUse.Location = new System.Drawing.Point(128, 8);
             this.rdoUnUse.Name = "rdoUnUse";
-            this.rdoUnUse.Size = new System.Drawing.Size(44, 20);
+            this.rdoUnUse.Size = new System.Drawing.Size(46, 22);
             this.rdoUnUse.TabIndex = 20;
             this.rdoUnUse.TabStop = true;
             this.rdoUnUse.Text = "No";
@@ -182,7 +182,7 @@
             this.rdoAll.AutoSize = true;
             this.rdoAll.Location = new System.Drawing.Point(5, 7);
             this.rdoAll.Name = "rdoAll";
-            this.rdoAll.Size = new System.Drawing.Size(41, 20);
+            this.rdoAll.Size = new System.Drawing.Size(41, 22);
             this.rdoAll.TabIndex = 21;
             this.rdoAll.TabStop = true;
             this.rdoAll.Text = "All";
@@ -193,7 +193,7 @@
             this.rdoUse.AutoSize = true;
             this.rdoUse.Location = new System.Drawing.Point(62, 8);
             this.rdoUse.Name = "rdoUse";
-            this.rdoUse.Size = new System.Drawing.Size(50, 20);
+            this.rdoUse.Size = new System.Drawing.Size(51, 22);
             this.rdoUse.TabIndex = 21;
             this.rdoUse.TabStop = true;
             this.rdoUse.Text = "Yes";
@@ -204,43 +204,45 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 179);
+            this.dgv.Location = new System.Drawing.Point(0, 190);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1133, 526);
+            this.dgv.Size = new System.Drawing.Size(1133, 559);
             this.dgv.TabIndex = 4;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
             this.dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_DataBindingComplete);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(977, 156);
+            this.pictureBox1.Location = new System.Drawing.Point(977, 166);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox1.Size = new System.Drawing.Size(17, 18);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 47;
             this.pictureBox1.TabStop = false;
@@ -250,9 +252,9 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(1073, 156);
+            this.pictureBox2.Location = new System.Drawing.Point(1073, 166);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox2.Size = new System.Drawing.Size(17, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 47;
             this.pictureBox2.TabStop = false;
@@ -263,32 +265,33 @@
             this.dgvBarcode.AllowUserToAddRows = false;
             this.dgvBarcode.BackgroundColor = System.Drawing.Color.White;
             this.dgvBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBarcode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBarcode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBarcode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBarcode.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBarcode.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBarcode.IsAllCheckColumnHeader = false;
             this.dgvBarcode.IsAutoGenerateColumns = false;
-            this.dgvBarcode.Location = new System.Drawing.Point(1167, 179);
+            this.dgvBarcode.Location = new System.Drawing.Point(1167, 190);
             this.dgvBarcode.MultiSelect = false;
             this.dgvBarcode.Name = "dgvBarcode";
             this.dgvBarcode.RowHeadersVisible = false;
+            this.dgvBarcode.RowHeadersWidth = 45;
             this.dgvBarcode.RowTemplate.Height = 23;
             this.dgvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBarcode.Size = new System.Drawing.Size(202, 526);
+            this.dgvBarcode.Size = new System.Drawing.Size(202, 559);
             this.dgvBarcode.TabIndex = 5;
             // 
             // groupBox4
@@ -296,20 +299,32 @@
             this.groupBox4.Controls.Add(this.buttonControl1);
             this.groupBox4.Controls.Add(this.btnBOMCopy);
             this.groupBox4.Controls.Add(this.btnBomShow);
-            this.groupBox4.Location = new System.Drawing.Point(926, 53);
+            this.groupBox4.Location = new System.Drawing.Point(926, 56);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(285, 81);
+            this.groupBox4.Size = new System.Drawing.Size(285, 86);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "BOM";
+            // 
+            // buttonControl1
+            // 
+            this.buttonControl1.BackColor = System.Drawing.Color.White;
+            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
+            this.buttonControl1.Location = new System.Drawing.Point(151, 15);
+            this.buttonControl1.Name = "buttonControl1";
+            this.buttonControl1.Size = new System.Drawing.Size(108, 31);
+            this.buttonControl1.TabIndex = 7;
+            this.buttonControl1.Text = "BOM 로그";
+            this.buttonControl1.UseVisualStyleBackColor = false;
+            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
             // 
             // btnBOMCopy
             // 
             this.btnBOMCopy.BackColor = System.Drawing.Color.White;
             this.btnBOMCopy.ForeColor = System.Drawing.Color.Black;
-            this.btnBOMCopy.Location = new System.Drawing.Point(92, 46);
+            this.btnBOMCopy.Location = new System.Drawing.Point(92, 49);
             this.btnBOMCopy.Name = "btnBOMCopy";
-            this.btnBOMCopy.Size = new System.Drawing.Size(104, 26);
+            this.btnBOMCopy.Size = new System.Drawing.Size(104, 28);
             this.btnBOMCopy.TabIndex = 6;
             this.btnBOMCopy.Text = "BOM 복사";
             this.btnBOMCopy.UseVisualStyleBackColor = false;
@@ -319,9 +334,9 @@
             // 
             this.btnBomShow.BackColor = System.Drawing.Color.White;
             this.btnBomShow.ForeColor = System.Drawing.Color.Black;
-            this.btnBomShow.Location = new System.Drawing.Point(36, 14);
+            this.btnBomShow.Location = new System.Drawing.Point(36, 15);
             this.btnBomShow.Name = "btnBomShow";
-            this.btnBomShow.Size = new System.Drawing.Size(109, 29);
+            this.btnBomShow.Size = new System.Drawing.Size(109, 31);
             this.btnBomShow.TabIndex = 6;
             this.btnBomShow.Text = "정전개 / 역전개";
             this.btnBomShow.UseVisualStyleBackColor = false;
@@ -331,9 +346,9 @@
             // 
             this.btnbarCopy.BackColor = System.Drawing.Color.White;
             this.btnbarCopy.ForeColor = System.Drawing.Color.Black;
-            this.btnbarCopy.Location = new System.Drawing.Point(1127, 152);
+            this.btnbarCopy.Location = new System.Drawing.Point(1127, 162);
             this.btnbarCopy.Name = "btnbarCopy";
-            this.btnbarCopy.Size = new System.Drawing.Size(120, 24);
+            this.btnbarCopy.Size = new System.Drawing.Size(120, 26);
             this.btnbarCopy.TabIndex = 52;
             this.btnbarCopy.Text = "바코드 BOM Copy";
             this.btnbarCopy.UseVisualStyleBackColor = false;
@@ -343,30 +358,18 @@
             // 
             this.btnBarDelete.BackColor = System.Drawing.Color.White;
             this.btnBarDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnBarDelete.Location = new System.Drawing.Point(1253, 152);
+            this.btnBarDelete.Location = new System.Drawing.Point(1253, 162);
             this.btnBarDelete.Name = "btnBarDelete";
-            this.btnBarDelete.Size = new System.Drawing.Size(85, 25);
+            this.btnBarDelete.Size = new System.Drawing.Size(85, 27);
             this.btnBarDelete.TabIndex = 53;
             this.btnBarDelete.Text = "바코드 Clear";
             this.btnBarDelete.UseVisualStyleBackColor = false;
             this.btnBarDelete.Click += new System.EventHandler(this.btnBarDelete_Click);
             // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(151, 14);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(108, 29);
-            this.buttonControl1.TabIndex = 7;
-            this.buttonControl1.Text = "BOM 로그";
-            this.buttonControl1.UseVisualStyleBackColor = false;
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
-            // 
             // ProductManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.ClientSize = new System.Drawing.Size(1534, 809);
             this.Controls.Add(this.dgvBarcode);
             this.Controls.Add(this.dgv);
             this.Margin = new System.Windows.Forms.Padding(3);

@@ -29,7 +29,7 @@ namespace WinMSFactory
 
             dgv.AddNewCol("불량 코드", "defective_type_id", true, 100);
             dgv.AddNewCol("불량 명칭", "defective_type_name", true, 200);
-            dgv.AddNewCol("불량 순번", "defective_type_seq", false, 100);
+            dgv.AddNewCol("불량 순번", "defective_type_seq", true, 100);
             dgv.AddNewBtnCol("명칭 사용여부","", new Padding(1, 1, 1, 1));
             dgv.AddNewCol("최초등록시간", "first_regist_time", true, 140);
             dgv.AddNewCol("최초등록사원", "first_regist_employee", true, 100);
@@ -63,7 +63,8 @@ namespace WinMSFactory
             {
                 Defective_Type_ID = dgv[1, e.RowIndex].Value.ToInt(),
                 Defective_Type_Use = dgv[9, e.RowIndex].Value.ToString(),
-                Defective_Type_Name = dgv[2, e.RowIndex].Value.ToString()
+                Defective_Type_Name = dgv[2, e.RowIndex].Value.ToString(),
+                Defective_Type_Seq = dgv[3,e.RowIndex].Value.ToInt()
             };
             OpenPopup(true, updateVO);
 
@@ -136,10 +137,11 @@ namespace WinMSFactory
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
                 if ((object)chk.Value == null)
                     continue;
-                else if((bool)chk.Value == true)
+                else if ((bool)chk.Value == true)
                 {
                     CheckList.Add(dgv[1, row.Index].Value.ToInt());
                 }
+                
             }
 
             if (CheckList.Count < 1)

@@ -54,6 +54,7 @@
     <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -347,11 +348,23 @@
     <Compile Include="Process\FactoryForm.Designer.cs">
       <DependentUpon>FactoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FactoryPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FactoryPopupForm.Designer.cs">
+      <DependentUpon>FactoryPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\LineForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Process\LineForm.Designer.cs">
       <DependentUpon>LineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\LinePopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\LinePopupForm.Designer.cs">
+      <DependentUpon>LinePopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\ProcessForm.cs">
       <SubType>Form</SubType>
@@ -440,8 +453,10 @@
     <Compile Include="Services\CorporationService.cs" />
     <Compile Include="Services\DefectiveService.cs" />
     <Compile Include="Services\DownTimeService.cs" />
+    <Compile Include="Services\DowntimeTypeService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\FactoryService.cs" />
+    <Compile Include="Services\LineService.cs" />
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductGroupService.cs" />
@@ -480,17 +495,23 @@
     <Compile Include="Technology_Standards\CompanyProductPopupForm.Designer.cs">
       <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology_Standards\DefectiveTypeForm.cs">
+    <Compile Include="Technology_Standards\DowntimeTypePopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology_Standards\DefectiveTypeForm.Designer.cs">
-      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
+    <Compile Include="Technology_Standards\DowntimeTypePopupForm.Designer.cs">
+      <DependentUpon>DowntimeTypePopupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology_Standards\DowntimeTyreForm.cs">
+    <Compile Include="Technology_Standards\DowntimeTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Technology_Standards\DowntimeTyreForm.Designer.cs">
-      <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
+    <Compile Include="Technology_Standards\DowntimeTypeForm.Designer.cs">
+      <DependentUpon>DowntimeTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technology_Standards\StorageInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technology_Standards\StorageInfoForm.Designer.cs">
+      <DependentUpon>StorageInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Technology_Standards\ProcessWorkerForm.cs">
       <SubType>Form</SubType>
@@ -685,8 +706,14 @@
     <EmbeddedResource Include="Process\FactoryForm.resx">
       <DependentUpon>FactoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\FactoryPopupForm.resx">
+      <DependentUpon>FactoryPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\LineForm.resx">
       <DependentUpon>LineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\LinePopupForm.resx">
+      <DependentUpon>LinePopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\ProcessForm.resx">
       <DependentUpon>ProcessForm.cs</DependentUpon>
@@ -727,17 +754,20 @@
     <EmbeddedResource Include="Technology_Standards\CompanyProductPopupForm.resx">
       <DependentUpon>CompanyProductPopupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology_Standards\DefectiveTypeForm.resx">
-      <DependentUpon>DefectiveTypeForm.cs</DependentUpon>
+    <EmbeddedResource Include="Technology_Standards\DowntimeTypePopupForm.resx">
+      <DependentUpon>DowntimeTypePopupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology_Standards\DowntimeTyreForm.resx">
-      <DependentUpon>DowntimeTyreForm.cs</DependentUpon>
+    <EmbeddedResource Include="Technology_Standards\DowntimeTypeForm.resx">
+      <DependentUpon>DowntimeTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\ProcessWorkerForm.resx">
       <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technology_Standards\StorageInfoForm.resx">
+      <DependentUpon>StorageInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

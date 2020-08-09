@@ -34,5 +34,9 @@ namespace WinMSFactory.Services
             return dac.Delete(corporation_idList);
         }
 
+        public List<CorporationVO> CorporationComboBinding()
+        {
+            return dac.CorporationComboBinding();
+        }
     }
 }

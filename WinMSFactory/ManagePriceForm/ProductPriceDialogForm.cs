@@ -119,7 +119,6 @@ namespace WinMSFactory
 
         private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             ProductIndexChange();
         }
 

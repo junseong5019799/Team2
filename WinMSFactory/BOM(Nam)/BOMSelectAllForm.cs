@@ -93,13 +93,20 @@ namespace WinMSFactory
 
         private void buttonControl2_Click(object sender, EventArgs e)
         {
+            if(dgv.Rows.Count<1)
+            {
+                MessageBox.Show("Bom를 먼저 조회해주세요");
+                return;
+            }
             if(MessageBox.Show("정말로 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if(service.BOMDelete(dgv[0, 0].Value.ToInt()) == true)
+                if (service.BOMDelete(dgv[0, 0].Value.ToInt()) == true)
                 {
                     MessageBox.Show("해당하는 BOM이 삭제되었습니다. 그에 따른 상위 / 하위 목록도 같이 삭제되었습니다.");
                     cboSelect.SelectedIndex = 0;
                 }
+                this.DialogResult = DialogResult.OK;
+                dgv.DataSource = null;
             }
         }
 

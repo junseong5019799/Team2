@@ -68,5 +68,10 @@ namespace WinMSFactory
         {
             return dac.SelectAllProductsToTable();
         }
+
+        public bool UpdateProducts(ProductInsertVO productInsert)
+        {
+            return dac.UpdateProducts(productInsert);
+        }
     }
 }

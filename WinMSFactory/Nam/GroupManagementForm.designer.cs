@@ -44,7 +44,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Size = new System.Drawing.Size(1534, 177);
+            this.panel1.Size = new System.Drawing.Size(1534, 188);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             // 
@@ -73,16 +73,17 @@
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 176);
+            this.dgv.Location = new System.Drawing.Point(0, 187);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 585);
+            this.dgv.Size = new System.Drawing.Size(1534, 622);
             this.dgv.TabIndex = 4;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
             this.dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_DataBindingComplete);
             // 
             // groupBox1
@@ -90,9 +91,9 @@
             this.groupBox1.Controls.Add(this.buttonControl1);
             this.groupBox1.Controls.Add(this.txtGroupName);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(75, 23);
+            this.groupBox1.Location = new System.Drawing.Point(75, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1244, 127);
+            this.groupBox1.Size = new System.Drawing.Size(1244, 135);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
@@ -101,9 +102,9 @@
             // 
             this.buttonControl1.BackColor = System.Drawing.Color.White;
             this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(380, 61);
+            this.buttonControl1.Location = new System.Drawing.Point(380, 65);
             this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 30);
+            this.buttonControl1.Size = new System.Drawing.Size(75, 32);
             this.buttonControl1.TabIndex = 33;
             this.buttonControl1.Text = "검색";
             this.buttonControl1.UseVisualStyleBackColor = false;
@@ -111,24 +112,24 @@
             // 
             // txtGroupName
             // 
-            this.txtGroupName.Location = new System.Drawing.Point(155, 63);
+            this.txtGroupName.Location = new System.Drawing.Point(155, 67);
             this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(169, 22);
+            this.txtGroupName.Size = new System.Drawing.Size(169, 24);
             this.txtGroupName.TabIndex = 31;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(76, 67);
+            this.label3.Location = new System.Drawing.Point(76, 71);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 16);
+            this.label3.Size = new System.Drawing.Size(77, 18);
             this.label3.TabIndex = 30;
             this.label3.Text = "제품 그룹명";
             // 
             // GroupManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.ClientSize = new System.Drawing.Size(1534, 809);
             this.Controls.Add(this.dgv);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "GroupManagementForm";

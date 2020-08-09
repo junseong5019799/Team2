@@ -35,6 +35,104 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<StorageVO> SelectStorage(int? CorporationID = null, int? FactoryID = null)
+        {
+            try
+            {
+                string AddString = string.Empty;
+                    
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+
+                    StringBuilder sb = new StringBuilder();
+                    
+                    if(CorporationID == 0 && FactoryID > 0)
+                    {
+                        sb.Append(" WHERE F.FACTORY_ID = @FID");
+                        cmd.Parameters.AddWithValue("@FID", FactoryID);
+                    
+                    }
+
+                    if (CorporationID != null && CorporationID != 0 )
+                    {
+                        sb.Append(" Where C.CORPORATION_ID = @ID");
+                        cmd.Parameters.AddWithValue("@ID", CorporationID);
+                        if(FactoryID != null && FactoryID != 0)
+                        {
+                            sb.Append(" AND F.FACTORY_ID = @FID");
+                            cmd.Parameters.AddWithValue("@FID", FactoryID);
+                        }
+                    }
+
+                    cmd.CommandText = @"select S.[storage_id], F.factory_name, [storage_name], [storage_seq], [storage_use], S.[first_regist_time], S.[first_regist_employee], S.[final_regist_time], S.[final_regist_employee]
+                                        from tbl_storage S INNER JOIN TBL_FACTORY F ON S.factory_id = F.factory_id 
+										INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id" + sb.ToString() +
+                                " order by storage_seq asc";
+
+                    return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
+                }
+                
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<StorageVO> StorageComboBindings(int corpValue, int facValue)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"select storage_id, storage_name
+                                    from tbl_storage S INNER JOIN TBL_FACTORY F ON S.factory_id = F.factory_id
+													   INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+										WHERE C.CORPORATION_ID = @CORPVALUE AND F.factory_id = @FACVALUE";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CORPVALUE", corpValue);
+                        cmd.Parameters.AddWithValue("@FACVALUE", facValue);
+                        return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public void UpdateStatus(int storage_ID, string storage_Status)
+        {
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"update tbl_storage set storage_use = @storage_status where storage_id = @storage_ID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@storage_ID", storage_ID);
+                        cmd.Parameters.AddWithValue("@storage_status", storage_Status);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+
 
         /// <summary>
         /// 수불 현황 (입출고)
