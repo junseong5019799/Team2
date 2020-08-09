@@ -69,6 +69,53 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public bool UpdateProducts(ProductInsertVO vo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"UPDATE TBL_PRODUCT SET [product_lead_time] = @LEAD_TIME, [product_tact_time] = @TACT_TIME, [product_group_id] = @GROUP_ID, [product_name] = @PRODUCT_NAME, 
+                                [product_information] = @INFORMATION, [product_unit] = @UNIT, [product_standards] = @STANDARD, [product_note1] = @NOTE1, [product_note2] = @NOTE2, 
+                                [product_seq] = @SEQ, [product_use] = @USE,  [final_regist_time] = @REGIST_TIME, [final_regist_employee] = @REGIST_EMPLOYEE
+                                WHERE PRODUCT_ID = @PRODUCT_ID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@LEAD_TIME", vo.Product_Lead_Time);
+                        cmd.Parameters.AddWithValue("@Tact_time", vo.Product_Tact_Time);
+                        cmd.Parameters.AddWithValue("@group_id", vo.Product_Group_ID);
+                        cmd.Parameters.AddWithValue("@Product_Name", vo.Product_Name);
+                        cmd.Parameters.AddWithValue("@Information", vo.Product_Information);
+                        cmd.Parameters.AddWithValue("@Unit", vo.Product_Unit);
+                        cmd.Parameters.AddWithValue("@standard", vo.Product_Standards);
+                        cmd.Parameters.AddWithValue("@note1", vo.Product_Note1);
+                        cmd.Parameters.AddWithValue("@note2", vo.Product_Note2);
+                        cmd.Parameters.AddWithValue("@seq", vo.Product_Seq);
+                        cmd.Parameters.AddWithValue("@use", vo.Product_Use);
+                        cmd.Parameters.AddWithValue("@regist_time", vo.Final_Regist_Time);
+                        cmd.Parameters.AddWithValue("@regist_employee", vo.Final_Regist_Employee);
+                        cmd.Parameters.AddWithValue("@product_id", vo.Product_ID);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public DataTable SelectAllProductsToTable()
         {
             DataTable dt = new DataTable();
@@ -343,6 +390,7 @@ namespace MSFactoryDAC
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_ID", InsertData.Product_ID);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_GROUP_ID", InsertData.Product_Group_ID);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_NAME", InsertData.Product_Name);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_INFOMATION", InsertData.Product_Information);
@@ -356,6 +404,7 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_PRODUCT_TACT_TIME", InsertData.Product_Tact_Time);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_LEAD_TIME", InsertData.Product_Lead_Time);
                         cmd.Parameters.AddWithValue("@P_IS_BOM_COPY", IsBomCopy);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_SEQ", InsertData.Product_Seq);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;

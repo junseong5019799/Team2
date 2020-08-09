@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.DataAccess.DataFederation;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,20 @@ namespace WinMSFactory
     {
         ProductService pdSv = new ProductService();
         ProductGroupService pdgSv = new ProductGroupService();
+        BOMManageForm frm = null;
+        ProductVO vo;
         private char UseChar;
         string ProductNameText = null;
         bool EnabledProductName;
-        BOMManageForm frm = null;
-
-        public ProductInfoForm()
+        bool IsUpdate = false;
+        int Update_ProductID = 0;
+        public ProductInfoForm(bool IsUpdate = true, ProductVO vo = null)
         {
             InitializeComponent();
+            this.IsUpdate = IsUpdate;
+            this.vo = vo;
+            if(IsUpdate == true)
+                Update_ProductID = vo.Product_ID;
         }
         public ProductInfoForm(BOMManageForm frm, string ProductNameText, bool EnabledProductName)
         {
@@ -51,6 +58,34 @@ namespace WinMSFactory
             txtUnit.MaxLength = 3;
 
             cboProductGroup.ComboBinding(pdgSv.ProductGroupComboBindingsNotAll(), "PRODUCT_GROUP_ID", "PRODUCT_GROUP_NAME");
+
+            if(IsUpdate == true)
+            {
+                //vo.Product_ID
+                txtProductName.Text = vo.Product_Name;
+                txtInformation.Text = vo.Product_Information;
+                cboProductGroup.SelectedIndex = cboProductGroup.FindString(vo.Product_Group_Name);
+                txtUnit.Text = vo.Product_Unit;
+                numSEQ.Value = vo.Product_Seq;
+                txtTactTime.Text = vo.Product_Tact_Time.ToString();
+                txtLeadTime.Text = vo.Product_Lead_Time.ToString();
+                numUnit.Value = vo.Product_Standards.ToInt();
+                txtNote1.Text = vo.Product_Note1;
+                txtNote2.Text = vo.Product_Note2;
+
+                if(vo.Product_Use == "사용")
+                {
+                    radioButton1.Checked = true;
+                    radioButton2.Checked = false;
+                }
+
+                else if(vo.Product_Use == "미사용")
+                {
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = true;
+                }
+
+            }
         }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -60,8 +95,11 @@ namespace WinMSFactory
                 return;
             }
 
+            EmployeeVO employee = this.GetEmployee();
+
             ProductInsertVO ProductInsert = new ProductInsertVO
             {
+                Product_ID = Update_ProductID,
                 Product_Name = txtProductName.Text,
                 Product_Group_ID = cboProductGroup.SelectedValue.ToInt(), // 그룹명 대신 그룹 ID를 넘겨줌
                 Product_Information = txtInformation.Text,
@@ -70,36 +108,54 @@ namespace WinMSFactory
                 Product_Note1 = txtNote1.Text,
                 Product_Note2 = txtNote2.Text,
                 Product_Use = UseChar,
-                Final_Regist_Employee = "직원명",           // 나중에 직원 명을 가져올 것 (필수)
+                Final_Regist_Employee = employee.Employee_name,           // 나중에 직원 명을 가져올 것 (필수)
                 Final_Regist_Time = DateTime.Now,
                 Product_Tact_Time = txtTactTime.Text.ToInt(),
-                Product_Lead_Time = txtLeadTime.Text.ToInt()
+                Product_Lead_Time = txtLeadTime.Text.ToInt(),
+                Product_Seq = numSEQ.Value.ToInt()
             };
 
-            if (EnabledProductName == true) // BOM Copy에서 진행
+            if(IsUpdate == false) // 등록
             {
-                if(MessageBox.Show("정보 등록을 진행하시겠습니까?", "진행", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (EnabledProductName == true) // BOM Copy에서 진행
                 {
-                    this.DialogResult = DialogResult.OK;
-                    frm.ProductInformation = ProductInsert;
-                    this.Close();
-                }
-                
-            }
+                    if (MessageBox.Show("정보 등록을 진행하시겠습니까?", "진행", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        frm.ProductInformation = ProductInsert;
+                        this.Close();
+                    }
 
-            else // 제품 등록 시 진행
+                }
+
+                else // 제품 등록 시 진행
+                {
+                    if (MessageBox.Show("정보 등록을 진행하시겠습니까?", "진행", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+
+                        // 등록 진행
+                        if (pdSv.InsertProducts(ProductInsert, 'N'))
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            else if(IsUpdate == true) // 변경
             {
                 if (MessageBox.Show("정보 등록을 진행하시겠습니까?", "진행", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 
                     // 등록 진행
-                    if (pdSv.InsertProducts(ProductInsert, 'N'))
+                    if (pdSv.UpdateProducts(ProductInsert))
                     {
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                 }
             }
+            
             
         }
         private void btnCancel_Click(object sender, EventArgs e)
