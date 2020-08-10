@@ -30,10 +30,10 @@ namespace WinMSFactory
 
             dgvDowntimeType.AddNewColumns("비가동코드", "downtime_type_id", 100, true);
             dgvDowntimeType.AddNewColumns("비가동 명", "downtime_type_name", 100, true);
-            dgvDowntimeType.AddNewBtnCol("시간계산여부", "", new Padding(1, 1, 1, 1)); // 3
+            dgvDowntimeType.AddNewBtnCol("시간계산여부", "", new Padding(1, 1, 1, 1), false); // 3 // 버튼 부분은 false
             dgvDowntimeType.AddNewColumns("시간계산여부", "downtime_type_calculation", 100, true); //4
             dgvDowntimeType.AddNewColumns("비가동순번", "downtime_type_seq", 100, true);
-            dgvDowntimeType.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1)); // 6 버튼
+            dgvDowntimeType.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 6 버튼 // 버튼 부분은 false
             dgvDowntimeType.AddNewColumns("비가동사용여부", "downtime_type_use", 100, true); //7
             dgvDowntimeType.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvDowntimeType.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
@@ -55,7 +55,13 @@ namespace WinMSFactory
 
         private void dgvDowntimeType_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex == 3 || e.ColumnIndex == 6)
+            // 여기 부분은 버튼 사용 부분입니다. 참고용으로 적어놓았고, 실제 작동은 되지 않습니다.!!
+            // 작동 시키려면 버튼 컬럼의 Visible를 true로 바꾼 후 사용 바랍니다.!!
+
+            //if (e.RowIndex < 0 || e.ColumnIndex == 3 || e.ColumnIndex == 6)
+            //    return;
+
+            if (e.RowIndex < 0)
                 return;
 
             DowntimeTypeVO updatevo = new DowntimeTypeVO
@@ -76,6 +82,8 @@ namespace WinMSFactory
                 LoadData();
         }
 
+        // 여기 부분은 버튼 사용 부분입니다. 참고용으로 적어놓았고, 실제 작동은 되지 않습니다.!!
+        // 작동 시키려면 버튼 컬럼의 Visible를 true로 바꾼 후 사용 바랍니다.!!
         private void dgvDowntimeType_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -122,7 +130,8 @@ namespace WinMSFactory
 
             }
         }
-
+        // 여기 부분은 버튼 사용 부분입니다. 참고용으로 적어놓았고, 실제 작동은 되지 않습니다.!!
+        // 작동 시키려면 버튼 컬럼의 Visible를 true로 바꾼 후 사용 바랍니다.!!
         private void dgvDowntimeType_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewRow row in dgvDowntimeType.Rows)

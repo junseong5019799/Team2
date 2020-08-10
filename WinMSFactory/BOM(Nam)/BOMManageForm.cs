@@ -30,12 +30,12 @@ namespace WinMSFactory.BOM
         char BOMEnrollStatus; // DB에 Insert
         bool BomEnrollCheck; // 등록, 수정 결정
         bool IsBomCopy = false;
-        
+        EmployeeVO employee;
 
         public ProductInsertVO ProductInformation { get; set; } // Bom Copy에서 사용
 
         // BOM 등록 및 수정
-        public BOMManageForm(bool BomEnrollCheck, int ProductID, string ProductName, char BOMEnrollStatus)
+        public BOMManageForm(EmployeeVO employee, bool BomEnrollCheck, int ProductID, string ProductName, char BOMEnrollStatus)
         {
             InitializeComponent();
             CheckedList = new List<BomVO>();
@@ -43,7 +43,7 @@ namespace WinMSFactory.BOM
             this.ProductID = ProductID;
             this.ProductName = ProductName;
             this.BOMEnrollStatus = BOMEnrollStatus;
-            
+            this.employee = employee;
 
             if(BomEnrollCheck == true)
             {
@@ -52,7 +52,7 @@ namespace WinMSFactory.BOM
             }
         }
         // BOM 복사
-        public BOMManageForm(List<int> ProductIDs, bool IsBomCopy)
+        public BOMManageForm(EmployeeVO employee, List<int> ProductIDs, bool IsBomCopy)
         {
             InitializeComponent();
             this.ProductIDs = ProductIDs;
@@ -60,6 +60,7 @@ namespace WinMSFactory.BOM
             this.BomEnrollCheck = true;
             CheckedList = new List<BomVO>();
             ProductName = "";
+            this.employee = employee;
         }
 
         private void BOMManageForm_Load(object sender, EventArgs e)
@@ -128,7 +129,7 @@ namespace WinMSFactory.BOM
             }
 
             
-            ProductInfoForm frm = new ProductInfoForm(this, txtProductName.Text, true);
+            ProductInfoForm frm = new ProductInfoForm(this, employee.Employee_name, txtProductName.Text, true);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 btnInformation.Visible = false;
@@ -262,8 +263,6 @@ namespace WinMSFactory.BOM
 
         private void ListSortings(List<BOMInsertUpdateVO> InsertBOMLists, int ProductIDNum = 0) // BOM List Sorting
         {
-            EmployeeVO employee = this.GetEmployee();
-
             foreach (DataGridViewRow row in dgv2.Rows)
             {
                 InsertBOMLists.Add(new BOMInsertUpdateVO
@@ -272,7 +271,7 @@ namespace WinMSFactory.BOM
                     Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
                     Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
                     Final_Regist_Time = DateTime.Now.Date,
-                    Final_Regist_Employee = employee.Employee_name,                        // 나중에 로그인 완성시 직원 명 넣어줄 것
+                    Final_Regist_Employee = employee.Employee_name,                        
                     Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
                 });
             }
@@ -280,12 +279,11 @@ namespace WinMSFactory.BOM
 
         private void BomAddLogs(string Status_String) // BomLog 저장
         {
-            EmployeeVO employee = this.GetEmployee();
             BomLogVO AddLog = new BomLogVO
             {
                 High_Product_ID = ProductID,
                 Bom_Enroll_Date = DateTime.Now,
-                Employee_ID = employee.Employee_name,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                Employee_ID = employee.Employee_id,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
                 Bom_Log_Status = Status_String,             // BOM 입력
                 Bom_Exists = 'Y'
             };

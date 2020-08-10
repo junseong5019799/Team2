@@ -32,25 +32,20 @@ namespace WinMSFactory
 		//	}
 		//}
 
-		public void CommonEvent(Form frm, DataRow authDr)
+		public void CommonEvent(Form frm, Dictionary<string, string> dic)
 		{
 			this.mInfoList = new List<MethodInfo>();
 			Type type = frm.GetType();
 			Type thisType = this.GetType();
 
-			foreach (DataColumn dc in authDr.Table.Columns)
-			{
-				string columnName = dc.ColumnName;
-
-				if (!columnName.Contains("PROG_"))
-					continue;
-
-				string methodName = GetMethodName(columnName);
+			foreach (string key in dic.Keys)
+			{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+				string methodName = GetMethodName(key);
 				FieldInfo fieldInfo = thisType.GetField("btn" + methodName + "Visible", BindingFlags.NonPublic | BindingFlags.Instance);
 
 				if (fieldInfo != null)
 				{
-					if (authDr[columnName].ToString() == "Y")
+					if (dic[key].ToString() == "Y")
 					{
 						MethodInfo mInfo = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
 

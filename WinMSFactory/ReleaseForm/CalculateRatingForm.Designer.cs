@@ -46,7 +46,6 @@
             this.btnCalculate = new WinMSFactory.ButtonControl();
             this.label6 = new System.Windows.Forms.Label();
             this.cboPlanID = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new WinMSFactory.ButtonControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -57,7 +56,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.cboPlanID);
             this.panel1.Controls.Add(this.btnCalculate);
@@ -72,7 +70,6 @@
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.cboPlanID, 0);
             this.panel1.Controls.SetChildIndex(this.label6, 0);
-            this.panel1.Controls.SetChildIndex(this.btnSearch, 0);
             // 
             // GuidLabel1
             // 
@@ -188,7 +185,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.fromToDateControl2);
-            this.panel2.Location = new System.Drawing.Point(112, 25);
+            this.panel2.Location = new System.Drawing.Point(112, 27);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(230, 33);
             this.panel2.TabIndex = 29;
@@ -196,18 +193,18 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl2.From = new System.DateTime(2020, 8, 6, 17, 29, 42, 549);
+            this.fromToDateControl2.From = new System.DateTime(2020, 8, 9, 18, 10, 37, 36);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl2.TabIndex = 17;
-            this.fromToDateControl2.To = new System.DateTime(2020, 8, 7, 17, 29, 42, 549);
+            this.fromToDateControl2.To = new System.DateTime(2020, 8, 10, 18, 10, 37, 36);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(397, 33);
+            this.label7.Location = new System.Drawing.Point(397, 35);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 22;
@@ -216,7 +213,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(50, 33);
+            this.label9.Location = new System.Drawing.Point(50, 35);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 20;
@@ -249,23 +246,10 @@
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(497, 29);
+            this.cboPlanID.Location = new System.Drawing.Point(497, 31);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(121, 24);
             this.cboPlanID.TabIndex = 33;
-            this.cboPlanID.SelectedIndexChanged += new System.EventHandler(this.cboPlanID_SelectedIndexChanged);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(735, 29);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(90, 26);
-            this.btnSearch.TabIndex = 34;
-            this.btnSearch.Text = "찾기";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
             // 
@@ -315,7 +299,6 @@
         private ButtonControl btnCalculate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboPlanID;
-        private ButtonControl btnSearch;
         private System.Windows.Forms.Panel panel4;
     }
 }

@@ -27,7 +27,6 @@ namespace WinMSFactory.Services
         CompanyDAC dac = new CompanyDAC();
         public DataTable GetCompany(string type)
         {
-
             return dac.GetCompany(type);
         }
 
@@ -35,7 +34,10 @@ namespace WinMSFactory.Services
         {
             return dac.ProductBinding(selectedItem);
         }
-
+        public List<CompanyVO> GetCompanyByType(string type)
+        {
+            return dac.GetCompanyByType(type);
+        }
         public List<CompanyVO> SelectCompanyBindings()
         {
             return dac.SelectCompanyBindings();

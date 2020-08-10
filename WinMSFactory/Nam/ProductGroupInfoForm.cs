@@ -15,16 +15,20 @@ namespace WinMSFactory
 {
     public partial class ProductGroupInfoForm : PopUpDialogForm
     {
-        private char UseChar = 'Y';
         ProductGroupService service = new ProductGroupService();
-        bool IsUpdate;
         ProductGroupVO groupVO;
+
+        string employee;
         string Status = string.Empty;
-        public ProductGroupInfoForm(bool IsUpdate = false, ProductGroupVO groupVO = null)
+        bool IsUpdate;
+        char UseChar = 'Y';
+
+        public ProductGroupInfoForm(string employee, bool IsUpdate = false, ProductGroupVO groupVO = null )
         {
             InitializeComponent();
             this.IsUpdate = IsUpdate;
             this.groupVO = groupVO;
+            this.employee = employee;
 
             if (IsUpdate == true)
             {
@@ -48,7 +52,7 @@ namespace WinMSFactory
                 txtNote1.Text = groupVO.Product_Group_Note1;
                 txtNote2.Text = groupVO.Product_Group_Note2;
 
-                if (groupVO.Product_Group_Use_String == "사용")
+                if (groupVO.Product_Group_Use_String == "Y")
                 {
                     rdoUse.Checked = true;
                     rdoUnUse.Checked = false;
@@ -69,36 +73,30 @@ namespace WinMSFactory
                 MessageBox.Show("등록할 그룹을 입력해주세요");
                 return;
             }
-            EmployeeVO employee = this.GetEmployee();
+
+            if(IsUpdate == false) // 등록
+                UpsertMethod("I", 0);
+            else // 수정
+                UpsertMethod("U", groupVO.Product_Group_ID);
+
+            
+        }
+
+        private void UpsertMethod(string Category, int Group_ID)
+        {
             ProductGroupVO list = new ProductGroupVO
             {
                 Product_Group_Name = txtProductName.Text,
                 Product_Group_Use = UseChar,
                 Product_Group_Note1 = txtNote1.Text,
                 Product_Group_Note2 = txtNote2.Text,
-                Final_Regist_Employee = employee.Employee_name,                    // 회원가입이 완성되면 직업명 넣어줄 것
+                Final_Regist_Employee = employee,                    // 회원가입이 완성되면 직업명 넣어줄 것
                 Final_Regist_Time = DateTime.Now,
-                Product_Group_Seq = numSEQ.Value.ToInt()
+                Product_Group_Seq = numSEQ.Value.ToInt(),
+                Category = Category,
+                Product_Group_ID = Group_ID
             };
 
-            if(IsUpdate == false) // 등록
-            {
-                list.Category = "I";
-                list.Product_Group_ID = 0;
-                UpsertMethod(list);
-            }
-            else // 수정
-            {
-                list.Category = "U";
-                list.Product_Group_ID = groupVO.Product_Group_ID;
-                UpsertMethod(list);
-            }
-
-            
-        }
-
-        private void UpsertMethod(ProductGroupVO list)
-        {
             if (MessageBox.Show($"그룹을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (service.UpsertGroup(list))

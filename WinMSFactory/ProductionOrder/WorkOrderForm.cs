@@ -22,17 +22,19 @@ namespace WinMSFactory
 			try
 			{
 				dataGridViewControl1.IsAllCheckColumnHeader = true;
-				dataGridViewControl1.AddNewColumns("작업지시 번호", "", 100, false);
-				dataGridViewControl1.AddNewColumns("지시일자", "", 100);
-				dataGridViewControl1.AddNewColumns("작업일자", "", 100);
-				dataGridViewControl1.AddNewColumns("라인명칭", "", 100);
-				dataGridViewControl1.AddNewColumns("공정명칭", "", 100);
-				dataGridViewControl1.AddNewColumns("작업자", "", 100);
-				dataGridViewControl1.AddNewColumns("품목명칭", "", 100);
-				dataGridViewControl1.AddNewColumns("지시수량", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-				dataGridViewControl1.AddNewColumns("양품수량", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-				dataGridViewControl1.AddNewColumns("불량수량", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-				dataGridViewControl1.AddNewColumns("작업지시 상태", "", 100);
+				dataGridViewControl1.AddNewColumns("작업지시 번호", "WORK_ORDER_NO", 100, false);
+				dataGridViewControl1.AddNewColumns("지시일자", "WORK_ORDER_DATE", 100);
+				dataGridViewControl1.AddNewColumns("작업일자", "WORK_DATE", 100);
+				dataGridViewControl1.AddNewColumns("작업시작시간", "WORK_START_TIME", 100);
+				dataGridViewControl1.AddNewColumns("작업종료시간", "WORK_FINISH_TIME", 100);
+				dataGridViewControl1.AddNewColumns("라인명칭", "LINE_NAME", 100);
+				dataGridViewControl1.AddNewColumns("공정명칭", "FACTORY_NAME", 100);
+				dataGridViewControl1.AddNewColumns("작업자", "EMPLOYEE_NAME", 100);
+				dataGridViewControl1.AddNewColumns("품목명칭", "PRODUCT_NAME", 100);
+				dataGridViewControl1.AddNewColumns("지시수량", "WORK_ORDER_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
+				dataGridViewControl1.AddNewColumns("양품수량", "RESULT_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
+				dataGridViewControl1.AddNewColumns("불량수량", "DEFECTIVE_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
+				dataGridViewControl1.AddNewColumns("작업지시 상태", "WORK_ORDER_STATUS_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최초등록시간", "FIRST_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최초등록사원", "FIRST_REGIST_EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록시간", "FINAL_REGIST_TIME", 100);

@@ -52,9 +52,15 @@ namespace WinMSFactory
             dgvDetail.AddNewColumns("최종등록사원", "final_regist_employee", 100, true, true, false, LeftAlign);
 
             CompanyService comService = new CompanyService();
-            cboCompany.ComboBinding(comService.GetCompany("cop"), "company_name", "company_id");
+            cboCompany.ComboBinding(comService.GetCompanyByType("cop"), "company_id", "company_name", "전체");
+            cboGubun.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 바코드 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Readed(object sender, ReadEventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
@@ -134,6 +140,41 @@ namespace WinMSFactory
             using (ReportPrintTool printTool = new ReportPrintTool(rpt))
             {               
                 printTool.ShowRibbonPreviewDialog();
+            }
+        }
+
+
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                List<WareHouseVO> pList;
+                OrderService service = new OrderService();
+
+                string fromDate = fromToDateControl1.From.ToShortDateString();
+                string toDate = fromToDateControl1.To.ToShortDateString();
+
+                pList = service.GetWareHouseByDate(fromDate, toDate);
+
+                if (cboGubun.SelectedIndex == 0)
+                    dgv.DataSource = orderService.GetInOutList();
+                else if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
+                {
+                    pList = (from item in pList
+                             where item.order_status.Contains(cboGubun.SelectedItem.ToString())
+                             select item).ToList();
+                }
+
+                if (cboCompany.SelectedIndex == 0)
+                    dgv.DataSource = pList; 
+                else if (!string.IsNullOrEmpty(cboCompany.SelectedText))
+                {
+                    pList = (from item in pList
+                             where item.company_name.Contains(cboCompany.SelectedText.ToString())
+                             select item).ToList();
+                }               
+                dgv.DataSource = null;
+                dgv.DataSource = pList;
             }
         }
     }

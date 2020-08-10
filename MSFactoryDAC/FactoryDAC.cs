@@ -217,5 +217,28 @@ namespace MSFactoryDAC
 
 
         }
+
+        public DataTable GetFactories(int corporation_id)
+        {
+            try
+            {
+                string sql = @"SELECT FACTORY_ID, FACTORY_NAME
+                               FROM TBL_FACTORY 
+                               WHERE CORPORATION_ID = @CORPORATION_ID
+                               AND FACTORY_USE = 'Y'                        
+                               ORDER BY FACTORY_SEQ ASC";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@CORPORATION_ID", corporation_id);
+
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

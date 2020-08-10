@@ -25,7 +25,7 @@ namespace WinMSFactory
         public int Release_no
         {
             get { return release_no; }
-            set { release_no = value; }
+            set { release_no = value; cboPlanID.SelectedValue = release_no; Search(null, null); } 
         }     
 
         public CalculateRatingForm()
@@ -36,31 +36,32 @@ namespace WinMSFactory
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
-            cboPlanID.SelectedValue = release_no;
         }
 
 
-        private void cboPlanID_SelectedIndexChanged(object sender, EventArgs e)
+        //찾기 버튼
+        private void Search(object sender, EventArgs e)
         {
-            
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                release_no = Convert.ToInt32(cboPlanID.SelectedValue);
 
-            
-        }
+                from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
+                to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            release_no = Convert.ToInt32(cboPlanID.SelectedValue);
-
-            from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
-            to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());           
-
-            DataTable dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
-            dgv.DataSource = dt;
+                DataTable dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
+                dgv.DataSource = dt;
+            }
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            OrderPlanForm frm = new OrderPlanForm();
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic["PROG_NAME"] = "정규발주";
+            dic["PROG_FORM_NAME"] = "OrderPlanForm";
+
+            OrderPlanForm frm = (OrderPlanForm)this.GetMdiParent().MdiChildrenShow(dic);
+
             frm.Release_no = release_no;
             frm.DtpFrom = from;
             frm.DtpTo = to;

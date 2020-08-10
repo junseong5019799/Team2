@@ -76,6 +76,7 @@
     <Compile Include="ReleaseDAC.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="StorageDAC.cs" />
+    <Compile Include="WorkOrderDAC.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSFactoryVO\MSFactoryVO.csproj">
