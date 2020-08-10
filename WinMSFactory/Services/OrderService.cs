@@ -43,6 +43,16 @@ namespace WinMSFactory.Services
             return dac.GetInOutListBinding();
         }
 
+        public DataTable GetInOutListByGubun(string gubun)
+        {
+            return dac.GetInOutListByGubun(gubun);
+        }
+
+        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate)
+        {
+            return dac.GetInOutByDate(FromDate, ToDate);
+        }
+         
         public List<CompanyVO> SelectCompanyBindingByType()
         {
             return dac.SelectCompanyBindingByType();
@@ -57,7 +67,11 @@ namespace WinMSFactory.Services
         {
             return dac.GetWareHouseList();
         }
-
+        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate)
+        {
+            return dac.GetWareHouseByDate(fromDate, toDate);
+        }
+        
         public DataTable GetWareHouseDetail(int order_no, int product_id)
         {
             return dac.GetWareHouseDetail(order_no, product_id);

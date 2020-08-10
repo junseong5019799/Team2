@@ -68,6 +68,85 @@ namespace MSFactoryDAC
             }
         }
 
+        /// <summary>
+        /// SELECT 수불현황 (입출고에 따른 수불현황)
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetInOutListByGubun(string gubun)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter())
+                    {
+                        da.SelectCommand = new SqlCommand("SP_INOUT_BY_GUBUN", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                        da.SelectCommand.Parameters.AddWithValue("@gubun", gubun);
+                        DataTable dt = new DataTable();
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+        /// <summary>
+        /// SELECT 수불현황 (날짜에 따른 수불현황)
+        /// </summary>
+        /// <returns></returns>
+        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @" SELECT *
+	                                FROM (SELECT case when gubun = 1 then '출고' else '입고' end gubun, release_no
+					                                      , storage_id , (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = s.storage_id) storage_name
+					                                      , rd.product_id
+					                                      , (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
+					                                      , product_name, release_quantity
+					                                      , release_date
+			                        FROM dbo.TBL_RELEASE_DETAIL rd INNER JOIN dbo.TBL_STOCK s ON rd.product_id = s.product_id
+										                           INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
+			                        WHERE release_date BETWEEN @FromDate AND @ToDate							  
+			                        UNION 
+			                        SELECT case when gubun = 1 then '출고' else '입고' end gubun, warehouse_no
+			                        	 , w.storage_id,  (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = s.storage_id) storage_name
+			                        	 , s.product_id
+			                        	 , (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
+			                        	 , product_name , warehouse_quantity
+			                        	 , warehouse_date
+			                        FROM dbo.TBL_WAREHOUSE w INNER JOIN dbo.TBL_STOCK s ON w.storage_id = s.storage_id
+			                        					    INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
+			                        WHERE warehouse_date BETWEEN @FromDate AND @ToDate) A ";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                        cmd.Parameters.AddWithValue("@ToDate", ToDate);
+
+                        return SqlHelper.DataReaderMapToList<InOutVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
 
         /// <summary>
         /// 입출고 BINDING
@@ -221,6 +300,37 @@ namespace MSFactoryDAC
                         con.Close();
 
                         return dt;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// SELECT 입고 대기 리스트 (날짜에 따라)
+        /// </summary>
+        /// <returns></returns>
+        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT o.order_no, order_seq , order_request_date , (SELECT company_name FROM TBL_COMPANY WHERE company_id = o.company_id) company_name
+                                   		 , product_id, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = od.product_id) product_name
+                                   		 , order_request_quantity , order_status, company_id 
+                                   FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON od.order_no = o.order_no
+                                   WHERE order_request_date BETWEEN @FromDate AND @ToDate";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FromDate", fromDate);
+                        cmd.Parameters.AddWithValue("@ToDate", toDate);
+
+                        return SqlHelper.DataReaderMapToList<WareHouseVO>(cmd.ExecuteReader());
                     }
                 }
             }

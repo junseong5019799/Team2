@@ -184,6 +184,7 @@ namespace WinMSFactory
         {
             CalculateRatingForm frm = new CalculateRatingForm();
             frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+            //MdiChildrenShow<CalculateRatingForm>(false, false, false, false);
             frm.Show();
         }
 

@@ -15,7 +15,7 @@ namespace WinMSFactory
     public partial class InOutListForm : ListForm
     {
         OrderService orderService = new OrderService();
-        DataTable dt = new DataTable();
+        DataTable dt ;
 
         public InOutListForm()
         {
@@ -45,30 +45,41 @@ namespace WinMSFactory
             
         }
 
-        //검색조건 찾기 
-        private void buttonControl1_Click(object sender, EventArgs e)
+
+
+        private void Search(object sender, EventArgs e)
         {
-            List<InOutVO> pList;
-            OrderService service = new OrderService();
-
-            pList = service.GetInOutListBinding();
-            int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
-
-            if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                pList = (from item in pList
-                         where item.gubun.Contains(cboGubun.SelectedItem.ToString())
-                         select item).ToList();
+                List<InOutVO> pList;
+                OrderService service = new OrderService();
+
+                string fromDate = fromToDateControl1.From.ToShortDateString();
+                string toDate = fromToDateControl1.To.ToShortDateString();
+
+                pList = service.GetInOutByDate(fromDate, toDate);
+                int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
+
+                if (cboGubun.SelectedIndex == 0)
+                    dgv.DataSource = orderService.GetInOutList();
+                else if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
+                {
+                    pList = (from item in pList
+                             where item.gubun.Contains(cboGubun.SelectedItem.ToString())
+                             select item).ToList();
+                }
+
+                if (cboProduct.SelectedIndex == 0)
+                    dgv.DataSource = orderService.GetInOutListByGubun(cboGubun.SelectedText);
+                else if (!string.IsNullOrEmpty(searchProduct.ToString()))
+                {
+                    pList = (from item in pList
+                             where item.product_id == searchProduct
+                             select item).ToList();
+                }
+                dgv.DataSource = null;
+                dgv.DataSource = pList;
             }
-            if (!string.IsNullOrEmpty(searchProduct.ToString()))
-            {
-                pList = (from item in pList
-                         where item.product_id == searchProduct
-                         select item).ToList();
-            }           
-            dgv.DataSource = null;
-            dgv.DataSource = pList;         
-
         }
     }
 }
