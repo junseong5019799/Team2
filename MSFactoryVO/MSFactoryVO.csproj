@@ -72,6 +72,7 @@
     <Compile Include="ReleaseVO.cs" />
     <Compile Include="StockVO.cs" />
     <Compile Include="StorageVO.cs" />
+    <Compile Include="WorkOrderVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

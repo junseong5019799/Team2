@@ -47,7 +47,7 @@ namespace WinMSFactory
 			dgv.Columns.Add(gridCol);
 		}
 
-		public static void AddNewBtnCol(this DataGridView dgv, string HeaderText, string text, Padding padding)
+		public static void AddNewBtnCol(this DataGridView dgv, string HeaderText, string text, Padding padding, bool Visible = true)
 		{
 			DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
 			btn.HeaderText = HeaderText;
@@ -55,6 +55,7 @@ namespace WinMSFactory
 			btn.Width = 100;
 			btn.DefaultCellStyle.Padding = padding;
 			btn.UseColumnTextForButtonValue = false;
+			btn.Visible = Visible;
 
 			dgv.Columns.Add(btn);
 		}
@@ -138,12 +139,14 @@ namespace WinMSFactory
 		#endregion
 
 		#region Form
-		public static Form MdiChildrenShow(this MainForm mdiParent, TabControl mainTabControl, DataRow authDr)
+		public static Form MdiChildrenShow(this MainForm mdiParent, Dictionary<string, string> dic)
 		{
-			Type type = Type.GetType("WinMSFactory." + authDr["PROG_FORM_NAME"]);
+			Type type = Type.GetType("WinMSFactory." + dic["PROG_FORM_NAME"]);
 
 			if (type != null)
 			{
+				MainTabControl mainTabControl = mdiParent.MainTabPage;
+
 				foreach (TabPage tp in mainTabControl.TabPages)
 				{
 					Form frm = (Form)tp.Tag;
@@ -159,9 +162,9 @@ namespace WinMSFactory
 				f.MdiParent = mdiParent;
 				f.FormBorderStyle = FormBorderStyle.None;
 				f.Dock = DockStyle.Fill;
-				mdiParent.MenuName = authDr["PROG_NAME"].ToString();
+				mdiParent.MenuName = dic["PROG_NAME"].ToString();
 
-				new EventUtil().CommonEvent(f, authDr);
+				new EventUtil().CommonEvent(f, dic);
 
 				f.Show();
 

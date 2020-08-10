@@ -25,7 +25,7 @@ namespace WinMSFactory
         public int Release_no
         {
             get { return release_no; }
-            set { release_no = value; }
+            set { release_no = value; cboPlanID.SelectedValue = release_no; btnSearch.PerformClick(); }
         }     
 
         public CalculateRatingForm()
@@ -36,7 +36,6 @@ namespace WinMSFactory
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
-            cboPlanID.SelectedValue = release_no;
         }
 
 

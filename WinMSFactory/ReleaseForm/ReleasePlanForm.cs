@@ -1,4 +1,5 @@
-﻿using MSFactoryDAC;
+﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using MSFactoryDAC;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -182,11 +183,16 @@ namespace WinMSFactory
         //수요 계획
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            CalculateRatingForm frm = new CalculateRatingForm();
-            frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-            //MdiChildrenShow<CalculateRatingForm>(false, false, false, false);
-            frm.Show();
-        }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic["PROG_NAME"] = "수요계획";
+            dic["PROG_FORM_NAME"] = "CalculateRatingForm";
+
+            CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
+			frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+			//CalculateRatingForm frm = new CalculateRatingForm();
+			//frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+			//frm.Show();
+		}
 
 
         //dgv detail

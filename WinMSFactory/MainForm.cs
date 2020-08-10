@@ -96,6 +96,7 @@ namespace WinMSFactory
         }
         public bool IsOpen { get; set; }
         public string MenuName { get; set; }
+        public MainTabControl MainTabPage { get { return mainTabControl1; }}
 
         public MainForm()
         {
@@ -274,7 +275,7 @@ namespace WinMSFactory
 
                 ToolStripButton tsbP = new ToolStripButton();
                 tsbP.Text = dr["PROG_NAME"].ToString();
-                tsbP.Click += (sender, e) => this.MdiChildrenShow(mainTabControl1, dr);
+                tsbP.Click += (sender, e) => this.MdiChildrenShow(dr.ToDic());
                 tsbP.Visible = false;
                 tsMenu.Items.Add(tsbP);
                 cnt++;
