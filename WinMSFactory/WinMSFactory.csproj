@@ -390,6 +390,12 @@
     <Compile Include="Process\ProcessPopupForm.Designer.cs">
       <DependentUpon>ProcessPopupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductionOrder\WorkOrderForm.cs">
+	  <SubType>Form</SubType>
+	</Compile>
+    <Compile Include="ProductionOrder\WorkOrderForm.Designer.cs">
+      <DependentUpon>WorkOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReadEventArgs.cs" />
     <Compile Include="ReleaseForm\CalculateRatingForm.cs">
       <SubType>Form</SubType>
@@ -496,6 +502,7 @@
     <Compile Include="ResultsForm\ResultMoveForm.Designer.cs">
       <DependentUpon>ResultMoveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\WorkOrderService.cs" />
     <Compile Include="Technology_Standards\CompanyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -739,6 +746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\ProcessPopupForm.resx">
       <DependentUpon>ProcessPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductionOrder\WorkOrderForm.resx">
+      <DependentUpon>WorkOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

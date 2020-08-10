@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,6 +68,23 @@ namespace WinMSFactory
 			}
 
 			return builder.ToString();
+		}
+
+		public static Dictionary<string, string> ToDic(this DataRow dr)
+		{
+			Dictionary<string, string> dic = new Dictionary<string, string>();
+
+			if (dr != null)
+			{
+
+				foreach (DataColumn dc in dr.Table.Columns)
+				{
+					string columnName = dc.ColumnName;
+					dic[columnName] = dr[columnName].ToString();
+				}
+			}
+
+			return dic;
 		}
 	}
 }
