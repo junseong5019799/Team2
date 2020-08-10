@@ -47,5 +47,10 @@ namespace WinMSFactory.Services
         {
             return dac.LineDelete(factory_idList);
         }
-}
+
+        public DataTable GetFactories(int corporation_id)
+        {
+            return dac.GetFactories(corporation_id);
+        }
+    }
 }

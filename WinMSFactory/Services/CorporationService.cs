@@ -38,5 +38,10 @@ namespace WinMSFactory.Services
         {
             return dac.CorporationComboBinding();
         }
+
+        public DataTable GetCorporations()
+        {
+            return dac.GetCorporations();
+        }
     }
 }
