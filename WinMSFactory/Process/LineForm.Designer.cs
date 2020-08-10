@@ -169,6 +169,7 @@
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(121, 24);
             this.cboCorporationName.TabIndex = 27;
+            this.cboCorporationName.SelectedIndexChanged += new System.EventHandler(this.cboCorporationName_SelectedIndexChanged);
             // 
             // LineForm
             // 

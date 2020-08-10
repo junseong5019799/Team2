@@ -17,8 +17,9 @@ namespace WinMSFactory
     {
         DataTable dtDgv;
         LineService service = new LineService();
+        List<FactoryVO> factories;
 
-
+        EmployeeVO emp;
         public LineForm()
         {
             InitializeComponent();
@@ -43,9 +44,11 @@ namespace WinMSFactory
             dgvLinelist.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
 
             LoadData();
+            cboCorporationName.ComboBinding(service.LineComboGet(), "corporation_id", "corporation_name", "전체", 0);
+            factories = service.factoryAllCombo();
+            cboFactoryName.ComboBinding(factories != null ? factories.ToList() : null, "factory_id", "factory_name", "전체", 0);
 
-            cboCorporationName.ComboBinding(service.LineComboGet(), "corporation_id", "corporation_name", "선택", 0);
-            cboFactoryName.ComboBinding(service.LineCombo(), "factory_id", "factory_name", "선택", 0);
+            emp = this.GetEmployee();
         }
 
         private void LoadData()
@@ -134,11 +137,12 @@ namespace WinMSFactory
 
             };
             OpenPopup(true, updatevo);
-        }
+         }
 
         private void OpenPopup(bool IsUpdate, LineVO vo = null)
         {
-            LinePopupForm frm = new LinePopupForm(IsUpdate, vo);
+            
+            LinePopupForm frm = new LinePopupForm(emp.Employee_name,IsUpdate, vo);
             if (frm.ShowDialog() == DialogResult.OK)
                 LoadData();
         }
@@ -147,7 +151,7 @@ namespace WinMSFactory
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                LinePopupForm frm = new LinePopupForm(false, null);
+                LinePopupForm frm = new LinePopupForm(emp.Employee_name,false, null);
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadData();
             }
@@ -201,6 +205,31 @@ namespace WinMSFactory
             {
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void cboCorporationName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int corporation_id = cboCorporationName.SelectedValue.ToInt();
+            var f = factories; //List<factoryVO>
+
+            if (corporation_id > 0)    // vo.corprration 값이있으면
+            {
+                List<FactoryVO> list = new List<FactoryVO>();
+
+                foreach (FactoryVO fac in f)
+                {
+                    if (fac.corporation_id == corporation_id)
+                        list.Add(fac);
+                }
+
+                f = list;
+
+
+            }
+            else if (f != null)
+                f = f.ToList();
+
+            cboFactoryName.ComboBinding(f, "factory_id", "factory_name", "전체", 0);
         }
     }
 }
