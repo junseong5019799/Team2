@@ -138,5 +138,26 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public DataTable GetCorporations()
+        {
+            try
+            {
+                string sql = @"SELECT CORPORATION_ID, CORPORATION_NAME
+                               FROM TBL_CORPORATION 
+                               WHERE CORPORATION_USE = 'Y'                        
+                               ORDER BY CORPORATION_SEQ ASC";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

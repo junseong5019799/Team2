@@ -21,5 +21,10 @@ namespace MSFactoryVO
 		public string Work_start_time { get; set; }
 		public string Work_finish_time { get; set; }
 		public string Work_order_status { get; set; }
+		public string Work_order_status_name { get; set; }
+		public int Line_id { get; set; }
+		public string Line_name { get; set; }
+		public int Factory_int { get; set; }
+		public string Factory_name { get; set; }
 	}
 }
