@@ -48,41 +48,9 @@ namespace WinMSFactory
             dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
             dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
 
-            //cboProduct.ComboBinding(releaseService.SelectProductGroup(), "product_id", "product_name", "전체"); 
-                        
+            btnInsert.Enabled = false;           
         }
-
         
-        /// <summary>
-        /// 등록하기
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnRegist_Click(object sender, EventArgs e)
-        {
-            if (dgv2.SelectedCells.Count == 0)
-            {
-                MessageBox.Show("출고 할 목록을 선택하세요");
-                return;
-            }
-            else
-            {
-                ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
-                popfrm.CompanyID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[2].Value);
-                popfrm.ReleaseNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
-                
-                popfrm.Show();
-            }
-        }
-
-        //엑셀 불러오기
-        private void btnExcel_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Title = "엑셀 파일 불러오기";
-            openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            openFileDialog1.ShowDialog();           
-            
-        }
 
         /// <summary>
         /// Import 엑셀 
@@ -145,30 +113,42 @@ namespace WinMSFactory
         }
 
 
-        
-        private void btnSearch_Click(object sender, EventArgs e)
+        //찾기 버튼
+        private void Search(object sender, EventArgs e)
         {
             List<ReleaseVO> rList = new List<ReleaseVO>();
             rList = releaseService.GetReleasePlan();
 
-            //int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {              
+                string fromDate = fromToDateControl1.From.ToShortDateString();
+                string toDate = fromToDateControl1.To.ToShortDateString();
 
-            //if (!string.IsNullOrEmpty(searchProduct.ToString()))
-            //{
-            //    rList = (from item in rList
-            //             where item.product_id.Equals(searchProduct)
-            //             select item).ToList();
-            //}
-            //dgv.DataSource = null;
-            //dgv.DataSource = rList;
+                rList = releaseService.GetReleasePlanByDate(fromDate, toDate); 
+               
+                dgv.DataSource = null;
+                dgv.DataSource = rList;
+            }
         }
 
-        //찾기 버튼
-        private void Search(object sender, EventArgs e)
+        //등록 추가 버튼
+        private void Add(object sender, EventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-               
+                if (dgv2.SelectedCells.Count == 0)
+                {
+                    MessageBox.Show("출고 할 목록을 선택하세요");
+                    return;
+                }
+                else
+                {
+                    ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
+                    popfrm.CompanyID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[2].Value);
+                    popfrm.ReleaseNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
+
+                    popfrm.Show();
+                }
             }
         }
 
@@ -186,12 +166,10 @@ namespace WinMSFactory
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic["PROG_NAME"] = "수요계획";
             dic["PROG_FORM_NAME"] = "CalculateRatingForm";
+            dic["Search"] = "Y";
 
             CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
 			frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-			//CalculateRatingForm frm = new CalculateRatingForm();
-			//frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-			//frm.Show();
 		}
 
 
@@ -203,10 +181,25 @@ namespace WinMSFactory
             DataTable dt = releaseService.GetReleasePlanDetail(release_no);
             dgv2.DataSource = dt;
 
+            if (dgv2.SelectedRows[0].Cells[9].Value.ToString().Length < 1)
+                btnInsert.Enabled = true;
+            else
+                btnInsert.Enabled = false;
         }
 
-        //저장 버튼
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                openFileDialog1.Title = "엑셀 파일 불러오기";
+                openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+                openFileDialog1.ShowDialog();
+
+                btnInsert.Enabled = true;
+            }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
         {
             ReleaseVO release = new ReleaseVO();
             release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
@@ -214,13 +207,13 @@ namespace WinMSFactory
             DataTable dt = (DataTable)dgv2.DataSource;
 
             release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
-            if(releaseService.SaveReleasePlan(dt, release))
+
+            if (releaseService.SaveReleasePlan(dt, release))
             {
                 MessageBox.Show("성공");
                 dgv.DataSource = releaseService.GetReleasePlan();
                 return;
             }
-            
         }
     }
 }
