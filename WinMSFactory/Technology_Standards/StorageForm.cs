@@ -20,9 +20,12 @@ namespace WinMSFactory
         FactoryService fs = new FactoryService();
         CorporationService cs = new CorporationService();
         List<StorageVO> list;
+
         int CorpValue;
         int FacValue;
-        int StoValue;
+
+        // 창고 진행중...
+        
         public StorageForm()
         {
             InitializeComponent();
@@ -33,14 +36,14 @@ namespace WinMSFactory
             dgv.IsAllCheckColumnHeader = true;
 
             dgv.AddNewColumns("창고 ID", "storage_id", 150, true);
-            dgv.AddNewColumns("공장 이름", "Storage_name", 150, true);
+            dgv.AddNewColumns("공장 이름", "Storage_name", 150, true); 
+            dgv.AddNewColumns("사용 여부", "storage_use", 150, true);
             dgv.AddNewColumns("공장 순번", "storage_seq", 150, true);
-            dgv.AddNewBtnCol("사용 여부","",new Padding(1,1,1,1));
             dgv.AddNewColumns("최초등록시간", "first_regist_time", 150, true);
             dgv.AddNewColumns("최초등록직원", "first_regist_employee", 150, true);
             dgv.AddNewColumns("최종등록시간", "final_regist_time", 150, true);
             dgv.AddNewColumns("최종등록직원", "final_regist_employee", 150, true);
-            dgv.AddNewColumns("사용 여부", "storage_use", 150, true);
+            
 
             dgv.DataSource = ss.SelectStorage();
             List<CorporationVO> corpInfo = cs.CorporationComboBinding();
@@ -95,47 +98,9 @@ namespace WinMSFactory
         }
         
 
-        private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (dgv[9, row.Index].Value.ToString() == "Y")
-                    dgv[4, row.Index].Value = "사용";
-                else
-                    dgv[4, row.Index].Value = "미사용";
-            }
-        }
-
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-                return;
-
-            int Storage_ID = dgv[1, e.RowIndex].Value.ToInt();
-
-            string Storage_Status = dgv[9, e.RowIndex].Value.ToString();
-
-            if (e.ColumnIndex == 4)
-            {
-                if (dgv[4, e.RowIndex].Value.ToString() == "미사용")
-                {
-                    ss.UpdateStatus(Storage_ID, Storage_Status);
-                    dgv[4, e.RowIndex].Value = "사용";
-                }
-
-
-                else
-                {
-                    ss.UpdateStatus(Storage_ID, Storage_Status);
-                    dgv[4, e.RowIndex].Value = "미사용";
-                }
-                ReviewDGV();
-            }
-        }
-
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex == 4)
+            if (e.RowIndex < 0)
                 return;
 
             EmployeeVO employee = this.GetEmployee();
@@ -143,10 +108,10 @@ namespace WinMSFactory
             {
                 Storage_Id = dgv[1, e.RowIndex].Value.ToInt(),
                 Storage_Name = dgv[2, e.RowIndex].Value.ToString(),
-                Factory_id = dgv[3, e.RowIndex].Value.ToInt(),
+                Factory_id = dgv[4, e.RowIndex].Value.ToInt(),
                 Corporation_Name = cboCorporation.Text,
                 Factory_Name = cboFactoryName.Text,
-                Storage_Use = dgv[4, e.RowIndex].Value.ToString(),
+                Storage_Use = dgv[3, e.RowIndex].Value.ToString(),
                 Final_regist_time = DateTime.Now,
                 Final_regist_employee = employee.Employee_name
             };

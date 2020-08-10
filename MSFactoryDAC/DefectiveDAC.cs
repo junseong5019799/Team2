@@ -126,7 +126,8 @@ namespace MSFactoryDAC
                     conn.Open();
 
                     string sql = @"SELECT [defective_type_id], [defective_type_name], [defective_type_seq], [defective_type_use], [first_regist_time], [first_regist_employee], [final_regist_time], [final_regist_employee]
-                                    FROM [dbo].[TBL_DEFECTIVE_TYPE]";
+                                    FROM [dbo].[TBL_DEFECTIVE_TYPE]
+                                    ORDER BY DEFECTIVE_TYPE_SEQ ASC";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {

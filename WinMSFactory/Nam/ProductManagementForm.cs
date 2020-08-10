@@ -26,6 +26,7 @@ namespace WinMSFactory
 
         ProductService pdSv = new ProductService();
         ProductGroupService pdgSv = new ProductGroupService();
+        EmployeeVO emp;
 
         char UseCheck = 'Y';
         char BomEnrollStatus = 'N';
@@ -44,7 +45,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("제품코드", "product_id", 80, true);
             dgv.AddNewColumns("제품그룹명", "product_group_name", 100, true);
             dgv.AddNewColumns("제품명", "product_name", 150, true);
-            dgv.AddNewBtnCol("사용", "사용 여부", new Padding(1, 1, 1, 1)); // 버튼
+            dgv.AddNewColumns("사용 여부", "product_use", 100, true);
             dgv.AddNewBtnCol("BOM 등록 여부", "", new Padding(1, 1, 1, 1)); // 버튼
             dgv.AddNewColumns("순번", "product_SEQ", 70, true);
             dgv.AddNewColumns("제품스펙", "product_information", 200, true);
@@ -58,8 +59,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgv.AddNewColumns("최종등록시각", "final_regist_time", 130, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
-            dgv.AddNewColumns("사용 여부", "product_use", 100, false);
-            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
+            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
 
             dgvBarCodeColumns();
 
@@ -75,6 +75,8 @@ namespace WinMSFactory
             rdoAll.Checked = true;
 
             ((MainForm)this.MdiParent).Readed += Readed_Completed;
+
+            emp = this.GetEmployee();
 
         }
 
@@ -95,25 +97,19 @@ namespace WinMSFactory
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (dgv[18, row.Index].Value.ToString() == "Y") // 사용 여부 확인
-                    dgv[4, row.Index].Value = "사용";
-                else
-                    dgv[4, row.Index].Value = "미사용";
-
-
                 if (dgv[2, row.Index].Value.ToString() == "재료")
                 {
                     dgv[5, row.Index].Value = "-";
                     dgv[5, row.Index].ReadOnly = true;
                 }
                 // BOM에 등록되지 않았으면 등록이 나오고, 등록되어있으면 수정으로 나온다.
-                else if (dgv[19, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
+                else if (dgv[18, row.Index].Value.ToString() == "Y") // BOM 등록 여부 확인
                 {
                     dgv[5, row.Index].Value = "BOM 수정";
                     BomEnrollStatus = 'Y';
                 }
 
-                else if (dgv[19, row.Index].Value.ToString() == "N")
+                else if (dgv[18, row.Index].Value.ToString() == "N")
                 {
                     dgv[5, row.Index].Value = "BOM 등록";
                     BomEnrollStatus = 'N';
@@ -130,24 +126,7 @@ namespace WinMSFactory
 
             string ProductName = dgv[3, e.RowIndex].Value.ToString();
 
-            if (e.ColumnIndex == 4)
-            {
-                if (dgv[4, e.RowIndex].Value.ToString() == "미사용")
-                {
-                    pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUnUsed));
-                    dgv[4, e.RowIndex].Value = "사용";
-                }
-
-
-                else
-                {
-                    pdSv.UpdateStatus(ProductID, Convert.ToInt32(UseCheckNum.ProductUsed));
-                    dgv[4, e.RowIndex].Value = "미사용";
-                }
-
-            }
-
-            else if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 5)
             {
                 if (dgv[5, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
                     BomEnrollCheck = false; // bom 미등록 상태
@@ -158,7 +137,7 @@ namespace WinMSFactory
                 else // 재료의 - 상태일 때
                     return;
 
-                BOMManageForm frm = new BOMManageForm(BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
+                BOMManageForm frm = new BOMManageForm(emp, BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                     ReviewDGV();
@@ -227,7 +206,7 @@ namespace WinMSFactory
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                ProductInfoForm frm = new ProductInfoForm(false);
+                ProductInfoForm frm = new ProductInfoForm(emp.Employee_name, false);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -288,7 +267,7 @@ namespace WinMSFactory
                     {
                         High_Product_ID = ProductNo,
                         Bom_Enroll_Date = DateTime.Now,
-                        Employee_ID = "홍길동",                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                        Employee_ID = emp.Employee_name,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
                         Bom_Log_Status = "BDS",             // BOM 입력
                         Bom_Exists = 'N'
                     };
@@ -356,11 +335,10 @@ namespace WinMSFactory
             if (IsCheckedList.Count == dgv.Rows.Count)
             {
                 MessageBox.Show("체크를 한 후 복사를 진행해주시기 바랍니다.");
-
                 return;
             }
 
-            BOMManageForm frm = new BOMManageForm(Selectedlist, true);
+            BOMManageForm frm = new BOMManageForm(emp, Selectedlist, true);
 
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
@@ -439,7 +417,7 @@ namespace WinMSFactory
             {
                 productNum.Add(dgvBarcode[0, row.Index].Value.ToInt());
             }
-            BOMManageForm frm = new BOMManageForm(productNum, true);
+            BOMManageForm frm = new BOMManageForm(emp, productNum, true);
 
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
@@ -470,9 +448,9 @@ namespace WinMSFactory
             if (e.RowIndex < 0)
                 return;
 
-            else if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+            else if (e.ColumnIndex == 5)
                 return;
-            EmployeeVO employee = this.GetEmployee();
+
             ProductVO vo = new ProductVO
             {
                 Product_Name = dgv[3,e.RowIndex].Value.ToString(),
@@ -483,7 +461,6 @@ namespace WinMSFactory
                 Product_Note1 = dgv[12,e.RowIndex].Value.ToString(),
                 Product_Note2 = dgv[13, e.RowIndex].Value.ToString(),
                 Product_Use = dgv[4, e.RowIndex].Value.ToString(),
-                Final_Regist_Employee = employee.Employee_name, // 나중에 직원 명을 가져올 것 (필수)
                 Final_Regist_Time = DateTime.Now,
                 Product_Tact_Time = dgv[10, e.RowIndex].Value.ToInt(),
                 Product_Lead_Time = dgv[11, e.RowIndex].Value.ToInt(),
@@ -491,7 +468,7 @@ namespace WinMSFactory
                 Product_Group_Name = dgv[2,e.RowIndex].Value.ToString()
             };
             
-            ProductInfoForm frm = new ProductInfoForm(true, vo);
+            ProductInfoForm frm = new ProductInfoForm(emp.Employee_name,true, vo);
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
         }

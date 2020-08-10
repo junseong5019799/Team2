@@ -25,21 +25,28 @@ namespace WinMSFactory
         bool EnabledProductName;
         bool IsUpdate = false;
         int Update_ProductID = 0;
-        public ProductInfoForm(bool IsUpdate = true, ProductVO vo = null)
+        string employee;
+        public ProductInfoForm(string employee, bool IsUpdate = true, ProductVO vo = null)
         {
             InitializeComponent();
+
             this.IsUpdate = IsUpdate;
             this.vo = vo;
-            if(IsUpdate == true)
+            this.employee = employee;
+
+            if (IsUpdate == true)
                 Update_ProductID = vo.Product_ID;
+
+            
         }
-        public ProductInfoForm(BOMManageForm frm, string ProductNameText, bool EnabledProductName)
+        public ProductInfoForm(BOMManageForm frm, string employee, string ProductNameText, bool EnabledProductName)
         {
             InitializeComponent();
 
             this.frm = frm;
             this.ProductNameText = ProductNameText;
             this.EnabledProductName = EnabledProductName;
+            this.employee = employee;
         }
 
         private void ProductInfoForm_Load(object sender, EventArgs e)
@@ -62,31 +69,36 @@ namespace WinMSFactory
             if(IsUpdate == true)
             {
                 //vo.Product_ID
-                txtProductName.Text = vo.Product_Name;
-                txtInformation.Text = vo.Product_Information;
-                cboProductGroup.SelectedIndex = cboProductGroup.FindString(vo.Product_Group_Name);
-                txtUnit.Text = vo.Product_Unit;
-                numSEQ.Value = vo.Product_Seq;
-                txtTactTime.Text = vo.Product_Tact_Time.ToString();
-                txtLeadTime.Text = vo.Product_Lead_Time.ToString();
-                numUnit.Value = vo.Product_Standards.ToInt();
-                txtNote1.Text = vo.Product_Note1;
-                txtNote2.Text = vo.Product_Note2;
-
-                if(vo.Product_Use == "사용")
-                {
-                    radioButton1.Checked = true;
-                    radioButton2.Checked = false;
-                }
-
-                else if(vo.Product_Use == "미사용")
-                {
-                    radioButton1.Checked = false;
-                    radioButton2.Checked = true;
-                }
-
+                UpdateFormSettings();
             }
         }
+
+        private void UpdateFormSettings()
+        {
+            txtProductName.Text = vo.Product_Name;
+            txtInformation.Text = vo.Product_Information;
+            cboProductGroup.SelectedIndex = cboProductGroup.FindString(vo.Product_Group_Name);
+            txtUnit.Text = vo.Product_Unit;
+            numSEQ.Value = vo.Product_Seq;
+            txtTactTime.Text = vo.Product_Tact_Time.ToString();
+            txtLeadTime.Text = vo.Product_Lead_Time.ToString();
+            numUnit.Value = vo.Product_Standards.ToInt();
+            txtNote1.Text = vo.Product_Note1;
+            txtNote2.Text = vo.Product_Note2;
+
+            if (vo.Product_Use == "Y")
+            {
+                radioButton1.Checked = true;
+                radioButton2.Checked = false;
+            }
+
+            else if (vo.Product_Use == "N")
+            {
+                radioButton1.Checked = false;
+                radioButton2.Checked = true;
+            }
+        }
+
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (txtProductName.TextLength < 1 || txtInformation.TextLength < 1 || txtUnit.TextLength < 1 || txtLeadTime.TextLength<1 || txtTactTime.TextLength<1)
@@ -95,7 +107,7 @@ namespace WinMSFactory
                 return;
             }
 
-            EmployeeVO employee = this.GetEmployee();
+            
 
             ProductInsertVO ProductInsert = new ProductInsertVO
             {
@@ -108,7 +120,7 @@ namespace WinMSFactory
                 Product_Note1 = txtNote1.Text,
                 Product_Note2 = txtNote2.Text,
                 Product_Use = UseChar,
-                Final_Regist_Employee = employee.Employee_name,           // 나중에 직원 명을 가져올 것 (필수)
+                Final_Regist_Employee = employee,           // 나중에 직원 명을 가져올 것 (필수)
                 Final_Regist_Time = DateTime.Now,
                 Product_Tact_Time = txtTactTime.Text.ToInt(),
                 Product_Lead_Time = txtLeadTime.Text.ToInt(),
