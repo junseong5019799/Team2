@@ -222,10 +222,13 @@ namespace MSFactoryDAC
         {
             try
             {
-                string sql = @"SELECT FACTORY_ID, FACTORY_NAME
-                               FROM TBL_FACTORY 
-                               WHERE CORPORATION_ID = @CORPORATION_ID
-                               AND FACTORY_USE = 'Y'                        
+                string sql = @"SELECT F.CORPORATION_ID, F.FACTORY_ID, F.FACTORY_NAME
+                               FROM TBL_FACTORY F
+                                    INNER JOIN TBL_CORPORATION C
+                                        ON F.CORPORATION_ID = C.CORPORATION_ID
+                               WHERE F.CORPORATION_ID = @CORPORATION_ID
+                               AND FACTORY_USE = 'Y'
+                               AND CORPORATION_USE = 'Y'
                                ORDER BY FACTORY_SEQ ASC";
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
