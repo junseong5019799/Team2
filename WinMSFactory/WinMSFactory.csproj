@@ -126,6 +126,12 @@
     <Compile Include="Barcode\ReportPreviewForm.designer.cs">
       <DependentUpon>ReportPreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagePriceForm\SellPriceDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePriceForm\SellPriceDialogForm.Designer.cs">
+      <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nam\DefectiveTypePopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\CompanyReport.resx">
       <DependentUpon>CompanyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagePriceForm\SellPriceDialogForm.resx">
+      <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nam\DefectiveTypePopupForm.resx">
       <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
