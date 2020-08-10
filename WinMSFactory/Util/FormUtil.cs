@@ -47,7 +47,7 @@ namespace WinMSFactory
 			dgv.Columns.Add(gridCol);
 		}
 
-		public static void AddNewBtnCol(this DataGridView dgv, string HeaderText, string text, Padding padding)
+		public static void AddNewBtnCol(this DataGridView dgv, string HeaderText, string text, Padding padding, bool Visible = true)
 		{
 			DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
 			btn.HeaderText = HeaderText;
@@ -55,6 +55,7 @@ namespace WinMSFactory
 			btn.Width = 100;
 			btn.DefaultCellStyle.Padding = padding;
 			btn.UseColumnTextForButtonValue = false;
+			btn.Visible = Visible;
 
 			dgv.Columns.Add(btn);
 		}

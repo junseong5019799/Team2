@@ -16,6 +16,7 @@ namespace WinMSFactory
     {
         DefectiveService service = new DefectiveService();
         List<DefectiveTypeVO> SelectAllList;
+        EmployeeVO emp;
         public DefectiveTypeSettingForm()
         {
             InitializeComponent();
@@ -29,15 +30,16 @@ namespace WinMSFactory
 
             dgv.AddNewCol("불량 코드", "defective_type_id", true, 100);
             dgv.AddNewCol("불량 명칭", "defective_type_name", true, 200);
+            dgv.AddNewCol("명칭 사용여부", "defective_type_use", true, 100);
             dgv.AddNewCol("불량 순번", "defective_type_seq", true, 100);
-            dgv.AddNewBtnCol("명칭 사용여부","", new Padding(1, 1, 1, 1));
             dgv.AddNewCol("최초등록시간", "first_regist_time", true, 140);
             dgv.AddNewCol("최초등록사원", "first_regist_employee", true, 100);
             dgv.AddNewCol("최종등록시간", "final_regist_time", true, 140);
             dgv.AddNewCol("최종등록사원", "final_regist_employee", true, 100);
-            dgv.AddNewCol("명칭 사용여부", "defective_type_use", false, 100);
 
-            
+            emp = this.GetEmployee();
+
+
             ReviewDGV();
         }
 
@@ -55,16 +57,16 @@ namespace WinMSFactory
 
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex == 4)
+            if (e.RowIndex < 0)
                 return;
             // VO를 보내줘야 함, 수정할 것
 
             DefectiveTypeVO updateVO = new DefectiveTypeVO
             {
                 Defective_Type_ID = dgv[1, e.RowIndex].Value.ToInt(),
-                Defective_Type_Use = dgv[9, e.RowIndex].Value.ToString(),
+                Defective_Type_Use = dgv[3, e.RowIndex].Value.ToString(),
                 Defective_Type_Name = dgv[2, e.RowIndex].Value.ToString(),
-                Defective_Type_Seq = dgv[3,e.RowIndex].Value.ToInt()
+                Defective_Type_Seq = dgv[4,e.RowIndex].Value.ToInt()
             };
             OpenPopup(true, updateVO);
 
@@ -72,45 +74,11 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, DefectiveTypeVO vo = null)
         {
-            DefectiveTypePopupForm frm = new DefectiveTypePopupForm(IsUpdate, vo);
+            DefectiveTypePopupForm frm = new DefectiveTypePopupForm(emp.Employee_name, IsUpdate, vo);
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
         }
 
-        private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach(DataGridViewRow row in dgv.Rows)
-            {
-                if (dgv[9, row.Index].Value.ToString() == "Y")
-                    dgv[4, row.Index].Value = "사용";
-                else if (dgv[9, row.Index].Value.ToString() == "N")
-                    dgv[4, row.Index].Value = "미사용";
-            }
-            
-        }
-
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.ColumnIndex == 4)
-            {
-                int ProductID = dgv[1, e.RowIndex].Value.ToInt();
-
-                if (dgv[4, e.RowIndex].Value.ToString() == "사용")
-                {
-                    if(service.UseTypeChange(ProductID,"N"))
-                        dgv[4, e.RowIndex].Value = "미사용";
-                }
-                else if(dgv[4, e.RowIndex].Value.ToString() == "미사용")
-                {
-                    if (service.UseTypeChange(ProductID, "Y"))
-
-                        dgv[4, e.RowIndex].Value = "사용";
-                }
-
-                ReviewDGV();
-                dgv.ClearSelection();
-            }
-        }
 
         private void buttonControl1_Click(object sender, EventArgs e) // 검색
         {

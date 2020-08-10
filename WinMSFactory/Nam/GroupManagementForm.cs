@@ -14,10 +14,12 @@ namespace WinMSFactory
     {
         ProductGroupService service = new ProductGroupService();
         List<ProductGroupVO> SelectAllGroup;
+        EmployeeVO emp;
         // 제품 그룹 관리
         public GroupManagementForm()
         {
             InitializeComponent();
+
         }
 
         private void frmMItemGrp_Load(object sender, EventArgs e)
@@ -32,13 +34,16 @@ namespace WinMSFactory
             for (int i = 0; i < dgv.Rows.Count; i++)
                 for (int j = 1; j < dgv.Columns.Count; j++)
                     dgv[j, i].ReadOnly = true;
+
+
+            emp = this.GetEmployee();
         }
 
         private void dgvColumns()
         {
-            dgv.AddNewColumns("번호", "Product_Group_ID", 100, true); // identity
+            dgv.AddNewColumns("번호", "Product_Group_ID", 100, false); // identity
             dgv.AddNewColumns("제품그룹 명칭", "Product_Group_Name", 200, true);
-            dgv.AddNewBtnCol("", "사용 여부", new Padding(1, 1, 1, 1)); // 제품 그룹의 사용 여부를 결정
+            dgv.AddNewColumns("사용여부", "Product_Group_Use_String", 100, true);
             dgv.AddNewColumns("순번", "Product_Group_Seq", 100, true);
             dgv.AddNewColumns("비고1", "Product_Group_Note1", 150, true);
             dgv.AddNewColumns("비고2", "Product_Group_Note2", 150, true);
@@ -46,7 +51,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최초등록사원", "First_Regist_Employee", 130, true);
             dgv.AddNewColumns("최종등록시각", "Final_Regist_Time", 170, true);
             dgv.AddNewColumns("최종등록사원", "Final_Regist_Employee", 130, true);
-            dgv.AddNewColumns("사용여부", "Product_Group_Use_String", 100, false); // 이 값에 따라 사용 여부 버튼 텍스트가 달라짐
+            
         }
 
         private void ReviewDGV()
@@ -54,22 +59,11 @@ namespace WinMSFactory
             dgv.DataSource = null;
             dgv.DataSource = service.SelectAllProductGroups();
         }
-        private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach(DataGridViewRow row in dgv.Rows)
-            {
-                if (dgv[11, row.Index].Value.ToString() == "Y")
-                    dgv[3, row.Index].Value = "사용";
-                else 
-                    dgv[3, row.Index].Value = "미사용";
-            }
-        }
-
         private void Add(object sender, EventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                ProductGroupInfoForm frm = new ProductGroupInfoForm();
+                ProductGroupInfoForm frm = new ProductGroupInfoForm(emp.Employee_name);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                     ReviewDGV();
@@ -159,24 +153,6 @@ namespace WinMSFactory
                 }
             }
         }
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int ItemNum = dgv[0, e.RowIndex].Value.ToInt();
-            if (e.ColumnIndex == 3)
-            {
-                if (dgv[3, e.RowIndex].Value.ToString() == "미사용")
-                {
-                    service.UpdateStatus(ItemNum,Convert.ToInt32(UseCheckNum.ProductUnUsed));
-                    dgv[3, e.RowIndex].Value = "사용";
-                }
-
-                else
-                {
-                    service.UpdateStatus(ItemNum, Convert.ToInt32(UseCheckNum.ProductUsed));
-                    dgv[3, e.RowIndex].Value = "미사용";
-                }
-            }
-        }
 
 
         private void buttonControl1_Click(object sender, EventArgs e)
@@ -204,7 +180,9 @@ namespace WinMSFactory
                 Product_Group_Note1 = dgv[5,e.RowIndex].Value.ToString(),
                 Product_Group_Note2 = dgv[6,e.RowIndex].Value.ToString()
             };
-            ProductGroupInfoForm frm = new ProductGroupInfoForm(true, vo);
+
+            
+            ProductGroupInfoForm frm = new ProductGroupInfoForm(emp.Employee_name,true, vo);
 
             if(frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();

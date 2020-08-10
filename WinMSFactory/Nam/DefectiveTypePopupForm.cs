@@ -15,12 +15,14 @@ namespace WinMSFactory.Nam
     {
         DefectiveService service = new DefectiveService();
         DefectiveTypeVO vo;
+        string employee;
         bool IsUpdate;
-        public DefectiveTypePopupForm(bool IsUpdate, DefectiveTypeVO vo)
+        public DefectiveTypePopupForm(string employee, bool IsUpdate, DefectiveTypeVO vo)
         {
             InitializeComponent();
             this.IsUpdate = IsUpdate;
             this.vo = vo;
+            this.employee = employee;
         }
 
         private void DefectiveTypePopupForm_Load(object sender, EventArgs e)
@@ -75,14 +77,13 @@ namespace WinMSFactory.Nam
         {
             if (MessageBox.Show($"불량 유형을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                EmployeeVO employee = this.GetEmployee();
                 DefectiveTypeVO typeVO = new DefectiveTypeVO
                 {
                     Defective_Type_ID = DefectiveID,
                     Defective_Type_Name = txtDefectiveString.Text,
                     Defective_Type_Use = UseCheck,
                     Final_Regist_Time = DateTime.Now,
-                    Final_Regist_Employee = employee.Employee_name, // 로그인한 직원 명으로 등록할 것
+                    Final_Regist_Employee = employee, 
                     P_Category = Category,
                     Defective_Type_Seq = numericUpDown1.Value.ToInt()
                 };
