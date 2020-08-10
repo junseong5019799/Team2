@@ -22,12 +22,17 @@ namespace WinMSFactory.Services
             return dac.CorporationCombo();
         }
 
-        public List<FactoryVO> LineCombo()
+        public List<FactoryVO> FactoryCombo(int corporation_id)
         {
-            return dac.FactoryCombo();
+            return dac.FactoryCombo(corporation_id);
         }
 
-        public bool UseTypeChange(int line_id, string isTypeUse)
+        public List<FactoryVO> factoryAllCombo()
+        {
+            return dac.FactoryAllCombo();
+        }
+
+            public bool UseTypeChange(int line_id, string isTypeUse)
         {
             return dac.UseTypeChange(line_id, isTypeUse);
         }
@@ -39,6 +44,16 @@ namespace WinMSFactory.Services
         public bool LineDelete(List<int> line_idList)
         {
             return dac.LineDelete(line_idList);
+        }
+
+        public bool SaveLine(LineVO vo)
+        {
+            return dac.SaveLine(vo);
+        }
+
+        public DataTable GetLines(int factory_id)
+        {
+            return dac.GetLines(factory_id);
         }
     }
 }

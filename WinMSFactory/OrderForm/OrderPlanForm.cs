@@ -21,7 +21,7 @@ namespace WinMSFactory.OrderForm
         public int Release_no
         {
             get { return release_no; }
-            set { release_no = value; }
+            set { release_no = value; cboPlanID.SelectedValue = release_no; }
         }
         private DateTime dtpFrom;
                 

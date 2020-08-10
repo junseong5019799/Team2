@@ -44,16 +44,10 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"select corporation_id, corporation_name
-									   From TBL_CORPORATION";
-                    //Select c.corporation_id, corporation_name
-                    //                      From TBL_CORPORATION c
-                    //                inner join TBL_FACTORY f on c.corporation_id = f.corporation_id
-                    //                inner join TBL_LINE l on f.factory_id = l.factory_id
-
-                    //                where c.corporation_id = f.corporation_id
-                    //                   group by c.corporation_id, corporation_name;
-
+                    cmd.CommandText = @"SELECT corporation_id, corporation_name
+                                          FROM TBL_CORPORATION 
+                                         WHERE corporation_use = 'Y'
+                                          Order by corporation_seq ASC";
                     cmd.Connection.Open();
                     return SqlHelper.DataReaderMapToList<CorporationVO>(cmd.ExecuteReader());
 
@@ -64,8 +58,32 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+        public List<FactoryVO> FactoryAllCombo()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"Select F.corporation_id, factory_id, factory_name
+                                          From TBL_FACTORY F
+                                            INNER JOIN TBL_CORPORATION C
+                                                ON F.corporation_id = C.corporation_id
+                                         WHERE factory_use = 'Y'
+                                           AND corporation_use = 'Y'
+                                      Order by factory_seq ASC";
+                    cmd.Connection.Open();
+                    return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
 
-        public List<FactoryVO> FactoryCombo()
+
+        public List<FactoryVO> FactoryCombo(int corporation_id)
         {
             try
             {
@@ -73,15 +91,13 @@ namespace MSFactoryDAC
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = @"Select factory_id, factory_name
-                                          From TBL_FACTORY";
+                                          From TBL_FACTORY
+                                         WHERE corporation_id =@corporation_id
+                                           ANd factory_use = 'Y'
+                                      Order by factory_seq ASC";
 
-                    //Select l.factory_id, factory_name
-                    //                      From TBL_CORPORATION c
-                    //                inner join TBL_FACTORY f on c.corporation_id = f.corporation_id
-                    //                inner join TBL_LINE l on f.factory_id = l.factory_id
-                    //                    group by l.factory_id, factory_name
                     cmd.Connection.Open();
-
+                    cmd.Parameters.AddWithValue("@corporation_id", corporation_id);
                     return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
                 }
             }
@@ -180,6 +196,71 @@ namespace MSFactoryDAC
                 throw err;
             }
 
+        }
+
+        public bool SaveLine(LineVO vo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SP_SAVE_LINE";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_line_id", vo.line_id);
+                        cmd.Parameters.AddWithValue("@P_line_name", vo.line_name);
+                        cmd.Parameters.AddWithValue("@P_factory_id", vo.factory_id);
+                        cmd.Parameters.AddWithValue("@P_line_seq", vo.line_seq);
+                        cmd.Parameters.AddWithValue("@P_line_use", vo.line_use);
+                        cmd.Parameters.AddWithValue("@P_line_note1", vo.line_note1);
+                        cmd.Parameters.AddWithValue("@P_line_note2", vo.line_note2);
+                        cmd.Parameters.AddWithValue("@P_first_regist_employee", vo.first_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_final_regist_employee", vo.final_regist_employee);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+                throw err;
+            }
+        }
+
+        public DataTable GetLines(int factory_id)
+        {
+            try
+            {
+                string sql = @"SELECT F.FACTORY_ID, L.LINE_ID, L.LINE_NAME
+                               FROM TBL_LINE L
+	                               INNER JOIN TBL_FACTORY F
+		                               ON L.FACTORY_ID = F.FACTORY_ID
+	                               INNER JOIN TBL_CORPORATION C
+		                               ON F.CORPORATION_ID = C.CORPORATION_ID
+                               WHERE FACTORY_ID = @FACTORY_ID
+                               AND LINE_USE = 'Y'
+                               AND FACTORY_USE = 'Y'
+                               AND CORPORATION_USE = 'Y'
+                               ORDER BY LINE_SEQ ASC";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@FACTORY_ID", factory_id);
+
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
         }
     }
 }
