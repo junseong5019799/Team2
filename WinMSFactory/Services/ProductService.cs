@@ -73,5 +73,15 @@ namespace WinMSFactory
         {
             return dac.UpdateProducts(productInsert);
         }
+
+        public bool DeleteMaterialPrice(int selectedRow)
+        {
+            return dac.DeleteMaterialPrice(selectedRow);
+        }
+
+        internal void InsertSellPrice(SellPriceManageVO manageVO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

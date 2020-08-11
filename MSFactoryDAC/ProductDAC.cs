@@ -66,6 +66,11 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool InsertMaterialPrice(ProductPriceManageVO insertData)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool InsertSellPrice(SellPriceManageVO vo)
         {
             try
@@ -88,6 +93,37 @@ namespace MSFactoryDAC
                             return false;
 
                     }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool DeleteMaterialPrice(int selectedRow)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                    string sql = @"SP_MATERIAL_PRICE_DELETE";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", selectedRow);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+
                 }
             }
             catch (Exception err)

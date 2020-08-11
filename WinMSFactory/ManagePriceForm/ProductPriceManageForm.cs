@@ -39,8 +39,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("품목 단위", "Product_unit", 80, true);
             dgv.AddNewColumns("현재 단가", "Material_Current_Price_String", 120, true, true, false, RightAlign);
             dgv.AddNewColumns("이전 단가", "Material_Previous_Price_String", 120, true, true, false, RightAlign);
-            dgv.AddNewColumns("시작일", "Start_Date", 80, true);
-            dgv.AddNewColumns("종료일", "End_Date", 80, true);
+            dgv.AddNewColumns("시작일", "Start_Date", 100, true);
+            dgv.AddNewColumns("종료일", "End_Date", 100, true);
             dgv.AddNewColumns("비고", "Note", 300, true);
             dgv.AddNewColumns("코드번호", "Material_Price_Code", 150, false);    // 코드 번호
             dgv.AddNewColumns("순위", "RankNum", 100, true);
@@ -49,7 +49,7 @@ namespace WinMSFactory
         }
 
 
-        private void btn_Insert_Click(object sender, EventArgs e) // 등록
+        private void Add(object sender, EventArgs e) // 등록
         {
             SettingFormOpen(true);
         }
@@ -91,11 +91,11 @@ namespace WinMSFactory
 
             if (frm.ShowDialog() == DialogResult.OK) // 정상적으로 실행 후 종료된 경우
             {
-                ReView(); // 데이터 갱신!!
+                ReviewDGV(); // 데이터 갱신!!
             }
         }
 
-        private void ReView()
+        private void ReviewDGV()
         {
             dgv.Columns.Clear();
             MainColumns();
@@ -103,7 +103,7 @@ namespace WinMSFactory
             dgv.DataSource = SelectList;
         }
 
-        private void btn_Delete_Click(object sender, EventArgs e) // 삭제
+        private void Delete(object sender, EventArgs e) // 삭제
         {
             if(dgv.SelectedRows.Count>0)
             {
@@ -115,7 +115,12 @@ namespace WinMSFactory
                     if (IsLastInsert("삭제", SelectedRow) == false)
                         return;
 
-                    if(service.)
+                    int value = dgv.SelectedRows[0].Cells[9].Value.ToInt();
+                    if(service.DeleteMaterialPrice(value))
+                    {
+                        MessageBox.Show("삭제를 완료하였습니다.");
+                        ReviewDGV();
+                    }
                 }
             }
         }
@@ -133,6 +138,41 @@ namespace WinMSFactory
                 return false;
             }
             return true;
+        }
+
+        private void Search(object sender, EventArgs e)
+        {
+            SearchMethod();
+        }
+
+        private void SearchMethod()
+        {
+            if (textBox1.TextLength < 1)
+            {
+                var SortedList = (from item in SelectList
+                                  where item.Start_Date >= fromToDate.From.AddDays(-1) && item.Start_Date <= fromToDate.To
+                                  select item).ToList();
+
+                dgv.DataSource = SortedList;
+            }
+            else
+            {
+                var SortedList = (from item in SelectList
+                                  where item.Start_Date >= fromToDate.From.AddDays(-1) && item.Start_Date <= fromToDate.To && item.Product_Name.Contains(textBox1.Text)
+                                  select item).ToList();
+
+                dgv.DataSource = SortedList;
+            }
+        }
+
+        private void Enter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                SearchMethod();
+        }
+        private void Clear(object sender, EventArgs e)
+        {
+            ReviewDGV();
         }
     }
 }

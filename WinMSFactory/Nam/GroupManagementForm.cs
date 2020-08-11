@@ -153,9 +153,13 @@ namespace WinMSFactory
                 }
             }
         }
+        private void Clear(object sender, EventArgs e)
+        {
+            txtGroupName.Text = "";
+            ReviewDGV();
+        }
 
-
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
             if (txtGroupName.TextLength < 1)
                 dgv.DataSource = SelectAllGroup;
@@ -186,6 +190,11 @@ namespace WinMSFactory
 
             if(frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
+        }
+        private void Enter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Search(null, null);
         }
     }
 }

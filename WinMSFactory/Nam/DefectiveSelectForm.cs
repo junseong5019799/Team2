@@ -43,14 +43,19 @@ namespace WinMSFactory
             DefectiveSelectAll = service.DefectiveSelectAll();
             dgv.DataSource = DefectiveSelectAll;
         }
-
-        private void buttonControl1_Click(object sender, EventArgs e)
+        
+        private void Clear(object sender, EventArgs e)
+        {
+            dgv.DataSource = null;
+            dgv.DataSource = DefectiveSelectAll;
+        }
+        private void Search(object sender, EventArgs e)
         {
             if (txtProductName.TextLength > 1)
             {
                 var SortedData = (from sortedList in DefectiveSelectAll
                                   where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
-                                        && sortedList.Product_Name == txtProductName.Text
+                                        && sortedList.Product_Name.Contains(txtProductName.Text)
                                   select sortedList).ToList();
 
                 dgv.DataSource = SortedData;
@@ -64,6 +69,11 @@ namespace WinMSFactory
 
                 dgv.DataSource = SortedData;
             }
+        }
+        private void Enter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Search(null, null);
         }
     }
 }

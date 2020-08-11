@@ -33,7 +33,6 @@
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonControl1 = new WinMSFactory.ButtonControl();
             this.FromToDate = new WinMSFactory.Control.FromToDateControl();
             this.label3 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -46,7 +45,6 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Size = new System.Drawing.Size(1534, 176);
             this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
@@ -78,19 +76,20 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 176);
+            this.dgv.Location = new System.Drawing.Point(0, 87);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 583);
+            this.dgv.Size = new System.Drawing.Size(1534, 672);
             this.dgv.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(353, 59);
+            this.label1.Location = new System.Drawing.Point(353, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 12);
             this.label1.TabIndex = 34;
@@ -98,43 +97,30 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonControl1);
             this.groupBox1.Controls.Add(this.FromToDate);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtProductName);
-            this.groupBox1.Location = new System.Drawing.Point(81, 33);
+            this.groupBox1.Location = new System.Drawing.Point(81, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1235, 121);
+            this.groupBox1.Size = new System.Drawing.Size(1235, 55);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "검색 조건";
             // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.Color.White;
-            this.buttonControl1.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl1.Location = new System.Drawing.Point(729, 53);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(75, 23);
-            this.buttonControl1.TabIndex = 36;
-            this.buttonControl1.Text = "검색";
-            this.buttonControl1.UseVisualStyleBackColor = false;
-            this.buttonControl1.Click += new System.EventHandler(this.buttonControl1_Click);
-            // 
             // FromToDate
             // 
-            this.FromToDate.From = new System.DateTime(2020, 8, 2, 13, 13, 24, 333);
-            this.FromToDate.Location = new System.Drawing.Point(481, 50);
+            this.FromToDate.From = new System.DateTime(2020, 8, 10, 22, 36, 57, 107);
+            this.FromToDate.Location = new System.Drawing.Point(481, 16);
             this.FromToDate.Name = "FromToDate";
             this.FromToDate.Size = new System.Drawing.Size(202, 30);
             this.FromToDate.TabIndex = 35;
-            this.FromToDate.To = new System.DateTime(2020, 8, 3, 13, 13, 24, 333);
+            this.FromToDate.To = new System.DateTime(2020, 8, 11, 22, 36, 57, 107);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 59);
+            this.label3.Location = new System.Drawing.Point(70, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 34;
@@ -142,10 +128,11 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(124, 55);
+            this.txtProductName.Location = new System.Drawing.Point(124, 21);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(191, 21);
             this.txtProductName.TabIndex = 23;
+            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
             // 
             // DownTimeSelectForm
             // 
@@ -175,6 +162,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtProductName;
-        private ButtonControl buttonControl1;
     }
 }

@@ -21,5 +21,10 @@ namespace WinMSFactory.Services
         {
             return dac.DefectiveSelect();
         }
+
+        public List<ProductionVO> DowntimeSelect()
+        {
+            return dac.DowntimeSelect();
+        }
     }
 }

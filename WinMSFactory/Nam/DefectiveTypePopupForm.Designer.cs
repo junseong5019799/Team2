@@ -1,4 +1,4 @@
-﻿namespace WinMSFactory.Nam
+﻿namespace WinMSFactory
 {
     partial class DefectiveTypePopupForm
     {

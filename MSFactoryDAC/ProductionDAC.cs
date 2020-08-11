@@ -39,19 +39,42 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<ProductionVO> DefectiveSelect()
+        public List<ProductionVO> DowntimeSelect()
         {
-            //dgv2.AddNewColumns("불량코드", "", 100, false);
-            //dgv2.AddNewColumns("불량명", "", 100, true);
-            //dgv2.AddNewColumns("불량 수량", "", 100, true);
-            //dgv2.AddNewColumns("불량 일자", "", 100, true);
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
 
-                    string sql = @"SELECT * ";
+                    string sql = @"SELECT Downtime_No, d.work_order_no, downtime_type_name, downtime_note, downtime_start_time, downtime_finish_time, DATEDIFF(hour, downtime_start_time, downtime_finish_time) downDowntime_Hour, downtime_type_use, downtime_type_calculation 
+                                    FROM TBL_DOWNTIME D INNER JOIN TBL_DOWNTIME_TYPE DT ON D.downtime_type_id = DT.downtime_type_id
+					                INNER JOIN TBL_WORK_ORDER O ON O.work_order_no = D.work_order_no";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<ProductionVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<ProductionVO> DefectiveSelect()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"SELECT defective_no, O.work_order_no, defective_type_name, defective_quantity, defective_date
+                                    FROM TBL_DEFECTIVE D INNER JOIN TBL_DEFECTIVE_TYPE DT ON D.defective_type_id = DT.defective_type_id
+					                INNER JOIN TBL_WORK_ORDER O ON O.work_order_no = D.work_order_no
+					                ORDER BY O.work_order_no";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {

@@ -169,7 +169,7 @@ namespace WinMSFactory
 
         }
 
-        private void buttonControl2_Click(object sender, EventArgs e) // 검색 버튼
+        private void Search(object sender, EventArgs e) // 검색 버튼
         {
             if (cboProductType.SelectedIndex == 0) // 전체 선택시
             {
@@ -283,10 +283,10 @@ namespace WinMSFactory
 
         
 
-        private void txtProductSearch_KeyDown(object sender, KeyEventArgs e)
+        private void Enter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                btnConfirm.PerformClick();
+                Search(null, null);
         }
 
         private void buttonControl2_Click_1(object sender, EventArgs e)
