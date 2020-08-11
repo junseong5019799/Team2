@@ -11,35 +11,35 @@ namespace WinMSFactory.Services
 {
 	public class WorkOrderService
 	{
-		public DataTable GetAllWorkOrdes(WorkOrderVO workOrderVO)
+		public DataTable GetAllWorkOrders(WorkOrderVO workOrderVO = null)
 		{
 			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
 			{
-				return workOrderDAC.GetAllWorkOrdes(workOrderVO);
+				return workOrderDAC.GetAllWorkOrders(workOrderVO);
 			}
 		}
 
-		public WorkOrderVO GetWorkOrde(int work_order_no)
+		public WorkOrderVO GetWorkOrder(int work_order_no)
 		{
 			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
 			{
-				return workOrderDAC.GetWorkOrde(work_order_no);
+				return workOrderDAC.GetWorkOrder(work_order_no);
 			}
 		}
 
-		public bool SaveWorkOrde(WorkOrderVO workOrderVO)
+		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
 			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
 			{
-				return workOrderDAC.SaveWorkOrde(workOrderVO);
+				return workOrderDAC.SaveWorkOrder(workOrderVO);
 			}
 		}
 
-		public bool DeleteWorkOrde(string work_order_no)
+		public bool DeleteWorkOrder(string work_order_no)
 		{
 			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
 			{
-				return workOrderDAC.DeleteWorkOrde(work_order_no);
+				return workOrderDAC.DeleteWorkOrder(work_order_no);
 			}
 		}
 	}

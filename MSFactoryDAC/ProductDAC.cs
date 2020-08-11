@@ -75,17 +75,17 @@ namespace MSFactoryDAC
         {
             try
             {
-                using(SqlConnection con = new SqlConnection(this.ConnectionString))
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand())
-                    {                        
+                    {
                         cmd.CommandText = "SP_SELLPRICE_UPSERT";
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@product_id", vo.product_id);
                         cmd.Parameters.AddWithValue("@sell_current_price", vo.sell_current_price);
                         cmd.Parameters.AddWithValue("@sell_current_price", vo.start_date);
-                        cmd.Parameters.AddWithValue("@sell_current_price", vo.note);                       
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.note);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;
@@ -236,7 +236,7 @@ namespace MSFactoryDAC
             }
         }
 
-        
+
 
         public bool SelectPriceData(int CompanyID, int ProductID, ref ProductPriceManageVO vo)
         {
@@ -255,9 +255,9 @@ namespace MSFactoryDAC
                     cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                     cmd.Parameters.AddWithValue("@ProductID", ProductID);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    
 
-                    
+
+
                     if (reader.Read()) // 데이터가 존재하는 경우 데이터를 불러옴
                     {
                         vo = new ProductPriceManageVO
@@ -267,12 +267,12 @@ namespace MSFactoryDAC
                             Start_Date = Convert.ToDateTime(reader[2]),
                             End_Date_String = reader[3].ToString()
                         };
-                        
+
                         return true;
                     }
                     // 데이터가 없을 경우 null, false 처리
                     vo = null;
-                    return false; 
+                    return false;
                 }
 
             }
@@ -289,7 +289,7 @@ namespace MSFactoryDAC
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
                     object EndDate;
                     string sql = @"SP_MATERIAL_PRICE_UPSERT";
-                    
+
 
                     if ((object)UpsertData.End_Date == null)
                         EndDate = DBNull.Value;
@@ -361,7 +361,7 @@ namespace MSFactoryDAC
         {
             try
             {
-                
+
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
@@ -378,7 +378,7 @@ namespace MSFactoryDAC
                         {
                             return true;
                         }
-                            
+
                         else
                             return false;
                     }
@@ -415,7 +415,7 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_PRODUCT_UNIT", InsertData.Product_Unit);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_STANDARD", InsertData.Product_Standards);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE1", InsertData.Product_Note1);
-                        cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE2",InsertData.Product_Note2);
+                        cmd.Parameters.AddWithValue("@P_PRODUCT_NOTE2", InsertData.Product_Note2);
                         cmd.Parameters.AddWithValue("@P_PRODUCT_USE", InsertData.Product_Use);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_TIME", InsertData.Final_Regist_Time);
                         cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", InsertData.Final_Regist_Employee);
@@ -445,7 +445,7 @@ namespace MSFactoryDAC
 
         public void ProductAndGroupsStatusUpdate(int ItemNum, int StatusNum, string sql)
         {
-            
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
@@ -463,6 +463,31 @@ namespace MSFactoryDAC
                         cmd.ExecuteNonQuery();
                     }
 
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public DataTable GetProducts()
+        {
+            try
+            {
+                string sql = @"SELECT PRODUCT_ID, PRODUCT_LEAD_TIME, PRODUCT_TACT_TIME, PRODUCT_GROUP_ID, PRODUCT_NAME, PRODUCT_INFORMATION
+		                            , PRODUCT_UNIT, PRODUCT_STANDARDS, PRODUCT_NOTE1, PRODUCT_NOTE2, PRODUCT_SEQ, PRODUCT_USE
+                               FROM TBL_PRODUCT
+                               WHERE PRODUCT_USE = 'Y'
+                               ORDER BY PRODUCT_SEQ";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    da.Fill(dt);
+
+                    return dt;
                 }
             }
             catch (Exception err)

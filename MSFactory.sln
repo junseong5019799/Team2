@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSFactoryDAC", "MSFactoryDA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMSFactory", "WebMSFactory\WebMSFactory.csproj", "{96E0D153-0F21-4E07-82C2-6B702A28685D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMSFactoryPOP", "WinMSFactoryPOP\WinMSFactoryPOP.csproj", "{CDE26A76-9776-4D49-9078-EFB3E92B1171}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{96E0D153-0F21-4E07-82C2-6B702A28685D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96E0D153-0F21-4E07-82C2-6B702A28685D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96E0D153-0F21-4E07-82C2-6B702A28685D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

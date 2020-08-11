@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -85,6 +86,12 @@ namespace WinMSFactory
 			}
 
 			return dic;
+		}
+
+		public static int GetCorporationID(this EmployeeVO employee)
+		{
+			// 관리자 그룹일 경우 모든 공장을 다 보여주도록 설정
+			return employee.Ath_grp_id == 2 ? 0 : employee.Corporation_id;
 		}
 	}
 }

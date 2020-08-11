@@ -1,15 +1,18 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
 	public partial class WorkOrderForm : WinMSFactory.ListForm
 	{
+		WorkOrderService workOrderService = new WorkOrderService();
 		DataTable dt;
 
 		public WorkOrderForm()
@@ -27,18 +30,25 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("작업일자", "WORK_DATE", 100);
 				dataGridViewControl1.AddNewColumns("작업시작시간", "WORK_START_TIME", 100);
 				dataGridViewControl1.AddNewColumns("작업종료시간", "WORK_FINISH_TIME", 100);
+				dataGridViewControl1.AddNewColumns("공장명칭", "FACTORY_NAME", 100);
 				dataGridViewControl1.AddNewColumns("라인명칭", "LINE_NAME", 100);
-				dataGridViewControl1.AddNewColumns("공정명칭", "FACTORY_NAME", 100);
+				dataGridViewControl1.AddNewColumns("공정명칭", "PROCESS_NAME", 100);
 				dataGridViewControl1.AddNewColumns("작업자", "EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("품목명칭", "PRODUCT_NAME", 100);
 				dataGridViewControl1.AddNewColumns("지시수량", "WORK_ORDER_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("양품수량", "RESULT_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("불량수량", "DEFECTIVE_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-				dataGridViewControl1.AddNewColumns("작업지시 상태", "WORK_ORDER_STATUS_NAME", 100);
+				dataGridViewControl1.AddNewColumns("작업지시 상태", "WORK_ORDER_STATUS", 100);
 				dataGridViewControl1.AddNewColumns("최초등록시간", "FIRST_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최초등록사원", "FIRST_REGIST_EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록시간", "FINAL_REGIST_TIME", 100);
 				dataGridViewControl1.AddNewColumns("최종등록사원", "FINAL_REGIST_EMPLOYEE_NAME", 100);
+
+
+				cboFactory.ComboBinding(new FactoryService().GetFactories(this.GetEmployee().GetCorporationID()), "FACTORY_NAME", "FACTORY_ID", "전체", 0);
+				cboLine.ComboBinding("전체", 0);
+				cboProcess.ComboBinding("전체", 0);
+				cboProduct.ComboBinding(new ProductService().GetProducts(), "PRODUCT_NAME", "PRODUCT_ID", "전체", 0);
 
 				LoadData();
 			}
@@ -51,61 +61,66 @@ namespace WinMSFactory
 		private void LoadData()
 		{
 			WorkOrderClear();
+			dt = workOrderService.GetAllWorkOrders();
+			dataGridViewControl1.DataSource = dt;			
 		}
 
 
-		//private void Search(object sender, EventArgs e)
-		//{
-		//	if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-		//	{
-		//		dt.CaseSensitive = false;
-		//		DataView dv = dt.DefaultView;
-		//		string search = txtSearch.Text.Trim();
+		private void Search(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				WorkOrderVO workOrderVO = new WorkOrderVO
+				{
+					Line_id = cboLine.SelectedValue.ToInt(),
+					Process_id = cboLine.SelectedValue.ToInt(),
+					Product_id = cboProduct.SelectedValue.ToInt(),
+					SearchFromDate = fromToDateControl1.From.ToShortDateString(),
+					SearchToDate = fromToDateControl1.To.ToShortDateString(),
+					SearchWord = txtSearch.Text.Trim()
+				};
+				dt = workOrderService.GetAllWorkOrders(workOrderVO);
+				dataGridViewControl1.DataSource = dt;
+			}
+		}
 
-		//		if (search.Length > 0)
-		//			dv.RowFilter = $"APP_NAME LIKE '%{search}%'";
-		//		else
-		//			dv.RowFilter = "";
-		//	}
-		//}
+		private void Add(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				EmployeeVO employeeVO = this.GetEmployee();
+				WorkOrderPopupForm frm = new WorkOrderPopupForm(employeeVO);
 
-		//private void Add(object sender, EventArgs e)
-		//{
-		//	if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-		//	{
-		//		EmployeeVO employeeVO = this.GetEmployee();
-		//		ApplicationPopupForm frm = new ApplicationPopupForm(employeeVO);
+				if (frm.ShowDialog() == DialogResult.OK)
+				{
+					LoadData();
+				}
+			}
+		}
 
-		//		if (frm.ShowDialog() == DialogResult.OK)
-		//		{
-		//			LoadData();
-		//		}
-		//	}
-		//}
+		private void Delete(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				try
+				{
+					string work_order_no = dataGridViewControl1.GetCheckIDs("APP_ID");
 
-		//private void Delete(object sender, EventArgs e)
-		//{
-		//	if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-		//	{
-		//		try
-		//		{
-		//			string app_id = dataGridViewControl1.GetCheckIDs("APP_ID");
+					if (string.IsNullOrEmpty(work_order_no))
+						return;
 
-		//			if (string.IsNullOrEmpty(app_id))
-		//				return;
-
-		//			if (applicationService.DeleteApplication(app_id))
-		//			{
-		//				MessageBox.Show("정상적으로 삭제되었습니다.");
-		//				LoadData();
-		//			}
-		//		}
-		//		catch (Exception err)
-		//		{
-		//			MessageBox.Show(err.Message);
-		//		}
-		//	}
-		//}
+					if (workOrderService.DeleteWorkOrder(work_order_no))
+					{
+						MessageBox.Show("정상적으로 삭제되었습니다.");
+						LoadData();
+					}
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.Message);
+				}
+			}
+		}
 
 		private void Clear(object sender, EventArgs e)
 		{
@@ -118,6 +133,28 @@ namespace WinMSFactory
 		private void WorkOrderClear()
 		{
 			this.Clear();
+			fromToDateControl1.From = DateTime.Now.AddDays(-7);
+		}
+
+		private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int factory_id = cboFactory.SelectedValue.ToInt();
+
+			if (factory_id > 0)
+				cboLine.ComboBinding(new LineService().GetLines(factory_id), "LINE_NAME", "LINE_ID", "전체", 0);
+			else
+				cboLine.ComboBinding("전체", 0);
+			
+		}
+
+		private void cboLine_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int line_id = cboLine.SelectedValue.ToInt();
+
+			//if (line_id > 0)
+			//	cboProcess.ComboBinding(new ProcessService().GetProcess(line_id), "LINE_NAME", "LINE_ID", "전체", 0);
+			//else
+				cboProcess.ComboBinding("전체", 0);
 		}
 	}
 }

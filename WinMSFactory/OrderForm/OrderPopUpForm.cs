@@ -42,6 +42,13 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
 
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.HeaderText = "납기일변경";
+            btn.Width = 150;
+            btn.DefaultCellStyle.Padding = new Padding(1, 1, 1, 1);
+            btn.UseColumnTextForButtonValue = false;
+            dgvOrder.Columns.Add(btn);
+
             DataTable dt = orderService.GetOrderPlanList();
             dgvOrder.DataSource = dt;
             
@@ -70,13 +77,22 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_seq = 1;
  
                         orderService.InsertOrder(orderVO);
-                    }
+                    }                    
                 }
             }
             MessageBox.Show("발주 되었습니다. ");
             this.Close();
-        
-            
+
         }
-    }
+
+
+        
+        //if (e.ColumnIndex == 4)
+        //    {
+        //        MainForm frm = (MainForm)this.MdiParent;
+        //BOMForm bFrm = frm.MdiChildrenShow<BOMForm>(false, false, false, false);
+        //bFrm.Product_no = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[0].Value);
+                
+        //    }
+}
 }
