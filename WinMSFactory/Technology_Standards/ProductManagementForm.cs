@@ -171,34 +171,37 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e) // 검색 버튼
         {
-            if (cboProductType.SelectedIndex == 0) // 전체 선택시
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                if (txtProductSearch.Text.Length < 1)
+                if (cboProductType.SelectedIndex == 0) // 전체 선택시
                 {
-                    dgv.DataSource = CheckUseSortList;
-                }
+                    if (txtProductSearch.Text.Length < 1)
+                    {
+                        dgv.DataSource = CheckUseSortList;
+                    }
 
+                    else
+                    {
+                        var SortedList = (from sort in CheckUseSortList
+                                          where sort.Product_Name.Contains(txtProductSearch.Text)
+                                          select sort).ToList();
+
+                        dgv.DataSource = SortedList;
+                    }
+                }
                 else
                 {
-                    var SortedList = (from sort in CheckUseSortList
-                                      where sort.Product_Name.Contains(txtProductSearch.Text)
-                                      select sort).ToList();
+                    if (txtProductSearch.Text.Length < 1)
+                        dgv.DataSource = CheckUseSortList.FindAll(p => p.Product_Group_Name == cboProductType.Text);
 
-                    dgv.DataSource = SortedList;
-                }
-            }
-            else
-            {
-                if (txtProductSearch.Text.Length < 1)
-                    dgv.DataSource = CheckUseSortList.FindAll(p => p.Product_Group_Name == cboProductType.Text);
+                    else
+                    {
+                        var SortedList = (from sort in CheckUseSortList
+                                          where sort.Product_Name.Contains(txtProductSearch.Text) && sort.Product_Group_Name.Equals(cboProductType.Text)
+                                          select sort).ToList();
 
-                else
-                {
-                    var SortedList = (from sort in CheckUseSortList
-                                      where sort.Product_Name.Contains(txtProductSearch.Text) && sort.Product_Group_Name.Equals(cboProductType.Text)
-                                      select sort).ToList();
-
-                    dgv.DataSource = SortedList;
+                        dgv.DataSource = SortedList;
+                    }
                 }
             }
         }

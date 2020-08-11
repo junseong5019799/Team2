@@ -51,7 +51,10 @@ namespace WinMSFactory
 
         private void Add(object sender, EventArgs e) // 등록
         {
-            SettingFormOpen(true);
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                SettingFormOpen(true);
+            }
         }
 
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e) // 수정
@@ -105,21 +108,24 @@ namespace WinMSFactory
 
         private void Delete(object sender, EventArgs e) // 삭제
         {
-            if(dgv.SelectedRows.Count>0)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                if(MessageBox.Show("정말로 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (dgv.SelectedRows.Count > 0)
                 {
-                    int SelectedRow = dgv.SelectedRows[0].Index;
-
-                    // 최근에 변경된 내용을 삭제하지 않았을 경우
-                    if (IsLastInsert("삭제", SelectedRow) == false)
-                        return;
-
-                    int value = dgv.SelectedRows[0].Cells[9].Value.ToInt();
-                    if(service.DeleteMaterialPrice(value))
+                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        MessageBox.Show("삭제를 완료하였습니다.");
-                        ReviewDGV();
+                        int SelectedRow = dgv.SelectedRows[0].Index;
+
+                        // 최근에 변경된 내용을 삭제하지 않았을 경우
+                        if (IsLastInsert("삭제", SelectedRow) == false)
+                            return;
+
+                        int value = dgv.SelectedRows[0].Cells[9].Value.ToInt();
+                        if (service.DeleteMaterialPrice(value))
+                        {
+                            MessageBox.Show("삭제를 완료하였습니다.");
+                            ReviewDGV();
+                        }
                     }
                 }
             }
@@ -142,7 +148,10 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            SearchMethod();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                SearchMethod();
+            }
         }
 
         private void SearchMethod()
@@ -172,7 +181,10 @@ namespace WinMSFactory
         }
         private void Clear(object sender, EventArgs e)
         {
-            ReviewDGV();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                ReviewDGV();
+            }
         }
     }
 }

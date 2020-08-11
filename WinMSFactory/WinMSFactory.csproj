@@ -136,16 +136,16 @@
     <Compile Include="ManagePriceForm\SellPriceDialogForm.Designer.cs">
       <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\DefectiveTypePopupForm.cs">
+    <Compile Include="Technology_Standards\DefectiveTypePopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\DefectiveTypePopupForm.Designer.cs">
+    <Compile Include="Technology_Standards\DefectiveTypePopupForm.Designer.cs">
       <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\DefectiveTypeSettingForm.cs">
+    <Compile Include="Technology_Standards\DefectiveTypeSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\DefectiveTypeSettingForm.Designer.cs">
+    <Compile Include="Technology_Standards\DefectiveTypeSettingForm.Designer.cs">
       <DependentUpon>DefectiveTypeSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\BarcodePortSettingPopForm.cs">
@@ -196,22 +196,22 @@
     <Compile Include="BaseForm\PopUpDialogForm.Designer.cs">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMLogForm.cs">
+    <Compile Include="BOM\BOMLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMLogForm.designer.cs">
+    <Compile Include="BOM\BOMLogForm.designer.cs">
       <DependentUpon>BOMLogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectAllForm.cs">
+    <Compile Include="BOM\BOMSelectAllForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMSelectAllForm.Designer.cs">
+    <Compile Include="BOM\BOMSelectAllForm.Designer.cs">
       <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.cs">
+    <Compile Include="BOM\BOMManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BOM%28Nam%29\BOMManageForm.Designer.cs">
+    <Compile Include="BOM\BOMManageForm.Designer.cs">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\ProductPriceDialogForm.cs">
@@ -232,10 +232,10 @@
     <Compile Include="MyControl\BasicDataGridViewControl.Designer.cs">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\GroupManagementForm.cs">
+    <Compile Include="Technology_Standards\GroupManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\GroupManagementForm.designer.cs">
+    <Compile Include="Technology_Standards\GroupManagementForm.designer.cs">
       <DependentUpon>GroupManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagePriceForm\SellPriceForm.cs">
@@ -250,10 +250,10 @@
     <Compile Include="MyControl\NumericControl.Designer.cs">
       <DependentUpon>NumericControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\ProductInfoForm.cs">
+    <Compile Include="Technology_Standards\ProductInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\ProductInfoForm.Designer.cs">
+    <Compile Include="Technology_Standards\ProductInfoForm.Designer.cs">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderForm\DueDatePopUpForm.cs">
@@ -382,10 +382,10 @@
     <Compile Include="Process\ProcessForm.Designer.cs">
       <DependentUpon>ProcessForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\ProductGroupInfoForm.cs">
+    <Compile Include="Technology_Standards\ProductGroupInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\ProductGroupInfoForm.Designer.cs">
+    <Compile Include="Technology_Standards\ProductGroupInfoForm.Designer.cs">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\ProcessPopupForm.cs">
@@ -437,10 +437,10 @@
     <Compile Include="Nam\ProductionStatusForm.designer.cs">
       <DependentUpon>ProductionStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nam\ProductManagementForm.cs">
+    <Compile Include="Technology_Standards\ProductManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Nam\ProductManagementForm.designer.cs">
+    <Compile Include="Technology_Standards\ProductManagementForm.designer.cs">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -608,10 +608,10 @@
     <EmbeddedResource Include="ManagePriceForm\SellPriceDialogForm.resx">
       <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\DefectiveTypePopupForm.resx">
+    <EmbeddedResource Include="Technology_Standards\DefectiveTypePopupForm.resx">
       <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\DefectiveTypeSettingForm.resx">
+    <EmbeddedResource Include="Technology_Standards\DefectiveTypeSettingForm.resx">
       <DependentUpon>DefectiveTypeSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\BarcodePortSettingPopForm.resx">
@@ -638,13 +638,13 @@
     <EmbeddedResource Include="BaseForm\PopUpDialogForm.resx">
       <DependentUpon>PopUpDialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMLogForm.resx">
+    <EmbeddedResource Include="BOM\BOMLogForm.resx">
       <DependentUpon>BOMLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMSelectAllForm.resx">
+    <EmbeddedResource Include="BOM\BOMSelectAllForm.resx">
       <DependentUpon>BOMSelectAllForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BOM%28Nam%29\BOMManageForm.resx">
+    <EmbeddedResource Include="BOM\BOMManageForm.resx">
       <DependentUpon>BOMManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\ProductPriceDialogForm.resx">
@@ -656,7 +656,7 @@
     <EmbeddedResource Include="MyControl\BasicDataGridViewControl.resx">
       <DependentUpon>BasicDataGridViewControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\GroupManagementForm.resx">
+    <EmbeddedResource Include="Technology_Standards\GroupManagementForm.resx">
       <DependentUpon>GroupManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePriceForm\SellPriceForm.resx">
@@ -683,10 +683,10 @@
     <EmbeddedResource Include="Nam\ProductionStatusForm.resx">
       <DependentUpon>ProductionStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\ProductManagementForm.resx">
+    <EmbeddedResource Include="Technology_Standards\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\ProductInfoForm.resx">
+    <EmbeddedResource Include="Technology_Standards\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderForm\DueDatePopUpForm.resx">
@@ -752,7 +752,7 @@
     <EmbeddedResource Include="Process\ProcessForm.resx">
       <DependentUpon>ProcessForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Nam\ProductGroupInfoForm.resx">
+    <EmbeddedResource Include="Technology_Standards\ProductGroupInfoForm.resx">
       <DependentUpon>ProductGroupInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\ProcessPopupForm.resx">

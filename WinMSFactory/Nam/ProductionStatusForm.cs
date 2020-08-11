@@ -40,31 +40,37 @@ namespace WinMSFactory
         }
         private void Clear(object sender, EventArgs e)
         {
-            dgv.DataSource = service.ProductionStatusSelect();
-            dgv2.DataSource = null;
-            dgv3.DataSource = null;
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                dgv.DataSource = service.ProductionStatusSelect();
+                dgv2.DataSource = null;
+                dgv3.DataSource = null;
+            }
         }
 
         private void Search(object sender, EventArgs e)
         {
-            if (txtProductName.TextLength < 1)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgv.DataSource = (from SortedList in ProductionData
-                                  where SortedList.Work_Date >= FromToDate.From.AddDays(-1) && SortedList.Work_Date <= FromToDate.To
-                                  select SortedList).ToList();
-            }
-            else
-            {
-                var List = (from SortedList in ProductionData
-                            where SortedList.Work_Date >= FromToDate.From.AddDays(-1) && SortedList.Work_Date <= FromToDate.To
-                                        && SortedList.Product_Name.Contains(txtProductName.Text)
-                            select SortedList).ToList();
+                if (txtProductName.TextLength < 1)
+                {
+                    dgv.DataSource = (from SortedList in ProductionData
+                                      where SortedList.Work_Date >= FromToDate.From.AddDays(-1) && SortedList.Work_Date <= FromToDate.To
+                                      select SortedList).ToList();
+                }
+                else
+                {
+                    var List = (from SortedList in ProductionData
+                                where SortedList.Work_Date >= FromToDate.From.AddDays(-1) && SortedList.Work_Date <= FromToDate.To
+                                            && SortedList.Product_Name.Contains(txtProductName.Text)
+                                select SortedList).ToList();
 
-                dgv.DataSource = List;
-            }
+                    dgv.DataSource = List;
+                }
 
-            dgv2.DataSource = null;
-            dgv3.DataSource = null;
+                dgv2.DataSource = null;
+                dgv3.DataSource = null;
+            }
         }
 
         private void ThirdGridViewColumns()

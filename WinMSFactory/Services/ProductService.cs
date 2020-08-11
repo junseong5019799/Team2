@@ -79,6 +79,11 @@ namespace WinMSFactory
             return dac.DeleteMaterialPrice(selectedRow);
         }
 
+        public DataTable GetProducts()
+        {
+            return dac.GetProducts();
+        }
+
         internal void InsertSellPrice(SellPriceManageVO manageVO)
         {
             throw new NotImplementedException();

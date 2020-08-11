@@ -155,21 +155,27 @@ namespace WinMSFactory
         }
         private void Clear(object sender, EventArgs e)
         {
-            txtGroupName.Text = "";
-            ReviewDGV();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtGroupName.Text = "";
+                ReviewDGV();
+            }
         }
 
         private void Search(object sender, EventArgs e)
         {
-            if (txtGroupName.TextLength < 1)
-                dgv.DataSource = SelectAllGroup;
-            else
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var List = (from SortedList in SelectAllGroup
-                            where SortedList.Product_Group_Name.Contains(txtGroupName.Text)
-                            select SortedList).ToList();
+                if (txtGroupName.TextLength < 1)
+                    dgv.DataSource = SelectAllGroup;
+                else
+                {
+                    var List = (from SortedList in SelectAllGroup
+                                where SortedList.Product_Group_Name.Contains(txtGroupName.Text)
+                                select SortedList).ToList();
 
-                dgv.DataSource = List;
+                    dgv.DataSource = List;
+                }
             }
         }
 

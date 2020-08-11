@@ -46,28 +46,34 @@ namespace WinMSFactory
         
         private void Clear(object sender, EventArgs e)
         {
-            dgv.DataSource = null;
-            dgv.DataSource = DefectiveSelectAll;
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                dgv.DataSource = null;
+                dgv.DataSource = DefectiveSelectAll;
+            }
         }
         private void Search(object sender, EventArgs e)
         {
-            if (txtProductName.TextLength > 1)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var SortedData = (from sortedList in DefectiveSelectAll
-                                  where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
-                                        && sortedList.Product_Name.Contains(txtProductName.Text)
-                                  select sortedList).ToList();
+                if (txtProductName.TextLength > 1)
+                {
+                    var SortedData = (from sortedList in DefectiveSelectAll
+                                      where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
+                                            && sortedList.Product_Name.Contains(txtProductName.Text)
+                                      select sortedList).ToList();
 
-                dgv.DataSource = SortedData;
-            }
+                    dgv.DataSource = SortedData;
+                }
 
-            else
-            {
-                var SortedData = (from sortedList in DefectiveSelectAll
-                                  where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
-                                  select sortedList).ToList();
+                else
+                {
+                    var SortedData = (from sortedList in DefectiveSelectAll
+                                      where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
+                                      select sortedList).ToList();
 
-                dgv.DataSource = SortedData;
+                    dgv.DataSource = SortedData;
+                }
             }
         }
         private void Enter_KeyDown(object sender, KeyEventArgs e)

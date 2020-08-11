@@ -81,72 +81,81 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e) // 검색
         {
-            if (txtSearchName.Text.Length < 1)
-                dgv.DataSource = service.DefectiveTypeSelectAll();
-            else
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var SortedList = (from sortList in SelectAllList
-                                  where sortList.Defective_Type_Name.Contains(txtSearchName.Text)
-                                  select sortList).ToList();
+                if (txtSearchName.Text.Length < 1)
+                    dgv.DataSource = service.DefectiveTypeSelectAll();
+                else
+                {
+                    var SortedList = (from sortList in SelectAllList
+                                      where sortList.Defective_Type_Name.Contains(txtSearchName.Text)
+                                      select sortList).ToList();
 
-                dgv.DataSource = SortedList;
+                    dgv.DataSource = SortedList;
+                }
             }
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            dgv.EndEdit();
-
-            List<int> CheckList = new List<int>();
-            
-            foreach(DataGridViewRow row in dgv.Rows)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
-                if ((object)chk.Value == null)
-                    continue;
-                else if ((bool)chk.Value == true)
+                dgv.EndEdit();
+
+                List<int> CheckList = new List<int>();
+
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    CheckList.Add(dgv[1, row.Index].Value.ToInt());
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+                    if ((object)chk.Value == null)
+                        continue;
+                    else if ((bool)chk.Value == true)
+                    {
+                        CheckList.Add(dgv[1, row.Index].Value.ToInt());
+                    }
+
                 }
-                
+
+                if (CheckList.Count < 1)
+                {
+                    int DefectiveNo;
+                    try
+                    {
+                        DefectiveNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("체크박스를 체크하시거나, 목록을 선택해주세요");
+                        return;
+                    }
+
+                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                        return;
+
+                    service.DefectiveDelete(DefectiveNo);
+                }
+                else
+                {
+                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                        return;
+
+                    foreach (int ProductNum in CheckList)
+                    {
+                        service.DefectiveDelete(ProductNum);
+                    }
+                }
+
+                MessageBox.Show("삭제가 완료되었습니다.");
+                ReviewDGV();
             }
-
-            if (CheckList.Count < 1)
-            {
-                int DefectiveNo;
-                try
-                {
-                    DefectiveNo = dgv.SelectedRows[0].Cells[1].Value.ToInt();
-                }
-                catch
-                {
-                    MessageBox.Show("체크박스를 체크하시거나, 목록을 선택해주세요");
-                    return;
-                }
-
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                    return;
-
-                service.DefectiveDelete(DefectiveNo);
-            }
-            else
-            {
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                    return;
-
-                foreach (int ProductNum in CheckList)
-                {
-                    service.DefectiveDelete(ProductNum);
-                }
-            }
-
-            MessageBox.Show("삭제가 완료되었습니다.");
-            ReviewDGV();
         }
         private void Clear(object sender, EventArgs e)
         {
-            txtSearchName.Text = "";
-            ReviewDGV();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtSearchName.Text = "";
+                ReviewDGV();
+            }
         }
         private void Enter_KeyDown(object sender, KeyEventArgs e)
         {

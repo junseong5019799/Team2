@@ -49,31 +49,36 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            txtProductName.Text = "";
-            dgv.DataSource = null;
-            dgv.DataSource = SelectDownTimeAll;
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtProductName.Text = "";
+                dgv.DataSource = null;
+                dgv.DataSource = SelectDownTimeAll;
+            }
         }
 
         private void Search(object sender, EventArgs e)
         {
-
-            if (txtProductName.TextLength > 1)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var SortedData = (from sortedList in SelectDownTimeAll
-                                  where sortedList.Downtime_Start_Time >= FromToDate.From.AddDays(-1) && sortedList.Downtime_Start_Time <= FromToDate.To
-                                        && sortedList.Product_Name.Contains(txtProductName.Text)
-                                  select sortedList).ToList();
+                if (txtProductName.TextLength > 1)
+                {
+                    var SortedData = (from sortedList in SelectDownTimeAll
+                                      where sortedList.Downtime_Start_Time >= FromToDate.From.AddDays(-1) && sortedList.Downtime_Start_Time <= FromToDate.To
+                                            && sortedList.Product_Name.Contains(txtProductName.Text)
+                                      select sortedList).ToList();
 
-                dgv.DataSource = SortedData;
-            }
+                    dgv.DataSource = SortedData;
+                }
 
-            else
-            {
-                var SortedData = (from sortedList in SelectDownTimeAll
-                                  where sortedList.Downtime_Start_Time >= FromToDate.From.AddDays(-1) && sortedList.Downtime_Start_Time <= FromToDate.To
-                                  select sortedList).ToList();
+                else
+                {
+                    var SortedData = (from sortedList in SelectDownTimeAll
+                                      where sortedList.Downtime_Start_Time >= FromToDate.From.AddDays(-1) && sortedList.Downtime_Start_Time <= FromToDate.To
+                                      select sortedList).ToList();
 
-                dgv.DataSource = SortedData;
+                    dgv.DataSource = SortedData;
+                }
             }
 
         }
