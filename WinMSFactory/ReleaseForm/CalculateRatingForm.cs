@@ -36,6 +36,8 @@ namespace WinMSFactory
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
+            from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
+            to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
         }
 
 
@@ -50,6 +52,7 @@ namespace WinMSFactory
                 to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
 
                 DataTable dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
+                dgv.DataSource = null;
                 dgv.DataSource = dt;
             }
         }
@@ -59,8 +62,12 @@ namespace WinMSFactory
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic["PROG_NAME"] = "정규발주";
             dic["PROG_FORM_NAME"] = "OrderPlanForm";
+            dic["Search"] = "Y";
 
             OrderPlanForm frm = (OrderPlanForm)this.GetMdiParent().MdiChildrenShow(dic);
+
+            from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
+            to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
 
             frm.Release_no = release_no;
             frm.DtpFrom = from;

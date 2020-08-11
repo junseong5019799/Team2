@@ -70,6 +70,36 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool InsertSellPrice(SellPriceManageVO vo)
+        {
+            try
+            {
+                using(SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {                        
+                        cmd.CommandText = "SP_SELLPRICE_UPSERT";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@product_id", vo.product_id);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.sell_current_price);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.start_date);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.note);                       
+
+                        if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
+                            return true;
+                        else
+                            return false;
+
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool UpdateProducts(ProductInsertVO vo)
         {
             try

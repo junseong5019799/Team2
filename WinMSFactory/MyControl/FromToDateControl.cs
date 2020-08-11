@@ -12,7 +12,11 @@ namespace WinMSFactory.Control
 {
     public partial class FromToDateControl : UserControl
     {
-        public DateTime From { get { return dtpFrom.Value; } set { dtpFrom.Value = value; } }
+        public DateTime From 
+        { 
+            get { return dtpFrom.Value; } 
+            set { dtpFrom.Value = value; } 
+        }
         public DateTime To { get { return dtpTo.Value; } set { dtpTo.Value = value; } }
 
         public FromToDateControl()

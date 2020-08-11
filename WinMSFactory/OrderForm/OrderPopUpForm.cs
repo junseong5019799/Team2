@@ -25,7 +25,7 @@ namespace WinMSFactory.OrderForm
         private void OrderPopUpForm_Load(object sender, EventArgs e)
         {
             dgvCompany.AddNewColumns("업체코드", "company_id", 80, true);
-            dgvCompany.AddNewColumns("발주업체", "company_name", 100, true);
+            dgvCompany.AddNewColumns("납품업체", "company_name", 100, true);
 
             dgvCompany.DataSource = orderService.GetCompanyList();
 
@@ -38,7 +38,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("품목", "_product_id", 80, false);
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
             dgvOrder.AddNewColumns("발주제안", "order_request_quantity", 80, true);
-            dgvOrder.AddNewColumns("발주수량", "", 100, true);
+            dgvOrder.AddNewColumns("발주수량", "", 100, true, false);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
 
@@ -46,7 +46,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.DataSource = dt;
             
 
-            dgvOrder.Columns[9].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

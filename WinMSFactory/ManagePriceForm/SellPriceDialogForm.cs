@@ -14,8 +14,9 @@ namespace WinMSFactory.ManagePriceForm
     public partial class SellPriceDialogForm : PopUpDialogForm
     {
         ReleaseService releaseService = new ReleaseService();
-        SellPriceManageVO ManageVO;
-        bool IsFirstProductSelect = true;
+        ProductService productService = new ProductService();
+        SellPriceManageVO manageVO;
+        
         bool IsInsert = true;
 
 
@@ -26,9 +27,8 @@ namespace WinMSFactory.ManagePriceForm
             this.IsInsert = IsInsert;
 
             if (!IsInsert)  //수정
-            {
-                ProductInfoModify();
-                this.ManageVO = ManageVO;
+            {               
+                this.manageVO = ManageVO;
             }
         }
 
@@ -36,61 +36,43 @@ namespace WinMSFactory.ManagePriceForm
         {
             cboProductGroup.ComboBinding(releaseService.SelectProductGroup(), "product_group_id", "product_group_name"); 
             cboProductGroup.SelectedIndexChanged += cboProductGroup_SelectedIndexChanged;
-            
+            cboProduct.ComboBinding(releaseService.SelectProductByGroup(cboProductGroup.SelectedValue.ToInt()), "Product_ID", "Product_Name");
 
             txtPreviousPrice.Enabled = false;
             txtEndDate.Enabled = false;
 
-            dtpStartDate.MinDate = DateTime.Now;
-            
+            dtpStartDate.MinDate = DateTime.Now;           
 
         }
-
+        
         private void cboProductGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            IsFirstProductSelect = true;
-
-            txtPreviousPrice.Text = "-";
-            txtCurrentPrice.Text = "";
-
-            cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
-            cboProduct.ComboBinding(releaseService.SelectProductByGroup(cboProductGroup.SelectedValue.ToInt()), "Product_ID", "Product_Name");
-
-            if (IsFirstProductSelect == true)
+        {           
+            if (cboProductGroup.SelectedIndex >= 0)
             {
-                //ProductIndexChange();
-                IsFirstProductSelect = false;
-            }
-        }
-
-        private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ProductInfoModify() 
-        {
-            dtpStartDate.MinDate = DateTime.Now.AddDays(-2);
-            cboProductGroup.SelectedIndex = cboProductGroup.FindString(ManageVO.product_group_name);
-            cboProduct.SelectedIndex = cboProduct.FindString(ManageVO.product_name);
-            txtCurrentPrice.Text = string.Format("{0:#,0}", ManageVO.sell_current_price);
-
-            if (ManageVO.sell_previous_price.ToString() == "-")
                 txtPreviousPrice.Text = "-";
+                txtCurrentPrice.Text = "";
+            }
+            
+            cboProduct.ComboBinding(releaseService.SelectProductByGroup(cboProductGroup.SelectedValue.ToInt()), "Product_ID", "Product_Name");
+                        
+        }
+     
 
-            else
-                txtPreviousPrice.Text = string.Format("{0:#,0}", ManageVO.sell_previous_price.ToString());
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            manageVO.start_date = dtpStartDate.Value;
+            manageVO.sell_current_price = Convert.ToInt32(txtCurrentPrice.Text);
+            manageVO.product_information = txtNote.Text;
+            manageVO.product_group_id = Convert.ToInt32(cboProductGroup.SelectedValue);
+            manageVO.product_id = Convert.ToInt32(cboProduct.SelectedValue);
 
-            dtpStartDate.Text = ManageVO.start_date.ToString();
-
-            if (ManageVO.end_date.ToString() == null)
-                txtEndDate.Text = "-";
-
-            else
-                txtEndDate.Text = Convert.ToDateTime(ManageVO.end_date.ToString()).ToString("yyyy-MM-dd");
+            productService.InsertSellPrice(manageVO);
+        }
 
 
-            txtNote.Text = ManageVO.note;
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

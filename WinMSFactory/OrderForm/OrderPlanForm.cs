@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.OrderForm;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.OrderForm
+namespace WinMSFactory
 {
     public partial class OrderPlanForm : ListForm
     {
@@ -23,19 +24,17 @@ namespace WinMSFactory.OrderForm
             get { return release_no; }
             set { release_no = value; cboPlanID.SelectedValue = release_no; }
         }
-        private DateTime dtpFrom;
-                
+                 
         public DateTime DtpFrom
         {
-            get { return dtpFrom; }
-            set { dtpFrom = value; }
+            get { return fromToDateControl1.From; }
+            set { fromToDateControl1.From = value; }
         }
-        private DateTime dtpTo;
-
+        
         public DateTime DtpTo
         {
-            get { return dtpTo; }
-            set { dtpTo = value; }
+            get { return fromToDateControl1.To; }
+            set { fromToDateControl1.To = value; }
         }
 
         public OrderPlanForm()
@@ -45,13 +44,13 @@ namespace WinMSFactory.OrderForm
 
         private void OrderPlanForm_Load(object sender, EventArgs e)
         {         
-            fromToDateControl1.From = dtpFrom;
+            fromToDateControl1.From = DtpFrom;
             fromToDateControl1.To = DtpTo;
 
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
             cboPlanID.SelectedValue = release_no;
 
-            DataTable dt = orderService.Calculate_OrderPlan(release_no, dtpFrom, DtpTo);
+            DataTable dt = orderService.Calculate_OrderPlan(release_no, DtpFrom, DtpTo);
             dgv.DataSource = dt;
 
             for (int i = 0; i < dgv.Rows.Count; i+=3)
@@ -62,12 +61,25 @@ namespace WinMSFactory.OrderForm
             
         }
 
+        //찾기 버튼
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                release_no = Convert.ToInt32(cboPlanID.SelectedValue);
+
+                DateTime from = Convert.ToDateTime(fromToDateControl1.From.ToShortDateString());
+                DateTime to = Convert.ToDateTime(fromToDateControl1.To.ToShortDateString());
+
+                DataTable dt = orderService.Calculate_OrderPlan(release_no, from, to);
+                dgv.DataSource = null;
+                dgv.DataSource = dt;
+            }
+        }
+
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            OrderPopUpForm frm = new OrderPopUpForm();
-
-            //SELECT RELEASE_NO AS 출고번호, RELEASE_SEQ AS 순서, p.PRODUCT_ID AS 품목, p.product_name AS 품명
-            //FROM TBL_RELEASE_DETAIL rd INNER JOIN dbo.TBL_BOM B ON rd.product_id = B.high_product_id INNER JOIN TBL_PRODUCT p ON p.product_id = b.low_product_id
+            OrderPopUpForm frm = new OrderPopUpForm();            
             frm.Show();
         }
     }

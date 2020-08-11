@@ -54,6 +54,11 @@ namespace WinMSFactory
             return dac.InsertMaterialPrice(InsertData);
         }
 
+        public bool InsertSellPrice(SellPriceManageVO vo)
+        {
+            return dac.InsertSellPrice(vo);
+        }
+
         public bool SelectPriceData(int companyID, int productID, ref ProductPriceManageVO vo)
         {
             return dac.SelectPriceData(companyID, productID, ref vo);

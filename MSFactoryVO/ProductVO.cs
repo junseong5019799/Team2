@@ -55,6 +55,7 @@ namespace MSFactoryVO
         public int sellprice_code { get; set; }
         public int product_id { get; set; }
         public string product_name { get; set; }
+        public int product_group_id { get; set; }
         public string product_group_name { get; set; }
         public int sell_current_price { get; set; }
         public int sell_previous_price { get; set; }
