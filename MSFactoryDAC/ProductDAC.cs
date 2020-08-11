@@ -1,13 +1,8 @@
 ﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using System.Management.Instrumentation;
-using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace MSFactoryDAC
 {
@@ -63,6 +58,36 @@ namespace MSFactoryDAC
                     }
 
                     return ProductName;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool InsertSellPrice(SellPriceManageVO vo)
+        {
+            try
+            {
+                using(SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {                        
+                        cmd.CommandText = "SP_SELLPRICE_UPSERT";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@product_id", vo.product_id);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.sell_current_price);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.start_date);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.note);                       
+
+                        if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
+                            return true;
+                        else
+                            return false;
+
+                    }
                 }
             }
             catch (Exception err)
@@ -175,52 +200,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public bool UpdateMaterialPrice(ProductPriceManageVO insertData)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-                {
-                    conn.Open();
-
-                    // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
-
-                    string sql = @"SP_MATERIAL_PRICE_UPDATE";
-
-                    DateTime? EndDateTime;
-
-                    // 여기 수정
-                    if (insertData.End_Date == null)
-                        EndDateTime = insertData.End_Date;
-                    else
-                        EndDateTime = insertData.End_Date.Value;
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@P_MATERIAL_PRICE_CODE", insertData.Material_Price_Code);
-                        cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
-                        cmd.Parameters.AddWithValue("@P_PRODUCT_ID", insertData.Product_ID);
-                        cmd.Parameters.AddWithValue("@P_PRODUCT_CURRENT_PRICE", insertData.Material_Current_Price);
-                        cmd.Parameters.AddWithValue("@P_PRODUCT_PREVIOUS_PRICE", insertData.Material_Previous_Price);
-                        cmd.Parameters.AddWithValue("@P_START_DATE", insertData.Start_Date);
-                        cmd.Parameters.AddWithValue("@P_END_DATE", EndDateTime);
-                        cmd.Parameters.AddWithValue("@P_NOTE", insertData.Note);
-
-                        int cnt = cmd.ExecuteNonQuery();
-
-                        if (cnt > 0)
-                            return true;
-                        else
-                            return false;
-                    }
-
-                }
-            }
-            catch (Exception err)
-            {
-                throw err;
-            }
-        }
+        
 
         public bool SelectPriceData(int CompanyID, int ProductID, ref ProductPriceManageVO vo)
         {
@@ -262,7 +242,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public bool InsertMaterialPrice(ProductPriceManageVO insertData)
+        public bool UpsertMaterialPrice(ProductPriceManageVO UpsertData)
         {
             try
             {
@@ -272,25 +252,25 @@ namespace MSFactoryDAC
 
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
                     object EndDate;
-                    int Code = 0;
-                    string sql = @"SP_MATERIAL_PRICE_INSERT";
+                    string sql = @"SP_MATERIAL_PRICE_UPSERT";
                     
 
-                    if (insertData.End_Date_String == "-")
+                    if ((object)UpsertData.End_Date == null)
                         EndDate = DBNull.Value;
-                    else
-                        EndDate = insertData.End_Date.Value;
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@P_COMPANY_ID", insertData.Company_ID);
-                        cmd.Parameters.AddWithValue("@P_Product_ID", insertData.Product_ID);
-                        cmd.Parameters.AddWithValue("@P_Material_Current_Price", insertData.Material_Current_Price);
-                        cmd.Parameters.AddWithValue("@P_material_previous_price", insertData.Material_Previous_Price);
-                        cmd.Parameters.AddWithValue("@P_start_date", insertData.Start_Date);
-                        cmd.Parameters.AddWithValue("@P_note", insertData.Note);
+                        cmd.Parameters.AddWithValue("@P_Material_Price_Code", UpsertData.Material_Price_Code);
+                        cmd.Parameters.AddWithValue("@P_COMPANY_ID", UpsertData.Company_ID);
+                        cmd.Parameters.AddWithValue("@P_Product_ID", UpsertData.Product_ID);
+                        cmd.Parameters.AddWithValue("@P_Material_Current_Price", UpsertData.Material_Current_Price);
+                        cmd.Parameters.AddWithValue("@P_material_previous_price", UpsertData.Material_Previous_Price);
+                        cmd.Parameters.AddWithValue("@P_start_date", UpsertData.Start_Date);
+                        //cmd.Parameters.AddWithValue("@P_end_date", UpsertData.End_Date);
+                        cmd.Parameters.AddWithValue("@P_note", UpsertData.Note);
+                        cmd.Parameters.AddWithValue("@P_CATEGORY", UpsertData.Category);
 
                         int result = cmd.ExecuteNonQuery();
 
@@ -320,7 +300,8 @@ namespace MSFactoryDAC
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
 
                     string sql = @"SELECT M.MATERIAL_PRICE_CODE, C.COMPANY_ID, C.COMPANY_NAME, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_UNIT, P.PRODUCT_INFORMATION, CONCAT(FORMAT(M.MATERIAL_CURRENT_PRICE,'#,0'),' 원') MATERIAL_CURRENT_PRICE_STRING, 
-                                    CASE WHEN M.material_previous_price IS NULL
+                                    CONVERT(INT,RANK() OVER (PARTITION BY COMPANY_NAME, PRODUCT_NAME ORDER BY M.MATERIAL_PRICE_CODE)) RANKNUM									,
+									CASE WHEN M.material_previous_price IS NULL
 									THEN '-' 
                                     ELSE
 									CONCAT(FORMAT(M.MATERIAL_PREVIOUS_PRICE,'#,0'),' 원')END  MATERIAL_PREVIOUS_PRICE_STRING , M.START_DATE, M.END_DATE END_DATE, M.NOTE
@@ -446,31 +427,6 @@ namespace MSFactoryDAC
                         cmd.ExecuteNonQuery();
                     }
 
-                }
-            }
-            catch (Exception err)
-            {
-                throw err;
-            }
-        }
-
-        public DataTable GetProducts()
-        {
-            try
-            {
-                string sql = @"SELECT PRODUCT_ID, PRODUCT_LEAD_TIME, PRODUCT_TACT_TIME, PRODUCT_GROUP_ID, PRODUCT_NAME, PRODUCT_INFORMATION
-		                            , PRODUCT_UNIT, PRODUCT_STANDARDS, PRODUCT_NOTE1, PRODUCT_NOTE2, PRODUCT_SEQ, PRODUCT_USE
-                               FROM TBL_PRODUCT
-                               WHERE PRODUCT_USE = 'Y'
-                               ORDER BY PRODUCT_SEQ";
-                DataTable dt = new DataTable();
-
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                    da.Fill(dt);
-
-                    return dt;
                 }
             }
             catch (Exception err)

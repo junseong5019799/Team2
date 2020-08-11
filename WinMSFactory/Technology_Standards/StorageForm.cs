@@ -116,7 +116,7 @@ namespace WinMSFactory
                 Final_regist_employee = employee.Employee_name
             };
 
-            StorageInfoForm frm = new StorageInfoForm(true, vo);
+            StoragePopupForm frm = new StoragePopupForm(true, vo);
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
         }
@@ -125,14 +125,14 @@ namespace WinMSFactory
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                StorageInfoForm frm = new StorageInfoForm(false, null);
+                StoragePopupForm frm = new StoragePopupForm(false, null);
                 if (frm.ShowDialog() == DialogResult.OK)
                     ReviewDGV();
             }
             
         }
 
-        private void buttonControl4_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
             if (txtStorage.TextLength > 0)
             {

@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.ManagePriceForm;
 
-namespace WinMSFactory.ManagePriceForm
+namespace WinMSFactory
 {
     public partial class SellPriceForm : ListForm
     {
@@ -41,8 +42,25 @@ namespace WinMSFactory.ManagePriceForm
         {
             if (e.RowIndex < 0)
                 return;
+        }
 
+        //찾기 버튼
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+               
+            }
+        }
 
+        private void Add(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                SellPriceDialogForm popfrm = new SellPriceDialogForm(true, null);
+                popfrm.Show();
+
+            }
         }
     }
 }

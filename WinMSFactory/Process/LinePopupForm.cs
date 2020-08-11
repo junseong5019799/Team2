@@ -57,7 +57,14 @@ namespace WinMSFactory
                 }
 
                 cboCorporationName.SelectedIndex = cboCorporationName.FindString(vo.corporation_name);
-                cboFactoryName.SelectedIndex = cboFactoryName.FindString(vo.factory_name);
+                if (cboCorporationName.SelectedIndex < 0)
+                {
+                    MessageBox.Show("법인명을 먼저 선택해주세요");
+                }
+                else 
+                {
+                    cboFactoryName.SelectedIndex = cboFactoryName.FindString(vo.factory_name);
+                }
                 txtLineName.Text = vo.line_name;
                 nudLine_seq.Value = vo.line_seq;
                 txtNote1.Text = vo.line_note1;

@@ -1,5 +1,4 @@
-﻿using DevExpress.Utils.Behaviors.Common;
-using MSFactoryVO;
+﻿using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,30 +12,29 @@ using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
-    public partial class StorageInfoForm : Form
+    public partial class StoragePopupForm : PopUpDialogForm
     {
         CorporationService cs = new CorporationService();
         FactoryService fs = new FactoryService();
         StorageVO vo;
         bool IsUpdate;
-        public StorageInfoForm(bool IsUpdate, StorageVO vo)
+        public StoragePopupForm(bool IsUpdate, StorageVO vo)
         {
             InitializeComponent();
             this.IsUpdate = IsUpdate;
             this.vo = vo;
         }
-
-        private void StorageInfoForm_Load(object sender, EventArgs e)
+        private void StoragePopupForm_Load(object sender, EventArgs e)
         {
             cboCorporation.ComboBinding(cs.CorporationComboBinding(), "coporation_id", "corporation_name");
             if (IsUpdate == false)
             {
-                
+
                 cboCorporation.SelectedIndexChanged += CorporationChange;
             }
-            
 
-            if(IsUpdate == true)
+
+            if (IsUpdate == true)
             {
 
                 cboCorporation.Enabled = false;
@@ -49,15 +47,14 @@ namespace WinMSFactory
                     rdoUse.Checked = true;
                     rdoUnUse.Checked = false;
                 }
-                    
+
                 else
                 {
                     rdoUse.Checked = false;
                     rdoUnUse.Checked = true;
                 }
-                    
+
             }
-            
         }
 
         private void CorporationChange(object sender, EventArgs e)
@@ -65,9 +62,10 @@ namespace WinMSFactory
             cboFactory.ComboBinding(fs.FactoryComboBindings(cboCorporation.SelectedIndex), "factory_id", "factory_name");
             if (IsUpdate == false)
             {
-                
+
             }
-            
+
         }
+
     }
 }

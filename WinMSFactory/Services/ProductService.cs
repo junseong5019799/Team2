@@ -59,9 +59,9 @@ namespace WinMSFactory
             return dac.SelectPriceData(companyID, productID, ref vo);
         }
 
-        public bool UpdateMaterialPrice(ProductPriceManageVO insertData)
+        public bool UpsertMaterialPrice(ProductPriceManageVO insertData)
         {
-            return dac.UpdateMaterialPrice(insertData);
+            return dac.UpsertMaterialPrice(insertData);
         }
 
         public DataTable SelectAllProductsToTable()
