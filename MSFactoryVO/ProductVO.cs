@@ -47,6 +47,8 @@ namespace MSFactoryVO
         public DateTime? End_Date { get; set; }
         public string End_Date_String { get; set; }
         public string Note { get; set; }
+        public int RankNum { get; set; }
+        public string Category { get; set; }
 
     }
 
