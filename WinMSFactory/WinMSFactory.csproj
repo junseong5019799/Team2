@@ -527,12 +527,6 @@
     <Compile Include="Technology_Standards\DowntimeTypeForm.Designer.cs">
       <DependentUpon>DowntimeTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology_Standards\StorageInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Technology_Standards\StorageInfoForm.Designer.cs">
-      <DependentUpon>StorageInfoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Technology_Standards\ProcessWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -544,6 +538,12 @@
     </Compile>
     <Compile Include="Technology_Standards\StorageForm.Designer.cs">
       <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technology_Standards\StoragePopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technology_Standards\StoragePopupForm.Designer.cs">
+      <DependentUpon>StoragePopupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="MyControl\DataGridViewControl.cs">
@@ -796,8 +796,8 @@
     <EmbeddedResource Include="Technology_Standards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technology_Standards\StorageInfoForm.resx">
-      <DependentUpon>StorageInfoForm.cs</DependentUpon>
+    <EmbeddedResource Include="Technology_Standards\StoragePopupForm.resx">
+      <DependentUpon>StoragePopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

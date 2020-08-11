@@ -69,7 +69,7 @@ namespace MSFactoryDAC
                     cmd.CommandText = @"select S.[storage_id], F.factory_name, [storage_name], [storage_seq], [storage_use], S.[first_regist_time], S.[first_regist_employee], S.[final_regist_time], S.[final_regist_employee]
                                         from tbl_storage S INNER JOIN TBL_FACTORY F ON S.factory_id = F.factory_id 
 										INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id" + sb.ToString() +
-                                " order by storage_seq asc";
+                                        " order by storage_seq asc";
 
                     return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
                 }
