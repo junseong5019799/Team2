@@ -133,9 +133,10 @@ namespace MSFactoryDAC
                         return true;
                     }
                 }
-                catch (Exception err)
+                catch
                 {
                     return false;
+                    
                 }
             }
         }

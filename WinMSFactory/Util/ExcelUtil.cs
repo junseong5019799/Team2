@@ -1,7 +1,4 @@
-﻿using DevExpress.Data.Access;
-using DevExpress.DataAccess.Native.Data;
-using DevExpress.DataAccess.Sql;
-using DevExpress.XtraEditors;
+﻿using MSFactoryDAC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,78 +7,60 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Data;
 
-namespace WinMSFactory.Util
+namespace WinMSFactory
 {
     public class ExcelUtil
     {
-        
-        public static void ListToExcel<T>(List<T> dataList) // string[] Columns
+        public static void ListToExcel<T>(string[] ColumnsList, List<T> dataList) // string[] Columns
         {
-            List<string> ColumnList = new List<string>(); // 컬럼 리스트
+            DataTable dt = SqlHelper.ConvertToDataTable<T>(dataList);
+            ExcelSettings(ColumnsList, dt);
+        }
 
+        public static void DataTableToExcel(string[] ColumnsList, DataTable dt)
+        {
+            ExcelSettings(ColumnsList, dt);
+        }
+
+        private static void ExcelSettings(string[] ColumnsList, DataTable dt)
+        {
             SaveFileDialog dialog = new SaveFileDialog();
 
-            Type type = typeof(T);
+            dialog.Filter = "Excel 파일(*.xlsx)|*.xlsx";
 
-            foreach (PropertyInfo property in type.GetProperties())
-                ColumnList.Add(property.Name);
-
-            try
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                dialog.Filter = "Excel 파일(*.xlsx)|*.xlsx";
-                
-
-                if (dialog.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    try
+                    Excel.Application xlApp = new Excel.Application();
+                    Excel.Workbook xlWorkbook = xlApp.Workbooks.Add();
+                    Excel.Worksheet xlWorksheet = (Excel.Worksheet)xlWorkbook.Worksheets.Add();
+                    xlApp.Visible = true;
+
+                    for (int i = 1; i <= dt.Columns.Count; i++)
+                        xlWorksheet.Cells[1, i] = ColumnsList[i - 1].ToString();
+
+                    for (int i = 2; i <= dt.Rows.Count + 1; i++)
                     {
-                        Excel.Application xlApp = new Excel.Application();
-                        Excel.Workbook xlWorkbook = xlApp.Workbooks.Add();
-                        Excel.Worksheet xlWorksheet = (Excel.Worksheet)xlWorkbook.Worksheets.Add();
-                        xlApp.Visible = true;
-
-                        for(int i = 1; i< dataList.Count; i++)// row
-                        {
-                            for(int j = 1; j<ColumnList.Count; j++) // column
-                            {
-                                if (i == 1)
-                                    xlWorksheet.Cells[i, j] = ColumnList[j].ToString();
-
-                                else
-                                    xlWorksheet.Cells[i, j] = ColumnList[i][j].ToString();
-                            }
-                        }
-
-                        xlWorkbook.SaveAs(dialog.FileName);
-                        xlWorkbook.Close(true);
-                        xlApp.Quit();
-
-                        MessageBox.Show("엑셀이 생성되었습니다.");
+                        for (int j = 1; j <= dt.Columns.Count; j++)
+                            xlWorksheet.Cells[i, j] = dt.Rows[i - 2][j - 1].ToString();
                     }
-                    catch
-                    {
-                        MessageBox.Show("오류가 발생하였습니다. 다시 시도하여 주세요");
-                    }
+
+                    xlWorkbook.SaveAs(dialog.FileName);
+                    xlWorkbook.Close(true);
+                    xlApp.Quit();
+
+                    MessageBox.Show("엑셀이 생성되었습니다.");
+                }
+                catch
+                {
+                    MessageBox.Show("오류가 발생하였습니다. 다시 시도하여 주세요");
                 }
             }
-            catch
-            {
-
-            }
-
         }
-        public static void DataTableToExcel(DataTable dt)
-        {
 
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-        }
+        
     }
 }
