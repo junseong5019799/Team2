@@ -289,33 +289,54 @@ namespace WinMSFactory
 
 		public static void ComboBinding<T>(this ComboBox combo, List<T> list, string Code, string CodeNm, string blankText, object blankValue = null) where T : class, new()
 		{
+			List<T> comboList;
+
 			if (list == null)
-				list = new List<T>();
+				comboList = new List<T>();
+			else
+				comboList = list.ToList();
 
 			T blankItem = new T();
 
 			blankItem.GetType().GetProperty(CodeNm).SetValue(blankItem, blankText);
 			blankItem.GetType().GetProperty(Code).SetValue(blankItem, blankValue);
-			list.Insert(0, blankItem);
+			comboList.Insert(0, blankItem);
 
-			combo.DataSource = list;
+			combo.DataSource = comboList;
 			combo.DisplayMember = CodeNm;
 			combo.ValueMember = Code;
 		}
 
 		public static void ComboBinding(this ComboBox cbo, DataTable dt, string DisplayMember, string ValueMember, string emptyName = null, object emptyValue = null)
 		{
+			DataTable comboDt;
+
+			if (dt == null)
+				comboDt = new DataTable();
+			else
+				comboDt = dt.Copy();
+
 			if (!string.IsNullOrEmpty(emptyName))
 			{
-				DataRow dr = dt.NewRow();
+				DataRow dr = comboDt.NewRow();
 				dr[DisplayMember] = emptyName;
 				dr[ValueMember] = emptyValue;
-				dt.Rows.InsertAt(dr, 0);
+				comboDt.Rows.InsertAt(dr, 0);
 			}
 
-			cbo.DataSource = dt;
+			cbo.DataSource = comboDt;
 			cbo.DisplayMember = DisplayMember;
 			cbo.ValueMember = ValueMember;
+		}
+
+		public static void ComboBinding<T>(this ComboBox cbo, string emptyName, T emptyValue)
+		{
+			Dictionary<string, T> dic = new Dictionary<string, T>();
+			dic.Add(emptyName, emptyValue);
+
+			cbo.DataSource = new BindingSource(dic, null);
+			cbo.DisplayMember = "Key";
+			cbo.ValueMember = "Value";
 		}
 		#endregion
 

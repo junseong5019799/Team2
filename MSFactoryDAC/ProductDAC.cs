@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Management.Instrumentation;
+using System.Data.Common;
 
 namespace MSFactoryDAC
 {
@@ -445,6 +446,31 @@ namespace MSFactoryDAC
                         cmd.ExecuteNonQuery();
                     }
 
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public DataTable GetProducts()
+        {
+            try
+            {
+                string sql = @"SELECT PRODUCT_ID, PRODUCT_LEAD_TIME, PRODUCT_TACT_TIME, PRODUCT_GROUP_ID, PRODUCT_NAME, PRODUCT_INFORMATION
+		                            , PRODUCT_UNIT, PRODUCT_STANDARDS, PRODUCT_NOTE1, PRODUCT_NOTE2, PRODUCT_SEQ, PRODUCT_USE
+                               FROM TBL_PRODUCT
+                               WHERE PRODUCT_USE = 'Y'
+                               ORDER BY PRODUCT_SEQ";
+                DataTable dt = new DataTable();
+
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    da.Fill(dt);
+
+                    return dt;
                 }
             }
             catch (Exception err)

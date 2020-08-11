@@ -222,17 +222,26 @@ namespace MSFactoryDAC
         {
             try
             {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
                 string sql = @"SELECT F.CORPORATION_ID, F.FACTORY_ID, F.FACTORY_NAME
                                FROM TBL_FACTORY F
                                     INNER JOIN TBL_CORPORATION C
                                         ON F.CORPORATION_ID = C.CORPORATION_ID
-                               WHERE F.CORPORATION_ID = @CORPORATION_ID
-                               AND FACTORY_USE = 'Y'
-                               AND CORPORATION_USE = 'Y'
-                               ORDER BY FACTORY_SEQ ASC";
+                               WHERE 1 = 1";
+
+                if (corporation_id > 0)
+                { 
+                    sql += " AND F.CORPORATION_ID = @CORPORATION_ID";
+                    cmd.Parameters.AddWithValue("@CORPORATION_ID", corporation_id);
+                }
+
+                sql += @" AND FACTORY_USE = 'Y'
+                          AND CORPORATION_USE = 'Y'
+                          ORDER BY FACTORY_SEQ ASC";
+                cmd.CommandText = sql;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                da.SelectCommand.Parameters.AddWithValue("@CORPORATION_ID", corporation_id);
 
                 da.Fill(dt);
 
