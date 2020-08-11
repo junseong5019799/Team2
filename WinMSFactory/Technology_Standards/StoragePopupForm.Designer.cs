@@ -37,29 +37,34 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtStorage = new System.Windows.Forms.TextBox();
+            this.nudStorage_seq = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStorage_seq)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 410);
-            this.panel1.Size = new System.Drawing.Size(450, 40);
+            this.panel1.Location = new System.Drawing.Point(0, 361);
+            this.panel1.Size = new System.Drawing.Size(433, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnConfirm.Location = new System.Drawing.Point(89, 4);
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(246, 4);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cboCorporation
             // 
             this.cboCorporation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCorporation.FormattingEnabled = true;
-            this.cboCorporation.Location = new System.Drawing.Point(118, 47);
+            this.cboCorporation.Location = new System.Drawing.Point(112, 52);
             this.cboCorporation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboCorporation.Name = "cboCorporation";
             this.cboCorporation.Size = new System.Drawing.Size(263, 24);
@@ -69,7 +74,7 @@
             // 
             this.groupBox1.Controls.Add(this.rdoUnUse);
             this.groupBox1.Controls.Add(this.rdoUse);
-            this.groupBox1.Location = new System.Drawing.Point(53, 210);
+            this.groupBox1.Location = new System.Drawing.Point(46, 245);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -106,7 +111,7 @@
             // 
             this.cboFactory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFactory.FormattingEnabled = true;
-            this.cboFactory.Location = new System.Drawing.Point(118, 101);
+            this.cboFactory.Location = new System.Drawing.Point(112, 100);
             this.cboFactory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboFactory.Name = "cboFactory";
             this.cboFactory.Size = new System.Drawing.Size(263, 24);
@@ -115,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 159);
+            this.label3.Location = new System.Drawing.Point(51, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 6;
@@ -124,7 +129,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 106);
+            this.label2.Location = new System.Drawing.Point(46, 103);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 7;
@@ -133,7 +138,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 53);
+            this.label1.Location = new System.Drawing.Point(60, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 8;
@@ -141,17 +146,35 @@
             // 
             // txtStorage
             // 
-            this.txtStorage.Location = new System.Drawing.Point(118, 153);
+            this.txtStorage.Location = new System.Drawing.Point(112, 148);
             this.txtStorage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStorage.Name = "txtStorage";
             this.txtStorage.Size = new System.Drawing.Size(263, 22);
             this.txtStorage.TabIndex = 5;
             // 
+            // nudStorage_seq
+            // 
+            this.nudStorage_seq.Location = new System.Drawing.Point(115, 199);
+            this.nudStorage_seq.Name = "nudStorage_seq";
+            this.nudStorage_seq.Size = new System.Drawing.Size(77, 22);
+            this.nudStorage_seq.TabIndex = 45;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(71, 199);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 16);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "순번";
+            // 
             // StoragePopupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 450);
+            this.ClientSize = new System.Drawing.Size(433, 401);
+            this.Controls.Add(this.nudStorage_seq);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cboCorporation);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboFactory);
@@ -170,9 +193,12 @@
             this.Controls.SetChildIndex(this.cboFactory, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.cboCorporation, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.nudStorage_seq, 0);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStorage_seq)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +215,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtStorage;
+        private System.Windows.Forms.NumericUpDown nudStorage_seq;
+        private System.Windows.Forms.Label label4;
     }
 }

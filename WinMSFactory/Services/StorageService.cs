@@ -33,7 +33,7 @@ namespace WinMSFactory.Services
 
         public List<InOutVO> SelectInOut()
         {
-            return dac.SelectInOut(); 
+            return dac.SelectInOut();
         }
         public List<StorageVO> GetStorageDetailList(int product_id)
         {
@@ -57,6 +57,16 @@ namespace WinMSFactory.Services
         public List<StorageVO> StorageComboBindings(int corpValue, int facValue)
         {
             return dac.StorageComboBindings(corpValue, facValue);
+        }
+
+        public bool SaveStorage(StorageVO vo)
+        {
+            return dac.SaveStorage(vo);
+        }
+
+        public bool StorageDelete(List<int> storage_idList)
+        {
+            return dac.StorageDelete(storage_idList);
         }
     }
 }

@@ -66,9 +66,9 @@ namespace MSFactoryDAC
                         }
                     }
 
-                    cmd.CommandText = @"select S.[storage_id], F.factory_name, [storage_name], [storage_seq], [storage_use], S.[first_regist_time], S.[first_regist_employee], S.[final_regist_time], S.[final_regist_employee]
-                                        from tbl_storage S INNER JOIN TBL_FACTORY F ON S.factory_id = F.factory_id 
-										INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id" + sb.ToString() +
+                    cmd.CommandText = @"select C.corporation_name, S.[storage_id], F.factory_name, [storage_name], [storage_seq], [storage_use], S.[first_regist_time], S.[first_regist_employee], S.[final_regist_time], S.[final_regist_employee]
+                                        from tbl_storage S INNER JOIN TBL_FACTORY F ON S.factory_id = F.factory_id
+                                                           INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id" + sb.ToString() +
                                         " order by storage_seq asc";
 
                     return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
@@ -300,8 +300,69 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+        /// <summary>
+        /// 창고 등록, 수정관리
+        /// </summary>
+        /// <param ID="storage_id"></param>
+        /// <returns></returns>
+        public bool SaveStorage(StorageVO vo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
 
+                    string sql = "SP_SAVE_STORAGE";
 
-      
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_storage_id", vo.Storage_Id);
+                        cmd.Parameters.AddWithValue("@P_storage_name", vo.Storage_Name);
+                        cmd.Parameters.AddWithValue("@P_factory_id", vo.Factory_id);
+                        cmd.Parameters.AddWithValue("@P_storage_seq", vo.Storage_Seq);
+                        cmd.Parameters.AddWithValue("@P_storage_use", vo.Storage_Use);
+                        cmd.Parameters.AddWithValue("@P_first_regist_employee", vo.First_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_final_regist_employee", vo.Final_regist_employee);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+                throw err;
+            }
+        }
+
+        public bool StorageDelete(List<int> storage_idList)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string selNum = string.Join(",", storage_idList);
+
+                    string sql = "Delete From TBL_STORAGE where storage_id in (" + selNum + ") ;"; 
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+        }
+
     }
 }
