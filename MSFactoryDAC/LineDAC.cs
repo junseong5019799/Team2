@@ -244,11 +244,11 @@ namespace MSFactoryDAC
 		                               ON L.FACTORY_ID = F.FACTORY_ID
 	                               INNER JOIN TBL_CORPORATION C
 		                               ON F.CORPORATION_ID = C.CORPORATION_ID
-                               WHERE FACTORY_ID = @FACTORY_ID
-                               AND LINE_USE = 'Y'
-                               AND FACTORY_USE = 'Y'
-                               AND CORPORATION_USE = 'Y'
-                               ORDER BY LINE_SEQ ASC";
+                               WHERE F.FACTORY_ID = @FACTORY_ID
+                               AND L.LINE_USE = 'Y'
+                               AND F.FACTORY_USE = 'Y'
+                               AND C.CORPORATION_USE = 'Y'
+                               ORDER BY L.LINE_SEQ ASC";
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                 da.SelectCommand.Parameters.AddWithValue("@FACTORY_ID", factory_id);

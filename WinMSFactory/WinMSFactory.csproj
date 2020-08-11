@@ -58,6 +58,10 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel1">
+      <HintPath>C:\Users\PC\Desktop\　\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -571,6 +575,12 @@
     <Compile Include="Util\ExcelUtil.cs" />
     <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\FormUtil.cs" />
+    <Compile Include="WorkOrderPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrderPopupForm.Designer.cs">
+      <DependentUpon>WorkOrderPopupForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin\ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -798,6 +808,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\StoragePopupForm.resx">
       <DependentUpon>StoragePopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrderPopupForm.resx">
+      <DependentUpon>WorkOrderPopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

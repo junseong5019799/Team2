@@ -49,9 +49,9 @@ namespace WinMSFactory
             return dac.SelectProductBindings(SelectedCompanyValue);
         }
 
-        public bool InsertMaterialPrice(ProductPriceManageVO InsertData)
+        public bool InsertSellPrice(SellPriceManageVO vo)
         {
-            return dac.InsertMaterialPrice(InsertData);
+            return dac.InsertSellPrice(vo);
         }
 
         public bool SelectPriceData(int companyID, int productID, ref ProductPriceManageVO vo)
@@ -72,6 +72,10 @@ namespace WinMSFactory
         public bool UpdateProducts(ProductInsertVO productInsert)
         {
             return dac.UpdateProducts(productInsert);
+        }
+        public DataTable GetProducts()
+        {
+            return dac.GetProducts();
         }
     }
 }
