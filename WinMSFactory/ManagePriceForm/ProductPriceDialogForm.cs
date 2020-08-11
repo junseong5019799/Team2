@@ -42,7 +42,6 @@ namespace WinMSFactory
             {
                 Message = "수정";
                 this.ManageVO = ManageVO;
-                
             }
                 
 
@@ -57,18 +56,15 @@ namespace WinMSFactory
             txtPreviousPrice.Enabled = false;
             txtEndDate.Enabled = false;
 
-            dtpStartDate.MinDate = DateTime.Now;
             this.Text = Message;
             ProductIndexChange();
             if (IsInsert == true)// 등록
             {
-                
                 txtEndDate.Text = "-";
             }
             else // 수정
             {
                 ProductInfoModify();
-                
                 cboCompany.Enabled = cboProduct.Enabled = false;
             }
 
@@ -77,7 +73,6 @@ namespace WinMSFactory
 
         private void ProductInfoModify() // 수정 메인
         {
-            dtpStartDate.MinDate = DateTime.Now.AddDays(-2);
             cboCompany.SelectedIndex = cboCompany.FindString(ManageVO.Company_Name);
             cboProduct.SelectedIndex = cboProduct.FindString(ManageVO.Product_Name);
             txtCurrentPrice.Text = string.Format("{0:#,0}",ManageVO.Material_Current_Price_String);
@@ -88,7 +83,6 @@ namespace WinMSFactory
             else
                 txtPreviousPrice.Text = string.Format("{0:#,0}",ManageVO.Material_Previous_Price_String);
 
-            dtpStartDate.Text = ManageVO.Start_Date_String.ToString();
 
             if (ManageVO.End_Date_String == null)
                 txtEndDate.Text = "-";
@@ -96,7 +90,7 @@ namespace WinMSFactory
             else
                 txtEndDate.Text = Convert.ToDateTime(ManageVO.End_Date_String).ToString("yyyy-MM-dd");
 
-
+            dtpStartDate.Text = ManageVO.Start_Date_String.ToString();
             txtNote.Text = ManageVO.Note;
         }
 
@@ -171,45 +165,32 @@ namespace WinMSFactory
                 if(MessageBox.Show($"정말로 {Message}하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.No)
                     return;
 
-                string EndDate = string.Empty;
-
-                if (txtEndDate.TextLength < 1)
-                    EndDate = null;
-
-                else
-                    EndDate = txtEndDate.Text;
-
                 ProductPriceManageVO InsertData = new ProductPriceManageVO
                 {
                     // Insert
+                    Material_Price_Code = 0,
                     Company_ID = cboCompany.SelectedValue.ToInt(),
                     Product_ID = cboProduct.SelectedValue.ToInt(),
-                    Material_Previous_Price = txtPreviousPrice.Text.Replace(",","").ToInt(),
-                    Material_Current_Price = txtCurrentPrice.Text.Replace(",","").ToInt(),
+                    Material_Previous_Price = txtPreviousPrice.Text.Replace(",", "").Replace("-", "").ToInt(),
+                    Material_Current_Price = txtCurrentPrice.Text.Replace(",", "").ToInt(),
                     Start_Date = dtpStartDate.Value,
-                    End_Date_String = EndDate,
-                    Note = txtNote.Text
+                    //End_Date = EndDate,
+                    Note = txtNote.Text,
+                    Category = "I"
                 };
 
-                if(pdsv.InsertMaterialPrice(InsertData) == true)
+                if(pdsv.UpsertMaterialPrice(InsertData) == true)
                 {
-                    MessageBox.Show("등록이 완료되었습니다.");
+                    MessageBox.Show($"{Message}이 완료되었습니다.");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-
-
             }
 
             else if (IsInsert == false) // Update , // 삭제는 다르게 함
             {
-
-                DateTime? dt;
-                if (txtEndDate.Text == "-")
-                    dt = null;
-
-                else
-                    dt = Convert.ToDateTime(txtEndDate.Text);
+                if (MessageBox.Show($"정말로 {Message}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
 
                 ProductPriceManageVO InsertData = new ProductPriceManageVO
@@ -221,13 +202,14 @@ namespace WinMSFactory
                     Material_Previous_Price = txtPreviousPrice.Text.Replace(",", "").Replace("-", "").ToInt(),
                     Material_Current_Price = txtCurrentPrice.Text.Replace(",", "").ToInt(),
                     Start_Date = dtpStartDate.Value,
-                    End_Date = dt,
-                    Note = txtNote.Text
+                    //End_Date = dt,
+                    Note = txtNote.Text,
+                    Category = "U"
                 };
 
-                if (pdsv.UpdateMaterialPrice(InsertData) == true)
+                if (pdsv.UpsertMaterialPrice(InsertData) == true)
                 {
-                    MessageBox.Show("수정이 완료되었습니다.");
+                    MessageBox.Show($"{Message}이 완료되었습니다.");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -257,9 +239,6 @@ namespace WinMSFactory
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
-
-            // 
-            
         }
 
         
