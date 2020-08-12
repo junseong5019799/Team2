@@ -80,7 +80,8 @@ namespace WinMSFactory
         private void btnOrder_Click(object sender, EventArgs e)
         {
             OrderPopUpForm frm = new OrderPopUpForm();
-            frm.release_no = release_no;
+            frm.Release_no = release_no;
+
             frm.Show();
         }
     }

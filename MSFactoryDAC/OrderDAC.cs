@@ -378,7 +378,7 @@ namespace MSFactoryDAC
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public bool InsertOrder(OrderVO order)
+        public bool InsertOrder(List<OrderVO> olist)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -392,24 +392,55 @@ namespace MSFactoryDAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tran;
 
-                    cmd.Parameters.AddWithValue("@company_id", order.company_id);
-                    cmd.Parameters.AddWithValue("@first_regist_employee", order.first_regist_employee);
-                    cmd.Parameters.AddWithValue("@final_regist_employee", order.final_regist_employee);
+                    cmd.Parameters.Add("@company_id", SqlDbType.Int);
+                    cmd.Parameters.Add("@first_regist_employee", SqlDbType.VarChar,20 );
+                    cmd.Parameters.Add("@final_regist_employee", SqlDbType.VarChar, 20);
+
+                    foreach (OrderVO item in olist)
+                    {
+                        cmd.Parameters["@company_id"].Value = item.company_id;
+                        cmd.Parameters["@first_regist_employee"].Value = item.first_regist_employee;
+                        cmd.Parameters["@final_regist_employee"].Value = item.final_regist_employee;
+                    }                    
 
                     int num = Convert.ToInt32(cmd.ExecuteScalar());
 
                     cmd.CommandText = "SP_ORDERDETAIL_INSERT";
                     cmd.Parameters.Clear();
 
-                    cmd.Parameters.AddWithValue("@order_no", num);
-                    cmd.Parameters.AddWithValue("@product_id", order.product_id);
-                    cmd.Parameters.AddWithValue("@order_request_quantity", order.order_request_quantity);
-                    cmd.Parameters.AddWithValue("@order_status", order.order_status);
+                    cmd.Parameters.Add("@order_no", SqlDbType.Int);
+                    cmd.Parameters.Add("@product_id", SqlDbType.Int);
+                    cmd.Parameters.Add("@order_seq", SqlDbType.Int);
+                    cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
+                    cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
 
-                    cmd.ExecuteNonQuery();
+                    int cnt = 1;
+                    int result = 0;
+
+                    foreach (OrderVO item in olist)
+                    {
+                        cmd.Parameters["@order_no"].Value = num;
+                        cmd.Parameters["@product_id"].Value = item.product_id;
+                        cmd.Parameters["@order_seq"].Value = cnt;
+                        cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
+                        cmd.Parameters["@order_status"].Value = item.order_status;
+                        cmd.Parameters["@order_request_date"].Value = item.order_request_date;
+
+                        cnt++;
+
+                        result += cmd.ExecuteNonQuery();
+                    }
+
+                    
+
                     tran.Commit();
 
-                    return true;
+                    if (result > 0)
+                        return true;
+                    else
+                        return false;
+
                 }
                 catch (Exception err)
                 {
@@ -489,7 +520,7 @@ namespace MSFactoryDAC
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public bool UpdateOrderDate(DateTime dt, int release_no)
+        public bool UpdateOrderDate(DateTime dt, int order_no)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -499,25 +530,25 @@ namespace MSFactoryDAC
 
                 try
                 {
-                    cmd.CommandText = @"UPDATE TBL_RELEASE_DETAIL
-                                       SET release_plan_date = @release_plan_date
-                                       WHERE release_no = @release_no";
+                    cmd.CommandText = @"UPDATE TBL_ORDER_DETAIL
+                                        SET	order_request_date = @order_request_date 
+                                        WHERE order_no = @order_no";
                     cmd.Transaction = tran;
 
-                    cmd.Parameters.AddWithValue("@release_plan_date", dt);
-                    cmd.Parameters.AddWithValue("@release_no", release_no);
+                    cmd.Parameters.AddWithValue("@order_request_date", dt);
+                    cmd.Parameters.AddWithValue("@order_no", order_no);
 
                     cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = @"UPDATE TBL_RELEASE
+                    cmd.CommandText = @"UPDATE TBL_ORDER
                                        SET final_regist_employee = @final_regist_employee
                                          , final_regist_time = @final_regist_time
-                                       WHERE release_no = @release_no";
+                                       WHERE order_no = @order_no";
                     cmd.Parameters.Clear();
 
                     cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
                     cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@release_no", release_no);
+                    cmd.Parameters.AddWithValue("@order_no", order_no);
 
                     cmd.ExecuteNonQuery();
                     tran.Commit();

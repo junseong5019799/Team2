@@ -35,7 +35,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cboCompany = new System.Windows.Forms.ComboBox();
-            this.btnDueDate = new WinMSFactory.ButtonControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.panel1.SuspendLayout();
@@ -46,97 +45,79 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnDueDate);
             this.panel1.Controls.Add(this.cboCompany);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(1534, 80);
+            this.panel1.Size = new System.Drawing.Size(1364, 64);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.panel3, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.cboCompany, 0);
-            this.panel1.Controls.SetChildIndex(this.btnDueDate, 0);
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(609, 66);
+            this.GuidLabel1.Location = new System.Drawing.Point(541, 53);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
-            this.panel3.Location = new System.Drawing.Point(128, 27);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Location = new System.Drawing.Point(114, 22);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(259, 41);
+            this.panel3.Size = new System.Drawing.Size(230, 33);
             this.panel3.TabIndex = 27;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 7, 23, 34, 16, 170);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 11, 17, 28, 58, 555);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
+            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 8, 23, 34, 16, 170);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 12, 17, 28, 58, 555);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 35);
+            this.label1.Location = new System.Drawing.Point(58, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 28;
             this.label1.Text = "납기일";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(471, 35);
+            this.label2.Location = new System.Drawing.Point(419, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 29;
             this.label2.Text = "납품업체";
             // 
             // cboCompany
             // 
             this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(547, 32);
-            this.cboCompany.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCompany.Location = new System.Drawing.Point(486, 26);
             this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(136, 28);
+            this.cboCompany.Size = new System.Drawing.Size(121, 24);
             this.cboCompany.TabIndex = 34;
-            // 
-            // btnDueDate
-            // 
-            this.btnDueDate.BackColor = System.Drawing.Color.White;
-            this.btnDueDate.ForeColor = System.Drawing.Color.Black;
-            this.btnDueDate.Location = new System.Drawing.Point(1222, 168);
-            this.btnDueDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDueDate.Name = "btnDueDate";
-            this.btnDueDate.Size = new System.Drawing.Size(114, 31);
-            this.btnDueDate.TabIndex = 35;
-            this.btnDueDate.Text = "납기 일자 변경";
-            this.btnDueDate.UseVisualStyleBackColor = false;
-            this.btnDueDate.Click += new System.EventHandler(this.btnDueDate_Click);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1534, 951);
+            this.panel2.Size = new System.Drawing.Size(1364, 761);
             this.panel2.TabIndex = 4;
             // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
+            this.dgv.AutoGenerateColumns = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -157,23 +138,23 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.IsAllCheckColumnHeader = false;
-            this.dgv.IsAutoGenerateColumns = true;
-            this.dgv.Location = new System.Drawing.Point(0, 78);
-            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgv.IsAutoGenerateColumns = false;
+            this.dgv.Location = new System.Drawing.Point(0, 62);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 873);
+            this.dgv.Size = new System.Drawing.Size(1364, 698);
             this.dgv.TabIndex = 0;
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // OrderListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 951);
+            this.ClientSize = new System.Drawing.Size(1364, 761);
             this.Controls.Add(this.panel2);
             this.Name = "OrderListForm";
             this.Text = "발주 현황";
@@ -200,6 +181,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboCompany;
-        private ButtonControl btnDueDate;
     }
 }
