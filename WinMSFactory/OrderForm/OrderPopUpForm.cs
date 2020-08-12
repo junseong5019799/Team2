@@ -17,6 +17,8 @@ namespace WinMSFactory.OrderForm
         OrderService orderService = new OrderService();
         OrderVO orderVO = new OrderVO();
 
+        public int release_no { get; set; }
+
         public OrderPopUpForm()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace WinMSFactory.OrderForm
             btn.UseColumnTextForButtonValue = false;
             dgvOrder.Columns.Add(btn);
 
-            DataTable dt = orderService.GetOrderPlanList();
+            DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
             
 

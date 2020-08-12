@@ -18,9 +18,9 @@ namespace WinMSFactory.Services
             return dac.GetCompanyList();
         }
 
-        public DataTable GetOrderPlanList()
+        public DataTable GetOrderPlanList(int release_no)
         {
-            return dac.GetOrderPlanList();
+            return dac.GetOrderPlanList(release_no);
         }
 
         public DataTable GetOrderList()

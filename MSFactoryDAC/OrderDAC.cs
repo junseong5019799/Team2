@@ -221,7 +221,7 @@ namespace MSFactoryDAC
         /// SELECT 발주 제안 리스트
         /// </summary>
         /// <returns></returns>
-        public DataTable GetOrderPlanList()
+        public DataTable GetOrderPlanList(int release_no)
         {
             try
             {
@@ -232,6 +232,7 @@ namespace MSFactoryDAC
                         da.SelectCommand = new SqlCommand("SP_ORDERPLAN_SELECT", con);
                         da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
+                        da.SelectCommand.Parameters.AddWithValue("@release_no", release_no);
                         DataTable dt = new DataTable();
                         con.Open();
                         da.Fill(dt);

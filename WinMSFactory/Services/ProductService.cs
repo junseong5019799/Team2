@@ -84,9 +84,9 @@ namespace WinMSFactory
             return dac.GetProducts();
         }
 
-        internal void InsertSellPrice(SellPriceManageVO manageVO)
+        public bool InsertSellPrice(SellPriceManageVO manageVO)
         {
-            throw new NotImplementedException();
+            return dac.InsertSellPrice(manageVO);
         }
     }
 }
