@@ -60,10 +60,12 @@
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnConfirm.Location = new System.Drawing.Point(52, 4);
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(211, 4);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cboCorporationName
             // 
@@ -73,6 +75,7 @@
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(147, 24);
             this.cboCorporationName.TabIndex = 68;
+            this.cboCorporationName.SelectedIndexChanged += new System.EventHandler(this.cboCorporationName_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -125,6 +128,7 @@
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(147, 24);
             this.cboFactoryName.TabIndex = 62;
+            this.cboFactoryName.SelectedIndexChanged += new System.EventHandler(this.cboFactoryName_SelectedIndexChanged);
             // 
             // label1
             // 

@@ -178,7 +178,7 @@ namespace WinMSFactory
 
                 if (CheckList.Count > 0)
                 {
-                    service.LineDelete(CheckList);
+                    service.FactoryDelete(CheckList);
 
                     LoadData();
                 }

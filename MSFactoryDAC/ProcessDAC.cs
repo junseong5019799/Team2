@@ -62,16 +62,15 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"Select F.corporation_id, factory_id, factory_name
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"Select F.corporation_id, F.factory_id, factory_name
                                           From TBL_FACTORY F
                                             INNER JOIN TBL_CORPORATION C
                                                 ON F.corporation_id = C.corporation_id
                                          WHERE factory_use = 'Y'
                                            AND corporation_use = 'Y'
                                       Order by factory_seq ASC";
-
-                    cmd.Connection.Open();
-
+                    
                     return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
                 }
             }
@@ -81,7 +80,87 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<FactoryVO> FactoryCombo(int corporation_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"Select factory_id, factory_name
+                                          From TBL_FACTORY
+                                         WHERE corporation_id =@corporation_id
+                                           ANd factory_use = 'Y'
+                                      Order by factory_seq ASC";
 
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@corporation_id", corporation_id);
+                    return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<LineVO> LineCombo(int factory_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"Select L.factory_id, L.line_id, line_name
+                                          From TBL_LINE L
+                                         inner join TBL_FACTORY F ON L.factory_id = F.factory_id
+                                         inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                         WHERE F.factory_id = @factory_id
+                                           AND line_use = 'Y'
+                                           AND factory_use = 'Y'
+                                           AND corporation_use ='Y'
+                                             Order by line_seq ASC";
+                    cmd.Parameters.AddWithValue("@factory_id", factory_id);
+
+
+                    return SqlHelper.DataReaderMapToList<LineVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<StorageVO> StorageCombo(int factory_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"Select S.factory_id, S.storage_id, storage_name
+                                          From TBL_STORAGE S
+                                         inner join TBL_FACTORY F on S.factory_id = F.factory_id
+                                         inner join TBL_CORPORATION C ON  F.corporation_id = C.corporation_id
+                                         WHERE  F.factory_id=@factory_id
+                                           AND storage_use = 'Y'
+                                           AND storage_use = 'Y'
+                                           AND corporation_use ='Y'
+                                             Order by storage_seq ASC";
+
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@factory_id", factory_id);
+
+                    return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
         public List<LineVO> LineCombo()
         {
             try
@@ -89,7 +168,7 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"Select L.factory_id, line_id, line_name
+                    cmd.CommandText = @"Select L.factory_id, L.line_id, line_name
                                           From TBL_LINE L
                                          inner join TBL_FACTORY F ON L.factory_id = F.factory_id
                                          inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
@@ -116,7 +195,7 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"Select S.factory_id, storage_id, storage_name
+                    cmd.CommandText = @"Select S.factory_id, S.storage_id, storage_name
                                           From TBL_STORAGE S
                                          inner join TBL_FACTORY F on S.factory_id = F.factory_id
                                          inner join TBL_CORPORATION C ON  F.corporation_id = C.corporation_id
@@ -229,5 +308,43 @@ namespace MSFactoryDAC
             }
 
         }
+        public bool SaveProcess(ProcessVO vo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SP_SAVE_PROCESS";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_process_id", vo.process_id);
+                        cmd.Parameters.AddWithValue("@P_process_name", vo.process_name);
+                        cmd.Parameters.AddWithValue("@P_storage_id", vo.storage_id);
+                        cmd.Parameters.AddWithValue("@P_line_id", vo.line_id);
+                        cmd.Parameters.AddWithValue("@P_factory_id", vo.factory_id);
+                        cmd.Parameters.AddWithValue("@P_process_seq", vo.process_seq);
+                        cmd.Parameters.AddWithValue("@P_process_use", vo.process_use);
+                        cmd.Parameters.AddWithValue("@P_process_note1", vo.process_note1);
+                        cmd.Parameters.AddWithValue("@P_process_note2", vo.process_note2);
+                        cmd.Parameters.AddWithValue("@P_first_regist_employee", vo.first_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_final_regist_employee", vo.final_regist_employee);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+                throw err;
+            }
+        }
+
     }
 }

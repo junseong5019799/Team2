@@ -142,10 +142,12 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, LineVO vo = null)
         {
-            
-            LinePopupForm frm = new LinePopupForm(emp.Employee_name,IsUpdate, vo);
-            if (frm.ShowDialog() == DialogResult.OK)
-                LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                LinePopupForm frm = new LinePopupForm(emp.Employee_name, IsUpdate, vo);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void Add(object sender, EventArgs e)

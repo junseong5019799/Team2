@@ -25,6 +25,20 @@ namespace WinMSFactory.Services
         {
             return dac.FactoryCombo();
         }
+        public List<FactoryVO> FactoryCombo(int corporation_id)
+        {
+            return dac.FactoryCombo(corporation_id);
+        }
+
+        public List<LineVO> LineCombo(int factory_id)
+        {
+            return dac.LineCombo(factory_id);
+        }
+
+        public List<StorageVO> StorageCombo(int factory_id)
+        {
+            return dac.StorageCombo(factory_id);
+        }
 
         public List<LineVO> LineCombo()
         {
@@ -49,6 +63,11 @@ namespace WinMSFactory.Services
         public bool ProcessDelete(List<int> process_idList)
         {
             return dac.ProcessDelete(process_idList);
+        }
+
+        public bool SaveProcess(ProcessVO vo)
+        {
+            return dac.SaveProcess(vo);
         }
     }
 }

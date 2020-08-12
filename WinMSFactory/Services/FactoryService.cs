@@ -43,9 +43,9 @@ namespace WinMSFactory.Services
             return dac.SaveFactory(vo);
         }
 
-        public bool LineDelete(List<int> factory_idList)
+        public bool FactoryDelete(List<int> factory_idList)
         {
-            return dac.LineDelete(factory_idList);
+            return dac.FactoryDelete(factory_idList);
         }
 
         public DataTable GetFactories(int corporation_id)

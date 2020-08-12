@@ -194,7 +194,7 @@ namespace MSFactoryDAC
         }
 
 
-        public bool LineDelete(List<int> factory_idList)
+        public bool FactoryDelete(List<int> factory_idList)
         {
             try
             {

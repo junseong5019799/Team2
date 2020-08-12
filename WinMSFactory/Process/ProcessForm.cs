@@ -156,16 +156,19 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, ProcessVO vo = null)
         {
-           ProcessPopupForm frm = new ProcessPopupForm(IsUpdate, vo);
-            if (frm.ShowDialog() == DialogResult.OK)
-                LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                ProcessPopupForm frm = new ProcessPopupForm(emp.Employee_name, IsUpdate, vo);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void Add(object sender, EventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                ProcessPopupForm frm = new ProcessPopupForm(false, null);
+                ProcessPopupForm frm = new ProcessPopupForm(emp.Employee_name, false, null);
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadData();
             }
