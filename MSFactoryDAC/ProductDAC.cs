@@ -66,7 +66,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public List<ProductVO> SelectAllPriceProducts()
+        public List<SellPriceManageVO> SelectAllPriceProducts()
         {
             try
             {
@@ -75,19 +75,128 @@ namespace MSFactoryDAC
                 {
                     conn.Open();
 
-                    string sql = @"SELECT P.product_id, product_name, product_information, product_unit, sell_current_price, sell_previous_price, start_date,end_date, note,sellprice_code
-		                            , Convert(int, RANK() OVER(PARTITION BY M.PRODUCT_GROUP_ID, M.PRODUCT_ID ORDER BY SELLPRICE_CODE ASC)) RANKNUM
-		                            FROM TBL_SELLPRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.product_id = P.product_id";
+                    string sql = @"SELECT P.product_id, product_name, G.PRODUCT_GROUP_NAME, product_information, product_unit, CONCAT(FORMAT(sell_current_price,'#,0'),' 원') SELL_CURRENT_PRICE_STRING, start_date,end_date, note,sellprice_code
+		                            , Convert(int, RANK() OVER(PARTITION BY M.PRODUCT_GROUP_ID, M.PRODUCT_ID ORDER BY SELLPRICE_CODE ASC)) RANKNUM,
+									CASE WHEN SELL_PREVIOUS_PRICE IS NULL
+									THEN '-'
+									ELSE
+									CONCAT(FORMAT(sell_previous_price,'#,0'),' 원')END SELL_PREVIOUS_PRICE_STRING, sell_previous_price
+		                            FROM TBL_SELLPRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.product_id = P.product_id
+									INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        return SqlHelper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                        return SqlHelper.DataReaderMapToList<SellPriceManageVO>(cmd.ExecuteReader());
                     }
                 }
             }
             catch (Exception err)
             {
                 throw err;
+            }
+        }
+
+        public List<ProductPriceManageVO> DateSettings(int material_Price_Code)
+        {
+            //item.Product_Name == ManageVO.Product_Name && item.Company_Name == ManageVO.Company_Name
+            //                    && item.RankNum < ManageVO.RankNum
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = @"SELECT PRODUCT_NAME, COMPANY_NAME, CONVERT(INT,RANK() OVER (PARTITION BY COMPANY_NAME, PRODUCT_NAME ORDER BY M.MATERIAL_PRICE_CODE)) RANKNUM, START_DATE
+                                        FROM TBL_MATERIAL_PRICE_MANAGEMENT
+                                        WHERE MATERIAL_PRICE_CODE = @MATERIAL_PRICE_CODE";
+
+                    cmd.Parameters.AddWithValue("@MATERIAL_PRICE_CODE", material_Price_Code);
+
+                    return SqlHelper.DataReaderMapToList<ProductPriceManageVO>(cmd.ExecuteReader());
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool IsUpperData(int companyID, int productID, ref int PreviousPrice, ref DateTime? PreviousTime )
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = @"SP_MATERIAL_PRICE_PREVIOUS_DATA_SELECT";
+
+                    cmd.Parameters.AddWithValue("@P_COMPANY_ID", companyID);
+                    cmd.Parameters.AddWithValue("@P_PRODUCT_ID", productID);
+
+                    SqlParameter param = new SqlParameter("@P_PREVIOUS_PRICE", SqlDbType.Int);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
+
+                    SqlParameter param2 = new SqlParameter("@P_PREVIOUS_DATE", SqlDbType.DateTime);
+                    param2.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param2);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (param.Value != DBNull.Value)
+                    {
+                        PreviousPrice = Convert.ToInt32(param.Value);
+                        PreviousTime = Convert.ToDateTime(param2.Value);
+                        return true;
+                    }
+
+
+                    else
+                    {
+                        PreviousPrice = 0;
+                        PreviousTime = null;
+                        return false;
+                    }
+
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool DeleteSellPrice(int selectedRow)
+        {
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+
+                // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
+
+                string sql = @"SP_SELL_PRICE_DELETE";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@P_SELL_PRICE_CODE", selectedRow);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                    else
+                        return false;
+                }
+
             }
         }
 
@@ -108,12 +217,13 @@ namespace MSFactoryDAC
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@sell_price_code", vo.sellprice_code);
-                        cmd.Parameters.AddWithValue("@product_group_id", vo.product_group_id);
-                        cmd.Parameters.AddWithValue("@product_id", vo.product_id);
-                        cmd.Parameters.AddWithValue("@sell_current_price", vo.sell_current_price);
-                        cmd.Parameters.AddWithValue("@sell_start_date", vo.start_date);
-                        cmd.Parameters.AddWithValue("@note", vo.note);
+                        cmd.Parameters.AddWithValue("@sell_price_code", vo.Sellprice_Code);
+                        cmd.Parameters.AddWithValue("@product_group_id", vo.Product_Group_ID);
+                        cmd.Parameters.AddWithValue("@product_id", vo.Product_ID);
+                        cmd.Parameters.AddWithValue("@sell_current_price", vo.Sell_Current_Price);
+                        cmd.Parameters.AddWithValue("@sell_previous_price", vo.Sell_Previous_Price);
+                        cmd.Parameters.AddWithValue("@sell_start_date", vo.Start_Date);
+                        cmd.Parameters.AddWithValue("@note", vo.Note);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;
@@ -266,45 +376,6 @@ namespace MSFactoryDAC
 
 
 
-        public bool SelectPriceData(int CompanyID, int ProductID, ref ProductPriceManageVO vo)
-        {
-            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-            {
-                conn.Open();
-
-                // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
-
-                string sql = @"select TOP 1 material_price_code, material_current_price, start_date, end_date from TBL_MATERIAL_PRICE_MANAGEMENT 
-                                where company_id = @CompanyID and product_id = @ProductID
-                                order by material_price_code desc";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
-                    cmd.Parameters.AddWithValue("@ProductID", ProductID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-
-
-                    if (reader.Read()) // 데이터가 존재하는 경우 데이터를 불러옴
-                    {
-                        vo = new ProductPriceManageVO
-                        {
-                            Material_Price_Code = Convert.ToInt32(reader[0]),
-                            Material_Current_Price = Convert.ToInt32(reader[1]),
-                            Start_Date = Convert.ToDateTime(reader[2]),
-                            End_Date_String = reader[3].ToString()
-                        };
-
-                        return true;
-                    }
-                    // 데이터가 없을 경우 null, false 처리
-                    vo = null;
-                    return false;
-                }
-
-            }
-        }
 
         public bool UpsertMaterialPrice(ProductPriceManageVO UpsertData)
         {

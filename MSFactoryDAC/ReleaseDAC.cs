@@ -75,7 +75,7 @@ namespace MSFactoryDAC
             }
         }
 
-        public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice)
+        public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice, ref DateTime? previousTime)
         {
             try
             {
@@ -95,11 +95,16 @@ namespace MSFactoryDAC
                     param.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(param);
 
+                    SqlParameter param2 = new SqlParameter("@P_PREVIOUS_TIME", SqlDbType.DateTime);
+                    param2.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param2);
+
                     cmd.ExecuteNonQuery();
 
                     if (param.Value != DBNull.Value)
                     {
                         previousPrice = Convert.ToInt32(param.Value);
+                        previousTime = Convert.ToDateTime(param2.Value);
                         return true;
                     }
                         
@@ -107,6 +112,7 @@ namespace MSFactoryDAC
                     else
                     {
                         previousPrice = 0;
+                        previousTime = null;
                         return false;
                     }
                         
