@@ -37,7 +37,6 @@
             this.cboStorage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnMove = new WinMSFactory.ButtonControl();
-            this.buttonControl2 = new WinMSFactory.ButtonControl();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblstocks = new System.Windows.Forms.Label();
@@ -53,16 +52,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.buttonControl2);
             this.panel1.Controls.Add(this.cboStorage);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.btnMove);
             this.panel1.Size = new System.Drawing.Size(1364, 64);
-            this.panel1.Controls.SetChildIndex(this.btnMove, 0);
             this.panel1.Controls.SetChildIndex(this.Guidlabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.cboStorage, 0);
-            this.panel1.Controls.SetChildIndex(this.buttonControl2, 0);
             // 
             // Guidlabel1
             // 
@@ -104,7 +99,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.IsAllCheckColumnHeader = true;
+            this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(0, 0);
             this.dgv.MultiSelect = false;
@@ -140,7 +135,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv2.IsAllCheckColumnHeader = false;
+            this.dgv2.IsAllCheckColumnHeader = true;
             this.dgv2.IsAutoGenerateColumns = false;
             this.dgv2.Location = new System.Drawing.Point(0, 0);
             this.dgv2.MultiSelect = false;
@@ -174,25 +169,13 @@
             // 
             this.btnMove.BackColor = System.Drawing.Color.White;
             this.btnMove.ForeColor = System.Drawing.Color.Black;
-            this.btnMove.Location = new System.Drawing.Point(1231, 24);
+            this.btnMove.Location = new System.Drawing.Point(534, 13);
             this.btnMove.Name = "btnMove";
             this.btnMove.Size = new System.Drawing.Size(91, 24);
             this.btnMove.TabIndex = 52;
             this.btnMove.Text = "재고 이동";
             this.btnMove.UseVisualStyleBackColor = false;
             this.btnMove.Click += new System.EventHandler(this.buttonControl1_Click);
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.Color.White;
-            this.buttonControl2.ForeColor = System.Drawing.Color.Black;
-            this.buttonControl2.Location = new System.Drawing.Point(323, 23);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(75, 23);
-            this.buttonControl2.TabIndex = 51;
-            this.buttonControl2.Text = "검색";
-            this.buttonControl2.UseVisualStyleBackColor = false;
-            this.buttonControl2.Click += new System.EventHandler(this.buttonControl2_Click);
             // 
             // label1
             // 
@@ -208,6 +191,7 @@
             this.panel4.Controls.Add(this.lblstocks);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.lblName);
+            this.panel4.Controls.Add(this.btnMove);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(0, 380);
             this.panel4.Name = "panel4";
@@ -274,7 +258,6 @@
         private System.Windows.Forms.ComboBox cboStorage;
         private System.Windows.Forms.Label label3;
         private ButtonControl btnMove;
-        private ButtonControl buttonControl2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblstocks;
