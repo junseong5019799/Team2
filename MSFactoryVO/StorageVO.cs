@@ -25,6 +25,7 @@ namespace MSFactoryVO
         public string Storage_Use { get; set; }
         public string Corporation_Name { get; set; }
         public string Factory_Name { get; set; }
+        public int Corporation_id { get; set; }
 
     }
 }

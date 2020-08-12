@@ -27,5 +27,10 @@ namespace WinMSFactory
                 this.vo = vo;
             }
         }
+
+        private void ProcessPopupForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

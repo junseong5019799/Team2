@@ -26,6 +26,7 @@ namespace MSFactoryVO
         public int factory_id { get; set; }
         public string factory_name { get; set; }
         public string line_name { get; set; }
+        public string storage_name { get; set; }
 
     }
 }

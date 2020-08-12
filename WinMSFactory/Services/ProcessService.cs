@@ -30,6 +30,12 @@ namespace WinMSFactory.Services
         {
             return dac.LineCombo();
         }
+
+        public List<StorageVO> StorageCombo()
+        {
+            return dac.StorageCombo();
+        }
+
         public DataTable ProcessSearch(ProcessVO vo)
         {
             return dac.ProcessSearch(vo);

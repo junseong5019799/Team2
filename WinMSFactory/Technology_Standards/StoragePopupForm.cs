@@ -35,7 +35,7 @@ namespace WinMSFactory
         }
         private void StoragePopupForm_Load(object sender, EventArgs e)
         {
-            cboCorporation.ComboBinding(cservice.GetCorporations(), "corporation_id", "corporation_name", "전체", 0);
+            cboCorporation.ComboBinding(cservice.GetCorporations(), "corporation_name", "corporation_id", "선택", 0);
 
             if (IsUpdate == false)
                 rdoUse.Checked = true;
@@ -60,24 +60,18 @@ namespace WinMSFactory
                 cboCorporation.SelectedIndex = cboCorporation.FindString(vo.Corporation_Name);
                 cboFactory.SelectedIndex = cboFactory.FindString(vo.Factory_Name);
 
+                if (cboFactory.SelectedIndex < 0)
+                {
+                    MessageBox.Show("해당공장을 사용 할 수 없습니다!");
+                    cboFactory.SelectedIndex = 0;
+                }
+
                 nudStorage_seq.Value = vo.Storage_Seq;
                 txtStorage.Text = vo.Storage_Name;
             }
         }
 
-        private void CorporationChange(object sender, EventArgs e)
-        {
-            if (cboCorporation.SelectedIndex < 0)
-            {
-                MessageBox.Show("법인명을 먼저 선택해주세요");
-                return;
-            }
-            else
-            {
-                int corporation_id = cboCorporation.SelectedValue.ToInt();
-                cboFactory.ComboBinding(fservice.FactoryCombo(corporation_id), "factory_id", "factory_name", "전체", 0);
-            }
-        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -115,7 +109,7 @@ namespace WinMSFactory
 
         private void StorageSave(string UseCheck, string Status, int storage_id)
         {
-            if (MessageBox.Show($"라인을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"창고를 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
                 StorageVO storage = new StorageVO
@@ -135,6 +129,12 @@ namespace WinMSFactory
                     this.Close();
                 }
             }
+        }
+
+        private void cboCorporation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int corporation_id = cboCorporation.SelectedValue.ToInt();
+            cboFactory.ComboBinding(fservice.FactoryCombo(corporation_id), "factory_id", "factory_name", "선택", 0);
         }
     }
 }

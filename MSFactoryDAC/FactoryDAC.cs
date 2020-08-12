@@ -46,13 +46,15 @@ namespace MSFactoryDAC
                     string addString = string.Empty;
                     if(Corporation_ID != 0)
                     {
-                        addString = "WHERE P.CORPORATION_ID = @ID";
-                        cmd.Parameters.AddWithValue("@ID", Corporation_ID);
+                        addString = " and P.CORPORATION_ID = " + Corporation_ID.ToString();
                     }
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = @"select factory_name, factory_id 
-                                        from tbl_factory F INNER JOIN TBL_CORPORATION P ON F.CORPORATION_ID = P.CORPORATION_ID "
-                                        + addString;
+                                        from tbl_factory F INNER JOIN TBL_CORPORATION P ON F.CORPORATION_ID = P.CORPORATION_ID 
+                                        where 1 = 1 "
+                                        + addString + 
+                                        " and factory_use='Y'";
+
                     cmd.Connection.Open();
 
                     

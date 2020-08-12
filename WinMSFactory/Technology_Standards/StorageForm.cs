@@ -47,19 +47,19 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록시간", "final_regist_time", 150, true);
             dgv.AddNewColumns("최종등록직원", "final_regist_employee", 150, true);
 
+            emp = this.GetEmployee();
+
 
             dgv.DataSource = ss.SelectStorage();
             List<CorporationVO> corpInfo = cs.CorporationComboBinding();
-            corpInfo.Insert(0, new CorporationVO
-            {
-                corporation_id = 0,
-                corporation_name = "전체"
-            });
-            cboCorporation.ComboBinding(corpInfo, "corporation_id", "corporation_name");
+            //corpInfo.Insert(0, new CorporationVO
+            //{
+            //    corporation_id = 0,
+            //    corporation_name = "전체"
+            //});
 
             cboCorporation.SelectedIndexChanged += CorporationChange;
-
-            CorporationChange(null, null);
+            cboCorporation.ComboBinding(corpInfo, "corporation_id", "corporation_name", "전체", 0);
         }
 
         private void CorporationChange(object sender, EventArgs e)
@@ -105,16 +105,14 @@ namespace WinMSFactory
         {
             if (e.RowIndex < 0)
                 return;
-
-            EmployeeVO employee = this.GetEmployee();
             StorageVO updatevo = new StorageVO
             {
                 Storage_Id = dgv[1, e.RowIndex].Value.ToInt(),
-                Storage_Name = dgv[2, e.RowIndex].Value.ToString(),
-                Factory_id = dgv[4, e.RowIndex].Value.ToInt(),
-                Corporation_Name = cboCorporation.Text,
-                Factory_Name = cboFactoryName.Text,
-                Storage_Use = dgv[3, e.RowIndex].Value.ToString(),
+                Corporation_Name = dgv[2, e.RowIndex].Value.ToString(),
+                Factory_Name = dgv[3, e.RowIndex].Value.ToString(),
+                Storage_Name = dgv[4, e.RowIndex].Value.ToString(),
+                Storage_Use = dgv[5, e.RowIndex].Value.ToString(),
+                Storage_Seq = dgv[6, e.RowIndex].Value.ToInt()
                 //Final_regist_time = DateTime.Now,
                 //Final_regist_employee = employee.Employee_name
             };

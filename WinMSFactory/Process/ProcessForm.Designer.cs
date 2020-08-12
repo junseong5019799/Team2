@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,6 +40,8 @@
             this.cboCorporationName = new System.Windows.Forms.ComboBox();
             this.cboLineName = new System.Windows.Forms.ComboBox();
             this.cboFactoryName = new System.Windows.Forms.ComboBox();
+            this.cboStorageName = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcess)).BeginInit();
@@ -47,6 +49,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboStorageName);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cboFactoryName);
             this.panel1.Controls.Add(this.cboLineName);
             this.panel1.Controls.Add(this.cboCorporationName);
@@ -65,6 +69,8 @@
             this.panel1.Controls.SetChildIndex(this.cboCorporationName, 0);
             this.panel1.Controls.SetChildIndex(this.cboLineName, 0);
             this.panel1.Controls.SetChildIndex(this.cboFactoryName, 0);
+            this.panel1.Controls.SetChildIndex(this.label4, 0);
+            this.panel1.Controls.SetChildIndex(this.cboStorageName, 0);
             // 
             // GuidLabel1
             // 
@@ -137,23 +143,23 @@
             this.dgvProcess.AllowUserToAddRows = false;
             this.dgvProcess.BackgroundColor = System.Drawing.Color.White;
             this.dgvProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProcess.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProcess.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProcess.IsAllCheckColumnHeader = false;
             this.dgvProcess.IsAutoGenerateColumns = false;
@@ -176,6 +182,7 @@
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(151, 24);
             this.cboCorporationName.TabIndex = 36;
+            this.cboCorporationName.SelectedIndexChanged += new System.EventHandler(this.cboCorporationName_SelectedIndexChanged);
             // 
             // cboLineName
             // 
@@ -192,6 +199,25 @@
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(151, 24);
             this.cboFactoryName.TabIndex = 38;
+            this.cboFactoryName.SelectedIndexChanged += new System.EventHandler(this.cboFactoryName_SelectedIndexChanged);
+            // 
+            // cboStorageName
+            // 
+            this.cboStorageName.FormattingEnabled = true;
+            this.cboStorageName.Location = new System.Drawing.Point(677, 16);
+            this.cboStorageName.Name = "cboStorageName";
+            this.cboStorageName.Size = new System.Drawing.Size(151, 24);
+            this.cboStorageName.TabIndex = 40;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(600, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 16);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "창고 명칭";
             // 
             // ProcessForm
             // 
@@ -228,5 +254,7 @@
         private System.Windows.Forms.ComboBox cboCorporationName;
         private System.Windows.Forms.Panel panel2;
         private DataGridViewControl dgvProcess;
+        private System.Windows.Forms.ComboBox cboStorageName;
+        private System.Windows.Forms.Label label4;
     }
 }

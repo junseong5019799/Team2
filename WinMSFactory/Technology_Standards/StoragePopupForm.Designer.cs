@@ -69,6 +69,7 @@
             this.cboCorporation.Name = "cboCorporation";
             this.cboCorporation.Size = new System.Drawing.Size(263, 24);
             this.cboCorporation.TabIndex = 11;
+            this.cboCorporation.SelectedIndexChanged += new System.EventHandler(this.cboCorporation_SelectedIndexChanged);
             // 
             // groupBox1
             // 

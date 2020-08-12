@@ -36,7 +36,7 @@ namespace WinMSFactory
             dgvLinelist.AddNewColumns("라인순번", "line_seq", 100, true);
             dgvLinelist.AddNewColumns("라인비고1", "line_note1", 100, true);
             dgvLinelist.AddNewColumns("라인비고2", "line_note2", 100, true);
-            dgvLinelist.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1)); // 8 버튼
+            dgvLinelist.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 8 버튼
             dgvLinelist.AddNewColumns("사용여부", "line_use", 100, true); // 9
             dgvLinelist.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvLinelist.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
@@ -47,6 +47,7 @@ namespace WinMSFactory
             cboCorporationName.ComboBinding(service.LineComboGet(), "corporation_id", "corporation_name", "전체", 0);
             factories = service.factoryAllCombo();
             cboFactoryName.ComboBinding(factories != null ? factories.ToList() : null, "factory_id", "factory_name", "전체", 0);
+
 
             emp = this.GetEmployee();
         }

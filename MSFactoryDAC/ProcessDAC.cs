@@ -17,11 +17,12 @@ namespace MSFactoryDAC
             {
                 conn.Open();
 
-                string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
-                                 from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c
+                string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], s.storage_name, [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
+                                 from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c, TBL_STORAGE s
                                 where p.line_id = l.line_id
                                   and l.factory_id = f.factory_id
-                                  and f.corporation_id = c.corporation_id";
+                                  and f.corporation_id = c.corporation_id
+                                  and p.storage_id = s.storage_id  ";
 
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
@@ -39,7 +40,9 @@ namespace MSFactoryDAC
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = @"select corporation_id, corporation_name
-									   From TBL_CORPORATION";
+									   From TBL_CORPORATION
+                                      WHERE  corporation_use = 'Y'
+                                   Order by corporation_seq ASC";
                     
                     cmd.Connection.Open();
                     return SqlHelper.DataReaderMapToList<CorporationVO>(cmd.ExecuteReader());
@@ -59,8 +62,13 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"Select factory_id, factory_name
-                                          From TBL_FACTORY";
+                    cmd.CommandText = @"Select F.corporation_id, factory_id, factory_name
+                                          From TBL_FACTORY F
+                                            INNER JOIN TBL_CORPORATION C
+                                                ON F.corporation_id = C.corporation_id
+                                         WHERE factory_use = 'Y'
+                                           AND corporation_use = 'Y'
+                                      Order by factory_seq ASC";
 
                     cmd.Connection.Open();
 
@@ -73,6 +81,7 @@ namespace MSFactoryDAC
             }
         }
 
+
         public List<LineVO> LineCombo()
         {
             try
@@ -80,12 +89,45 @@ namespace MSFactoryDAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
-                    cmd.CommandText = @"Select line_id, line_name
-                                          From TBL_LINE";
+                    cmd.CommandText = @"Select L.factory_id, line_id, line_name
+                                          From TBL_LINE L
+                                         inner join TBL_FACTORY F ON L.factory_id = F.factory_id
+                                         inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                         WHERE line_use = 'Y'
+                                           AND factory_use = 'Y'
+                                           AND corporation_use ='Y'
+                                             Order by line_seq ASC";
 
                     cmd.Connection.Open();
 
                     return SqlHelper.DataReaderMapToList<LineVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<StorageVO> StorageCombo()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"Select S.factory_id, storage_id, storage_name
+                                          From TBL_STORAGE S
+                                         inner join TBL_FACTORY F on S.factory_id = F.factory_id
+                                         inner join TBL_CORPORATION C ON  F.corporation_id = C.corporation_id
+                                         WHERE storage_use = 'Y'
+                                           AND storage_use = 'Y'
+                                           AND corporation_use ='Y'
+                                             Order by storage_seq ASC";
+
+                    cmd.Connection.Open();
+
+                    return SqlHelper.DataReaderMapToList<StorageVO>(cmd.ExecuteReader());
                 }
             }
             catch (Exception err)
