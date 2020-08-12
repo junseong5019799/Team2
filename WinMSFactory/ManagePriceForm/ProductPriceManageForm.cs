@@ -126,14 +126,15 @@ namespace WinMSFactory
             {
                 if (dgv.SelectedRows.Count > 0)
                 {
-                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    int SelectedRow = dgv.SelectedRows[0].Index;
+
+                    if (IsLastInsert("삭제", SelectedRow) == false)
                     {
-                        int SelectedRow = dgv.SelectedRows[0].Index;
-
-                        // 최근에 변경된 내용을 삭제하지 않았을 경우
-                        if (IsLastInsert("삭제", SelectedRow) == false)
-                            return;
-
+                        MessageBox.Show("최근에 생성된 내용만 삭제가 가능합니다.");
+                        return;
+                    }
+                    else if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
                         int value = dgv.SelectedRows[0].Cells[9].Value.ToInt();
                         if (service.DeleteMaterialPrice(value))
                         {

@@ -41,8 +41,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("품목명", "product_name", 200, true);
             dgv.AddNewColumns("품목 스펙(규격)", "product_information", 200, true);
             dgv.AddNewColumns("품목 단위", "product_unit", 80, true);
-            dgv.AddNewColumns("현재 단가", "sell_current_price", 120, true, true, false, RightAlign);
-            dgv.AddNewColumns("이전 단가", "sell_previous_price", 120, true, true, false, RightAlign);
+            dgv.AddNewColumns("현재 단가", "sell_current_price_string", 120, true, true, false, RightAlign);
+            dgv.AddNewColumns("이전 단가", "sell_previous_price_string", 120, true, true, false, RightAlign);
             dgv.AddNewColumns("시작일", "start_date", 80, true);
             dgv.AddNewColumns("종료일", "end_date", 80, true);
             dgv.AddNewColumns("비고", "note", 300, true);
@@ -62,6 +62,8 @@ namespace WinMSFactory
                 return;
             else if (IsLastInsert("수정", e.RowIndex) == false)
                 return;
+
+            
 
             SellPriceManageVO ManageVO = new SellPriceManageVO
             {
@@ -141,14 +143,16 @@ namespace WinMSFactory
             {
                 if (dgv.SelectedRows.Count > 0)
                 {
-                    if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    int SelectedRow = dgv.SelectedRows[0].Index;
+
+                    if (IsLastInsert("삭제", SelectedRow) == false)
                     {
-                        int SelectedRow = dgv.SelectedRows[0].Index;
-
-                        // 최근에 변경된 내용을 삭제하지 않았을 경우
-                        if (IsLastInsert("삭제", SelectedRow) == false)
-                            return;
-
+                        MessageBox.Show("최근에 생성된 내용만 삭제가 가능합니다.");
+                        return;
+                    }
+                        
+                    else if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
                         int value = dgv.SelectedRows[0].Cells[10].Value.ToInt();
                         if (service.DeleteSellPrice(value))
                         {

@@ -104,7 +104,7 @@ namespace MSFactoryDAC
                     if (param.Value != DBNull.Value)
                     {
                         previousPrice = Convert.ToInt32(param.Value);
-                        previousTime = Convert.ToDateTime(param.Value);
+                        previousTime = Convert.ToDateTime(param2.Value);
                         return true;
                     }
                         

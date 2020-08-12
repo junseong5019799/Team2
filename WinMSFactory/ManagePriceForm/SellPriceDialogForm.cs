@@ -85,7 +85,11 @@ namespace WinMSFactory.ManagePriceForm
             productID = cboProduct.SelectedValue.ToInt();
 
             if (releaseService.IsUpperData(productGroupID, productID, ref PreviousPrice, ref PreviousTime) == true)
+            {
                 txtPreviousPrice.Text = PreviousPrice.ToString("#,0");
+                dtpStartDate.Value = PreviousTime.Value.AddDays(1);
+            }
+                
             else
                 txtPreviousPrice.Text = "-";
         }
@@ -97,7 +101,6 @@ namespace WinMSFactory.ManagePriceForm
                 MessageBox.Show("물품을 선택해주세요");
                 return;
             }
-
             else if (txtCurrentPrice.TextLength < 2 )
             {
                 MessageBox.Show("현재 단가를 입력해주세요 10원부터 입력 가능합니다.");
@@ -125,9 +128,14 @@ namespace WinMSFactory.ManagePriceForm
                 Product_ID = cboProduct.SelectedValue.ToInt(),
                 Sell_Previous_Price = txtPreviousPrice.Text.Replace(",", "").Replace("-", "").ToInt(),
                 Sell_Current_Price = txtCurrentPrice.Text.Replace(",", "").ToInt(),
-                Start_Date = dtpStartDate.Value,
-                Note = txtNote.Text
+                Start_Date = dtpStartDate.Value
             };
+
+            if (txtNote.TextLength < 1)
+                vo.Note = "";
+            else
+                vo.Note = txtNote.Text;
+
             if (productService.UpsertSellPrice(vo) == true)
             {
                 MessageBox.Show($"{message}이 완료되었습니다.");

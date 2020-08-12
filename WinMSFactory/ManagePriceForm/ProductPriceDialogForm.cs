@@ -82,7 +82,11 @@ namespace WinMSFactory
             productID = cboProduct.SelectedValue.ToInt();
 
             if (pdsv.IsUpperData(companyID, productID, ref PreviousPrice, ref PreviousTime) == true)
+            {
                 txtPreviousPrice.Text = PreviousPrice.ToString("#,0");
+                dtpStartDate.Value = PreviousTime.Value.AddDays(1);
+            }
+                
                 
             else
                 txtPreviousPrice.Text = "-";
@@ -125,9 +129,13 @@ namespace WinMSFactory
                 Material_Previous_Price = txtPreviousPrice.Text.Replace(",", "").Replace("-", "").ToInt(),
                 Material_Current_Price = txtCurrentPrice.Text.Replace(",", "").ToInt(),
                 Start_Date = dtpStartDate.Value,
-                Note = txtNote.Text,
+                
                 Category = Category
             };
+            if (txtNote.TextLength < 1)
+                vo.Note = "";
+            else
+                vo.Note = txtNote.Text;
 
             if (pdsv.UpsertMaterialPrice(vo) == true)
             {

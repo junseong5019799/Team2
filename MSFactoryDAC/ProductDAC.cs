@@ -75,8 +75,12 @@ namespace MSFactoryDAC
                 {
                     conn.Open();
 
-                    string sql = @"SELECT P.product_id, product_name, G.PRODUCT_GROUP_NAME, product_information, product_unit, sell_current_price, sell_previous_price, start_date,end_date, note,sellprice_code
-		                            , Convert(int, RANK() OVER(PARTITION BY M.PRODUCT_GROUP_ID, M.PRODUCT_ID ORDER BY SELLPRICE_CODE ASC)) RANKNUM
+                    string sql = @"SELECT P.product_id, product_name, G.PRODUCT_GROUP_NAME, product_information, product_unit, CONCAT(FORMAT(sell_current_price,'#,0'),' 원') SELL_CURRENT_PRICE_STRING, start_date,end_date, note,sellprice_code
+		                            , Convert(int, RANK() OVER(PARTITION BY M.PRODUCT_GROUP_ID, M.PRODUCT_ID ORDER BY SELLPRICE_CODE ASC)) RANKNUM,
+									CASE WHEN SELL_PREVIOUS_PRICE IS NULL
+									THEN '-'
+									ELSE
+									CONCAT(FORMAT(sell_previous_price,'#,0'),' 원')END SELL_PREVIOUS_PRICE_STRING, sell_previous_price
 		                            FROM TBL_SELLPRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.product_id = P.product_id
 									INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id";
 
