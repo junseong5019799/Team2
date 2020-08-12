@@ -40,8 +40,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtEndDate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +154,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(246, 29);
             this.dtpStartDate.TabIndex = 4;
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // label6
             // 
@@ -187,24 +186,6 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "비고";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(512, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 24);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "종료일";
-            // 
-            // txtEndDate
-            // 
-            this.txtEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtEndDate.Location = new System.Drawing.Point(607, 193);
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(244, 29);
-            this.txtEndDate.TabIndex = 5;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -221,7 +202,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 486);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.txtPreviousPrice);
             this.Controls.Add(this.txtNote);
@@ -230,7 +210,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -243,7 +222,6 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label2, 0);
@@ -252,7 +230,6 @@
             this.Controls.SetChildIndex(this.txtNote, 0);
             this.Controls.SetChildIndex(this.txtPreviousPrice, 0);
             this.Controls.SetChildIndex(this.dtpStartDate, 0);
-            this.Controls.SetChildIndex(this.txtEndDate, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.panel1.ResumeLayout(false);
@@ -275,8 +252,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtEndDate;
         private System.Windows.Forms.Label label8;
     }
 }

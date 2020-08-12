@@ -54,12 +54,8 @@ namespace WinMSFactory
             return dac.InsertMaterialPrice(InsertData);
         }
 
-        public bool SelectPriceData(int companyID, int productID, ref ProductPriceManageVO vo)
-        {
-            return dac.SelectPriceData(companyID, productID, ref vo);
-        }
 
-        public List<ProductVO> SelectAllPriceProducts()
+        public List<SellPriceManageVO> SelectAllPriceProducts()
         {
             return dac.SelectAllPriceProducts();
         }
@@ -92,6 +88,21 @@ namespace WinMSFactory
         public bool UpsertSellPrice(SellPriceManageVO manageVO)
         {
             return dac.UpsertSellPrice(manageVO);
+        }
+
+        public bool DeleteSellPrice(int value)
+        {
+            return dac.DeleteSellPrice(value);
+        }
+
+        public bool IsUpperData(int CompanyID, int ProductID, ref int PreviousPrice, ref DateTime? PreviousTime)
+        {
+            return dac.IsUpperData(CompanyID, ProductID, ref PreviousPrice, ref PreviousTime);
+        }
+
+        public List<ProductPriceManageVO> DateSettings(int material_Price_Code)
+        {
+            return dac.DateSettings(material_Price_Code);
         }
     }
 }

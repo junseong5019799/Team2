@@ -17,132 +17,76 @@ namespace WinMSFactory
         ProductService pdsv = new ProductService();
         CompanyService cpsv = new CompanyService();
         ProductPriceManageVO ManageVO;
-        bool IsInsert;
-        string Message = string.Empty;
-        bool IsFirstProductSelect = true;
-        int? MaterialPriceCode = null;
+        List<ProductPriceManageVO> dgvList;
+        int companyID;
+        int productID;
+        bool isInsert = true;
+        string message;
+        DateTime? PreviousTime;
 
 
-        // Insert = 1, Update, Delete
-
-        // 진행중... 5일까지 완료할 것
-
-
-        public ProductPriceDialogForm(bool IsInsert, ProductPriceManageVO ManageVO = null)
+        public ProductPriceDialogForm(bool IsInsert,  ProductPriceManageVO ManageVO = null, List<ProductPriceManageVO> dgvList = null)
         {
             InitializeComponent();
-            this.IsInsert = IsInsert;
+            this.isInsert = IsInsert;
+            this.dgvList = dgvList;
 
-            if (IsInsert == true)
+            if (!IsInsert)
             {
-                Message = "등록";
-            }
-                
-            else
-            {
-                Message = "수정";
+                this.Text = message = "수정";
                 this.ManageVO = ManageVO;
             }
-
-            this.Text = Message;
+            else
+                this.Text = message = "등록";
         }
 
         private void ProductPriceDialogForm_Load(object sender, EventArgs e)
         {
-            cboCompany.ComboBinding(cpsv.SelectCompanyBindings(), "COMPANY_ID", "COMPANY_Name");
-            //cboCompany.SelectedIndexChanged += cboCompany_SelectedIndexChanged;
-            cboCompany.SelectedIndex = 0;
-            
+            cboCompany.ComboBinding(cpsv.SelectCompanyBindings(), "COMPANY_ID", "COMPANY_Name");            
             txtPreviousPrice.Enabled = false;
-            txtEndDate.Enabled = false;
 
-            ProductIndexChange();
-            if (IsInsert == true)// 등록
-            {
-                txtEndDate.Text = "-";
-            }
-            else // 수정
-            {
+            if (isInsert == false) // 수정
                 ProductInfoModify();
-                cboCompany.Enabled = cboProduct.Enabled = false;
-            }
-
-            
         }
 
         private void ProductInfoModify() // 수정 메인
         {
             cboCompany.SelectedIndex = cboCompany.FindString(ManageVO.Company_Name);
             cboProduct.SelectedIndex = cboProduct.FindString(ManageVO.Product_Name);
+
+            cboCompany.Enabled = cboProduct.Enabled = false;
+
             txtCurrentPrice.Text = string.Format("{0:#,0}",ManageVO.Material_Current_Price_String);
 
-            if (ManageVO.Material_Previous_Price_String == "-")
+            if (ManageVO.Material_Previous_Price_String == "0")
                 txtPreviousPrice.Text = "-";
 
             else
                 txtPreviousPrice.Text = string.Format("{0:#,0}",ManageVO.Material_Previous_Price_String);
 
-
-            if (ManageVO.End_Date_String == null)
-                txtEndDate.Text = "-";
-
-            else
-                txtEndDate.Text = Convert.ToDateTime(ManageVO.End_Date_String).ToString("yyyy-MM-dd");
-
-            dtpStartDate.Text = ManageVO.Start_Date_String.ToString();
+            dtpStartDate.Value= ManageVO.Start_Date;
             txtNote.Text = ManageVO.Note;
         }
 
         private void cboCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IsFirstProductSelect = true;
+            companyID = cboCompany.SelectedValue.ToInt();
 
-            txtPreviousPrice.Text = "-";
-            txtCurrentPrice.Text = "";
-
-            //cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
-            cboProduct.ComboBinding(pdsv.SelectProductBindings(cboCompany.SelectedValue.ToInt()), "Product_ID", "Product_Name");
-            
-            if(IsFirstProductSelect == true)
-            {
-                ProductIndexChange();
-                IsFirstProductSelect = false;
-            }
+            cboProduct.ComboBinding(pdsv.SelectProductBindings(companyID), "Product_ID", "Product_Name");
         }
 
         private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ProductIndexChange();
-        }
+            int PreviousPrice = 0;
 
-        private void ProductIndexChange()
-        {
-            txtPreviousPrice.Text = "-";
-            txtCurrentPrice.Text = "";
+            productID = cboProduct.SelectedValue.ToInt();
 
-            ProductPriceManageVO vo = null;
-
-            bool dataCheck = pdsv.SelectPriceData(cboCompany.SelectedValue.ToInt(), cboProduct.SelectedValue.ToInt(), ref vo);
-
-            if (dataCheck == true)
-            {
-                txtPreviousPrice.Text = vo.Material_Current_Price.ToString("#,0");
-
-                if (vo.End_Date == null)
-                    txtEndDate.Text = "-";
-                else
-                    txtEndDate.Text = vo.End_Date.Value.ToString();
-
+            if (pdsv.IsUpperData(companyID, productID, ref PreviousPrice, ref PreviousTime) == true)
+                txtPreviousPrice.Text = PreviousPrice.ToString("#,0");
                 
-                MaterialPriceCode = vo.Material_Price_Code;
-
-                if (IsInsert == true)
-                {
-                    dtpStartDate.Value = vo.Start_Date.AddDays(1);
-                    txtEndDate.Text = "-";
-                }
-                    
-            }
+            else
+                txtPreviousPrice.Text = "-";
+            
         }
 
         private void btnConfirm_Click(object sender, EventArgs e) // 확인
@@ -153,26 +97,26 @@ namespace WinMSFactory
                 return;
             }
 
-            if(txtCurrentPrice.Text.Length<1)
+            else if (txtCurrentPrice.TextLength < 2)
             {
-                MessageBox.Show("현재 단가를 입력해 주세요");
+                MessageBox.Show("현재 단가를 입력해주세요 10원부터 입력 가능합니다.");
                 return;
             }
 
-            if (IsInsert == true) // Insert
+            if (isInsert == true) // Insert
                 UpsertSettings(0, "I"); // Insert의 I
 
-            else if (IsInsert == false) // Update , // 삭제는 다르게 함
+            else if (isInsert == false) // Update , // 삭제는 다르게 함
                 UpsertSettings(ManageVO.Material_Price_Code, "U"); // Update의 U
 
         }
 
         private void UpsertSettings(int Code, string Category)
         {
-            if (MessageBox.Show($"정말로 {Message}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (MessageBox.Show($"정말로 {message}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
 
-            ProductPriceManageVO InsertData = new ProductPriceManageVO
+            ProductPriceManageVO vo = new ProductPriceManageVO
             {
                 // Update 목록 수정할 것
                 Material_Price_Code = Code,
@@ -185,9 +129,9 @@ namespace WinMSFactory
                 Category = Category
             };
 
-            if (pdsv.UpsertMaterialPrice(InsertData) == true)
+            if (pdsv.UpsertMaterialPrice(vo) == true)
             {
-                MessageBox.Show($"{Message}이 완료되었습니다.");
+                MessageBox.Show($"{message}이 완료되었습니다.");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -214,6 +158,34 @@ namespace WinMSFactory
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
+        }
+
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isInsert == false && ManageVO.RankNum != 1) // 수정
+            {
+                var DateItem = (from item in dgvList
+                                where item.Product_Name == ManageVO.Product_Name && item.Company_Name == ManageVO.Company_Name
+                                && item.RankNum < ManageVO.RankNum
+                                orderby item.RankNum descending
+                                select item.Start_Date).Take(1).ToList();
+
+                if (dtpStartDate.Value <= DateItem[0])
+                {
+                    MessageBox.Show("날짜를 잘못입력하셨습니다.");
+                    dtpStartDate.Value = DateItem[0].AddDays(1);
+                }
+
+            }
+            else if(isInsert == true && txtPreviousPrice.TextLength > 1)
+            {
+                if (dtpStartDate.Value <= PreviousTime.Value)
+                {
+                    MessageBox.Show("날짜를 잘못입력하셨습니다.");
+                    dtpStartDate.Value = PreviousTime.Value.AddDays(1);
+                }
+            }
+
         }
     }
 }

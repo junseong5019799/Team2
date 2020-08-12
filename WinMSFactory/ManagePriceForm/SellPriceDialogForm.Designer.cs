@@ -84,6 +84,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(246, 29);
             this.dtpStartDate.TabIndex = 19;
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // txtPreviousPrice
             // 
@@ -112,6 +113,8 @@
             this.txtCurrentPrice.Name = "txtCurrentPrice";
             this.txtCurrentPrice.Size = new System.Drawing.Size(246, 29);
             this.txtCurrentPrice.TabIndex = 18;
+            this.txtCurrentPrice.TextChanged += new System.EventHandler(this.txtCurrentPrice_TextChanged);
+            this.txtCurrentPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPrice_KeyPress);
             // 
             // cboProduct
             // 
