@@ -27,6 +27,13 @@ namespace MSFactoryVO
         public int Product_Tact_Time { get; set; }
         public int Product_Lead_Time { get; set; }
         public int Product_Seq { get; set; }
+        public int Sell_Current_Price { get; set; }
+        public int Sell_Previous_Price { get; set; }
+        public DateTime Start_Date { get; set; }
+        public DateTime End_Date { get; set; }
+        public int RankNum { get; set; }
+        public string Note { get; set; }
+        public int SellPrice_Code { get; set; }
     }
 
     public class ProductPriceManageVO

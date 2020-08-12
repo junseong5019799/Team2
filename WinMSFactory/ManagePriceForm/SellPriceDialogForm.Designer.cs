@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label8 = new System.Windows.Forms.Label();
-            this.txtEndDate = new System.Windows.Forms.TextBox();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPreviousPrice = new System.Windows.Forms.TextBox();
             this.txtNote = new System.Windows.Forms.TextBox();
@@ -38,7 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,14 +73,6 @@
             this.label8.Size = new System.Drawing.Size(25, 24);
             this.label8.TabIndex = 21;
             this.label8.Text = "원";
-            // 
-            // txtEndDate
-            // 
-            this.txtEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtEndDate.Location = new System.Drawing.Point(571, 180);
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(244, 29);
-            this.txtEndDate.TabIndex = 20;
             // 
             // dtpStartDate
             // 
@@ -133,6 +123,7 @@
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(247, 32);
             this.cboProduct.TabIndex = 15;
+            this.cboProduct.SelectedIndexChanged += new System.EventHandler(this.Product_IndexChanged);
             // 
             // label2
             // 
@@ -163,16 +154,6 @@
             this.label6.Size = new System.Drawing.Size(55, 24);
             this.label6.TabIndex = 10;
             this.label6.Text = "시작일";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(476, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 24);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "종료일";
             // 
             // label4
             // 
@@ -214,6 +195,7 @@
             this.cboProductGroup.Name = "cboProductGroup";
             this.cboProductGroup.Size = new System.Drawing.Size(246, 32);
             this.cboProductGroup.TabIndex = 7;
+            this.cboProductGroup.SelectedIndexChanged += new System.EventHandler(this.cboProductGroup_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -232,7 +214,6 @@
             this.ClientSize = new System.Drawing.Size(892, 451);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.txtPreviousPrice);
             this.Controls.Add(this.txtNote);
@@ -241,7 +222,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -254,7 +234,6 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label2, 0);
@@ -263,7 +242,6 @@
             this.Controls.SetChildIndex(this.txtNote, 0);
             this.Controls.SetChildIndex(this.txtPreviousPrice, 0);
             this.Controls.SetChildIndex(this.dtpStartDate, 0);
-            this.Controls.SetChildIndex(this.txtEndDate, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.panel1.ResumeLayout(false);
@@ -275,7 +253,6 @@
         #endregion
 
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtEndDate;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.TextBox txtPreviousPrice;
         private System.Windows.Forms.TextBox txtNote;
@@ -284,7 +261,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;

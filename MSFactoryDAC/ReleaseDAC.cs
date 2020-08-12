@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Windows.Forms;
 
 namespace MSFactoryDAC
 {
@@ -66,6 +67,50 @@ namespace MSFactoryDAC
                     cmd.Connection.Close();
 
                     return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open(); 
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = @"SP_SELLPRICE_PREVIOUS_DATA_SELECT";
+                    
+                    cmd.Parameters.AddWithValue("@P_GROUP_ID", ProductGroupID);
+                    cmd.Parameters.AddWithValue("@P_PRODUCT_ID", ProductID);
+
+                    SqlParameter param = new SqlParameter("@P_PREVIOUS_PRICE",SqlDbType.Int);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (param.Value != DBNull.Value)
+                    {
+                        previousPrice = Convert.ToInt32(param.Value);
+                        return true;
+                    }
+                        
+
+                    else
+                    {
+                        previousPrice = 0;
+                        return false;
+                    }
+                        
+                         
                 }
             }
             catch (Exception err)
@@ -239,18 +284,17 @@ namespace MSFactoryDAC
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    conn.Open();
-                    string sql = @"SELECT P.product_id, P.product_name
-                                   FROM TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id
-                                   WHERE P.product_group_id = @product_group_id";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@product_group_id", groupID);
-                        return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
-                    }
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT P.product_id, P.product_name
+                                FROM TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id
+                                WHERE P.product_group_id = @product_group_id";
+                    cmd.Parameters.AddWithValue("@product_group_id", groupID);
+                    return SqlHelper.DataReaderMapToList<ReleaseVO>(cmd.ExecuteReader());
                 }
+                
             }
             catch (Exception err)
             {
