@@ -119,6 +119,7 @@
 			this.Controls.Add(this.txtEmployee_id);
 			this.Controls.Add(this.txtEmployee_pwd);
 			this.Name = "LoginForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "로그인";
 			this.ResumeLayout(false);
 			this.PerformLayout();

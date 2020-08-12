@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cboLine = new System.Windows.Forms.ComboBox();
@@ -81,23 +81,23 @@
 			this.dataGridViewControl1.AllowUserToAddRows = false;
 			this.dataGridViewControl1.BackgroundColor = System.Drawing.Color.White;
 			this.dataGridViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewControl1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewControl1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewControl1.IsAllCheckColumnHeader = false;
 			this.dataGridViewControl1.IsAutoGenerateColumns = false;
@@ -109,6 +109,7 @@
 			this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 631);
 			this.dataGridViewControl1.TabIndex = 4;
+			this.dataGridViewControl1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewControl1_DataBindingComplete);
 			// 
 			// label1
 			// 
@@ -164,13 +165,13 @@
 			// 
 			// fromToDateControl1
 			// 
-			this.fromToDateControl1.From = new System.DateTime(2020, 8, 10, 18, 2, 26, 742);
+			this.fromToDateControl1.From = new System.DateTime(2020, 8, 11, 16, 44, 41, 896);
 			this.fromToDateControl1.Location = new System.Drawing.Point(86, 73);
-			this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
 			this.fromToDateControl1.Name = "fromToDateControl1";
-			this.fromToDateControl1.Size = new System.Drawing.Size(232, 29);
+			this.fromToDateControl1.Size = new System.Drawing.Size(265, 31);
 			this.fromToDateControl1.TabIndex = 3;
-			this.fromToDateControl1.To = new System.DateTime(2020, 8, 11, 18, 2, 26, 742);
+			this.fromToDateControl1.To = new System.DateTime(2020, 8, 12, 16, 44, 41, 896);
 			// 
 			// label4
 			// 

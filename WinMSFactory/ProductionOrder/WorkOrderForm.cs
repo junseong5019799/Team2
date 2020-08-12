@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.XtraRichEdit.Commands;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -155,6 +156,17 @@ namespace WinMSFactory
 			//	cboProcess.ComboBinding(new ProcessService().GetProcess(line_id), "LINE_NAME", "LINE_ID", "전체", 0);
 			//else
 				cboProcess.ComboBinding("전체", 0);
+		}
+
+		private void dataGridViewControl1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			foreach (DataGridViewRow dgvr in dataGridViewControl1.Rows)
+			{
+				if (DateTime.TryParse(dgvr.Cells["WORK_DATE"].Value.ToString(), out DateTime workDate) && DateTime.Compare(workDate, DateTime.Now) < 0)
+				{
+					dgvr.Cells["chk"].ReadOnly = true;
+				}
+			}
 		}
 	}
 }
