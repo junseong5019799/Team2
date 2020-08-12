@@ -13,20 +13,20 @@ namespace WinMSFactory
 {
     public partial class DueDatePopUpForm : PopUpDialogForm
     {
-        private DateTime release_plan_date;
+        private DateTime due_date;
 
-        public DateTime Release_plan_date
+        public DateTime Due_date
         {
-            get { return release_plan_date; }
-            set { release_plan_date = value; }
+            get { return due_date; }
+            set { due_date = value; }
         }
 
-        private int release_no;
+        private int order_no;
 
-        public int Release_no
+        public int Order_no
         {
-            get { return release_no; }
-            set { release_no = value; }
+            get { return order_no; }
+            set { order_no = value; }
         }
 
 
@@ -37,7 +37,8 @@ namespace WinMSFactory
 
         private void DueDatePopUpForm_Load(object sender, EventArgs e)
         {
-            dtpFrom.Value = Release_plan_date;
+            dtpFrom.Value = Due_date;
+            dtpTo.Value = Due_date.AddDays(1);
         }
 
 
@@ -52,11 +53,12 @@ namespace WinMSFactory
 
             OrderService service = new OrderService();
 
-            if (service.UpdateOrderDate(dt, release_no))
-            {
-                MessageBox.Show("납기일이 변경되었습니다.");
-                this.Close();
-            }
+            service.UpdateOrderDate(dt, order_no);           
+            MessageBox.Show("납기일이 변경되었습니다.");
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+            
         }
         
         
@@ -66,5 +68,14 @@ namespace WinMSFactory
         }
 
 
+        private void dtpTo_ValueChanged(object sender, EventArgs e)
+        {
+            if(dtpTo.Value < dtpFrom.Value)
+            {
+                dtpTo.Value = Due_date.AddDays(1);
+                MessageBox.Show("현 날짜는 불가능 합니다.");
+                return;
+            }
+        }
     }
 }

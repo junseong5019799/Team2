@@ -66,26 +66,54 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<ProductVO> SelectAllPriceProducts()
+        {
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"SELECT P.product_id, product_name, product_information, product_unit, sell_current_price, sell_previous_price, start_date,end_date, note,sellprice_code
+		                            , Convert(int, RANK() OVER(PARTITION BY M.PRODUCT_GROUP_ID, M.PRODUCT_ID ORDER BY SELLPRICE_CODE ASC)) RANKNUM
+		                            FROM TBL_SELLPRICE_MANAGEMENT M INNER JOIN TBL_PRODUCT P ON M.product_id = P.product_id";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool InsertMaterialPrice(ProductPriceManageVO insertData)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertSellPrice(SellPriceManageVO vo)
+        public bool UpsertSellPrice(SellPriceManageVO vo)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand())
+                    conn.Open();
+                    string sql = "SP_SELLPRICE_UPSERT";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.CommandText = "SP_SELLPRICE_UPSERT";
                         cmd.CommandType = CommandType.StoredProcedure;
 
+                        cmd.Parameters.AddWithValue("@sell_price_code", vo.sellprice_code);
+                        cmd.Parameters.AddWithValue("@product_group_id", vo.product_group_id);
                         cmd.Parameters.AddWithValue("@product_id", vo.product_id);
                         cmd.Parameters.AddWithValue("@sell_current_price", vo.sell_current_price);
-                        cmd.Parameters.AddWithValue("@sell_current_price", vo.start_date);
-                        cmd.Parameters.AddWithValue("@sell_current_price", vo.note);
+                        cmd.Parameters.AddWithValue("@sell_start_date", vo.start_date);
+                        cmd.Parameters.AddWithValue("@note", vo.note);
 
                         if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                             return true;

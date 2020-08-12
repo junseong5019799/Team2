@@ -72,6 +72,7 @@
             this.cboCompany.Name = "cboCompany";
             this.cboCompany.Size = new System.Drawing.Size(246, 32);
             this.cboCompany.TabIndex = 0;
+            this.cboCompany.SelectedIndexChanged += new System.EventHandler(this.cboCompany_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -103,6 +104,7 @@
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(247, 32);
             this.cboProduct.TabIndex = 2;
+            this.cboProduct.SelectedIndexChanged += new System.EventHandler(this.cboProduct_SelectedIndexChanged);
             // 
             // label3
             // 

@@ -18,9 +18,9 @@ namespace WinMSFactory.Services
             return dac.GetCompanyList();
         }
 
-        public DataTable GetOrderPlanList()
+        public DataTable GetOrderPlanList(int release_no)
         {
-            return dac.GetOrderPlanList();
+            return dac.GetOrderPlanList(release_no);
         }
 
         public DataTable GetOrderList()
@@ -77,9 +77,9 @@ namespace WinMSFactory.Services
             return dac.GetWareHouseDetail(order_no, product_id);
         }
 
-        public bool InsertOrder(OrderVO order)
+        public bool InsertOrder(List<OrderVO> olist)
         {
-            return dac.InsertOrder(order);
+            return dac.InsertOrder(olist);
         }
 
         public bool UpdateOrderDate(DateTime dt, int release_no)

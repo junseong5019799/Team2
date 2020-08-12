@@ -41,7 +41,7 @@ namespace WinMSFactory
             dgv2.AddNewColumns("품명", "product_name", 150, true);
             dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
             dgv2.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
-            dgv2.AddNewColumns("출고일", "release_date", 100, true);
+            dgv2.AddNewColumns("출고 예정일", "release_date", 100, true);
             dgv2.AddNewColumns("출고 상태", "release_status", 100, true);
             dgv2.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
             dgv2.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true);

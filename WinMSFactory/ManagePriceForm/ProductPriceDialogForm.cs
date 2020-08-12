@@ -50,7 +50,7 @@ namespace WinMSFactory
         private void ProductPriceDialogForm_Load(object sender, EventArgs e)
         {
             cboCompany.ComboBinding(cpsv.SelectCompanyBindings(), "COMPANY_ID", "COMPANY_Name");
-            cboCompany.SelectedIndexChanged += cboCompany_SelectedIndexChanged;
+            //cboCompany.SelectedIndexChanged += cboCompany_SelectedIndexChanged;
             cboCompany.SelectedIndex = 0;
             
             txtPreviousPrice.Enabled = false;
@@ -100,7 +100,7 @@ namespace WinMSFactory
             txtPreviousPrice.Text = "-";
             txtCurrentPrice.Text = "";
 
-            cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
+            //cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
             cboProduct.ComboBinding(pdsv.SelectProductBindings(cboCompany.SelectedValue.ToInt()), "Product_ID", "Product_Name");
             
             if(IsFirstProductSelect == true)
@@ -139,7 +139,6 @@ namespace WinMSFactory
                 if (IsInsert == true)
                 {
                     dtpStartDate.Value = vo.Start_Date.AddDays(1);
-                    dtpStartDate.MinDate = vo.Start_Date.AddDays(1);
                     txtEndDate.Text = "-";
                 }
                     
@@ -156,7 +155,7 @@ namespace WinMSFactory
 
             if(txtCurrentPrice.Text.Length<1)
             {
-                MessageBox.Show("물품을 선택해주세요");
+                MessageBox.Show("현재 단가를 입력해 주세요");
                 return;
             }
 

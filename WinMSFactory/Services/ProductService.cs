@@ -59,6 +59,11 @@ namespace WinMSFactory
             return dac.SelectPriceData(companyID, productID, ref vo);
         }
 
+        public List<ProductVO> SelectAllPriceProducts()
+        {
+            return dac.SelectAllPriceProducts();
+        }
+
         public bool UpsertMaterialPrice(ProductPriceManageVO insertData)
         {
             return dac.UpsertMaterialPrice(insertData);
@@ -84,9 +89,9 @@ namespace WinMSFactory
             return dac.GetProducts();
         }
 
-        internal void InsertSellPrice(SellPriceManageVO manageVO)
+        public bool UpsertSellPrice(SellPriceManageVO manageVO)
         {
-            throw new NotImplementedException();
+            return dac.UpsertSellPrice(manageVO);
         }
     }
 }

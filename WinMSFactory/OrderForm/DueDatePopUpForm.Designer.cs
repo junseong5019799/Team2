@@ -42,9 +42,8 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 260);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(462, 50);
+            this.panel1.Location = new System.Drawing.Point(0, 208);
+            this.panel1.Size = new System.Drawing.Size(411, 40);
             // 
             // btnConfirm
             // 
@@ -54,10 +53,9 @@
             // 
             this.btnChange.BackColor = System.Drawing.Color.White;
             this.btnChange.ForeColor = System.Drawing.Color.Black;
-            this.btnChange.Location = new System.Drawing.Point(109, 229);
-            this.btnChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnChange.Location = new System.Drawing.Point(97, 183);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(84, 31);
+            this.btnChange.Size = new System.Drawing.Size(75, 25);
             this.btnChange.TabIndex = 0;
             this.btnChange.Text = "변경";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -67,10 +65,9 @@
             // 
             this.btnC.BackColor = System.Drawing.Color.White;
             this.btnC.ForeColor = System.Drawing.Color.Black;
-            this.btnC.Location = new System.Drawing.Point(262, 229);
-            this.btnC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnC.Location = new System.Drawing.Point(233, 183);
             this.btnC.Name = "btnC";
-            this.btnC.Size = new System.Drawing.Size(84, 31);
+            this.btnC.Size = new System.Drawing.Size(75, 25);
             this.btnC.TabIndex = 1;
             this.btnC.Text = "취소";
             this.btnC.UseVisualStyleBackColor = false;
@@ -78,35 +75,34 @@
             // 
             // dtpFrom
             // 
-            this.dtpFrom.Location = new System.Drawing.Point(160, 32);
-            this.dtpFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpFrom.Location = new System.Drawing.Point(142, 26);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(224, 26);
+            this.dtpFrom.Size = new System.Drawing.Size(200, 22);
             this.dtpFrom.TabIndex = 2;
             // 
             // dtpTo
             // 
-            this.dtpTo.Location = new System.Drawing.Point(160, 121);
-            this.dtpTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpTo.Location = new System.Drawing.Point(142, 97);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(224, 26);
+            this.dtpTo.Size = new System.Drawing.Size(200, 22);
             this.dtpTo.TabIndex = 3;
+            this.dtpTo.ValueChanged += new System.EventHandler(this.dtpTo_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 38);
+            this.label1.Location = new System.Drawing.Point(57, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
+            this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "기존 날짜";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 126);
+            this.label2.Location = new System.Drawing.Point(41, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 20);
+            this.label2.Size = new System.Drawing.Size(69, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "변경 할 날짜";
             // 
@@ -116,34 +112,31 @@
             this.groupBox1.Controls.Add(this.dtpFrom);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dtpTo);
-            this.groupBox1.Location = new System.Drawing.Point(15, 31);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(13, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(431, 178);
+            this.groupBox1.Size = new System.Drawing.Size(383, 142);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
             // lblReleaseNo
             // 
             this.lblReleaseNo.AutoSize = true;
-            this.lblReleaseNo.Location = new System.Drawing.Point(15, 13);
+            this.lblReleaseNo.Location = new System.Drawing.Point(13, 10);
             this.lblReleaseNo.Name = "lblReleaseNo";
-            this.lblReleaseNo.Size = new System.Drawing.Size(57, 20);
+            this.lblReleaseNo.Size = new System.Drawing.Size(52, 16);
             this.lblReleaseNo.TabIndex = 7;
             this.lblReleaseNo.Text = "출고번호";
             this.lblReleaseNo.Visible = false;
             // 
             // DueDatePopUpForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 310);
+            this.ClientSize = new System.Drawing.Size(411, 248);
             this.Controls.Add(this.lblReleaseNo);
             this.Controls.Add(this.btnC);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "DueDatePopUpForm";
             this.Text = "납기일 변경";
             this.Load += new System.EventHandler(this.DueDatePopUpForm_Load);

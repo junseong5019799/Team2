@@ -62,6 +62,11 @@ namespace WinMSFactory
             return dac.SaveReleasePlan(dgv, release);
         }
 
+        public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice)
+        {
+            return dac.IsUpperData(ProductGroupID, ProductID, ref previousPrice);
+        }
+
         public int GetProductID(string name)
         {
             return dac.GetProductID(name);

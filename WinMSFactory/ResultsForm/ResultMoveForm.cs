@@ -14,6 +14,8 @@ namespace WinMSFactory
     public partial class ResultMoveForm : ListListForm
     {
         StorageService service = new StorageService();
+        int SelectStorage;
+
         public ResultMoveForm()
         {
             InitializeComponent();
@@ -21,12 +23,11 @@ namespace WinMSFactory
 
         private void ResultMoveForm_Load(object sender, EventArgs e)
         {
-            dgv.AddNewColumns("재고번호", "Stock_No", 100, true);
+            dgv.AddNewColumns("창고", "Storage_Name", 150, false);
             dgv.AddNewColumns("품목", "Product_Id", 150, false);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
             dgv.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
-            dgv.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);          
 
 
             dgv2.AddNewColumns("재고번호", "Stock_No", 100, true);
@@ -39,15 +40,19 @@ namespace WinMSFactory
 
             cboStorage.ComboBinding(service.GetStorage(), "Storage_ID", "Storage_Name");
 
-        }
-
-        private void buttonControl2_Click(object sender, EventArgs e) // 검색
-        {
-            int SelectStorage = cboStorage.SelectedValue.ToInt();
-
+            SelectStorage = Convert.ToInt32(cboStorage.SelectedValue);
             dgv.DataSource = service.SelectProductAll(SelectStorage);
         }
 
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                SelectStorage = Convert.ToInt32(cboStorage.SelectedValue);
+
+                dgv.DataSource = service.SelectProductAll(SelectStorage);
+            }
+        }
 
         /// <summary>
         /// 재고 이동
@@ -60,11 +65,11 @@ namespace WinMSFactory
             List<int> list = new List<int>();
             List<int> cnt = new List<int>();
 
-            dgv.EndEdit();
+            dgv2.EndEdit();
             
-            foreach (DataGridViewRow row in dgv.Rows)
+            foreach (DataGridViewRow row in dgv2.Rows)
             {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv2[0, row.Index];
 
                 if (chk.Value == null)
                     continue;
@@ -80,15 +85,15 @@ namespace WinMSFactory
             }
 
 
-            for (int i = 0; i < dgv.RowCount; i++)
+            for (int i = 0; i < dgv2.RowCount; i++)
             {
-                if (dgv.Rows[i].Cells[0].Value != null)
+                if (dgv2.Rows[i].Cells[0].Value != null)
                 {
-                    bool IsCheck = (bool)dgv.Rows[i].Cells[0].Value;
+                    bool IsCheck = (bool)dgv2.Rows[i].Cells[0].Value;
 
                     if (IsCheck)
                     {
-                        int num = Convert.ToInt32(dgv.Rows[i].Cells[1].Value);
+                        int num = Convert.ToInt32(dgv2.Rows[i].Cells[1].Value);
                         list.Add(num);
                     }
                 }
@@ -96,7 +101,7 @@ namespace WinMSFactory
             frm.ID = list;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                buttonControl2.PerformClick();                
+                dgv2.DataSource = service.SelectProductAll(SelectStorage);
             }
             
         }
@@ -105,15 +110,15 @@ namespace WinMSFactory
         //재고 detail 보여주기 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[2].Value);
+            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
             int sum = 0;
 
-            lblName.Text = dgv.SelectedRows[0].Cells[4].Value.ToString();            
+            lblName.Text = dgv.SelectedRows[0].Cells[3].Value.ToString();            
             dgv2.DataSource = service.GetStorageDetailList(product_id);
 
             for (int i = 0; i < dgv2.RowCount; i++)
             {
-                sum += Convert.ToInt32(dgv2.Rows[i].Cells[5].Value.ToString().Replace("개",""));
+                sum += Convert.ToInt32(dgv2.Rows[i].Cells[6].Value.ToString().Replace("개",""));
             }
 
             lblstocks.Text = sum.ToString();

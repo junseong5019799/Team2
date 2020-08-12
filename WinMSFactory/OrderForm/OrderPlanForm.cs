@@ -79,7 +79,9 @@ namespace WinMSFactory
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            OrderPopUpForm frm = new OrderPopUpForm();            
+            OrderPopUpForm frm = new OrderPopUpForm();
+            frm.Release_no = release_no;
+
             frm.Show();
         }
     }

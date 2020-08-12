@@ -15,7 +15,7 @@ namespace WinMSFactory
     public partial class SellPriceForm : ListForm
     {
         ProductService service = new ProductService();
-        List<SellPriceManageVO> sellVO;
+        
 
         public SellPriceForm()
         {
@@ -26,7 +26,7 @@ namespace WinMSFactory
         {
             DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
 
-            dgv.AddNewColumns("품목", "product_id", 150, false);
+            dgv.AddNewColumns("품목코드", "product_id", 150, true);
             dgv.AddNewColumns("품목명", "product_name", 200, true);
             dgv.AddNewColumns("품목 스펙(규격)", "product_information", 200, true);
             dgv.AddNewColumns("품목 단위", "product_unit", 80, true);
@@ -35,7 +35,10 @@ namespace WinMSFactory
             dgv.AddNewColumns("시작일", "start_date", 80, true);
             dgv.AddNewColumns("종료일", "end_date", 80, true);
             dgv.AddNewColumns("비고", "note", 300, true);
-            dgv.AddNewColumns("코드번호", "sellprice_code", 150, false);    
+            dgv.AddNewColumns("코드번호", "sellprice_code", 150, true);
+            dgv.AddNewColumns("Rank", "RankNum", 150, true);
+
+            dgv.DataSource = service.SelectAllPriceProducts();
         }
 
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)    //수정
