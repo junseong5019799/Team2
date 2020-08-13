@@ -49,7 +49,7 @@ namespace WinMSFactory
             dgvCorporationlist.DataSource = search;
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
             if (txtNameSearch.Text.Length < 1)
                 dgvCorporationlist.DataSource = search;
@@ -86,7 +86,7 @@ namespace WinMSFactory
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
             CorporationPopupForm cp = new CorporationPopupForm();
 
@@ -94,13 +94,13 @@ namespace WinMSFactory
                 LoadData();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void Clear(object sender, EventArgs e)
         {
             txtNameSearch.Text = "";
             LoadData();
         }
 
-        private void btnDelere_Click(object sender, EventArgs e)
+        private void Delete(object sender, EventArgs e)
         {
             CorporationService service = new CorporationService();
 
@@ -150,5 +150,6 @@ namespace WinMSFactory
                 throw err;
             }
         }
+
     }
 }
