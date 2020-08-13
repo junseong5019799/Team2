@@ -326,7 +326,6 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_process_name", vo.process_name);
                         cmd.Parameters.AddWithValue("@P_storage_id", vo.storage_id);
                         cmd.Parameters.AddWithValue("@P_line_id", vo.line_id);
-                        cmd.Parameters.AddWithValue("@P_factory_id", vo.factory_id);
                         cmd.Parameters.AddWithValue("@P_process_seq", vo.process_seq);
                         cmd.Parameters.AddWithValue("@P_process_use", vo.process_use);
                         cmd.Parameters.AddWithValue("@P_process_note1", vo.process_note1);
