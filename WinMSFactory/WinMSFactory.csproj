@@ -137,6 +137,7 @@
     <Compile Include="ManagePriceForm\SellPriceDialogForm.Designer.cs">
       <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\ProcessWorkerService.cs" />
     <Compile Include="Technology_Standards\DefectiveTypePopupForm.cs">
       <SubType>Form</SubType>
     </Compile>

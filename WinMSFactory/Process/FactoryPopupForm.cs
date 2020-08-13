@@ -18,10 +18,14 @@ namespace WinMSFactory
         FactoryService service = new FactoryService();
         FactoryVO vo;
         bool IsUpdate;
-        public FactoryPopupForm(bool IsUpdate, FactoryVO vo)
+        string employeeName;
+
+        public FactoryPopupForm(string employeeName, bool IsUpdate, FactoryVO vo)
         {
             InitializeComponent();
             this.IsUpdate = IsUpdate;
+
+            this.employeeName = employeeName;
             if (IsUpdate == true)
             {
                 this.vo = vo;
@@ -100,8 +104,8 @@ namespace WinMSFactory
                     factory_name = txtName.Text,
                     factory_seq = Convert.ToInt32((nudFactory_seq.Value.ToString().Length > 0) ? nudFactory_seq.Value.ToString() : "0"),
                     factory_use = UseCheck,
-                    first_regist_employee = "홍길동",
-                    final_regist_employee = "홍길동",
+                    first_regist_employee = employeeName,
+                    final_regist_employee = employeeName,
                     factory_note1 = txtNote1.Text,
                     factory_note2 = txtNote2.Text
                 };

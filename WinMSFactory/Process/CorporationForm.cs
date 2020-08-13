@@ -17,6 +17,8 @@ namespace WinMSFactory
     public partial class CorporationForm : ListForm
     {
         List<CorporationVO> search;
+        EmployeeVO emp;
+
         public CorporationForm()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace WinMSFactory
 
             LoadData();
 
+            emp = this.GetEmployee();
         }
 
         private void LoadData()
@@ -72,12 +75,9 @@ namespace WinMSFactory
             corporation.corporation_note1 = dgvCorporationlist.SelectedRows[0].Cells[4].Value.ToString();
             corporation.corporation_note2 = dgvCorporationlist.SelectedRows[0].Cells[5].Value.ToString();
             corporation.corporation_use = dgvCorporationlist.SelectedRows[0].Cells[6].Value.ToString();
-            corporation.first_regist_time = Convert.ToDateTime(dgvCorporationlist.SelectedRows[0].Cells[7].Value);
-            corporation.first_regist_employee = dgvCorporationlist.SelectedRows[0].Cells[8].Value.ToString();
-            corporation.final_regist_time = Convert.ToDateTime(dgvCorporationlist.SelectedRows[0].Cells[9].Value);
-            corporation.final_regist_employee = dgvCorporationlist.SelectedRows[0].Cells[10].Value.ToString();
 
-            CorporationPopupForm cp = new CorporationPopupForm(this, corporation);
+
+            CorporationPopupForm cp = new CorporationPopupForm(emp.Employee_name, true, corporation);
 
             if (cp.ShowDialog() == DialogResult.OK)
             {
@@ -88,10 +88,13 @@ namespace WinMSFactory
 
         private void Add(object sender, EventArgs e)
         {
-            CorporationPopupForm cp = new CorporationPopupForm();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                CorporationPopupForm cp = new CorporationPopupForm(emp.Employee_name, false, null);
 
-            if (cp.ShowDialog() == DialogResult.OK)
-                LoadData();
+                if (cp.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void Clear(object sender, EventArgs e)

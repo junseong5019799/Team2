@@ -20,7 +20,6 @@ namespace WinMSFactory
         CompanyVO companyVO;
         CompanyService service = new CompanyService();
         bool IsDataExists;
-        CompanyForm frm;
         string employeeName; 
 
         public CompanyProductPopupForm(string employeeName, bool IsDataExists,  CompanyVO company)

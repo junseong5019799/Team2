@@ -42,24 +42,24 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 167);
-            this.panel1.Size = new System.Drawing.Size(549, 40);
+            this.panel1.Location = new System.Drawing.Point(0, 230);
+            this.panel1.Size = new System.Drawing.Size(326, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(299, 3);
+            this.btnConfirm.Location = new System.Drawing.Point(28, 7);
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(427, 4);
+            this.btnCancel.Location = new System.Drawing.Point(187, 3);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 102);
+            this.label1.Location = new System.Drawing.Point(25, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 0;
@@ -69,9 +69,9 @@
             // 
             this.groupBox1.Controls.Add(this.rdoUnUse);
             this.groupBox1.Controls.Add(this.rdoUse);
-            this.groupBox1.Location = new System.Drawing.Point(52, 25);
+            this.groupBox1.Location = new System.Drawing.Point(28, 135);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 65);
+            this.groupBox1.Size = new System.Drawing.Size(245, 65);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "사용여부";
@@ -79,7 +79,7 @@
             // rdoUnUse
             // 
             this.rdoUnUse.AutoSize = true;
-            this.rdoUnUse.Location = new System.Drawing.Point(131, 30);
+            this.rdoUnUse.Location = new System.Drawing.Point(159, 30);
             this.rdoUnUse.Name = "rdoUnUse";
             this.rdoUnUse.Size = new System.Drawing.Size(59, 20);
             this.rdoUnUse.TabIndex = 0;
@@ -90,7 +90,7 @@
             // rdoUse
             // 
             this.rdoUse.AutoSize = true;
-            this.rdoUse.Location = new System.Drawing.Point(16, 30);
+            this.rdoUse.Location = new System.Drawing.Point(72, 30);
             this.rdoUse.Name = "rdoUse";
             this.rdoUse.Size = new System.Drawing.Size(48, 20);
             this.rdoUse.TabIndex = 0;
@@ -100,21 +100,21 @@
             // 
             // txtDefectiveString
             // 
-            this.txtDefectiveString.Location = new System.Drawing.Point(53, 124);
+            this.txtDefectiveString.Location = new System.Drawing.Point(100, 33);
             this.txtDefectiveString.Name = "txtDefectiveString";
-            this.txtDefectiveString.Size = new System.Drawing.Size(483, 22);
+            this.txtDefectiveString.Size = new System.Drawing.Size(146, 22);
             this.txtDefectiveString.TabIndex = 3;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(396, 60);
+            this.numericUpDown1.Location = new System.Drawing.Point(100, 82);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(63, 22);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown1.Value = new decimal(new int[] {
@@ -126,7 +126,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(393, 40);
+            this.label2.Location = new System.Drawing.Point(50, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 16);
             this.label2.TabIndex = 5;
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 207);
+            this.ClientSize = new System.Drawing.Size(326, 270);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.txtDefectiveString);

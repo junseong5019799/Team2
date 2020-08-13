@@ -68,6 +68,7 @@
     <Compile Include="ModuleDAC.cs" />
     <Compile Include="OrderDAC.cs" />
     <Compile Include="ProcessDAC.cs" />
+    <Compile Include="ProcessWorkerDAC.cs" />
     <Compile Include="ProductDAC.cs" />
     <Compile Include="ProductGroupDAC.cs" />
     <Compile Include="ProductionDAC.cs" />

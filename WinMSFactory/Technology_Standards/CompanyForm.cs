@@ -141,10 +141,13 @@ namespace WinMSFactory
 
         private void Add(object sender, EventArgs e)
         {
-            CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, false, null);
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, false, null);
 
-            if (cpp.ShowDialog() == DialogResult.OK)
-                LoadData();
+                if (cpp.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void dgvCompanyList_CellClick(object sender, DataGridViewCellEventArgs e) //전체 체크박스풀기

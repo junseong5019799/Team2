@@ -17,10 +17,14 @@ namespace WinMSFactory
         DowntimeTypeService service = new DowntimeTypeService();
         DowntimeTypeVO vo;
         bool IsUpdate;
-        public DowntimeTypePopupForm(bool IsUpdate, DowntimeTypeVO vo)
+        string employeeName;
+
+        public DowntimeTypePopupForm(string employeeName, bool IsUpdate, DowntimeTypeVO vo)
         {
             InitializeComponent();
             this.IsUpdate = IsUpdate;
+
+            this.employeeName = employeeName;
             if (IsUpdate == true)
             {
                 this.vo = vo;
@@ -134,8 +138,8 @@ namespace WinMSFactory
                     downtime_type_calculation = TimeCheck,
                     downtime_type_seq = Convert.ToInt32((nudDowntimeType_seq.Value.ToString().Length > 0) ? nudDowntimeType_seq.Value.ToString() : "0"),
                     downtime_type_use = UseCheck,
-                    first_regist_employee = "홍길동",
-                    final_regist_employee = "홍길동",
+                    first_regist_employee = employeeName,
+                    final_regist_employee = employeeName,
                 };
 
                 if (service.SaveDowntimeType(downtimetype))

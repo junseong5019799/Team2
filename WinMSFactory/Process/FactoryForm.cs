@@ -20,7 +20,7 @@ namespace WinMSFactory
         DataTable dtDgv;
         FactoryService service = new FactoryService();
         //List<FactoryForm> flist;
-        
+        EmployeeVO emp;
 
         public FactoryForm()
         {
@@ -37,7 +37,7 @@ namespace WinMSFactory
             dgvFactorylist.AddNewColumns("공장순번", "factory_seq", 100, true);
             dgvFactorylist.AddNewColumns("공장비고1", "factory_note1", 100, true);
             dgvFactorylist.AddNewColumns("공장비고2", "factory_note2", 100, true);
-            dgvFactorylist.AddNewBtnCol("사용여부", "", new Padding(1,1,1,1)); // 7 버튼
+            dgvFactorylist.AddNewBtnCol("사용여부", "", new Padding(1,1,1,1), false); // 7 버튼
             dgvFactorylist.AddNewColumns("사용여부", "factory_use", 100, true); // 명
             dgvFactorylist.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvFactorylist.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
@@ -46,7 +46,8 @@ namespace WinMSFactory
 
             LoadData();
 
-            cboCorporationName.ComboBinding(service.ComboGet(), "corporation_id", "corporation_name", "선택", 0);
+            cboCorporationName.ComboBinding(service.ComboGet(), "corporation_id", "corporation_name", "전체", 0);
+            emp = this.GetEmployee();
         }
 
         private void LoadData()
@@ -85,7 +86,7 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, FactoryVO vo = null)
         {
-            FactoryPopupForm frm = new FactoryPopupForm(IsUpdate, vo);
+            FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, IsUpdate, vo);
             if (frm.ShowDialog() == DialogResult.OK)
                 LoadData();
         }
@@ -143,14 +144,14 @@ namespace WinMSFactory
 
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
-            FactoryPopupForm frm = new FactoryPopupForm(false, null);
+            FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, false, null);
             if (frm.ShowDialog() == DialogResult.OK)
                 LoadData();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void Delete(object sender, EventArgs e)
         {
            
                 if (MessageBox.Show("공장을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -193,11 +194,12 @@ namespace WinMSFactory
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void Clear(object sender, EventArgs e)
         {
             cboCorporationName.SelectedIndex = 0;
             txtFactoryName.Text = "";
             LoadData();
         }
+
     }
 }

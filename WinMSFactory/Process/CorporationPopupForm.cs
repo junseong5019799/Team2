@@ -18,48 +18,47 @@ namespace WinMSFactory
         CorporationForm frm;
         bool IsDataExists;
         CorporationService service = new CorporationService();
-        public CorporationPopupForm(CorporationForm frm, CorporationVO corporation)
+        string employeeName;
+
+        public CorporationPopupForm(string employeeName, bool IsDataExists,CorporationVO corporation)
         {
             InitializeComponent();
-            this.corporationVO = corporation;
-            IsDataExists = true;
-            this.frm = frm;
-        }
+            this.IsDataExists = IsDataExists;
 
-        public CorporationPopupForm()
-        {
-            InitializeComponent();
-            IsDataExists = false;
+            this.employeeName = employeeName;
+            if (IsDataExists == true)
+            {
+                this.corporationVO = corporation;
+            }
 
-            txtID.Enabled = false;
         }
 
         private void CorporationPopupForm_Load(object sender, EventArgs e)
         {
-            if (IsDataExists == true)
+            if (IsDataExists == false)
+                rboUse.Checked = true;
+
+            else if (IsDataExists == true)
             {
-                txtID.Enabled = false;
-                dtpFirst.Enabled = false;
-                txtFirst.Enabled = false;
+                if (corporationVO.corporation_use == "Y")
+                {
+                    rboUse.Checked = true;
+                    rboNotUse.Checked = false;
+                }
+
+                else
+                {
+                    rboUse.Checked = false;
+                    rboNotUse.Checked = true;
+                }
 
                 txtID.Text = corporationVO.corporation_id.ToString();
                 txtName.Text = corporationVO.corporation_name;
-                txtSeq.Text = corporationVO.corporation_seq.ToString();
+                nudCorporation_seq.Text = corporationVO.corporation_seq.ToString();
                 txtNote1.Text = corporationVO.corporation_note1;
                 txtNote2.Text = corporationVO.corporation_note2;
-                dtpFirst.Value = corporationVO.first_regist_time;
-                dtpFinal.Value = corporationVO.final_regist_time;
-                txtFirst.Text = corporationVO.first_regist_employee;
-                txtFinal.Text = corporationVO.final_regist_employee;
-                if (corporationVO.corporation_use.ToUpper() == "Y")
-                {
-                    rboUse.Checked = true;
-                }
-                else if (corporationVO.corporation_use.ToUpper() == "N")
-                {
-                    rboNotUse.Checked = true;
-                }
             }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -71,36 +70,55 @@ namespace WinMSFactory
         {
             try
             {
-                CorporationVO vo = new CorporationVO();
-
-                vo.corporation_id = Convert.ToInt32((txtID.Text.Length > 0) ? txtID.Text : "0");
-                vo.corporation_name = txtName.Text;
-                vo.corporation_seq = Convert.ToInt32((txtSeq.Text.Length > 0) ? txtSeq.Text : "0");
-                vo.corporation_note1 = txtNote1.Text;
-                vo.corporation_note2 = txtNote2.Text;
-                vo.corporation_use = (rboUse.Checked == true) ? "Y" : "N";
-                vo.first_regist_employee = txtFirst.Text;
-                vo.final_regist_employee = txtFinal.Text;
-
-                if (service.SaveCorporation(vo))
+                if (txtName.TextLength < 1)
                 {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    MessageBox.Show("법인을 입력해주세요");
+                    return;
                 }
+
+                string UseCheck;
+
+                if (rboUse.Checked == true)
+                    UseCheck = "Y";
+                else
+                    UseCheck = "N";
+
+                if (IsDataExists == false)
+                    CorporationSave(UseCheck, "등록", 0);
+
+                else
+                    CorporationSave(UseCheck, "수정", corporationVO.corporation_id);
             }
             catch (Exception err)
             {
                 throw err;
             }
+
         }
 
-        private void txtSeq_KeyPress(object sender, KeyPressEventArgs e)
+        private void CorporationSave(string UseCheck, string Status, int corporation_id)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
+            if (MessageBox.Show($"법인을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                e.Handled = true;
-            }
 
+                CorporationVO corporation = new CorporationVO
+                {
+                    corporation_id = corporation_id,
+                    corporation_name = txtName.Text,
+                    corporation_seq = Convert.ToInt32((nudCorporation_seq.Value.ToString().Length > 0) ? nudCorporation_seq.Value.ToString() : "0"),
+                    corporation_use = UseCheck,
+                    first_regist_employee = employeeName,
+                    final_regist_employee = employeeName,
+                    corporation_note1 = txtNote1.Text,
+                    corporation_note2 = txtNote2.Text
+                };
+
+                if (service.SaveCorporation(corporation))
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
         }
     }
 }

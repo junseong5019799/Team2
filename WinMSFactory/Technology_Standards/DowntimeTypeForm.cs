@@ -17,7 +17,7 @@ namespace WinMSFactory
     {
         DataTable dtDgv;
         DowntimeTypeService service = new DowntimeTypeService();
-
+        EmployeeVO emp;
 
         public DowntimeTypeForm()
         {
@@ -41,6 +41,8 @@ namespace WinMSFactory
             dgvDowntimeType.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
 
             LoadData();
+
+            emp = this.GetEmployee();
         }
 
         private void LoadData()
@@ -77,9 +79,12 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, DowntimeTypeVO vo = null)
         {
-            DowntimeTypePopupForm frm = new DowntimeTypePopupForm(IsUpdate, vo);
-            if (frm.ShowDialog() == DialogResult.OK)
-                LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                DowntimeTypePopupForm frm = new DowntimeTypePopupForm(emp.Employee_name, IsUpdate, vo);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         // 여기 부분은 버튼 사용 부분입니다. 참고용으로 적어놓았고, 실제 작동은 되지 않습니다.!!
@@ -176,7 +181,7 @@ namespace WinMSFactory
         {
             if(((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DowntimeTypePopupForm frm = new DowntimeTypePopupForm(false, null);
+                DowntimeTypePopupForm frm = new DowntimeTypePopupForm(emp.Employee_name, false, null);
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadData();
             }
