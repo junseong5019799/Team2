@@ -18,6 +18,7 @@ namespace WinMSFactory
 
             this.TextAlign= ContentAlignment.MiddleCenter;
 
+            this.FlatStyle = FlatStyle.Flat;
             this.ForeColor = Color.Black;            
             this.BackColor = Color.White;            
         }

@@ -178,7 +178,7 @@ namespace WinMSFactory.ManagePriceForm
                 
                 if (dtpStartDate.Value <= DateItem[0])
                 {
-                    MessageBox.Show("날짜를 잘못입력하셨습니다.");
+                    MessageBox.Show("날짜를 잘못 입력하셨습니다.");
                     dtpStartDate.Value = DateItem[0].AddDays(1);
                 }
             }
@@ -186,7 +186,7 @@ namespace WinMSFactory.ManagePriceForm
             {
                 if (dtpStartDate.Value <= PreviousTime.Value)
                 {
-                    MessageBox.Show("날짜를 잘못입력하셨습니다.");
+                    MessageBox.Show("날짜를 잘못 입력하셨습니다.");
                     dtpStartDate.Value = PreviousTime.Value.AddDays(1);
                 }
             }

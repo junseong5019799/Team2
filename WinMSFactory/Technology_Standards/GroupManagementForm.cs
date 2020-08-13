@@ -121,28 +121,27 @@ namespace WinMSFactory
                 }
                 else
                 {
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+
+                        if (chk.Value == null)
+                            continue;
+
+                        if ((bool)chk.Value == true)
+                        {
+                            string ProductGroup = dgv[2, row.Index].Value.ToString();
+
+                            if (ProductGroup == "반제품" || ProductGroup == "재료")
+                            {
+                                MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
+                                return;
+                            }
+                        }
+                    }
 
                     if (MessageBox.Show("정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        foreach (DataGridViewRow row in dgv.Rows)
-                        {
-                            DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
-
-                            if (chk.Value == null)
-                                continue;
-
-                            if ((bool)chk.Value == true)
-                            {
-                                string ProductGroup = dgv[2, row.Index].Value.ToString();
-
-                                if (ProductGroup == "반제품" || ProductGroup == "재료")
-                                {
-                                    MessageBox.Show("반제품과 재료 그룹은 삭제가 불가능합니다.");
-                                    return;
-                                }
-                            }
-                        }
-
                         foreach (int numbers in CheckList)
                         {
                             service.DeleteGroups(numbers);
@@ -181,6 +180,14 @@ namespace WinMSFactory
 
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgv[2, e.RowIndex].Value.ToString() == "반제품" || dgv[2, e.RowIndex].Value.ToString() == "재료")
+            {
+                MessageBox.Show("반제품, 재료는 수정이 불가능합니다.");
+                return;
+            }
+                
+
+
             ProductGroupVO vo = new ProductGroupVO
             {
                 Product_Group_ID = dgv[1,e.RowIndex].Value.ToInt(),
