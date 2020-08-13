@@ -370,7 +370,7 @@ namespace MSFactoryDAC
                     cmd.Parameters.Add("@release_seq", SqlDbType.Int);
                     cmd.Parameters.Add("@product_id", SqlDbType.Int);
                     cmd.Parameters.Add("@release_plan_date", SqlDbType.DateTime);
-                    cmd.Parameters.Add("@release_date", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@release_date", SqlDbType.DateTime);
                     cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
                     cmd.Parameters.Add("@release_quantity", SqlDbType.Int);
                     cmd.Parameters.Add("@release_status", SqlDbType.NVarChar);
