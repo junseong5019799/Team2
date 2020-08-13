@@ -85,5 +85,10 @@ namespace WinMSFactory
         {
             return dac.InsertUpdateProductByBomCopy(insertBOMLists, Product_Name);
         }
+
+        public bool BomPartialDelete(int highProductNo, int lowProductNo)
+        {
+            return dac.BomPartialDelete(highProductNo, lowProductNo);
+        }
     }
 }

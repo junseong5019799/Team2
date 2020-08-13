@@ -75,11 +75,37 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool BomPartialDelete(int highProductNo, int lowProductNo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"DELETE FROM TBL_BOM WHERE HIGH_PRODUCT_ID = @HIGH_PRODUCT_ID AND LOW_PRODUCT_ID = @LOW_PRODUCT_ID";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@HIGH_PRODUCT_ID", highProductNo);
+                        cmd.Parameters.AddWithValue("@LOW_PRODUCT_ID", lowProductNo);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool BomDelete(int deleteBomNum)
         {
             try
             {
-                DataTable dt = new DataTable();
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();

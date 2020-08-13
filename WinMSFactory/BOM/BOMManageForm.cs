@@ -12,13 +12,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Services;
 
-namespace WinMSFactory.BOM
+namespace WinMSFactory
 {
     
-    public partial class BOMManageForm : BasicForm
+    public partial class BOMManageForm : Form
     {
         BomService bomSv = new BomService();
-        ProductGroupService pdgSv = new ProductGroupService();
         ProductService pdSv = new ProductService();
 
         List<BomVO> SelectedAllMaterial;
@@ -31,14 +30,17 @@ namespace WinMSFactory.BOM
         bool BomEnrollCheck; // 등록, 수정 결정
         bool IsBomCopy = false;
         EmployeeVO employee;
+        ProductManagementForm frm;
 
         public ProductInsertVO ProductInformation { get; set; } // Bom Copy에서 사용
 
         // BOM 등록 및 수정
-        public BOMManageForm(EmployeeVO employee, bool BomEnrollCheck, int ProductID, string ProductName, char BOMEnrollStatus)
+        public BOMManageForm(ProductManagementForm frm, EmployeeVO employee, bool BomEnrollCheck, int ProductID, 
+            string ProductName, char BOMEnrollStatus)
         {
             InitializeComponent();
             CheckedList = new List<BomVO>();
+            this.frm = frm;
             this.BomEnrollCheck = BomEnrollCheck;
             this.ProductID = ProductID;
             this.ProductName = ProductName;
@@ -52,12 +54,13 @@ namespace WinMSFactory.BOM
             }
         }
         // BOM 복사
-        public BOMManageForm(EmployeeVO employee, List<int> ProductIDs, bool IsBomCopy)
+        public BOMManageForm(ProductManagementForm frm, EmployeeVO employee, List<int> ProductIDs, bool IsBomCopy)
         {
             InitializeComponent();
             this.ProductIDs = ProductIDs;
             this.IsBomCopy = IsBomCopy;
             this.BomEnrollCheck = true;
+            this.frm = frm;
             CheckedList = new List<BomVO>();
             ProductName = "";
             this.employee = employee;
@@ -65,6 +68,7 @@ namespace WinMSFactory.BOM
 
         private void BOMManageForm_Load(object sender, EventArgs e)
         {
+            
             // 왼쪽 그리드 뷰에는 반제품, 재료 만 조회 가능
             cboSearch.ComboBinding(BomService.CboProductType(), "ValueMember", "Member");
             //cboType.ComboBinding(pdgSv.ProductGroupComboBindingsNotAll(),"Product_Group_ID", "Product_Group_Name");
@@ -292,7 +296,7 @@ namespace WinMSFactory.BOM
             service.InsertLogs(AddLog);
 
             MessageBox.Show("BOM 등록이 완료되었습니다.");
-            this.DialogResult = DialogResult.OK;
+            frm.SaveComplete = true;
             this.Close();
         }
 
@@ -405,7 +409,10 @@ namespace WinMSFactory.BOM
                 dgv2[0, row.Index].Value = null;
         }
 
-        
+        private void BOMManageForm_Activated(object sender, EventArgs e)
+        {
+            this.Dock = DockStyle.Fill;
+        }
     }
     
 }

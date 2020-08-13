@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using WinMSFactory.BOM;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -30,9 +29,9 @@ namespace WinMSFactory
 
         char UseCheck = 'Y';
         char BomEnrollStatus = 'N';
-
         bool BomEnrollCheck;
-        
+        public bool SaveComplete { get; set; }
+
         public ProductManagementForm()
         {
             InitializeComponent();
@@ -59,7 +58,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgv.AddNewColumns("최종등록시각", "final_regist_time", 130, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
-            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, true);
+            dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
 
             dgvBarCodeColumns();
 
@@ -68,16 +67,20 @@ namespace WinMSFactory
             cboProductType.ComboBinding(pdgSv.ProductGroupComboBindings(), "Product_Group_ID", "Product_Group_Name");
             ReviewDGV();
 
-            rdoAll.CheckedChanged += rdoActive_CheckedChanged;
-            rdoUnUse.CheckedChanged += rdoActive_CheckedChanged;
-            rdoUse.CheckedChanged += rdoActive_CheckedChanged;
-
             rdoAll.Checked = true;
 
             ((MainForm)this.MdiParent).Readed += Readed_Completed;
 
             emp = this.GetEmployee();
+        }
 
+        private void ProductManagementForm_Activated(object sender, EventArgs e)
+        {
+            if (SaveComplete == true)
+            {
+                ReviewDGV();
+                SaveComplete = false;
+            }
         }
 
         private void dgvBarCodeColumns()
@@ -137,16 +140,16 @@ namespace WinMSFactory
                 else // 재료의 - 상태일 때
                     return;
 
-                BOMManageForm frm = new BOMManageForm(emp, BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
+                
+                BOMManageForm frm = new BOMManageForm(this, emp, BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
+                frm.MdiParent = this.MdiParent;
+                frm.Text = "";
+                frm.Show();
 
-                if (frm.ShowDialog() == DialogResult.OK)
-                    ReviewDGV();
-                // 재료의 - 상태는 return됨
+                //재료의 - 상태는 return됨
             }
 
         }
-
-
         private void rdoActive_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoUse.Checked)
@@ -292,13 +295,6 @@ namespace WinMSFactory
                 Search(null, null);
         }
 
-        private void buttonControl2_Click_1(object sender, EventArgs e)
-        {
-            BOMSelectAllForm frm = new BOMSelectAllForm(); // 상황에 따라 this.MdiParent로 바꿀 것
-            if(frm.ShowDialog() == DialogResult.OK)
-                ReviewDGV();
-
-        }
 
         private void btnBOMCopy_Click(object sender, EventArgs e)
         {
@@ -341,10 +337,10 @@ namespace WinMSFactory
                 return;
             }
 
-            BOMManageForm frm = new BOMManageForm(emp, Selectedlist, true);
-
-            if (frm.ShowDialog() == DialogResult.OK)
-                ReviewDGV();
+            BOMManageForm frm = new BOMManageForm(this, emp, Selectedlist, true);
+            frm.MdiParent = this.MdiParent;
+            frm.Text = "";
+            frm.Show();
         }
 
         private void Barcode(object sender, EventArgs e)
@@ -360,9 +356,6 @@ namespace WinMSFactory
             }
 
         }
-
-       
-
         private void Readed_Completed(object sender, ReadEventArgs e)
         {
             int readNum; // TryParse의 out에 이용
@@ -420,10 +413,11 @@ namespace WinMSFactory
             {
                 productNum.Add(dgvBarcode[0, row.Index].Value.ToInt());
             }
-            BOMManageForm frm = new BOMManageForm(emp, productNum, true);
-
-            if (frm.ShowDialog() == DialogResult.OK)
-                ReviewDGV();
+            BOMManageForm frm = new BOMManageForm(this, emp, productNum, true);
+            frm.MdiParent = this.MdiParent;
+            frm.Text = "";
+            frm.Show();
+            
         }
 
         private void btnBarDelete_Click(object sender, EventArgs e)
@@ -440,11 +434,6 @@ namespace WinMSFactory
             BarcodeAddList.Clear();
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
-        {
-            BOMLogForm frm = new BOMLogForm();
-            frm.ShowDialog();
-        }
 
         private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -475,5 +464,7 @@ namespace WinMSFactory
             if (frm.ShowDialog() == DialogResult.OK)
                 ReviewDGV();
         }
+
+        
     }
 }

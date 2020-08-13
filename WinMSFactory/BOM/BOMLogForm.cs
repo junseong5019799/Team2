@@ -37,13 +37,22 @@ namespace WinMSFactory
             dgv.DataSource = SelectLists;
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
-            var SearchData = (from SortedList in SelectLists
-                              where SortedList.Bom_Enroll_Date.Date.AddDays(1) >= fromToDate.From && SortedList.Bom_Enroll_Date.Date <= fromToDate.To
-                              select SortedList).ToList();
+            if(((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                var SearchData = (from SortedList in SelectLists
+                                  where SortedList.Bom_Enroll_Date.Date.AddDays(1) >= fromToDate.From && SortedList.Bom_Enroll_Date.Date <= fromToDate.To
+                                  select SortedList).ToList();
 
-            dgv.DataSource = SearchData;
+                dgv.DataSource = SearchData;
+            }
+            
+        }
+        private void Clear(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+                dgv.DataSource = SelectLists;
         }
     }
 }

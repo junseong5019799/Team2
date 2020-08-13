@@ -9,7 +9,6 @@ using System.Security.Authentication.ExtendedProtection.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinMSFactory.BOM;
 
 namespace WinMSFactory
 {
@@ -66,29 +65,31 @@ namespace WinMSFactory
 
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
-            if (cboSelectName.Text.Length < 1)
-                MessageBox.Show("재료를 선택한 후 진행해주세요");
-            else
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgv.DataSource = service.BOMDeployDGVBinding(IsBOMForward, cboSelectName.SelectedValue.ToInt());
+                if (cboSelectName.Text.Length < 1)
+                    MessageBox.Show("재료를 선택한 후 진행해주세요");
+                else
+                {
+                    dgv.DataSource = service.BOMDeployDGVBinding(IsBOMForward, cboSelectName.SelectedValue.ToInt());
 
-                if (cboSelect.SelectedIndex == 0 && dgv.Rows.Count == 1) // 정전개를 선택했는데 원재료 1개만 나오는 경우
-                {
-                    // 이는 bom이 등록되지 않았거나 하위 재료가 등록되지 않았다는 것을 의미함
-                    dgv.DataSource = null;
-                    MessageBox.Show("bom 미등록이거나 하위 재료가 존재하지 않습니다.");
-                }
-                    
-                else if (cboSelect.SelectedIndex == 1 && dgv.Rows.Count == 1)
-                {
-                    // 이는 bom이 등록되지 않았거나 상위 재료가 등록되지 않았다는 것을 의미함
-                    dgv.DataSource = null;
-                    MessageBox.Show("bom 미등록이거나 상위 재료가 존재하지 않습니다.");
+                    if (cboSelect.SelectedIndex == 0 && dgv.Rows.Count == 1) // 정전개를 선택했는데 원재료 1개만 나오는 경우
+                    {
+                        // 이는 bom이 등록되지 않았거나 하위 재료가 등록되지 않았다는 것을 의미함
+                        dgv.DataSource = null;
+                        MessageBox.Show("bom 미등록이거나 하위 재료가 존재하지 않습니다.");
+                    }
+
+                    else if (cboSelect.SelectedIndex == 1 && dgv.Rows.Count == 1)
+                    {
+                        // 이는 bom이 등록되지 않았거나 상위 재료가 등록되지 않았다는 것을 의미함
+                        dgv.DataSource = null;
+                        MessageBox.Show("bom 미등록이거나 상위 재료가 존재하지 않습니다.");
+                    }
                 }
             }
-                 
         }
 
         private void buttonControl2_Click(object sender, EventArgs e)
@@ -110,12 +111,33 @@ namespace WinMSFactory
             }
         }
 
-        private void btnInsertUpdate_Click(object sender, EventArgs e)
+        private void buttonControl2_Click_1(object sender, EventArgs e)
         {
-            ProductManagementForm frm = new ProductManagementForm(); // 상황에 따라 this.MdiParent로 바꿀 것
-            frm.Show();
-            this.Close();
+            if (dgv.SelectedRows.Count<1 )
+            {
+                MessageBox.Show("삭제할 목록을 선택해주세요");
+                return;
+            }
 
+            int SelectRowIndex = dgv.SelectedRows[0].Index;
+            int HighProductNo = dgv[0, 0].Value.ToInt();
+            int LowProductNo = dgv[0, SelectRowIndex].Value.ToInt();
+
+            if(SelectRowIndex == 0)
+            {
+                MessageBox.Show("맨 상위 목록은 선택할 수 없습니다.");
+                return;
+            }
+
+            else if(MessageBox.Show("선택한 하위 BOM 물품을 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if(service.BomPartialDelete(HighProductNo, LowProductNo))
+                {
+                    MessageBox.Show("삭제되었습니다.");
+                    dgv.DataSource = service.BOMDeployDGVBinding(IsBOMForward, cboSelectName.SelectedValue.ToInt());
+                }
+
+            }
         }
     }
 }
