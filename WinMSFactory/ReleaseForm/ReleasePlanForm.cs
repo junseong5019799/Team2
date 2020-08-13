@@ -204,6 +204,8 @@ namespace WinMSFactory
                     dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }
             }
+
+            dgv2.ClearSelection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

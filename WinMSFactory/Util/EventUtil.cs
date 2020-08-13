@@ -179,12 +179,7 @@ namespace WinMSFactory
 		public static void Form_Shown_dgvClearSelection(object sender, EventArgs e)
 		{
 			Form frm = (Form)sender;
-
-			foreach (System.Windows.Forms.Control ctr in frm.Controls)
-			{
-				if (ctr is DataGridView)
-					((DataGridView)ctr).ClearSelection();
-			}
+			DgvClearSelection(frm.Controls);
 		}
 
 		private string GetMethodName(string methodName)
@@ -197,6 +192,17 @@ namespace WinMSFactory
 			}
 
 			return methodName;
+		}
+
+		private static void DgvClearSelection(System.Windows.Forms.Control.ControlCollection controls)
+		{
+			foreach (System.Windows.Forms.Control contorl in controls)
+			{
+				if (contorl is DataGridView)
+					((DataGridView)contorl).ClearSelection();
+				else if (contorl.Controls.Count > 0)
+					DgvClearSelection(contorl.Controls);
+			}
 		}
 	}
 }
