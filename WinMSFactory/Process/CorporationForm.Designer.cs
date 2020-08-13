@@ -28,14 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtNameSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnClear = new WinMSFactory.ButtonControl();
-            this.btnSelect = new WinMSFactory.ButtonControl();
-            this.btnDelere = new WinMSFactory.ButtonControl();
-            this.btnSave = new WinMSFactory.ButtonControl();
             this.lblCorporationid = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvCorporationlist = new WinMSFactory.DataGridViewControl();
@@ -46,10 +42,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnClear);
-            this.panel1.Controls.Add(this.btnSelect);
-            this.panel1.Controls.Add(this.btnDelere);
-            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.txtNameSearch);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblCorporationid);
@@ -57,10 +49,6 @@
             this.panel1.Controls.SetChildIndex(this.lblCorporationid, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.txtNameSearch, 0);
-            this.panel1.Controls.SetChildIndex(this.btnSave, 0);
-            this.panel1.Controls.SetChildIndex(this.btnDelere, 0);
-            this.panel1.Controls.SetChildIndex(this.btnSelect, 0);
-            this.panel1.Controls.SetChildIndex(this.btnClear, 0);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             // 
             // GuidLabel2
@@ -85,54 +73,6 @@
             this.label2.Size = new System.Drawing.Size(59, 15);
             this.label2.TabIndex = 14;
             this.label2.Text = "법인 명칭";
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.White;
-            this.btnClear.ForeColor = System.Drawing.Color.Black;
-            this.btnClear.Location = new System.Drawing.Point(1148, 73);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(55, 23);
-            this.btnClear.TabIndex = 37;
-            this.btnClear.Text = "초기화";
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.BackColor = System.Drawing.Color.White;
-            this.btnSelect.ForeColor = System.Drawing.Color.Black;
-            this.btnSelect.Location = new System.Drawing.Point(866, 73);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(57, 23);
-            this.btnSelect.TabIndex = 36;
-            this.btnSelect.Text = "조회";
-            this.btnSelect.UseVisualStyleBackColor = false;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // btnDelere
-            // 
-            this.btnDelere.BackColor = System.Drawing.Color.White;
-            this.btnDelere.ForeColor = System.Drawing.Color.Black;
-            this.btnDelere.Location = new System.Drawing.Point(1059, 73);
-            this.btnDelere.Name = "btnDelere";
-            this.btnDelere.Size = new System.Drawing.Size(46, 23);
-            this.btnDelere.TabIndex = 35;
-            this.btnDelere.Text = "삭제";
-            this.btnDelere.UseVisualStyleBackColor = false;
-            this.btnDelere.Click += new System.EventHandler(this.btnDelere_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.White;
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(966, 73);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(50, 23);
-            this.btnSave.TabIndex = 34;
-            this.btnSave.Text = "추가";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblCorporationid
             // 
@@ -159,23 +99,23 @@
             this.dgvCorporationlist.AllowUserToAddRows = false;
             this.dgvCorporationlist.BackgroundColor = System.Drawing.Color.White;
             this.dgvCorporationlist.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCorporationlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCorporationlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvCorporationlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCorporationlist.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCorporationlist.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvCorporationlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCorporationlist.IsAllCheckColumnHeader = false;
             this.dgvCorporationlist.IsAutoGenerateColumns = false;
@@ -215,10 +155,6 @@
         #endregion
         private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.Label label2;
-        private ButtonControl btnClear;
-        private ButtonControl btnSelect;
-        private ButtonControl btnDelere;
-        private ButtonControl btnSave;
         private System.Windows.Forms.Label lblCorporationid;
         private System.Windows.Forms.Panel panel2;
         private DataGridViewControl dgvCorporationlist;

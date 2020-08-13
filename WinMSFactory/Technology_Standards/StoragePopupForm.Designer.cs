@@ -47,17 +47,17 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 361);
-            this.panel1.Size = new System.Drawing.Size(433, 40);
+            this.panel1.Size = new System.Drawing.Size(327, 40);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(89, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(29, 4);
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(246, 4);
+            this.btnCancel.Location = new System.Drawing.Point(191, 4);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cboCorporation
@@ -67,7 +67,7 @@
             this.cboCorporation.Location = new System.Drawing.Point(112, 52);
             this.cboCorporation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboCorporation.Name = "cboCorporation";
-            this.cboCorporation.Size = new System.Drawing.Size(263, 24);
+            this.cboCorporation.Size = new System.Drawing.Size(151, 24);
             this.cboCorporation.TabIndex = 11;
             this.cboCorporation.SelectedIndexChanged += new System.EventHandler(this.cboCorporation_SelectedIndexChanged);
             // 
@@ -79,7 +79,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(329, 73);
+            this.groupBox1.Size = new System.Drawing.Size(241, 73);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "사용 여부";
@@ -87,7 +87,7 @@
             // rdoUnUse
             // 
             this.rdoUnUse.AutoSize = true;
-            this.rdoUnUse.Location = new System.Drawing.Point(202, 32);
+            this.rdoUnUse.Location = new System.Drawing.Point(158, 32);
             this.rdoUnUse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rdoUnUse.Name = "rdoUnUse";
             this.rdoUnUse.Size = new System.Drawing.Size(59, 20);
@@ -99,7 +99,7 @@
             // rdoUse
             // 
             this.rdoUse.AutoSize = true;
-            this.rdoUse.Location = new System.Drawing.Point(63, 32);
+            this.rdoUse.Location = new System.Drawing.Point(57, 32);
             this.rdoUse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rdoUse.Name = "rdoUse";
             this.rdoUse.Size = new System.Drawing.Size(48, 20);
@@ -115,7 +115,7 @@
             this.cboFactory.Location = new System.Drawing.Point(112, 100);
             this.cboFactory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboFactory.Name = "cboFactory";
-            this.cboFactory.Size = new System.Drawing.Size(263, 24);
+            this.cboFactory.Size = new System.Drawing.Size(151, 24);
             this.cboFactory.TabIndex = 9;
             // 
             // label3
@@ -150,12 +150,12 @@
             this.txtStorage.Location = new System.Drawing.Point(112, 148);
             this.txtStorage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStorage.Name = "txtStorage";
-            this.txtStorage.Size = new System.Drawing.Size(263, 22);
+            this.txtStorage.Size = new System.Drawing.Size(151, 22);
             this.txtStorage.TabIndex = 5;
             // 
             // nudStorage_seq
             // 
-            this.nudStorage_seq.Location = new System.Drawing.Point(115, 199);
+            this.nudStorage_seq.Location = new System.Drawing.Point(112, 197);
             this.nudStorage_seq.Name = "nudStorage_seq";
             this.nudStorage_seq.Size = new System.Drawing.Size(77, 22);
             this.nudStorage_seq.TabIndex = 45;
@@ -173,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 401);
+            this.ClientSize = new System.Drawing.Size(327, 401);
             this.Controls.Add(this.nudStorage_seq);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cboCorporation);

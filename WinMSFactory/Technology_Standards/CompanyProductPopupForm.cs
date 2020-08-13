@@ -21,19 +21,19 @@ namespace WinMSFactory
         CompanyService service = new CompanyService();
         bool IsDataExists;
         CompanyForm frm;
-        public CompanyProductPopupForm(CompanyForm frm, CompanyVO company)
-        {
-            InitializeComponent();
-            this.companyVO = company;
-            IsDataExists = true;
-            this.frm = frm;
-        }
-        public CompanyProductPopupForm()
-        {
-            InitializeComponent();
-            IsDataExists = false;
+        string employeeName; 
 
-            txtCompany_Id.Enabled = false;
+        public CompanyProductPopupForm(string employeeName, bool IsDataExists,  CompanyVO company)
+        {
+            InitializeComponent();
+            this.IsDataExists = IsDataExists;
+
+            this.employeeName = employeeName;
+            if (IsDataExists == true)
+            {
+                this.companyVO = company;
+            }
+         
         }
 
         private void CompanyProductPopupForm_Load(object sender, EventArgs e)
@@ -44,33 +44,39 @@ namespace WinMSFactory
             cboCompany_Type.ComboBinding(clist);
 
             cboCompany_Type.SelectedIndex = -1;
-
-            if (IsDataExists == true)
+            if (IsDataExists == false)
             {
                 txtCompany_Id.Enabled = false;
-                dtpFirst_Regist_Time.Enabled = false;
-                txtFirst_Regist_Employee.Enabled = false;
+
+                //txtCompany_Id.Text = companyVO.company_id.ToString();
+                //txtCompany_Name.Text = companyVO.company_name;
+                //cboCompany_Type.Text = companyVO.company_type;
+                //nudCompany_seq.Text = companyVO.company_seq.ToString();
+                listBoxProduct.SelectedItem = cboCompany_Product.SelectedItem;
+
+            }
+            else if (IsDataExists == true)
+            {
+                txtCompany_Id.Enabled = false;
 
                 txtCompany_Id.Text = companyVO.company_id.ToString();
                 txtCompany_Name.Text = companyVO.company_name;
                 cboCompany_Type.Text = companyVO.company_type;
-                txtCompany_Seq.Text = companyVO.company_seq.ToString();
-                dtpFirst_Regist_Time.Value = companyVO.first_regist_time;
-                dtpFinal_Regist_Time.Value = companyVO.final_regist_time;
-                txtFirst_Regist_Employee.Text = companyVO.first_regist_employee;
-                txtFinal_Regist_Employee.Text = companyVO.final_regist_employee;
+                nudCompany_seq.Text = companyVO.company_seq.ToString();
                 listBoxProduct.SelectedItem = cboCompany_Product.SelectedItem;//값이 있는 거래처이면 값을 넣어서 보여주고   
 
                 cboCompany_Product.ComboBinding<CompanyVO>(service.ProductBinding(cboCompany_Type.SelectedValue.ToString()), "PRODUCT_ID", "PRODUCT_NAME");
 
                 //companyVO.company_id 를 파라미터로 전달해서 제품명 조회해서 받아오기
                 List<ProductSimpleVO> prods = service.SelectProductByCompanyID(companyVO.company_id);
-                foreach(var item in prods)
+                foreach (var item in prods)
                 {
                     listBoxProduct.Items.Add(item.Product_ID + "/" + item.Product_Name);
                 }
                 cboCompany_Product.SelectedIndex = -1;
             }
+                 
+            
 
             
         }
@@ -106,10 +112,10 @@ namespace WinMSFactory
 
                 vo.company_id = Convert.ToInt32((txtCompany_Id.Text.Length> 0) ? txtCompany_Id.Text:"0");
                 vo.company_name = txtCompany_Name.Text;
-                vo.company_seq = Convert.ToInt32((txtCompany_Seq.Text.Length > 0) ? txtCompany_Seq.Text : "0");
+                vo.company_seq = Convert.ToInt32((nudCompany_seq.Text.Length > 0) ? nudCompany_seq.Text : "0");
                 vo.company_type = cboCompany_Type.SelectedValue.ToString();
-                vo.first_regist_employee = txtFirst_Regist_Employee.Text;
-                vo.final_regist_employee = txtFinal_Regist_Employee.Text;
+                vo.first_regist_employee = employeeName;
+                vo.final_regist_employee = employeeName;
 
                 if (listBoxProduct.Items.Count > 0)
                 {
@@ -148,12 +154,12 @@ namespace WinMSFactory
             listBoxProduct.Items.RemoveAt(listBoxProduct.SelectedIndex);
         }
 
-        private void txtCompany_Seq_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
-            {
-                e.Handled = true;
-            }
-        }
+        //private void txtCompany_Seq_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
+        //    {
+        //        e.Handled = true;
+        //    }
+        //}
     }
 }

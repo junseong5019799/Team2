@@ -118,10 +118,10 @@ namespace WinMSFactory
                 else
                     UseCheck = "N";
                 if (IsUpdate == false)
-                    LineSave(UseCheck, "등록", 0);
+                    ProsessSave(UseCheck, "등록", 0);
 
                 else
-                    LineSave(UseCheck, "수정", vo.line_id);
+                    ProsessSave(UseCheck, "수정", vo.process_id);
             }
             catch (Exception err)
             {
@@ -129,7 +129,7 @@ namespace WinMSFactory
             }
         }
 
-        private void LineSave(string UseCheck, string Status, int process_id)
+        private void ProsessSave(string UseCheck, string Status, int process_id)
         {
             if (MessageBox.Show($"공정을 {Status}하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {

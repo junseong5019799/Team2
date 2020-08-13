@@ -37,9 +37,9 @@ namespace WinMSFactory
             dgvProcess.AddNewColumns("창고명", "Storage_Name", 100, true);
             dgvProcess.AddNewColumns("공정코드", "process_id", 100, true);
             dgvProcess.AddNewColumns("공정명", "process_name", 100, true);
-            dgvProcess.AddNewColumns("라인순번", "process_seq", 100, true);
-            dgvProcess.AddNewColumns("라인비고1", "process_note1", 100, true);
-            dgvProcess.AddNewColumns("라인비고2", "process_note2", 100, true);
+            dgvProcess.AddNewColumns("공정순번", "process_seq", 100, true);
+            dgvProcess.AddNewColumns("공정비고1", "process_note1", 100, true);
+            dgvProcess.AddNewColumns("공정비고2", "process_note2", 100, true);
             dgvProcess.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 10 버튼
             dgvProcess.AddNewColumns("사용여부", "process_use", 100, true); // 11
             dgvProcess.AddNewColumns("최초등록시각", "first_regist_time", 100, true);

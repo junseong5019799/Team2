@@ -23,6 +23,7 @@ namespace WinMSFactory
         //CompanyService service;
         List<CommonCodeVO> list;
         DataTable dtOrg;
+        EmployeeVO emp;
         public CompanyForm()
         {
             InitializeComponent();
@@ -54,6 +55,8 @@ namespace WinMSFactory
                 type = cboCompany_Type.SelectedValue.ToString();
 
             LoadData();
+
+            emp = this.GetEmployee();
         }
 
         private void HeaderCheckBox_Clicked(object sender, EventArgs e)
@@ -69,7 +72,7 @@ namespace WinMSFactory
 
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
             
             string type = (cboCompany_Type.SelectedValue).ToString();
@@ -122,14 +125,10 @@ namespace WinMSFactory
             company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
             company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
             company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
-            company.first_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[5].Value);
-            company.first_regist_employee = dgvCompanyList.SelectedRows[0].Cells[6].Value.ToString();
-            company.final_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[7].Value);
-            company.final_regist_employee = dgvCompanyList.SelectedRows[0].Cells[8].Value.ToString();
             company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
 
 
-            CompanyProductPopupForm cpp = new CompanyProductPopupForm(this, company);
+            CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, true, company);
 
             if (cpp.ShowDialog() == DialogResult.OK)
             {
@@ -140,9 +139,9 @@ namespace WinMSFactory
 
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
-            CompanyProductPopupForm cpp = new CompanyProductPopupForm();
+            CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, false, null);
 
             if (cpp.ShowDialog() == DialogResult.OK)
                 LoadData();
@@ -167,7 +166,7 @@ namespace WinMSFactory
             }
         }
 
-        private void btnDelect_Click(object sender, EventArgs e)
+        private void Delete(object sender, EventArgs e)
         {
             CompanyService service = new CompanyService();
             try
@@ -198,7 +197,7 @@ namespace WinMSFactory
             dgvCompanyList.DataSource = dv;
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void Clear(object sender, EventArgs e)
         {
             txtCompany_Name.Text = "";
             LoadData();
@@ -230,13 +229,9 @@ namespace WinMSFactory
                     company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
                     company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
                     company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
-                    company.first_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[5].Value);
-                    company.first_regist_employee = dgvCompanyList.SelectedRows[0].Cells[6].Value.ToString();
-                    company.final_regist_time = Convert.ToDateTime(dgvCompanyList.SelectedRows[0].Cells[7].Value);
-                    company.final_regist_employee = dgvCompanyList.SelectedRows[0].Cells[8].Value.ToString();
                     company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
 
-                    CompanyProductPopupForm cpp = new CompanyProductPopupForm(this, company);
+                    CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, true, company);
 
                     if (cpp.ShowDialog() == DialogResult.OK)
                     {
@@ -251,7 +246,7 @@ namespace WinMSFactory
             }
         }
 
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void Barcode(object sender, EventArgs e)
         {
             List<int> CheckList = new List<int>();
 
