@@ -55,7 +55,7 @@ namespace WinMSFactory
                 DueDatePopUpForm frm = new DueDatePopUpForm();
                 frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells[6].Value.ToString());
                 frm.Order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-                
+                frm.Gubun = "발주";
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     dgv.DataSource = orderService.GetOrderList();

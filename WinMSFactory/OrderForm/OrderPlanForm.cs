@@ -43,12 +43,14 @@ namespace WinMSFactory
         }
 
         private void OrderPlanForm_Load(object sender, EventArgs e)
-        {         
+        {
             fromToDateControl1.From = DtpFrom;
             fromToDateControl1.To = DtpTo;
 
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
-            cboPlanID.SelectedValue = release_no;
+            cboPlanID.SelectedValue = Release_no;
+
+            release_no = Convert.ToInt32(cboPlanID.SelectedValue);
 
             DataTable dt = orderService.Calculate_OrderPlan(release_no, DtpFrom, DtpTo);
             dgv.DataSource = dt;

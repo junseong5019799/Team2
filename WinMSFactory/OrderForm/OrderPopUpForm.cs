@@ -45,7 +45,7 @@ namespace WinMSFactory.OrderForm
             //dgvCompany.AddNewColumns("납품업체", "company_name", 100, true);
 
             //dgvCompany.DataSource = orderService.GetCompanyList();
-
+                        
             dgvOrder.AddNewColumns("주문번호", "release_no", 80, false);
             dgvOrder.AddNewColumns("순서", "release_seq", 70, false);
             dgvOrder.AddNewColumns("거래처", "company_id", 100, false);
@@ -78,14 +78,31 @@ namespace WinMSFactory.OrderForm
         {            
             dgvOrder.EndEdit();
 
-            List<OrderVO> olist = new List<OrderVO>();         
-            
+            List<OrderVO> olist = new List<OrderVO>();
+            List<int> cnt = new List<int>();
+
+            foreach (DataGridViewRow row in dgvOrder.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvOrder[0, row.Index];
+
+                if (chk.Value == null)
+                    continue;
+
+                else if ((bool)chk.Value == true)
+                    cnt.Add(1);
+            }
+
+            if (cnt.Count < 1)
+            {
+                MessageBox.Show("발주 할 내역을 선택해주세요.");
+                return;
+            }
+
             for (int i = 0; i < dgvOrder.RowCount; i++)
             {
                 if (dgvOrder.Rows[i].Cells[0].Value != null)
                 {
                     bool IsCheck = (bool)dgvOrder.Rows[i].Cells[0].Value;
-                    int cnt = 0;
 
                     if (IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
                     {
@@ -101,18 +118,12 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_request_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
 
                         olist.Add(orderVO);
-                        cnt++;
                     }                    
                     else if(IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
                     {
                         MessageBox.Show("발주 수량을 입력하지 않았습니다.");
                         return;
-                    }
-                    else if(cnt < 1)
-                    {
-                        MessageBox.Show("발주 내역을 선택하지 않았습니다.");
-                        return;
-                    }
+                    }             
                 }
             }
 

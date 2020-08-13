@@ -141,7 +141,7 @@ namespace MSFactoryDAC
                     {
                         string sql = @"SELECT r.release_no, release_seq, company_id, release_plan_date, product_id
                                             , (SELECT product_name FROM [dbo].[TBL_PRODUCT] WHERE product_id = rd.product_id) AS product_name
-                                            , order_request_quantity, release_status, release_date
+                                            , order_request_quantity, release_status, release_date, release_request_date
                                        	    , r.first_regist_time, r.first_regist_employee, r.final_regist_time, r.final_regist_employee
                                        FROM TBL_RELEASE_DETAIL rd INNER JOIN TBL_RELEASE r ON rd.release_no = r.release_no
                                        WHERE r.release_no = @release_no
@@ -370,10 +370,11 @@ namespace MSFactoryDAC
                     cmd.Parameters.Add("@release_seq", SqlDbType.Int);
                     cmd.Parameters.Add("@product_id", SqlDbType.Int);
                     cmd.Parameters.Add("@release_plan_date", SqlDbType.DateTime);
-                    cmd.Parameters.Add("@release_date", SqlDbType.DateTime);
+                    cmd.Parameters.Add("@release_date", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
                     cmd.Parameters.Add("@release_quantity", SqlDbType.Int);
                     cmd.Parameters.Add("@release_status", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@release_request_date", SqlDbType.DateTime);
 
                     foreach (DataRow dr in dgv.Rows)
                     {                                
@@ -384,7 +385,8 @@ namespace MSFactoryDAC
                         cmd.Parameters["@order_request_quantity"].Value = dr["order_request_quantity"];
                         cmd.Parameters["@release_quantity"].Value = 0;
                         cmd.Parameters["@release_status"].Value = "출고예정";
-                              
+                        cmd.Parameters["@release_request_date"].Value = dr["release_request_date"];
+
                         cmd.ExecuteNonQuery();
                     }                    
                     
@@ -404,6 +406,38 @@ namespace MSFactoryDAC
             
         }        
         
+
+        /// <summary>
+        /// 출고일 비교해서 출고일 취소하기 
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateReleaseDate(int release_no, int product_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = $@"UPDATE TBL_RELEASE_DETAIL
+                                         SET release_status = '출고취소' 
+                                         WHERE release_no = @release_no AND product_id = @product_id";
+
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+                    cmd.Parameters.AddWithValue("@product_id", product_id);
+
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
 
         /// <summary>
         /// 품목ID

@@ -29,18 +29,19 @@ namespace WinMSFactory
             dgv.AddNewColumns("출고예정 번호", "release_no", 100, true, true, false, DataGridViewContentAlignment.MiddleRight) ;
             dgv.AddNewColumns("고객사", "company_id", 100, false, true, false, DataGridViewContentAlignment.MiddleRight);
             dgv.AddNewColumns("고객사명", "company_name", 200, true, true, false, DataGridViewContentAlignment.MiddleLeft);
-            dgv.AddNewColumns("출고 요청일", "release_plan_date", 150, true);
-            dgv.AddNewColumns("출고 상태", "release_status", 100, true);
+            dgv.AddNewColumns("주문일", "release_plan_date", 150, true);
+            
             
             dgv.DataSource = releaseService.GetReleasePlan();
 
             dgv2.AddNewColumns("출고예정 번호", "release_no", 120, false);
             dgv2.AddNewColumns("순번", "release_seq", 80, true);
             dgv2.AddNewColumns("고객사", "company_id", 100, false);
-            dgv2.AddNewColumns("품명", "product_id", 150, false);
+            dgv2.AddNewColumns("품명", "product_id", 80, false);
             dgv2.AddNewColumns("품명", "product_name", 150, true);
             dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
-            dgv2.AddNewColumns("출고 요청일", "release_plan_date", 100, true);
+            dgv2.AddNewColumns("주문일", "release_plan_date", 100, true);
+            dgv2.AddNewColumns("출고 요청일", "release_request_date", 100, true);
             dgv2.AddNewColumns("출고 예정일", "release_date", 100, true);
             dgv2.AddNewColumns("출고 상태", "release_status", 100, true);
             dgv2.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
@@ -48,7 +49,16 @@ namespace WinMSFactory
             dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
             dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
 
-            btnInsert.Enabled = false;           
+            btnInsert.Enabled = false;
+
+           
+            for (int i = 0; i < dgv2.RowCount; i++)
+            {
+                if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
+                {
+                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
         }
         
 
@@ -128,6 +138,7 @@ namespace WinMSFactory
                
                 dgv.DataSource = null;
                 dgv.DataSource = rList;
+
             }
         }
 
@@ -185,6 +196,14 @@ namespace WinMSFactory
                 btnInsert.Enabled = true;
             else
                 btnInsert.Enabled = false;
+
+            for (int i = 0; i < dgv2.RowCount; i++)
+            {
+                if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
+                {
+                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -210,10 +229,47 @@ namespace WinMSFactory
 
             if (releaseService.SaveReleasePlan(dt, release))
             {
-                MessageBox.Show("성공");
+                MessageBox.Show("출고 요청서를 추가하였습니다.");
+
+                DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
+                DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
+                
+                if(request_date < release_date)
+                {
+                    int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
+                    int product_id = Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value);
+
+                    if (releaseService.UpdateReleaseDate(release_no, product_id))
+                    {
+                        MessageBox.Show("출고요청일을 확인해주세요.");                        
+                    }
+                }
+                                
                 dgv.DataSource = releaseService.GetReleasePlan();
+
+                for (int i = 0; i < dgv2.RowCount; i++)
+                {
+                    if(dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
+                    {
+                        dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
                 return;
             }
+        }
+
+        /// <summary>
+        /// 납기일 변경하기 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgv2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DueDatePopUpForm frm = new DueDatePopUpForm();
+            frm.Order_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
+            frm.Due_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
+            frm.Gubun = "출고";
+            frm.ShowDialog();
         }
     }
 }

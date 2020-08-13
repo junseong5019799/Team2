@@ -84,7 +84,6 @@
             this.dgvOrder.Location = new System.Drawing.Point(16, 26);
             this.dgvOrder.MultiSelect = false;
             this.dgvOrder.Name = "dgvOrder";
-            this.dgvOrder.RowHeadersVisible = false;
             this.dgvOrder.RowHeadersWidth = 51;
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

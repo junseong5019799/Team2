@@ -21,6 +21,8 @@ namespace WinMSFactory
         DateTime from;
         DateTime to;
 
+        DataTable dt;
+
         private int release_no;
         public int Release_no
         {
@@ -36,8 +38,13 @@ namespace WinMSFactory
         private void CalculateRatingForm_Load(object sender, EventArgs e)
         {
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
+
+            release_no = Convert.ToInt32(cboPlanID.SelectedValue);
             from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
             to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
+
+            dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
+            dgv.DataSource = dt;
         }
 
 
@@ -51,7 +58,7 @@ namespace WinMSFactory
                 from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
                 to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
 
-                DataTable dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
+                dt = releaseService.Calculate_ReleasePlan(release_no, from, to);
                 dgv.DataSource = null;
                 dgv.DataSource = dt;
             }
@@ -68,6 +75,7 @@ namespace WinMSFactory
 
             from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
             to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
+            release_no = Convert.ToInt32(cboPlanID.SelectedValue);
 
             frm.Release_no = release_no;
             frm.DtpFrom = from;

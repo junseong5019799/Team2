@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculateRatingForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
@@ -130,13 +131,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 10, 11, 47, 4, 432);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 12, 16, 37, 34, 995);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 11, 11, 47, 4, 432);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 13, 16, 37, 34, 995);
             // 
             // label4
             // 
@@ -159,13 +160,13 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl2.From = new System.DateTime(2020, 8, 10, 11, 46, 37, 779);
+            this.fromToDateControl2.From = new System.DateTime(2020, 8, 12, 16, 36, 50, 117);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl2.TabIndex = 17;
-            this.fromToDateControl2.To = new System.DateTime(2020, 8, 11, 11, 46, 37, 779);
+            this.fromToDateControl2.To = new System.DateTime(2020, 8, 13, 16, 36, 50, 117);
             // 
             // label7
             // 
@@ -188,9 +189,12 @@
             // btnCalculate
             // 
             this.btnCalculate.BackColor = System.Drawing.Color.White;
+            this.btnCalculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
-            this.btnCalculate.Location = new System.Drawing.Point(842, 29);
+            this.btnCalculate.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculate.Image")));
+            this.btnCalculate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCalculate.Location = new System.Drawing.Point(685, 30);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(88, 26);

@@ -29,6 +29,13 @@ namespace WinMSFactory
             set { order_no = value; }
         }
 
+        private string gubun;
+
+        public string Gubun
+        {
+            get { return gubun; }
+            set { gubun = value; }
+        }
 
         public DueDatePopUpForm()
         {
@@ -53,9 +60,15 @@ namespace WinMSFactory
 
             OrderService service = new OrderService();
 
-            service.UpdateOrderDate(dt, order_no);           
-            MessageBox.Show("납기일이 변경되었습니다.");
-
+            if (Gubun == "발주")
+            {
+                service.UpdateOrderDate(dt, order_no);
+                MessageBox.Show("발주 납기일이 변경되었습니다.");
+            }
+            else if(Gubun == "출고")
+            {
+                MessageBox.Show("출고요청 납기일이 변경되었습니다.");
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
             
