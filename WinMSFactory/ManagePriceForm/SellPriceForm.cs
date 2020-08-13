@@ -46,8 +46,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("시작일", "start_date", 80, true);
             dgv.AddNewColumns("종료일", "end_date", 80, true);
             dgv.AddNewColumns("비고", "note", 300, true);
-            dgv.AddNewColumns("코드번호", "sellprice_code", 150, true);
-            dgv.AddNewColumns("Rank", "RankNum", 150, true);
+            dgv.AddNewColumns("코드번호", "sellprice_code", 150, false);
+            dgv.AddNewColumns("Rank", "RankNum", 150, false);
         }
 
         private void ReviewDGV()
@@ -89,7 +89,7 @@ namespace WinMSFactory
 
             if (SelectNum != dgv[11, SelectedRow].Value.ToInt())
             {
-                MessageBox.Show($"가장 최근에 생성된 {Status}만 변경이 가능합니다.");
+                MessageBox.Show($"가장 최근에 생성된 목록만 {Status}이 가능합니다.");
                 return false;
             }
             return true;
