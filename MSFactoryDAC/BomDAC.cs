@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MSFactoryDAC
 {
@@ -104,29 +105,46 @@ namespace MSFactoryDAC
 
         public bool BomDelete(int deleteBomNum)
         {
-            try
+            
+                
+            using (SqlCommand cmd = new SqlCommand())
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                SqlTransaction trans = cmd.Connection.BeginTransaction();
+
+                try
                 {
-                    conn.Open();
-                    string sql = @"DELETE FROM TBL_BOM WHERE HIGH_PRODUCT_ID = @PRODUCT_ID OR LOW_PRODUCT_ID = @PRODUCT_ID
-                                   update tbl_product set bom_exists = 'N' where product_id = @PRODUCT_ID";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.Transaction = trans;
+                    cmd.CommandText = @"DELETE FROM TBL_BOM WHERE HIGH_PRODUCT_ID = @PRODUCT_ID OR LOW_PRODUCT_ID = @PRODUCT_ID
+                        update tbl_product set bom_exists = 'N' where product_id = @PRODUCT_ID";
+                    cmd.Parameters.AddWithValue("@PRODUCT_ID", deleteBomNum);
+
+                    if (cmd.ExecuteNonQuery() == 0)
+                        throw new Exception();
+
+                    cmd.CommandText = "Update TBL_BOM_PRODUCT_STATUS SET IsBomExists = 'N' WHERE PRODUCT_ID = @PRODUCT_ID";
+
+
+                    if (cmd.ExecuteNonQuery() == 0)
+                        throw new Exception();
+                    else
                     {
-                        cmd.Parameters.AddWithValue("@PRODUCT_ID", deleteBomNum);
-
-                        if (cmd.ExecuteNonQuery() > 0)
-                            return true;
-                        else
-                            return false;
+                        trans.Commit();
+                        return true;
                     }
+                        
+                }
 
+                catch (Exception err)
+                {
+                    cmd.Dispose();
+                    trans.Rollback();
+                    return false;
                 }
             }
-            catch (Exception err)
-            {
-                throw err;
-            }
+            
+            
         }
 
         public bool InsertUpdateProductByBomCopy(List<BOMInsertUpdateVO> insertBOMLists, string Product_Name)

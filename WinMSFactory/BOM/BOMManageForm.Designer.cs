@@ -353,7 +353,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "BOM 등록";
-            this.Activated += new System.EventHandler(this.BOMManageForm_Activated);
             this.Load += new System.EventHandler(this.BOMManageForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();

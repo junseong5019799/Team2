@@ -9,12 +9,14 @@ using System.Security.Authentication.ExtendedProtection.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinMSFactory.Services;
 
 namespace WinMSFactory
 {
     public partial class BOMSelectAllForm : BasicForm
     {
         BomService service = new BomService();
+        BomLogService bls = new BomLogService();
 
         bool IsBOMForward;
         public BOMSelectAllForm()
@@ -101,8 +103,10 @@ namespace WinMSFactory
             }
             if(MessageBox.Show("정말로 삭제하시겠습니까?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (service.BOMDelete(dgv[0, 0].Value.ToInt()) == true)
+                int productNum = dgv[0, 0].Value.ToInt();
+                if (service.BOMDelete(productNum) == true)
                 {
+                    bls.ChangeBomStatus(productNum, 'N');
                     MessageBox.Show("해당하는 BOM이 삭제되었습니다. 그에 따른 상위 / 하위 목록도 같이 삭제되었습니다.");
                     cboSelect.SelectedIndex = 0;
                 }

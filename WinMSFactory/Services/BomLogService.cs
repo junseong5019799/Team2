@@ -20,5 +20,10 @@ namespace WinMSFactory.Services
         {
             dac.InsertLogs(AddLogs);
         }
+
+        public void ChangeBomStatus(int Product_ID, char bom_Exists)
+        {
+            dac.ChangeBomStatus(Product_ID, bom_Exists);
+        }
     }
 }

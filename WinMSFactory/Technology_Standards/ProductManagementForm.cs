@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.XtraRichEdit.Model;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,8 @@ namespace WinMSFactory
         EmployeeVO emp;
 
         char UseCheck = 'Y';
-        char BomEnrollStatus = 'N';
-        bool BomEnrollCheck;
+        char BomEnrollStatus = 'N';  // 지우지 말것
+        bool BomEnrollCheck;         // 지우지 말것
         public bool SaveComplete { get; set; }
 
         public ProductManagementForm()
@@ -128,23 +129,29 @@ namespace WinMSFactory
             int ProductID = dgv[1, e.RowIndex].Value.ToInt();
 
             string ProductName = dgv[3, e.RowIndex].Value.ToString();
+            string Prog_Name;
 
             if (e.ColumnIndex == 5)
             {
                 if (dgv[5, e.RowIndex].Value.ToString() == "BOM 등록")// 미등록 상태일 때
+                {
                     BomEnrollCheck = false; // bom 미등록 상태
+                    Prog_Name = "BOM 등록";
+                }
+                    
 
                 else if (dgv[5, e.RowIndex].Value.ToString() == "BOM 수정") // 수정 상태일 때
+                {
                     BomEnrollCheck = true;
+                    Prog_Name = "BOM 수정";
+                }
+                    
 
                 else // 재료의 - 상태일 때
                     return;
 
-                
-                BOMManageForm frm = new BOMManageForm(this, emp, BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
-                frm.MdiParent = this.MdiParent;
-                frm.Text = "";
-                frm.Show();
+                BOMManageForm frm = BOMSettingForm(Prog_Name, "BOMManageForm");
+                frm.BOMSettings(this, emp, BomEnrollCheck, ProductID, ProductName, BomEnrollStatus);
 
                 //재료의 - 상태는 return됨
             }
@@ -281,7 +288,7 @@ namespace WinMSFactory
                     BomLogService service = new BomLogService();
 
                     service.InsertLogs(AddLog);
-
+                    service.ChangeBomStatus(AddLog.High_Product_ID, AddLog.Bom_Exists);
                     return;
                 }
             }
@@ -337,10 +344,21 @@ namespace WinMSFactory
                 return;
             }
 
-            BOMManageForm frm = new BOMManageForm(this, emp, Selectedlist, true);
-            frm.MdiParent = this.MdiParent;
-            frm.Text = "";
-            frm.Show();
+            BOMManageForm frm = BOMSettingForm("BOM 복사 진행", "Y");
+            frm.BOMCopySettings(this, emp, Selectedlist, true);
+
+
+        }
+
+        private BOMManageForm BOMSettingForm(string Prog_name, string Visible)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic["PROG_NAME"] = Prog_name;
+            dic["PROG_FORM_NAME"] = "BOMManageForm";
+            dic["Search"] = Visible;
+
+            BOMManageForm frm = (BOMManageForm)this.GetMdiParent().MdiChildrenShow(dic);
+            return frm;
         }
 
         private void Barcode(object sender, EventArgs e)
@@ -413,12 +431,12 @@ namespace WinMSFactory
             {
                 productNum.Add(dgvBarcode[0, row.Index].Value.ToInt());
             }
-            BOMManageForm frm = new BOMManageForm(this, emp, productNum, true);
-            frm.MdiParent = this.MdiParent;
-            frm.Text = "";
-            frm.Show();
-            
+
+            BOMManageForm frm = BOMSettingForm("BOM 바코드 복사", "BOMManageForm");
+            frm.BOMCopySettings(this, emp, productNum, true);
         }
+
+
 
         private void btnBarDelete_Click(object sender, EventArgs e)
         {
