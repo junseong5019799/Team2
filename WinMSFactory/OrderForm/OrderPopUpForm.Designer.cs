@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderPopUpForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvOrder = new WinMSFactory.DataGridViewControl();
@@ -46,6 +47,8 @@
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
+            this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirm.Location = new System.Drawing.Point(893, 3);
             this.btnConfirm.Text = "발주";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -84,6 +87,7 @@
             this.dgvOrder.Location = new System.Drawing.Point(16, 26);
             this.dgvOrder.MultiSelect = false;
             this.dgvOrder.Name = "dgvOrder";
+            this.dgvOrder.RowHeadersVisible = false;
             this.dgvOrder.RowHeadersWidth = 51;
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

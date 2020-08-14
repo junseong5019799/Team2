@@ -10,6 +10,8 @@ namespace MSFactoryVO
     {
         public string gubun { get; set; }
         public int release_no { get; set; }
+        public int release_seq { get; set; }
+        public int order_seq { get; set; }
         public int storage_id { get; set; }
         public string storage_name { get; set; }
         public int product_id { get; set; }

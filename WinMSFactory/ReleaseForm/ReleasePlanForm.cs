@@ -174,15 +174,22 @@ namespace WinMSFactory
         //수요 계획
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic["PROG_NAME"] = "수요계획";
-            dic["PROG_FORM_NAME"] = "CalculateRatingForm";
-            dic["Search"] = "Y";
+            if (dgv.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("수요계획 할 내역을 선택하세요.");
+                return;
+            }
+            else
+            {
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic["PROG_NAME"] = "수요계획";
+                dic["PROG_FORM_NAME"] = "CalculateRatingForm";
+                dic["Search"] = "Y";
 
-            CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
-			frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-		}
-
+                CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
+                frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+            }
+        }
 
         //dgv detail
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -214,9 +221,11 @@ namespace WinMSFactory
             {
                 openFileDialog1.Title = "엑셀 파일 불러오기";
                 openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-                openFileDialog1.ShowDialog();
 
-                btnInsert.Enabled = true;
+                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                    btnInsert.Enabled = true;                
+                else
+                    btnInsert.Enabled = false;
             }
         }
 
@@ -233,29 +242,23 @@ namespace WinMSFactory
             {
                 MessageBox.Show("출고 요청서를 추가하였습니다.");
 
+                dgv.DataSource = releaseService.GetReleasePlan();
+                dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv.Rows[0].Cells[0].Value));
+
                 DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
                 DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
+
+                int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
+                int product_id = Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value);
+
+                if (request_date < release_date)
+                {                   
+                    if (releaseService.UpdateReleaseDateCancel(release_no, product_id))
+                    {
+                        MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");                        
+                    }
+                }                                                    
                 
-                if(request_date < release_date)
-                {
-                    int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
-                    int product_id = Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value);
-
-                    if (releaseService.UpdateReleaseDate(release_no, product_id))
-                    {
-                        MessageBox.Show("출고요청일을 확인해주세요.");                        
-                    }
-                }
-                                
-                dgv.DataSource = releaseService.GetReleasePlan();
-
-                for (int i = 0; i < dgv2.RowCount; i++)
-                {
-                    if(dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
-                    {
-                        dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    }
-                }
                 return;
             }
         }
@@ -271,7 +274,28 @@ namespace WinMSFactory
             frm.Order_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
             frm.Due_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
             frm.Gubun = "출고";
-            frm.ShowDialog();
+
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
+
+                DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
+                DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
+
+                if (request_date < release_date)
+                {                   
+                    MessageBox.Show("출고 요청일은 출고 예정일보다 빠르면 안됩니다. 다시 변경해주세요.");
+                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Red;
+                    return;                    
+                }
+                else if (request_date >= release_date)
+                {
+                    releaseService.UpdateReleaseDate(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value), Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value));
+                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Transparent;
+                    dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
+                    
+                }
+            }
         }
     }
 }

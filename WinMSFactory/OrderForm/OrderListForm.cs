@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,6 +61,32 @@ namespace WinMSFactory
                 {
                     dgv.DataSource = orderService.GetOrderList();
                 }
+            }
+        }
+
+
+        private void Search(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                List<OrderVO> pList;
+                OrderService service = new OrderService();
+
+                string fromDate = fromToDateControl1.From.ToShortDateString();
+                string toDate = fromToDateControl1.To.ToShortDateString();
+
+                pList = service.GetOrderListByDate(fromDate, toDate);
+
+                if (cboCompany.SelectedIndex == 0)
+                    dgv.DataSource = pList;
+                else if (!string.IsNullOrEmpty(cboCompany.SelectedText))
+                {
+                    pList = (from item in pList
+                             where item.company_name.Contains(cboCompany.SelectedText.ToString())
+                             select item).ToList();
+                }
+                dgv.DataSource = null;
+                dgv.DataSource = pList;
             }
         }
     }

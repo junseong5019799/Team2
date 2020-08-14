@@ -54,10 +54,10 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("품명", "product_name", 120, true);
             dgvOrder.AddNewColumns("품목", "_product_id", 80, true);
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
-            dgvOrder.AddNewColumns("발주제안", "order_request_quantity", 80, true);
-            dgvOrder.AddNewColumns("발주수량", "", 100, true, false);
+            dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true);
+            dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
-            dgvOrder.AddNewColumns("납기일", "납기일", 100, true);
+            dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.HeaderText = "납기일변경";
@@ -72,6 +72,7 @@ namespace WinMSFactory.OrderForm
             
 
             dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvOrder.Columns[10].DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
