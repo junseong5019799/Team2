@@ -411,7 +411,7 @@ namespace MSFactoryDAC
         /// 출고일 비교해서 출고일 취소하기 
         /// </summary>
         /// <returns></returns>
-        public bool UpdateReleaseDate(int release_no, int product_id)
+        public bool UpdateReleaseDateCancel(int release_no, int product_id)
         {
             try
             {
@@ -420,6 +420,38 @@ namespace MSFactoryDAC
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = $@"UPDATE TBL_RELEASE_DETAIL
                                          SET release_status = '출고취소' 
+                                         WHERE release_no = @release_no AND product_id = @product_id";
+
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+                    cmd.Parameters.AddWithValue("@product_id", product_id);
+
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
+        /// <summary>
+        /// 출고일 비교해서 출고일 완료 
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateReleaseDate(int release_no, int product_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = $@"UPDATE TBL_RELEASE_DETAIL
+                                         SET release_status = '출고예정' 
                                          WHERE release_no = @release_no AND product_id = @product_id";
 
                     cmd.Parameters.AddWithValue("@release_no", release_no);

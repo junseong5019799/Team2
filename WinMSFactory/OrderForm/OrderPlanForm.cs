@@ -56,7 +56,7 @@ namespace WinMSFactory
             dgv.DataSource = dt;
 
             for (int i = 0; i < dgv.Rows.Count; i+=3)
-            {
+            {                
                 dgv.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
                 dgv.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
             }
@@ -76,6 +76,12 @@ namespace WinMSFactory
                 DataTable dt = orderService.Calculate_OrderPlan(release_no, from, to);
                 dgv.DataSource = null;
                 dgv.DataSource = dt;
+
+                for (int i = 0; i < dgv.Rows.Count; i += 3)
+                {
+                    dgv.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
+                    dgv.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                }
             }
         }
 

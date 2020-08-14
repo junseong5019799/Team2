@@ -41,8 +41,7 @@ namespace WinMSFactory
             ReleaseService releaseService = new ReleaseService();
             cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name", "전체");
 
-            cboGubun.SelectedIndex = 0;
-            
+            cboGubun.SelectedIndex = 0;            
         }
 
 
@@ -59,9 +58,11 @@ namespace WinMSFactory
 
                 pList = service.GetInOutByDate(fromDate, toDate);
                 int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
-
+                
                 if (cboGubun.SelectedIndex == 0)
-                    dgv.DataSource = orderService.GetInOutList();
+                {                    
+                    dgv.DataSource = orderService.GetInOutList();                    
+                }
                 else if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
                 {
                     pList = (from item in pList
@@ -70,11 +71,15 @@ namespace WinMSFactory
                 }
 
                 if (cboProduct.SelectedIndex == 0)
-                    dgv.DataSource = orderService.GetInOutListByGubun(cboGubun.SelectedText);
+                {
+                    dgv.DataSource = orderService.GetInOutListByGubun(cboGubun.SelectedItem.ToString());
+                    return;
+                }
                 else if (!string.IsNullOrEmpty(searchProduct.ToString()))
                 {
                     pList = (from item in pList
                              where item.product_id == searchProduct
+                             where item.gubun == "입고"                              
                              select item).ToList();
                 }
                 dgv.DataSource = null;

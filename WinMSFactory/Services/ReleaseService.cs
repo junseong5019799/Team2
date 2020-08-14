@@ -62,11 +62,16 @@ namespace WinMSFactory
             return dac.SaveReleasePlan(dgv, release);
         }
 
+        public bool UpdateReleaseDateCancel(int release_no, int product_id)
+        {
+            return dac.UpdateReleaseDateCancel(release_no, product_id);
+        }
+
         public bool UpdateReleaseDate(int release_no, int product_id)
         {
             return dac.UpdateReleaseDate(release_no, product_id);
         }
-            
+
         public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice, ref DateTime? previousTime)
         {
             return dac.IsUpperData(ProductGroupID, ProductID, ref previousPrice, ref previousTime);

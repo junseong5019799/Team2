@@ -67,6 +67,7 @@ namespace WinMSFactory
             }
             else if(Gubun == "출고")
             {
+                service.UpdateReleaseRequestDate(dt, order_no);
                 MessageBox.Show("출고요청 납기일이 변경되었습니다.");
             }
             this.DialogResult = DialogResult.OK;

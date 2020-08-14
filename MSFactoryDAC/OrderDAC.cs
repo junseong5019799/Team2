@@ -250,7 +250,7 @@ namespace MSFactoryDAC
 
 
         /// <summary>
-        /// SELECT 발주 LIST
+        /// SELECT 발주 LIST Table
         /// </summary>
         /// <returns></returns>
         public DataTable GetOrderList()
@@ -278,6 +278,46 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+
+        /// <summary>
+        /// SELECT 발주 LIST 날짜별로 
+        /// </summary>
+        /// <returns></returns>
+        public List<OrderVO> GetOrderListByDate(string fromDate, string toDate)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(this.ConnectionString))
+                {
+                    using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                    {
+                        conn.Open();
+                        string sql = @"	SELECT od.order_no, product_name 
+	                                    	 , od.order_request_quantity 
+	                                    	 , od.order_status , od.order_request_date , Convert(DATE, o.first_regist_time) first_regist_time
+	                                    	 ,(SELECT company_name FROM TBL_COMPANY WHERE o.company_id = company_id) AS company_name
+	                                    	 , o.final_regist_employee, o.final_regist_time
+	                                    FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON o.order_no = od.order_no				   
+	                                    						 INNER JOIN TBL_PRODUCT p ON od.product_id = p.product_id
+	                                    WHERE order_request_date BETWEEN @fromDate AND @toDate";
+
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+                            cmd.Parameters.AddWithValue("@toDate", toDate);
+
+                            return SqlHelper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
+                        }
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
 
 
         /// <summary>
@@ -547,7 +587,7 @@ namespace MSFactoryDAC
                     cmd.Parameters.Clear();
 
                     cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
-                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString());
                     cmd.Parameters.AddWithValue("@order_no", order_no);
 
                     cmd.ExecuteNonQuery();
@@ -563,6 +603,54 @@ namespace MSFactoryDAC
             }
         }
 
+
+        /// <summary>
+        /// 출고 예정일 변경
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public bool UpdateReleaseRequestDate(DateTime dt, int release_no)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(this.ConnectionString);
+                cmd.Connection.Open();
+                SqlTransaction tran = cmd.Connection.BeginTransaction();
+
+                try
+                {
+                    cmd.CommandText = @"UPDATE TBL_RELEASE_DETAIL
+                                        SET	release_request_date = @release_request_date 
+                                        WHERE release_no = @release_no";
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.AddWithValue("@release_request_date", dt);
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = @"UPDATE TBL_RELEASE
+                                       SET final_regist_employee = @final_regist_employee
+                                         , final_regist_time = @final_regist_time
+                                       WHERE release_no = @release_no";
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
+                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    return true;
+                }
+                catch (Exception err)
+                {
+                    tran.Rollback();
+                    throw err;
+                }
+            }
+        }
 
         public DataTable CheckBarcode()
         {

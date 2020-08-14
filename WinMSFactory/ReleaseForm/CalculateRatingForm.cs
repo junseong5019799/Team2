@@ -40,6 +40,8 @@ namespace WinMSFactory
             cboPlanID.ComboBinding(releaseService.SelectPlanID(), "release_no", "release_no");
 
             release_no = Convert.ToInt32(cboPlanID.SelectedValue);
+
+            fromToDateControl2.To = fromToDateControl2.From.AddDays(7);
             from = Convert.ToDateTime(fromToDateControl2.From.ToShortDateString());
             to = Convert.ToDateTime(fromToDateControl2.To.ToShortDateString());
 

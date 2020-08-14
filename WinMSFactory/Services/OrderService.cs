@@ -23,6 +23,11 @@ namespace WinMSFactory.Services
             return dac.GetOrderPlanList(release_no);
         }
 
+        public List<OrderVO> GetOrderListByDate(string fromDate, string toDate)
+        {
+            return dac.GetOrderListByDate(fromDate, toDate);
+        }
+           
         public DataTable GetOrderList()
         {
             return dac.GetOrderList();
@@ -85,6 +90,11 @@ namespace WinMSFactory.Services
         public bool UpdateOrderDate(DateTime dt, int release_no)
         {
             return dac.UpdateOrderDate(dt, release_no);
+        }
+
+        public bool UpdateReleaseRequestDate(DateTime dt, int release_no)
+        {
+            return dac.UpdateReleaseRequestDate(dt, release_no);
         }
 
         public bool InsertWareHouse(WareHouseVO vo)
