@@ -184,7 +184,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtStorage);
             this.Name = "StoragePopupForm";
-            this.Text = "StoragePopupForm";
+            this.Text = "창고  등록/ 변경";
             this.Load += new System.EventHandler(this.StoragePopupForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.txtStorage, 0);

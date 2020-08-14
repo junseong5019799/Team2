@@ -217,7 +217,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Name = "LinePopupForm";
-            this.Text = "LinePopupForm";
+            this.Text = "라인 등록/ 변경";
             this.Load += new System.EventHandler(this.LinePopupForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

@@ -243,7 +243,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "CompanyProductPopupForm";
-            this.Text = "CompanyProductPOPForm";
+            this.Text = "거래처 등록/ 변경";
             this.Load += new System.EventHandler(this.CompanyProductPopupForm_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

@@ -252,6 +252,18 @@
     <Compile Include="MyControl\NumericControl.Designer.cs">
       <DependentUpon>NumericControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Technology_Standards\ProcessWorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technology_Standards\ProcessWorkerForm.Designer.cs">
+      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technology_Standards\ProcessWorkerPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technology_Standards\ProcessWorkerPopupForm.Designer.cs">
+      <DependentUpon>ProcessWorkerPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Technology_Standards\ProductInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -533,12 +545,6 @@
     <Compile Include="Technology_Standards\DowntimeTypeForm.Designer.cs">
       <DependentUpon>DowntimeTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technology_Standards\ProcessWorkerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Technology_Standards\ProcessWorkerForm.Designer.cs">
-      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Technology_Standards\StorageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -686,6 +692,12 @@
     <EmbeddedResource Include="Nam\ProductionStatusForm.resx">
       <DependentUpon>ProductionStatusForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Technology_Standards\ProcessWorkerForm.resx">
+      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technology_Standards\ProcessWorkerPopupForm.resx">
+      <DependentUpon>ProcessWorkerPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -802,9 +814,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\DowntimeTypeForm.resx">
       <DependentUpon>DowntimeTypeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Technology_Standards\ProcessWorkerForm.resx">
-      <DependentUpon>ProcessWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>

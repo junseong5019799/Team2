@@ -195,7 +195,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CorporationPopupForm";
-            this.Text = "CorporationPopupForm";
+            this.Text = "법인 등록/ 변경";
             this.Load += new System.EventHandler(this.CorporationPopupForm_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

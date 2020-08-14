@@ -15,5 +15,15 @@ namespace MSFactoryVO
         public string  first_regist_employee { get; set; }
         public DateTime final_regist_time { get; set; }
         public string  final_regist_employee { get; set; }
-    }
+
+        public int corporation_id { get; set; }
+        public int factory_id { get; set; }
+        public int line_id { get; set; }
+
+        public string corporation_name { get; set; }
+        public string factory_name { get; set; }
+        public string line_name { get; set; }
+        public string employee_name { get; set; }
+        public string process_name { get; set; }
+}
 }

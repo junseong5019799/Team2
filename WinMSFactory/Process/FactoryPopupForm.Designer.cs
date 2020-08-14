@@ -195,7 +195,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Name = "FactoryPopupForm";
-            this.Text = "FactoryPopupForm";
+            this.Text = "공장 등록/ 변경";
             this.Load += new System.EventHandler(this.FactoryPopupForm_Load);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label4, 0);
