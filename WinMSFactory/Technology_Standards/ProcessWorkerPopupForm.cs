@@ -77,8 +77,8 @@ namespace WinMSFactory
 
         private void cboCorporationName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int corporation_id = cboCorporationName.SelectedValue.ToInt();
-            cboFactoryName.ComboBinding(service.FactoryCombo(corporation_id), "factory_id", "factory_name", "선택", 0);
+            //int corporation_id = cboCorporationName.SelectedValue.ToInt();
+            //cboFactoryName.ComboBinding(service.(corporation_id), "factory_id", "factory_name", "선택", 0);
         }
 
         private void cboFactoryName_SelectedIndexChanged(object sender, EventArgs e)
