@@ -125,6 +125,8 @@ namespace WinMSFactory
             }
             else if (p != null)
                 p = p.ToList();
+
+            cboProcessName.ComboBinding(p, "process_id", "process_name", "전체", 0);
         }
 
       

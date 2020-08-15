@@ -88,9 +88,11 @@ namespace MSFactoryDAC
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.CommandText = @"Select factory_id, factory_name
-                                          From TBL_FACTORY
-                                         WHERE corporation_id =@corporation_id
+                                          From TBL_FACTORY F
+                                    inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                         WHERE C.corporation_id =@corporation_id
                                            ANd factory_use = 'Y'
+                                           AND corporation_use ='Y'
                                       Order by factory_seq ASC";
 
                     cmd.Connection.Open();

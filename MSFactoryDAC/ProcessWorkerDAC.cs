@@ -74,12 +74,37 @@ namespace MSFactoryDAC
                     cmd.Connection.Open();
                     cmd.CommandText = @"Select F.corporation_id, F.factory_id, factory_name
                                           From TBL_FACTORY F
-                                            INNER JOIN TBL_CORPORATION C
-                                                ON F.corporation_id = C.corporation_id
+                                            INNER JOIN TBL_CORPORATION C ON F.corporation_id = C.corporation_id
                                          WHERE factory_use = 'Y'
                                            AND corporation_use = 'Y'
                                       Order by factory_seq ASC";
 
+                    return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<FactoryVO> FactoryCombo(int corporation_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = @"Select factory_id, factory_name
+                                          From TBL_FACTORY F
+                                    inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                         WHERE C.corporation_id =@corporation_id
+                                           ANd factory_use = 'Y'
+                                           AND corporation_use ='Y'
+                                      Order by factory_seq ASC";
+
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@corporation_id", corporation_id);
                     return SqlHelper.DataReaderMapToList<FactoryVO>(cmd.ExecuteReader());
                 }
             }
@@ -106,6 +131,35 @@ namespace MSFactoryDAC
                                              Order by line_seq ASC";
 
                     cmd.Connection.Open();
+
+                    return SqlHelper.DataReaderMapToList<LineVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<LineVO> LineCombo(int factory_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"Select L.factory_id, L.line_id, line_name
+                                          From TBL_LINE L
+                                         inner join TBL_FACTORY F ON L.factory_id = F.factory_id
+                                         inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                         WHERE F.factory_id = @factory_id
+                                           AND line_use = 'Y'
+                                           AND factory_use = 'Y'
+                                           AND corporation_use ='Y'
+                                             Order by line_seq ASC";
+                    cmd.Parameters.AddWithValue("@factory_id", factory_id);
+
 
                     return SqlHelper.DataReaderMapToList<LineVO>(cmd.ExecuteReader());
                 }
@@ -144,6 +198,34 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<ProcessVO> ProcessCombo(int line_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @" Select p.line_id, p.process_id, p.process_name
+                                               From TBL_PROCESS p
+                                               inner join TBL_LINE l ON p.line_id = l.line_id
+                                               inner join TBL_FACTORY F ON L.factory_id = F.factory_id
+                                               inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
+                                               WHERE line_id = @line_id
+                                                 AND process_use = 'Y'
+  	                                             AND line_use = 'Y'
+                                                 AND factory_use = 'Y'
+                                                 AND corporation_use ='Y'
+                                            Order by process_seq ASC";
+                    cmd.Parameters.AddWithValue("@line_id", line_id);
 
+                    return SqlHelper.DataReaderMapToList<ProcessVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
