@@ -50,15 +50,21 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.mainTabControl1 = new WinMSFactory.MainTabControl();
             this.toolStrip2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip2
             // 
             this.toolStrip2.AutoSize = false;
+            this.toolStrip2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2,
             this.btnSearch,
             this.btnAdd,
             this.btnDelete,
@@ -70,7 +76,7 @@
             this.btnClear});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1561, 65);
+            this.toolStrip2.Size = new System.Drawing.Size(1784, 81);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -151,7 +157,7 @@
             this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
             this.btnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(59, 62);
+            this.btnLogOut.Size = new System.Drawing.Size(73, 78);
             this.btnLogOut.Text = "로그아웃";
             this.btnLogOut.ToolTipText = "로그아웃";
             this.btnLogOut.Click += new System.EventHandler(this.tsbLogOut_Click);
@@ -186,7 +192,7 @@
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(50, 50);
+            this.btnClear.Size = new System.Drawing.Size(60, 50);
             this.btnClear.Text = "초기화";
             this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnClear.Visible = false;
@@ -194,9 +200,13 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 817);
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolTime});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1023);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1561, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1784, 26);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -228,11 +238,14 @@
             // tsMenu
             // 
             this.tsMenu.AutoSize = false;
+            this.tsMenu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tsMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tsMenu.BackgroundImage")));
             this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tsMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-            this.tsMenu.Location = new System.Drawing.Point(0, 65);
+            this.tsMenu.Location = new System.Drawing.Point(0, 81);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(219, 752);
+            this.tsMenu.Size = new System.Drawing.Size(250, 942);
             this.tsMenu.TabIndex = 2;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -259,14 +272,34 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 62);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
+            // toolTime
+            // 
+            this.toolTime.Name = "toolTime";
+            this.toolTime.Size = new System.Drawing.Size(152, 20);
+            this.toolTime.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.AutoSize = false;
+            this.toolStripButton2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(120, 70);
+            this.toolStripButton2.Text = "MS FACTORY";
+            this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // mainTabControl1
             // 
+            this.mainTabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.mainTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.mainTabControl1.Location = new System.Drawing.Point(219, 65);
+            this.mainTabControl1.Location = new System.Drawing.Point(250, 81);
+            this.mainTabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainTabControl1.Name = "mainTabControl1";
             this.mainTabControl1.SelectedIndex = 0;
-            this.mainTabControl1.Size = new System.Drawing.Size(1342, 23);
+            this.mainTabControl1.Size = new System.Drawing.Size(1534, 29);
             this.mainTabControl1.TabIndex = 6;
             this.mainTabControl1.Visible = false;
             this.mainTabControl1.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
@@ -274,9 +307,10 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1561, 839);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1784, 1049);
             this.Controls.Add(this.mainTabControl1);
             this.Controls.Add(this.tsMenu);
             this.Controls.Add(this.toolStrip2);
@@ -290,6 +324,8 @@
             this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,6 +354,8 @@
 		private System.Windows.Forms.ToolStrip tsMenu;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.ToolStripButton btnBarcode;
-	}
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripStatusLabel toolTime;
+    }
 }
 

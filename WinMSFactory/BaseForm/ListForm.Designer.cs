@@ -48,7 +48,7 @@
             this.GuidLabel1.AutoSize = true;
             this.GuidLabel1.Location = new System.Drawing.Point(72, 33);
             this.GuidLabel1.Name = "GuidLabel1";
-            this.GuidLabel1.Size = new System.Drawing.Size(199, 16);
+            this.GuidLabel1.Size = new System.Drawing.Size(231, 20);
             this.GuidLabel1.TabIndex = 4;
             this.GuidLabel1.Text = "검색 영역 (필요에 따라 높이 조절 가능)";
             this.GuidLabel1.Visible = false;
@@ -58,15 +58,16 @@
             this.GuidLabel2.AutoSize = true;
             this.GuidLabel2.Location = new System.Drawing.Point(121, 259);
             this.GuidLabel2.Name = "GuidLabel2";
-            this.GuidLabel2.Size = new System.Drawing.Size(44, 16);
+            this.GuidLabel2.Size = new System.Drawing.Size(55, 20);
             this.GuidLabel2.TabIndex = 3;
             this.GuidLabel2.Text = "DGV1";
             this.GuidLabel2.Visible = false;
             // 
             // ListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1534, 761);
             this.Controls.Add(this.GuidLabel2);
             this.Controls.Add(this.panel1);

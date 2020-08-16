@@ -68,7 +68,7 @@ namespace WinMSFactory
             this.ColumnHeadersDefaultCellStyle.Alignment = centerAlign;
             
             this.DefaultCellStyle.ForeColor = Color.Black;
-            //this.DefaultCellStyle.BackColor = Color.White;
+            this.DefaultCellStyle.BackColor = Color.LightBlue;
             this.BackgroundColor = Color.White;
 
             // 테두리 설정
@@ -78,12 +78,16 @@ namespace WinMSFactory
             this.MultiSelect = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.RowHeadersVisible = false;
+            this.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
+            this.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(153, 204, 255);
 
             if (IsAutoGenerateColumns)
                 this.AutoGenerateColumns = true;
             else
                 this.AutoGenerateColumns = false;
         }
+
+
 
         protected override void OnPaint(PaintEventArgs pe)
         {
