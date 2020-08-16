@@ -1,0 +1,60 @@
+﻿@model WebMSFactory.PriceListViewModel
+
+@{
+    ViewBag.Title = "ProductPrice";
+}
+
+     
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title ">자재 단가 관리</h4>
+            <form style="padding-left:700px" action="~/UnitPrice/ProductPrice">
+                <select name="Category">
+                    @foreach (var dicList in Model.comboList)
+                    {
+                        <option value="@dicList">@dicList</option>
+                    }
+                </select>
+                <input type="text" name="Name"/>
+                <input type='submit' value='검색'>
+            </form>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr role="row">
+                            <th class="sorting" rowspan="1" colspan="1" width="150px">업체명</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="300px">제품명</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="400px">품목 스펙</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">품목 단위</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="120px">현재 단가</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="120px">이전 단가</th>
+                            <th class="sorting" rowspan="1" colspan="1">시작일</th>
+                            <th class="sorting" rowspan="1" colspan="1">종료일</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="200px">비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in Model.ProductPrice)
+                        {
+                            <tr role="row">
+                                <td>@prod.Company_Name</td>
+                                <td>@prod.Product_Name</td>
+                                <td>@prod.Product_Information</td>
+                                <td>@prod.Product_Unit</td>
+                                <td>@prod.Material_Current_Price_String</td>
+                                <td>@prod.Material_Previous_Price_String</td>
+                                <td>@prod.Start_Date_String</td>
+                                <td>@prod.End_Date_String</td>
+                                <td>@prod.Note</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+      

@@ -1,0 +1,54 @@
+﻿@model WebMSFactory.ProductList
+
+@{
+    ViewBag.Title = "DetailProduct";
+}
+
+    <div class="container-fluid">
+        <div class="col-sm-12">
+            <table class="table table-bordered dataTable">
+                <colgroup>
+                    <col width="150">
+                    <col width="300">
+                    <col width="150">
+                    <col width="300">
+                    <col width="150">
+                    <col>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold text-primary">제품 번호</td>
+                        <td style="background-color: #fff;">@Model.Product_ID</td>
+                        <td class="font-weight-bold text-primary">제품 그룹명</td>
+                        <td style="background-color: #fff;">@Model.Product_Group_Name</td>
+                        <td class="font-weight-bold text-primary">제품명</td>
+                        <td style="background-color: #fff;">@Model.Product_Name</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold text-primary">품명 스펙</td>
+                        <td style="background-color: #fff;" colspan="3">@Model.Product_Information</td>
+                        <td class="font-weight-bold text-primary">기본 단위</td>
+                        <td style="background-color: #fff;">@Model.Product_Unit</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold text-primary">기준량</td>
+                        <td style="background-color: #fff;">@Model.Product_Standards</td>
+                        <td class="font-weight-bold text-primary">Tact Time</td>
+                        <td style="background-color: #fff;">@Model.Product_Tact_Time</td>
+                        <td class="font-weight-bold text-primary">Lead Time</td>
+                        <td style="background-color: #fff;">@Model.Product_Lead_Time</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold text-primary">비고1</td>
+                        <td style="background-color: #fff;" colspan="5">@Model.Product_Note1</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold text-primary">비고2</td>
+                        <td style="background-color: #fff;" colspan="5">@Model.Product_Note2</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+

@@ -16,7 +16,7 @@ namespace WebMSFactory
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "MSFactory", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
