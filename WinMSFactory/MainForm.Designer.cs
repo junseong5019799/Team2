@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
@@ -41,6 +42,7 @@
             this.btnBarcode = new System.Windows.Forms.ToolStripButton();
             this.btnClear = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
@@ -50,8 +52,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.mainTabControl1 = new WinMSFactory.MainTabControl();
             this.toolStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,7 +60,7 @@
             // toolStrip2
             // 
             this.toolStrip2.AutoSize = false;
-            this.toolStrip2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip2.BackColor = System.Drawing.Color.White;
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -79,6 +79,18 @@
             this.toolStrip2.Size = new System.Drawing.Size(1784, 81);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.AutoSize = false;
+            this.toolStripButton2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(120, 70);
+            this.toolStripButton2.Text = "MS FACTORY";
+            this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btnSearch
             // 
@@ -210,6 +222,12 @@
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolTime
+            // 
+            this.toolTime.Name = "toolTime";
+            this.toolTime.Size = new System.Drawing.Size(152, 20);
+            this.toolTime.Text = "toolStripStatusLabel1";
+            // 
             // toolStripButton6
             // 
             this.toolStripButton6.Name = "toolStripButton6";
@@ -271,24 +289,6 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 62);
             this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolTime
-            // 
-            this.toolTime.Name = "toolTime";
-            this.toolTime.Size = new System.Drawing.Size(152, 20);
-            this.toolTime.Text = "toolStripStatusLabel1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(120, 70);
-            this.toolStripButton2.Text = "MS FACTORY";
-            this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // mainTabControl1
             // 

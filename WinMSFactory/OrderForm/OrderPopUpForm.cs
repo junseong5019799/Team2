@@ -58,14 +58,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
-
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.HeaderText = "납기일변경";
-            btn.Text = "변경";
-            btn.Width = 100;
-            btn.DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            btn.UseColumnTextForButtonValue = true;
-            dgvOrder.Columns.Add(btn);
+           
 
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
@@ -145,17 +138,7 @@ namespace WinMSFactory.OrderForm
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 13)
-            {
-                DueDatePopUpForm frm = new DueDatePopUpForm();
-                frm.Order_no = Convert.ToInt32(dgvOrder.SelectedRows[0].Cells[1].Value);
-                frm.Due_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
-
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    dgvOrder.DataSource = orderService.GetOrderPlanList(release_no);
-                }
-            }
+          
         }
 
 

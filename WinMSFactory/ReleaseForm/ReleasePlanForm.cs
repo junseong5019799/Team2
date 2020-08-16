@@ -257,8 +257,7 @@ namespace WinMSFactory
                     {
                         MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");                        
                     }
-                }                                                    
-                
+                }                                                                  
                 return;
             }
         }
