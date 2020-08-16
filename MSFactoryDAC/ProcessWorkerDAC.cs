@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MSFactoryDAC
 {
-    public class ProcessWorkerDAC:SqlHelper
+    public class ProcessWorkerDAC : SqlHelper
     {
         public DataTable ProseccWorkerGetAll()
         {
@@ -44,21 +44,21 @@ namespace MSFactoryDAC
         {
             try
             {
-                  using (SqlCommand cmd = new SqlCommand())
-                  {
-                      cmd.Connection = new SqlConnection(this.ConnectionString);
-                      cmd.Connection.Open();
-                      cmd.CommandText = @"SELECT corporation_id, corporation_name
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT corporation_id, corporation_name
                                             FROM TBL_CORPORATION
                                             where corporation_use ='Y'
                                             order by corporation_seq ASC;";
 
-                      return SqlHelper.DataReaderMapToList<CorporationVO>(cmd.ExecuteReader());
-                      
-                  }
+                    return SqlHelper.DataReaderMapToList<CorporationVO>(cmd.ExecuteReader());
+
+                }
 
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 throw err;
             }
@@ -211,7 +211,7 @@ namespace MSFactoryDAC
                                                inner join TBL_LINE l ON p.line_id = l.line_id
                                                inner join TBL_FACTORY F ON L.factory_id = F.factory_id
                                                inner join TBL_CORPORATION C ON F.corporation_id = C.corporation_id
-                                               WHERE line_id = @line_id
+                                               WHERE l.line_id = @line_id
                                                  AND process_use = 'Y'
   	                                             AND line_use = 'Y'
                                                  AND factory_use = 'Y'
@@ -227,5 +227,100 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public bool ProcessWorker(ProcessWorkerVO vo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SP_SAVE_PROCESSWORKER";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@P_worker_id", vo.worker_id);
+                        cmd.Parameters.AddWithValue("@P_process_id", vo.process_id);
+                        cmd.Parameters.AddWithValue("@P_employee_id", vo.employee_id);
+                        cmd.Parameters.AddWithValue("@P_first_regist_employee", vo.first_regist_employee);
+                        cmd.Parameters.AddWithValue("@P_final_regist_employee", vo.final_regist_employee);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+                throw err;
+            }
+        }
+
+        public bool ProcessWorkerDelete(List<int> worker_idList)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string selNum = string.Join(",", worker_idList);
+
+                    string sql = "Delete From TBL_PROCESSWORKER where worker_id in (" + selNum + ") ;";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+        public DataTable ProcessWorkerSearch(ProcessWorkerVO vo)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
+                                     from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c
+                                    where p.line_id = l.line_id
+                                      and l.factory_id = f.factory_id
+                                      and f.corporation_id = c.corporation_id
+                                      and (@corporation_id = 0 or  c.corporation_id = @corporation_id)
+                                      and (@factory_id = 0 or f.factory_id = @factory_id)
+                                      and (@line_id = 0 or p.line_id = @line_id);";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@corporation_id", vo.corporation_id);
+                        cmd.Parameters.AddWithValue("@factory_id", vo.factory_id);
+                        cmd.Parameters.AddWithValue("@line_id", vo.line_id);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        cmd.Connection.Open();
+                        da.Fill(dt);
+                        cmd.Connection.Close();
+
+                    }
+
+                    return dt;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
+

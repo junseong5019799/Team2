@@ -1,4 +1,5 @@
-﻿using MSFactoryVO;
+﻿using MSFactoryDAC;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -178,6 +179,77 @@ namespace WinMSFactory
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadData();
             }
+        }
+
+        private void Delete(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("공정 별 작업자를 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            try
+            {
+                dgvProcessWorker.EndEdit();
+
+                List<int> CheckList = new List<int>();
+
+                foreach (DataGridViewRow row in dgvProcessWorker.Rows)
+                {
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvProcessWorker[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgvProcessWorker[5, row.Index].Value.ToInt());
+
+                }
+
+                int worker_id = Convert.ToInt32(dgvProcessWorker.SelectedRows[0].Cells[5].Value);
+
+                if (CheckList.Count > 0)
+                {
+                    service.ProcessWorkerDelete(CheckList);
+
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("다시 선택해주세요");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void Search(object sender, EventArgs e)
+        {
+            dgvProcessWorker.EndEdit();
+
+            string fname = txtWorkerName.Text.Trim();
+            ProcessWorkerVO vo = new ProcessWorkerVO()
+            {
+                corporation_id = cboCorporationName.SelectedValue.ToInt(),
+                factory_id = cboFactoryName.SelectedValue.ToInt(),
+                line_id = cboLineName.SelectedValue.ToInt(),
+                process_id = cboProcessName.SelectedValue.ToInt()
+
+            };
+
+            dtDGV = service.ProcessWorkerSearch(vo);
+
+
+            DataView dv = dtDGV.DefaultView;
+            if (fname.Length > 0)
+            {
+                dv.RowFilter = $"process_name like '%{fname}%'";
+            }
+            dgvProcessWorker.DataSource = dv;
+            DataTable dt = dv.ToTable();
+            List<ProcessWorkerVO> sortedData = SqlHelper.ConvertDataTableToList<ProcessWorkerVO>(dt);
+
+            dgvProcessWorker.DataSource = sortedData;
         }
     }
 }

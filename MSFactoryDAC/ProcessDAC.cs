@@ -226,19 +226,22 @@ namespace MSFactoryDAC
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
-                                     from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c
+                                     from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c,   [dbo].[TBL_STORAGE] s
                                     where p.line_id = l.line_id
+                                      and p.storage_id = s.storage_id   
                                       and l.factory_id = f.factory_id
                                       and f.corporation_id = c.corporation_id
                                       and (@corporation_id = 0 or  c.corporation_id = @corporation_id)
                                       and (@factory_id = 0 or f.factory_id = @factory_id)
                                       and (@line_id = 0 or p.line_id = @line_id)
+                                      and (@storage_id = 0 or p.storage_id =@storage_id)
                                     Order by process_seq asc;;";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@corporation_id", vo.corporation_id);
                         cmd.Parameters.AddWithValue("@factory_id", vo.factory_id);
                         cmd.Parameters.AddWithValue("@line_id", vo.line_id);
+                        cmd.Parameters.AddWithValue("@storage_id", vo.storage_id);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -296,7 +299,7 @@ namespace MSFactoryDAC
 
                     string selNum = string.Join(",", process_idList);
 
-                    string sql = "Delete From TBL_PROCESS where process_id in (" + selNum + ") ;"; //여러개의 값을 삭제하고온다.
+                    string sql = "Delete From TBL_PROCESS where process_id in (" + selNum + ") ;"; 
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {

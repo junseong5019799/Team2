@@ -34,5 +34,32 @@ namespace WinMSFactory.Services
         {
             return dac.ProcessCombo();
         }
-    }
+
+        public List<FactoryVO> FactoryCombo(int corporation_id)
+        {
+            return dac.FactoryCombo(corporation_id);
+        }
+
+        public List<LineVO> LineCombo(int factory_id)
+        {
+            return dac.LineCombo(factory_id);
+        }
+        public List<ProcessVO> ProcessCombo(int line_id)
+        {
+            return dac.ProcessCombo(line_id);
+        }
+        public bool ProcessWorker(ProcessWorkerVO vo)
+        {
+            return dac.ProcessWorker(vo);
+        }
+        public bool ProcessWorkerDelete(List<int> worker_idList)
+        {
+            return dac.ProcessWorkerDelete(worker_idList);
+        }
+
+        public DataTable ProcessWorkerSearch(ProcessWorkerVO vo)
+        {
+            return dac.ProcessWorkerSearch(vo);
+        }
+        }
 }
