@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ButtonControl
+            // 
+            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.UseVisualStyleBackColor = false;
+            this.ResumeLayout(false);
+
         }
 
         #endregion

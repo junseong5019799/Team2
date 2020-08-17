@@ -27,6 +27,7 @@ namespace WinMSFactory
         public event EventHandler Barcode;
         public event EventHandler Clear;
         public event BarCodeReadComplete Readed;
+
         int index;  // 메뉴 모듈 index(timer에서 사용)
         SerialPort port;
         StringBuilder strs;
@@ -261,7 +262,8 @@ namespace WinMSFactory
                     ToolStripButton tsbM = new ToolStripButton();
                     tsbM.Tag = ++cnt;
                     tsbM.Text = dr["MODULE_NAME"].ToString();
-                    tsbM.BackColor = Color.AliceBlue;
+                    tsbM.BackColor = Color.White;
+                    
                     tsbM.Click += (sender, e) =>
                     {
                         if (!timer1.Enabled)
@@ -274,9 +276,11 @@ namespace WinMSFactory
                 }
 
                 ToolStripButton tsbP = new ToolStripButton();
-                tsbP.Text = dr["PROG_NAME"].ToString();
+                tsbP.Text = dr["PROG_NAME"].ToString();               
                 tsbP.Click += (sender, e) => this.MdiChildrenShow(dr.ToDic());
                 tsbP.Visible = false;
+                //tsbP.BackColor = Color.;
+                tsbP.ForeColor = Color.Black;
                 tsMenu.Items.Add(tsbP);
                 cnt++;
             }

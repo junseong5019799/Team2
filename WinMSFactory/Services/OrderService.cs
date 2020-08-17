@@ -82,9 +82,9 @@ namespace WinMSFactory.Services
             return dac.GetWareHouseDetail(order_no, product_id);
         }
 
-        public bool InsertOrder(List<OrderVO> olist)
+        public bool InsertOrder(List<OrderVO> olist, HashSet<int> companySet, string employee_id)
         {
-            return dac.InsertOrder(olist);
+            return dac.InsertOrder(olist, companySet, employee_id);
         }
 
         public bool UpdateOrderDate(DateTime dt, int release_no)

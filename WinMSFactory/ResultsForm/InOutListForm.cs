@@ -24,6 +24,9 @@ namespace WinMSFactory
 
         private void InOutListForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgv.ColumnHeadersHeight = 30;
+
             dgv.AddNewColumns("입출고", "gubun", 70, true, true, false, DataGridViewContentAlignment.MiddleLeft);
             dgv.AddNewColumns("번호", "release_no", 60, true, true, false, DataGridViewContentAlignment.MiddleRight);
             dgv.AddNewColumns("창고ID", "storage_id", 100, false, true, false, DataGridViewContentAlignment.MiddleLeft);
@@ -71,6 +74,10 @@ namespace WinMSFactory
                 }
 
                 if (cboProduct.SelectedIndex == 0)
+                {
+                    dgv.DataSource = orderService.GetInOutList();
+                }
+                else if(cboProduct.SelectedIndex != 0 )
                 {
                     dgv.DataSource = orderService.GetInOutListByGubun(cboGubun.SelectedItem.ToString());
                     return;

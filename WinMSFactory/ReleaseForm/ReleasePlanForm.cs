@@ -111,7 +111,7 @@ namespace WinMSFactory
                 {
                     DataTable dt = new DataTable();
 
-                    oda.SelectCommand = new OleDbCommand("SELECT * From [" + sheetName + "]", conn);
+                    oda.SelectCommand = new OleDbCommand("SELECT * From [" + sheetName + "] where release_seq  > 0 ", conn);
                     conn.Open();
 
                     oda.Fill(dt);
@@ -238,6 +238,7 @@ namespace WinMSFactory
 
             release.company_id = Convert.ToInt32(dgv2.Rows[0].Cells[2].Value);
 
+            //
             if (releaseService.SaveReleasePlan(dt, release))
             {
                 MessageBox.Show("출고 요청서를 추가하였습니다.");
@@ -245,21 +246,20 @@ namespace WinMSFactory
                 dgv.DataSource = releaseService.GetReleasePlan();
                 dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv.Rows[0].Cells[0].Value));
 
-                DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
-                DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
+                //DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
+                //DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
 
                 int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
                 int product_id = Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value);
 
-                if (request_date < release_date)
-                {                   
-                    if (releaseService.UpdateReleaseDateCancel(release_no, product_id))
+                for (int i = 0; i < dgv2.RowCount; i++)
+                {
+                    if (Convert.ToDateTime(dgv2.Rows[i].Cells[7].Value) < Convert.ToDateTime(dgv2.Rows[i].Cells[8].Value))
                     {
-                        MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");                        
-                    }
-                }                                                    
-                
-                return;
+                        releaseService.UpdateReleaseDateCancel(release_no, Convert.ToInt32(dgv2.Rows[i].Cells[3].Value));                       
+                    }                                                                 
+                }
+                MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");
             }
         }
 

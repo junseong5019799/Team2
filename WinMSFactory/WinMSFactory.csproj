@@ -617,6 +617,9 @@
     <EmbeddedResource Include="ManagePriceForm\SellPriceDialogForm.resx">
       <DependentUpon>SellPriceDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\ButtonControl.resx">
+      <DependentUpon>ButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Technology_Standards\DefectiveTypePopupForm.resx">
       <DependentUpon>DefectiveTypePopupForm.cs</DependentUpon>
     </EmbeddedResource>

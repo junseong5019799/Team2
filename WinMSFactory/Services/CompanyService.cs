@@ -69,10 +69,14 @@ namespace WinMSFactory.Services
             return dac.CompanyPrint(selCompany);
         }
 
-            ///오류
-            //public bool Delete(List<int> company_idList)
-            //{
-            //    return dac.Delete(company_idList);
-            //}
+        ///오류
+        //public bool Delete(List<int> company_idList)
+        //{
+        //    return dac.Delete(company_idList);
+        //}
+        public DataTable GetCompanyByProducts()
+        {
+            return dac.GetCompanyByProducts();
+        }
     }
 }

@@ -20,7 +20,9 @@ namespace WinMSFactory
 
             this.FlatStyle = FlatStyle.Flat;
             this.ForeColor = Color.Black;            
-            this.BackColor = Color.White;            
+            this.BackColor = Color.SkyBlue;
+            this.FlatAppearance.BorderSize = 0;
+
         }
 
         protected override void OnPaint(PaintEventArgs pe)

@@ -324,5 +324,34 @@ namespace MSFactoryDAC
                 return dt;
             }
         }
+
+        public DataTable GetCompanyByProducts()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"SELECT C.COMPANY_ID, C.COMPANY_NAME, CP.PRODUCT_ID
+                                   FROM DBO.TBL_COMPANY C INNER JOIN DBO.TBL_COMPANY_PRODUCT CP ON C.COMPANY_ID = CP.COMPANY_ID";
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+
+                    da.Fill(dt);
+
+                    return dt;
+                    //using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    //{
+                    //    return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
+                    //}
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

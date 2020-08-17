@@ -1758,10 +1758,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AllProductsController.cs" />
+    <Compile Include="Controllers\MSFactoryController.cs" />
+    <Compile Include="Controllers\UnitPriceController.cs" />
+    <Compile Include="DAC\PriceProductDAC.cs" />
+    <Compile Include="DAC\ProductDAC.cs" />
+    <Compile Include="Html\PagingHelper.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\PriceListViewModel.cs" />
+    <Compile Include="Models\ProductList.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PriceProductList.cs" />
+    <Compile Include="Models\ProductListViewModel.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1918,7 +1929,12 @@
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\_viewstart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\MSFactory\Index.cshtml" />
+    <Content Include="Views\MSFactory\Login.cshtml" />
+    <Content Include="Views\AllProducts\Search.cshtml" />
+    <Content Include="Views\AllProducts\DetailProduct.cshtml" />
+    <Content Include="Views\UnitPrice\ProductPrice.cshtml" />
+    <Content Include="Views\UnitPrice\SellPrice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1928,7 +1944,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSFactoryDAC\MSFactoryDAC.csproj">

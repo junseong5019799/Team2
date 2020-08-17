@@ -1,4 +1,8 @@
-﻿using MSFactoryVO;
+﻿using DevExpress.DataProcessing.InMemoryDataProcessor;
+using DevExpress.PivotGrid.OLAP;
+using DevExpress.XtraEditors.Designer.Utils;
+using MSFactoryDAC;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +19,7 @@ namespace WinMSFactory.OrderForm
     public partial class OrderPopUpForm : PopUpDialogForm
     {
         OrderService orderService = new OrderService();
-        
-
+        DataTable comDt;
         private int release_no;
 
         public int Release_no
@@ -41,15 +44,18 @@ namespace WinMSFactory.OrderForm
 
         private void OrderPopUpForm_Load(object sender, EventArgs e)
         {
+
+            comDt = new CompanyService().GetCompanyByProducts();
             //dgvCompany.AddNewColumns("업체코드", "company_id", 80, true);
             //dgvCompany.AddNewColumns("납품업체", "company_name", 100, true);
 
             //dgvCompany.DataSource = orderService.GetCompanyList();
-                        
+
             dgvOrder.AddNewColumns("주문번호", "release_no", 80, false);
             dgvOrder.AddNewColumns("순서", "release_seq", 70, false);
-            dgvOrder.AddNewColumns("거래처", "company_id", 100, false);
-            dgvOrder.AddNewColumns("납품업체", "company_name", 120, true);
+            //dgvOrder.AddNewColumns("거래처", "company_id", 100, false);
+            dgvOrder.AddNewComCol("납품업체", "company_id", comDt, "company_name", "company_id", 200);
+            //dgvOrder.AddNewColumns("납품업체", "company_name", 120, true);
             dgvOrder.AddNewColumns("품목", "product_id", 80, false);
             dgvOrder.AddNewColumns("품명", "product_name", 120, true);
             dgvOrder.AddNewColumns("품목", "_product_id", 80, true);
@@ -58,21 +64,12 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
-
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.HeaderText = "납기일변경";
-            btn.Text = "변경";
-            btn.Width = 100;
-            btn.DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            btn.UseColumnTextForButtonValue = true;
-            dgvOrder.Columns.Add(btn);
-
+           
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
             
-
-            dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
-            dgvOrder.Columns[10].DefaultCellStyle.ForeColor = Color.Red;
+            //dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
+            //dgvOrder.Columns[10].DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -99,6 +96,10 @@ namespace WinMSFactory.OrderForm
                 return;
             }
 
+            dgvOrder.Sort(dgvOrder.Columns["company_id"], ListSortDirection.Ascending);
+            HashSet<int> companySet = new HashSet<int>();
+            string employee_id = "admin";
+
             for (int i = 0; i < dgvOrder.RowCount; i++)
             {
                 if (dgvOrder.Rows[i].Cells[0].Value != null)
@@ -107,11 +108,11 @@ namespace WinMSFactory.OrderForm
 
                     if (IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
                     {
+                        int c_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[3].Value);
+
                         OrderVO orderVO = new OrderVO();
 
-                        orderVO.company_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[3].Value);
-                        orderVO.first_regist_employee = "사원명";
-                        orderVO.final_regist_employee = "사원명";
+                        orderVO.company_id = c_id;
                         orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[7].Value);
                         orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[10].Value);
                         orderVO.order_status = "발주중";
@@ -119,6 +120,7 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_request_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
 
                         olist.Add(orderVO);
+                        companySet.Add(c_id);
                     }                    
                     else if(IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
                     {
@@ -130,7 +132,7 @@ namespace WinMSFactory.OrderForm
 
             if (olist.Count > 0)
             {
-                orderService.InsertOrder(olist);
+                orderService.InsertOrder(olist, companySet, employee_id);
 
                 MessageBox.Show("발주 되었습니다. ");
                 this.Close();
@@ -138,28 +140,30 @@ namespace WinMSFactory.OrderForm
             else
             {
                 MessageBox.Show("발주 실패");
-            }
-            
+            }           
 
         }
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 13)
-            {
-                DueDatePopUpForm frm = new DueDatePopUpForm();
-                frm.Order_no = Convert.ToInt32(dgvOrder.SelectedRows[0].Cells[1].Value);
-                frm.Due_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
-
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    dgvOrder.DataSource = orderService.GetOrderPlanList(release_no);
-                }
-            }
+          
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-
-        
+        private void dgvOrder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow dgvr in dgvOrder.Rows)
+            {
+                int product_id = dgvr.Cells["_product_id"].Value.ToInt();
+                IEnumerable<DataRow> query = (from item in comDt.AsEnumerable()
+                                              where item.Field<int>("product_id") == product_id
+                                              select item);
+               ((DataGridViewComboBoxCell)dgvr.Cells["company_id"]).DataSource = query.Count() > 0 ? query.CopyToDataTable<DataRow>() : null;
+            }
+        }
     }
 }

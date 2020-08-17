@@ -44,6 +44,9 @@ namespace WinMSFactory
 
         private void OrderPlanForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgv.ColumnHeadersHeight = 30;
+
             fromToDateControl1.From = DtpFrom;
             fromToDateControl1.To = DtpTo;
 
