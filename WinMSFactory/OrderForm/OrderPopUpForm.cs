@@ -67,9 +67,9 @@ namespace WinMSFactory.OrderForm
            
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
-            
-            //dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
-            //dgvOrder.Columns[10].DefaultCellStyle.ForeColor = Color.Red;
+
+            dgvOrder.Columns["order_quantity"].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvOrder.Columns["order_quantity"].DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -106,23 +106,23 @@ namespace WinMSFactory.OrderForm
                 {
                     bool IsCheck = (bool)dgvOrder.Rows[i].Cells[0].Value;
 
-                    if (IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
+                    if (IsCheck && dgvOrder.Rows[i].Cells["order_quantity"].Value != null)
                     {
                         int c_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[3].Value);
 
                         OrderVO orderVO = new OrderVO();
 
                         orderVO.company_id = c_id;
-                        orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[7].Value);
-                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[10].Value);
+                        orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells["_product_id"].Value);
+                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells["order_quantity"].Value);
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
-                        orderVO.order_request_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
+                        //orderVO.order_request_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
 
                         olist.Add(orderVO);
                         companySet.Add(c_id);
                     }                    
-                    else if(IsCheck && dgvOrder.Rows[i].Cells[12].Value != null)
+                    else if(IsCheck && dgvOrder.Rows[i].Cells["order_quantity"].Value != null)
                     {
                         MessageBox.Show("발주 수량을 입력하지 않았습니다.");
                         return;
