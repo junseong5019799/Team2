@@ -228,6 +228,54 @@ namespace MSFactoryDAC
             }
         }
 
+        public List<EmployeeVO> EmployeeCombo()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT [employee_id], [employee_name]
+                                          FROM [dbo].[TBL_EMPLOYEE] e
+                                          inner join TBL_CORPORATION c on e.corporation_id = c.corporation_id
+                                          WHERE employee_use = 'Y'
+                                          AND corporation_use ='Y'";
+
+                    return SqlHelper.DataReaderMapToList<EmployeeVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public List<EmployeeVO> EmployeeCombo(int corporation_id)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.Connection.Open();
+                    cmd.CommandText = @"SELECT [employee_id], [employee_name]
+                                          FROM [dbo].[TBL_EMPLOYEE] e
+                                          inner join TBL_CORPORATION c on e.corporation_id = c.corporation_id
+                                          where C.corporation_id = @corporation_id
+                                          AND employee_use = 'Y'
+                                          AND corporation_use ='Y'";
+
+                    cmd.Parameters.AddWithValue("@corporation_id", corporation_id);
+                    return SqlHelper.DataReaderMapToList<EmployeeVO>(cmd.ExecuteReader());
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool ProcessWorker(ProcessWorkerVO vo)
         {
             try

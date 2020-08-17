@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.cboProcessName = new System.Windows.Forms.ComboBox();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cboLineName = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -38,6 +37,7 @@
             this.cboFactoryName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cboWorkerName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,14 +64,6 @@
             this.cboProcessName.Name = "cboProcessName";
             this.cboProcessName.Size = new System.Drawing.Size(147, 24);
             this.cboProcessName.TabIndex = 84;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(137, 173);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(147, 22);
-            this.txtName.TabIndex = 82;
-            this.txtName.Tag = "권한그룹 명칭을 입력해주세요.";
             // 
             // label9
             // 
@@ -148,13 +140,21 @@
             this.label4.TabIndex = 75;
             this.label4.Text = "라인 명칭";
             // 
+            // cboWorkerName
+            // 
+            this.cboWorkerName.FormattingEnabled = true;
+            this.cboWorkerName.Location = new System.Drawing.Point(137, 171);
+            this.cboWorkerName.Name = "cboWorkerName";
+            this.cboWorkerName.Size = new System.Drawing.Size(147, 24);
+            this.cboWorkerName.TabIndex = 85;
+            // 
             // ProcessWorkerPopupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(337, 257);
+            this.Controls.Add(this.cboWorkerName);
             this.Controls.Add(this.cboProcessName);
-            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cboLineName);
             this.Controls.Add(this.label8);
@@ -175,8 +175,8 @@
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.cboLineName, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.txtName, 0);
             this.Controls.SetChildIndex(this.cboProcessName, 0);
+            this.Controls.SetChildIndex(this.cboWorkerName, 0);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,7 +186,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cboProcessName;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboLineName;
         private System.Windows.Forms.Label label8;
@@ -195,5 +194,6 @@
         private System.Windows.Forms.ComboBox cboFactoryName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboWorkerName;
     }
 }

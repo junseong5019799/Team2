@@ -20,8 +20,11 @@ namespace WinMSFactory
         FactoryVO fvo;
         LineVO lvo;
         ProcessVO pvo;
+        EmployeeVO evo;
+
          bool IsUpdate;
         string employeeName;
+
         public ProcessWorkerPopupForm(string employeeName, bool IsUpdate, ProcessWorkerVO vo)
         {
             InitializeComponent();
@@ -32,6 +35,10 @@ namespace WinMSFactory
             if (IsUpdate == true)
             {
                 this.vo = vo;
+            }
+            else
+            {
+                this.vo = new ProcessWorkerVO();
             }
         }
 
@@ -64,18 +71,24 @@ namespace WinMSFactory
                     MessageBox.Show("해당공정을 사용 할 수 없습니다.");
                     cboProcessName.SelectedIndex = 0;
                 }
+                cboWorkerName.SelectedIndex = cboWorkerName.FindString(evo.Employee_name);
+                if (cboWorkerName.SelectedIndex < 0)
+                {
+                    MessageBox.Show("해당작업자을 사용 할 수 없습니다.");
+                    cboWorkerName.SelectedIndex = 0;
+                }
             }
 
-            txtName.Text = vo.employee_name;
+           cboWorkerName.SelectedItem = vo.employee_name;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtName.TextLength < 1)
+                if (cboWorkerName.SelectedIndex < 1)
                 {
-                    MessageBox.Show("공정을 입력해주세요");
+                    MessageBox.Show("작업자을 입력해주세요");
                     return;
                 }
 
@@ -101,7 +114,7 @@ namespace WinMSFactory
                 {
                     worker_id= worker_id,
                     process_id = cboProcessName.SelectedValue.ToInt(),
-                    employee_id = txtName.Text.GetHashCode(),
+                    employee_id = cboWorkerName.SelectedValue.ToString(),
                     first_regist_employee = employeeName,
                     final_regist_employee = employeeName
      
@@ -124,6 +137,7 @@ namespace WinMSFactory
         {
             int corporation_id = cboCorporationName.SelectedValue.ToInt();
             cboFactoryName.ComboBinding(service.FactoryCombo(corporation_id), "factory_id", "factory_name", "선택", 0);
+            cboWorkerName.ComboBinding(service.EmployeeCombo(corporation_id), "employee_id", "employee_name", "전체", 0);
         }
 
         private void cboFactoryName_SelectedIndexChanged(object sender, EventArgs e)

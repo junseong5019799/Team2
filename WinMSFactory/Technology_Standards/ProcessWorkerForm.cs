@@ -20,6 +20,7 @@ namespace WinMSFactory
         List<ProcessVO> proceses;
         List<FactoryVO> factories;
         List<LineVO> lines;
+        List<EmployeeVO> employees;
 
         EmployeeVO emp;
         public ProcessWorkerForm()
@@ -43,6 +44,8 @@ namespace WinMSFactory
             cboCorporationName.ComboBinding(service.CorporationCombm(), "corporation_id", "corporation_name", "전체", 0);
             factories = service.FactoryCombo();
             cboFactoryName.ComboBinding(factories != null ? factories.ToList() : null, "factory_id", "factory_name", "전체", 0);
+            employees = service.EmployeeCombo();
+            cboWorkerName.ComboBinding(employees != null ? employees.ToList() : null, "employee_id", "employee_name", "전체", 0);
 
             cboFactoryName.ComboBinding(service.FactoryCombo(), "factory_id", "factory_name", "전체", 0);
             lines = service.LineCombo();
@@ -51,6 +54,8 @@ namespace WinMSFactory
             cboLineName.ComboBinding(service.LineCombo(), "line_id", "line_name", "전체", 0);
             proceses = service.ProcessCombo();
             cboProcessName.ComboBinding(proceses != null ? proceses.ToList() : null, "process_id", "process_name", "전체", 0);
+
+
 
             emp = this.GetEmployee();
         }
@@ -67,25 +72,36 @@ namespace WinMSFactory
         {
             int corporation_id = cboCorporationName.SelectedValue.ToInt();
             var f = factories;
+            var em = employees;
 
             if (corporation_id > 0)
             {
-                List<FactoryVO> list = new List<FactoryVO>();
-
+                List<FactoryVO> flist = new List<FactoryVO>();
+                List<EmployeeVO> elist = new List<EmployeeVO>();
                 foreach (FactoryVO fac in f)
                 {
                     if (fac.corporation_id == corporation_id)
-                        list.Add(fac);
+                        flist.Add(fac);
                 }
 
-                f = list;
+                f = flist;
 
+                foreach (EmployeeVO emp in em)
+                {
+                    if (emp.Corporation_id == corporation_id)
+                        elist.Add(emp);
+                }
 
+                em = elist;
             }
             else if (f != null)
                 f = f.ToList();
+            else if (em != null)
+                em = em.ToList(); 
 
             cboFactoryName.ComboBinding(f, "factory_id", "factory_name", "전체", 0);
+            cboWorkerName.ComboBinding(em, "employee_id", "employee_name", "전체", 0);
+          
         }
 
         private void cboFactoryName_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,7 +164,7 @@ namespace WinMSFactory
             cboFactoryName.SelectedIndex = 0;
             cboLineName.SelectedIndex = 0;
             cboProcessName.SelectedIndex = 0;
-            txtWorkerName.Text = "";
+            cboWorkerName.SelectedIndex = 0;
             LoadData();
         }
 
@@ -227,29 +243,19 @@ namespace WinMSFactory
         {
             dgvProcessWorker.EndEdit();
 
-            string fname = txtWorkerName.Text.Trim();
+
             ProcessWorkerVO vo = new ProcessWorkerVO()
             {
                 corporation_id = cboCorporationName.SelectedValue.ToInt(),
                 factory_id = cboFactoryName.SelectedValue.ToInt(),
                 line_id = cboLineName.SelectedValue.ToInt(),
-                process_id = cboProcessName.SelectedValue.ToInt()
+                process_id = cboProcessName.SelectedValue.ToInt(),
+                employee_id = cboWorkerName.SelectedValue.ToString()
 
             };
 
             dtDGV = service.ProcessWorkerSearch(vo);
-
-
-            DataView dv = dtDGV.DefaultView;
-            if (fname.Length > 0)
-            {
-                dv.RowFilter = $"process_name like '%{fname}%'";
-            }
-            dgvProcessWorker.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<ProcessWorkerVO> sortedData = SqlHelper.ConvertDataTableToList<ProcessWorkerVO>(dt);
-
-            dgvProcessWorker.DataSource = sortedData;
+            dgvProcessWorker.DataSource = dtDGV;
         }
     }
 }

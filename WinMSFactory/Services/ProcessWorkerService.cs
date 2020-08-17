@@ -61,5 +61,15 @@ namespace WinMSFactory.Services
         {
             return dac.ProcessWorkerSearch(vo);
         }
+
+        public List<EmployeeVO> EmployeeCombo()
+        {
+            return dac.EmployeeCombo();
         }
+
+        public List<EmployeeVO> EmployeeCombo(int corporation_id)
+        {
+            return dac.EmployeeCombo(corporation_id);
+        }
+    }
 }

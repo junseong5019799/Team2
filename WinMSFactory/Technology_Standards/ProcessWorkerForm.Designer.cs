@@ -37,11 +37,11 @@
             this.cboFactoryName = new System.Windows.Forms.ComboBox();
             this.cboLineName = new System.Windows.Forms.ComboBox();
             this.cboCorporationName = new System.Windows.Forms.ComboBox();
-            this.txtWorkerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboWorkerName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessWorker)).BeginInit();
@@ -49,12 +49,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboWorkerName);
             this.panel1.Controls.Add(this.cboProcessName);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cboFactoryName);
             this.panel1.Controls.Add(this.cboLineName);
             this.panel1.Controls.Add(this.cboCorporationName);
-            this.panel1.Controls.Add(this.txtWorkerName);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
@@ -65,12 +65,12 @@
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
-            this.panel1.Controls.SetChildIndex(this.txtWorkerName, 0);
             this.panel1.Controls.SetChildIndex(this.cboCorporationName, 0);
             this.panel1.Controls.SetChildIndex(this.cboLineName, 0);
             this.panel1.Controls.SetChildIndex(this.cboFactoryName, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
             this.panel1.Controls.SetChildIndex(this.cboProcessName, 0);
+            this.panel1.Controls.SetChildIndex(this.cboWorkerName, 0);
             // 
             // GuidLabel1
             // 
@@ -165,14 +165,6 @@
             this.cboCorporationName.TabIndex = 46;
             this.cboCorporationName.SelectedIndexChanged += new System.EventHandler(this.cboCorporationName_SelectedIndexChanged);
             // 
-            // txtWorkerName
-            // 
-            this.txtWorkerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWorkerName.Location = new System.Drawing.Point(718, 12);
-            this.txtWorkerName.Name = "txtWorkerName";
-            this.txtWorkerName.Size = new System.Drawing.Size(151, 22);
-            this.txtWorkerName.TabIndex = 45;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -213,6 +205,14 @@
             this.label1.TabIndex = 41;
             this.label1.Text = "법인 명칭";
             // 
+            // cboWorkerName
+            // 
+            this.cboWorkerName.FormattingEnabled = true;
+            this.cboWorkerName.Location = new System.Drawing.Point(718, 12);
+            this.cboWorkerName.Name = "cboWorkerName";
+            this.cboWorkerName.Size = new System.Drawing.Size(151, 24);
+            this.cboWorkerName.TabIndex = 51;
+            // 
             // ProcessWorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -243,10 +243,10 @@
         private System.Windows.Forms.ComboBox cboFactoryName;
         private System.Windows.Forms.ComboBox cboLineName;
         private System.Windows.Forms.ComboBox cboCorporationName;
-        private System.Windows.Forms.TextBox txtWorkerName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboWorkerName;
     }
 }
