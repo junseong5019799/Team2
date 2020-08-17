@@ -81,6 +81,7 @@ namespace WinMSFactory
         {
             DataGridViewComboBoxColumn com = new DataGridViewComboBoxColumn();
             com.HeaderText = HeaderText;
+            com.Name = PropertyName;
             com.DataPropertyName = PropertyName;
             com.Width = Width;
             com.ReadOnly = ReadOnly;

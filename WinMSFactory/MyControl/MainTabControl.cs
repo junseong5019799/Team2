@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
 
 namespace WinMSFactory
 {
@@ -33,8 +33,6 @@ namespace WinMSFactory
 
             try
             {
-                this.BackColor = Color.White;
-                this.Appearance = TabAppearance.Normal;
                 Image img;
 
                 Font f = this.Font;

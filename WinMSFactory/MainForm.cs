@@ -27,6 +27,7 @@ namespace WinMSFactory
         public event EventHandler Barcode;
         public event EventHandler Clear;
         public event BarCodeReadComplete Readed;
+
         int index;  // 메뉴 모듈 index(timer에서 사용)
         SerialPort port;
         StringBuilder strs;

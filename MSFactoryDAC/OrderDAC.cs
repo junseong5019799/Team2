@@ -418,7 +418,7 @@ namespace MSFactoryDAC
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public bool InsertOrder(List<OrderVO> olist)
+        public bool InsertOrder(List<OrderVO> olist, HashSet<int> companySet, string employee_id)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -428,51 +428,86 @@ namespace MSFactoryDAC
 
                 try
                 {
-                    cmd.CommandText = "SP_ORDER_INSERT";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Transaction = tran;
-
-                    cmd.Parameters.Add("@company_id", SqlDbType.Int);
-                    cmd.Parameters.Add("@first_regist_employee", SqlDbType.VarChar,20 );
-                    cmd.Parameters.Add("@final_regist_employee", SqlDbType.VarChar, 20);
-
-                    foreach (OrderVO item in olist)
-                    {
-                        cmd.Parameters["@company_id"].Value = item.company_id;
-                        cmd.Parameters["@first_regist_employee"].Value = item.first_regist_employee;
-                        cmd.Parameters["@final_regist_employee"].Value = item.final_regist_employee;
-                    }                    
-
-                    int num = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    cmd.CommandText = "SP_ORDERDETAIL_INSERT";
-                    cmd.Parameters.Clear();
-
-                    cmd.Parameters.Add("@order_no", SqlDbType.Int);
-                    cmd.Parameters.Add("@product_id", SqlDbType.Int);
-                    cmd.Parameters.Add("@order_seq", SqlDbType.Int);
-                    cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
-                    cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
-                    cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
-
-                    int cnt = 1;
+                    int index = 0;
                     int result = 0;
 
-                    foreach (OrderVO item in olist)
+                    foreach (int company_id in companySet)
                     {
-                        cmd.Parameters["@order_no"].Value = num;
-                        cmd.Parameters["@product_id"].Value = item.product_id;
-                        cmd.Parameters["@order_seq"].Value = cnt;
-                        cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
-                        cmd.Parameters["@order_status"].Value = item.order_status;
-                        cmd.Parameters["@order_request_date"].Value = item.order_request_date;
+                        cmd.CommandText = "SP_ORDER_INSERT";
+                        cmd.Parameters.AddWithValue("@company_id", company_id);
+                        cmd.Parameters.AddWithValue("@regist_employee", employee_id);
+                        int num = Convert.ToInt32(cmd.ExecuteScalar());
+                        int cnt = 1;
 
-                        cnt++;
+                        cmd.CommandText = "SP_ORDERDETAIL_INSERT";
+                        cmd.Parameters.Clear();
 
-                        result += cmd.ExecuteNonQuery();
+                        cmd.Parameters.Add("@order_no", SqlDbType.Int);
+                        cmd.Parameters.Add("@product_id", SqlDbType.Int);
+                        cmd.Parameters.Add("@order_seq", SqlDbType.Int);
+                        cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
+                        cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
+                        cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
+
+                        for (; index < olist.Count; index++)
+                        {
+                            OrderVO item = olist[index];
+
+                            if (item.company_id != company_id)
+                                break;
+
+                            cmd.Parameters["@order_no"].Value = num;
+                            cmd.Parameters["@product_id"].Value = item.product_id;
+                            cmd.Parameters["@order_seq"].Value = cnt;
+                            cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
+                            cmd.Parameters["@order_status"].Value = item.order_status;
+                            cmd.Parameters["@order_request_date"].Value = item.order_request_date;
+
+                            cnt++;
+
+                            result += cmd.ExecuteNonQuery();
+                        }
                     }
 
-                    
+                    //foreach (OrderVO item in olist)
+                    //{
+                    //    cmd.Parameters["@company_id"].Value = item.company_id;
+                    //    cmd.Parameters["@first_regist_employee"].Value = item.first_regist_employee;
+                    //    cmd.Parameters["@final_regist_employee"].Value = item.final_regist_employee;
+                    //}                    
+
+                    //int num = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    //cmd.CommandText = "SP_ORDERDETAIL_INSERT";
+                    //cmd.Parameters.Clear();
+
+                    //cmd.Parameters.Add("@order_no", SqlDbType.Int);
+                    //cmd.Parameters.Add("@product_id", SqlDbType.Int);
+                    //cmd.Parameters.Add("@order_seq", SqlDbType.Int);
+                    //cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
+                    //cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
+                    //cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
+
+                    //int cnt = 1;
+                    //int result = 0;
+
+                    //foreach (OrderVO item in olist)
+                    //{
+                    //    cmd.Parameters["@order_no"].Value = num;
+                    //    cmd.Parameters["@product_id"].Value = item.product_id;
+                    //    cmd.Parameters["@order_seq"].Value = cnt;
+                    //    cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
+                    //    cmd.Parameters["@order_status"].Value = item.order_status;
+                    //    cmd.Parameters["@order_request_date"].Value = item.order_request_date;
+
+                    //    cnt++;
+
+                    //    result += cmd.ExecuteNonQuery();
+                    //}
+
+
 
                     tran.Commit();
 
@@ -587,7 +622,7 @@ namespace MSFactoryDAC
                     cmd.Parameters.Clear();
 
                     cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
-                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now.ToString());
+                    cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now);
                     cmd.Parameters.AddWithValue("@order_no", order_no);
 
                     cmd.ExecuteNonQuery();

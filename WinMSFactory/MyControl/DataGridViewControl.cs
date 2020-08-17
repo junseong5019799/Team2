@@ -80,6 +80,8 @@ namespace WinMSFactory
             this.RowHeadersVisible = false;
             this.ColumnHeadersDefaultCellStyle.BackColor = Color.SkyBlue;
             this.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(153, 204, 255);
+            this.RowsDefaultCellStyle.BackColor = Color.FromArgb(242, 242, 242); 
+            this.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
             if (IsAutoGenerateColumns)
                 this.AutoGenerateColumns = true;

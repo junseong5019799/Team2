@@ -27,6 +27,12 @@ namespace WinMSFactory
 
         private void WareHouseWaitForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgv.ColumnHeadersHeight = 30;
+
+            dgvDetail.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgvDetail.ColumnHeadersHeight = 30;
+
             DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             DataGridViewContentAlignment LeftAlign = DataGridViewContentAlignment.MiddleLeft;
 
@@ -37,7 +43,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("품명", "product_name", 120, false, true, false, LeftAlign);
             dgv.AddNewColumns("발주량", "order_request_quantity", 90, false, true, false, RightAlign);
             dgv.AddNewColumns("발주일", "order_request_date", 90, true, true, false, LeftAlign);
-            dgv.AddNewColumns("발주상태", "order_status", 90, false, true, false, LeftAlign);
+           
 
             dgv.DataSource = orderService.GetWareHouseList();            
 

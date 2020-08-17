@@ -76,7 +76,7 @@
             this.btnClear});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1784, 81);
+            this.toolStrip2.Size = new System.Drawing.Size(1561, 65);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -165,11 +165,13 @@
             // btnLogOut
             // 
             this.btnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnLogOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnLogOut.AutoSize = false;
+            this.btnLogOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
+            this.btnLogOut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(73, 78);
+            this.btnLogOut.Size = new System.Drawing.Size(60, 60);
             this.btnLogOut.Text = "로그아웃";
             this.btnLogOut.ToolTipText = "로그아웃";
             this.btnLogOut.Click += new System.EventHandler(this.tsbLogOut_Click);
@@ -215,17 +217,16 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1023);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 817);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1784, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1561, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolTime
             // 
             this.toolTime.Name = "toolTime";
-            this.toolTime.Size = new System.Drawing.Size(152, 20);
+            this.toolTime.Size = new System.Drawing.Size(121, 17);
             this.toolTime.Text = "toolStripStatusLabel1";
             // 
             // toolStripButton6
@@ -261,9 +262,9 @@
             this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.tsMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-            this.tsMenu.Location = new System.Drawing.Point(0, 81);
+            this.tsMenu.Location = new System.Drawing.Point(0, 65);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(250, 942);
+            this.tsMenu.Size = new System.Drawing.Size(219, 752);
             this.tsMenu.TabIndex = 2;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -295,11 +296,10 @@
             this.mainTabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.mainTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.mainTabControl1.Location = new System.Drawing.Point(250, 81);
-            this.mainTabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mainTabControl1.Location = new System.Drawing.Point(219, 65);
             this.mainTabControl1.Name = "mainTabControl1";
             this.mainTabControl1.SelectedIndex = 0;
-            this.mainTabControl1.Size = new System.Drawing.Size(1534, 29);
+            this.mainTabControl1.Size = new System.Drawing.Size(1342, 23);
             this.mainTabControl1.TabIndex = 6;
             this.mainTabControl1.Visible = false;
             this.mainTabControl1.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
@@ -307,10 +307,10 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1784, 1049);
+            this.ClientSize = new System.Drawing.Size(1561, 839);
             this.Controls.Add(this.mainTabControl1);
             this.Controls.Add(this.tsMenu);
             this.Controls.Add(this.toolStrip2);

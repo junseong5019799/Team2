@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.txtEmployee_id = new System.Windows.Forms.TextBox();
             this.txtEmployee_pwd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.txtEmployee_id.Font = new System.Drawing.Font("굴림", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtEmployee_id.Location = new System.Drawing.Point(126, 41);
             this.txtEmployee_id.Name = "txtEmployee_id";
-            this.txtEmployee_id.Size = new System.Drawing.Size(171, 27);
+            this.txtEmployee_id.Size = new System.Drawing.Size(171, 22);
             this.txtEmployee_id.TabIndex = 0;
             this.txtEmployee_id.Tag = "ID를 입력해주세요.";
             // 
@@ -56,7 +57,7 @@
             this.txtEmployee_pwd.Location = new System.Drawing.Point(126, 92);
             this.txtEmployee_pwd.Name = "txtEmployee_pwd";
             this.txtEmployee_pwd.PasswordChar = '*';
-            this.txtEmployee_pwd.Size = new System.Drawing.Size(171, 27);
+            this.txtEmployee_pwd.Size = new System.Drawing.Size(171, 22);
             this.txtEmployee_pwd.TabIndex = 1;
             this.txtEmployee_pwd.Tag = "비밀번호를 입력해주세요.";
             // 
@@ -66,7 +67,7 @@
             this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(58, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 18);
+            this.label1.Size = new System.Drawing.Size(21, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "ID";
             // 
@@ -76,7 +77,7 @@
             this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(40, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 18);
+            this.label2.Size = new System.Drawing.Size(37, 14);
             this.label2.TabIndex = 2;
             this.label2.Text = "PWD";
             // 
@@ -109,9 +110,11 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.LightBlue;
+            this.btnLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLogin.BackgroundImage")));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.Black;
+            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogin.Location = new System.Drawing.Point(62, 149);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(89, 33);
