@@ -19,5 +19,7 @@ namespace WebMSFactory
         public int Product_Lead_Time { get; set; }
         public int Product_Tact_Time { get; set; }
         public string Product_Use { get; set; }
+        public string Bom_Use_Quantity { get; set; }
+        public int LV { get; set; }
     }
 }

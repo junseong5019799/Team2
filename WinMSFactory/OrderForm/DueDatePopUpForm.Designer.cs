@@ -48,10 +48,16 @@
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.FlatAppearance.BorderSize = 0;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.FlatAppearance.BorderSize = 0;
             // 
             // btnChange
             // 
-            this.btnChange.BackColor = System.Drawing.Color.White;
+            this.btnChange.BackColor = System.Drawing.Color.LightBlue;
+            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.ForeColor = System.Drawing.Color.Black;
             this.btnChange.Location = new System.Drawing.Point(97, 183);
             this.btnChange.Name = "btnChange";
@@ -63,7 +69,8 @@
             // 
             // btnC
             // 
-            this.btnC.BackColor = System.Drawing.Color.White;
+            this.btnC.BackColor = System.Drawing.Color.LightGray;
+            this.btnC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnC.ForeColor = System.Drawing.Color.Black;
             this.btnC.Location = new System.Drawing.Point(233, 183);
             this.btnC.Name = "btnC";

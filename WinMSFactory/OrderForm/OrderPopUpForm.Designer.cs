@@ -45,22 +45,24 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 532);
-            this.panel1.Size = new System.Drawing.Size(1129, 40);
+            this.panel1.Size = new System.Drawing.Size(1102, 40);
             // 
             // btnConfirm
             // 
+            this.btnConfirm.BackColor = System.Drawing.Color.LightBlue;
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnConfirm.FlatAppearance.BorderSize = 0;
             this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConfirm.Location = new System.Drawing.Point(893, 3);
+            this.btnConfirm.Location = new System.Drawing.Point(834, 4);
             this.btnConfirm.Text = "발주";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.LightGray;
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Location = new System.Drawing.Point(1007, 3);
+            this.btnCancel.Location = new System.Drawing.Point(963, 4);
             this.btnCancel.Text = "닫기";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -111,7 +113,7 @@
             this.dgvOrder.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrder.Size = new System.Drawing.Size(1073, 461);
+            this.dgvOrder.Size = new System.Drawing.Size(1045, 461);
             this.dgvOrder.TabIndex = 0;
             this.dgvOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellClick);
             this.dgvOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOrder_DataBindingComplete);
@@ -129,7 +131,7 @@
             this.groupBox1.Controls.Add(this.dgvOrder);
             this.groupBox1.Location = new System.Drawing.Point(12, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1105, 504);
+            this.groupBox1.Size = new System.Drawing.Size(1077, 504);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "발주";
@@ -138,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1129, 572);
+            this.ClientSize = new System.Drawing.Size(1102, 572);
             this.Controls.Add(this.groupBox1);
             this.Name = "OrderPopUpForm";
             this.Text = "발주 ";

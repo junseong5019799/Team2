@@ -44,6 +44,8 @@ namespace WinMSFactory.OrderForm
 
         private void OrderPopUpForm_Load(object sender, EventArgs e)
         {
+            dgvOrder.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgvOrder.ColumnHeadersHeight = 30;
 
             comDt = new CompanyService().GetCompanyByProducts();
             //dgvCompany.AddNewColumns("업체코드", "company_id", 80, true);
@@ -96,7 +98,7 @@ namespace WinMSFactory.OrderForm
                 return;
             }
 
-            dgvOrder.Sort(dgvOrder.Columns["company_id"], ListSortDirection.Ascending);
+            //dgvOrder.Sort(dgvOrder.Columns["company_id"], ListSortDirection.Ascending);
             HashSet<int> companySet = new HashSet<int>();
             string employee_id = "admin";
 
@@ -117,7 +119,7 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells["order_quantity"].Value);
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
-                        //orderVO.order_request_date = Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells[12].Value);
+                        orderVO.order_request_date = DateTime.Now;
 
                         olist.Add(orderVO);
                         companySet.Add(c_id);

@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>MSFactory @RenderSection("title", false) - Dashboard</title>
+	<title>MSFactory @RenderSection("title", false)</title>
 
 	<!-- Custom fonts for this template-->
 	<link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -159,10 +159,11 @@
 				</nav>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				@RenderBody()
-				<!-- /.container-fluid -->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                    <!-- /.container-fluid -->
 
-			</div>
 			<!-- End of Main Content -->
 			
 
@@ -209,8 +210,8 @@
 	<script src="~/vendor/chart.js/Chart.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="~/js/demo/chart-area-demo.js"></script>
-	<script src="~/js/demo/chart-pie-demo.js"></script>
+	@*<script src="~/js/demo/chart-area-demo.js"></script>
+	<script src="~/js/demo/chart-pie-demo.js"></script>*@
 
 	@RenderSection("scripts", false)
 

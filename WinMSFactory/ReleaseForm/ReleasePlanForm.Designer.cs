@@ -53,11 +53,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnInsert = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.btnRelease = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv = new WinMSFactory.DataGridViewControl();
-            this.btnRelease = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.BackColor = System.Drawing.Color.White;
+            this.btnCalculate.BackColor = System.Drawing.Color.LightGray;
             this.btnCalculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
@@ -137,13 +137,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 16, 12, 4, 9, 594);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 17, 17, 47, 41, 42);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 17, 12, 4, 9, 594);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 18, 17, 47, 41, 42);
             // 
             // cboPlanID
             // 
@@ -179,6 +179,7 @@
             // 
             // panel4
             // 
+            this.panel4.AutoScroll = true;
             this.panel4.Controls.Add(this.dgv2);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -250,8 +251,8 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
-            this.btnDelete,
             this.btnInsert,
+            this.btnDelete,
             this.btnRelease});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -272,18 +273,6 @@
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.AutoSize = false;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnDelete.Size = new System.Drawing.Size(50, 50);
-            this.btnDelete.Text = "삭제";
-            this.btnDelete.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // btnInsert
             // 
             this.btnInsert.AutoSize = false;
@@ -295,8 +284,33 @@
             this.btnInsert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.AutoSize = false;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnDelete.Size = new System.Drawing.Size(50, 50);
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnRelease
+            // 
+            this.btnRelease.AutoSize = false;
+            this.btnRelease.Image = ((System.Drawing.Image)(resources.GetObject("btnRelease.Image")));
+            this.btnRelease.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(65, 50);
+            this.btnRelease.Text = "출고처리";
+            this.btnRelease.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
+            // 
             // panel3
             // 
+            this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.dgv);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -354,16 +368,6 @@
             this.dgv.Size = new System.Drawing.Size(1364, 675);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
-            // 
-            // btnRelease
-            // 
-            this.btnRelease.AutoSize = false;
-            this.btnRelease.Image = ((System.Drawing.Image)(resources.GetObject("btnRelease.Image")));
-            this.btnRelease.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRelease.Name = "btnRelease";
-            this.btnRelease.Size = new System.Drawing.Size(65, 50);
-            this.btnRelease.Text = "출고처리";
-            this.btnRelease.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // ReleasePlanForm
             // 

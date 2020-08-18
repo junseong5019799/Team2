@@ -26,39 +26,33 @@ namespace WinMSFactory
 
         private void ReleasePlanForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersHeight = 30;
+
             dgv.AddNewColumns("출고예정 번호", "release_no", 100, true, true, false, DataGridViewContentAlignment.MiddleRight) ;
             dgv.AddNewColumns("고객사", "company_id", 100, false, true, false, DataGridViewContentAlignment.MiddleRight);
-            dgv.AddNewColumns("고객사명", "company_name", 200, true, true, false, DataGridViewContentAlignment.MiddleLeft);
-            dgv.AddNewColumns("주문일", "release_plan_date", 150, true);
-            
+            dgv.AddNewColumns("고객사명", "company_name", 250, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv.AddNewColumns("주문일", "release_plan_date", 200, true);            
             
             dgv.DataSource = releaseService.GetReleasePlan();
 
+            dgv2.ColumnHeadersHeight = 30;
             dgv2.AddNewColumns("출고예정 번호", "release_no", 120, false);
-            dgv2.AddNewColumns("순번", "release_seq", 80, true);
+            dgv2.AddNewColumns("순번", "release_seq", 80, true, true, false, DataGridViewContentAlignment.MiddleRight);
             dgv2.AddNewColumns("고객사", "company_id", 100, false);
             dgv2.AddNewColumns("품명", "product_id", 80, false);
-            dgv2.AddNewColumns("품명", "product_name", 150, true);
-            dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true);
-            dgv2.AddNewColumns("주문일", "release_plan_date", 100, true);
-            dgv2.AddNewColumns("출고 요청일", "release_request_date", 100, true);
-            dgv2.AddNewColumns("출고 예정일", "release_date", 100, true);
-            dgv2.AddNewColumns("출고 상태", "release_status", 100, true);
-            dgv2.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
-            dgv2.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true);
-            dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);
-            dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true);
+            dgv2.AddNewColumns("품명", "product_name", 150, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("요청 수량", "order_request_quantity", 80, true, true, false, DataGridViewContentAlignment.MiddleRight);
+            dgv2.AddNewColumns("주문일", "release_plan_date", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("출고 요청일", "release_request_date", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("출고 예정일", "release_date", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("출고 상태", "release_status", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("최초등록 시각", "first_regist_time", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("최종등록 시각", "final_regist_time", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("최종등록 사원", "final_regist_employee", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
 
-            btnInsert.Enabled = false;
-
-           
-            for (int i = 0; i < dgv2.RowCount; i++)
-            {
-                if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
-                {
-                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                }
-            }
+            btnInsert.Enabled = false;                       
+          
         }
         
 
@@ -154,7 +148,7 @@ namespace WinMSFactory
                 }
                 else
                 {
-                    ReleaseExcelPopUpForm popfrm = new ReleaseExcelPopUpForm();
+                    ReleaseOutPopUpForm popfrm = new ReleaseOutPopUpForm();
                     popfrm.CompanyID = Convert.ToInt32(dgv2.SelectedRows[0].Cells[2].Value);
                     popfrm.ReleaseNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells[1].Value);
 
@@ -178,16 +172,29 @@ namespace WinMSFactory
             {
                 MessageBox.Show("수요계획 할 내역을 선택하세요.");
                 return;
-            }
+            }            
             else
             {
-                Dictionary<string, string> dic = new Dictionary<string, string>();
-                dic["PROG_NAME"] = "수요계획";
-                dic["PROG_FORM_NAME"] = "CalculateRatingForm";
-                dic["Search"] = "Y";
+                for (int i = 0; i < dgv2.RowCount; i++)
+                {
+                    if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
+                    {
+                        MessageBox.Show("출고 취소 된 항목이 있습니다. 납기일을 변경 해주세요.");
+                        return;
+                    }
+                    else
+                    {
+                        Dictionary<string, string> dic = new Dictionary<string, string>();
+                        dic["PROG_NAME"] = "수요계획";
+                        dic["PROG_FORM_NAME"] = "CalculateRatingForm";
+                        dic["Search"] = "Y";
 
-                CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
-                frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+                        CalculateRatingForm frm = (CalculateRatingForm)this.GetMdiParent().MdiChildrenShow(dic);
+                        frm.Release_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+                    }
+                }
+
+                
             }
         }
 
@@ -208,7 +215,7 @@ namespace WinMSFactory
             {
                 if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
                 {
-                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
                 }
             }
 
@@ -245,12 +252,8 @@ namespace WinMSFactory
 
                 dgv.DataSource = releaseService.GetReleasePlan();
                 dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv.Rows[0].Cells[0].Value));
-
-                //DateTime request_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
-                //DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
-
-                int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
-                int product_id = Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value);
+                               
+                int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);                
 
                 for (int i = 0; i < dgv2.RowCount; i++)
                 {
@@ -273,9 +276,10 @@ namespace WinMSFactory
             DueDatePopUpForm frm = new DueDatePopUpForm();
             frm.Order_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value);
             frm.Due_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[7].Value);
+            frm.Product_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells["product_id"].Value);
             frm.Gubun = "출고";
 
-            if(frm.ShowDialog() == DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
 
@@ -283,18 +287,108 @@ namespace WinMSFactory
                 DateTime release_date = Convert.ToDateTime(dgv2.SelectedRows[0].Cells[8].Value);
 
                 if (request_date < release_date)
-                {                   
-                    MessageBox.Show("출고 요청일은 출고 예정일보다 빠르면 안됩니다. 다시 변경해주세요.");
-                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Red;
-                    return;                    
-                }
-                else if (request_date >= release_date)
                 {
-                    releaseService.UpdateReleaseDate(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value), Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value));
-                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Transparent;
-                    dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
-                    
+                    MessageBox.Show("출고 요청일은 출고 예정일보다 빠르면 안됩니다. 다시 변경해주세요.");
+                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Orange;
+                    return;
                 }
+
+                for (int i = 0; i < dgv2.RowCount; i++)
+                {
+                    request_date = Convert.ToDateTime(dgv2.Rows[i].Cells[7].Value);
+                    release_date = Convert.ToDateTime(dgv2.Rows[i].Cells[8].Value);
+                                   
+                    releaseService.UpdateReleaseDate(Convert.ToInt32(dgv2.Rows[i].Cells[0].Value), Convert.ToInt32(dgv2.Rows[i].Cells[3].Value));
+                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Transparent;
+                    dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.Rows[i].Cells[0].Value));
+
+                  
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 출고완료
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRelease_Click(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                if (dgv2.SelectedCells.Count == 0)
+                {
+                    MessageBox.Show("출고 할 목록을 선택하세요");
+                    return;
+                }
+                else
+                {
+                    for (int i = 0; i < dgv2.RowCount; i++)
+                    {
+                        if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
+                        {
+                            MessageBox.Show("출고 취소 된 항목입니다. 출고 등록 먼저 해주세요.");
+                            return;
+                        }
+                    }
+
+                    ReleaseOutPopUpForm popfrm = new ReleaseOutPopUpForm();
+                    popfrm.CompanyID = Convert.ToInt32(dgv2.SelectedRows[0].Cells["company_id"].Value);
+                    popfrm.CompanyName = dgv.SelectedRows[0].Cells["company_name"].Value.ToString();
+                    popfrm.ProductNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells["product_id"].Value);
+                    popfrm.ReleaseNo = Convert.ToInt32(dgv2.SelectedRows[0].Cells["release_no"].Value);
+                    popfrm.ReleaseSeq = Convert.ToInt32(dgv2.SelectedRows[0].Cells["release_seq"].Value);
+                    popfrm.RequestQuantity = Convert.ToInt32(dgv2.SelectedRows[0].Cells["order_request_quantity"].Value);
+                   
+                    if(popfrm.ShowDialog() == DialogResult.OK) 
+                    {
+                        dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
+                        return;
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 출고 삭제하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgv2.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("삭제 할 목록을 선택하세요");
+                return;
+            }
+            else
+            {            
+                for (int i = 0; i < dgv2.RowCount; i++)
+                {
+                    if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고완료")
+                    {
+                        MessageBox.Show("이미 출고된 항목입니다.");
+                        return;
+                    }
+                }
+
+                if(MessageBox.Show("정말 삭제하시겠습니까?","출고항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    int release_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells["release_no"].Value);
+                    int product_no = Convert.ToInt32(dgv2.SelectedRows[0].Cells["product_id"].Value);
+
+                    if(releaseService.DeleteReleasePlan(release_no, product_no))
+                    {
+                        MessageBox.Show("해당 항목을 삭제했습니다.");
+                        dgv.DataSource = releaseService.GetReleasePlan();
+                        dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
+                        return;
+                    }
+                }            
+
+
             }
         }
     }

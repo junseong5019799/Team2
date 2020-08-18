@@ -37,6 +37,14 @@ namespace WinMSFactory
             set { gubun = value; }
         }
 
+        private int product_no;
+
+        public int Product_no
+        {
+            get { return product_no; }
+            set { product_no = value; }
+        }
+
         public DueDatePopUpForm()
         {
            InitializeComponent();
@@ -62,12 +70,12 @@ namespace WinMSFactory
 
             if (Gubun == "발주")
             {
-                service.UpdateOrderDate(dt, order_no);
+                service.UpdateOrderDate(dt, order_no, product_no);
                 MessageBox.Show("발주 납기일이 변경되었습니다.");
             }
             else if(Gubun == "출고")
             {
-                service.UpdateReleaseRequestDate(dt, order_no);
+                service.UpdateReleaseRequestDate(dt, order_no, product_no);
                 MessageBox.Show("출고요청 납기일이 변경되었습니다.");
             }
             this.DialogResult = DialogResult.OK;

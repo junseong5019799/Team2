@@ -23,6 +23,8 @@ namespace WinMSFactory
 
         private void OrderListForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersHeight = 30;
+
             dgv.AddNewColumns("발주번호", "order_no", 100, true);             
             dgv.AddNewColumns("품명", "product_name", 130, true);
             dgv.AddNewColumns("발주량", "order_request_quantity", 100, true);
@@ -33,6 +35,7 @@ namespace WinMSFactory
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.HeaderText = "납기일변경";
+            btn.DefaultCellStyle.BackColor = Color.LightBlue;
             btn.Text = "변경";
             btn.Width = 100;
             btn.DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
@@ -41,7 +44,7 @@ namespace WinMSFactory
 
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 130, true);
             dgv.AddNewColumns("최종등록일", "final_regist_time", 150, true);
-
+            dgv.AddNewColumns("품목", "product_id", 130, false);
             DataTable dt = orderService.GetOrderList();
             dgv.DataSource = dt;
 
@@ -56,6 +59,7 @@ namespace WinMSFactory
                 DueDatePopUpForm frm = new DueDatePopUpForm();
                 frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells[6].Value.ToString());
                 frm.Order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+                frm.Product_no = Convert.ToInt32(dgv.SelectedRows[0].Cells["product_id"].Value);
                 frm.Gubun = "발주";
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
