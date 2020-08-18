@@ -35,8 +35,10 @@ namespace WinMSFactory
             dgv.DataSource = ProductionData;
 
             DefectiveData = service.DefectiveSelect();
+            dgv2.DataSource = DefectiveData;
 
             DowntimeData = service.DowntimeSelect();
+            dgv3.DataSource = DowntimeData;
         }
         private void Clear(object sender, EventArgs e)
         {

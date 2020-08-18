@@ -413,7 +413,7 @@ namespace MSFactoryDAC
                         return true;
                     }
                 }
-                catch
+                catch(Exception err)
                 {
                     return true;
                 }

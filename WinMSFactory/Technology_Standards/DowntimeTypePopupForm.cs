@@ -92,25 +92,17 @@ namespace WinMSFactory
                 string UseCheck;
                 string TimeCheck;
 
-                if (rdoDowntimeType_useY.Checked == true )
-                {
+                if (rdoDowntimeType_useY.Checked == true)
                     UseCheck = "Y";
                   
-                }
                 else
-                {
                     UseCheck = "N";
                    
-                }
 
                 if (rboTimeuse.Checked == true)
-                {
                     TimeCheck = "Y";
-                }
                 else
-                {
                     TimeCheck = "N";
-                }
 
                 if (IsUpdate == false)
                     DowntimeTypeSave(UseCheck, TimeCheck, "등록", 0);

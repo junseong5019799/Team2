@@ -277,17 +277,29 @@ namespace WinMSFactory
 
         private void ListSortings(List<BOMInsertUpdateVO> InsertBOMLists, int ProductIDNum = 0) // BOM List Sorting
         {
+            char Bom_Status;
+
+            if (!pdSv.IsBomExists(ProductIDNum))
+                Bom_Status = 'N';
+            else
+                Bom_Status = 'Y';   // 없을 경우
+
             foreach (DataGridViewRow row in dgv2.Rows)
             {
-                InsertBOMLists.Add(new BOMInsertUpdateVO
+                BOMInsertUpdateVO vo = new BOMInsertUpdateVO
                 {
                     Higher_Product_ID = ProductIDNum,
                     Lower_Product_ID = dgv2[1, row.Index].Value.ToInt(),   // 재료들의 ID
                     Bom_Use_Quantity = dgv2[5, row.Index].Value.ToInt(),
                     Final_Regist_Time = DateTime.Now.Date,
-                    Final_Regist_Employee = employee.Employee_name,                        
-                    Bom_Status = BOMEnrollStatus// BOM 사용 여부 넣어줄 것
-                });
+                    Final_Regist_Employee = employee.Employee_name,
+                    Bom_Status = Bom_Status
+                    // BOM 사용 여부 넣어줄 것
+                };
+
+                InsertBOMLists.Add(vo);
+
+                
             }
         }
 

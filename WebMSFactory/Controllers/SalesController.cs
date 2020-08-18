@@ -1,28 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using WebMSFactory.Models;
 
 namespace WebMSFactory.Controllers
 {
     public class SalesController : Controller
     {
         // GET: SalesChart
-        public ActionResult Chart()
+        public ActionResult Chart(int Year = 2020)
         {
-   //         //SELECT Month(release_date) Mon, SUM(SELL_CURRENT_PRICE * D.release_quantity) total_price
-   //         FROM TBL_RELEASE_DETAIL D INNER JOIN TBL_PRODUCT P ON D.PRODUCT_ID = P.PRODUCT_ID
-
-   //       INNER JOIN TBL_SELLPRICE_MANAGEMENT S ON D.PRODUCT_ID = S.PRODUCT_ID
-
-   //           WHERE MONTH(RELEASE_DATE) BETWEEN MONTH(S.START_DATE) AND MONTH(ISNULL(S.END_DATE,'9999-12-31'))
-			//	AND RELEASE_STATUS NOT IN('출고취소', '출고예정')
-			//group by Month(release_date)
-
             PriceProductDAC dac = new PriceProductDAC();
-            //dac.TotalSales()
-            return View();
+
+            List<PriceProductList> lists = dac.TotalSales(Year);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("[");
+            int j = 0;
+            for(int i = 1; i<=12; i++)
+            {
+                
+                if(lists.Find(p => p.Mon == i) == null) 
+                    sb.Append(0 + ",");
+
+                else if (lists.Find(p => p.Mon == i).Mon.Equals(i))
+                {
+                    sb.Append(lists[j].Total_Price + ",");
+                    j++;
+                }
+                    
+            }
+            string Result = sb.ToString().Substring(0,sb.ToString().LastIndexOf(',')) + "]";
+
+            ChartModel model = new ChartModel
+            {
+                DataString = Result,
+                MainString = "매출현황",
+                Year = Year
+            };
+
+            return View(model);
         }
     }
 }

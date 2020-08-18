@@ -96,6 +96,34 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool IsBomExists(int productIDNum)
+        {
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    string sql = @"Select count(*) from tbl_Bom where high_product_id = @product_id";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@product_id", productIDNum);
+
+                        if (Convert.ToInt32(cmd.ExecuteScalar()) > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<ProductPriceManageVO> DateSettings(int material_Price_Code)
         {
             //item.Product_Name == ManageVO.Product_Name && item.Company_Name == ManageVO.Company_Name
@@ -328,7 +356,7 @@ namespace MSFactoryDAC
                     // 로그인이 완성되면 회사 정보를 WHERE에 반드시 추가할 것
 
                     string sql = @"SELECT PRODUCT_NAME, CONCAT((REPLICATE('0',4-LEN(CAST (PRODUCT_ID AS VARCHAR(5)))) + CAST(PRODUCT_ID AS VARCHAR(5))),bom_exists) PRODUCT_ID
-                                    FROM  TBL_PRODUCT";
+                                    FROM  TBL_PRODUCT ORDER BY PRODUCT_SEQ ASC";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {

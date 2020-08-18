@@ -43,7 +43,7 @@ namespace WebMSFactory
             }
         }
 
-        public List<PriceProductList> TotalSales()
+        public List<PriceProductList> TotalSales(int Year)
         {
             try
             {
@@ -52,17 +52,17 @@ namespace WebMSFactory
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    // 2가지 고쳐야 할 점 : D.ORDER_REQUEST_QUANTITY => D.RELEASE_QUANTITY , '출고취소' => '출고취소', '출고예정'
 
-                    string sql = @"SELECT P.PRODUCT_NAME, SUM(SELL_CURRENT_PRICE * D.ORDER_REQUEST_QUANTITY) TOTAL_PRICE
+                    string sql = @"SELECT Month(release_date) Mon, SUM(SELL_CURRENT_PRICE * D.release_quantity) total_price
                                     FROM TBL_RELEASE_DETAIL D INNER JOIN TBL_PRODUCT P ON D.PRODUCT_ID = P.PRODUCT_ID
-						                                      INNER JOIN TBL_SELLPRICE_MANAGEMENT S ON D.PRODUCT_ID = S.PRODUCT_ID		
-		                            WHERE D.RELEASE_DATE BETWEEN S.START_DATE AND ISNULL(S.END_DATE,'9999-12-31')
-				                            AND RELEASE_STATUS NOT IN ('출고취소')
-		                            GROUP BY P.PRODUCT_NAME";
+                                    INNER JOIN TBL_SELLPRICE_MANAGEMENT S ON D.PRODUCT_ID = S.PRODUCT_ID
+                                    WHERE MONTH(RELEASE_DATE) BETWEEN MONTH(S.START_DATE) AND MONTH(ISNULL(S.END_DATE,'9999-12-31'))
+				                    AND RELEASE_STATUS NOT IN('출고취소', '출고예정') and Year(release_date) = @Year
+		                            group by Month(release_date)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
+                        cmd.Parameters.AddWithValue("@Year", Year);
                         return SqlHelper.DataReaderMapToList<PriceProductList>(cmd.ExecuteReader());
                     }
 

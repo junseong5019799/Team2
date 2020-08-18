@@ -104,5 +104,10 @@ namespace WinMSFactory
         {
             return dac.DateSettings(material_Price_Code);
         }
+
+        public bool IsBomExists(int productIDNum)
+        {
+            return dac.IsBomExists(productIDNum);
+        }
     }
 }

@@ -1775,6 +1775,7 @@
     <Compile Include="DAC\PriceProductDAC.cs" />
     <Compile Include="DAC\ProductDAC.cs" />
     <Compile Include="Html\PagingHelper.cs" />
+    <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\PriceListViewModel.cs" />
     <Compile Include="Models\ProductList.cs" />
