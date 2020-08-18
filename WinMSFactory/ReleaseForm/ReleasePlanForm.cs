@@ -292,18 +292,12 @@ namespace WinMSFactory
                     dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Orange;
                     return;
                 }
-
-                for (int i = 0; i < dgv2.RowCount; i++)
+                else
                 {
-                    request_date = Convert.ToDateTime(dgv2.Rows[i].Cells[7].Value);
-                    release_date = Convert.ToDateTime(dgv2.Rows[i].Cells[8].Value);
-                                   
-                    releaseService.UpdateReleaseDate(Convert.ToInt32(dgv2.Rows[i].Cells[0].Value), Convert.ToInt32(dgv2.Rows[i].Cells[3].Value));
-                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Transparent;
-                    dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.Rows[i].Cells[0].Value));
-
-                  
-                }
+                    releaseService.UpdateReleaseDate(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value), Convert.ToInt32(dgv2.SelectedRows[0].Cells[3].Value));
+                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Transparent;
+                    dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv2.SelectedRows[0].Cells[0].Value));
+                }                 
             }
         }
 

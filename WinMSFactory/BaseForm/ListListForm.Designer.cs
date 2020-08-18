@@ -29,22 +29,39 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.Guidlabel1 = new System.Windows.Forms.Label();
             this.Guidlabel2 = new System.Windows.Forms.Label();
             this.Guidlabel3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.separatorControl1);
             this.panel1.Controls.Add(this.Guidlabel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1534, 170);
             this.panel1.TabIndex = 2;
+            // 
+            // separatorControl1
+            // 
+            this.separatorControl1.BackColor = System.Drawing.Color.LightBlue;
+            this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.separatorControl1.Location = new System.Drawing.Point(0, 161);
+            this.separatorControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Padding = new System.Windows.Forms.Padding(14);
+            this.separatorControl1.Size = new System.Drawing.Size(1534, 9);
+            this.separatorControl1.TabIndex = 6;
             // 
             // Guidlabel1
             // 
@@ -78,11 +95,23 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.separatorControl2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 170);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1534, 290);
             this.panel2.TabIndex = 4;
+            // 
+            // separatorControl2
+            // 
+            this.separatorControl2.BackColor = System.Drawing.Color.LightBlue;
+            this.separatorControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.separatorControl2.Location = new System.Drawing.Point(0, 281);
+            this.separatorControl2.Margin = new System.Windows.Forms.Padding(5);
+            this.separatorControl2.Name = "separatorControl2";
+            this.separatorControl2.Padding = new System.Windows.Forms.Padding(14);
+            this.separatorControl2.Size = new System.Drawing.Size(1534, 9);
+            this.separatorControl2.TabIndex = 6;
             // 
             // panel3
             // 
@@ -109,6 +138,9 @@
             this.Text = "ListListForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +153,7 @@
 		protected System.Windows.Forms.Label Guidlabel1;
 		protected System.Windows.Forms.Panel panel2;
 		protected System.Windows.Forms.Panel panel3;
-	}
+        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+    }
 }

@@ -262,7 +262,7 @@ namespace WinMSFactory
                     ToolStripButton tsbM = new ToolStripButton();
                     tsbM.Tag = ++cnt;
                     tsbM.Text = dr["MODULE_NAME"].ToString();
-                    tsbM.BackColor = Color.White;
+                    tsbM.BackColor = Color.LightBlue;
                     
                     tsbM.Click += (sender, e) =>
                     {

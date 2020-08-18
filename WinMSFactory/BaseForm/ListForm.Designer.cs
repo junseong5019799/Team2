@@ -29,19 +29,33 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.GuidLabel1 = new System.Windows.Forms.Label();
             this.GuidLabel2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.separatorControl1);
             this.panel1.Controls.Add(this.GuidLabel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1534, 170);
             this.panel1.TabIndex = 1;
+            // 
+            // separatorControl1
+            // 
+            this.separatorControl1.BackColor = System.Drawing.Color.LightBlue;
+            this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.separatorControl1.Location = new System.Drawing.Point(0, 163);
+            this.separatorControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Padding = new System.Windows.Forms.Padding(11);
+            this.separatorControl1.Size = new System.Drawing.Size(1534, 7);
+            this.separatorControl1.TabIndex = 5;
             // 
             // GuidLabel1
             // 
@@ -78,6 +92,7 @@
             this.Load += new System.EventHandler(this.ListForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,5 +102,6 @@
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.Label GuidLabel1;
         protected System.Windows.Forms.Label GuidLabel2;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
     }
 }

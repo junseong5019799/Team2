@@ -75,7 +75,8 @@
             this.panel1.Controls.Add(this.btnCalculate);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Size = new System.Drawing.Size(1364, 80);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Size = new System.Drawing.Size(1534, 100);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.btnCalculate, 0);
@@ -85,23 +86,23 @@
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(781, 9);
+            this.GuidLabel1.Location = new System.Drawing.Point(879, 11);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 35);
+            this.label1.Location = new System.Drawing.Point(56, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "작업일자";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(409, 35);
+            this.label3.Location = new System.Drawing.Point(460, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 16);
+            this.label3.Size = new System.Drawing.Size(86, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "출고계획 번호";
             this.label3.Visible = false;
@@ -114,10 +115,10 @@
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
             this.btnCalculate.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculate.Image")));
             this.btnCalculate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCalculate.Location = new System.Drawing.Point(1144, 30);
+            this.btnCalculate.Location = new System.Drawing.Point(1287, 38);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(102, 26);
+            this.btnCalculate.Size = new System.Drawing.Size(115, 32);
             this.btnCalculate.TabIndex = 15;
             this.btnCalculate.Text = "수요 계획";
             this.btnCalculate.UseVisualStyleBackColor = false;
@@ -126,9 +127,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(407, 278);
+            this.label6.Location = new System.Drawing.Point(458, 348);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(233, 64);
+            this.label6.Size = new System.Drawing.Size(273, 80);
             this.label6.TabIndex = 16;
             this.label6.Text = "dgv에 들어온 출고주문 들어온 내역 보여주기\r\n\r\n지시상태 : 출고 중 인 경우만 출고일 보여주기\r\n지시상태 : 출고 요청 인 경우는 출고일 N" +
     "ULL\r\n";
@@ -137,37 +138,39 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 17, 17, 47, 41, 42);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 17, 23, 32, 35, 221);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 18, 17, 47, 41, 42);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 18, 23, 32, 35, 221);
             // 
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(501, 32);
+            this.cboPlanID.Location = new System.Drawing.Point(564, 38);
+            this.cboPlanID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboPlanID.Name = "cboPlanID";
-            this.cboPlanID.Size = new System.Drawing.Size(114, 24);
+            this.cboPlanID.Size = new System.Drawing.Size(128, 28);
             this.cboPlanID.TabIndex = 34;
             this.cboPlanID.Visible = false;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.fromToDateControl1);
-            this.panel2.Location = new System.Drawing.Point(125, 27);
+            this.panel2.Location = new System.Drawing.Point(141, 32);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(230, 33);
+            this.panel2.Size = new System.Drawing.Size(259, 41);
             this.panel2.TabIndex = 19;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(693, 278);
+            this.label7.Location = new System.Drawing.Point(780, 348);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(181, 16);
+            this.label7.Size = new System.Drawing.Size(214, 20);
             this.label7.TabIndex = 17;
             this.label7.Text = "출고 계획 상태 : 출고 요청, 출고 중 \r\n";
             this.label7.Visible = false;
@@ -183,9 +186,10 @@
             this.panel4.Controls.Add(this.dgv2);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 496);
+            this.panel4.Location = new System.Drawing.Point(0, 620);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1364, 265);
+            this.panel4.Size = new System.Drawing.Size(1534, 331);
             this.panel4.TabIndex = 24;
             // 
             // dgv2
@@ -215,7 +219,8 @@
             this.dgv2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv2.IsAllCheckColumnHeader = false;
             this.dgv2.IsAutoGenerateColumns = false;
-            this.dgv2.Location = new System.Drawing.Point(0, 65);
+            this.dgv2.Location = new System.Drawing.Point(0, 81);
+            this.dgv2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv2.MultiSelect = false;
             this.dgv2.Name = "dgv2";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -227,13 +232,14 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv2.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv2.RowHeadersVisible = false;
+            this.dgv2.RowHeadersWidth = 51;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.DimGray;
             this.dgv2.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv2.RowTemplate.Height = 23;
             this.dgv2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv2.Size = new System.Drawing.Size(1364, 200);
+            this.dgv2.Size = new System.Drawing.Size(1534, 250);
             this.dgv2.TabIndex = 26;
             this.dgv2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv2_CellDoubleClick);
             // 
@@ -242,13 +248,15 @@
             this.panel5.Controls.Add(this.toolStrip1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1364, 65);
+            this.panel5.Size = new System.Drawing.Size(1534, 81);
             this.panel5.TabIndex = 25;
             // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
             this.btnInsert,
@@ -256,7 +264,7 @@
             this.btnRelease});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1364, 65);
+            this.toolStrip1.Size = new System.Drawing.Size(1534, 81);
             this.toolStrip1.TabIndex = 26;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -314,8 +322,9 @@
             this.panel3.Controls.Add(this.dgv);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1364, 761);
+            this.panel3.Size = new System.Drawing.Size(1534, 951);
             this.panel3.TabIndex = 26;
             // 
             // dgv
@@ -347,7 +356,8 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 86);
+            this.dgv.Location = new System.Drawing.Point(0, 108);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -359,21 +369,22 @@
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 51;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.DimGray;
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1364, 675);
+            this.dgv.Size = new System.Drawing.Size(1534, 844);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // ReleasePlanForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1364, 761);
+            this.ClientSize = new System.Drawing.Size(1534, 951);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel4);
