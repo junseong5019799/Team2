@@ -70,12 +70,15 @@ namespace WinMSFactory
 
 		private void Add(object sender, EventArgs e)
 		{
-			EmployeeVO employeeVO = this.GetEmployee();
-			EmployeePopForm frm = new EmployeePopForm(employeeVO);
-
-			if (frm.ShowDialog() == DialogResult.OK)
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
 			{
-				LoadData();
+				EmployeeVO employeeVO = this.GetEmployee();
+				EmployeePopForm frm = new EmployeePopForm(employeeVO);
+
+				if (frm.ShowDialog() == DialogResult.OK)
+				{
+					LoadData();
+				}
 			}
 		}
 
