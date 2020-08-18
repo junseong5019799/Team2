@@ -81,5 +81,15 @@ namespace WinMSFactory
         {
             return dac.GetProductID(name);
         }
+
+        public bool DeleteReleasePlan(int release_no, int product_no)
+        {
+            return dac.DeleteReleasePlan(release_no, product_no);
+        }
+
+        public bool SaveReleaseOut(ReleaseVO release)
+        {
+            return dac.SaveReleaseOut(release);
+        }
     }
 }

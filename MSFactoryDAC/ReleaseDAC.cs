@@ -75,6 +75,68 @@ namespace MSFactoryDAC
             }
         }
 
+        public bool SaveReleaseOut(ReleaseVO release)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = "SP_SAVE_RELEASE_USE";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.Parameters.AddWithValue("@P_RELEASE_NO", release.release_no);
+                    cmd.Parameters.AddWithValue("@P_RELEASE_SEQ", release.release_seq);
+                    cmd.Parameters.AddWithValue("@P_FINAL_REGIST_EMPLOYEE", release.final_regist_employee);
+
+                    SqlParameter pOutput = new SqlParameter("@OUTPUT", SqlDbType.VarChar, 100);
+                    pOutput.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(pOutput);
+
+                    cmd.Connection.Open();
+                    int iCnt = cmd.ExecuteNonQuery();
+
+                    if (iCnt < 1)
+                    {
+                        throw new Exception(pOutput.Value.ToString());
+                    }
+                    cmd.Connection.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public bool DeleteReleasePlan(int release_no, int product_no)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = new SqlConnection(this.ConnectionString);
+                    cmd.CommandText = $@"Delete FROM TBL_RELEASE_DETAIL
+                                         WHERE release_no = @release_no and product_id = @product_id ";
+
+                    cmd.Parameters.AddWithValue("@release_no", release_no);
+                    cmd.Parameters.AddWithValue("@product_id", product_no);
+
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public bool IsUpperData(int ProductGroupID, int ProductID, ref int previousPrice, ref DateTime? previousTime)
         {
             try

@@ -38,11 +38,11 @@ namespace WinMSFactory
 
             dgv.AddNewColumns("발주번호", "order_no", 80, true, true, false, RightAlign);
             dgv.AddNewColumns("순서", "order_seq", 55, false, true, false, RightAlign);
-            dgv.AddNewColumns("납품업체", "company_name", 100, true, true, false, LeftAlign);
+            dgv.AddNewColumns("납품업체", "company_name", 200, true, true, false, LeftAlign);
             dgv.AddNewColumns("품목", "product_id", 55, false, true, false, RightAlign);
             dgv.AddNewColumns("품명", "product_name", 120, false, true, false, LeftAlign);
             dgv.AddNewColumns("발주량", "order_request_quantity", 90, false, true, false, RightAlign);
-            dgv.AddNewColumns("발주일", "order_request_date", 90, true, true, false, LeftAlign);
+            dgv.AddNewColumns("발주일", "order_request_date", 100, true, true, false, LeftAlign);
            
 
             dgv.DataSource = orderService.GetWareHouseList();            
@@ -140,19 +140,7 @@ namespace WinMSFactory
                 }
             }
         }
-
-        private void btnBarcode_Click(object sender, EventArgs e)
-        {
-            DataTable dt = orderService.CheckBarcode();
-            BarcodeOrder rpt = new BarcodeOrder();
-            rpt.DataSource = dt;
-
-            using (ReportPrintTool printTool = new ReportPrintTool(rpt))
-            {               
-                printTool.ShowRibbonPreviewDialog();
-            }
-        }
-
+  
 
         private void Search(object sender, EventArgs e)
         {
@@ -185,6 +173,21 @@ namespace WinMSFactory
                 }               
                 dgv.DataSource = null;
                 dgv.DataSource = pList;
+            }
+        }
+
+        private void Barcode(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                DataTable dt = orderService.CheckBarcode();
+                BarcodeOrder rpt = new BarcodeOrder();
+                rpt.DataSource = dt;
+
+                using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                }
             }
         }
     }

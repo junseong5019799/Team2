@@ -87,14 +87,14 @@ namespace WinMSFactory.Services
             return dac.InsertOrder(olist, companySet, employee_id);
         }
 
-        public bool UpdateOrderDate(DateTime dt, int release_no)
+        public bool UpdateOrderDate(DateTime dt, int release_no, int product_no)
         {
-            return dac.UpdateOrderDate(dt, release_no);
+            return dac.UpdateOrderDate(dt, release_no, product_no);
         }
 
-        public bool UpdateReleaseRequestDate(DateTime dt, int release_no)
+        public bool UpdateReleaseRequestDate(DateTime dt, int release_no, int product_no)
         {
-            return dac.UpdateReleaseRequestDate(dt, release_no);
+            return dac.UpdateReleaseRequestDate(dt, release_no, product_no);
         }
 
         public bool InsertWareHouse(WareHouseVO vo)

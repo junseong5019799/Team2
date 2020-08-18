@@ -23,12 +23,17 @@ namespace WinMSFactory
 
         private void ResultMoveForm_Load(object sender, EventArgs e)
         {
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgv.ColumnHeadersHeight = 30;
+
             dgv.AddNewColumns("창고", "Storage_Name", 150, false);
             dgv.AddNewColumns("품목", "Product_Id", 150, false);
             dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
             dgv.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);          
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
 
+            dgv2.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dgv2.ColumnHeadersHeight = 30;
 
             dgv2.AddNewColumns("재고번호", "Stock_No", 100, true);
             dgv2.AddNewColumns("창고명", "Storage_id", 100, false);
