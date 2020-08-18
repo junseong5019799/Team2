@@ -231,7 +231,7 @@ namespace MSFactoryDAC
                                       and p.storage_id = s.storage_id   
                                       and l.factory_id = f.factory_id
                                       and f.corporation_id = c.corporation_id
-                                      and (@corporation_id = 0 or  c.corporation_id = @corporation_id)
+                                      and (@corporation_id = 0 or c.corporation_id = @corporation_id)
                                       and (@factory_id = 0 or f.factory_id = @factory_id)
                                       and (@line_id = 0 or p.line_id = @line_id)
                                       and (@storage_id = 0 or p.storage_id =@storage_id)

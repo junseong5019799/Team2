@@ -45,7 +45,7 @@ namespace WinMSFactory
             factories = service.FactoryCombo();
             cboFactoryName.ComboBinding(factories != null ? factories.ToList() : null, "factory_id", "factory_name", "전체", 0);
             employees = service.EmployeeCombo();
-            cboWorkerName.ComboBinding(employees != null ? employees.ToList() : null, "employee_id", "employee_name", "전체", 0);
+            cboWorkerName.ComboBinding(employees != null ? employees.ToList() : null, "Employee_id", "Employee_name", "전체", "");
 
             cboFactoryName.ComboBinding(service.FactoryCombo(), "factory_id", "factory_name", "전체", 0);
             lines = service.LineCombo();
@@ -100,7 +100,7 @@ namespace WinMSFactory
                 em = em.ToList(); 
 
             cboFactoryName.ComboBinding(f, "factory_id", "factory_name", "전체", 0);
-            cboWorkerName.ComboBinding(em, "employee_id", "employee_name", "전체", 0);
+            cboWorkerName.ComboBinding(em, "Employee_id", "Employee_name", "전체", "");
           
         }
 
@@ -160,17 +160,16 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            cboCorporationName.SelectedIndex = 0;
-            cboFactoryName.SelectedIndex = 0;
-            cboLineName.SelectedIndex = 0;
-            cboProcessName.SelectedIndex = 0;
-            cboWorkerName.SelectedIndex = 0;
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                LoadData();
+                this.Clear();
+            }
         }
 
         private void dgvProcessWorker_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex == 10)
+            if (e.RowIndex < 0 )
                 return;
 
             ProcessWorkerVO updatevo = new ProcessWorkerVO
@@ -192,6 +191,7 @@ namespace WinMSFactory
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
                 ProcessWorkerPopupForm frm = new ProcessWorkerPopupForm(emp.Employee_name, IsUpdate, vo);
+
                 if (frm.ShowDialog() == DialogResult.OK)
                     LoadData();
             }
@@ -199,63 +199,68 @@ namespace WinMSFactory
 
         private void Delete(object sender, EventArgs e)
         {
-            if (MessageBox.Show("공정 별 작업자를 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgvProcessWorker.EndEdit();
+                if (MessageBox.Show("공정 별 작업자를 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                List<int> CheckList = new List<int>();
-
-                foreach (DataGridViewRow row in dgvProcessWorker.Rows)
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvProcessWorker[0, row.Index];
+                    dgvProcessWorker.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>();
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgvProcessWorker[5, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgvProcessWorker.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvProcessWorker[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvProcessWorker[5, row.Index].Value.ToInt());
+
+                    }
+
+                    int worker_id = Convert.ToInt32(dgvProcessWorker.SelectedRows[0].Cells[5].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.ProcessWorkerDelete(CheckList);
+
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-                int worker_id = Convert.ToInt32(dgvProcessWorker.SelectedRows[0].Cells[5].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    service.ProcessWorkerDelete(CheckList);
-
-                    LoadData();
+                    MessageBox.Show(err.Message);
                 }
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
             }
         }
 
         private void Search(object sender, EventArgs e)
         {
-            dgvProcessWorker.EndEdit();
-
-
-            ProcessWorkerVO vo = new ProcessWorkerVO()
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                corporation_id = cboCorporationName.SelectedValue.ToInt(),
-                factory_id = cboFactoryName.SelectedValue.ToInt(),
-                line_id = cboLineName.SelectedValue.ToInt(),
-                process_id = cboProcessName.SelectedValue.ToInt(),
-                employee_id = cboWorkerName.SelectedValue.ToString()
+                dgvProcessWorker.EndEdit();
 
-            };
+                ProcessWorkerVO vo = new ProcessWorkerVO()
+                {
+                    corporation_id = cboCorporationName.SelectedValue.ToInt(),
+                    factory_id = cboFactoryName.SelectedValue.ToInt(),
+                    line_id = cboLineName.SelectedValue.ToInt(),
+                    process_id = cboProcessName.SelectedValue.ToInt(),
+                    employee_id = cboWorkerName.SelectedValue.ToString()
 
-            dtDGV = service.ProcessWorkerSearch(vo);
-            dgvProcessWorker.DataSource = dtDGV;
+                };
+
+                dtDGV = service.ProcessWorkerSearch(vo);
+                dgvProcessWorker.DataSource = dtDGV;
+            }
         }
     }
 }

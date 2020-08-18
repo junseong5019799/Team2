@@ -62,29 +62,32 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            dgvLinelist.EndEdit();
-
-            string fname = txtLineName.Text.Trim();
-            LineVO vo = new LineVO()
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                corporation_id = cboCorporationName.SelectedValue.ToInt(),
-                factory_id = cboFactoryName.SelectedValue.ToInt()
+                dgvLinelist.EndEdit();
 
-            };
+                string fname = txtLineName.Text.Trim();
+                LineVO vo = new LineVO()
+                {
+                    corporation_id = cboCorporationName.SelectedValue.ToInt(),
+                    factory_id = cboFactoryName.SelectedValue.ToInt()
 
-            dtDgv = service.LineSearch(vo);
+                };
+
+                dtDgv = service.LineSearch(vo);
 
 
-            DataView dv = dtDgv.DefaultView;
-            if (fname.Length > 0)
-            {
-                dv.RowFilter = $"line_name like '%{fname}%'";
+                DataView dv = dtDgv.DefaultView;
+                if (fname.Length > 0)
+                {
+                    dv.RowFilter = $"line_name like '%{fname}%'";
+                }
+                dgvLinelist.DataSource = dv;
+                DataTable dt = dv.ToTable();
+                List<LineVO> sortedData = SqlHelper.ConvertDataTableToList<LineVO>(dt);
+
+                dgvLinelist.DataSource = sortedData;
             }
-            dgvLinelist.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<LineVO> sortedData = SqlHelper.ConvertDataTableToList<LineVO>(dt);
-
-            dgvLinelist.DataSource = sortedData;
         }
 
         private void dgvLinelist_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -162,51 +165,57 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            cboFactoryName.SelectedIndex = 0;
-            cboCorporationName.SelectedIndex = 0;
-            txtLineName.Text = "";
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboFactoryName.SelectedIndex = 0;
+                cboCorporationName.SelectedIndex = 0;
+                txtLineName.Text = "";
+                LoadData();
+            }
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            if (MessageBox.Show("라인을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgvLinelist.EndEdit();
+                if (MessageBox.Show("라인을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                List<int> CheckList = new List<int>();
-
-                foreach (DataGridViewRow row in dgvLinelist.Rows)
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvLinelist[0, row.Index];
+                    dgvLinelist.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>();
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgvLinelist[3, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgvLinelist.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvLinelist[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvLinelist[3, row.Index].Value.ToInt());
+
+                    }
+
+                    int line_id = Convert.ToInt32(dgvLinelist.SelectedRows[0].Cells[3].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.LineDelete(CheckList);
+
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-                int line_id = Convert.ToInt32(dgvLinelist.SelectedRows[0].Cells[3].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    service.LineDelete(CheckList);
-
-                    LoadData();
+                    MessageBox.Show(err.Message);
                 }
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
             }
         }
 

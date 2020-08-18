@@ -16,13 +16,8 @@ namespace WinMSFactory
     {
         ProcessWorkerService service = new ProcessWorkerService();
         ProcessWorkerVO vo;
-        CorporationVO cvo;
-        FactoryVO fvo;
-        LineVO lvo;
-        ProcessVO pvo;
-        EmployeeVO evo;
 
-         bool IsUpdate;
+        bool IsUpdate;
         string employeeName;
 
         public ProcessWorkerPopupForm(string employeeName, bool IsUpdate, ProcessWorkerVO vo)
@@ -44,39 +39,48 @@ namespace WinMSFactory
 
         private void ProcessWorkerPopupForm_Load(object sender, EventArgs e)
         {
-            cboCorporationName.ComboBinding(service.CorporationCombm(), "corporation_id", "corporation_name", "전체", 0);
+            cboCorporationName.ComboBinding(service.CorporationCombm(), "corporation_id", "corporation_name", "선택", 0);
+            cboFactoryName.ComboBinding(service.FactoryCombo(), "factory_id", "factory_name", "선택", 0); 
+            cboLineName.ComboBinding(service.LineCombo(), "line_id", "line_name", "선택", 0); 
+            cboProcessName.ComboBinding(service.ProcessCombo(), "process_id", "process_name", "선택", 0);
+            cboWorkerName.ComboBinding(service.EmployeeCombo(), "Employee_id", "Employee_name", "선택", "");
 
-            cboCorporationName.SelectedIndex = cboCorporationName.FindString(cvo.corporation_name);
-            if (cboCorporationName.SelectedIndex < 0)
+
+            if (vo != null)
             {
-                MessageBox.Show("법인명을 먼저 선택해주세요");
-            }
-            else
-            {
-                cboFactoryName.SelectedIndex = cboFactoryName.FindString(fvo.factory_name);
-                if (cboFactoryName.SelectedIndex < 0)
+                cboCorporationName.SelectedIndex = cboCorporationName.FindString(vo.corporation_name);
+                if (cboCorporationName.SelectedIndex < 0)
                 {
-                    MessageBox.Show("해당공장을 사용 할 수 없습니다!"); //사용 여부:Y
-                    cboFactoryName.SelectedIndex = 0;
+                    MessageBox.Show("법인명을 먼저 선택해주세요");
                 }
-                cboLineName.SelectedIndex = cboLineName.FindString(lvo.line_name);
-                if (cboLineName.SelectedIndex < 0)
+                else
                 {
-                    MessageBox.Show("해당라인을 사용 할 수 없습니다!");
-                    cboLineName.SelectedIndex = 0;
+                    cboFactoryName.SelectedIndex = cboFactoryName.FindString(vo.factory_name);
+                    if (cboFactoryName.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("해당공장을 사용 할 수 없습니다!"); //사용 여부:Y
+                        cboFactoryName.SelectedIndex = 0;
+                    }
+                    cboLineName.SelectedIndex = cboLineName.FindString(vo.line_name);
+                    if (cboLineName.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("해당라인을 사용 할 수 없습니다!");
+                        cboLineName.SelectedIndex = 0;
+                    }
+                    cboProcessName.SelectedIndex = cboProcessName.FindString(vo.process_name);
+                    if (cboProcessName.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("해당공정을 사용 할 수 없습니다.");
+                        cboProcessName.SelectedIndex = 0;
+                    }
+                    cboWorkerName.SelectedIndex = cboWorkerName.FindString(vo.employee_name);
+                    if (cboWorkerName.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("해당작업자을 사용 할 수 없습니다.");
+                        cboWorkerName.SelectedValue = "";
+                    }
                 }
-                cboProcessName.SelectedIndex = cboProcessName.FindString(pvo.process_name);
-                if (cboProcessName.SelectedIndex < 0)
-                {
-                    MessageBox.Show("해당공정을 사용 할 수 없습니다.");
-                    cboProcessName.SelectedIndex = 0;
-                }
-                cboWorkerName.SelectedIndex = cboWorkerName.FindString(evo.Employee_name);
-                if (cboWorkerName.SelectedIndex < 0)
-                {
-                    MessageBox.Show("해당작업자을 사용 할 수 없습니다.");
-                    cboWorkerName.SelectedIndex = 0;
-                }
+
             }
 
            cboWorkerName.SelectedItem = vo.employee_name;
@@ -137,18 +141,18 @@ namespace WinMSFactory
         {
             int corporation_id = cboCorporationName.SelectedValue.ToInt();
             cboFactoryName.ComboBinding(service.FactoryCombo(corporation_id), "factory_id", "factory_name", "선택", 0);
-            cboWorkerName.ComboBinding(service.EmployeeCombo(corporation_id), "employee_id", "employee_name", "전체", 0);
+            cboWorkerName.ComboBinding(service.EmployeeCombo(corporation_id), "Employee_id", "Employee_name", "선택", "");
         }
 
         private void cboFactoryName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int factory_id = cboFactoryName.SelectedIndex.ToInt();
+            int factory_id = cboFactoryName.SelectedValue.ToInt();
             cboLineName.ComboBinding(service.LineCombo(factory_id), "line_id", "line_name", "선택", 0);
         }
 
         private void cboLineName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int line_id = cboLineName.SelectedIndex.ToInt();
+            int line_id = cboLineName.SelectedValue.ToInt();
             cboProcessName.ComboBinding(service.ProcessCombo(line_id), "process_id", "process_name","선택", 0);
         }
     }

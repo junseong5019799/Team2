@@ -54,15 +54,18 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            if (txtNameSearch.Text.Length < 1)
-                dgvCorporationlist.DataSource = search;
-            else
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var searchlist = (from name in search
-                                  where name.corporation_name.Contains(txtNameSearch.Text)
-                                  select name).ToList();
-                dgvCorporationlist.DataSource = null;
-                dgvCorporationlist.DataSource = searchlist;
+                if (txtNameSearch.Text.Length < 1)
+                    dgvCorporationlist.DataSource = search;
+                else
+                {
+                    var searchlist = (from name in search
+                                      where name.corporation_name.Contains(txtNameSearch.Text)
+                                      select name).ToList();
+                    dgvCorporationlist.DataSource = null;
+                    dgvCorporationlist.DataSource = searchlist;
+                }
             }
         }
 
@@ -99,58 +102,64 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            txtNameSearch.Text = "";
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtNameSearch.Text = "";
+                LoadData();
+            }
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            CorporationService service = new CorporationService();
-
-            if (MessageBox.Show("법인을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgvCorporationlist.EndEdit();
+                CorporationService service = new CorporationService();
 
-                List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
-
-                foreach (DataGridViewRow row in dgvCorporationlist.Rows)
+                if (MessageBox.Show("법인을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCorporationlist[0, row.Index];
+                    dgvCorporationlist.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>(); // 체크한 제품 번호들을 담는다.
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgvCorporationlist[1, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgvCorporationlist.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCorporationlist[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvCorporationlist[1, row.Index].Value.ToInt());
+
+                    }
+
+
+                    int corporation_id = Convert.ToInt32(dgvCorporationlist.SelectedRows[0].Cells[1].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.Delete(CheckList);
+
+                        LoadData();
+                    }
+                    //else if (CheckList.Count > 1)
+                    //{
+                    //    foreach (int item in CheckList)
+                    //    {
+                    //        service.Delete(corporation_id);
+                    //    }
+                    //}
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-
-                int corporation_id = Convert.ToInt32(dgvCorporationlist.SelectedRows[0].Cells[1].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    service.Delete(CheckList);
-                 
-                    LoadData();
+                    throw err;
                 }
-                //else if (CheckList.Count > 1)
-                //{
-                //    foreach (int item in CheckList)
-                //    {
-                //        service.Delete(corporation_id);
-                //    }
-                //}
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                throw err;
             }
         }
 
