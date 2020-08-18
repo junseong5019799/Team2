@@ -1,17 +1,23 @@
 ﻿@model WebMSFactory.ProductListViewModel
-
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "제품 관리";
+
+}
+@section title
+{
+    - @ViewBag.Title
 }
 
 
-    
-    
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
+</div>
 
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title ">제품 정보</h4>
+
             <form style="padding-left:700px" action="~/AllProducts/Search">
                 <select name="Category">
                     @foreach (var dicList in Model.ComboList)
@@ -28,11 +34,11 @@
                 <table class="table">
                     <thead class=" text-primary">
                         <tr role="row">
-                            <th class="sorting" rowspan="1" colspan="1" width="100px">순번</th>
+                            <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">순번</th>
                             <th class="sorting" rowspan="1" colspan="1" width="350px">그룹 이름</th>
                             <th class="sorting" rowspan="1" colspan="1" width="400px">제품 이름</th>
                             <th class="sorting" rowspan="1" colspan="1" width="200px">제품 사용 여부</th>
-                            <th class="sorting" rowspan="1" colspan="1">상세 보기</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">상세 보기</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,17 +50,12 @@
                                 <td>@prod.Product_Name</td>
                                 <td>@prod.Product_Use</td>
                                 <td>
-                                    <div>
-                                        <a ProductName="@prod.Product_Name" href="/AllProducts/DetailProduct?ProductName=@prod.Product_Name">상세보기</a>
-                                    </div>
-
-                                    @*@Html.ActionLink("상세보기", "DetailProducts", "AllProducts",
+                                    @Html.ActionLink("상세보기", "DetailProduct", "AllProducts",
                                     new
                                     {
-                                        ProductName = prod.Product_Name,
-                                        //@class = "btn btn-block btn-primary btn-sm"
-                                    }
-                                    )*@
+                                        ProductID = prod.Product_ID
+                                    }, new { @class = "btn btn-block btn-primary btn-sm" }
+                                    )
                                 </td>
                             </tr>
                         }

@@ -43,10 +43,26 @@ namespace WebMSFactory.Controllers
 
             return View(model);
         }
-        public ActionResult DetailProduct(string ProductName)
+
+        public ActionResult DetailProduct(int ProductID)
         {
-            ProductList list = dac.DetailProduct(ProductName);
-            return View(list);
+            ProductListViewModel model = new ProductListViewModel();
+
+            model.ProductDetail = dac.DetailProduct(ProductID);
+
+            List<ProductList> list = new List<ProductList>();
+
+            if (dac.ProductBOM(true, ProductID) != null)
+                model.ForwardBom = dac.ProductBOM(true, ProductID);
+            else
+                model.ForwardBom = list;
+
+            if (dac.ProductBOM(false, ProductID) != null)
+                model.ReverseBom = dac.ProductBOM(false, ProductID);
+            else
+                model.ReverseBom = list;
+
+            return View(model);
         }
 
     }

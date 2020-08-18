@@ -23,6 +23,6 @@ namespace WebMSFactory
         public string End_Date_String { get; set; }
         public string Note { get; set; }
         public int Sell_Price_Code { get; set; }
-
+        public int Total_Price { get; set; }
     }
 }
