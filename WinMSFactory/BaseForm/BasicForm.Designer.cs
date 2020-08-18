@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.GuidLabel1 = new System.Windows.Forms.Label();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
+            this.GuidLabel1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +46,17 @@
             this.panel2.Size = new System.Drawing.Size(1753, 100);
             this.panel2.TabIndex = 4;
             // 
+            // separatorControl1
+            // 
+            this.separatorControl1.BackColor = System.Drawing.Color.LightBlue;
+            this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.separatorControl1.Location = new System.Drawing.Point(0, 91);
+            this.separatorControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Padding = new System.Windows.Forms.Padding(14);
+            this.separatorControl1.Size = new System.Drawing.Size(1753, 9);
+            this.separatorControl1.TabIndex = 6;
+            // 
             // GuidLabel1
             // 
             this.GuidLabel1.AutoSize = true;
@@ -55,17 +66,6 @@
             this.GuidLabel1.TabIndex = 4;
             this.GuidLabel1.Text = "검색 영역 (필요에 따라 높이 조절 가능)";
             this.GuidLabel1.Visible = false;
-            // 
-            // separatorControl1
-            // 
-            this.separatorControl1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.separatorControl1.Location = new System.Drawing.Point(0, 91);
-            this.separatorControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.separatorControl1.Name = "separatorControl1";
-            this.separatorControl1.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
-            this.separatorControl1.Size = new System.Drawing.Size(1753, 9);
-            this.separatorControl1.TabIndex = 6;
             // 
             // BasicForm
             // 
