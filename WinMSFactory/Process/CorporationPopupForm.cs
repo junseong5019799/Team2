@@ -15,7 +15,6 @@ namespace WinMSFactory
     public partial class CorporationPopupForm : PopUpDialogForm
     {
         CorporationVO corporationVO;
-        CorporationForm frm;
         bool IsDataExists;
         CorporationService service = new CorporationService();
         string employeeName;

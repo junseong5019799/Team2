@@ -73,31 +73,34 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            dgvProcess.EndEdit();
-
-            string fname = txtProcessName.Text.Trim();
-            ProcessVO vo = new ProcessVO()
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                corporation_id = cboCorporationName.SelectedValue.ToInt(),
-                factory_id = cboFactoryName.SelectedValue.ToInt(),
-                line_id = cboLineName.SelectedValue.ToInt(),
-                storage_id= cboStorageName.SelectedValue.ToInt()
+                dgvProcess.EndEdit();
 
-            };
+                string fname = txtProcessName.Text.Trim();
+                ProcessVO vo = new ProcessVO()
+                {
+                    corporation_id = cboCorporationName.SelectedValue.ToInt(),
+                    factory_id = cboFactoryName.SelectedValue.ToInt(),
+                    line_id = cboLineName.SelectedValue.ToInt(),
+                    storage_id = cboStorageName.SelectedValue.ToInt()
 
-            dtDgv = service.ProcessSearch(vo);
+                };
+
+                dtDgv = service.ProcessSearch(vo);
 
 
-            DataView dv = dtDgv.DefaultView;
-            if (fname.Length > 0)
-            {
-                dv.RowFilter = $"process_name like '%{fname}%'";
+                DataView dv = dtDgv.DefaultView;
+                if (fname.Length > 0)
+                {
+                    dv.RowFilter = $"process_name like '%{fname}%'";
+                }
+                dgvProcess.DataSource = dv;
+                DataTable dt = dv.ToTable();
+                List<ProcessVO> sortedData = SqlHelper.ConvertDataTableToList<ProcessVO>(dt);
+
+                dgvProcess.DataSource = sortedData;
             }
-            dgvProcess.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<ProcessVO> sortedData = SqlHelper.ConvertDataTableToList<ProcessVO>(dt);
-
-            dgvProcess.DataSource = sortedData;
         }
 
         private void dgvProcess_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -176,52 +179,58 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            cboCorporationName.SelectedIndex = 0;
-            cboFactoryName.SelectedIndex = 0;
-            cboLineName.SelectedIndex = 0;
-            txtProcessName.Text = "";
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCorporationName.SelectedIndex = 0;
+                cboFactoryName.SelectedIndex = 0;
+                cboLineName.SelectedIndex = 0;
+                txtProcessName.Text = "";
+                LoadData();
+            }
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            if (MessageBox.Show("공정을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgvProcess.EndEdit();
+                if (MessageBox.Show("공정을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                List<int> CheckList = new List<int>();
-
-                foreach (DataGridViewRow row in dgvProcess.Rows)
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvProcess[0, row.Index];
+                    dgvProcess.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>();
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgvProcess[5, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgvProcess.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvProcess[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvProcess[5, row.Index].Value.ToInt());
+
+                    }
+
+                    int process_id = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells[5].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.ProcessDelete(CheckList);
+
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-                int process_id = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells[5].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    service.ProcessDelete(CheckList);
-
-                    LoadData();
+                    MessageBox.Show(err.Message);
                 }
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
             }
         }
 

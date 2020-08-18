@@ -97,6 +97,16 @@
     <Content Include="js\demo\datatables-demo.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1760,6 +1770,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AllProductsController.cs" />
     <Compile Include="Controllers\MSFactoryController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UnitPriceController.cs" />
     <Compile Include="DAC\PriceProductDAC.cs" />
     <Compile Include="DAC\ProductDAC.cs" />
@@ -1932,9 +1943,12 @@
     <Content Include="Views\MSFactory\Index.cshtml" />
     <Content Include="Views\MSFactory\Login.cshtml" />
     <Content Include="Views\AllProducts\Search.cshtml" />
-    <Content Include="Views\AllProducts\DetailProduct.cshtml" />
     <Content Include="Views\UnitPrice\ProductPrice.cshtml" />
     <Content Include="Views\UnitPrice\SellPrice.cshtml" />
+    <Content Include="Views\AllProducts\DetailProduct.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Sales\Chart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

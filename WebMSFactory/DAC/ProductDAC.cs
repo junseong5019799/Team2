@@ -55,7 +55,50 @@ namespace WebMSFactory
             }
         }
 
-        public ProductList DetailProduct(string productName)
+        //public List<ProductList> ForwardBom(int productID)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(this.connStr))
+        //    {
+        //        conn.Open();
+
+        //        string sql = "SP_BOM_FORWARD_SELECT";
+        //        using (SqlCommand cmd = new SqlCommand(sql, conn))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+
+        //            cmd.Parameters.AddWithValue("@P_SELECTED_VALUE", productID);;
+        //            if (SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader()) != null)
+        //                return SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader());
+        //            else
+        //                return null;
+        //        }
+        //    }
+        //}
+
+
+        public List<ProductList> ProductBOM(bool IsBOMForward, int productID)
+        {
+            string sql = string.Empty;
+            using (SqlConnection conn = new SqlConnection(this.connStr))
+            {
+                conn.Open();
+                if (IsBOMForward)
+                    sql = @"SP_BOM_FORWARD_SELECT";
+                else
+                    sql = @"SP_BOM_REVERSE_SELECT";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@P_SELECTED_VALUE", productID);
+                    return SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader());
+
+                }
+            }
+        }
+
+        public ProductList DetailProduct(int productNum)
         {
             try
             {
@@ -66,11 +109,11 @@ namespace WebMSFactory
 
                     string sql = @"select product_id, product_group_name, PRODUCT_NAME, PRODUCT_INFORMATION, PRODUCT_UNIT, CONCAT(PRODUCT_STANDARDS,' ',PRODUCT_UNIT) PRODUCT_STANDARDS, PRODUCT_NOTE1, PRODUCT_NOTE2, PRODUCT_LEAD_TIME, PRODUCT_TACT_TIME
                                     from TBL_PRODUCT P INNER JOIN TBL_PRODUCT_GROUP_MANAGEMENT G ON P.product_group_id = G.product_group_id
-                                    where product_name = @P_PAGE_NO";
+                                    where product_ID = @P_PAGE_NO";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@P_PAGE_NO", productName);
+                        cmd.Parameters.AddWithValue("@P_PAGE_NO", productNum);
 
                         return SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader())[0];
                     }

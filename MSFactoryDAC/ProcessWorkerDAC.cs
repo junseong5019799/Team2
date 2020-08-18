@@ -19,7 +19,7 @@ namespace MSFactoryDAC
                 {
                     conn.Open();
 
-                    string sql = @"SELECT c.corporation_name, f.factory_name, l.line_name, c.corporation_name , worker_id, e.employee_name, w.first_regist_time, w.first_regist_employee, w.final_regist_time, w.final_regist_employee
+                    string sql = @"SELECT c.corporation_name, f.factory_name, l.line_name, p.process_name , worker_id, e.employee_name, w.first_regist_time, w.first_regist_employee, w.final_regist_time, w.final_regist_employee
                                      FROM [dbo].[TBL_PROCESS_WORKER] w, [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c, TBL_EMPLOYEE e
                                     where w.process_id =p.process_id
                                       and p.line_id = l.line_id
@@ -236,7 +236,7 @@ namespace MSFactoryDAC
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.Connection.Open();
-                    cmd.CommandText = @"SELECT [employee_id], [employee_name]
+                    cmd.CommandText = @"SELECT e.corporation_id, [employee_id], [employee_name]
                                           FROM [dbo].[TBL_EMPLOYEE] e
                                           inner join TBL_CORPORATION c on e.corporation_id = c.corporation_id
                                           WHERE employee_use = 'Y'
@@ -262,7 +262,7 @@ namespace MSFactoryDAC
                     cmd.CommandText = @"SELECT [employee_id], [employee_name]
                                           FROM [dbo].[TBL_EMPLOYEE] e
                                           inner join TBL_CORPORATION c on e.corporation_id = c.corporation_id
-                                          where C.corporation_id = @corporation_id
+                                          where c.corporation_id = @corporation_id
                                           AND employee_use = 'Y'
                                           AND corporation_use ='Y'";
 
@@ -318,7 +318,7 @@ namespace MSFactoryDAC
 
                     string selNum = string.Join(",", worker_idList);
 
-                    string sql = "Delete From TBL_PROCESSWORKER where worker_id in (" + selNum + ") ;";
+                    string sql = "Delete From TBL_PROCESS_WORKER where worker_id in (" + selNum + ") ;";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -339,19 +339,28 @@ namespace MSFactoryDAC
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
-                    string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
-                                     from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c
-                                    where p.line_id = l.line_id
+                    string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, p.[process_name], e.employee_name, pw.[first_regist_time], pw.[first_regist_employee], pw.[final_regist_time], pw.[final_regist_employee]
+                                     from  TBL_PROCESS_WORKER pw, [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c, TBL_EMPLOYEE e
+                                    where pw.process_id = p.process_id
+								      AND p.line_id = l.line_id
                                       and l.factory_id = f.factory_id
                                       and f.corporation_id = c.corporation_id
+									  and pw.employee_id = e.employee_id
                                       and (@corporation_id = 0 or  c.corporation_id = @corporation_id)
                                       and (@factory_id = 0 or f.factory_id = @factory_id)
-                                      and (@line_id = 0 or p.line_id = @line_id);";
+                                      and (@line_id = 0 or l.line_id = @line_id)
+									  and (@process_id = 0 or p.process_id =@process_id)
+									  and (@employee_id is null or e.employee_id = @employee_id)";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@corporation_id", vo.corporation_id);
                         cmd.Parameters.AddWithValue("@factory_id", vo.factory_id);
                         cmd.Parameters.AddWithValue("@line_id", vo.line_id);
+                        cmd.Parameters.AddWithValue("@process_id", vo.process_id);
+                        if (vo.employee_id.Length < 1)
+                            cmd.Parameters.AddWithValue("@employee_id", DBNull.Value);
+                        else
+                            cmd.Parameters.AddWithValue("@employee_id", vo.employee_id);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
 

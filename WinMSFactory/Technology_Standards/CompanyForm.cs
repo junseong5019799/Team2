@@ -74,52 +74,56 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            
-            string type = (cboCompany_Type.SelectedValue).ToString();
-
-            CompanyService service = new CompanyService();
-            dtOrg = service.GetCompany(type);
-
-            DataView dv = new DataView(dtOrg);
-            if (!string.IsNullOrEmpty(type))
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                string RowData = string.Empty;
-                //List<CompanyVO> clist = new List<CompanyVO>();
-                //clist = (from selecttype in clist
-                //         where selecttype.company_type.Equals(type)
-                //         select selecttype).ToList();
-                if (type == "COP")
-                    RowData = "매입처";
-                else
-                    RowData = "매출처";
+                string type = (cboCompany_Type.SelectedValue).ToString();
+
+                CompanyService service = new CompanyService();
+                dtOrg = service.GetCompany(type);
+
+                DataView dv = new DataView(dtOrg);
+                if (!string.IsNullOrEmpty(type))
+                {
+                    string RowData = string.Empty;
+                    //List<CompanyVO> clist = new List<CompanyVO>();
+                    //clist = (from selecttype in clist
+                    //         where selecttype.company_type.Equals(type)
+                    //         select selecttype).ToList();
+                    if (type == "COP")
+                        RowData = "매입처";
+                    else
+                        RowData = "매출처";
 
 
-                dv.RowFilter = $"common_name = '{RowData}'";
-               // dv.RowFilter = "company_type='" + type + "'";                
-            }
-            dgvCompanyList.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<CompanyVO> sortedData = SqlHelper.ConvertDataTableToList<CompanyVO>(dt);
-
-            if (txtCompany_Name.Text.Length < 1)
-            {
+                    dv.RowFilter = $"common_name = '{RowData}'";
+                    // dv.RowFilter = "company_type='" + type + "'";                
+                }
                 dgvCompanyList.DataSource = dv;
-            }
-            else 
-            {
-                //List<CompanyVO> clist = new List<CompanyVO>();
-                
-                var sortedList = (from name in sortedData
-                         where name.company_name.Contains(txtCompany_Name.Text)
-                                       select name).ToList();
+                DataTable dt = dv.ToTable();
+                List<CompanyVO> sortedData = SqlHelper.ConvertDataTableToList<CompanyVO>(dt);
 
-                dgvCompanyList.DataSource = null;
-                dgvCompanyList.DataSource = sortedList;
+                if (txtCompany_Name.Text.Length < 1)
+                {
+                    dgvCompanyList.DataSource = dv;
+                }
+                else
+                {
+                    //List<CompanyVO> clist = new List<CompanyVO>();
+
+                    var sortedList = (from name in sortedData
+                                      where name.company_name.Contains(txtCompany_Name.Text)
+                                      select name).ToList();
+
+                    dgvCompanyList.DataSource = null;
+                    dgvCompanyList.DataSource = sortedList;
+                }
             }
         }
 
         private void dgvCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //업데이트 할떄 더블클릭
         {
+            if (e.RowIndex < 0)
+                return;
 
             CompanyVO company = new CompanyVO();
             company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
@@ -171,23 +175,26 @@ namespace WinMSFactory
 
         private void Delete(object sender, EventArgs e)
         {
-            CompanyService service = new CompanyService();
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                string company_id = dgvCompanyList.GetCheckIDs("company_id");
-
-                if (string.IsNullOrEmpty(company_id))
-                    return;
-
-                if (service.DeleteCompany(company_id))
+                CompanyService service = new CompanyService();
+                try
                 {
-                    MessageBox.Show("정상적으로 삭제되었습니다.");
-                    LoadData();
+                    string company_id = dgvCompanyList.GetCheckIDs("company_id");
+
+                    if (string.IsNullOrEmpty(company_id))
+                        return;
+
+                    if (service.DeleteCompany(company_id))
+                    {
+                        MessageBox.Show("정상적으로 삭제되었습니다.");
+                        LoadData();
+                    }
                 }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
         }
 
@@ -202,9 +209,12 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            txtCompany_Name.Text = "";
-            LoadData();
-            cboCompany_Type.SelectedIndex = 0;
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtCompany_Name.Text = "";
+                LoadData();
+                cboCompany_Type.SelectedIndex = 0;
+            }
         }
 
         private void Readed(object sender, ReadEventArgs e)
@@ -251,31 +261,34 @@ namespace WinMSFactory
 
         private void Barcode(object sender, EventArgs e)
         {
-            List<int> CheckList = new List<int>();
-
-            foreach (DataGridViewRow row in dgvCompanyList.Rows)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
+                List<int> CheckList = new List<int>();
 
-                if (chk.Value == null)
-                    continue;
-                else if ((bool)chk.Value == true)
-                    CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
+                foreach (DataGridViewRow row in dgvCompanyList.Rows)
+                {
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvCompanyList[0, row.Index];
+
+                    if (chk.Value == null)
+                        continue;
+                    else if ((bool)chk.Value == true)
+                        CheckList.Add(dgvCompanyList[1, row.Index].Value.ToInt());
+                }
+
+                if (CheckList.Count == 0)
+                {
+                    MessageBox.Show("거래처를 선택하여 주세요.");
+                    return;
+                }
+
+                string selList = string.Join(",", CheckList);
+                CompanyService service = new CompanyService();
+                DataTable dt = service.CompanyPrint(selList);
+
+                CompanyReport xtra = new CompanyReport();
+                xtra.DataSource = dt;
+                ReportPreviewForm frm = new ReportPreviewForm(xtra);
             }
-
-            if (CheckList.Count == 0)
-            {
-                MessageBox.Show("거래처를 선택하여 주세요.");
-                return;
-            }
-
-            string selList = string.Join(",", CheckList);
-            CompanyService service = new CompanyService();
-			DataTable dt = service.CompanyPrint(selList);
-
-            CompanyReport xtra = new CompanyReport();
-            xtra.DataSource = dt;
-            ReportPreviewForm frm = new ReportPreviewForm(xtra);
         }
 
         //오류//private void btnDelect_Click(object sender, EventArgs e)

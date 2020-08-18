@@ -43,6 +43,37 @@ namespace WebMSFactory
             }
         }
 
+        public List<PriceProductList> TotalSales()
+        {
+            try
+            {
+                string connStr = WebConfigurationManager.ConnectionStrings["DBSettings"].ConnectionString;
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    // 2가지 고쳐야 할 점 : D.ORDER_REQUEST_QUANTITY => D.RELEASE_QUANTITY , '출고취소' => '출고취소', '출고예정'
+
+                    string sql = @"SELECT P.PRODUCT_NAME, SUM(SELL_CURRENT_PRICE * D.ORDER_REQUEST_QUANTITY) TOTAL_PRICE
+                                    FROM TBL_RELEASE_DETAIL D INNER JOIN TBL_PRODUCT P ON D.PRODUCT_ID = P.PRODUCT_ID
+						                                      INNER JOIN TBL_SELLPRICE_MANAGEMENT S ON D.PRODUCT_ID = S.PRODUCT_ID		
+		                            WHERE D.RELEASE_DATE BETWEEN S.START_DATE AND ISNULL(S.END_DATE,'9999-12-31')
+				                            AND RELEASE_STATUS NOT IN ('출고취소')
+		                            GROUP BY P.PRODUCT_NAME";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return SqlHelper.DataReaderMapToList<PriceProductList>(cmd.ExecuteReader());
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         // 영업 단가 관리
         public List<PriceProductList> AllSellPriceList()
         {

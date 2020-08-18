@@ -122,10 +122,12 @@ namespace WinMSFactory
 
         private void OpenPopup(bool IsUpdate, StorageVO vo = null)
         {
-
-            StoragePopupForm frm = new StoragePopupForm(emp.Employee_name, IsUpdate, vo);
-            if (frm.ShowDialog() == DialogResult.OK)
-                ReviewDGV();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                StoragePopupForm frm = new StoragePopupForm(emp.Employee_name, IsUpdate, vo);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    ReviewDGV();
+            }
         }
         private void Add(object sender, EventArgs e)
         {
@@ -140,66 +142,75 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            if (txtStorage.TextLength > 0)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                var Searchlist = (from items in list
-                                  where items.Storage_Name.Contains(txtStorage.Text)
-                                  select items).ToList();
+                if (txtStorage.TextLength > 0)
+                {
+                    var Searchlist = (from items in list
+                                      where items.Storage_Name.Contains(txtStorage.Text)
+                                      select items).ToList();
 
-                dgv.DataSource = Searchlist;
+                    dgv.DataSource = Searchlist;
+                }
+                else
+                    dgv.DataSource = list;
             }
-            else
-                dgv.DataSource = list;
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            if (MessageBox.Show("창고정보을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            try
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dgv.EndEdit();
+                if (MessageBox.Show("창고정보을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
 
-                List<int> CheckList = new List<int>();
-
-                foreach (DataGridViewRow row in dgv.Rows)
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
+                    dgv.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>();
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgv[1, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgv[1, row.Index].Value.ToInt());
+
+                    }
+
+                    int storage_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        ss.StorageDelete(CheckList);
+
+                        ReviewDGV();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-                int storage_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    ss.StorageDelete(CheckList);
-
-                    ReviewDGV();
+                    MessageBox.Show(err.Message);
                 }
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
             }
         }
 
         private void Clear(object sender, EventArgs e)
         {
-            cboCorporation.SelectedIndex = 0;
-            cboFactoryName.SelectedIndex = 0;
-            txtStorage.Text = "";
-            ReviewDGV();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCorporation.SelectedIndex = 0;
+                cboFactoryName.SelectedIndex = 0;
+                txtStorage.Text = "";
+                ReviewDGV();
+            }
         }
     }
 }

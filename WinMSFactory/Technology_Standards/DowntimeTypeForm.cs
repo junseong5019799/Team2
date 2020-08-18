@@ -158,23 +158,26 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            dgvDowntimeType.EndEdit();
-         
-           
-            string fname = txtName.Text.Trim();
-
-            dtDgv = service.GetAll();
-
-            DataView dv = dtDgv.DefaultView;
-            if (fname.Length > 0)
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                dv.RowFilter = $"downtime_type_name like '%{fname}%'";
-            }
-            dgvDowntimeType.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<DowntimeTypeVO> sortedData = SqlHelper.ConvertDataTableToList<DowntimeTypeVO>(dt);
+                dgvDowntimeType.EndEdit();
 
-            dgvDowntimeType.DataSource = sortedData;
+
+                string fname = txtName.Text.Trim();
+
+                dtDgv = service.GetAll();
+
+                DataView dv = dtDgv.DefaultView;
+                if (fname.Length > 0)
+                {
+                    dv.RowFilter = $"downtime_type_name like '%{fname}%'";
+                }
+                dgvDowntimeType.DataSource = dv;
+                DataTable dt = dv.ToTable();
+                List<DowntimeTypeVO> sortedData = SqlHelper.ConvertDataTableToList<DowntimeTypeVO>(dt);
+
+                dgvDowntimeType.DataSource = sortedData;
+            }
         }
 
         private void Add(object sender, EventArgs e)
@@ -234,8 +237,11 @@ namespace WinMSFactory
 
         private void Clear(object sender, EventArgs e)
         {
-            txtName.Text = "";
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                txtName.Text = "";
+                LoadData();
+            }
         }
     }
 }

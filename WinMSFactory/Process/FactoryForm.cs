@@ -61,34 +61,39 @@ namespace WinMSFactory
 
         private void Search(object sender, EventArgs e)
         {
-            string fname = txtFactoryName.Text.Trim();
-            FactoryVO vo = new FactoryVO()
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-                corporation_id = cboCorporationName.SelectedValue.ToInt()
+                string fname = txtFactoryName.Text.Trim();
+                FactoryVO vo = new FactoryVO()
+                {
+                    corporation_id = cboCorporationName.SelectedValue.ToInt()
 
-            };
+                };
 
-            dtDgv =  service.SearchName(vo);
-            
+                dtDgv = service.SearchName(vo);
 
-            DataView dv = dtDgv.DefaultView;
-            if (fname.Length > 0)
-            {
-                dv.RowFilter = $"factory_name like '%{fname}%'";
+
+                DataView dv = dtDgv.DefaultView;
+                if (fname.Length > 0)
+                {
+                    dv.RowFilter = $"factory_name like '%{fname}%'";
+                }
+                dgvFactorylist.DataSource = dv;
+                DataTable dt = dv.ToTable();
+                List<FactoryVO> sortedData = SqlHelper.ConvertDataTableToList<FactoryVO>(dt);
+
+                dgvFactorylist.DataSource = sortedData;
             }
-            dgvFactorylist.DataSource = dv;
-            DataTable dt = dv.ToTable();
-            List<FactoryVO> sortedData = SqlHelper.ConvertDataTableToList<FactoryVO>(dt);
-
-            dgvFactorylist.DataSource = sortedData;
-
         }
 
         private void OpenPopup(bool IsUpdate, FactoryVO vo = null)
         {
-            FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, IsUpdate, vo);
-            if (frm.ShowDialog() == DialogResult.OK)
-                LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, IsUpdate, vo);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void dgvFactorylist_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -146,59 +151,67 @@ namespace WinMSFactory
 
         private void Add(object sender, EventArgs e)
         {
-            FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, false, null);
-            if (frm.ShowDialog() == DialogResult.OK)
-                LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                FactoryPopupForm frm = new FactoryPopupForm(emp.Employee_name, false, null);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    LoadData();
+            }
         }
 
         private void Delete(object sender, EventArgs e)
         {
-           
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
                 if (MessageBox.Show("공장을 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
                     return;
 
-            try
-            {
-                dgvFactorylist.EndEdit();
-
-                List<int> CheckList = new List<int>();
-
-                foreach (DataGridViewRow row in dgvFactorylist.Rows)
+                try
                 {
-                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvFactorylist[0, row.Index];
+                    dgvFactorylist.EndEdit();
 
-                    if (chk.Value == null)
-                        continue;
+                    List<int> CheckList = new List<int>();
 
-                    else if ((bool)chk.Value == true)
-                        CheckList.Add(dgvFactorylist[2, row.Index].Value.ToInt());
+                    foreach (DataGridViewRow row in dgvFactorylist.Rows)
+                    {
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvFactorylist[0, row.Index];
 
+                        if (chk.Value == null)
+                            continue;
+
+                        else if ((bool)chk.Value == true)
+                            CheckList.Add(dgvFactorylist[2, row.Index].Value.ToInt());
+
+                    }
+
+                    int factory_id = Convert.ToInt32(dgvFactorylist.SelectedRows[0].Cells[2].Value);
+
+                    if (CheckList.Count > 0)
+                    {
+                        service.FactoryDelete(CheckList);
+
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해주세요");
+                    }
                 }
-
-                int factory_id = Convert.ToInt32(dgvFactorylist.SelectedRows[0].Cells[2].Value);
-
-                if (CheckList.Count > 0)
+                catch (Exception err)
                 {
-                    service.FactoryDelete(CheckList);
-
-                    LoadData();
+                    MessageBox.Show(err.Message);
                 }
-                else
-                {
-                    MessageBox.Show("다시 선택해주세요");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
             }
         }
 
         private void Clear(object sender, EventArgs e)
         {
-            cboCorporationName.SelectedIndex = 0;
-            txtFactoryName.Text = "";
-            LoadData();
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCorporationName.SelectedIndex = 0;
+                txtFactoryName.Text = "";
+                LoadData();
+            }
         }
 
     }

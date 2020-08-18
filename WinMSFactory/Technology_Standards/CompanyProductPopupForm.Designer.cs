@@ -50,16 +50,18 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 326);
-            this.panel1.Size = new System.Drawing.Size(432, 43);
+            this.panel1.Size = new System.Drawing.Size(391, 43);
             // 
             // btnConfirm
             // 
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirm.FlatAppearance.BorderSize = 0;
             this.btnConfirm.Location = new System.Drawing.Point(84, 4);
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(232, 4);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -67,7 +69,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(59, 193);
+            this.label6.Location = new System.Drawing.Point(38, 193);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 16);
             this.label6.TabIndex = 50;
@@ -77,7 +79,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(59, 88);
+            this.label3.Location = new System.Drawing.Point(38, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 48;
@@ -86,7 +88,7 @@
             // txtCompany_Id
             // 
             this.txtCompany_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompany_Id.Location = new System.Drawing.Point(145, 3);
+            this.txtCompany_Id.Location = new System.Drawing.Point(124, 3);
             this.txtCompany_Id.Name = "txtCompany_Id";
             this.txtCompany_Id.Size = new System.Drawing.Size(151, 22);
             this.txtCompany_Id.TabIndex = 47;
@@ -95,7 +97,7 @@
             // txtCompany_Name
             // 
             this.txtCompany_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompany_Name.Location = new System.Drawing.Point(145, 40);
+            this.txtCompany_Name.Location = new System.Drawing.Point(124, 40);
             this.txtCompany_Name.Name = "txtCompany_Name";
             this.txtCompany_Name.Size = new System.Drawing.Size(151, 22);
             this.txtCompany_Name.TabIndex = 46;
@@ -104,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(59, 43);
+            this.label2.Location = new System.Drawing.Point(38, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 45;
@@ -114,7 +116,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(59, 6);
+            this.label1.Location = new System.Drawing.Point(38, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 16);
             this.label1.TabIndex = 44;
@@ -127,7 +129,7 @@
             this.groupBox1.Controls.Add(this.btnProductAdd);
             this.groupBox1.Controls.Add(this.listBoxProduct);
             this.groupBox1.Controls.Add(this.cboCompany_Product);
-            this.groupBox1.Location = new System.Drawing.Point(135, 176);
+            this.groupBox1.Location = new System.Drawing.Point(114, 176);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(239, 117);
             this.groupBox1.TabIndex = 63;
@@ -181,7 +183,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(59, 134);
+            this.label9.Location = new System.Drawing.Point(38, 134);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 16);
             this.label9.TabIndex = 64;
@@ -191,7 +193,7 @@
             // 
             this.cboCompany_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCompany_Type.FormattingEnabled = true;
-            this.cboCompany_Type.Location = new System.Drawing.Point(145, 85);
+            this.cboCompany_Type.Location = new System.Drawing.Point(124, 85);
             this.cboCompany_Type.Name = "cboCompany_Type";
             this.cboCompany_Type.Size = new System.Drawing.Size(151, 24);
             this.cboCompany_Type.TabIndex = 49;
@@ -205,7 +207,7 @@
             0,
             0,
             0});
-            this.nudCompany_seq.Location = new System.Drawing.Point(145, 134);
+            this.nudCompany_seq.Location = new System.Drawing.Point(124, 134);
             this.nudCompany_seq.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -230,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 369);
+            this.ClientSize = new System.Drawing.Size(391, 369);
             this.Controls.Add(this.nudCompany_seq);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
