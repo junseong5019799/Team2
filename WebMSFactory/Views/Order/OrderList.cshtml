@@ -1,7 +1,12 @@
-﻿@model WebMSFactory.OrderModel
+﻿@model WebMSFactory.OrderListViewModel
 
 @{
-    ViewBag.Title = "OrderList";
+    ViewBag.Title = "발주 목록";
+
+}
+@section title
+{
+    - @ViewBag.Title
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -11,14 +16,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
-
-            <form style="padding-left:700px" action="~/AllProducts/Search">
-                <select name="Category">
-                    @foreach (var dicList in Model)
-                    {
-                        <option value="@dicList">@dicList</option>
-                    }
-                </select>
+            <form style="padding-left:700px" action="~/Order/OrderList?ProductName=">
                 <input type="text" name="ProductName" />
                 <input type='submit' value='검색'>
             </form>
@@ -28,30 +26,26 @@
                 <table class="table">
                     <thead class=" text-primary">
                         <tr role="row">
-                            <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">순번</th>
-                            <th class="sorting" rowspan="1" colspan="1" width="350px">그룹 이름</th>
-                            <th class="sorting" rowspan="1" colspan="1" width="400px">제품 이름</th>
-                            <th class="sorting" rowspan="1" colspan="1" width="100px">제품 사용 여부</th>
-                            <th class="sorting" rowspan="1" colspan="1" width="200px">제품 상세 보기 / BOM</th>
+                            <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">주문 번호</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="350px">제품 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="250px">주문 회사 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">주문량</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">주문 상태</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="150px">발주일</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var prod in Model.Products)
+                        @foreach (var prod in Model.OrderLists)
                         {
-                            <tr role="row">
-                                <td>@prod.Num</td>
-                                <td>@prod.Product_Group_Name</td>
-                                <td>@prod.Product_Name</td>
-                                <td>@prod.Product_Use</td>
-                                <td>
-                                    @Html.ActionLink("상세보기", "DetailProduct", "AllProducts",
-                                    new
-                                    {
-                                        ProductID = prod.Product_ID
-                                    }, new { @class = "btn btn-primary btn-sm" }
-                                    )
-                                </td>
-                            </tr>
+                        <tr role="row">
+                            <td>@prod.Order_No</td>
+                            <td>@prod.Product_Name</td>
+                            <td>@prod.Company_Name</td>
+                            <td>@prod.Order_Request_Quantity_string</td>
+                            <td>@prod.Order_Status</td>
+                            <td>@prod.Order_Request_Date_String</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -59,3 +53,4 @@
         </div>
     </div>
 </div>
+

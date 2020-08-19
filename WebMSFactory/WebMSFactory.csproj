@@ -1778,6 +1778,7 @@
     <Compile Include="DAC\ProductDAC.cs" />
     <Compile Include="Html\PagingHelper.cs" />
     <Compile Include="Models\ChartModel.cs" />
+    <Compile Include="Models\OrderListViewModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\PriceListViewModel.cs" />
@@ -1954,6 +1955,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Sales\Chart.cshtml" />
     <Content Include="Views\Order\OrderList.cshtml" />
+    <Content Include="Views\Order\ReleaseList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

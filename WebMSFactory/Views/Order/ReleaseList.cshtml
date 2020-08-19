@@ -1,0 +1,62 @@
+﻿@model WebMSFactory.OrderListViewModel
+
+@{
+    ViewBag.Title = "출고 목록";
+
+}
+@section title
+{
+    - @ViewBag.Title
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
+</div>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <form style="padding-left:700px" action="~/Order/ReleaseList?ProductName=">
+                <input type="text" name="ProductName" />
+                <input type='submit' value='검색'>
+            </form>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr role="row">
+                            <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">출고 번호</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="200px">회사 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="200px">제품 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="130px">출고 등록 일자</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="130px">출고 요청 일자</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="130px">출고 일자</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="130px">출고 요청 수량</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="130px">출고 수량</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">출고 상태</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in Model.OrderLists)
+                        {
+                        <tr role="row">
+                            <td>@prod.Release_No</td>
+                            <td>@prod.Company_Name</td>
+                            <td>@prod.Product_Name</td>
+                            <td>@prod.Release_Plan_Date</td>
+                            <td>@prod.Release_Request_Date</td>
+                            <td>@prod.Release_Date</td>
+                            <td>@prod.Release_Request_Quantity</td>
+                            <td>@prod.Release_Quantity</td>
+                            <td>@prod.Release_Status</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
