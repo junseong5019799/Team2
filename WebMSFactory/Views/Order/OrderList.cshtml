@@ -1,14 +1,8 @@
-﻿@model WebMSFactory.ProductListViewModel
+﻿@model WebMSFactory.OrderModel
+
 @{
-    ViewBag.Title = "제품 관리";
-
+    ViewBag.Title = "OrderList";
 }
-@section title
-{
-    - @ViewBag.Title
-}
-
-
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
@@ -20,7 +14,7 @@
 
             <form style="padding-left:700px" action="~/AllProducts/Search">
                 <select name="Category">
-                    @foreach (var dicList in Model.ComboList)
+                    @foreach (var dicList in Model)
                     {
                         <option value="@dicList">@dicList</option>
                     }
@@ -65,4 +59,3 @@
         </div>
     </div>
 </div>
-
