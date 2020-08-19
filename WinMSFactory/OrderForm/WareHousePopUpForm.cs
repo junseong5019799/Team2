@@ -45,6 +45,14 @@ namespace WinMSFactory
             set { order_seq = value; }
         }
 
+        private int product_quantity;
+
+        public int Product_quantity
+        {
+            get { return product_quantity; }
+            set { product_quantity = value; }
+        }
+
 
 
         public WareHousePopUpForm()
@@ -58,7 +66,7 @@ namespace WinMSFactory
             StorageService storageService = new StorageService();
 
             txtOrderID.Text = order_no.ToString();
-
+            txtquantity.Text = product_quantity.ToString();
             cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name");
             cboProduct.SelectedValue = product_id;
 
