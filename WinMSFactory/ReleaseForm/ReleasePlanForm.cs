@@ -215,7 +215,7 @@ namespace WinMSFactory
             {
                 if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
                 {
-                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                    dgv2.Rows[i].DefaultCellStyle.BackColor = Color.MistyRose;
                 }
             }
 
@@ -297,7 +297,7 @@ namespace WinMSFactory
                 if (request_date < release_date)
                 {
                     MessageBox.Show("출고 요청일은 출고 예정일보다 빠르면 안됩니다. 다시 변경해주세요.");
-                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.Orange;
+                    dgv2.SelectedRows[0].DefaultCellStyle.BackColor = Color.LightCoral;
                     return;
                 }
                 else
@@ -331,6 +331,11 @@ namespace WinMSFactory
                         if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고취소")
                         {
                             MessageBox.Show("출고 취소 된 항목입니다. 출고 등록 먼저 해주세요.");
+                            return;
+                        }
+                        else if (dgv2.Rows[i].Cells[9].Value.ToString() == "출고완료")
+                        {
+                            MessageBox.Show("이미 출고 완료 된 항목입니다.");
                             return;
                         }
                     }

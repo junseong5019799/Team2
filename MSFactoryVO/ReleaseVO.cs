@@ -20,6 +20,8 @@ namespace MSFactoryVO
         public int order_request_quantity { get; set; }
         public int release_quantity { get; set; }
         public string release_status { get; set; }
+        public int material_current_price { get; set; }
+        public decimal order_product_price { get; set; }
 
         public int company_id { get; set; }
         public string company_name { get; set; }

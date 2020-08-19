@@ -59,19 +59,29 @@ namespace WinMSFactory
             }
         }
 
+
+        //재고 detail 보여주기 
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
+                                  
+            dgv2.DataSource = service.GetStorageDetailList(product_id);
+
+        }
+
         /// <summary>
         /// 재고 이동
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonControl1_Click(object sender, EventArgs e)
+        private void btnMove_Click(object sender, EventArgs e)
         {
             ResultListForm frm = new ResultListForm();
             List<int> list = new List<int>();
             List<int> cnt = new List<int>();
 
             dgv2.EndEdit();
-            
+
             foreach (DataGridViewRow row in dgv2.Rows)
             {
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgv2[0, row.Index];
@@ -83,7 +93,7 @@ namespace WinMSFactory
                     cnt.Add(1);
             }
 
-            if(cnt.Count < 1)
+            if (cnt.Count < 1)
             {
                 MessageBox.Show("재고 할 품목을 선택해주세요.");
                 return;
@@ -108,25 +118,6 @@ namespace WinMSFactory
             {
                 dgv2.DataSource = service.SelectProductAll(SelectStorage);
             }
-            
-        }
-
-
-        //재고 detail 보여주기 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
-            int sum = 0;
-
-            lblName.Text = dgv.SelectedRows[0].Cells[3].Value.ToString();            
-            dgv2.DataSource = service.GetStorageDetailList(product_id);
-
-            for (int i = 0; i < dgv2.RowCount; i++)
-            {
-                sum += Convert.ToInt32(dgv2.Rows[i].Cells[6].Value.ToString().Replace("개",""));
-            }
-
-            lblstocks.Text = sum.ToString();
         }
     }
 }

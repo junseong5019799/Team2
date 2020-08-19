@@ -68,7 +68,7 @@
             this.Guidlabel1.AutoSize = true;
             this.Guidlabel1.Location = new System.Drawing.Point(204, 81);
             this.Guidlabel1.Name = "Guidlabel1";
-            this.Guidlabel1.Size = new System.Drawing.Size(231, 20);
+            this.Guidlabel1.Size = new System.Drawing.Size(199, 16);
             this.Guidlabel1.TabIndex = 0;
             this.Guidlabel1.Text = "검색 영역 (필요에 따라 높이 조절 가능)";
             this.Guidlabel1.Visible = false;
@@ -78,7 +78,7 @@
             this.Guidlabel2.AutoSize = true;
             this.Guidlabel2.Location = new System.Drawing.Point(113, 214);
             this.Guidlabel2.Name = "Guidlabel2";
-            this.Guidlabel2.Size = new System.Drawing.Size(55, 20);
+            this.Guidlabel2.Size = new System.Drawing.Size(44, 16);
             this.Guidlabel2.TabIndex = 1;
             this.Guidlabel2.Text = "DGV1";
             this.Guidlabel2.Visible = false;
@@ -88,7 +88,7 @@
             this.Guidlabel3.AutoSize = true;
             this.Guidlabel3.Location = new System.Drawing.Point(113, 512);
             this.Guidlabel3.Name = "Guidlabel3";
-            this.Guidlabel3.Size = new System.Drawing.Size(55, 20);
+            this.Guidlabel3.Size = new System.Drawing.Size(44, 16);
             this.Guidlabel3.TabIndex = 3;
             this.Guidlabel3.Text = "DGV2";
             this.Guidlabel3.Visible = false;
@@ -123,7 +123,7 @@
             // 
             // ListListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1534, 761);
@@ -136,6 +136,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ListListForm";
             this.Text = "ListListForm";
+            this.Load += new System.EventHandler(this.ListListForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
@@ -153,7 +154,7 @@
 		protected System.Windows.Forms.Label Guidlabel1;
 		protected System.Windows.Forms.Panel panel2;
 		protected System.Windows.Forms.Panel panel3;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+        protected DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        public DevExpress.XtraEditors.SeparatorControl separatorControl2;
     }
 }

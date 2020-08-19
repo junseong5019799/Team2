@@ -47,7 +47,7 @@ namespace WinMSFactory
 
             dgv.DataSource = orderService.GetWareHouseList();            
 
-            dgvDetail.AddNewColumns("발주번호", "order_no", 80, true, true, false, RightAlign);
+            dgvDetail.AddNewColumns("발주번호", "order_no", 80, false, true, false, RightAlign);
             dgvDetail.AddNewColumns("순서", "order_seq", 55, true, true, false, RightAlign);
             dgvDetail.AddNewColumns("창고", "storage_name", 100, true, true, false, LeftAlign);
             dgvDetail.AddNewColumns("품목", "product_id", 55, true, true, false, RightAlign);

@@ -24,10 +24,12 @@ namespace WinMSFactory
         private void OrderListForm_Load(object sender, EventArgs e)
         {
             dgv.ColumnHeadersHeight = 30;
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
 
-            dgv.AddNewColumns("발주번호", "order_no", 100, true);             
+            dgv.AddNewColumns("발주번호", "order_no", 80, true, false, false, RightAlign);             
             dgv.AddNewColumns("품명", "product_name", 130, true);
-            dgv.AddNewColumns("발주량", "order_request_quantity", 100, true);
+            dgv.AddNewColumns("발주량", "order_request_quantity", 100, true, false, false, RightAlign);
+            dgv.AddNewColumns("발주 가격", "order_price", 100, true, false, false, RightAlign);
             dgv.AddNewColumns("거래처명", "company_name", 150, true);
             dgv.AddNewColumns("발주상태", "order_status", 100, true);
             dgv.AddNewColumns("발주일", "first_regist_time", 100, true);
@@ -57,7 +59,7 @@ namespace WinMSFactory
             if (e.ColumnIndex == 7)
             {
                 DueDatePopUpForm frm = new DueDatePopUpForm();
-                frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells[6].Value.ToString());
+                frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells["order_request_date"].Value.ToString());
                 frm.Order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
                 frm.Product_no = Convert.ToInt32(dgv.SelectedRows[0].Cells["product_id"].Value);
                 frm.Gubun = "발주";
