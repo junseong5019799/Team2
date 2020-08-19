@@ -44,27 +44,24 @@ namespace WinMSFactory.OrderForm
 
         private void OrderPopUpForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgvOrder.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
             dgvOrder.ColumnHeadersHeight = 30;
 
             comDt = new CompanyService().GetCompanyByProducts();
-            //dgvCompany.AddNewColumns("업체코드", "company_id", 80, true);
-            //dgvCompany.AddNewColumns("납품업체", "company_name", 100, true);
-
-            //dgvCompany.DataSource = orderService.GetCompanyList();
 
             dgvOrder.AddNewColumns("주문번호", "release_no", 80, false);
-            dgvOrder.AddNewColumns("순서", "release_seq", 70, false);
-            //dgvOrder.AddNewColumns("거래처", "company_id", 100, false);
+            dgvOrder.AddNewColumns("순서", "release_seq", 70, true, false, false, RightAlign);
             dgvOrder.AddNewComCol("납품업체", "company_id", comDt, "company_name", "company_id", 200);
-            //dgvOrder.AddNewColumns("납품업체", "company_name", 120, true);
             dgvOrder.AddNewColumns("품목", "product_id", 80, false);
-            dgvOrder.AddNewColumns("품명", "product_name", 120, true);
-            dgvOrder.AddNewColumns("품목", "_product_id", 80, true);
+            dgvOrder.AddNewColumns("품명", "product_name", 120, false);
+            dgvOrder.AddNewColumns("품목", "_product_id", 80, false);
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
-            dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true);
-            dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false);
-            dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true);
+            dgvOrder.AddNewColumns("자재 단가", "material_current_price", 100, true, false, false, RightAlign);
+            dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true, false, false, RightAlign);
+            dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false, false, RightAlign);            
+            dgvOrder.AddNewColumns("발주 가격", "order_product_price", 100, true, false, false, RightAlign);
+            dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
            
             DataTable dt = orderService.GetOrderPlanList(release_no);
@@ -120,6 +117,8 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
                         orderVO.order_request_date = DateTime.Now;
+                        orderVO.material_current_price = Convert.ToInt32(dgvOrder.Rows[i].Cells["material_current_price"].Value);
+                        orderVO.order_price = Convert.ToDecimal(dgvOrder.Rows[i].Cells["order_product_price"].Value);
 
                         olist.Add(orderVO);
                         companySet.Add(c_id);

@@ -47,9 +47,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnIn = new WinMSFactory.ButtonControl();
-            this.dgvDetail = new WinMSFactory.DataGridViewControl();
             this.cboGubun = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.dgvDetail = new WinMSFactory.DataGridViewControl();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -142,7 +142,7 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1364, 382);
+            this.dgv.Size = new System.Drawing.Size(1364, 391);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -157,13 +157,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 11, 59, 39, 979);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 14, 51, 42, 395);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 11, 59, 39, 979);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 14, 51, 42, 395);
             // 
             // label1
             // 
@@ -208,13 +208,34 @@
             this.btnIn.ForeColor = System.Drawing.Color.Black;
             this.btnIn.Image = ((System.Drawing.Image)(resources.GetObject("btnIn.Image")));
             this.btnIn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnIn.Location = new System.Drawing.Point(1041, 30);
+            this.btnIn.Location = new System.Drawing.Point(955, 26);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(98, 24);
             this.btnIn.TabIndex = 41;
             this.btnIn.Text = "입고 처리";
             this.btnIn.UseVisualStyleBackColor = false;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // cboGubun
+            // 
+            this.cboGubun.FormattingEnabled = true;
+            this.cboGubun.Items.AddRange(new object[] {
+            "전체",
+            "입고",
+            "발주중"});
+            this.cboGubun.Location = new System.Drawing.Point(441, 26);
+            this.cboGubun.Name = "cboGubun";
+            this.cboGubun.Size = new System.Drawing.Size(91, 24);
+            this.cboGubun.TabIndex = 55;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(363, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 16);
+            this.label5.TabIndex = 54;
+            this.label5.Text = "발주 상태";
             // 
             // dgvDetail
             // 
@@ -265,27 +286,6 @@
             this.dgvDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgvDetail.TabIndex = 0;
             // 
-            // cboGubun
-            // 
-            this.cboGubun.FormattingEnabled = true;
-            this.cboGubun.Items.AddRange(new object[] {
-            "전체",
-            "입고",
-            "발주중"});
-            this.cboGubun.Location = new System.Drawing.Point(441, 26);
-            this.cboGubun.Name = "cboGubun";
-            this.cboGubun.Size = new System.Drawing.Size(91, 24);
-            this.cboGubun.TabIndex = 55;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(363, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 16);
-            this.label5.TabIndex = 54;
-            this.label5.Text = "발주 상태";
-            // 
             // WareHouseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -316,8 +316,8 @@
         private System.Windows.Forms.ComboBox cboCompany;
         private System.Windows.Forms.Label label2;
         private ButtonControl btnIn;
-        private DataGridViewControl dgvDetail;
         private System.Windows.Forms.ComboBox cboGubun;
         private System.Windows.Forms.Label label5;
+        private DataGridViewControl dgvDetail;
     }
 }
