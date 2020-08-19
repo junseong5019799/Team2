@@ -71,8 +71,13 @@ namespace WinMSFactory
                 if (cboProduct.SelectedValue == null)
                     searchProduct = 0;
                 else
-                    searchProduct = cboProduct.SelectedItem.ToInt();
+                    searchProduct = cboProduct.SelectedValue.ToInt();
 
+                //if(searchGubun == null)
+                //{
+                //    pList = (from item in pList
+                //             select item).ToList();
+                //}
                 if (!string.IsNullOrEmpty(searchGubun))
                 {
                     pList = (from item in pList
@@ -80,11 +85,16 @@ namespace WinMSFactory
                              select item).ToList();                                        
                 }
 
-                if (searchProduct > 0)  //0보다 크면 검색 
+                if (searchProduct > 0)  //전체 쿼리 다시짜기  
                 {
                     pList = (from item in pList
                              where item.product_id == searchProduct                             
                              select item).ToList();
+                }
+                else if(searchProduct == 0)
+                {
+                    pList= (from item in pList                            
+                            select item).ToList();
                 }
                 
                 dgv.DataSource = pList;

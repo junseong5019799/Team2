@@ -451,13 +451,13 @@ namespace MSFactoryDAC
                         cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
                         cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
                         cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
-                        cmd.Parameters.Add("@ORDER_PRODUCT_PRICE", SqlDbType.Decimal);
+                        cmd.Parameters.Add("@order_product_price", SqlDbType.Decimal);
 
                         for (; index < olist.Count; index++)
                         {
                             OrderVO item = olist[index];
 
-                            if (item.company_id != company_id)
+                            if (item.company_id != company_id)  //같으면 더하고 아니면 break 시키기 
                                 break;
 
                             cmd.Parameters["@order_no"].Value = num;
@@ -466,7 +466,7 @@ namespace MSFactoryDAC
                             cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
                             cmd.Parameters["@order_status"].Value = item.order_status;
                             cmd.Parameters["@order_request_date"].Value = item.order_request_date;
-                            cmd.Parameters["@ORDER_PRODUCT_PRICE"].Value = item.order_price;
+                            cmd.Parameters["@order_product_price"].Value = item.order_price;
 
                             cnt++;
 

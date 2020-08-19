@@ -47,6 +47,7 @@ namespace WinMSFactory
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 130, true);
             dgv.AddNewColumns("최종등록일", "final_regist_time", 150, true);
             dgv.AddNewColumns("품목", "product_id", 130, false);
+
             DataTable dt = orderService.GetOrderList();
             dgv.DataSource = dt;
 

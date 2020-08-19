@@ -270,7 +270,7 @@ namespace WinMSFactory
                         releaseService.UpdateReleaseDateCancel(release_no, Convert.ToInt32(dgv2.Rows[i].Cells[3].Value));                       
                     }                                                                 
                 }
-                MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");
+                //MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");
             }
         }
 
