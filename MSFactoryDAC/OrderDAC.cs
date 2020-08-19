@@ -451,6 +451,7 @@ namespace MSFactoryDAC
                         cmd.Parameters.Add("@order_request_quantity", SqlDbType.Int);
                         cmd.Parameters.Add("@order_status", SqlDbType.VarChar, 20);
                         cmd.Parameters.Add("@order_request_date", SqlDbType.DateTime);
+                        cmd.Parameters.Add("@ORDER_PRODUCT_PRICE", SqlDbType.Decimal);
 
                         for (; index < olist.Count; index++)
                         {
@@ -465,6 +466,7 @@ namespace MSFactoryDAC
                             cmd.Parameters["@order_request_quantity"].Value = item.order_request_quantity;
                             cmd.Parameters["@order_status"].Value = item.order_status;
                             cmd.Parameters["@order_request_date"].Value = item.order_request_date;
+                            cmd.Parameters["@ORDER_PRODUCT_PRICE"].Value = item.order_price;
 
                             cnt++;
 

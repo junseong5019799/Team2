@@ -33,12 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WareHouseWaitForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WareHouseWaitForm));
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
@@ -46,36 +46,39 @@
             this.cboCompany = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnIn = new WinMSFactory.ButtonControl();
             this.cboGubun = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvDetail = new WinMSFactory.DataGridViewControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnWarehouse = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.cboGubun);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.btnIn);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cboCompany);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Size = new System.Drawing.Size(1364, 80);
+            this.panel1.Controls.SetChildIndex(this.separatorControl1, 0);
             this.panel1.Controls.SetChildIndex(this.Guidlabel1, 0);
             this.panel1.Controls.SetChildIndex(this.panel4, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.cboCompany, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
-            this.panel1.Controls.SetChildIndex(this.btnIn, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
             this.panel1.Controls.SetChildIndex(this.cboGubun, 0);
             // 
@@ -88,13 +91,25 @@
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Location = new System.Drawing.Point(0, 80);
             this.panel2.Size = new System.Drawing.Size(1364, 391);
+            this.panel2.Controls.SetChildIndex(this.separatorControl2, 0);
             this.panel2.Controls.SetChildIndex(this.dgv, 0);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.toolStrip1);
             this.panel3.Controls.Add(this.dgvDetail);
             this.panel3.Location = new System.Drawing.Point(0, 471);
             this.panel3.Size = new System.Drawing.Size(1364, 290);
+            // 
+            // separatorControl1
+            // 
+            this.separatorControl1.Location = new System.Drawing.Point(0, 71);
+            this.separatorControl1.Size = new System.Drawing.Size(1364, 9);
+            // 
+            // separatorControl2
+            // 
+            this.separatorControl2.Location = new System.Drawing.Point(0, 382);
+            this.separatorControl2.Size = new System.Drawing.Size(1364, 9);
             // 
             // dgv
             // 
@@ -142,7 +157,7 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1364, 391);
+            this.dgv.Size = new System.Drawing.Size(1364, 382);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -157,13 +172,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 14, 51, 42, 395);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 16, 24, 53, 497);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 14, 51, 42, 395);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 16, 24, 53, 497);
             // 
             // label1
             // 
@@ -200,21 +215,6 @@
             this.label4.Size = new System.Drawing.Size(52, 16);
             this.label4.TabIndex = 39;
             this.label4.Text = "입고현황";
-            // 
-            // btnIn
-            // 
-            this.btnIn.BackColor = System.Drawing.Color.LightGray;
-            this.btnIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIn.ForeColor = System.Drawing.Color.Black;
-            this.btnIn.Image = ((System.Drawing.Image)(resources.GetObject("btnIn.Image")));
-            this.btnIn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnIn.Location = new System.Drawing.Point(955, 26);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(98, 24);
-            this.btnIn.TabIndex = 41;
-            this.btnIn.Text = "입고 처리";
-            this.btnIn.UseVisualStyleBackColor = false;
-            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // cboGubun
             // 
@@ -286,6 +286,29 @@
             this.dgvDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgvDetail.TabIndex = 0;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnWarehouse});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1364, 66);
+            this.toolStrip1.TabIndex = 28;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnWarehouse
+            // 
+            this.btnWarehouse.AutoSize = false;
+            this.btnWarehouse.Image = ((System.Drawing.Image)(resources.GetObject("btnWarehouse.Image")));
+            this.btnWarehouse.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.Size = new System.Drawing.Size(80, 50);
+            this.btnWarehouse.Text = "입고 처리";
+            this.btnWarehouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnWarehouse.Click += new System.EventHandler(this.btnWarehouse_Click);
+            // 
             // WareHouseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -298,9 +321,13 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,9 +342,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboCompany;
         private System.Windows.Forms.Label label2;
-        private ButtonControl btnIn;
         private System.Windows.Forms.ComboBox cboGubun;
         private System.Windows.Forms.Label label5;
         private DataGridViewControl dgvDetail;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnWarehouse;
     }
 }
