@@ -93,7 +93,6 @@ namespace WebMSFactory
 
                     cmd.Parameters.AddWithValue("@P_SELECTED_VALUE", productID);
                     return SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader());
-
                 }
             }
         }
