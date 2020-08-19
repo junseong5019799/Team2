@@ -16,5 +16,10 @@ namespace WinMSFactory
         {
             InitializeComponent();
         }
+
+        private void ListListForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

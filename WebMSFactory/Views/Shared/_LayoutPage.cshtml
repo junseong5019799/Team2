@@ -92,6 +92,19 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrderManagement" aria-expanded="true" aria-controls="collapseOrderManagement">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>주문 관리</span>
+                </a>
+                <div id="collapseOrderManagement" class="collapse" aria-labelledby="headingcollapseOrderManagement" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="~/Order/OrderList">발주 목록</a>
+                        <a class="collapse-item" href="~/Order/ReleaseList=">출고 목록</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="~/Sales/Chart?Year=@DateTime.Now.Year">

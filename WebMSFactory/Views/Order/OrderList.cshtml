@@ -1,0 +1,56 @@
+﻿@model WebMSFactory.OrderListViewModel
+
+@{
+    ViewBag.Title = "발주 목록";
+
+}
+@section title
+{
+    - @ViewBag.Title
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
+</div>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <form style="padding-left:700px" action="~/Order/OrderList?ProductName=">
+                <input type="text" name="ProductName" />
+                <input type='submit' value='검색'>
+            </form>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr role="row">
+                            <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">주문 번호</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="350px">제품 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="250px">주문 회사 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">주문량</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="100px">주문 상태</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="150px">발주일</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in Model.OrderLists)
+                        {
+                        <tr role="row">
+                            <td>@prod.Order_No</td>
+                            <td>@prod.Product_Name</td>
+                            <td>@prod.Company_Name</td>
+                            <td>@prod.Order_Request_Quantity_string</td>
+                            <td>@prod.Order_Status</td>
+                            <td>@prod.Order_Request_Date_String</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

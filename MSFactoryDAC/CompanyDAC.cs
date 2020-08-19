@@ -52,7 +52,7 @@ namespace MSFactoryDAC
                 {
                     cmd.Connection = new SqlConnection(this.ConnectionString);
                     cmd.Connection.Open();
-                    cmd.CommandText = @"SELECT COMPANY_ID, COMPANY_NAME FROM TBL_COMPANY";
+                    cmd.CommandText = @"SELECT COMPANY_ID, COMPANY_NAME FROM TBL_COMPANY WHERE COMPANY_TYPE = 'COP'";
 
                     return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
                 }

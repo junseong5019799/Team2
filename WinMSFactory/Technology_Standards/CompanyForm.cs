@@ -124,20 +124,22 @@ namespace WinMSFactory
         {
             if (e.RowIndex < 0)
                 return;
-
-            CompanyVO company = new CompanyVO();
-            company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
-            company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
-            company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
-            company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
-
-
-            CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, true, company);
-
-            if (cpp.ShowDialog() == DialogResult.OK)
+            else
             {
-                dgvCompanyList.Columns.Clear();
-                CompanyForm_Load(null, null);
+                CompanyVO company = new CompanyVO();
+                company.company_id = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[1].Value);
+                company.company_name = dgvCompanyList.SelectedRows[0].Cells[2].Value.ToString();
+                company.company_type = dgvCompanyList.SelectedRows[0].Cells[3].Value.ToString();
+                company.company_seq = Convert.ToInt32(dgvCompanyList.SelectedRows[0].Cells[4].Value);
+
+
+                CompanyProductPopupForm cpp = new CompanyProductPopupForm(emp.Employee_name, true, company);
+
+                if (cpp.ShowDialog() == DialogResult.OK)
+                {
+                    dgvCompanyList.Columns.Clear();
+                    CompanyForm_Load(null, null);
+                }
             }
 
 

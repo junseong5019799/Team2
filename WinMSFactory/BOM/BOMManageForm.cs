@@ -98,6 +98,9 @@ namespace WinMSFactory
 
         private void DataSourceBinding()
         {
+            // 두번째 필요 수량은 변경 가능하도록 설정
+            
+
             if (BomEnrollCheck == true && IsBomCopy == false)
             {
                 CheckedList = bomSv.BOMEnrolledMaterial(ProductID);
@@ -217,11 +220,6 @@ namespace WinMSFactory
                 MessageBox.Show("제품명을 추가 해주세요");
                 return;
             }
-            if (dgv2.Rows.Count < 2)
-            {
-                MessageBox.Show("재료를 2개 이상 추가해주세요");
-                return;
-            }
             // 재료 수량이 입력이 안된 경우 중단 시킴
             foreach(DataGridViewRow row in dgv2.Rows)
             { 
@@ -296,7 +294,6 @@ namespace WinMSFactory
                     Bom_Status = Bom_Status
                     // BOM 사용 여부 넣어줄 것
                 };
-
                 InsertBOMLists.Add(vo);
 
                 
@@ -395,11 +392,7 @@ namespace WinMSFactory
             // 첫번째 그리드 뷰에 대한 모든 체크박스 없앰
             foreach (DataGridViewRow row in dgv.Rows)
                 dgv[0, row.Index].Value = null;
-
-            // 두번째 필요 수량은 변경 가능하도록 설정
-            foreach (DataGridViewRow row in dgv2.Rows)
-                dgv2[5, row.Index].ReadOnly = false;
-            
+               
         }
 
 
@@ -433,7 +426,11 @@ namespace WinMSFactory
                 dgv2[0, row.Index].Value = null;
         }
 
-        
+        private void dgv2_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgv2.Rows)
+                dgv2[5, row.Index].ReadOnly = false;
+        }
     }
     
 }

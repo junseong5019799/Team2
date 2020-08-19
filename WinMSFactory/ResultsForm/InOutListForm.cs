@@ -60,36 +60,33 @@ namespace WinMSFactory
                 string toDate = fromToDateControl1.To.ToShortDateString();
 
                 pList = service.GetInOutByDate(fromDate, toDate);
+                string searchGubun = string.Empty;
                 int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
-                
-                if (cboGubun.SelectedIndex == 0)
-                {                    
-                    dgv.DataSource = orderService.GetInOutList();                    
-                }
-                else if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
+
+                if (cboGubun.SelectedValue == null)
+                    searchGubun = "";
+                else
+                    searchGubun = cboGubun.SelectedItem.ToString();
+
+                if (cboProduct.SelectedValue == null)
+                    searchProduct = 0;
+                else
+                    searchProduct = cboProduct.SelectedItem.ToInt();
+
+                if (!string.IsNullOrEmpty(searchGubun))
                 {
                     pList = (from item in pList
-                             where item.gubun.Contains(cboGubun.SelectedItem.ToString())
-                             select item).ToList();
+                             where item.gubun.Contains(searchGubun)
+                             select item).ToList();                                        
                 }
 
-                if (cboProduct.SelectedIndex == 0)
-                {
-                    dgv.DataSource = orderService.GetInOutList();
-                }
-                else if(cboProduct.SelectedIndex != 0 )
-                {
-                    dgv.DataSource = orderService.GetInOutListByGubun(cboGubun.SelectedItem.ToString());
-                    return;
-                }
-                else if (!string.IsNullOrEmpty(searchProduct.ToString()))
+                if (searchProduct > 0)  //0보다 크면 검색 
                 {
                     pList = (from item in pList
-                             where item.product_id == searchProduct
-                             where item.gubun == "입고"                              
+                             where item.product_id == searchProduct                             
                              select item).ToList();
                 }
-                dgv.DataSource = null;
+                
                 dgv.DataSource = pList;
             }
         }

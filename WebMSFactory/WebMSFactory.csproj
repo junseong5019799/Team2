@@ -1770,12 +1770,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AllProductsController.cs" />
     <Compile Include="Controllers\MSFactoryController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UnitPriceController.cs" />
+    <Compile Include="DAC\OrderListDAC.cs" />
     <Compile Include="DAC\PriceProductDAC.cs" />
     <Compile Include="DAC\ProductDAC.cs" />
     <Compile Include="Html\PagingHelper.cs" />
     <Compile Include="Models\ChartModel.cs" />
+    <Compile Include="Models\OrderListViewModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\PriceListViewModel.cs" />
     <Compile Include="Models\ProductList.cs" />
@@ -1950,6 +1954,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Sales\Chart.cshtml" />
+    <Content Include="Views\Order\OrderList.cshtml" />
+    <Content Include="Views\Order\ReleaseList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
