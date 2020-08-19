@@ -24,7 +24,7 @@ namespace WinMSFactory
 				this.employeeVO = employeeVO;
 				this.work_order_no = work_order_no;
 				this.Text = work_order_no > 0 ? "작업 지시 수정" : "작업 지시 등록";
-				cboFactory.ComboBinding(new FactoryService().GetFactories(this.GetEmployee().GetCorporationID()), "FACTORY_NAME", "FACTORY_ID", "선택", 0);
+				cboFactory.ComboBinding(new FactoryService().GetFactories(this.employeeVO.GetCorporationID()), "FACTORY_NAME", "FACTORY_ID", "선택", 0);
 				cboLine.ComboBinding("선택", 0);
 				cboProcess.ComboBinding("선택", 0);
 				cboProduct.ComboBinding(new ProductService().GetProducts(), "PRODUCT_NAME", "PRODUCT_ID", "선택", 0);
