@@ -41,6 +41,7 @@ namespace WinMSFactory
             else if (IsUpdate == true)
             {
                 cboCorporationName.Enabled = false;
+                cboFactoryName.Enabled = false;
 
                 if (vo.process_use == "Y")
                 {

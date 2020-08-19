@@ -225,7 +225,7 @@ namespace MSFactoryDAC
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
-                    string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
+                    string sql = @"SELECT c.corporation_name, f.[factory_name], l.line_name, [process_name], [process_id], S.storage_name, [process_note1], [process_note2], [process_seq], [process_use], p.[first_regist_time], p.[first_regist_employee], p.[final_regist_time], p.[final_regist_employee]
                                      from  [dbo].[TBL_PROCESS] p, [dbo].[TBL_LINE] l, [dbo].[TBL_FACTORY] f, [dbo].[TBL_CORPORATION] c,   [dbo].[TBL_STORAGE] s
                                     where p.line_id = l.line_id
                                       and p.storage_id = s.storage_id   

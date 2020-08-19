@@ -39,8 +39,9 @@ namespace WinMSFactory
 
         private void ProcessWorkerPopupForm_Load(object sender, EventArgs e)
         {
+           
             cboCorporationName.ComboBinding(service.CorporationCombm(), "corporation_id", "corporation_name", "선택", 0);
-            cboFactoryName.ComboBinding(service.FactoryCombo(), "factory_id", "factory_name", "선택", 0); 
+            cboFactoryName.ComboBinding(service.FactoryCombo(), "factory_id", "factory_name", "선택", 0);
             cboLineName.ComboBinding(service.LineCombo(), "line_id", "line_name", "선택", 0); 
             cboProcessName.ComboBinding(service.ProcessCombo(), "process_id", "process_name", "선택", 0);
             cboWorkerName.ComboBinding(service.EmployeeCombo(), "Employee_id", "Employee_name", "선택", "");
@@ -55,13 +56,16 @@ namespace WinMSFactory
                 }
                 else
                 {
+                    cboCorporationName.Enabled = false;
                     cboFactoryName.SelectedIndex = cboFactoryName.FindString(vo.factory_name);
+                    cboFactoryName.Enabled = false;
                     if (cboFactoryName.SelectedIndex < 0)
                     {
                         MessageBox.Show("해당공장을 사용 할 수 없습니다!"); //사용 여부:Y
                         cboFactoryName.SelectedIndex = 0;
                     }
                     cboLineName.SelectedIndex = cboLineName.FindString(vo.line_name);
+                    cboLineName.Enabled = false;
                     if (cboLineName.SelectedIndex < 0)
                     {
                         MessageBox.Show("해당라인을 사용 할 수 없습니다!");
