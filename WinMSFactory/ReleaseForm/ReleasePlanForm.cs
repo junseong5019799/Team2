@@ -222,6 +222,8 @@ namespace WinMSFactory
             dgv2.ClearSelection();
         }
 
+
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
@@ -236,6 +238,12 @@ namespace WinMSFactory
             }
         }
 
+
+        /// <summary>
+        /// 출고주문 저장하기 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             ReleaseVO release = new ReleaseVO();

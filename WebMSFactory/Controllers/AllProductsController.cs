@@ -15,9 +15,9 @@ namespace WebMSFactory.Controllers
         ProductDAC dac = new ProductDAC();
 
         [HttpGet]
-        public ActionResult Search(string Category, string ProductName, int page = 1)
+        public ActionResult Search(string Category = "전체", string ProductName = "", int page = 1)
         {
-            int pageSize = 10;
+            int pageSize = 10000;
             
             DataTable dt = dac.SelectAllProducts(Category, page, pageSize);
 
