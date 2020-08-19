@@ -306,7 +306,7 @@ namespace WinMSFactory
             {
                 High_Product_ID = ProductID,
                 Bom_Enroll_Date = DateTime.Now,
-                Employee_ID = employee.Employee_id,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
+                Employee_ID = employee.Employee_name,                                 // 직원명, ID는 회원가입이 만들어진 후 꼭 수정할 것
                 Bom_Log_Status = Status_String,             // BOM 입력
                 Bom_Exists = 'Y'
             };

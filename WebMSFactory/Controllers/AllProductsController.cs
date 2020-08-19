@@ -13,7 +13,7 @@ namespace WebMSFactory.Controllers
     public class AllProductsController : Controller
     {
         ProductDAC dac = new ProductDAC();
-
+        List<ProductList> NullList = new List<ProductList>();
         [HttpGet]
         public ActionResult Search(string Category = "전체", string ProductName = "", int page = 1)
         {
@@ -50,20 +50,20 @@ namespace WebMSFactory.Controllers
 
             model.ProductDetail = dac.DetailProduct(ProductID);
 
-            List<ProductList> list = new List<ProductList>();
+            List<ProductList> ForwardBom = dac.ProductBOM(true, ProductID);
+            List<ProductList> ReverseBom = dac.ProductBOM(false, ProductID);
 
-            if (dac.ProductBOM(true, ProductID) != null)
-                model.ForwardBom = dac.ProductBOM(true, ProductID);
+            if (ForwardBom != null)
+                model.ForwardBom = ForwardBom;
             else
-                model.ForwardBom = list;
+                model.ForwardBom = NullList;
 
-            if (dac.ProductBOM(false, ProductID) != null)
-                model.ReverseBom = dac.ProductBOM(false, ProductID);
+            if (ReverseBom != null)
+                model.ReverseBom = ReverseBom;
             else
-                model.ReverseBom = list;
+                model.ReverseBom = NullList;
 
             return View(model);
         }
-
     }
 }

@@ -19,10 +19,9 @@ namespace WebMSFactory.Controllers
                               where sorted.Product_Name.Contains(ProductName)
                               select sorted).ToList();
 
-            OrderListViewModel Model = new OrderListViewModel
-            {
-                OrderLists = SortedList
-            };
+            OrderListViewModel Model = new OrderListViewModel();
+
+            Model.OrderLists = SortedList;
             
 
             return View(Model);

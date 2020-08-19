@@ -55,27 +55,6 @@ namespace WebMSFactory
             }
         }
 
-        //public List<ProductList> ForwardBom(int productID)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(this.connStr))
-        //    {
-        //        conn.Open();
-
-        //        string sql = "SP_BOM_FORWARD_SELECT";
-        //        using (SqlCommand cmd = new SqlCommand(sql, conn))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-
-        //            cmd.Parameters.AddWithValue("@P_SELECTED_VALUE", productID);;
-        //            if (SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader()) != null)
-        //                return SqlHelper.DataReaderMapToList<ProductList>(cmd.ExecuteReader());
-        //            else
-        //                return null;
-        //        }
-        //    }
-        //}
-
-
         public List<ProductList> ProductBOM(bool IsBOMForward, int productID)
         {
             string sql = string.Empty;
