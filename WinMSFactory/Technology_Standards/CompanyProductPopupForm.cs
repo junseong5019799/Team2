@@ -97,19 +97,18 @@ namespace WinMSFactory
             }
         }
 
-        private void btnProductAdd_Click(object sender, EventArgs e) //리스트박스에도 처음 값을 보여주고 싶다 지금은 cboCompany_Type.SelectedIndex = 0;
+        private void btnProductAdd_Click(object sender, EventArgs e)
         {
             if (listBoxProduct.SelectedItems.Count < 0)
             {
                 return;
             }
-            else //중복값안들어가게
+            else if (!listBoxProduct.Items.Contains(cboCompany_Product.SelectedValue.ToString() + "/" + cboCompany_Product.Text))
             {
-               
                 listBoxProduct.Items.Add(cboCompany_Product.SelectedValue.ToString() + "/" + cboCompany_Product.Text);
-
-
             }
+            else
+                MessageBox.Show("이미 있는 품목입니다.");
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
