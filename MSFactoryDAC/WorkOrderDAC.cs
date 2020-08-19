@@ -87,6 +87,29 @@ namespace MSFactoryDAC
 			return SqlExecutionJ<WorkOrderVO>(sql, new WorkOrderVO { Work_order_no = work_order_no })?[0];
 		}
 
+		public DataTable GetToDoes()
+		{
+			string sql = $@"SELECT RD.RELEASE_NO, RD.RELEASE_SEQ, RD.PRODUCT_ID, P.PRODUCT_NAME, RD.ORDER_REQUEST_QUANTITY - ISNULL(WO.QTY, 0) ORDER_REQUEST_QUANTITY, RD.RELEASE_PLAN_DATE
+									, (SELECT CASE WHEN MIN(SUM_QTY / B2.BOM_USE_QUANTITY) < RD.ORDER_REQUEST_QUANTITY - ISNULL(WO.QTY, 0) THEN MIN(SUM_QTY / B2.BOM_SEQ) ELSE RD.ORDER_REQUEST_QUANTITY - ISNULL(WO.QTY, 0) END
+									   FROM TBL_BOM B2
+											INNER JOIN (SELECT ISNULL(SUM(S2.STOCK_QUANTITY), 0) SUM_QTY, B.HIGH_PRODUCT_ID, B.LOW_PRODUCT_ID
+														FROM TBL_STOCK S2 
+															RIGHT OUTER JOIN TBL_BOM B ON S2.PRODUCT_ID = B.LOW_PRODUCT_ID
+														WHERE B.HIGH_PRODUCT_ID = RD.PRODUCT_ID
+														GROUP BY B.HIGH_PRODUCT_ID, B.LOW_PRODUCT_ID) T ON B2.HIGH_PRODUCT_ID = T.HIGH_PRODUCT_ID AND B2.LOW_PRODUCT_ID = T.LOW_PRODUCT_ID) MAX_QTY
+							FROM TBL_RELEASE_DETAIL RD
+								INNER JOIN TBL_PRODUCT P ON RD.PRODUCT_ID = P.PRODUCT_ID
+								LEFT OUTER JOIN TBL_WORK_ORDER WO ON RD.RELEASE_NO = WO.RELEASE_NO AND RD.RELEASE_SEQ = WO.RELEASE_SEQ
+							WHERE RD.RELEASE_STATUS = '출고예정'
+							ORDER BY RD.RELEASE_PLAN_DATE, RD.RELEASE_NO, RD.RELEASE_SEQ";
+			DataTable dt = new DataTable();
+			SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+
+			da.Fill(dt);
+
+			return dt;
+		}
+
 		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
 			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Work_date", 

@@ -121,7 +121,7 @@ namespace MSFactoryDAC
 
 		public bool DeleteProgramAth(int ath_grp_id, string prog_id)
 		{
-			string sql = "DELETE FROM TBL_PROGRAM WHERE ATH_GRP_ID = @ATH_GRP_ID AND PROG_ID IN (SELECT * FROM  SPLITSTRING(@PROG_ID, '@'))";
+			string sql = "DELETE FROM TBL_PROGRAM_ATH WHERE ATH_GRP_ID = @ATH_GRP_ID AND PROG_ID IN (SELECT * FROM  SPLITSTRING(@PROG_ID, '@'))";
 			SqlCommand cmd = new SqlCommand(sql, conn);
 			cmd.Parameters.AddWithValue("@ATH_GRP_ID", ath_grp_id);
 			cmd.Parameters.AddWithValue("@PROG_ID", prog_id);

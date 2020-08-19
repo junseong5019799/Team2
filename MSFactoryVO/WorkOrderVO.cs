@@ -13,6 +13,9 @@ namespace MSFactoryVO
 		public string Employee_name { get; set; }
 		public int Product_id { get; set; }
 		public string Product_name { get; set; }
+		public int Release_no { get; set; }
+		public int Release_seq { get; set; }
+		public int Qty { get; set; }
 		public DateTime Work_order_date { get; set; }
 		public DateTime Work_date { get; set; }
 		public int Work_order_quantity { get; set; }

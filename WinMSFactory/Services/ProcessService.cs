@@ -69,5 +69,10 @@ namespace WinMSFactory.Services
         {
             return dac.SaveProcess(vo);
         }
+
+        public DataTable GetProcesses(int line_id)
+        {
+            return dac.GetProcesses(line_id);
+        }
     }
 }

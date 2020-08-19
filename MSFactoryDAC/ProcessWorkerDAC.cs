@@ -378,6 +378,43 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public DataTable GetProcessWorkers(int process_id)
+        {
+            try
+            {
+                string sql = @"SELECT P.PROCESS_ID, PW.WORKER_ID, E.EMPLOYEE_NAME
+                               FROM TBL_PROCESS_WORKER PW
+	                               INNER JOIN TBL_EMPLOYEE E
+		                               ON PW.EMPLOYEE_ID = E.EMPLOYEE_ID
+	                               INNER JOIN TBL_PROCESS P				
+		                               ON PW.PROCESS_ID = P.PROCESS_ID
+	                               INNER JOIN TBL_LINE L
+		                               ON P.LINE_ID = L.LINE_ID								
+	                               INNER JOIN TBL_FACTORY F
+		                               ON L.FACTORY_ID = F.FACTORY_ID
+	                               INNER JOIN TBL_CORPORATION C
+		                               ON F.CORPORATION_ID = C.CORPORATION_ID
+                               WHERE P.PROCESS_ID = @PROCESS_ID
+							   AND E.EMPLOYEE_USE = 'Y'
+                               AND P.PROCESS_USE = 'Y'
+                               AND L.LINE_USE = 'Y'
+                               AND F.FACTORY_USE = 'Y'
+                               AND C.CORPORATION_USE = 'Y'
+                               ORDER BY WORKER_ID ASC";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@PROCESS_ID", process_id);
+
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
 

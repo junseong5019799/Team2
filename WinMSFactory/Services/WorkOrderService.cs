@@ -27,6 +27,14 @@ namespace WinMSFactory.Services
 			}
 		}
 
+		public DataTable GetToDoes()
+		{
+			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
+			{
+				return workOrderDAC.GetToDoes();
+			}
+		}
+
 		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
 			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
