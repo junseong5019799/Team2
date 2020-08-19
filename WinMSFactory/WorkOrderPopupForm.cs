@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WinMSFactory.Services;
@@ -15,6 +16,7 @@ namespace WinMSFactory
 		EmployeeVO employeeVO;
 		int work_order_no;
 		WorkOrderService workOrderService = new WorkOrderService();
+		DataTable toDoesDt;
 
 		public WorkOrderPopupForm(EmployeeVO employeeVO, int work_order_no = 0)
 		{
@@ -47,6 +49,24 @@ namespace WinMSFactory
 			{
 				MessageBox.Show(err.Message);
 			}
+		}
+
+		private void WorkOrderPopupForm_Load(object sender, EventArgs e)
+		{
+			dataGridViewControl1.headerCheckBox.Visible = false;
+			dataGridViewControl1.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+			dataGridViewControl1.ColumnHeadersHeight = 30;
+
+			dataGridViewControl1.AddNewColumns("주문번호", "RELEASE_NO", 80, false);
+			dataGridViewControl1.AddNewColumns("순서", "RELEASE_SEQ", 70, false);
+			dataGridViewControl1.AddNewColumns("품목", "PRODUCT_ID", 80, false);
+			dataGridViewControl1.AddNewColumns("품명", "PRODUCT_NAME", 120, true);
+			dataGridViewControl1.AddNewColumns("발주 수량", "ORDER_REQUEST_QUANTITY", 80, true);
+			dataGridViewControl1.AddNewColumns("최대 생산량", "MAX_QTY", 100, true);
+			dataGridViewControl1.AddNewColumns("주문일", "RELEASE_PLAN_DATE", 100, true);
+
+			toDoesDt = workOrderService.GetToDoes();
+			dataGridViewControl1.DataSource = toDoesDt;
 		}
 
 		private void btnConfirm_Click(object sender, EventArgs e)
@@ -120,17 +140,58 @@ namespace WinMSFactory
 
 		private void cboLine_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			int line_id = cboLine.SelectedValue.ToInt();
 
+			if (line_id > 0)
+				cboProcess.ComboBinding(new ProcessService().GetProcesses(line_id), "PROCESS_NAME", "PROCESS_ID", "선택", 0);
+			else
+				cboProcess.ComboBinding("선택", 0);
 		}
 
 		private void cboProcess_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			int process_id = cboProcess.SelectedValue.ToInt();
 
+			if (process_id > 0)
+				cboWorker.ComboBinding(new ProcessWorkerService().GetProcessWorkers(process_id), "EMPLOYEE_NAME", "WORKER_ID", "선택", 0);
+			else
+				cboWorker.ComboBinding("선택", 0);
 		}
 
 		private DateTime GetDateTime(string time)
 		{
 			return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, time.Substring(0, time.LastIndexOf(":") - 1).ToInt(), time.Substring(time.LastIndexOf(":") + 1).ToInt(), 0);
+		}
+
+		private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			DGVChkClear();
+			int product_id = cboProduct.SelectedValue.ToInt();
+			DataTable dt = toDoesDt;
+
+			if (product_id > 0)
+			{
+				var v = (from item in toDoesDt.AsEnumerable()
+						 where item["PRODUCT_ID"].ToInt() == product_id
+						 select item);
+
+				dt = v.Count() > 0 ? v.CopyToDataTable() : null;
+			}
+			
+			dataGridViewControl1.DataSource = dt;
+		}
+
+		private void DGVChkClear()
+		{
+			foreach (DataGridViewRow dgvr in dataGridViewControl1.Rows)
+			{
+				((DataGridViewCheckBoxCell)dgvr.Cells["chk"]).Value = false;
+			}
+		}
+
+		private void dataGridViewControl1_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DGVChkClear();
 		}
 	}
 }

@@ -152,10 +152,10 @@ namespace WinMSFactory
 		{
 			int line_id = cboLine.SelectedValue.ToInt();
 
-			//if (line_id > 0)
-			//	cboProcess.ComboBinding(new ProcessService().GetProcess(line_id), "LINE_NAME", "LINE_ID", "전체", 0);
-			//else
-				cboProcess.ComboBinding("전체", 0);
+			if (line_id > 0)
+				cboProcess.ComboBinding(new ProcessService().GetProcesses(line_id), "PROCESS_NAME", "PROCESS_ID", "선택", 0);
+			else
+				cboProcess.ComboBinding("선택", 0);
 		}
 
 		private void dataGridViewControl1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

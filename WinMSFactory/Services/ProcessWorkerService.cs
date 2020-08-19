@@ -71,5 +71,10 @@ namespace WinMSFactory.Services
         {
             return dac.EmployeeCombo(corporation_id);
         }
+
+        public DataTable GetProcessWorkers(int process_id)
+        {
+            return dac.GetProcessWorkers(process_id);
+        }
     }
 }

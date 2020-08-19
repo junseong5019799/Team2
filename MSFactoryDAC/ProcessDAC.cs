@@ -350,5 +350,36 @@ namespace MSFactoryDAC
             }
         }
 
+        public DataTable GetProcesses(int line_id)
+        {
+            try
+            {
+                string sql = @"SELECT L.LINE_ID, P.PROCESS_ID, P.PROCESS_NAME
+                               FROM TBL_PROCESS	P				
+	                               INNER JOIN TBL_LINE L
+		                               ON P.LINE_ID = L.LINE_ID								
+	                               INNER JOIN TBL_FACTORY F
+		                               ON L.FACTORY_ID = F.FACTORY_ID
+	                               INNER JOIN TBL_CORPORATION C
+		                               ON F.CORPORATION_ID = C.CORPORATION_ID
+                               WHERE L.LINE_ID = @LINE_ID
+                               AND P.PROCESS_USE = 'Y'
+                               AND L.LINE_USE = 'Y'
+                               AND F.FACTORY_USE = 'Y'
+                               AND C.CORPORATION_USE = 'Y'
+                               ORDER BY P.PROCESS_SEQ ASC";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@LINE_ID", line_id);
+
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
