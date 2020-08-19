@@ -99,14 +99,16 @@ namespace WinMSFactory
 
         private void btnProductAdd_Click(object sender, EventArgs e) //리스트박스에도 처음 값을 보여주고 싶다 지금은 cboCompany_Type.SelectedIndex = 0;
         {
-            if (listBoxProduct.SelectedIndex < 0)
+            if (listBoxProduct.SelectedItems.Count < 0)
             {
-                MessageBox.Show("추가품목이 없습니다.");
                 return;
             }
-            else
+            else //중복값안들어가게
             {
+               
                 listBoxProduct.Items.Add(cboCompany_Product.SelectedValue.ToString() + "/" + cboCompany_Product.Text);
+
+
             }
         }
 
