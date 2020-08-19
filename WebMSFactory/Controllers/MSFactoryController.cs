@@ -14,6 +14,7 @@ namespace WebMSFactory
 
         public ActionResult Index()
         {
+            Response.Redirect("/AllProducts/Search");
             return View();
         }
 
