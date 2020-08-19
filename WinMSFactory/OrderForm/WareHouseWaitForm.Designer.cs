@@ -45,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboCompany = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnIn = new WinMSFactory.ButtonControl();
             this.dgvDetail = new WinMSFactory.DataGridViewControl();
@@ -87,9 +86,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.None;
-            this.panel2.Location = new System.Drawing.Point(0, 81);
-            this.panel2.Size = new System.Drawing.Size(1534, 331);
+            this.panel2.Location = new System.Drawing.Point(0, 80);
+            this.panel2.Size = new System.Drawing.Size(1364, 391);
+            this.panel2.Controls.SetChildIndex(this.dgv, 0);
             // 
             // panel3
             // 
@@ -143,7 +142,7 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 331);
+            this.dgv.Size = new System.Drawing.Size(1364, 382);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -158,13 +157,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 17, 18, 1, 43, 455);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 11, 59, 39, 979);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 18, 18, 1, 43, 455);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 11, 59, 39, 979);
             // 
             // label1
             // 
@@ -192,19 +191,11 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "납품업체";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 416);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 16);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "입고처리";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 62);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(4, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 16);
             this.label4.TabIndex = 39;
@@ -212,12 +203,12 @@
             // 
             // btnIn
             // 
-            this.btnIn.BackColor = System.Drawing.Color.White;
+            this.btnIn.BackColor = System.Drawing.Color.LightGray;
             this.btnIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIn.ForeColor = System.Drawing.Color.Black;
             this.btnIn.Image = ((System.Drawing.Image)(resources.GetObject("btnIn.Image")));
             this.btnIn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnIn.Location = new System.Drawing.Point(1043, 26);
+            this.btnIn.Location = new System.Drawing.Point(1041, 30);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(98, 24);
             this.btnIn.TabIndex = 41;
@@ -300,16 +291,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 761);
-            this.Controls.Add(this.label3);
             this.Name = "WareHouseWaitForm";
             this.Text = "입고 대기";
             this.Load += new System.EventHandler(this.WareHouseWaitForm_Load);
-            this.Controls.SetChildIndex(this.panel3, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.panel2, 0);
-            this.Controls.SetChildIndex(this.Guidlabel2, 0);
-            this.Controls.SetChildIndex(this.Guidlabel3, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -331,7 +315,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboCompany;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private ButtonControl btnIn;
         private DataGridViewControl dgvDetail;
         private System.Windows.Forms.ComboBox cboGubun;
