@@ -22,9 +22,9 @@ namespace WebMSFactory.Controllers
 
             sb.Append("[");
             int j = 0;
+            // 1월부터 12월까지 표시
             for(int i = 1; i<=12; i++)
             {
-                
                 if(lists.Find(p => p.Mon == i) == null) 
                     sb.Append(0 + ",");
 
@@ -35,7 +35,9 @@ namespace WebMSFactory.Controllers
                 }
                     
             }
-            string Result = sb.ToString().Substring(0,sb.ToString().LastIndexOf(',')) + "]";
+            int lastindex = sb.ToString().LastIndexOf(',');
+
+            string Result = sb.ToString().Substring(0,lastindex) + "]";
 
             ChartModel model = new ChartModel
             {
@@ -44,6 +46,7 @@ namespace WebMSFactory.Controllers
                 Year = Year
             };
 
+            // ex) [0,0,0,1,3,4,5,8,9,1,3,7] 방식으로 나옴
             return View(model);
         }
     }

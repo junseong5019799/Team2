@@ -296,7 +296,6 @@ namespace WinMSFactory
                     Bom_Status = Bom_Status
                     // BOM 사용 여부 넣어줄 것
                 };
-
                 InsertBOMLists.Add(vo);
 
                 
