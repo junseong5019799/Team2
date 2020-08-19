@@ -17,9 +17,20 @@ namespace WinMSFactoryPOP
 			InitializeComponent();
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void pOPToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			PopForm frm = new PopForm();
+			frm.WindowState = FormWindowState.Maximized;
+			frm.MdiParent = this;
+			frm.Show();
+		}
 
+		private void 작업지시선택ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WorkOrderPopupForm frm = new WorkOrderPopupForm();
+			frm.WindowState = FormWindowState.Maximized;
+			frm.MdiParent = this;
+			frm.Show();
 		}
 	}
 }

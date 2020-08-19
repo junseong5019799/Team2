@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMSFactory", "WebMSFactor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMSFactoryPOP", "WinMSFactoryPOP\WinMSFactoryPOP.csproj", "{CDE26A76-9776-4D49-9078-EFB3E92B1171}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WInServerTask", "WInServerTask\WInServerTask.csproj", "{342B5CFA-124B-4CA2-9381-21B8D16F2548}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDE26A76-9776-4D49-9078-EFB3E92B1171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342B5CFA-124B-4CA2-9381-21B8D16F2548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342B5CFA-124B-4CA2-9381-21B8D16F2548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342B5CFA-124B-4CA2-9381-21B8D16F2548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342B5CFA-124B-4CA2-9381-21B8D16F2548}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

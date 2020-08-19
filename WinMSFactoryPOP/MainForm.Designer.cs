@@ -28,21 +28,60 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.pOPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.작업지시선택ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pOPToolStripMenuItem,
+            this.작업지시선택ToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(1234, 33);
+			this.menuStrip1.TabIndex = 0;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// pOPToolStripMenuItem
+			// 
+			this.pOPToolStripMenuItem.Name = "pOPToolStripMenuItem";
+			this.pOPToolStripMenuItem.Size = new System.Drawing.Size(61, 29);
+			this.pOPToolStripMenuItem.Text = "POP";
+			this.pOPToolStripMenuItem.Click += new System.EventHandler(this.pOPToolStripMenuItem_Click);
+			// 
+			// 작업지시선택ToolStripMenuItem
+			// 
+			this.작업지시선택ToolStripMenuItem.Name = "작업지시선택ToolStripMenuItem";
+			this.작업지시선택ToolStripMenuItem.Size = new System.Drawing.Size(152, 29);
+			this.작업지시선택ToolStripMenuItem.Text = "작업 지시 선택";
+			this.작업지시선택ToolStripMenuItem.Click += new System.EventHandler(this.작업지시선택ToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 729);
+			this.ClientSize = new System.Drawing.Size(1234, 749);
+			this.Controls.Add(this.menuStrip1);
+			this.IsMdiContainer = true;
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MainForm";
 			this.Text = "메인";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
+
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem pOPToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 작업지시선택ToolStripMenuItem;
 	}
 }
 
