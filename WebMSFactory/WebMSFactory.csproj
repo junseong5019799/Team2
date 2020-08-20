@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Encrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MSFactoryDAC\Lib\Encrypt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -1949,7 +1953,6 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\_viewstart.cshtml" />
     <Content Include="Views\MSFactory\Index.cshtml" />
-    <Content Include="Views\MSFactory\Login.cshtml" />
     <Content Include="Views\AllProducts\Search.cshtml" />
     <Content Include="Views\UnitPrice\ProductPrice.cshtml" />
     <Content Include="Views\UnitPrice\SellPrice.cshtml" />
@@ -1977,6 +1980,10 @@
     <ProjectReference Include="..\MSFactoryVO\MSFactoryVO.csproj">
       <Project>{d79c3363-d6eb-4be8-9f70-dab5a07f0477}</Project>
       <Name>MSFactoryVO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinMSFactory\WinMSFactory.csproj">
+      <Project>{BC51A06A-F34A-4FEC-BC60-D776A3FEF1D9}</Project>
+      <Name>WinMSFactory</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

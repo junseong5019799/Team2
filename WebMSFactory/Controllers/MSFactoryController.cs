@@ -17,10 +17,10 @@ namespace WebMSFactory
             Response.Redirect("/AllProducts/Search");
             return View();
         }
-
         public ActionResult Login()
         {
-            return View();
+            return View(new UserInfo());
         }
+        
     }
 }
