@@ -42,6 +42,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.fromToDate);
             this.panel2.Margin = new System.Windows.Forms.Padding(3);
+            this.panel2.Size = new System.Drawing.Size(1326, 80);
             this.panel2.Controls.SetChildIndex(this.fromToDate, 0);
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.GuidLabel1, 0);
@@ -79,7 +80,7 @@
             this.dgv.RowHeadersWidth = 45;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 681);
+            this.dgv.Size = new System.Drawing.Size(1326, 610);
             this.dgv.TabIndex = 5;
             // 
             // label1
@@ -93,19 +94,19 @@
             // 
             // fromToDate
             // 
-            this.fromToDate.From = new System.DateTime(2020, 8, 13, 0, 39, 13, 1);
+            this.fromToDate.From = new System.DateTime(2020, 8, 19, 9, 34, 39, 219);
             this.fromToDate.Location = new System.Drawing.Point(240, 29);
             this.fromToDate.Name = "fromToDate";
             this.fromToDate.Size = new System.Drawing.Size(202, 30);
             this.fromToDate.TabIndex = 5;
-            this.fromToDate.To = new System.DateTime(2020, 8, 14, 0, 39, 13, 1);
+            this.fromToDate.To = new System.DateTime(2020, 8, 20, 9, 34, 39, 219);
             // 
             // BOMLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1534, 761);
+            this.ClientSize = new System.Drawing.Size(1326, 690);
             this.Controls.Add(this.dgv);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "BOMLogForm";

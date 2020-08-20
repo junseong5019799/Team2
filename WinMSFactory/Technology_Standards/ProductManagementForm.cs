@@ -258,10 +258,7 @@ namespace WinMSFactory
                 else
                 {
                     foreach (int ProductNum in CheckList)
-                    {
                         ProductDelete(ProductNum);
-                    }
-
                 }
 
                 MessageBox.Show("삭제가 완료되었습니다.");
@@ -377,14 +374,14 @@ namespace WinMSFactory
         private void Readed_Completed(object sender, ReadEventArgs e)
         {
             int readNum; // TryParse의 out에 이용
-            char readChar;
+            char readChar; // TryParse의 out에 이용
+
             ((MainForm)this.MdiParent).ClearStrs();
 
             e.ReadMsg = e.ReadMsg.Replace("\r", "").Replace("\n", "");
 
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
-
                 if(e.ReadMsg.Length != 5)
                 {
                     MessageBox.Show("잘못된 바코드를 입력하셨습니다.");
