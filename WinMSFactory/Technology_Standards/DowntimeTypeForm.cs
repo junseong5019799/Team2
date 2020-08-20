@@ -26,15 +26,16 @@ namespace WinMSFactory
 
         private void DowntimeTyreForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgvDowntimeType.IsAllCheckColumnHeader = true;
 
-            dgvDowntimeType.AddNewColumns("비가동코드", "downtime_type_id", 100, true);
+            dgvDowntimeType.AddNewColumns("비가동코드", "downtime_type_id", 100, true, true, false, RightAlign);
             dgvDowntimeType.AddNewColumns("비가동 명", "downtime_type_name", 100, true);
             dgvDowntimeType.AddNewBtnCol("시간계산여부", "", new Padding(1, 1, 1, 1), false); // 3 // 버튼 부분은 false
             dgvDowntimeType.AddNewColumns("시간계산여부", "downtime_type_calculation", 100, true); //4
-            dgvDowntimeType.AddNewColumns("비가동순번", "downtime_type_seq", 100, true);
+            dgvDowntimeType.AddNewColumns("비가동순번", "downtime_type_seq", 100, true, true, false, RightAlign);
             dgvDowntimeType.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 6 버튼 // 버튼 부분은 false
-            dgvDowntimeType.AddNewColumns("비가동사용여부", "downtime_type_use", 100, true); //7
+            dgvDowntimeType.AddNewColumns("비가동사용여부", "downtime_type_use", 110, true); //7
             dgvDowntimeType.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvDowntimeType.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgvDowntimeType.AddNewColumns("최종등록시각", "final_regist_time", 100, true);

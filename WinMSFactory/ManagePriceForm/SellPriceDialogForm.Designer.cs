@@ -53,13 +53,17 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.BackColor = System.Drawing.Color.LightBlue;
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(654, 2);
+            this.btnConfirm.FlatAppearance.BorderSize = 0;
+            this.btnConfirm.Location = new System.Drawing.Point(654, 3);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.LightGray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(772, 2);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

@@ -26,11 +26,13 @@ namespace WinMSFactory
 
         private void CorporationForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+
             dgvCorporationlist.IsAllCheckColumnHeader = true;
 
-            dgvCorporationlist.AddNewColumns("법인코드", "corporation_id", 100, true);
+            dgvCorporationlist.AddNewColumns("법인코드", "corporation_id", 100, true, true, false, RightAlign);
             dgvCorporationlist.AddNewColumns("법인명", "corporation_name", 100, true);
-            dgvCorporationlist.AddNewColumns("법인순번", "corporation_seq", 100, true);
+            dgvCorporationlist.AddNewColumns("법인순번", "corporation_seq", 100, true, true, false, RightAlign);
             dgvCorporationlist.AddNewColumns("비고1", "corporation_note1", 100, true);
             dgvCorporationlist.AddNewColumns("비고2", "corporation_note2", 100, true);
             dgvCorporationlist.AddNewColumns("법인 사용여부", "corporation_use", 100, true);

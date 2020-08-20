@@ -125,8 +125,8 @@ namespace WinMSFactory
             dgv.AddNewColumns("제품명", "Product_Name", 150, true);
             dgv.AddNewColumns("품명 스펙", "Product_Information", 200, true);
             dgv.AddNewColumns("기본 단위", "Product_Unit", 100, false);
-            dgv.AddNewColumns("비고 1", "Product_Note1", 100, true);
-            dgv.AddNewColumns("비고 2", "Product_Note2", 100, true);
+            dgv.AddNewColumns("비고 1", "Product_Note1", 180, true);
+            dgv.AddNewColumns("비고 2", "Product_Note2", 180, true);
 
             dgv2.AddNewColumns("번호", "Product_ID", 100, false);
             dgv2.AddNewColumns("제품 그룹명", "Product_Group_Name", 100, true);
@@ -310,6 +310,10 @@ namespace WinMSFactory
                 Bom_Log_Status = Status_String,             // BOM 입력
                 Bom_Exists = 'Y'
             };
+
+            if (IsBomCopy == true)
+                AddLog.Product_Name = txtProductName.Text;
+
             BomLogService service = new BomLogService();
 
             service.InsertLogs(AddLog);

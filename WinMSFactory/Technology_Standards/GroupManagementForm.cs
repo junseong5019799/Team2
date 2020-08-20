@@ -41,10 +41,12 @@ namespace WinMSFactory
 
         private void dgvColumns()
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+
             dgv.AddNewColumns("번호", "Product_Group_ID", 100, false); // identity
             dgv.AddNewColumns("제품그룹 명칭", "Product_Group_Name", 200, true);
             dgv.AddNewColumns("사용여부", "Product_Group_Use_String", 100, true);
-            dgv.AddNewColumns("순번", "Product_Group_Seq", 100, true);
+            dgv.AddNewColumns("순번", "Product_Group_Seq", 100, true, true, false, RightAlign);
             dgv.AddNewColumns("비고1", "Product_Group_Note1", 150, true);
             dgv.AddNewColumns("비고2", "Product_Group_Note2", 150, true);
             dgv.AddNewColumns("최초등록시각", "First_Regist_Time", 170, true);

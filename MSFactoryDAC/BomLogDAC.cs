@@ -109,24 +109,37 @@ namespace MSFactoryDAC
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    conn.Open();
 
-                    string sql = @"SP_BOM_LOG_INSERT";
+                    cmd.Connection = new SqlConnection(ConnectionString);
+                    cmd.Connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    if (AddLogs.High_Product_ID == 0) // BOM 복사를 진행하는 경우 HighProductID가 0이 됨
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = @"SELECT PRODUCT_ID FROM TBL_PRODUCT WHERE PRODUCT_NAME = @PRODUCT_NAME";
+                        cmd.Parameters.AddWithValue("@PRODUCT_NAME", AddLogs.Product_Name);
 
-                        cmd.Parameters.AddWithValue("@P_HIGH_PRODUCT_ID", AddLogs.High_Product_ID);
-                        cmd.Parameters.AddWithValue("@P_BOM_ENROLL_DATE", AddLogs.Bom_Enroll_Date);
-                        cmd.Parameters.AddWithValue("@P_EMPLOYEE_ID", AddLogs.Employee_ID);
-                        cmd.Parameters.AddWithValue("@P_BOM_LOG_STATUS_CODE", AddLogs.Bom_Log_Status);
-                        cmd.Parameters.AddWithValue("@P_BOM_EXISTS", AddLogs.Bom_Exists);
-                        cmd.ExecuteNonQuery();
+                        AddLogs.High_Product_ID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        cmd.Parameters.Clear();
                     }
+
+
+                    cmd.CommandText = @"SP_BOM_LOG_INSERT";
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@P_HIGH_PRODUCT_ID", AddLogs.High_Product_ID);
+                    cmd.Parameters.AddWithValue("@P_BOM_ENROLL_DATE", AddLogs.Bom_Enroll_Date);
+                    cmd.Parameters.AddWithValue("@P_EMPLOYEE_ID", AddLogs.Employee_ID);
+                    cmd.Parameters.AddWithValue("@P_BOM_LOG_STATUS_CODE", AddLogs.Bom_Log_Status);
+                    cmd.Parameters.AddWithValue("@P_BOM_EXISTS", AddLogs.Bom_Exists);
+                    cmd.ExecuteNonQuery();
                 }
+                
             }
             catch (Exception err)
             {
