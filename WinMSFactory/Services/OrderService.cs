@@ -77,9 +77,9 @@ namespace WinMSFactory.Services
         {
             return dac.GetWareHouseList();
         }
-        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate)
+        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate, int company_id)
         {
-            return dac.GetWareHouseByDate(fromDate, toDate);
+            return dac.GetWareHouseByDate(fromDate, toDate, company_id);
         }
         
         public DataTable GetWareHouseDetail(int order_no, int product_id)

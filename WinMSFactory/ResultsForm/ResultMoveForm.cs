@@ -28,20 +28,20 @@ namespace WinMSFactory
 
             dgv.AddNewColumns("창고", "Storage_Name", 150, false);
             dgv.AddNewColumns("품목", "Product_Id", 150, false);
-            dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
-            dgv.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true);
+            dgv.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv.AddNewColumns("품목명", "Product_Name", 200, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv.AddNewColumns("재고수량", "Stock_Quantity", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 
             dgv2.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
             dgv2.ColumnHeadersHeight = 30;
 
-            dgv2.AddNewColumns("재고번호", "Stock_No", 100, true);
+            dgv2.AddNewColumns("재고번호", "Stock_No", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
             dgv2.AddNewColumns("창고명", "Storage_id", 100, false);
-            dgv2.AddNewColumns("창고명", "Storage_Name", 100, true);                   // 다른 창고 물품들을 이동할 수도 있어서
-            dgv2.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true);
-            dgv2.AddNewColumns("품목명", "Product_Name", 200, true);
-            dgv2.AddNewColumns("재고수량", "Stock_Quantity", 100, true);          // dgv에서 입력한 이동 수량을 표시
-            dgv2.AddNewColumns("등록일", "Stock_Regist_Date", 150, true);
+            dgv2.AddNewColumns("창고명", "Storage_Name", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);                   // 다른 창고 물품들을 이동할 수도 있어서
+            dgv2.AddNewColumns("품목 그룹", "Product_Group_Name", 150, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("품목명", "Product_Name", 200, true, true, false, DataGridViewContentAlignment.MiddleLeft);
+            dgv2.AddNewColumns("재고수량", "Stock_Quantity", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);          // dgv에서 입력한 이동 수량을 표시
+            dgv2.AddNewColumns("등록일", "Stock_Regist_Date", 150, true, true, false, DataGridViewContentAlignment.MiddleLeft);
 
             cboStorage.ComboBinding(service.GetStorage(), "Storage_ID", "Storage_Name");
 
