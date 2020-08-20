@@ -29,21 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagementForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtProductSearch = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.rdoUnUse = new System.Windows.Forms.RadioButton();
-            this.rdoAll = new System.Windows.Forms.RadioButton();
-            this.rdoUse = new System.Windows.Forms.RadioButton();
-            this.cboProductType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -52,173 +48,98 @@
             this.btnBOMCopy = new WinMSFactory.ButtonControl();
             this.btnbarCopy = new WinMSFactory.ButtonControl();
             this.btnBarDelete = new WinMSFactory.ButtonControl();
+            this.cboProductType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtProductSearch = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.rdoUnUse = new System.Windows.Forms.RadioButton();
+            this.rdoAll = new System.Windows.Forms.RadioButton();
+            this.rdoUse = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnBOMCopy);
             this.panel1.Controls.Add(this.cboProductType);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txtProductSearch);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.btnBOMCopy);
             this.panel1.Controls.Add(this.btnbarCopy);
             this.panel1.Controls.Add(this.btnBarDelete);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Size = new System.Drawing.Size(1326, 80);
-            this.panel1.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBox2, 0);
-            this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.btnBarDelete, 0);
             this.panel1.Controls.SetChildIndex(this.btnbarCopy, 0);
+            this.panel1.Controls.SetChildIndex(this.btnBOMCopy, 0);
+            this.panel1.Controls.SetChildIndex(this.panel5, 0);
+            this.panel1.Controls.SetChildIndex(this.label3, 0);
+            this.panel1.Controls.SetChildIndex(this.txtProductSearch, 0);
+            this.panel1.Controls.SetChildIndex(this.label2, 0);
+            this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.cboProductType, 0);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel1.Controls.SetChildIndex(this.btnBOMCopy, 0);
             // 
             // GuidLabel1
             // 
             this.GuidLabel1.Location = new System.Drawing.Point(72, 17);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtProductSearch);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.panel5);
-            this.groupBox1.Location = new System.Drawing.Point(75, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(822, 70);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "검색 조건";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(531, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 16);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "사용 여부";
-            // 
-            // txtProductSearch
-            // 
-            this.txtProductSearch.Location = new System.Drawing.Point(347, 29);
-            this.txtProductSearch.Name = "txtProductSearch";
-            this.txtProductSearch.Size = new System.Drawing.Size(169, 22);
-            this.txtProductSearch.TabIndex = 29;
-            this.txtProductSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(286, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 16);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "제품명";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.rdoUnUse);
-            this.panel5.Controls.Add(this.rdoAll);
-            this.panel5.Controls.Add(this.rdoUse);
-            this.panel5.Location = new System.Drawing.Point(615, 24);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(176, 33);
-            this.panel5.TabIndex = 27;
-            // 
-            // rdoUnUse
-            // 
-            this.rdoUnUse.AutoSize = true;
-            this.rdoUnUse.Location = new System.Drawing.Point(128, 8);
-            this.rdoUnUse.Name = "rdoUnUse";
-            this.rdoUnUse.Size = new System.Drawing.Size(44, 20);
-            this.rdoUnUse.TabIndex = 20;
-            this.rdoUnUse.TabStop = true;
-            this.rdoUnUse.Text = "No";
-            this.rdoUnUse.UseVisualStyleBackColor = true;
-            this.rdoUnUse.CheckedChanged += new System.EventHandler(this.rdoActive_CheckedChanged);
-            // 
-            // rdoAll
-            // 
-            this.rdoAll.AutoSize = true;
-            this.rdoAll.Location = new System.Drawing.Point(5, 7);
-            this.rdoAll.Name = "rdoAll";
-            this.rdoAll.Size = new System.Drawing.Size(41, 20);
-            this.rdoAll.TabIndex = 21;
-            this.rdoAll.TabStop = true;
-            this.rdoAll.Text = "All";
-            this.rdoAll.UseVisualStyleBackColor = true;
-            this.rdoAll.CheckedChanged += new System.EventHandler(this.rdoActive_CheckedChanged);
-            // 
-            // rdoUse
-            // 
-            this.rdoUse.AutoSize = true;
-            this.rdoUse.Location = new System.Drawing.Point(62, 8);
-            this.rdoUse.Name = "rdoUse";
-            this.rdoUse.Size = new System.Drawing.Size(50, 20);
-            this.rdoUse.TabIndex = 21;
-            this.rdoUse.TabStop = true;
-            this.rdoUse.Text = "Yes";
-            this.rdoUse.UseVisualStyleBackColor = true;
-            this.rdoUse.CheckedChanged += new System.EventHandler(this.rdoActive_CheckedChanged);
-            // 
-            // cboProductType
-            // 
-            this.cboProductType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProductType.FormattingEnabled = true;
-            this.cboProductType.Location = new System.Drawing.Point(178, 35);
-            this.cboProductType.Name = "cboProductType";
-            this.cboProductType.Size = new System.Drawing.Size(172, 24);
-            this.cboProductType.TabIndex = 30;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(99, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 16);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "제품 그룹명";
-            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(0, 80);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 45;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1067, 625);
@@ -254,6 +175,8 @@
             // dgvBarcode
             // 
             this.dgvBarcode.AllowUserToAddRows = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
+            this.dgvBarcode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvBarcode.BackgroundColor = System.Drawing.Color.White;
             this.dgvBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -279,8 +202,20 @@
             this.dgvBarcode.Location = new System.Drawing.Point(1124, 80);
             this.dgvBarcode.MultiSelect = false;
             this.dgvBarcode.Name = "dgvBarcode";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBarcode.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvBarcode.RowHeadersVisible = false;
             this.dgvBarcode.RowHeadersWidth = 45;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.dgvBarcode.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvBarcode.RowTemplate.Height = 23;
             this.dgvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBarcode.Size = new System.Drawing.Size(202, 610);
@@ -325,6 +260,92 @@
             this.btnBarDelete.UseVisualStyleBackColor = false;
             this.btnBarDelete.Click += new System.EventHandler(this.btnBarDelete_Click);
             // 
+            // cboProductType
+            // 
+            this.cboProductType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProductType.FormattingEnabled = true;
+            this.cboProductType.Location = new System.Drawing.Point(154, 28);
+            this.cboProductType.Name = "cboProductType";
+            this.cboProductType.Size = new System.Drawing.Size(172, 24);
+            this.cboProductType.TabIndex = 59;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(72, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 16);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "제품 그룹명";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(586, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 16);
+            this.label2.TabIndex = 56;
+            this.label2.Text = "사용 여부";
+            // 
+            // txtProductSearch
+            // 
+            this.txtProductSearch.Location = new System.Drawing.Point(396, 29);
+            this.txtProductSearch.Name = "txtProductSearch";
+            this.txtProductSearch.Size = new System.Drawing.Size(169, 22);
+            this.txtProductSearch.TabIndex = 58;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(349, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 16);
+            this.label3.TabIndex = 57;
+            this.label3.Text = "제품명";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.rdoUnUse);
+            this.panel5.Controls.Add(this.rdoAll);
+            this.panel5.Controls.Add(this.rdoUse);
+            this.panel5.Location = new System.Drawing.Point(658, 23);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(176, 33);
+            this.panel5.TabIndex = 54;
+            // 
+            // rdoUnUse
+            // 
+            this.rdoUnUse.AutoSize = true;
+            this.rdoUnUse.Location = new System.Drawing.Point(128, 8);
+            this.rdoUnUse.Name = "rdoUnUse";
+            this.rdoUnUse.Size = new System.Drawing.Size(44, 20);
+            this.rdoUnUse.TabIndex = 20;
+            this.rdoUnUse.TabStop = true;
+            this.rdoUnUse.Text = "No";
+            this.rdoUnUse.UseVisualStyleBackColor = true;
+            // 
+            // rdoAll
+            // 
+            this.rdoAll.AutoSize = true;
+            this.rdoAll.Location = new System.Drawing.Point(5, 7);
+            this.rdoAll.Name = "rdoAll";
+            this.rdoAll.Size = new System.Drawing.Size(41, 20);
+            this.rdoAll.TabIndex = 21;
+            this.rdoAll.TabStop = true;
+            this.rdoAll.Text = "All";
+            this.rdoAll.UseVisualStyleBackColor = true;
+            // 
+            // rdoUse
+            // 
+            this.rdoUse.AutoSize = true;
+            this.rdoUse.Location = new System.Drawing.Point(62, 8);
+            this.rdoUse.Name = "rdoUse";
+            this.rdoUse.Size = new System.Drawing.Size(50, 20);
+            this.rdoUse.TabIndex = 21;
+            this.rdoUse.TabStop = true;
+            this.rdoUse.Text = "Yes";
+            this.rdoUse.UseVisualStyleBackColor = true;
+            // 
             // ProductManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -342,30 +363,18 @@
             this.Controls.SetChildIndex(this.dgvBarcode, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarcode)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.RadioButton rdoUnUse;
-        private System.Windows.Forms.RadioButton rdoUse;
-        private System.Windows.Forms.TextBox txtProductSearch;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboProductType;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton rdoAll;
         private DataGridViewControl dgv;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -374,5 +383,14 @@
         private ButtonControl btnBOMCopy;
         private ButtonControl btnbarCopy;
         private ButtonControl btnBarDelete;
+        private System.Windows.Forms.ComboBox cboProductType;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtProductSearch;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.RadioButton rdoUnUse;
+        private System.Windows.Forms.RadioButton rdoAll;
+        private System.Windows.Forms.RadioButton rdoUse;
     }
 }
