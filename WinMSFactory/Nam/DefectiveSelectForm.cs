@@ -59,7 +59,7 @@ namespace WinMSFactory
                 if (txtProductName.TextLength > 1)
                 {
                     var SortedData = (from sortedList in DefectiveSelectAll
-                                      where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
+                                      where sortedList.Defective_Date >= FromToDate.From.AddDays(-1) && sortedList.Defective_Date <= FromToDate.To
                                             && sortedList.Product_Name.Contains(txtProductName.Text)
                                       select sortedList).ToList();
 
@@ -69,7 +69,7 @@ namespace WinMSFactory
                 else
                 {
                     var SortedData = (from sortedList in DefectiveSelectAll
-                                      where sortedList.Defective_Date >= FromToDate.From && sortedList.Defective_Date <= FromToDate.To
+                                      where sortedList.Defective_Date >= FromToDate.From.AddDays(-1) && sortedList.Defective_Date <= FromToDate.To
                                       select sortedList).ToList();
 
                     dgv.DataSource = SortedData;
