@@ -117,27 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnMove.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMDSURBVDhPjY99LNRxHMev+qO1qT/odFScPJ6H83Bs5Coh
-        kjWmO20eirQ8T25y3Mnj6Jo8JIYpW7UMlYuVU+uKzrNzxCRaqcOio1A3U7N3v7vzR9fWw2t7b599v9/3
-        +/35kv7E8yw6s41Pb3/EtekTJtOiGuOsdTau/o5EwGA+zaW3y6oOQ1riiJFb+yER2OFOvLmyNtykuibE
-        iLHxVJueKwym5JJj+1h9IJbGuFh+xcMgETBWz8TobReM1jpgsNoX11hG2LBokJYymD2FTu0T99hYmeBB
-        +TYTK695WBpNU2+gCphsZmFeVoWJuggUB+zRDugpYkAhy8KKvAPyjhIMVXpCWuaKwVJnyMrdMDdciU/D
-        tyErYqKbZwrBMUPtgC6BE1bG04hGLr7J72P1yxtMSwWY7s2Bcv4l3rWkoC/bAt0ZZujkmiDPm6Id0JHv
-        gKVhDhYHEqHoioail4v171+xNPkEI+UH0Z9rid5MM3Sl74PkAhVZHvpgsxu32AckrdJ9zoMkzrbH5/4E
-        KDqjMfcsErNtYVDOSCC7bI2BfCtNO9+UaKfiBccYPCYZ7mw+054wm7udzSA95ttBITmHj+IIzIpCIW8O
-        xvJkM6QFNPTmWKKTb4aOVBOIzxtDFL8XyS56oHslCExdowTqLzxMtYG8NRQzrSGQP2Bh6m4gFmU30Jdn
-        hfDEInhH38ShiOtwC6kAI6gIdn4FILvHrVFoJ/zUAUIO7aSQY7sgqzyCqcYAvK3zx9wLAXqyLcFPPIv4
-        YgnKWmfVKmn5gDB+EwypYT90dCx2qgNUNESakWtPmzQJOXSM1XhjRpSC7kxzVMQeQGByAzIb3iOmahyR
-        pUOg+WRA1ypohLBt1bh/4SrLiFXOMl7oLD4OYSwVqR675QyvwjVbYm0Lz4uguqXA0PHU+jaKizPxfLPG
-        9Rv5RynkLI9dTRkHyfVR1jt0iaPthPQI6ROiECITUrVvIvRv3E+kixn+KWLVbOp6RmzgEK6e/xt73ySR
-        5YEYkWo2sA0R6VkFq2cNJNJPAUynlGx4TOAAAAAASUVORK5CYII=
-</value>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlRCTF9XT1JLX09SREVSXzEiPjxGaWVsZCBOYW1lPSJ3b3JrX29yZGVyX25vIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0id29ya2VyX2lkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0icHJvZHVjdF9pZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IndvcmtfZGF0ZSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Indvcmtfb3JkZXJfcXVhbnRpdHkiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJlbXBsb3llZV9uYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InByb2R1Y3RfbmFtZSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
 </root>

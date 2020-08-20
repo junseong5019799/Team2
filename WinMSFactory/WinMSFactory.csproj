@@ -120,6 +120,12 @@
     <Compile Include="Barcode\BarCodeProductBOM.designer.cs">
       <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Barcode\BarCodeWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Barcode\BarCodeWork.Designer.cs">
+      <DependentUpon>BarCodeWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Barcode\CompanyReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -611,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\BarCodeProductBOM.resx">
       <DependentUpon>BarCodeProductBOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\BarCodeWork.resx">
+      <DependentUpon>BarCodeWork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\CompanyReport.resx">
       <DependentUpon>CompanyReport.cs</DependentUpon>

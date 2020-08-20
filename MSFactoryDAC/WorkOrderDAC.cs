@@ -61,7 +61,7 @@ namespace MSFactoryDAC
 			return dt;
 		}
 
-		public WorkOrderVO GetWorkOrder(int work_order_no)
+        public WorkOrderVO GetWorkOrder(int work_order_no)
 		{
 			string sql = @"SELECT WO.WORK_ORDER_NO, WO.WORK_ORDER_DATE, WO.WORK_DATE, PW.WORKER_ID
 								, CONVERT(CHAR(5), WO.WORK_START_TIME, 108) WORK_START_TIME, CONVERT(CHAR(5), WO.WORK_FINISH_TIME, 108) WORK_FINISH_TIME
@@ -112,7 +112,7 @@ namespace MSFactoryDAC
 
 		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
-			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Release_no", "Release_seq", "Qty", "Work_date", 
+			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Work_date", 
 											 "Work_order_quantity", "Work_start_time", "Work_finish_time", "Regist_employee");
 		}
 
@@ -124,5 +124,30 @@ namespace MSFactoryDAC
 
 			return cmd.ExecuteNonQuery() > 0;
 		}
+
+
+		public DataTable CheckBarcode()
+		{
+			string sql = @" SELECT work_date, product_name, employee_name, work_order_quantity
+							FROM 
+							(SELECT work_date, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = W.product_id) product_name
+								   ,(SELECT employee_name  FROM TBL_EMPLOYEE WHERE worker_id = W.worker_id) employee_name
+								   , work_order_quantity
+							 FROM TBL_WORK_ORDER W
+							) A";
+
+			DataTable dt = new DataTable();
+
+			using (SqlConnection con = new SqlConnection(this.ConnectionString))
+			{
+				con.Open();
+				SqlDataAdapter da = new SqlDataAdapter(sql, con);
+				da.Fill(dt);
+				con.Close();
+
+				return dt;
+			}
+		}
+
 	}
 }

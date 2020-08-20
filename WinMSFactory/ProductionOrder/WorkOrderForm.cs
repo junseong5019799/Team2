@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraRichEdit.Commands;
+﻿using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit.Commands;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -165,6 +167,37 @@ namespace WinMSFactory
 				if (DateTime.TryParse(dgvr.Cells["WORK_DATE"].Value.ToString(), out DateTime workDate) && DateTime.Compare(workDate, DateTime.Now) < 0)
 				{
 					dgvr.Cells["chk"].ReadOnly = true;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 바코드 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		
+		private void Readed(object sender, ReadEventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				
+				
+				((MainForm)this.MdiParent).ClearStrs();
+			}
+		}
+
+		private void Barcode(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				DataTable dt = workOrderService.CheckBarcode();
+				BarcodeOrder rpt = new BarcodeOrder();
+				rpt.DataSource = dt;
+
+				using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+				{
+					printTool.ShowRibbonPreviewDialog();
 				}
 			}
 		}

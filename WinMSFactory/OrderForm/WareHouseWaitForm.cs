@@ -94,6 +94,20 @@ namespace WinMSFactory
             }
         }
 
+        private void Barcode(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                DataTable dt = orderService.CheckBarcode();
+                BarcodeOrder rpt = new BarcodeOrder();
+                rpt.DataSource = dt;
+
+                using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                }
+            }
+        }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -131,20 +145,6 @@ namespace WinMSFactory
         }
 
 
-        private void Barcode(object sender, EventArgs e)
-        {
-            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-            {
-                DataTable dt = orderService.CheckBarcode();
-                BarcodeOrder rpt = new BarcodeOrder();
-                rpt.DataSource = dt;
-
-                using (ReportPrintTool printTool = new ReportPrintTool(rpt))
-                {
-                    printTool.ShowRibbonPreviewDialog();
-                }
-            }
-        }
 
 
         /// <summary>
