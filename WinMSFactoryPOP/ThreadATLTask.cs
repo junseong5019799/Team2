@@ -160,7 +160,7 @@ namespace WinMSFactoryPOP
                                     case "reset":
                                         break;
                                     default:
-                                        IF_SetValue($"[{laData[1]}] |{laData[2]}|{laData[3]}|{laData[4]}|{laData[5]}");
+                                        //IF_SetValue($"[{laData[1]}] |{laData[2]}|{laData[3]}|{laData[4]}|{laData[5]}");
                                         break;
                                 }
 

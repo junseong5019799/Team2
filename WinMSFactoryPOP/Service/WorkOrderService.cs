@@ -50,5 +50,13 @@ namespace WinMSFactoryPOP.Services
 				return workOrderDAC.DeleteWorkOrder(work_order_no);
 			}
 		}
+
+		public DataTable GetPOPWO(string date, int process_id = 0)
+		{
+			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
+			{
+				return workOrderDAC.GetPOPWO(date, process_id);
+			}
+		}
 	}
 }

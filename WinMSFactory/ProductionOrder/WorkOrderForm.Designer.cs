@@ -126,6 +126,7 @@
 			this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 631);
 			this.dataGridViewControl1.TabIndex = 4;
+			this.dataGridViewControl1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewControl1_CellDoubleClick);
 			this.dataGridViewControl1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewControl1_DataBindingComplete);
 			// 
 			// label1
@@ -182,13 +183,13 @@
 			// 
 			// fromToDateControl1
 			// 
-			this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 15, 8, 53, 873);
-			this.fromToDateControl1.Location = new System.Drawing.Point(86, 72);
-			this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+			this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 19, 40, 33, 859);
+			this.fromToDateControl1.Location = new System.Drawing.Point(86, 71);
+			this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
 			this.fromToDateControl1.Name = "fromToDateControl1";
-			this.fromToDateControl1.Size = new System.Drawing.Size(230, 32);
+			this.fromToDateControl1.Size = new System.Drawing.Size(233, 35);
 			this.fromToDateControl1.TabIndex = 3;
-			this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 15, 8, 53, 873);
+			this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 19, 40, 33, 859);
 			// 
 			// label4
 			// 
