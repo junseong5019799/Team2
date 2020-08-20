@@ -58,6 +58,7 @@
             this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
             this.mainTabControl1 = new WinMSFactory.MainTabControl();
             this.separatorControl5 = new DevExpress.XtraEditors.SeparatorControl();
+            this.btnSetting = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
@@ -83,10 +84,11 @@
             this.btnLogOut,
             this.btnPrint,
             this.btnBarcode,
-            this.btnClear});
+            this.btnClear,
+            this.btnSetting});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1561, 65);
+            this.toolStrip2.Size = new System.Drawing.Size(1784, 81);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -228,16 +230,17 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 817);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1023);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1561, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1784, 26);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolTime
             // 
             this.toolTime.Name = "toolTime";
-            this.toolTime.Size = new System.Drawing.Size(121, 17);
+            this.toolTime.Size = new System.Drawing.Size(152, 20);
             this.toolTime.Text = "toolStripStatusLabel1";
             // 
             // toolStripButton6
@@ -272,9 +275,9 @@
             this.tsMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.tsMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-            this.tsMenu.Location = new System.Drawing.Point(0, 65);
+            this.tsMenu.Location = new System.Drawing.Point(0, 81);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(219, 752);
+            this.tsMenu.Size = new System.Drawing.Size(250, 942);
             this.tsMenu.TabIndex = 2;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -306,54 +309,55 @@
             this.separatorControl1.BackColor = System.Drawing.Color.LightBlue;
             this.separatorControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.separatorControl1.Location = new System.Drawing.Point(219, 88);
-            this.separatorControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.separatorControl1.Location = new System.Drawing.Point(250, 110);
+            this.separatorControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.separatorControl1.Name = "separatorControl1";
-            this.separatorControl1.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.separatorControl1.Size = new System.Drawing.Size(1342, 10);
+            this.separatorControl1.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.separatorControl1.Size = new System.Drawing.Size(1534, 12);
             this.separatorControl1.TabIndex = 12;
             // 
             // separatorControl2
             // 
             this.separatorControl2.BackColor = System.Drawing.Color.LightBlue;
             this.separatorControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.separatorControl2.Location = new System.Drawing.Point(219, 807);
-            this.separatorControl2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.separatorControl2.Location = new System.Drawing.Point(250, 1011);
+            this.separatorControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.separatorControl2.Name = "separatorControl2";
-            this.separatorControl2.Padding = new System.Windows.Forms.Padding(16, 14, 16, 14);
-            this.separatorControl2.Size = new System.Drawing.Size(1342, 10);
+            this.separatorControl2.Padding = new System.Windows.Forms.Padding(18, 18, 18, 18);
+            this.separatorControl2.Size = new System.Drawing.Size(1534, 12);
             this.separatorControl2.TabIndex = 13;
             // 
             // separatorControl3
             // 
             this.separatorControl3.BackColor = System.Drawing.Color.LightBlue;
             this.separatorControl3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.separatorControl3.Location = new System.Drawing.Point(1551, 98);
-            this.separatorControl3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.separatorControl3.Location = new System.Drawing.Point(1773, 122);
+            this.separatorControl3.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.separatorControl3.Name = "separatorControl3";
-            this.separatorControl3.Padding = new System.Windows.Forms.Padding(19, 18, 19, 18);
-            this.separatorControl3.Size = new System.Drawing.Size(10, 709);
+            this.separatorControl3.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.separatorControl3.Size = new System.Drawing.Size(11, 889);
             this.separatorControl3.TabIndex = 14;
             // 
             // separatorControl4
             // 
             this.separatorControl4.BackColor = System.Drawing.Color.LightBlue;
             this.separatorControl4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.separatorControl4.Location = new System.Drawing.Point(219, 98);
-            this.separatorControl4.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.separatorControl4.Location = new System.Drawing.Point(250, 122);
+            this.separatorControl4.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.separatorControl4.Name = "separatorControl4";
-            this.separatorControl4.Padding = new System.Windows.Forms.Padding(24, 22, 24, 22);
-            this.separatorControl4.Size = new System.Drawing.Size(10, 709);
+            this.separatorControl4.Padding = new System.Windows.Forms.Padding(27, 28, 27, 28);
+            this.separatorControl4.Size = new System.Drawing.Size(11, 889);
             this.separatorControl4.TabIndex = 15;
             // 
             // mainTabControl1
             // 
             this.mainTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.mainTabControl1.Location = new System.Drawing.Point(219, 65);
+            this.mainTabControl1.Location = new System.Drawing.Point(250, 81);
+            this.mainTabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainTabControl1.Name = "mainTabControl1";
             this.mainTabControl1.SelectedIndex = 0;
-            this.mainTabControl1.Size = new System.Drawing.Size(1342, 23);
+            this.mainTabControl1.Size = new System.Drawing.Size(1534, 29);
             this.mainTabControl1.TabIndex = 6;
             this.mainTabControl1.Visible = false;
             this.mainTabControl1.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
@@ -362,19 +366,32 @@
             // separatorControl5
             // 
             this.separatorControl5.BackColor = System.Drawing.Color.LightBlue;
-            this.separatorControl5.Location = new System.Drawing.Point(0, 65);
-            this.separatorControl5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.separatorControl5.Location = new System.Drawing.Point(0, 81);
+            this.separatorControl5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.separatorControl5.Name = "separatorControl5";
-            this.separatorControl5.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-            this.separatorControl5.Size = new System.Drawing.Size(219, 4);
+            this.separatorControl5.Padding = new System.Windows.Forms.Padding(11, 11, 11, 11);
+            this.separatorControl5.Size = new System.Drawing.Size(250, 5);
             this.separatorControl5.TabIndex = 17;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnSetting.AutoSize = false;
+            this.btnSetting.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
+            this.btnSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(60, 60);
+            this.btnSetting.Text = "설정";
+            this.btnSetting.ToolTipText = "설정";
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1561, 839);
+            this.ClientSize = new System.Drawing.Size(1784, 1049);
             this.Controls.Add(this.separatorControl5);
             this.Controls.Add(this.separatorControl4);
             this.Controls.Add(this.separatorControl3);
@@ -435,6 +452,7 @@
         private DevExpress.XtraEditors.SeparatorControl separatorControl3;
         private DevExpress.XtraEditors.SeparatorControl separatorControl4;
         private DevExpress.XtraEditors.SeparatorControl separatorControl5;
+        private System.Windows.Forms.ToolStripButton btnSetting;
     }
 }
 

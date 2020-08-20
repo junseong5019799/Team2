@@ -321,37 +321,36 @@ namespace MSFactoryDAC
         /// SELECT 발주 LIST 날짜별로 
         /// </summary>
         /// <returns></returns>
-        public List<OrderVO> GetOrderListByDate(string fromDate, string toDate)
+        public DataTable GetOrderListByDate(string fromDate, string toDate, int company_id)
         {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(this.ConnectionString))
-                {
-                    using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-                    {
-                        conn.Open();
-                        string sql = @"	SELECT od.order_no, product_name 
-	                                    	 , od.order_request_quantity 
-	                                    	 , od.order_status , od.order_request_date , Convert(DATE, o.first_regist_time) first_regist_time
-	                                    	 ,(SELECT company_name FROM TBL_COMPANY WHERE o.company_id = company_id) AS company_name
-	                                    	 , o.final_regist_employee, o.final_regist_time
-	                                    FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON o.order_no = od.order_no				   
-	                                    						 INNER JOIN TBL_PRODUCT p ON od.product_id = p.product_id
-	                                    WHERE order_request_date BETWEEN @fromDate AND @toDate";
+            string sql = @"SELECT order_no, product_name, order_request_quantity, ORDER_PRICE, order_status, order_request_date, first_regist_time, company_name, final_regist_employee, final_regist_time, company_id
+                           FROM
+                           (
+                           SELECT od.order_no, product_name 
+                            	 , od.order_request_quantity , MATERIAL_CURRENT_PRICE * OD.ORDER_REQUEST_QUANTITY AS ORDER_PRICE
+                            	 , od.order_status , od.order_request_date , Convert(DATE, o.first_regist_time) first_regist_time
+                            	 ,(SELECT company_name FROM TBL_COMPANY WHERE o.company_id = company_id) AS company_name
+                            	 , o.final_regist_employee, o.final_regist_time, o.company_id
+                            FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON o.order_no = od.order_no				   
+                            						 INNER JOIN TBL_PRODUCT p ON od.product_id = p.product_id
+                           						 INNER JOIN TBL_MATERIAL_PRICE_MANAGEMENT M ON OD.PRODUCT_ID = M.PRODUCT_ID
+                            WHERE order_request_date BETWEEN @FromDate AND @ToDate  AND o.company_id = @company_id
+                            ) A
+                           GROUP BY order_no, product_name, order_request_quantity, ORDER_PRICE, order_status, order_request_date, first_regist_time, company_name, final_regist_employee, final_regist_time, company_id";
 
-                        using (SqlCommand cmd = new SqlCommand(sql, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                            cmd.Parameters.AddWithValue("@toDate", toDate);
+            DataTable dt = new DataTable();
 
-                            return SqlHelper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
-                        }
-                    }
-                }
-            }
-            catch (Exception err)
+            using (SqlConnection con = new SqlConnection(this.ConnectionString))
             {
-                throw err;
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(sql, con);
+                da.SelectCommand.Parameters.AddWithValue("@FromDate", fromDate);
+                da.SelectCommand.Parameters.AddWithValue("@ToDate", toDate);
+                da.SelectCommand.Parameters.AddWithValue("@company_id", company_id);
+                da.Fill(dt);
+                con.Close();
+
+                return dt;
             }
         }
 
