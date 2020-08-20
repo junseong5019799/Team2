@@ -178,25 +178,47 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_first_regist_employee", company.first_regist_employee);
                         cmd.Parameters.AddWithValue("@P_final_regist_employee", company.final_regist_employee);
 
+                        SqlParameter param1 = new SqlParameter("@O_company_id",SqlDbType.Int);
+                        param1.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(param1);
+
                         int result = cmd.ExecuteNonQuery();
                         if (result > 0)
                         {
-                            string sqlDelete = @"Delete from TBL_COMPANY_PRODUCT where company_id = @company_id";
-                            cmd.CommandText = sqlDelete;
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@company_id", company.company_id);
-                            cmd.ExecuteNonQuery();
-
-                            foreach (var item in prodListVO)
+                            if(company.company_id != 0)
                             {
-                                string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
-                                cmd.CommandText = sqlInsert;
+                                string sqlDelete = @"Delete from TBL_COMPANY_PRODUCT where company_id = @company_id";
+                                cmd.CommandText = sqlDelete;
+                                cmd.CommandType = CommandType.Text;
                                 cmd.Parameters.Clear();
                                 cmd.Parameters.AddWithValue("@company_id", company.company_id);
-                                cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
                                 cmd.ExecuteNonQuery();
+
+                                foreach (var item in prodListVO)
+                                {
+                                    string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
+                                    cmd.CommandText = sqlInsert;
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@company_id", company.company_id);
+                                    cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
+                            
+                            else
+                            {
+                                foreach (var item in prodListVO)
+                                {
+                                    string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
+                                    cmd.CommandText = sqlInsert;
+                                    cmd.CommandType = CommandType.Text;
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@company_id", param1.Value);
+                                    cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            
 
                         }
                     }                    

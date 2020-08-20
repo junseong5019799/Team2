@@ -56,7 +56,7 @@
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(750, 27);
+            this.GuidLabel1.Location = new System.Drawing.Point(55, 52);
             // 
             // GuidLabel2
             // 
@@ -66,7 +66,7 @@
             // txtNameSearch
             // 
             this.txtNameSearch.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameSearch.Location = new System.Drawing.Point(135, 37);
+            this.txtNameSearch.Location = new System.Drawing.Point(207, 27);
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(151, 22);
             this.txtNameSearch.TabIndex = 15;
@@ -75,7 +75,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(50, 40);
+            this.label2.Location = new System.Drawing.Point(130, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 15);
             this.label2.TabIndex = 14;
@@ -85,7 +85,7 @@
             // 
             this.lblCorporationid.AutoSize = true;
             this.lblCorporationid.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorporationid.Location = new System.Drawing.Point(50, 9);
+            this.lblCorporationid.Location = new System.Drawing.Point(50, 30);
             this.lblCorporationid.Name = "lblCorporationid";
             this.lblCorporationid.Size = new System.Drawing.Size(59, 15);
             this.lblCorporationid.TabIndex = 12;

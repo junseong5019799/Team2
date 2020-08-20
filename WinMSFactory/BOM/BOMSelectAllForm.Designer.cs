@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new WinMSFactory.DataGridViewControl();
             this.label4 = new System.Windows.Forms.Label();
             this.cboSelect = new System.Windows.Forms.ComboBox();
@@ -46,6 +49,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.buttonControl2);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.cboSelectName);
@@ -72,36 +76,50 @@
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
-            this.dgv.Location = new System.Drawing.Point(0, 87);
+            this.dgv.Location = new System.Drawing.Point(0, 80);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 45;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.DimGray;
+            this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1326, 603);
+            this.dgv.Size = new System.Drawing.Size(1326, 610);
             this.dgv.TabIndex = 5;
             // 
             // label4
@@ -118,7 +136,7 @@
             // 
             this.cboSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSelect.FormattingEnabled = true;
-            this.cboSelect.Location = new System.Drawing.Point(217, 34);
+            this.cboSelect.Location = new System.Drawing.Point(172, 34);
             this.cboSelect.Name = "cboSelect";
             this.cboSelect.Size = new System.Drawing.Size(121, 20);
             this.cboSelect.TabIndex = 37;
@@ -127,7 +145,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(87, 39);
+            this.label12.Location = new System.Drawing.Point(50, 39);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(115, 12);
             this.label12.TabIndex = 36;
@@ -135,7 +153,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.BackColor = System.Drawing.Color.LightBlue;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.Location = new System.Drawing.Point(1046, 27);
@@ -149,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(378, 37);
+            this.label2.Location = new System.Drawing.Point(322, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 12);
             this.label2.TabIndex = 36;
@@ -159,7 +177,7 @@
             // 
             this.cboSelectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSelectType.FormattingEnabled = true;
-            this.cboSelectType.Location = new System.Drawing.Point(456, 34);
+            this.cboSelectType.Location = new System.Drawing.Point(385, 34);
             this.cboSelectType.Name = "cboSelectType";
             this.cboSelectType.Size = new System.Drawing.Size(122, 20);
             this.cboSelectType.TabIndex = 37;
@@ -168,7 +186,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(598, 37);
+            this.label3.Location = new System.Drawing.Point(553, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 12);
             this.label3.TabIndex = 36;
@@ -178,14 +196,14 @@
             // 
             this.cboSelectName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSelectName.FormattingEnabled = true;
-            this.cboSelectName.Location = new System.Drawing.Point(676, 34);
+            this.cboSelectName.Location = new System.Drawing.Point(616, 34);
             this.cboSelectName.Name = "cboSelectName";
             this.cboSelectName.Size = new System.Drawing.Size(344, 20);
             this.cboSelectName.TabIndex = 37;
             // 
             // buttonControl2
             // 
-            this.buttonControl2.BackColor = System.Drawing.Color.White;
+            this.buttonControl2.BackColor = System.Drawing.Color.LightBlue;
             this.buttonControl2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonControl2.ForeColor = System.Drawing.Color.Black;
             this.buttonControl2.Location = new System.Drawing.Point(1195, 27);
@@ -201,14 +219,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 690);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.dgv);
+            this.Controls.Add(this.label4);
             this.Name = "BOMSelectAllForm";
             this.Text = "BOM 정전개 / 역전개";
             this.Load += new System.EventHandler(this.BOMSelectAllForm_Load);
-            this.Controls.SetChildIndex(this.dgv, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.dgv, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();

@@ -140,7 +140,7 @@
             // cboProcessName
             // 
             this.cboProcessName.FormattingEnabled = true;
-            this.cboProcessName.Location = new System.Drawing.Point(406, 78);
+            this.cboProcessName.Location = new System.Drawing.Point(422, 72);
             this.cboProcessName.Name = "cboProcessName";
             this.cboProcessName.Size = new System.Drawing.Size(151, 24);
             this.cboProcessName.TabIndex = 50;
@@ -149,7 +149,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(329, 81);
+            this.label4.Location = new System.Drawing.Point(345, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 16);
             this.label4.TabIndex = 49;
@@ -158,7 +158,7 @@
             // cboFactoryName
             // 
             this.cboFactoryName.FormattingEnabled = true;
-            this.cboFactoryName.Location = new System.Drawing.Point(406, 44);
+            this.cboFactoryName.Location = new System.Drawing.Point(422, 27);
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(151, 24);
             this.cboFactoryName.TabIndex = 48;
@@ -167,7 +167,7 @@
             // cboLineName
             // 
             this.cboLineName.FormattingEnabled = true;
-            this.cboLineName.Location = new System.Drawing.Point(124, 78);
+            this.cboLineName.Location = new System.Drawing.Point(140, 71);
             this.cboLineName.Name = "cboLineName";
             this.cboLineName.Size = new System.Drawing.Size(151, 24);
             this.cboLineName.TabIndex = 47;
@@ -176,7 +176,7 @@
             // cboCorporationName
             // 
             this.cboCorporationName.FormattingEnabled = true;
-            this.cboCorporationName.Location = new System.Drawing.Point(124, 44);
+            this.cboCorporationName.Location = new System.Drawing.Point(140, 27);
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(151, 24);
             this.cboCorporationName.TabIndex = 46;
@@ -186,7 +186,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(612, 47);
+            this.label5.Location = new System.Drawing.Point(628, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 16);
             this.label5.TabIndex = 44;
@@ -196,7 +196,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(50, 81);
+            this.label2.Location = new System.Drawing.Point(50, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 43;
@@ -206,7 +206,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(329, 47);
+            this.label3.Location = new System.Drawing.Point(345, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 42;
@@ -216,7 +216,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 47);
+            this.label1.Location = new System.Drawing.Point(50, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 41;
@@ -225,15 +225,14 @@
             // cboWorkerName
             // 
             this.cboWorkerName.FormattingEnabled = true;
-            this.cboWorkerName.Location = new System.Drawing.Point(702, 44);
+            this.cboWorkerName.Location = new System.Drawing.Point(716, 27);
             this.cboWorkerName.Name = "cboWorkerName";
             this.cboWorkerName.Size = new System.Drawing.Size(151, 24);
             this.cboWorkerName.TabIndex = 51;
             // 
             // ProcessWorkerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1534, 761);
             this.Controls.Add(this.panel2);
             this.Name = "ProcessWorkerForm";

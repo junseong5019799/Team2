@@ -81,5 +81,10 @@ namespace WinMSFactory
             if (e.KeyCode == Keys.Enter)
                 Search(null, null);
         }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

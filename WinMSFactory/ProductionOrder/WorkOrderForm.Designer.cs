@@ -40,22 +40,22 @@
             this.cboProcess = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboProduct = new System.Windows.Forms.ComboBox();
+            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboFactory = new System.Windows.Forms.ComboBox();
-            this.fromToDateControl1 = new WinMSFactory.Control.FromToDateControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.fromToDateControl1);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.fromToDateControl1);
             this.panel1.Controls.Add(this.cboProduct);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cboProcess);
@@ -65,6 +65,7 @@
             this.panel1.Controls.Add(this.cboLine);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Size = new System.Drawing.Size(1534, 130);
+            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.cboLine, 0);
             this.panel1.Controls.SetChildIndex(this.label6, 0);
@@ -73,15 +74,10 @@
             this.panel1.Controls.SetChildIndex(this.cboProcess, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.cboProduct, 0);
+            this.panel1.Controls.SetChildIndex(this.fromToDateControl1, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
             this.panel1.Controls.SetChildIndex(this.txtSearch, 0);
-            this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
-            this.panel1.Controls.SetChildIndex(this.fromToDateControl1, 0);
-            // 
-            // GuidLabel1
-            // 
-            this.GuidLabel1.Location = new System.Drawing.Point(81, 33);
             // 
             // dataGridViewControl1
             // 
@@ -110,7 +106,7 @@
             this.dataGridViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewControl1.IsAllCheckColumnHeader = false;
             this.dataGridViewControl1.IsAutoGenerateColumns = false;
-            this.dataGridViewControl1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewControl1.Location = new System.Drawing.Point(0, 130);
             this.dataGridViewControl1.MultiSelect = false;
             this.dataGridViewControl1.Name = "dataGridViewControl1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -128,7 +124,7 @@
             this.dataGridViewControl1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewControl1.RowTemplate.Height = 23;
             this.dataGridViewControl1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 761);
+            this.dataGridViewControl1.Size = new System.Drawing.Size(1534, 631);
             this.dataGridViewControl1.TabIndex = 4;
             this.dataGridViewControl1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewControl1_DataBindingComplete);
             // 
@@ -184,10 +180,20 @@
             this.cboProduct.Size = new System.Drawing.Size(121, 24);
             this.cboProduct.TabIndex = 4;
             // 
+            // fromToDateControl1
+            // 
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 16, 6, 14, 364);
+            this.fromToDateControl1.Location = new System.Drawing.Point(109, 72);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.fromToDateControl1.Name = "fromToDateControl1";
+            this.fromToDateControl1.Size = new System.Drawing.Size(231, 30);
+            this.fromToDateControl1.TabIndex = 3;
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 16, 6, 14, 364);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 80);
+            this.label4.Location = new System.Drawing.Point(50, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 16);
             this.label4.TabIndex = 8;
@@ -221,21 +227,11 @@
             // cboFactory
             // 
             this.cboFactory.FormattingEnabled = true;
-            this.cboFactory.Location = new System.Drawing.Point(95, 29);
+            this.cboFactory.Location = new System.Drawing.Point(113, 29);
             this.cboFactory.Name = "cboFactory";
             this.cboFactory.Size = new System.Drawing.Size(121, 24);
             this.cboFactory.TabIndex = 0;
             this.cboFactory.SelectedIndexChanged += new System.EventHandler(this.cboFactory_SelectedIndexChanged);
-            // 
-            // fromToDateControl1
-            // 
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 18, 29, 49, 412);
-            this.fromToDateControl1.Location = new System.Drawing.Point(89, 74);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(230, 36);
-            this.fromToDateControl1.TabIndex = 18;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 18, 29, 49, 412);
             // 
             // WorkOrderForm
             // 
@@ -244,9 +240,9 @@
             this.Controls.Add(this.dataGridViewControl1);
             this.Name = "WorkOrderForm";
             this.Load += new System.EventHandler(this.WorkOrderForm_Load);
-            this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.GuidLabel2, 0);
+            this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).EndInit();
@@ -267,8 +263,8 @@
 		private System.Windows.Forms.TextBox txtSearch;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
+		private Control.FromToDateControl fromToDateControl1;
 		private System.Windows.Forms.ComboBox cboFactory;
 		private System.Windows.Forms.Label label6;
-        private Control.FromToDateControl fromToDateControl1;
-    }
+	}
 }

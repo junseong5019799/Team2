@@ -29,12 +29,13 @@ namespace WinMSFactory
 
         private void FactoryForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgvFactorylist.IsAllCheckColumnHeader = true;
 
             dgvFactorylist.AddNewColumns("법인명", "corporation_name", 100, true);
-            dgvFactorylist.AddNewColumns("공장코드", "factory_id", 100, true);
+            dgvFactorylist.AddNewColumns("공장코드", "factory_id", 100, true, true, false, RightAlign);
             dgvFactorylist.AddNewColumns("공장명", "factory_name", 100, true);
-            dgvFactorylist.AddNewColumns("공장순번", "factory_seq", 100, true);
+            dgvFactorylist.AddNewColumns("공장순번", "factory_seq", 100, true, true, false, RightAlign);
             dgvFactorylist.AddNewColumns("공장비고1", "factory_note1", 100, true);
             dgvFactorylist.AddNewColumns("공장비고2", "factory_note2", 100, true);
             dgvFactorylist.AddNewBtnCol("사용여부", "", new Padding(1,1,1,1), false); // 7 버튼

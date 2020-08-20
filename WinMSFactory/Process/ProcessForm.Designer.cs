@@ -88,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(50, 88);
+            this.label2.Location = new System.Drawing.Point(37, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 30;
@@ -98,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(320, 54);
+            this.label3.Location = new System.Drawing.Point(320, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 28;
@@ -108,7 +108,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 54);
+            this.label1.Location = new System.Drawing.Point(37, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 26;
@@ -117,7 +117,7 @@
             // txtProcessName
             // 
             this.txtProcessName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProcessName.Location = new System.Drawing.Point(397, 85);
+            this.txtProcessName.Location = new System.Drawing.Point(397, 71);
             this.txtProcessName.Name = "txtProcessName";
             this.txtProcessName.Size = new System.Drawing.Size(151, 22);
             this.txtProcessName.TabIndex = 35;
@@ -126,7 +126,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(320, 88);
+            this.label5.Location = new System.Drawing.Point(320, 76);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 16);
             this.label5.TabIndex = 34;
@@ -195,7 +195,7 @@
             // cboCorporationName
             // 
             this.cboCorporationName.FormattingEnabled = true;
-            this.cboCorporationName.Location = new System.Drawing.Point(124, 51);
+            this.cboCorporationName.Location = new System.Drawing.Point(115, 24);
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(151, 24);
             this.cboCorporationName.TabIndex = 36;
@@ -204,7 +204,7 @@
             // cboLineName
             // 
             this.cboLineName.FormattingEnabled = true;
-            this.cboLineName.Location = new System.Drawing.Point(124, 85);
+            this.cboLineName.Location = new System.Drawing.Point(115, 71);
             this.cboLineName.Name = "cboLineName";
             this.cboLineName.Size = new System.Drawing.Size(151, 24);
             this.cboLineName.TabIndex = 37;
@@ -212,7 +212,7 @@
             // cboFactoryName
             // 
             this.cboFactoryName.FormattingEnabled = true;
-            this.cboFactoryName.Location = new System.Drawing.Point(397, 51);
+            this.cboFactoryName.Location = new System.Drawing.Point(397, 25);
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(151, 24);
             this.cboFactoryName.TabIndex = 38;
@@ -221,7 +221,7 @@
             // cboStorageName
             // 
             this.cboStorageName.FormattingEnabled = true;
-            this.cboStorageName.Location = new System.Drawing.Point(677, 51);
+            this.cboStorageName.Location = new System.Drawing.Point(677, 24);
             this.cboStorageName.Name = "cboStorageName";
             this.cboStorageName.Size = new System.Drawing.Size(151, 24);
             this.cboStorageName.TabIndex = 40;
@@ -230,7 +230,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(600, 54);
+            this.label4.Location = new System.Drawing.Point(600, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 16);
             this.label4.TabIndex = 39;

@@ -40,24 +40,26 @@ namespace WinMSFactory
 
         private void frmMItem_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+
             dgv.IsAllCheckColumnHeader = true;
             // 사용 여부 변경 가능, BOM 확인
-            dgv.AddNewColumns("제품코드", "product_id", 80, true);
-            dgv.AddNewColumns("제품그룹명", "product_group_name", 100, true);
-            dgv.AddNewColumns("제품명", "product_name", 150, true);
+            dgv.AddNewColumns("제품코드", "product_id", 80, true, true, false, RightAlign);
+            dgv.AddNewColumns("제품그룹명", "product_group_name", 200, true);
+            dgv.AddNewColumns("제품명", "product_name", 200, true);
             dgv.AddNewColumns("사용 여부", "product_use", 100, true);
             dgv.AddNewBtnCol("BOM 등록 여부", "", new Padding(1, 1, 1, 1)); // 버튼
-            dgv.AddNewColumns("순번", "product_SEQ", 70, true);
+            dgv.AddNewColumns("순번", "product_SEQ", 70, true, true, false, RightAlign);
             dgv.AddNewColumns("제품스펙", "product_information", 200, true);
             dgv.AddNewColumns("기본단위", "product_unit", 80, true);
             dgv.AddNewColumns("생산기준량", "product_standards", 90, true);
-            dgv.AddNewColumns("Tact Time", "product_tact_time", 100, true);
-            dgv.AddNewColumns("Lead Time", "product_lead_time", 100, true);
+            dgv.AddNewColumns("Tact Time", "product_tact_time", 100, true, true, false, RightAlign);
+            dgv.AddNewColumns("Lead Time", "product_lead_time", 100, true, true, false, RightAlign);
             dgv.AddNewColumns("비고 1", "product_note1", 200, true);
             dgv.AddNewColumns("비고 2", "product_note2", 200, true);
-            dgv.AddNewColumns("최초등록시각", "first_regist_time", 130, true);
+            dgv.AddNewColumns("최초등록시각", "first_regist_time", 140, true);
             dgv.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
-            dgv.AddNewColumns("최종등록시각", "final_regist_time", 130, true);
+            dgv.AddNewColumns("최종등록시각", "final_regist_time", 140, true);
             dgv.AddNewColumns("최종등록사원", "final_regist_employee", 100, true);
             dgv.AddNewColumns("BOM 등록 여부", "bom_exists", 100, false);
 

@@ -70,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 42);
+            this.label1.Location = new System.Drawing.Point(50, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 14;
@@ -79,7 +79,7 @@
             // txtFactoryName
             // 
             this.txtFactoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactoryName.Location = new System.Drawing.Point(415, 39);
+            this.txtFactoryName.Location = new System.Drawing.Point(435, 27);
             this.txtFactoryName.Name = "txtFactoryName";
             this.txtFactoryName.Size = new System.Drawing.Size(151, 22);
             this.txtFactoryName.TabIndex = 19;
@@ -88,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(334, 42);
+            this.label3.Location = new System.Drawing.Point(358, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 18;
@@ -157,7 +157,7 @@
             // cboCorporationName
             // 
             this.cboCorporationName.FormattingEnabled = true;
-            this.cboCorporationName.Location = new System.Drawing.Point(124, 39);
+            this.cboCorporationName.Location = new System.Drawing.Point(119, 26);
             this.cboCorporationName.Name = "cboCorporationName";
             this.cboCorporationName.Size = new System.Drawing.Size(156, 24);
             this.cboCorporationName.TabIndex = 38;
