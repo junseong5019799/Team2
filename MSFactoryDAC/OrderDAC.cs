@@ -68,6 +68,41 @@ namespace MSFactoryDAC
             }
         }
 
+
+        /// <summary>
+        /// 회사에 따른 product 바인딩
+        /// </summary>
+        /// <param name="company_id"></param>
+        /// <returns></returns>
+        public int GetCurrentPriceByCompany(int company_id, int product_id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT material_current_price, company_id ,product_id 
+                                   FROM TBL_MATERIAL_PRICE_MANAGEMENT M 
+                                   WHERE company_id = @company_id AND product_id = @product_id";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@company_id", company_id);
+                        cmd.Parameters.AddWithValue("@product_id", product_id);
+
+                        int num = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        return num;                        
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
         /// <summary>
         /// SELECT 수불현황 (입출고에 따른 수불현황)
         /// </summary>
@@ -591,7 +626,7 @@ namespace MSFactoryDAC
                                        WHERE order_no = @order_no";
                     cmd.Parameters.Clear();
 
-                    cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
+                    cmd.Parameters.AddWithValue("@final_regist_employee", "admin");
                     cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now);
                     cmd.Parameters.AddWithValue("@order_no", order_no);
 
@@ -641,7 +676,7 @@ namespace MSFactoryDAC
                                        WHERE release_no = @release_no";
                     cmd.Parameters.Clear();
 
-                    cmd.Parameters.AddWithValue("@final_regist_employee", "최종사원명");
+                    cmd.Parameters.AddWithValue("@final_regist_employee", "admin");
                     cmd.Parameters.AddWithValue("@final_regist_time", DateTime.Now);
                     cmd.Parameters.AddWithValue("@release_no", release_no);
 

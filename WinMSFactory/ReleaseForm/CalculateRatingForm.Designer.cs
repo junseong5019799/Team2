@@ -134,13 +134,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 12, 16, 37, 34, 995);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 17, 20, 47, 383);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 13, 16, 37, 34, 995);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 17, 20, 47, 383);
             // 
             // label4
             // 
@@ -155,7 +155,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.fromToDateControl2);
-            this.panel2.Location = new System.Drawing.Point(112, 27);
+            this.panel2.Location = new System.Drawing.Point(112, 22);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(230, 33);
             this.panel2.TabIndex = 29;
@@ -163,18 +163,18 @@
             // fromToDateControl2
             // 
             this.fromToDateControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl2.From = new System.DateTime(2020, 8, 17, 12, 20, 36, 136);
+            this.fromToDateControl2.From = new System.DateTime(2020, 8, 19, 17, 20, 36, 461);
             this.fromToDateControl2.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl2.Name = "fromToDateControl2";
             this.fromToDateControl2.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl2.TabIndex = 17;
-            this.fromToDateControl2.To = new System.DateTime(2020, 8, 18, 12, 20, 36, 136);
+            this.fromToDateControl2.To = new System.DateTime(2020, 8, 20, 17, 20, 36, 461);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(397, 35);
+            this.label7.Location = new System.Drawing.Point(397, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 22;
@@ -183,7 +183,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(50, 35);
+            this.label9.Location = new System.Drawing.Point(50, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 20;
@@ -197,12 +197,12 @@
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
             this.btnCalculate.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculate.Image")));
             this.btnCalculate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCalculate.Location = new System.Drawing.Point(685, 30);
+            this.btnCalculate.Location = new System.Drawing.Point(1226, 24);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(88, 26);
+            this.btnCalculate.Size = new System.Drawing.Size(126, 26);
             this.btnCalculate.TabIndex = 32;
-            this.btnCalculate.Text = "발주";
+            this.btnCalculate.Text = "자재 소요계획";
             this.btnCalculate.UseVisualStyleBackColor = false;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
@@ -219,7 +219,7 @@
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(497, 31);
+            this.cboPlanID.Location = new System.Drawing.Point(497, 26);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(121, 24);
             this.cboPlanID.TabIndex = 33;

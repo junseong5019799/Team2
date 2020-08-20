@@ -130,7 +130,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
-            this.panel3.Location = new System.Drawing.Point(115, 27);
+            this.panel3.Location = new System.Drawing.Point(115, 22);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(230, 33);
             this.panel3.TabIndex = 28;
@@ -138,18 +138,18 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 17, 17, 57, 32, 409);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 17, 21, 50, 42);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 18, 17, 57, 32, 409);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 17, 21, 50, 42);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 35);
+            this.label1.Location = new System.Drawing.Point(50, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 27;
@@ -158,7 +158,7 @@
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(464, 31);
+            this.cboPlanID.Location = new System.Drawing.Point(464, 26);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(121, 24);
             this.cboPlanID.TabIndex = 35;
@@ -166,7 +166,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(373, 35);
+            this.label7.Location = new System.Drawing.Point(373, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 34;
@@ -179,7 +179,7 @@
             this.btnOrder.ForeColor = System.Drawing.Color.Black;
             this.btnOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnOrder.Image")));
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrder.Location = new System.Drawing.Point(715, 27);
+            this.btnOrder.Location = new System.Drawing.Point(1420, 22);
             this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(91, 29);

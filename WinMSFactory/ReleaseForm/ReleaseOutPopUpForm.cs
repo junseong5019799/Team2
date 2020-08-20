@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinMSFactory.Popup;
+using WinMSFactory.Services;
 
 namespace WinMSFactory.ReleaseForm
 {
@@ -83,9 +84,13 @@ namespace WinMSFactory.ReleaseForm
             txtQuantity.Text = requestQuantity.ToString();
             txtQuantity.ReadOnly = true;
             txtCompany.ReadOnly = true;
+            txtStock.ReadOnly = true;           
 
             lblPlanID.Text = releaseNo.ToString();
             lblSeq.Text = releaseSeq.ToString();
+
+            StorageService service = new StorageService();
+            txtStock.Text = service.GetStockByProduct(cboProduct.SelectedValue.ToInt()).ToString();
 
             dtpOut.Enabled = false;
         }

@@ -48,6 +48,11 @@ namespace WinMSFactory.Services
             return dac.GetInOutListBinding();
         }
 
+        public int GetCurrentPriceByCompany(int company_id, int product_id)
+        {
+            return dac.GetCurrentPriceByCompany(company_id, product_id);
+        }
+
         public DataTable GetInOutListByGubun(string gubun)
         {
             return dac.GetInOutListByGubun(gubun);

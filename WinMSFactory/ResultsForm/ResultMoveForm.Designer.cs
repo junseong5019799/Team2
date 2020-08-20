@@ -50,6 +50,8 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
             this.panel4.SuspendLayout();
@@ -60,7 +62,8 @@
             // 
             this.panel1.Controls.Add(this.cboStorage);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Size = new System.Drawing.Size(1364, 64);
+            this.panel1.Size = new System.Drawing.Size(1364, 80);
+            this.panel1.Controls.SetChildIndex(this.separatorControl1, 0);
             this.panel1.Controls.SetChildIndex(this.Guidlabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label3, 0);
             this.panel1.Controls.SetChildIndex(this.cboStorage, 0);
@@ -73,8 +76,9 @@
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.None;
-            this.panel2.Location = new System.Drawing.Point(0, 65);
-            this.panel2.Size = new System.Drawing.Size(1534, 296);
+            this.panel2.Location = new System.Drawing.Point(0, 86);
+            this.panel2.Size = new System.Drawing.Size(1534, 275);
+            this.panel2.Controls.SetChildIndex(this.separatorControl2, 0);
             this.panel2.Controls.SetChildIndex(this.dgv, 0);
             // 
             // panel3
@@ -87,6 +91,16 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.None;
             this.panel3.Location = new System.Drawing.Point(0, 364);
             this.panel3.Size = new System.Drawing.Size(1364, 397);
+            // 
+            // separatorControl1
+            // 
+            this.separatorControl1.Location = new System.Drawing.Point(0, 73);
+            this.separatorControl1.Size = new System.Drawing.Size(1364, 7);
+            // 
+            // separatorControl2
+            // 
+            this.separatorControl2.Location = new System.Drawing.Point(0, 268);
+            this.separatorControl2.Size = new System.Drawing.Size(1534, 7);
             // 
             // dgv
             // 
@@ -134,7 +148,7 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 287);
+            this.dgv.Size = new System.Drawing.Size(1534, 268);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -200,7 +214,7 @@
             // 
             this.cboStorage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStorage.FormattingEnabled = true;
-            this.cboStorage.Location = new System.Drawing.Point(113, 18);
+            this.cboStorage.Location = new System.Drawing.Point(116, 27);
             this.cboStorage.Name = "cboStorage";
             this.cboStorage.Size = new System.Drawing.Size(146, 24);
             this.cboStorage.TabIndex = 49;
@@ -208,7 +222,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 21);
+            this.label3.Location = new System.Drawing.Point(50, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 16);
             this.label3.TabIndex = 48;
@@ -259,6 +273,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
             this.panel4.ResumeLayout(false);

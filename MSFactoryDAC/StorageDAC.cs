@@ -81,6 +81,34 @@ namespace MSFactoryDAC
             }
         }
 
+
+        public int GetStockByProduct(int product_id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT ISNULL(0, SUM(stock_quantity))
+                                   FROM TBL_STOCK ST 
+                                   WHERE product_id = @product_id";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@product_id", product_id);
+                        int num = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        return num;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+
         public List<StorageVO> StorageComboBindings(int corpValue, int facValue)
         {
             try

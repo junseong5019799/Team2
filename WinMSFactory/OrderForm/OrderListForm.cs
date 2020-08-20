@@ -57,7 +57,7 @@ namespace WinMSFactory
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 DueDatePopUpForm frm = new DueDatePopUpForm();
                 frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells["order_request_date"].Value.ToString());
@@ -94,6 +94,17 @@ namespace WinMSFactory
                 }
                 dgv.DataSource = null;
                 dgv.DataSource = pList;
+            }
+        }
+
+        public void Clear(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCompany.SelectedIndex = 0;
+
+                DataTable dt = orderService.GetOrderList();
+                dgv.DataSource = dt;
             }
         }
     }

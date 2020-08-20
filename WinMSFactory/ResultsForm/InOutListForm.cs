@@ -81,13 +81,17 @@ namespace WinMSFactory
                              where item.product_id == searchProduct                             
                              select item).ToList();
                 }
-                //else if(searchProduct == 0)
-                //{
-                //    pList= (from item in pList                            
-                //            select item).ToList();
-                //}
                 
                 dgv.DataSource = pList;
+        }
+
+
+        public void Clear(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                Search(null, null);
+            }
         }
     }
 }

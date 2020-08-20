@@ -44,7 +44,6 @@ namespace WinMSFactory
             dgv.AddNewColumns("발주량", "order_request_quantity", 90, false, true, false, RightAlign);
             dgv.AddNewColumns("발주일", "order_request_date", 100, true, true, false, LeftAlign);
            
-
             dgv.DataSource = orderService.GetWareHouseList();            
 
             dgvDetail.AddNewColumns("발주번호", "order_no", 80, false, true, false, RightAlign);
@@ -72,9 +71,7 @@ namespace WinMSFactory
         private void Readed(object sender, ReadEventArgs e)
         {
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-            {
-                //MessageBox.Show(e.ReadMsg);
-
+            {                
                 string barID = e.ReadMsg;
                 barID = barID.Replace("%O", "-");
                 string[] str = barID.Split('-');
@@ -157,33 +154,68 @@ namespace WinMSFactory
         /// <param name="e"></param>
         private void btnWarehouse_Click(object sender, EventArgs e)
         {
-            if (dgvDetail.SelectedCells.Count == 0)
-            {
-                MessageBox.Show("출고 할 목록을 선택하세요");
-                return;
-            }
-            else if (dgvDetail.SelectedCells[5].Value.ToString() == "입고")
-            {
-                MessageBox.Show("이미 입고 처리 된 목록입니다.");
-                return;
-            }
-            else
-            {
-                WareHousePopUpForm frm = new WareHousePopUpForm();
-                frm.Order_no = Convert.ToInt32(dgvDetail.SelectedRows[0].Cells[0].Value);
-                frm.Product_id = Convert.ToInt32(dgvDetail.SelectedRows[0].Cells[3].Value);
-                frm.Product_name = dgvDetail.SelectedRows[0].Cells[4].Value.ToString();
-                frm.Order_seq = Convert.ToInt32(dgvDetail.SelectedRows[0].Cells[1].Value);
-                frm.Product_quantity = Convert.ToInt32(dgvDetail.SelectedRows[0].Cells["order_request_quantity"].Value);
+            dgvDetail.EndEdit();
+            List<int> cnt = new List<int>();
 
-                if (frm.ShowDialog() == DialogResult.OK)
+            foreach (DataGridViewRow row in dgvDetail.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dgvDetail[0, row.Index];
+
+                if (chk.Value == null)
+                    continue;
+
+                else if ((bool)chk.Value == true)
+                    cnt.Add(1);
+            }
+
+            if (cnt.Count < 1)
+            {
+                MessageBox.Show("입고 할 항목을 선택하세요");
+                return;
+            }
+            else if (cnt.Count > 1)
+            {
+                MessageBox.Show("입고 할 항목 하나만 선택하세요");
+                return;
+            }
+
+            for (int i = 0; i < dgvDetail.RowCount; i++)
+            {
+                if (dgvDetail.Rows[i].Cells[6].Value.ToString() == "입고")
                 {
-                    int order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-                    int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[3].Value);
-
-                    dgvDetail.DataSource = orderService.GetWareHouseDetail(order_no, product_id);
+                    MessageBox.Show("이미 입고 처리 된 목록입니다.");
+                    return;
                 }
+                else
+                {
+                    WareHousePopUpForm frm = new WareHousePopUpForm();
+                    frm.Order_no = Convert.ToInt32(dgvDetail.Rows[i].Cells["order_no"].Value);
+                    frm.Product_id = Convert.ToInt32(dgvDetail.Rows[i].Cells[4].Value);
+                    frm.Product_name = dgvDetail.Rows[i].Cells[5].Value.ToString();
+                    frm.Order_seq = Convert.ToInt32(dgvDetail.Rows[i].Cells[2].Value);
+                    frm.Product_quantity = Convert.ToInt32(dgvDetail.Rows[i].Cells["order_request_quantity"].Value);
+
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        int order_no = Convert.ToInt32(dgv.Rows[i].Cells[0].Value);
+                        int product_id = Convert.ToInt32(dgv.Rows[i].Cells[3].Value);
+
+                        dgvDetail.DataSource = orderService.GetWareHouseDetail(order_no, product_id);
+                    }
+                }
+            }             
+        }
+
+
+        public void Clear(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCompany.SelectedIndex = 0;
+                dgv.DataSource = orderService.GetWareHouseList();
             }
         }
-    }
+    }                               
 }
+    
+
