@@ -27,13 +27,14 @@ namespace WinMSFactory
 
         private void LineForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgvLinelist.IsAllCheckColumnHeader = true;
 
             dgvLinelist.AddNewColumns("법인명", "corporation_name", 100, true);
             dgvLinelist.AddNewColumns("공장명", "factory_name", 100, true);
             dgvLinelist.AddNewColumns("라인코드", "line_id", 100, true);
             dgvLinelist.AddNewColumns("라인명", "line_name", 100, true);
-            dgvLinelist.AddNewColumns("라인순번", "line_seq", 100, true);
+            dgvLinelist.AddNewColumns("라인순번", "line_seq", 100, true, true, false, RightAlign);
             dgvLinelist.AddNewColumns("라인비고1", "line_note1", 100, true);
             dgvLinelist.AddNewColumns("라인비고2", "line_note2", 100, true);
             dgvLinelist.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 8 버튼

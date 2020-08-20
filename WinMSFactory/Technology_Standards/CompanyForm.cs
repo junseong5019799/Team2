@@ -32,13 +32,14 @@ namespace WinMSFactory
 
         private void CompanyForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgvCompanyList.IsAllCheckColumnHeader = true;
 
             //거래처리스트 거래처코드, 거래처명칭, 거래처유형, 거래처순번, 거래처사용여부, 최초 최종
-            dgvCompanyList.AddNewColumns("거래처코드", "company_id", 100, true);
+            dgvCompanyList.AddNewColumns("거래처코드", "company_id", 100, true, true, false, RightAlign);
             dgvCompanyList.AddNewColumns("거래처명칭", "company_name", 100, true);
             dgvCompanyList.AddNewColumns("거래처유형", "COMMON_NAME", 100, true);
-            dgvCompanyList.AddNewColumns("거래처순번", "company_seq", 100, true);
+            dgvCompanyList.AddNewColumns("거래처순번", "company_seq", 100, true, true, false, RightAlign);
             dgvCompanyList.AddNewColumns("최초등록 시각", "first_regist_time", 100, true);
             dgvCompanyList.AddNewColumns("최초등록 사원", "first_regist_employee", 100, true);
             dgvCompanyList.AddNewColumns("최종등록 시각", "final_regist_time", 100, true);

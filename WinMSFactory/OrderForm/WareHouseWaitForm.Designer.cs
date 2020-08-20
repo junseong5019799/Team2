@@ -166,13 +166,13 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 9, 43, 58, 693);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 16, 23, 6, 508);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 9, 43, 58, 693);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 16, 23, 6, 508);
             // 
             // label1
             // 
@@ -258,7 +258,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetail.IsAllCheckColumnHeader = false;
+            this.dgvDetail.IsAllCheckColumnHeader = true;
             this.dgvDetail.IsAutoGenerateColumns = false;
             this.dgvDetail.Location = new System.Drawing.Point(0, 66);
             this.dgvDetail.MultiSelect = false;

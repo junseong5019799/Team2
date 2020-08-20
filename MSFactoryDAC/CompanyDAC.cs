@@ -137,10 +137,10 @@ namespace MSFactoryDAC
                     cmd.Connection.Open();
                     cmd.CommandText = @"SELECT company_id, company_name, C.COMMON_NAME, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
                                         FROM TBL_COMPANY CM INNER JOIN TBL_COMMON C ON CM.company_type = C.common_id
-                                        WHERE company_type = isnull(company_type, @company_type) or company_type = @company_type 
+                                        WHERE company_type = isnull(common_name, @common_name) or common_name = @common_name
                                         ORDER BY company_seq";
 
-                    cmd.Parameters.AddWithValue("@company_type", type);
+                    cmd.Parameters.AddWithValue("@common_name", type);
                     return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
                 }
             }
@@ -178,25 +178,47 @@ namespace MSFactoryDAC
                         cmd.Parameters.AddWithValue("@P_first_regist_employee", company.first_regist_employee);
                         cmd.Parameters.AddWithValue("@P_final_regist_employee", company.final_regist_employee);
 
+                        SqlParameter param1 = new SqlParameter("@O_company_id",SqlDbType.Int);
+                        param1.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(param1);
+
                         int result = cmd.ExecuteNonQuery();
                         if (result > 0)
                         {
-                            string sqlDelete = @"Delete from TBL_COMPANY_PRODUCT where company_id = @company_id";
-                            cmd.CommandText = sqlDelete;
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@company_id", company.company_id);
-                            cmd.ExecuteNonQuery();
-
-                            foreach (var item in prodListVO)
+                            if(company.company_id != 0)
                             {
-                                string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
-                                cmd.CommandText = sqlInsert;
+                                string sqlDelete = @"Delete from TBL_COMPANY_PRODUCT where company_id = @company_id";
+                                cmd.CommandText = sqlDelete;
+                                cmd.CommandType = CommandType.Text;
                                 cmd.Parameters.Clear();
                                 cmd.Parameters.AddWithValue("@company_id", company.company_id);
-                                cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
                                 cmd.ExecuteNonQuery();
+
+                                foreach (var item in prodListVO)
+                                {
+                                    string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
+                                    cmd.CommandText = sqlInsert;
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@company_id", company.company_id);
+                                    cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
+                            
+                            else
+                            {
+                                foreach (var item in prodListVO)
+                                {
+                                    string sqlInsert = @"Insert into TBL_COMPANY_PRODUCT(company_id, product_id) values(@company_id, @product_id)";
+                                    cmd.CommandText = sqlInsert;
+                                    cmd.CommandType = CommandType.Text;
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@company_id", param1.Value);
+                                    cmd.Parameters.AddWithValue("@product_id", item.Product_ID);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            
 
                         }
                     }                    

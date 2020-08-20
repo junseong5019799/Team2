@@ -34,14 +34,15 @@ namespace WinMSFactory
 
         private void StorageForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
             dgv.IsAllCheckColumnHeader = true;
 
-            dgv.AddNewColumns("창고 ID", "storage_id", 150, true);
+            dgv.AddNewColumns("창고 ID", "storage_id", 150, true, true, false, RightAlign);
             dgv.AddNewColumns("법인명", "corporation_name", 150, true);
             dgv.AddNewColumns("공장명", "factory_name", 150, true);
             dgv.AddNewColumns("창고명", "storage_name", 150, true);
             dgv.AddNewColumns("사용 여부", "storage_use", 150, true);
-            dgv.AddNewColumns("창고 순번", "storage_seq", 150, true);
+            dgv.AddNewColumns("창고 순번", "storage_seq", 150, true, true, false, RightAlign);
             dgv.AddNewColumns("최초등록시간", "first_regist_time", 150, true);
             dgv.AddNewColumns("최초등록직원", "first_regist_employee", 150, true);
             dgv.AddNewColumns("최종등록시간", "final_regist_time", 150, true);

@@ -16,7 +16,12 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
-            <form style="padding-left:700px" action="~/Order/ReleaseList?ProductName=">
+            <form style="padding-left:500px" action="~/Order/ReleaseList">
+                출고일자로 검색 :
+                <input type="date" name="StartDate">
+                <input type="date" name="EndDate">
+                <input type='submit' value='검색'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                제품명으로 검색 :
                 <input type="text" name="ProductName" />
                 <input type='submit' value='검색'>
             </form>
@@ -28,7 +33,7 @@
                         <tr role="row">
                             <th class="sorting" rowspan="1" colspan="1" col-3 width="100px">출고 번호</th>
                             <th class="sorting" rowspan="1" colspan="1" width="200px">회사 이름</th>
-                            <th class="sorting" rowspan="1" colspan="1" width="200px">제품 이름</th>
+                            <th class="sorting" rowspan="1" colspan="1" width="200px">제품명</th>
                             <th class="sorting" rowspan="1" colspan="1" width="130px">출고 등록 일자</th>
                             <th class="sorting" rowspan="1" colspan="1" width="130px">출고 요청 일자</th>
                             <th class="sorting" rowspan="1" colspan="1" width="130px">출고 일자</th>

@@ -29,15 +29,17 @@ namespace WinMSFactory
 
         private void ProcessForm_Load(object sender, EventArgs e)
         {
+            DataGridViewContentAlignment RightAlign = DataGridViewContentAlignment.MiddleRight;
+
             dgvProcess.IsAllCheckColumnHeader = true;
 
             dgvProcess.AddNewColumns("법인명", "corporation_name", 100, true);
             dgvProcess.AddNewColumns("공장명", "factory_name", 100, true);
             dgvProcess.AddNewColumns("라인명", "line_name", 100, true);
             dgvProcess.AddNewColumns("창고명", "Storage_Name", 100, true);
-            dgvProcess.AddNewColumns("공정코드", "process_id", 100, true);
+            dgvProcess.AddNewColumns("공정코드", "process_id", 100, true, true, false, RightAlign);
             dgvProcess.AddNewColumns("공정명", "process_name", 100, true);
-            dgvProcess.AddNewColumns("공정순번", "process_seq", 100, true);
+            dgvProcess.AddNewColumns("공정순번", "process_seq", 100, true, true, false, RightAlign);
             dgvProcess.AddNewColumns("공정비고1", "process_note1", 100, true);
             dgvProcess.AddNewColumns("공정비고2", "process_note2", 100, true);
             dgvProcess.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 10 버튼

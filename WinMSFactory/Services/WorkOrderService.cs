@@ -50,5 +50,13 @@ namespace WinMSFactory.Services
 				return workOrderDAC.DeleteWorkOrder(work_order_no);
 			}
 		}
+
+		public DataTable CheckBarcode()
+		{
+			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
+			{
+				return workOrderDAC.CheckBarcode();
+			}
+		}
 	}
 }

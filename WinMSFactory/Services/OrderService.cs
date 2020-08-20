@@ -23,9 +23,9 @@ namespace WinMSFactory.Services
             return dac.GetOrderPlanList(release_no);
         }
 
-        public List<OrderVO> GetOrderListByDate(string fromDate, string toDate)
+        public DataTable GetOrderListByDate(string fromDate, string toDate, int company_id)
         {
-            return dac.GetOrderListByDate(fromDate, toDate);
+            return dac.GetOrderListByDate(fromDate, toDate, company_id);
         }
            
         public DataTable GetOrderList()
@@ -46,6 +46,11 @@ namespace WinMSFactory.Services
         public List<InOutVO> GetInOutListBinding()
         {
             return dac.GetInOutListBinding();
+        }
+
+        public int GetCurrentPriceByCompany(int company_id, int product_id)
+        {
+            return dac.GetCurrentPriceByCompany(company_id, product_id);
         }
 
         public DataTable GetInOutListByGubun(string gubun)
@@ -72,9 +77,9 @@ namespace WinMSFactory.Services
         {
             return dac.GetWareHouseList();
         }
-        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate)
+        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate, int company_id)
         {
-            return dac.GetWareHouseByDate(fromDate, toDate);
+            return dac.GetWareHouseByDate(fromDate, toDate, company_id);
         }
         
         public DataTable GetWareHouseDetail(int order_no, int product_id)

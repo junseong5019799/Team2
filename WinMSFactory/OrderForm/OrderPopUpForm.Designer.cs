@@ -37,6 +37,7 @@
             this.dgvOrder = new WinMSFactory.DataGridViewControl();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnNew = new WinMSFactory.ButtonControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -136,17 +137,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "발주";
             // 
+            // btnNew
+            // 
+            this.btnNew.BackColor = System.Drawing.Color.Transparent;
+            this.btnNew.FlatAppearance.BorderSize = 0;
+            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNew.ForeColor = System.Drawing.Color.Black;
+            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
+            this.btnNew.Location = new System.Drawing.Point(1125, 3);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(30, 23);
+            this.btnNew.TabIndex = 3;
+            this.btnNew.UseVisualStyleBackColor = false;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
             // OrderPopUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 572);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.groupBox1);
             this.Name = "OrderPopUpForm";
             this.Text = "발주 ";
             this.Load += new System.EventHandler(this.OrderPopUpForm_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnNew, 0);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -159,5 +176,6 @@
         private DataGridViewControl dgvOrder;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private ButtonControl btnNew;
     }
 }

@@ -85,7 +85,7 @@
             // 
             this.lblCorporationid.AutoSize = true;
             this.lblCorporationid.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorporationid.Location = new System.Drawing.Point(65, 30);
+            this.lblCorporationid.Location = new System.Drawing.Point(50, 30);
             this.lblCorporationid.Name = "lblCorporationid";
             this.lblCorporationid.Size = new System.Drawing.Size(59, 15);
             this.lblCorporationid.TabIndex = 12;

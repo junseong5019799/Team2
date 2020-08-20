@@ -59,6 +59,11 @@ namespace WinMSFactory.Services
             return dac.StorageComboBindings(corpValue, facValue);
         }
 
+        public int GetStockByProduct(int product_id)
+        {
+            return dac.GetStockByProduct(product_id);
+        }
+
         public bool SaveStorage(StorageVO vo)
         {
             return dac.SaveStorage(vo);

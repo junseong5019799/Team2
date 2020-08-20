@@ -38,13 +38,15 @@
             this.dtpOut = new System.Windows.Forms.DateTimePicker();
             this.lblPlanID = new System.Windows.Forms.Label();
             this.lblSeq = new System.Windows.Forms.Label();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 267);
-            this.panel1.Size = new System.Drawing.Size(353, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 307);
+            this.panel1.Size = new System.Drawing.Size(357, 42);
             // 
             // btnConfirm
             // 
@@ -66,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 41);
+            this.label1.Location = new System.Drawing.Point(51, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 1;
@@ -75,7 +77,7 @@
             // cboProduct
             // 
             this.cboProduct.FormattingEnabled = true;
-            this.cboProduct.Location = new System.Drawing.Point(127, 89);
+            this.cboProduct.Location = new System.Drawing.Point(127, 86);
             this.cboProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(192, 24);
@@ -83,7 +85,7 @@
             // 
             // txtCompany
             // 
-            this.txtCompany.Location = new System.Drawing.Point(127, 38);
+            this.txtCompany.Location = new System.Drawing.Point(127, 39);
             this.txtCompany.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(192, 22);
@@ -92,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 194);
+            this.label2.Location = new System.Drawing.Point(40, 183);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 5;
@@ -101,7 +103,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 92);
+            this.label5.Location = new System.Drawing.Point(62, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);
             this.label5.TabIndex = 8;
@@ -109,7 +111,7 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(127, 193);
+            this.txtQuantity.Location = new System.Drawing.Point(127, 182);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(85, 22);
@@ -118,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 143);
+            this.label3.Location = new System.Drawing.Point(51, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 15;
@@ -126,7 +128,7 @@
             // 
             // dtpOut
             // 
-            this.dtpOut.Location = new System.Drawing.Point(127, 142);
+            this.dtpOut.Location = new System.Drawing.Point(127, 135);
             this.dtpOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpOut.Name = "dtpOut";
             this.dtpOut.Size = new System.Drawing.Size(192, 22);
@@ -152,11 +154,32 @@
             this.lblSeq.Text = "SEQ";
             this.lblSeq.Visible = false;
             // 
+            // txtStock
+            // 
+            this.txtStock.Location = new System.Drawing.Point(127, 247);
+            this.txtStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(85, 22);
+            this.txtStock.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(30, 247);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 16);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "* 재고수량";
+            // 
             // ReleaseOutPopUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 309);
+            this.ClientSize = new System.Drawing.Size(357, 349);
+            this.Controls.Add(this.txtStock);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblSeq);
             this.Controls.Add(this.lblPlanID);
             this.Controls.Add(this.label3);
@@ -170,7 +193,6 @@
             this.Name = "ReleaseOutPopUpForm";
             this.Text = "출고 등록";
             this.Load += new System.EventHandler(this.ReleaseExcelPopUpForm_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.cboProduct, 0);
             this.Controls.SetChildIndex(this.txtCompany, 0);
@@ -181,6 +203,9 @@
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.lblPlanID, 0);
             this.Controls.SetChildIndex(this.lblSeq, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txtStock, 0);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -199,5 +224,7 @@
         private System.Windows.Forms.DateTimePicker dtpOut;
         private System.Windows.Forms.Label lblPlanID;
         private System.Windows.Forms.Label lblSeq;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.Label label4;
     }
 }

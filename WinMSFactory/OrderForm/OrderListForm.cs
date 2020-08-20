@@ -57,7 +57,7 @@ namespace WinMSFactory
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 DueDatePopUpForm frm = new DueDatePopUpForm();
                 frm.Due_date = Convert.ToDateTime(dgv.SelectedRows[0].Cells["order_request_date"].Value.ToString());
@@ -77,23 +77,33 @@ namespace WinMSFactory
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
                 List<OrderVO> pList;
-                OrderService service = new OrderService();
 
                 string fromDate = fromToDateControl1.From.ToShortDateString();
                 string toDate = fromToDateControl1.To.ToShortDateString();
+                int searchGubun = Convert.ToInt32(cboCompany.SelectedValue);                            
 
-                pList = service.GetOrderListByDate(fromDate, toDate);
-
-                if (cboCompany.SelectedIndex == 0)
-                    dgv.DataSource = pList;
-                else if (!string.IsNullOrEmpty(cboCompany.SelectedText))
+                if (searchGubun == 0)
                 {
-                    pList = (from item in pList
-                             where item.company_name.Contains(cboCompany.SelectedText.ToString())
-                             select item).ToList();
+                    DataTable dt = orderService.GetOrderList();
+                    dgv.DataSource = dt;
+                    return;
                 }
-                dgv.DataSource = null;
-                dgv.DataSource = pList;
+                if (searchGubun > 0)
+                {
+                    dgv.DataSource = orderService.GetOrderListByDate(fromDate, toDate, searchGubun);
+                }
+      
+            }
+        }
+
+        public void Clear(object sender, EventArgs e)
+        {
+            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+            {
+                cboCompany.SelectedIndex = 0;
+
+                DataTable dt = orderService.GetOrderList();
+                dgv.DataSource = dt;
             }
         }
     }

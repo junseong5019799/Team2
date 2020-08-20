@@ -57,8 +57,8 @@
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnRelease = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dgv = new WinMSFactory.DataGridViewControl();
             this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
+            this.dgv = new WinMSFactory.DataGridViewControl();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -66,8 +66,8 @@
             this.panel5.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -92,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 34);
+            this.label1.Location = new System.Drawing.Point(50, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 6;
@@ -101,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(409, 34);
+            this.label3.Location = new System.Drawing.Point(409, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 16);
             this.label3.TabIndex = 8;
@@ -116,7 +116,7 @@
             this.btnCalculate.ForeColor = System.Drawing.Color.Black;
             this.btnCalculate.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculate.Image")));
             this.btnCalculate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCalculate.Location = new System.Drawing.Point(1144, 30);
+            this.btnCalculate.Location = new System.Drawing.Point(1250, 25);
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(102, 26);
@@ -139,18 +139,18 @@
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 12, 9, 18, 108);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 17, 19, 37, 77);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
             this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
             this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 12, 9, 18, 108);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 17, 19, 37, 77);
             // 
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(501, 30);
+            this.cboPlanID.Location = new System.Drawing.Point(501, 28);
             this.cboPlanID.Name = "cboPlanID";
             this.cboPlanID.Size = new System.Drawing.Size(114, 24);
             this.cboPlanID.TabIndex = 34;
@@ -159,7 +159,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.fromToDateControl1);
-            this.panel2.Location = new System.Drawing.Point(125, 26);
+            this.panel2.Location = new System.Drawing.Point(125, 24);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(230, 33);
             this.panel2.TabIndex = 19;
@@ -324,6 +324,17 @@
             this.panel3.Size = new System.Drawing.Size(1364, 416);
             this.panel3.TabIndex = 26;
             // 
+            // separatorControl2
+            // 
+            this.separatorControl2.BackColor = System.Drawing.Color.LightBlue;
+            this.separatorControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.separatorControl2.Location = new System.Drawing.Point(0, 409);
+            this.separatorControl2.Margin = new System.Windows.Forms.Padding(5);
+            this.separatorControl2.Name = "separatorControl2";
+            this.separatorControl2.Padding = new System.Windows.Forms.Padding(14);
+            this.separatorControl2.Size = new System.Drawing.Size(1364, 7);
+            this.separatorControl2.TabIndex = 7;
+            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
@@ -374,17 +385,6 @@
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
-            // separatorControl2
-            // 
-            this.separatorControl2.BackColor = System.Drawing.Color.LightBlue;
-            this.separatorControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.separatorControl2.Location = new System.Drawing.Point(0, 409);
-            this.separatorControl2.Margin = new System.Windows.Forms.Padding(5);
-            this.separatorControl2.Name = "separatorControl2";
-            this.separatorControl2.Padding = new System.Windows.Forms.Padding(14);
-            this.separatorControl2.Size = new System.Drawing.Size(1364, 7);
-            this.separatorControl2.TabIndex = 7;
-            // 
             // ReleasePlanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -413,8 +413,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
