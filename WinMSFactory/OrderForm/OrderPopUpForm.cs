@@ -57,7 +57,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("품명", "product_name", 120, false);
             dgvOrder.AddNewColumns("품목", "_product_id", 80, false);
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
-            dgvOrder.AddNewColumns("자재 단가", "material_current_price", 100, true, false, false, RightAlign);
+            dgvOrder.AddNewColumns("자재 단가", "sell_current_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false, false, RightAlign);            
             dgvOrder.AddNewColumns("발주 가격", "order_product_price", 100, true, false, false, RightAlign);
@@ -95,7 +95,7 @@ namespace WinMSFactory.OrderForm
                 return;
             }
 
-            //dgvOrder.Sort(dgvOrder.Columns["company_id"], ListSortDirection.Ascending);
+            dgvOrder.Sort(dgvOrder.Columns["company_id"], ListSortDirection.Ascending);
             HashSet<int> companySet = new HashSet<int>();
             string employee_id = "admin";
 
@@ -117,7 +117,7 @@ namespace WinMSFactory.OrderForm
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
                         orderVO.order_request_date = DateTime.Now;
-                        orderVO.material_current_price = Convert.ToInt32(dgvOrder.Rows[i].Cells["material_current_price"].Value);
+                        orderVO.sell_current_price = Convert.ToInt32(dgvOrder.Rows[i].Cells["SELL_CURRENT_PRICE"].Value);
                         orderVO.order_price = Convert.ToDecimal(dgvOrder.Rows[i].Cells["order_product_price"].Value);
 
                         olist.Add(orderVO);

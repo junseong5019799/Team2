@@ -61,7 +61,7 @@ namespace WinMSFactory
 
             CompanyService comService = new CompanyService();
             cboCompany.ComboBinding(comService.GetCompanyByType("cop"), "company_id", "company_name", "전체");
-            cboGubun.SelectedIndex = 0;
+           
         }
 
         /// <summary>
@@ -119,16 +119,7 @@ namespace WinMSFactory
                 string toDate = fromToDateControl1.To.ToShortDateString();
 
                 pList = service.GetWareHouseByDate(fromDate, toDate);
-
-                if (cboGubun.SelectedIndex == 0)
-                    dgv.DataSource = orderService.GetInOutList();
-                else if (!string.IsNullOrEmpty(cboGubun.SelectedItem.ToString()))
-                {
-                    pList = (from item in pList
-                             where item.order_status.Contains(cboGubun.SelectedItem.ToString())
-                             select item).ToList();
-                }
-
+                              
                 if (cboCompany.SelectedIndex == 0)
                     dgv.DataSource = pList; 
                 else if (!string.IsNullOrEmpty(cboCompany.SelectedText))

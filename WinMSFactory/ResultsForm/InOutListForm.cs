@@ -35,35 +35,29 @@ namespace WinMSFactory
             dgv.AddNewColumns("품목유형", "product_type", 100, true, true, false, DataGridViewContentAlignment.MiddleLeft);
             dgv.AddNewColumns("품명", "product_name", 150, true, true, false, DataGridViewContentAlignment.MiddleLeft);
             dgv.AddNewColumns("수량", "release_quantity", 80, true, true, false, DataGridViewContentAlignment.MiddleRight);
-            dgv.AddNewColumns("입출고일", "release_date", 120, true, true, false, DataGridViewContentAlignment.MiddleLeft);
-            
-            
-            dt = orderService.GetInOutList();
-            dgv.DataSource = dt;
+            dgv.AddNewColumns("입출고일", "release_date", 120, true, true, false, DataGridViewContentAlignment.MiddleLeft);   
 
             ReleaseService releaseService = new ReleaseService();
             cboProduct.ComboBinding(releaseService.SelectProduct(), "Product_ID", "Product_Name", "전체");
 
-            cboGubun.SelectedIndex = 0;            
+            cboGubun.SelectedIndex = 0;  
+            
+            Search(null, null);          
         }
-
 
 
         private void Search(object sender, EventArgs e)
         {
-            if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-            {
                 List<InOutVO> pList;
                 OrderService service = new OrderService();
 
                 string fromDate = fromToDateControl1.From.ToShortDateString();
                 string toDate = fromToDateControl1.To.ToShortDateString();
-
-                pList = service.GetInOutByDate(fromDate, toDate);
+                               
                 string searchGubun = string.Empty;
                 int searchProduct = Convert.ToInt32(cboProduct.SelectedValue);
 
-                if (cboGubun.SelectedValue == null)
+                if (cboGubun.SelectedItem.ToString() == "전체")
                     searchGubun = "";
                 else
                     searchGubun = cboGubun.SelectedItem.ToString();
@@ -73,32 +67,27 @@ namespace WinMSFactory
                 else
                     searchProduct = cboProduct.SelectedValue.ToInt();
 
-                //if(searchGubun == null)
-                //{
-                //    pList = (from item in pList
-                //             select item).ToList();
-                //}
+                pList = service.GetInOutByDate(fromDate, toDate, searchGubun);
+
                 if (!string.IsNullOrEmpty(searchGubun))
                 {
                     pList = (from item in pList
                              where item.gubun.Contains(searchGubun)
                              select item).ToList();                                        
                 }
-
-                if (searchProduct > 0)  //전체 쿼리 다시짜기  
+                if (searchProduct > 0) 
                 {
                     pList = (from item in pList
                              where item.product_id == searchProduct                             
                              select item).ToList();
                 }
-                else if(searchProduct == 0)
-                {
-                    pList= (from item in pList                            
-                            select item).ToList();
-                }
+                //else if(searchProduct == 0)
+                //{
+                //    pList= (from item in pList                            
+                //            select item).ToList();
+                //}
                 
                 dgv.DataSource = pList;
-            }
         }
     }
 }
