@@ -77,23 +77,22 @@ namespace WinMSFactory
             if (((MainForm)this.MdiParent).ActiveMdiChild == this)
             {
                 List<OrderVO> pList;
-                OrderService service = new OrderService();
 
                 string fromDate = fromToDateControl1.From.ToShortDateString();
                 string toDate = fromToDateControl1.To.ToShortDateString();
+                int searchGubun = Convert.ToInt32(cboCompany.SelectedValue);                            
 
-                pList = service.GetOrderListByDate(fromDate, toDate);
-
-                if (cboCompany.SelectedIndex == 0)
-                    dgv.DataSource = pList;
-                else if (!string.IsNullOrEmpty(cboCompany.SelectedText))
+                if (searchGubun == 0)
                 {
-                    pList = (from item in pList
-                             where item.company_name.Contains(cboCompany.SelectedText.ToString())
-                             select item).ToList();
+                    DataTable dt = orderService.GetOrderList();
+                    dgv.DataSource = dt;
+                    return;
                 }
-                dgv.DataSource = null;
-                dgv.DataSource = pList;
+                if (searchGubun > 0)
+                {
+                    dgv.DataSource = orderService.GetOrderListByDate(fromDate, toDate, searchGubun);
+                }
+      
             }
         }
 

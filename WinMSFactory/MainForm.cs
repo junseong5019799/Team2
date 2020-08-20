@@ -372,5 +372,16 @@ namespace WinMSFactory
 
             return false;
         }
-	}
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            BarcodePortSettingPopForm frm = new BarcodePortSettingPopForm();
+            frm.ShowDialog();
+
+            if (Properties.Settings.Default.PortName.Length > 0)
+            {
+                SerialPortConnection();
+            }
+        }
+    }
 }

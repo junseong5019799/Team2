@@ -23,9 +23,9 @@ namespace WinMSFactory.Services
             return dac.GetOrderPlanList(release_no);
         }
 
-        public List<OrderVO> GetOrderListByDate(string fromDate, string toDate)
+        public DataTable GetOrderListByDate(string fromDate, string toDate, int company_id)
         {
-            return dac.GetOrderListByDate(fromDate, toDate);
+            return dac.GetOrderListByDate(fromDate, toDate, company_id);
         }
            
         public DataTable GetOrderList()
