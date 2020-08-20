@@ -112,7 +112,7 @@ namespace MSFactoryDAC
 
 		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
-			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Work_date", 
+			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Release_no", "Release_seq", "Qty", "Work_date", 
 											 "Work_order_quantity", "Work_start_time", "Work_finish_time", "Regist_employee");
 		}
 

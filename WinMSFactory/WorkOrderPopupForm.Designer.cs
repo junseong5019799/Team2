@@ -51,10 +51,10 @@
 			this.dtpWorkFinishTime = new System.Windows.Forms.DateTimePicker();
 			this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
 			this.label1 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.nudQty = new System.Windows.Forms.NumericUpDown();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudQty)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -277,18 +277,23 @@
 			this.label1.TabIndex = 2;
 			this.label1.Text = "작업량";
 			// 
-			// numericUpDown1
+			// nudQty
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(288, 148);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
-			this.numericUpDown1.TabIndex = 5;
+			this.nudQty.Location = new System.Drawing.Point(288, 148);
+			this.nudQty.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+			this.nudQty.Name = "nudQty";
+			this.nudQty.Size = new System.Drawing.Size(120, 22);
+			this.nudQty.TabIndex = 5;
 			// 
 			// WorkOrderPopupForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.ClientSize = new System.Drawing.Size(515, 532);
-			this.Controls.Add(this.numericUpDown1);
+			this.Controls.Add(this.nudQty);
 			this.Controls.Add(this.dataGridViewControl1);
 			this.Controls.Add(this.dtpWorkFinishTime);
 			this.Controls.Add(this.dtpWorkStartTime);
@@ -329,10 +334,10 @@
 			this.Controls.SetChildIndex(this.dtpWorkStartTime, 0);
 			this.Controls.SetChildIndex(this.dtpWorkFinishTime, 0);
 			this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
-			this.Controls.SetChildIndex(this.numericUpDown1, 0);
+			this.Controls.SetChildIndex(this.nudQty, 0);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudQty)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -357,6 +362,6 @@
 		private System.Windows.Forms.DateTimePicker dtpWorkFinishTime;
 		private DataGridViewControl dataGridViewControl1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown nudQty;
 	}
 }
