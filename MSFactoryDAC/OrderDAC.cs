@@ -104,7 +104,7 @@ namespace MSFactoryDAC
         /// SELECT 수불현황 (날짜에 따른 수불현황)
         /// </summary>
         /// <returns></returns>
-        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate)
+        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate, string gubun)
         {
             try
             {
@@ -112,30 +112,32 @@ namespace MSFactoryDAC
                 {
                     conn.Open();
                     string sql = @" SELECT *
-	                                FROM (SELECT case when gubun = 1 then '출고' else '입고' end gubun, release_no
-					                                      , storage_id , (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = s.storage_id) storage_name
-					                                      , rd.product_id
-					                                      , (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
-					                                      , product_name, release_quantity
-					                                      , release_date
-			                        FROM dbo.TBL_RELEASE_DETAIL rd INNER JOIN dbo.TBL_STOCK s ON rd.product_id = s.product_id
-										                           INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
-			                        WHERE release_date BETWEEN @FromDate AND @ToDate							  
-			                        UNION 
-			                        SELECT case when gubun = 1 then '출고' else '입고' end gubun, warehouse_no
-			                        	 , w.storage_id,  (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = s.storage_id) storage_name
-			                        	 , s.product_id
-			                        	 , (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
-			                        	 , product_name , warehouse_quantity
-			                        	 , warehouse_date
-			                        FROM dbo.TBL_WAREHOUSE w INNER JOIN dbo.TBL_STOCK s ON w.storage_id = s.storage_id
-			                        					    INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
-			                        WHERE warehouse_date BETWEEN @FromDate AND @ToDate) A ";
+                                    FROM (  SELECT case when gubun = 1 then '출고' else '입고' end gubun, release_no, rd.release_seq
+                                    				 ,storage_id , (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = s.storage_id) storage_name
+                                    				 , rd.product_id
+                                    				 , (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
+                                    				 , product_name, release_quantity
+                                    				 , release_date
+                                    		   FROM dbo.TBL_RELEASE_DETAIL rd INNER JOIN dbo.TBL_STOCK s ON rd.product_id = s.product_id
+                                    									      INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
+                                    		   WHERE rd.release_status = '출고완료' AND RELEASE_DATE BETWEEN @FromDate AND @ToDate		  
+                                    UNION 
+                                     SELECT case when gubun = 1 then '출고' else '입고' end gubun
+                                    		   		, warehouse_no, o.order_seq, w.storage_id,  (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = w.storage_id) storage_name
+                                    		   		, o.product_id
+                                    		   		, (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
+                                    		   		, product_name , warehouse_quantity
+                                    		   		, warehouse_date
+                                    		   FROM dbo.TBL_WAREHOUSE w INNER JOIN dbo.TBL_ORDER_DETAIL o ON o.order_no = w.order_no
+                                    		   						    INNER JOIN dbo.TBL_PRODUCT p ON p.product_id = o.product_id
+                                               WHERE order_status = '입고'  AND warehouse_date BETWEEN @FromDate AND @ToDate
+                                    ) A ";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@FromDate", FromDate);
                         cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                        cmd.Parameters.AddWithValue("@gubun", gubun);
 
                         return SqlHelper.DataReaderMapToList<InOutVO>(cmd.ExecuteReader());
                     }

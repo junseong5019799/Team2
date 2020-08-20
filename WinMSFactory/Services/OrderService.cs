@@ -53,9 +53,9 @@ namespace WinMSFactory.Services
             return dac.GetInOutListByGubun(gubun);
         }
 
-        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate)
+        public List<InOutVO> GetInOutByDate(string FromDate, string ToDate, string gubun)
         {
-            return dac.GetInOutByDate(FromDate, ToDate);
+            return dac.GetInOutByDate(FromDate, ToDate, gubun);
         }
          
         public List<CompanyVO> SelectCompanyBindingByType()

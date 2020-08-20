@@ -46,8 +46,6 @@
             this.cboCompany = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboGubun = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnWarehouse = new System.Windows.Forms.ToolStripButton();
             this.dgvDetail = new WinMSFactory.DataGridViewControl();
@@ -64,15 +62,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cboGubun);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cboCompany);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Size = new System.Drawing.Size(1534, 100);
+            this.panel1.Size = new System.Drawing.Size(1364, 80);
             this.panel1.Controls.SetChildIndex(this.separatorControl1, 0);
             this.panel1.Controls.SetChildIndex(this.Guidlabel1, 0);
             this.panel1.Controls.SetChildIndex(this.panel4, 0);
@@ -80,19 +75,16 @@
             this.panel1.Controls.SetChildIndex(this.label2, 0);
             this.panel1.Controls.SetChildIndex(this.cboCompany, 0);
             this.panel1.Controls.SetChildIndex(this.label4, 0);
-            this.panel1.Controls.SetChildIndex(this.label5, 0);
-            this.panel1.Controls.SetChildIndex(this.cboGubun, 0);
             // 
             // Guidlabel1
             // 
-            this.Guidlabel1.Location = new System.Drawing.Point(912, 1);
+            this.Guidlabel1.Location = new System.Drawing.Point(811, 1);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
-            this.panel2.Location = new System.Drawing.Point(0, 100);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Size = new System.Drawing.Size(1534, 489);
+            this.panel2.Location = new System.Drawing.Point(0, 80);
+            this.panel2.Size = new System.Drawing.Size(1364, 391);
             this.panel2.Controls.SetChildIndex(this.separatorControl2, 0);
             this.panel2.Controls.SetChildIndex(this.dgv, 0);
             // 
@@ -100,23 +92,18 @@
             // 
             this.panel3.Controls.Add(this.dgvDetail);
             this.panel3.Controls.Add(this.toolStrip1);
-            this.panel3.Location = new System.Drawing.Point(0, 589);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel3.Size = new System.Drawing.Size(1534, 362);
+            this.panel3.Location = new System.Drawing.Point(0, 471);
+            this.panel3.Size = new System.Drawing.Size(1364, 290);
             // 
             // separatorControl1
             // 
-            this.separatorControl1.Location = new System.Drawing.Point(0, 89);
-            this.separatorControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.separatorControl1.Padding = new System.Windows.Forms.Padding(16, 18, 16, 18);
-            this.separatorControl1.Size = new System.Drawing.Size(1534, 11);
+            this.separatorControl1.Location = new System.Drawing.Point(0, 71);
+            this.separatorControl1.Size = new System.Drawing.Size(1364, 9);
             // 
             // separatorControl2
             // 
-            this.separatorControl2.Location = new System.Drawing.Point(0, 478);
-            this.separatorControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.separatorControl2.Padding = new System.Windows.Forms.Padding(16, 18, 16, 18);
-            this.separatorControl2.Size = new System.Drawing.Size(1534, 11);
+            this.separatorControl2.Location = new System.Drawing.Point(0, 382);
+            this.separatorControl2.Size = new System.Drawing.Size(1364, 9);
             // 
             // dgv
             // 
@@ -146,7 +133,6 @@
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = false;
             this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -165,54 +151,52 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 478);
+            this.dgv.Size = new System.Drawing.Size(1364, 382);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.fromToDateControl1);
-            this.panel4.Location = new System.Drawing.Point(125, 28);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel4.Location = new System.Drawing.Point(111, 22);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(259, 41);
+            this.panel4.Size = new System.Drawing.Size(230, 33);
             this.panel4.TabIndex = 28;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 18, 20, 32, 3, 314);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 9, 43, 58, 693);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
+            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 19, 20, 32, 3, 314);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 9, 43, 58, 693);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 38);
+            this.label1.Location = new System.Drawing.Point(50, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 29;
             this.label1.Text = "납기일";
             // 
             // cboCompany
             // 
             this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(728, 32);
-            this.cboCompany.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCompany.Location = new System.Drawing.Point(484, 26);
             this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(136, 28);
+            this.cboCompany.Size = new System.Drawing.Size(121, 24);
             this.cboCompany.TabIndex = 36;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(641, 38);
+            this.label2.Location = new System.Drawing.Point(407, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 35;
             this.label2.Text = "납품업체";
             // 
@@ -220,33 +204,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(4, 68);
+            this.label4.Location = new System.Drawing.Point(4, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 20);
+            this.label4.Size = new System.Drawing.Size(52, 16);
             this.label4.TabIndex = 39;
             this.label4.Text = "입고현황";
-            // 
-            // cboGubun
-            // 
-            this.cboGubun.FormattingEnabled = true;
-            this.cboGubun.Items.AddRange(new object[] {
-            "전체",
-            "입고",
-            "발주중"});
-            this.cboGubun.Location = new System.Drawing.Point(496, 32);
-            this.cboGubun.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboGubun.Name = "cboGubun";
-            this.cboGubun.Size = new System.Drawing.Size(102, 28);
-            this.cboGubun.TabIndex = 55;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(408, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 20);
-            this.label5.TabIndex = 54;
-            this.label5.Text = "발주 상태";
             // 
             // toolStrip1
             // 
@@ -256,7 +218,7 @@
             this.btnWarehouse});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1534, 82);
+            this.toolStrip1.Size = new System.Drawing.Size(1364, 66);
             this.toolStrip1.TabIndex = 28;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -298,8 +260,7 @@
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetail.IsAllCheckColumnHeader = false;
             this.dgvDetail.IsAutoGenerateColumns = false;
-            this.dgvDetail.Location = new System.Drawing.Point(0, 82);
-            this.dgvDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvDetail.Location = new System.Drawing.Point(0, 66);
             this.dgvDetail.MultiSelect = false;
             this.dgvDetail.Name = "dgvDetail";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -318,15 +279,14 @@
             this.dgvDetail.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvDetail.RowTemplate.Height = 23;
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetail.Size = new System.Drawing.Size(1534, 280);
+            this.dgvDetail.Size = new System.Drawing.Size(1364, 224);
             this.dgvDetail.TabIndex = 29;
             // 
             // WareHouseWaitForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 951);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ClientSize = new System.Drawing.Size(1364, 761);
             this.Name = "WareHouseWaitForm";
             this.Text = "입고 대기";
             this.Load += new System.EventHandler(this.WareHouseWaitForm_Load);
@@ -355,8 +315,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboCompany;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cboGubun;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnWarehouse;
         private DataGridViewControl dgvDetail;
