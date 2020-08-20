@@ -182,6 +182,11 @@ namespace WinMSFactory
                         MessageBox.Show("출고 취소 된 항목이 있습니다. 납기일을 변경 해주세요.");
                         return;
                     }
+                    if(dgv2.Rows[i].Cells[9].Value.ToString() == "출고완료")
+                    {
+                        MessageBox.Show("이미 출고 완료된 항목이 있습니다.");
+                        return;
+                    }
                     else
                     {
                         Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -270,6 +275,8 @@ namespace WinMSFactory
                         releaseService.UpdateReleaseDateCancel(release_no, Convert.ToInt32(dgv2.Rows[i].Cells[3].Value));                       
                     }                                                                 
                 }
+
+                dgv2.DataSource = releaseService.GetReleasePlanDetail(Convert.ToInt32(dgv.Rows[0].Cells[0].Value));
                 //MessageBox.Show("출고 취소 된 항목이 있습니다. 출고 요청일을 확인해주세요.");
             }
         }

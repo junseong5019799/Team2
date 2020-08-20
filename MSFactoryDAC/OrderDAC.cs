@@ -157,7 +157,7 @@ namespace MSFactoryDAC
                                     									      INNER JOIN dbo.TBL_PRODUCT p ON s.product_id = p.product_id
                                     		   WHERE rd.release_status = '출고완료' AND RELEASE_DATE BETWEEN @FromDate AND @ToDate		  
                                     UNION 
-                                     SELECT case when gubun = 1 then '출고' else '입고' end gubun
+                                    SELECT case when gubun = 1 then '출고' else '입고' end gubun
                                     		   		, warehouse_no, o.order_seq, w.storage_id,  (SELECT storage_name FROM TBL_STORAGE WHERE storage_id = w.storage_id) storage_name
                                     		   		, o.product_id
                                     		   		, (SELECT product_group_name FROM TBL_PRODUCT_GROUP_MANAGEMENT WHERE product_group_id = p.product_group_id) product_type
@@ -165,8 +165,8 @@ namespace MSFactoryDAC
                                     		   		, warehouse_date
                                     		   FROM dbo.TBL_WAREHOUSE w INNER JOIN dbo.TBL_ORDER_DETAIL o ON o.order_no = w.order_no
                                     		   						    INNER JOIN dbo.TBL_PRODUCT p ON p.product_id = o.product_id
-                                               WHERE order_status = '입고'  AND warehouse_date BETWEEN @FromDate AND @ToDate
-                                    ) A ";
+                                               WHERE order_status = '입고'  AND o.order_seq = w.order_seq AND warehouse_date BETWEEN @FromDate AND @ToDate
+                                        ) A ";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -391,22 +391,27 @@ namespace MSFactoryDAC
         /// SELECT 입고 대기 리스트 (날짜에 따라)
         /// </summary>
         /// <returns></returns>
-        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate)
+        public List<WareHouseVO> GetWareHouseByDate(string fromDate, string toDate, int company_id)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"SELECT o.order_no, order_seq , order_request_date , (SELECT company_name FROM TBL_COMPANY WHERE company_id = o.company_id) company_name
-                                   		 , product_id, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = od.product_id) product_name
-                                   		 , order_request_quantity , order_status, company_id 
-                                   FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON od.order_no = o.order_no
-                                   WHERE order_request_date BETWEEN @FromDate AND @ToDate";
+                    string sql = @"SELECT order_no, order_request_date, company_name, order_status, company_id 
+                                   FROM 
+                                   (
+                                   	    SELECT o.order_no, order_request_date , (SELECT company_name FROM TBL_COMPANY WHERE company_id = o.company_id) company_name
+                                   	    		 , product_id, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = od.product_id) product_name
+                                   	    		 , order_request_quantity , order_status, company_id 
+                                   	    FROM TBL_ORDER_DETAIL od INNER JOIN TBL_ORDER o ON od.order_no = o.order_no
+                                   	    WHERE order_request_date BETWEEN @FromDate AND @ToDate AND company_id = @company_id
+                                   ) A GROUP BY order_no, order_request_date, company_name,  order_status, company_id ";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@FromDate", fromDate);
                         cmd.Parameters.AddWithValue("@ToDate", toDate);
+                        cmd.Parameters.AddWithValue("@company_id", company_id);
 
                         return SqlHelper.DataReaderMapToList<WareHouseVO>(cmd.ExecuteReader());
                     }

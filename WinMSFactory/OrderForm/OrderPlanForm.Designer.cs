@@ -56,7 +56,7 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Size = new System.Drawing.Size(1534, 80);
+            this.panel1.Size = new System.Drawing.Size(1726, 100);
             this.panel1.Controls.SetChildIndex(this.GuidLabel1, 0);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.panel3, 0);
@@ -66,15 +66,16 @@
             // 
             // GuidLabel1
             // 
-            this.GuidLabel1.Location = new System.Drawing.Point(1077, 44);
+            this.GuidLabel1.Location = new System.Drawing.Point(1212, 55);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 80);
+            this.panel2.Location = new System.Drawing.Point(0, 100);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1534, 732);
+            this.panel2.Size = new System.Drawing.Size(1726, 915);
             this.panel2.TabIndex = 4;
             // 
             // dgv
@@ -105,6 +106,7 @@
             this.dgv.IsAllCheckColumnHeader = false;
             this.dgv.IsAutoGenerateColumns = true;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -124,51 +126,53 @@
             this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1534, 732);
+            this.dgv.Size = new System.Drawing.Size(1726, 915);
             this.dgv.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.fromToDateControl1);
-            this.panel3.Location = new System.Drawing.Point(115, 22);
+            this.panel3.Location = new System.Drawing.Point(129, 28);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(230, 33);
+            this.panel3.Size = new System.Drawing.Size(259, 41);
             this.panel3.TabIndex = 28;
             // 
             // fromToDateControl1
             // 
             this.fromToDateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 17, 21, 50, 42);
+            this.fromToDateControl1.From = new System.DateTime(2020, 8, 19, 22, 16, 47, 508);
             this.fromToDateControl1.Location = new System.Drawing.Point(0, 0);
-            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fromToDateControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fromToDateControl1.Name = "fromToDateControl1";
-            this.fromToDateControl1.Size = new System.Drawing.Size(230, 33);
+            this.fromToDateControl1.Size = new System.Drawing.Size(259, 41);
             this.fromToDateControl1.TabIndex = 17;
-            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 17, 21, 50, 42);
+            this.fromToDateControl1.To = new System.DateTime(2020, 8, 20, 22, 16, 47, 508);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 30);
+            this.label1.Location = new System.Drawing.Point(56, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 27;
             this.label1.Text = "작업일자";
             // 
             // cboPlanID
             // 
             this.cboPlanID.FormattingEnabled = true;
-            this.cboPlanID.Location = new System.Drawing.Point(464, 26);
+            this.cboPlanID.Location = new System.Drawing.Point(522, 32);
+            this.cboPlanID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboPlanID.Name = "cboPlanID";
-            this.cboPlanID.Size = new System.Drawing.Size(121, 24);
+            this.cboPlanID.Size = new System.Drawing.Size(136, 28);
             this.cboPlanID.TabIndex = 35;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(373, 30);
+            this.label7.Location = new System.Drawing.Point(420, 38);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 16);
+            this.label7.Size = new System.Drawing.Size(86, 20);
             this.label7.TabIndex = 34;
             this.label7.Text = "출고계획 번호";
             // 
@@ -179,10 +183,10 @@
             this.btnOrder.ForeColor = System.Drawing.Color.Black;
             this.btnOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnOrder.Image")));
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrder.Location = new System.Drawing.Point(1420, 22);
+            this.btnOrder.Location = new System.Drawing.Point(1261, 27);
             this.btnOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(91, 29);
+            this.btnOrder.Size = new System.Drawing.Size(102, 36);
             this.btnOrder.TabIndex = 36;
             this.btnOrder.Text = "발주";
             this.btnOrder.UseVisualStyleBackColor = false;
@@ -190,9 +194,9 @@
             // 
             // OrderPlanForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1534, 812);
+            this.ClientSize = new System.Drawing.Size(1726, 1015);
             this.Controls.Add(this.panel2);
             this.Name = "OrderPlanForm";
             this.Text = "정규 발주";

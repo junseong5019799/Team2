@@ -137,10 +137,10 @@ namespace MSFactoryDAC
                     cmd.Connection.Open();
                     cmd.CommandText = @"SELECT company_id, company_name, C.COMMON_NAME, company_seq, first_regist_time, first_regist_employee, final_regist_time, final_regist_employee
                                         FROM TBL_COMPANY CM INNER JOIN TBL_COMMON C ON CM.company_type = C.common_id
-                                        WHERE company_type = isnull(company_type, @company_type) or company_type = @company_type 
+                                        WHERE company_type = isnull(common_name, @common_name) or common_name = @common_name
                                         ORDER BY company_seq";
 
-                    cmd.Parameters.AddWithValue("@company_type", type);
+                    cmd.Parameters.AddWithValue("@common_name", type);
                     return SqlHelper.DataReaderMapToList<CompanyVO>(cmd.ExecuteReader());
                 }
             }

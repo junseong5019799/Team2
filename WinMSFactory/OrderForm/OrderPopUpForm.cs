@@ -51,7 +51,7 @@ namespace WinMSFactory.OrderForm
             comDt = new CompanyService().GetCompanyByProducts();
 
             dgvOrder.AddNewColumns("주문번호", "release_no", 80, false);
-            dgvOrder.AddNewColumns("순서", "release_seq", 70, true, false, false, RightAlign);
+            dgvOrder.AddNewColumns("순서", "release_seq", 70, true, false, false);
             dgvOrder.AddNewComCol("납품업체", "company_id", comDt, "company_name", "company_id", 200);
             dgvOrder.AddNewColumns("품목", "product_id", 80, false);
             dgvOrder.AddNewColumns("품명", "product_name", 120, false);
@@ -59,7 +59,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
             dgvOrder.AddNewColumns("자재 단가", "material_current_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true, false, false, RightAlign);
-            dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false, false, RightAlign);            
+            dgvOrder.AddNewColumns("발주제안 수량", "order_request_quantity", 100, true, false, false, RightAlign);            
             dgvOrder.AddNewColumns("발주 가격", "order_product_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
@@ -67,8 +67,8 @@ namespace WinMSFactory.OrderForm
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
 
-            dgvOrder.Columns["order_quantity"].DefaultCellStyle.BackColor = Color.AliceBlue;
-            dgvOrder.Columns["order_quantity"].DefaultCellStyle.ForeColor = Color.Red;
+            dgvOrder.Columns[10].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvOrder.Columns[10].DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace WinMSFactory.OrderForm
                 {
                     bool IsCheck = (bool)dgvOrder.Rows[i].Cells[0].Value;
 
-                    if (IsCheck && dgvOrder.Rows[i].Cells["order_quantity"].Value != null)
+                    if (IsCheck && dgvOrder.Rows[i].Cells[10].Value != null)
                     {
                         int c_id = Convert.ToInt32(dgvOrder.Rows[i].Cells[3].Value);
 
@@ -113,7 +113,7 @@ namespace WinMSFactory.OrderForm
 
                         orderVO.company_id = c_id;
                         orderVO.product_id = Convert.ToInt32(dgvOrder.Rows[i].Cells["_product_id"].Value);
-                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells["order_quantity"].Value);
+                        orderVO.order_request_quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[10].Value);
                         orderVO.order_status = "발주중";
                         orderVO.order_seq = 1;
                         orderVO.order_request_date = DateTime.Now;                     
@@ -122,7 +122,7 @@ namespace WinMSFactory.OrderForm
                         olist.Add(orderVO);
                         companySet.Add(c_id);
                     }                    
-                    else if(IsCheck && dgvOrder.Rows[i].Cells["order_quantity"].Value != null)
+                    else if(IsCheck && dgvOrder.Rows[i].Cells[10].Value != null)
                     {
                         MessageBox.Show("발주 수량을 입력하지 않았습니다.");
                         return;
