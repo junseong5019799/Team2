@@ -606,6 +606,7 @@ namespace MSFactoryDAC
 		                            , PRODUCT_UNIT, PRODUCT_STANDARDS, PRODUCT_NOTE1, PRODUCT_NOTE2, PRODUCT_SEQ, PRODUCT_USE
                                FROM TBL_PRODUCT
                                WHERE PRODUCT_USE = 'Y'
+                               AND PRODUCT_GROUP_ID NOT IN (2)
                                ORDER BY PRODUCT_SEQ";
                 DataTable dt = new DataTable();
 

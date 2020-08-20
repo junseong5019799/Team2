@@ -73,6 +73,9 @@ namespace WinMSFactory
 		{
 			try
 			{
+				WorkOrderVO workOrderVO = new WorkOrderVO();
+				int index;
+
 				if (cboFactory.SelectedValue.ToInt() < 1)
 				{
 					MessageBox.Show("공장을 선택해주세요.");
@@ -98,17 +101,31 @@ namespace WinMSFactory
 					MessageBox.Show("품목을 선택해주세요.");
 					return;
 				}
-
-				WorkOrderVO workOrderVO = new WorkOrderVO
+				if (nudQty.Value < 1)
 				{
-					Work_order_no = work_order_no,
-					Worker_id = cboWorker.SelectedValue.ToInt(),
-					Product_id = cboProduct.SelectedValue.ToInt(),
-					Work_date = dtpWorkDate.Value,
-					Work_start_time = dtpWorkStartTime.Value.ToString("HH:mm:00"),
-					Work_finish_time = dtpWorkStartTime.Value.ToString("HH:mm:00"),
-					Regist_employee = employeeVO.Employee_id
-				};
+					MessageBox.Show("작업량을 입력해주세요.");
+					return;
+				}
+				if ((index = GetChkIndex()) > -1)
+				{
+					DataGridViewRow dgvr = dataGridViewControl1.Rows[index];
+					workOrderVO.Release_no = dgvr.Cells["RELEASE_NO"].Value.ToInt();
+					workOrderVO.Release_seq = dgvr.Cells["RELEASE_SEQ"].Value.ToInt();
+				}
+				else
+				{
+					MessageBox.Show("출고 예정 품목을 선택해주세요.");
+					return;
+				}
+
+				workOrderVO.Work_order_no = work_order_no;
+				workOrderVO.Worker_id = cboWorker.SelectedValue.ToInt();
+				workOrderVO.Product_id = cboProduct.SelectedValue.ToInt();
+				workOrderVO.Qty = (int)nudQty.Value;
+				workOrderVO.Work_date = dtpWorkDate.Value;
+				workOrderVO.Work_start_time = dtpWorkStartTime.Value.ToString("HH:mm:00");
+				workOrderVO.Work_finish_time = dtpWorkStartTime.Value.ToString("HH:mm:00");
+				workOrderVO.Regist_employee = employeeVO.Employee_id;
 
 				if (workOrderService.SaveWorkOrder(workOrderVO))
 				{
@@ -191,7 +208,22 @@ namespace WinMSFactory
 
 		private void dataGridViewControl1_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-			DGVChkClear();
+			if (e.ColumnIndex == 0)
+			{ 
+				DGVChkClear();
+				nudQty.Value = dataGridViewControl1["MAX_QTY", e.RowIndex].Value.ToInt();
+			}
+		}
+
+		private int GetChkIndex()
+		{ 
+			foreach (DataGridViewRow dgvr in dataGridViewControl1.Rows)
+			{
+				if (dgvr.Cells["chk"].Value.ToBool())
+					return dgvr.Index;
+			}
+
+			return -1;
 		}
 	}
 }
