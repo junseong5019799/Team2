@@ -75,7 +75,7 @@ namespace WinMSFactory
 					Employee_pwd = txtEmployee_pwd.Text.Trim().GetSHA256(),
 					Employee_use = rdoEmployee_useY.Checked ? "Y" : "N",
 					Regist_employee = this.employeeVO.Employee_id,
-					Corporation_id = 1
+					Corporation_id = 17
 				};
 
 				if (employeeService.SaveEmployee(employee))

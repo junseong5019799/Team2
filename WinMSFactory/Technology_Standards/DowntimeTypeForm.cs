@@ -34,7 +34,7 @@ namespace WinMSFactory
             dgvDowntimeType.AddNewColumns("시간계산여부", "downtime_type_calculation", 100, true); //4
             dgvDowntimeType.AddNewColumns("비가동순번", "downtime_type_seq", 100, true);
             dgvDowntimeType.AddNewBtnCol("사용여부", "", new Padding(1, 1, 1, 1), false); // 6 버튼 // 버튼 부분은 false
-            dgvDowntimeType.AddNewColumns("비가동사용여부", "downtime_type_use", 100, true); //7
+            dgvDowntimeType.AddNewColumns("비가동사용여부", "downtime_type_use", 120, true); //7
             dgvDowntimeType.AddNewColumns("최초등록시각", "first_regist_time", 100, true);
             dgvDowntimeType.AddNewColumns("최초등록사원", "first_regist_employee", 100, true);
             dgvDowntimeType.AddNewColumns("최종등록시각", "final_regist_time", 100, true);

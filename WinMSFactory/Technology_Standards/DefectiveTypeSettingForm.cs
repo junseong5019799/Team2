@@ -29,7 +29,7 @@ namespace WinMSFactory
 
             dgv.AddNewCol("불량 코드", "defective_type_id", true, 100);
             dgv.AddNewCol("불량 명칭", "defective_type_name", true, 200);
-            dgv.AddNewCol("명칭 사용여부", "defective_type_use", true, 100);
+            dgv.AddNewCol("명칭 사용여부", "defective_type_use", true, 120);
             dgv.AddNewCol("불량 순번", "defective_type_seq", true, 100);
             dgv.AddNewCol("최초등록시간", "first_regist_time", true, 140);
             dgv.AddNewCol("최초등록사원", "first_regist_employee", true, 100);
