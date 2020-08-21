@@ -31,39 +31,35 @@
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label15 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button7 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label11 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.label13 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox7 = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -72,14 +68,17 @@
 			// 
 			// dataGridView1
 			// 
+			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 308);
 			this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 23;
 			this.dataGridView1.Size = new System.Drawing.Size(1011, 441);
 			this.dataGridView1.TabIndex = 5;
+			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
 			// 
 			// groupBox2
 			// 
@@ -124,6 +123,14 @@
 			this.dateTimePicker1.Size = new System.Drawing.Size(197, 31);
 			this.dateTimePicker1.TabIndex = 5;
 			// 
+			// textBox7
+			// 
+			this.textBox7.Location = new System.Drawing.Point(107, 198);
+			this.textBox7.Name = "textBox7";
+			this.textBox7.ReadOnly = true;
+			this.textBox7.Size = new System.Drawing.Size(249, 31);
+			this.textBox7.TabIndex = 4;
+			// 
 			// textBox2
 			// 
 			this.textBox2.Location = new System.Drawing.Point(107, 142);
@@ -131,6 +138,14 @@
 			this.textBox2.ReadOnly = true;
 			this.textBox2.Size = new System.Drawing.Size(249, 31);
 			this.textBox2.TabIndex = 4;
+			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(493, 198);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.ReadOnly = true;
+			this.textBox6.Size = new System.Drawing.Size(197, 31);
+			this.textBox6.TabIndex = 4;
 			// 
 			// textBox4
 			// 
@@ -164,21 +179,65 @@
 			this.textBox1.Size = new System.Drawing.Size(249, 31);
 			this.textBox1.TabIndex = 4;
 			// 
+			// label15
+			// 
+			this.label15.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label15.ForeColor = System.Drawing.Color.OrangeRed;
+			this.label15.Location = new System.Drawing.Point(828, 192);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(137, 47);
+			this.label15.TabIndex = 2;
+			// 
 			// label10
 			// 
 			this.label10.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.ForeColor = System.Drawing.Color.White;
 			this.label10.Location = new System.Drawing.Point(828, 78);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(137, 47);
 			this.label10.TabIndex = 2;
 			// 
+			// label14
+			// 
+			this.label14.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.ForeColor = System.Drawing.Color.Lime;
+			this.label14.Location = new System.Drawing.Point(828, 135);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(137, 47);
+			this.label14.TabIndex = 2;
+			// 
 			// label9
 			// 
 			this.label9.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.ForeColor = System.Drawing.Color.White;
 			this.label9.Location = new System.Drawing.Point(828, 21);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(137, 47);
 			this.label9.TabIndex = 2;
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label17.Location = new System.Drawing.Point(743, 205);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(33, 20);
+			this.label17.TabIndex = 1;
+			this.label17.Text = "불량";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label16.Location = new System.Drawing.Point(731, 148);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(45, 20);
+			this.label16.TabIndex = 1;
+			this.label16.Text = "생산량";
 			// 
 			// label8
 			// 
@@ -200,6 +259,17 @@
 			this.label7.TabIndex = 1;
 			this.label7.Text = "지시량";
 			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label13.ForeColor = System.Drawing.Color.SteelBlue;
+			this.label13.Location = new System.Drawing.Point(8, 203);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(66, 20);
+			this.label13.TabIndex = 0;
+			this.label13.Text = "TaskID";
+			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
@@ -214,11 +284,23 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label3.ForeColor = System.Drawing.Color.SteelBlue;
 			this.label3.Location = new System.Drawing.Point(48, 147);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 20);
 			this.label3.TabIndex = 0;
 			this.label3.Text = "IP";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label12.ForeColor = System.Drawing.Color.SteelBlue;
+			this.label12.Location = new System.Drawing.Point(387, 203);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(71, 20);
+			this.label12.TabIndex = 0;
+			this.label12.Text = "Remark";
 			// 
 			// label5
 			// 
@@ -234,6 +316,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label2.ForeColor = System.Drawing.Color.SteelBlue;
 			this.label2.Location = new System.Drawing.Point(416, 147);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(42, 20);
@@ -263,11 +346,7 @@
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.button7);
-			this.groupBox1.Controls.Add(this.button6);
-			this.groupBox1.Controls.Add(this.button5);
-			this.groupBox1.Controls.Add(this.button4);
 			this.groupBox1.Controls.Add(this.button3);
-			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.button1);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -281,63 +360,16 @@
 			// 
 			// button7
 			// 
+			this.button7.BackColor = System.Drawing.Color.LightGray;
 			this.button7.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button7.Location = new System.Drawing.Point(5, 612);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(213, 73);
 			this.button7.TabIndex = 6;
 			this.button7.Text = "닫기";
-			this.button7.UseVisualStyleBackColor = true;
-			// 
-			// button6
-			// 
-			this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button6.Location = new System.Drawing.Point(5, 395);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(213, 73);
-			this.button6.TabIndex = 5;
-			this.button6.Text = "비가동 등록";
-			this.button6.UseVisualStyleBackColor = true;
-			// 
-			// button5
-			// 
-			this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button5.Location = new System.Drawing.Point(5, 322);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(213, 73);
-			this.button5.TabIndex = 4;
-			this.button5.Text = "불량등록";
-			this.button5.UseVisualStyleBackColor = true;
-			// 
-			// button4
-			// 
-			this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button4.Location = new System.Drawing.Point(5, 249);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(213, 73);
-			this.button4.TabIndex = 3;
-			this.button4.Text = "양품등록";
-			this.button4.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button3.Location = new System.Drawing.Point(5, 176);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(213, 73);
-			this.button3.TabIndex = 2;
-			this.button3.Text = "취소";
-			this.button3.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button2.Location = new System.Drawing.Point(5, 103);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(213, 73);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "보류";
-			this.button2.UseVisualStyleBackColor = true;
+			this.button7.UseVisualStyleBackColor = false;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
 			// button1
 			// 
@@ -348,6 +380,7 @@
 			this.button1.TabIndex = 0;
 			this.button1.Text = "완료";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// panel1
 			// 
@@ -370,82 +403,22 @@
 			this.label11.Text = "생산시점관리시스템(POP)";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// label12
+			// button3
 			// 
-			this.label12.AutoSize = true;
-			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label12.Location = new System.Drawing.Point(387, 203);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(71, 20);
-			this.label12.TabIndex = 0;
-			this.label12.Text = "Remark";
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label13.Location = new System.Drawing.Point(8, 203);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(66, 20);
-			this.label13.TabIndex = 0;
-			this.label13.Text = "TaskID";
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(493, 198);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.ReadOnly = true;
-			this.textBox6.Size = new System.Drawing.Size(197, 31);
-			this.textBox6.TabIndex = 4;
-			// 
-			// textBox7
-			// 
-			this.textBox7.Location = new System.Drawing.Point(107, 198);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.ReadOnly = true;
-			this.textBox7.Size = new System.Drawing.Size(249, 31);
-			this.textBox7.TabIndex = 4;
-			// 
-			// label14
-			// 
-			this.label14.BackColor = System.Drawing.Color.DarkSlateGray;
-			this.label14.Location = new System.Drawing.Point(828, 135);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(137, 47);
-			this.label14.TabIndex = 2;
-			// 
-			// label15
-			// 
-			this.label15.BackColor = System.Drawing.Color.DarkSlateGray;
-			this.label15.Location = new System.Drawing.Point(828, 192);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(137, 47);
-			this.label15.TabIndex = 2;
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label16.Location = new System.Drawing.Point(731, 148);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(45, 20);
-			this.label16.TabIndex = 1;
-			this.label16.Text = "생산량";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label17.Location = new System.Drawing.Point(743, 205);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(33, 20);
-			this.label17.TabIndex = 1;
-			this.label17.Text = "불량";
+			this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button3.Location = new System.Drawing.Point(5, 103);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(213, 73);
+			this.button3.TabIndex = 2;
+			this.button3.Text = "취소";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// PopForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1234, 749);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.groupBox2);
@@ -486,11 +459,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button button6;
-		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Button button7;
@@ -503,5 +471,6 @@
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Button button3;
 	}
 }

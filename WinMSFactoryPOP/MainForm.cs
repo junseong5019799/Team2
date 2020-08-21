@@ -15,8 +15,9 @@ namespace WinMSFactoryPOP
 	public partial class MainForm : Form
 	{
 		public List<taskItem> tasks = ConfigurationManager.GetSection("taskList") as List<taskItem>;
-		// process_id, task_proc_id, frm, worker
-		public List<(string, int, BackgroundWorker, frmATLTask)> popList = new List<(string, int, BackgroundWorker, frmATLTask)>();
+		public List<POPItem> popList = new List<POPItem>();
+		public PopForm popFrm;
+		public WorkOrderPopupForm workOrderPopupForm;
 
 		public MainForm()
 		{
@@ -25,18 +26,40 @@ namespace WinMSFactoryPOP
 
 		private void pOPToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			PopForm frm = new PopForm();
-			frm.WindowState = FormWindowState.Maximized;
-			frm.MdiParent = this;
-			frm.Show();
+			if (popFrm == null)
+			{
+				popFrm = new PopForm();
+				popFrm.WindowState = FormWindowState.Maximized;
+				popFrm.MdiParent = this;
+				popFrm.Show();
+			}
+			else
+			{
+				foreach (Form frm in Application.OpenForms)
+				{
+					if (frm is PopForm)
+						frm.Activate();
+				}
+			}
 		}
 
 		private void 작업지시선택ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			WorkOrderPopupForm frm = new WorkOrderPopupForm();
-			frm.WindowState = FormWindowState.Maximized;
-			frm.MdiParent = this;
-			frm.Show();
+			if (workOrderPopupForm == null)
+			{
+				workOrderPopupForm = new WorkOrderPopupForm();
+				workOrderPopupForm.WindowState = FormWindowState.Maximized;
+				workOrderPopupForm.MdiParent = this;
+				workOrderPopupForm.Show();
+			}
+			else
+			{
+				foreach (Form frm in Application.OpenForms)
+				{
+					if (frm is WorkOrderPopupForm)
+						frm.Activate();
+				}
+			}
 		}
 
 		private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
@@ -50,28 +73,47 @@ namespace WinMSFactoryPOP
 			{
 				foreach (var item in popList)
 				{
-					TaskStop(item.Item3, item.Item4);
-					TaskServerStop(item.Item2);
+					Stop(item.Worker, item.Frm, item.Task_proc_id);
 				}
 			}
 		}
 
-		private void TaskStop(BackgroundWorker worker, frmATLTask frm)
+		public void Stop(BackgroundWorker worker, frmATLTask frm, int task_proc_id)
 		{
-			frm.bExit = true;
-			frm.Close();
-			worker.Dispose();
+			TaskStop(worker, frm);
+			TaskServerStop(task_proc_id);
 		}
 
-		private void TaskServerStop(int task_proc_id)
+		public void TaskStop(BackgroundWorker worker, frmATLTask frm)
 		{
-			foreach (var process in Process.GetProcesses())
+			try
 			{
-				if (process.Id == task_proc_id)
+				frm.bExit = true;
+				frm.Close();
+				worker?.Dispose();
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(err.Message);
+			}
+		}
+
+		public void TaskServerStop(int task_proc_id)
+		{
+			try
+			{
+				foreach (var process in Process.GetProcesses())
 				{
-					process.Kill();
-					break;
+					if (process.Id == task_proc_id)
+					{
+						process.Kill();
+						break;
+					}
 				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(err.Message);
 			}
 		}
 	}

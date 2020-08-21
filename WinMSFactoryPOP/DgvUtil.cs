@@ -26,7 +26,7 @@ namespace WinMSFactoryPOP
             col.ReadOnly = ReadOnly;
             col.DefaultCellStyle.Alignment = Align;
             col.Frozen = Frozen;
-
+            
             dgv.Columns.Add(col);
         }
         /// <summary>

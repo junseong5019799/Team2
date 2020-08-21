@@ -623,5 +623,21 @@ namespace MSFactoryDAC
                 throw err;
             }
         }
+
+        public ProductVO GetProduct(int work_order_no)
+        {
+            try
+            {
+                string sql = @"SELECT P.PRODUCT_ID, P.PRODUCT_TACT_TIME
+                               FROM TBL_WORK_ORDER WO
+	                               INNER JOIN TBL_PRODUCT P ON WO.PRODUCT_ID = P.PRODUCT_ID
+                               WHERE WO.WORK_ORDER_NO = @WORK_ORDER_NO";
+                return new SqlHelper().SqlExecutionJ<ProductVO>(sql, new ProductVO { Work_order_no = work_order_no })?[0];
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

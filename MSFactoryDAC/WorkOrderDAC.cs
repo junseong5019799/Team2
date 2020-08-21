@@ -114,7 +114,7 @@ namespace MSFactoryDAC
 
 			return dt;
 		}
-
+		
 		public bool SaveWorkOrder(WorkOrderVO workOrderVO)
 		{
 			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_WORKORDER", workOrderVO, "Work_order_no", "Worker_id", "Product_id", "Release_no", "Release_seq", "Qty", "Work_date", "Work_order_quantity", "Regist_employee");
@@ -197,5 +197,11 @@ namespace MSFactoryDAC
 				return dt;
 			}
 		}
+
+		public bool SaveResultUse(WorkOrderVO workOrderVO)
+		{
+			return NotSelectSPJ<WorkOrderVO>("SP_SAVE_RESULT_USE", workOrderVO, "Work_order_no", "Result_quantity", "Defective_quantity");
+		}
+		
 	}
 }

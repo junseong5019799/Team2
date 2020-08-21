@@ -1,4 +1,5 @@
 ﻿using log4net.Core;
+using MSFactoryVO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,12 @@ namespace WinMSFactoryPOP
     public partial class frmATLTask : Form
     {
         public bool bExit = false;
+        public event ThreadATLTask.ReadDataEvent ReadData;
 
         string PGM_ID;
         string hostIP;
         int hostPort;
+        int work_order_no;
         int timer_CONNECT = 100;
         int timer_READ = 100;
         int timer_KA = 100;
@@ -46,7 +49,7 @@ namespace WinMSFactoryPOP
             get { return _logging; }
         }
 
-        public frmATLTask(string pgmID, string host, string port)
+        public frmATLTask(string pgmID, string host, string port, int work_order_no)
         {
             InitializeComponent();
 
@@ -56,6 +59,7 @@ namespace WinMSFactoryPOP
             PGM_ID = pgmID;
             hostIP = host;
             hostPort = int.Parse(port);
+            this.work_order_no = work_order_no;
             timer_CONNECT = Convert.ToInt32(ReadAppSettings("timer_Connect", true));
             timer_CHECK = Convert.ToInt32(ReadAppSettings("timer_Check", true));
             timer_READ = Convert.ToInt32(ReadAppSettings("timer_Read", true));
@@ -80,7 +84,7 @@ namespace WinMSFactoryPOP
             Log.WriteInfo($"{PGM_ID} : 통신 시작");
 
             //수신용 인스턴스 생성
-            m_ThreadATLTask = new ThreadATLTask(conn, _logging, timer_READ);
+            m_ThreadATLTask = new ThreadATLTask(conn, _logging, timer_READ, work_order_no);
             m_ThreadATLTask.ReadData += ReadDataDisplay;
 
             //각 컨트롤에 값을 셋팅
@@ -321,6 +325,9 @@ namespace WinMSFactoryPOP
                 this.Invoke((MethodInvoker)(() => ListBox1.SelectedIndex = ListBox1.Items.Count - 1));
             }
             txtReadATL.Invoke((MethodInvoker)delegate { txtReadATL.Text = e.Data.Trim(); });
+
+            if (ReadData != null)
+                ReadData(null, e);
         }
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="POPItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\ProcessService.cs" />
     <Compile Include="Service\WorkOrderService.cs" />
     <Compile Include="TaskListSection.cs" />
