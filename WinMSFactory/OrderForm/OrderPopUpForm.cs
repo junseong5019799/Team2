@@ -62,7 +62,7 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false, false, RightAlign);            
             dgvOrder.AddNewColumns("발주 가격", "order_product_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true, false, false, RightAlign);
-            dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
+            dgvOrder.AddNewColumns("납기일", "due_date", 100, false);
            
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
