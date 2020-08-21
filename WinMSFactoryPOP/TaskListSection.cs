@@ -23,6 +23,7 @@ namespace WinMSFactoryPOP
                     if (attrib.Name.Equals("hostIP")) shostIP = attrib.Value;
                     if (attrib.Name.Equals("hostPort")) shostPort = attrib.Value;
                     if (attrib.Name.Equals("remark")) sremark = attrib.Value;
+                    if (attrib.Name.Equals("processId")) sremark = attrib.Value;
                 }
 
                 myConfigObject.Add(new taskItem() { taskID = staskID, hostIP = shostIP, hostPort = shostPort, remark = sremark });
@@ -37,5 +38,6 @@ namespace WinMSFactoryPOP
         public string hostIP { get; set; }
         public string hostPort { get; set; }
         public string remark { get; set; }
+        public string processId { get; set; }
     }
 }

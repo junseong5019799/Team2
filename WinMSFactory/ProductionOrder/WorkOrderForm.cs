@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraReports.UI;
-using DevExpress.XtraRichEdit.Commands;
+﻿using DevExpress.XtraRichEdit.Commands;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -31,14 +29,12 @@ namespace WinMSFactory
 				dataGridViewControl1.AddNewColumns("작업지시 번호", "WORK_ORDER_NO", 100, false);
 				dataGridViewControl1.AddNewColumns("지시일자", "WORK_ORDER_DATE", 100);
 				dataGridViewControl1.AddNewColumns("작업일자", "WORK_DATE", 100);
-				dataGridViewControl1.AddNewColumns("작업시작시간", "WORK_START_TIME", 100);
-				dataGridViewControl1.AddNewColumns("작업종료시간", "WORK_FINISH_TIME", 100);
 				dataGridViewControl1.AddNewColumns("공장명칭", "FACTORY_NAME", 100);
 				dataGridViewControl1.AddNewColumns("라인명칭", "LINE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("공정명칭", "PROCESS_NAME", 100);
 				dataGridViewControl1.AddNewColumns("작업자", "EMPLOYEE_NAME", 100);
 				dataGridViewControl1.AddNewColumns("품목명칭", "PRODUCT_NAME", 100);
-				dataGridViewControl1.AddNewColumns("지시수량", "WORK_ORDER_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
+				dataGridViewControl1.AddNewColumns("지시수량", "QTY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("양품수량", "RESULT_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("불량수량", "DEFECTIVE_QUANTITY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
 				dataGridViewControl1.AddNewColumns("작업지시 상태", "WORK_ORDER_STATUS", 100);
@@ -171,33 +167,23 @@ namespace WinMSFactory
 			}
 		}
 
-		/// <summary>
-		/// 바코드 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		
-		private void Readed(object sender, ReadEventArgs e)
+		private void dataGridViewControl1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-			{
-				
-				
-				((MainForm)this.MdiParent).ClearStrs();
-			}
-		}
+			if (e.RowIndex < 0)
+				return;
 
-		private void Barcode(object sender, EventArgs e)
-		{
-			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
-			{
-				DataTable dt = workOrderService.CheckBarcode();
-				BarcodeOrder rpt = new BarcodeOrder();
-				rpt.DataSource = dt;
+			DataGridViewRow dgvr = dataGridViewControl1.Rows[e.RowIndex];
 
-				using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+			MessageBox.Show((Convert.ToDateTime(dgvr.Cells["WORK_DATE"].Value) - DateTime.Now).Days.ToString());
+
+			if ((Convert.ToDateTime(dgvr.Cells["WORK_DATE"].Value) - DateTime.Now).Days > 0)
+			{
+				EmployeeVO employeeVO = this.GetEmployee();
+				WorkOrderPopupForm frm = new WorkOrderPopupForm(employeeVO, dgvr.Cells["WORK_ORDER_NO"].Value.ToInt());
+
+				if (frm.ShowDialog() == DialogResult.OK)
 				{
-					printTool.ShowRibbonPreviewDialog();
+					LoadData();
 				}
 			}
 		}

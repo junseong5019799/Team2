@@ -242,6 +242,7 @@ namespace WinMSFactory
                     this.Visible = true;
 
                 this.Employee = frm.Employee;
+                toolEmpInfo.Text = $"{this.Employee.Employee_id}({this.Employee.Employee_name})";
                 ShowMenu();
             }
             else
@@ -371,6 +372,19 @@ namespace WinMSFactory
             }
 
             return false;
+        }
+
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+            var frms = Application.OpenForms;
+
+            for (int i = frms.Count - 1; i > -1; i--)
+            {
+                if (frms[i] == this)
+                    continue;
+
+                frms[i].Close();
+            }
         }
 
         private void btnSetting_Click(object sender, EventArgs e)

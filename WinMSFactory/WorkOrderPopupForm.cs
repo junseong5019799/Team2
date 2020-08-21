@@ -41,8 +41,6 @@ namespace WinMSFactory
 					cboWorker.SelectedValue = workOrderVO.Worker_id;
 					cboProduct.SelectedValue = workOrderVO.Product_id;
 					dtpWorkDate.Value = workOrderVO.Work_order_date;
-					dtpWorkStartTime.Value = GetDateTime(workOrderVO.Work_start_time);
-					dtpWorkFinishTime.Value = GetDateTime(workOrderVO.Work_finish_time);
 				}
 			}
 			catch (Exception err)
@@ -61,9 +59,9 @@ namespace WinMSFactory
 			dataGridViewControl1.AddNewColumns("순서", "RELEASE_SEQ", 70, false);
 			dataGridViewControl1.AddNewColumns("품목", "PRODUCT_ID", 80, false);
 			dataGridViewControl1.AddNewColumns("품명", "PRODUCT_NAME", 120, true);
-			dataGridViewControl1.AddNewColumns("발주 수량", "ORDER_REQUEST_QUANTITY", 80, true);
-			dataGridViewControl1.AddNewColumns("최대 생산량", "MAX_QTY", 100, true);
-			dataGridViewControl1.AddNewColumns("주문일", "RELEASE_PLAN_DATE", 100, true);
+			dataGridViewControl1.AddNewColumns("발주 수량", "ORDER_REQUEST_QUANTITY", 80, true, true, false, DataGridViewContentAlignment.MiddleRight);
+			dataGridViewControl1.AddNewColumns("최대 생산량", "MAX_QTY", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
+			dataGridViewControl1.AddNewColumns("출고 예정일", "RELEASE_REQUEST_DATE", 100, true);
 
 			toDoesDt = workOrderService.GetToDoes();
 			dataGridViewControl1.DataSource = toDoesDt;
@@ -123,8 +121,6 @@ namespace WinMSFactory
 				workOrderVO.Product_id = cboProduct.SelectedValue.ToInt();
 				workOrderVO.Qty = (int)nudQty.Value;
 				workOrderVO.Work_date = dtpWorkDate.Value;
-				workOrderVO.Work_start_time = dtpWorkStartTime.Value.ToString("HH:mm:00");
-				workOrderVO.Work_finish_time = dtpWorkStartTime.Value.ToString("HH:mm:00");
 				workOrderVO.Regist_employee = employeeVO.Employee_id;
 
 				if (workOrderService.SaveWorkOrder(workOrderVO))

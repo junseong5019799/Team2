@@ -45,10 +45,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.dtpWorkDate = new System.Windows.Forms.DateTimePicker();
-			this.dtpWorkStartTime = new System.Windows.Forms.DateTimePicker();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.dtpWorkFinishTime = new System.Windows.Forms.DateTimePicker();
 			this.dataGridViewControl1 = new WinMSFactory.DataGridViewControl();
 			this.label1 = new System.Windows.Forms.Label();
 			this.nudQty = new System.Windows.Forms.NumericUpDown();
@@ -59,7 +55,7 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Location = new System.Drawing.Point(0, 492);
+			this.panel1.Location = new System.Drawing.Point(0, 454);
 			this.panel1.Size = new System.Drawing.Size(515, 40);
 			// 
 			// btnConfirm
@@ -180,46 +176,6 @@
 			this.dtpWorkDate.Size = new System.Drawing.Size(172, 22);
 			this.dtpWorkDate.TabIndex = 6;
 			// 
-			// dtpWorkStartTime
-			// 
-			this.dtpWorkStartTime.CustomFormat = "HH:mm";
-			this.dtpWorkStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpWorkStartTime.Location = new System.Drawing.Point(86, 258);
-			this.dtpWorkStartTime.Name = "dtpWorkStartTime";
-			this.dtpWorkStartTime.ShowUpDown = true;
-			this.dtpWorkStartTime.Size = new System.Drawing.Size(121, 22);
-			this.dtpWorkStartTime.TabIndex = 7;
-			this.dtpWorkStartTime.Value = new System.DateTime(2020, 8, 19, 9, 0, 0, 0);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(21, 261);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(52, 16);
-			this.label6.TabIndex = 2;
-			this.label6.Text = "시작시간";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(223, 261);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(52, 16);
-			this.label9.TabIndex = 2;
-			this.label9.Text = "종료시간";
-			// 
-			// dtpWorkFinishTime
-			// 
-			this.dtpWorkFinishTime.CustomFormat = "HH:mm";
-			this.dtpWorkFinishTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpWorkFinishTime.Location = new System.Drawing.Point(288, 258);
-			this.dtpWorkFinishTime.Name = "dtpWorkFinishTime";
-			this.dtpWorkFinishTime.ShowUpDown = true;
-			this.dtpWorkFinishTime.Size = new System.Drawing.Size(121, 22);
-			this.dtpWorkFinishTime.TabIndex = 8;
-			this.dtpWorkFinishTime.Value = new System.DateTime(2020, 8, 19, 9, 0, 0, 0);
-			// 
 			// dataGridViewControl1
 			// 
 			this.dataGridViewControl1.AllowUserToAddRows = false;
@@ -246,7 +202,7 @@
 			this.dataGridViewControl1.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewControl1.IsAllCheckColumnHeader = true;
 			this.dataGridViewControl1.IsAutoGenerateColumns = false;
-			this.dataGridViewControl1.Location = new System.Drawing.Point(20, 306);
+			this.dataGridViewControl1.Location = new System.Drawing.Point(20, 267);
 			this.dataGridViewControl1.MultiSelect = false;
 			this.dataGridViewControl1.Name = "dataGridViewControl1";
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -292,18 +248,14 @@
 			// WorkOrderPopupForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.ClientSize = new System.Drawing.Size(515, 532);
+			this.ClientSize = new System.Drawing.Size(515, 494);
 			this.Controls.Add(this.nudQty);
 			this.Controls.Add(this.dataGridViewControl1);
-			this.Controls.Add(this.dtpWorkFinishTime);
-			this.Controls.Add(this.dtpWorkStartTime);
 			this.Controls.Add(this.dtpWorkDate);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label9);
-			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label7);
@@ -324,15 +276,11 @@
 			this.Controls.SetChildIndex(this.label7, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.label5, 0);
-			this.Controls.SetChildIndex(this.label6, 0);
-			this.Controls.SetChildIndex(this.label9, 0);
 			this.Controls.SetChildIndex(this.label2, 0);
 			this.Controls.SetChildIndex(this.label8, 0);
 			this.Controls.SetChildIndex(this.label4, 0);
 			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.dtpWorkDate, 0);
-			this.Controls.SetChildIndex(this.dtpWorkStartTime, 0);
-			this.Controls.SetChildIndex(this.dtpWorkFinishTime, 0);
 			this.Controls.SetChildIndex(this.dataGridViewControl1, 0);
 			this.Controls.SetChildIndex(this.nudQty, 0);
 			this.panel1.ResumeLayout(false);
@@ -356,10 +304,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.DateTimePicker dtpWorkDate;
-		private System.Windows.Forms.DateTimePicker dtpWorkStartTime;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.DateTimePicker dtpWorkFinishTime;
 		private DataGridViewControl dataGridViewControl1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown nudQty;
