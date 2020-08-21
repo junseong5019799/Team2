@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WinMSFactoryPOP
 {
-	//dataGridView1.AddNewColumns("작업지시 번호", "", 150);
-	//		dataGridView1.AddNewColumns("품명", "", 200);
-	//		dataGridView1.AddNewColumns("작업자", "", 150);
-	//		dataGridView1.AddNewColumns("지시량", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-	//		dataGridView1.AddNewColumns("양품수", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-	//		dataGridView1.AddNewColumns("불량수", "", 100, true, true, false, DataGridViewContentAlignment.MiddleRight);
-
-	//public class POPItem
-	//{
-	//}
+	public class POPItem
+	{
+		public string TaskID { get; set; }
+		public int Task_proc_id { get; set; }
+		public BackgroundWorker Worker { get; set; }
+		public frmATLTask Frm { get; set; }
+		public int Work_order_no { get; set; }
+		public string Product_name { get; set; }
+		public string Employee_name { get; set; }
+		public int Qty { get; set; }
+		public int ResultQty { get; set; }
+		public int BadQty { get; set; }
+		public string Process_name { get; set; }
+	}
 }

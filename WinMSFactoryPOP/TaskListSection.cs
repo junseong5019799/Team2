@@ -16,17 +16,17 @@ namespace WinMSFactoryPOP
 
             foreach (XmlNode childNode in section.ChildNodes)
             {
-                string staskID = "", shostIP = "", shostPort = "", sremark = "";
+                string staskID = "", shostIP = "", shostPort = "", sremark = "", sprocessId = "";
                 foreach (XmlAttribute attrib in childNode.Attributes)
                 {
                     if (attrib.Name.Equals("taskID")) staskID = attrib.Value;
                     if (attrib.Name.Equals("hostIP")) shostIP = attrib.Value;
                     if (attrib.Name.Equals("hostPort")) shostPort = attrib.Value;
                     if (attrib.Name.Equals("remark")) sremark = attrib.Value;
-                    if (attrib.Name.Equals("processId")) sremark = attrib.Value;
+                    if (attrib.Name.Equals("processId")) sprocessId = attrib.Value;
                 }
 
-                myConfigObject.Add(new taskItem() { taskID = staskID, hostIP = shostIP, hostPort = shostPort, remark = sremark });
+                myConfigObject.Add(new taskItem() { taskID = staskID, hostIP = shostIP, hostPort = shostPort, remark = sremark, processId = sprocessId });
             }
             return myConfigObject;
         }

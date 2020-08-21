@@ -27,16 +27,18 @@ namespace WinMSFactoryPOP
         NetworkStream recvData;
         SqlConnection conn;
         int interval;
+        int work_order_no;
 
         readonly string STX = ((char)2).ToString();
         readonly string ETX = ((char)3).ToString();
         string RECV_TMP_DATA = string.Empty;
 
-        public ThreadATLTask(SqlConnection _conn, LoggingUtility __loggingUtility, int timer_Read)
+        public ThreadATLTask(SqlConnection _conn, LoggingUtility __loggingUtility, int timer_Read, int work_order_no)
         {
             conn = _conn;
             _loggingUtility = __loggingUtility;
             interval = timer_Read;
+            this.work_order_no = work_order_no;
         }
 
         public void ThreadStart()
@@ -160,8 +162,8 @@ namespace WinMSFactoryPOP
                                     case "reset":
                                         break;
                                     default:
-                                        //IF_SetValue($"[{laData[1]}] |{laData[2]}|{laData[3]}|{laData[4]}|{laData[5]}");
-                                        break;
+										IF_SetValue($"[{laData[1]}] |{laData[2]}|{laData[3]}|{laData[4]}|{laData[5]}");
+										break;
                                 }
 
                                 lsRecvData = lsRecvData.Substring(liCnt + 1);
@@ -214,12 +216,11 @@ namespace WinMSFactoryPOP
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.Connection = conn;
-                        cmd.CommandText = "insert into WorkQtyLog(ProductID, TaskID, Qty, BadQty) values (@ProductID, @TaskID, @Qty, @BadQty)";
+                        cmd.CommandText = "INSERT INTO TBL_RESULT_LOG(WORK_ORDER_NO, RESULT_QTY, DEFECTIVE_QTY) VALUES (@WORK_ORDER_NO, @RESULT_QTY, @DEFECTIVE_QTY)";
 
-                        cmd.Parameters.AddWithValue("@ProductID", int.Parse(arrData[2]));
-                        cmd.Parameters.AddWithValue("@TaskID", int.Parse(arrData[1]));
-                        cmd.Parameters.AddWithValue("@Qty", int.Parse(arrData[3]));
-                        cmd.Parameters.AddWithValue("@BadQty", int.Parse(arrData[4]));
+                        cmd.Parameters.AddWithValue("@WORK_ORDER_NO", work_order_no);
+                        cmd.Parameters.AddWithValue("@RESULT_QTY", int.Parse(arrData[3]));
+                        cmd.Parameters.AddWithValue("@DEFECTIVE_QTY", int.Parse(arrData[4]));
 
                         cmd.ExecuteNonQuery();
                     }

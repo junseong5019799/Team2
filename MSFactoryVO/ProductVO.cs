@@ -34,6 +34,7 @@ namespace MSFactoryVO
         public int RankNum { get; set; }
         public string Note { get; set; }
         public int SellPrice_Code { get; set; }
+        public int Work_order_no { get; set; }
     }
 
     public class ProductPriceManageVO

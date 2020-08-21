@@ -18,6 +18,7 @@ namespace WInServerTask
         string PGM_ID;
         string hostIP;
         int hostPort;
+        string product_id;
         System.Timers.Timer timer1;
         TcpListener listener;
         TcpClient tc;
@@ -34,7 +35,7 @@ namespace WInServerTask
             get { return _logging; }
         }
 
-        public frmServerTask(string pgmID, string host, string port)
+        public frmServerTask(string pgmID, string host, string port, string product_id, string tact_time)
         {
             InitializeComponent();
 
@@ -42,8 +43,9 @@ namespace WInServerTask
             PGM_ID = pgmID;
             hostIP = host;
             hostPort = int.Parse(port);
+            this.product_id = product_id;
 
-            interval = Properties.Settings.Default.interval;
+            interval = int.Parse(tact_time) * 1000;
         }
 
         private void AsyncEchoServer()
@@ -64,7 +66,8 @@ namespace WInServerTask
         private void timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
             //|20200817 12:01:20 Task|7|65|4|0|
-            string msg = $"{STX}|{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}Task|{PGM_ID.Replace("task", "").TrimStart('0')}|{rnd.Next(1, 10)}|{rnd.Next(1, 5)}|{rnd.Next(0, 2)}|{ETX}";
+            int n = rnd.Next(10) == 1 ? 0 : 1;
+            string msg = $"{STX}|{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}Task|{PGM_ID.Replace("task", "").TrimStart('0')}|{product_id}|{n}|{Math.Abs(n - 1)}|{ETX}";
             byte[] buff = Encoding.ASCII.GetBytes(msg);
 
             stream.Write(buff, 0, buff.Length);

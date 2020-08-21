@@ -174,8 +174,6 @@ namespace WinMSFactory
 
 			DataGridViewRow dgvr = dataGridViewControl1.Rows[e.RowIndex];
 
-			MessageBox.Show((Convert.ToDateTime(dgvr.Cells["WORK_DATE"].Value) - DateTime.Now).Days.ToString());
-
 			if ((Convert.ToDateTime(dgvr.Cells["WORK_DATE"].Value) - DateTime.Now).Days > 0)
 			{
 				EmployeeVO employeeVO = this.GetEmployee();

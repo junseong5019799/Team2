@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSFactoryVO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -18,10 +19,8 @@ namespace WinMSFactoryPOP
         DataTable dt;
         DataRow dr;
         int workOrderNo;
-        int task_proc_id;
         taskItem ti;
         BackgroundWorker worker;
-        frmATLTask frm;
 
         public WorkOrderPopupForm()
 		{
@@ -35,12 +34,13 @@ namespace WinMSFactoryPOP
 			dataGridView1.MultiSelect = false;
 			dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 			dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowTemplate.Height = 50;
 
-			// 작업지시 번호, 품명, 작업자, 지시량
-			dataGridView1.AddNewColumns("작업지시 번호", "WORK_ORDER_NO", 200);
-			dataGridView1.AddNewColumns("품명", "PRODUCT_NAME", 250);
-			dataGridView1.AddNewColumns("작업자", "EMPLOYEE_NAME", 150);
-			dataGridView1.AddNewColumns("지시량", "QTY", 120, true, true, false, DataGridViewContentAlignment.MiddleRight);
+            // 작업지시 번호, 품명, 작업자, 지시량
+            dataGridView1.AddNewColumns("작업지시 번호", "WORK_ORDER_NO", 200);
+			dataGridView1.AddNewColumns("품명", "PRODUCT_NAME", 300);
+			dataGridView1.AddNewColumns("작업자", "EMPLOYEE_NAME", 300);
+			dataGridView1.AddNewColumns("지시량", "QTY", 170, true, true, false, DataGridViewContentAlignment.MiddleRight);
 
 			int.TryParse(ConfigurationManager.AppSettings["line_id"], out int line_id);
             DataTable comboDt = new ProcessService().GetProcesses(line_id);
@@ -70,9 +70,10 @@ namespace WinMSFactoryPOP
         {
             try
             {
-                MainForm mainFrm = this.MdiParent as MainForm;
                 string process_id = dr["PROCESS_ID"].ToString();
-                int index = mainFrm.popList.FindIndex(item => item.Item1 == process_id);
+                MainForm mainFrm = this.MdiParent as MainForm;
+                ti = mainFrm.tasks.FirstOrDefault(item => item.processId == process_id);
+                int index = mainFrm.popList.FindIndex(item => item.TaskID == ti.taskID);
 
                 if (index > -1)
                 {
@@ -80,18 +81,10 @@ namespace WinMSFactoryPOP
                     return;
                 }
 
-                ti = mainFrm.tasks.FirstOrDefault(item => item.processId == process_id);
-
-                BackgroundWorker task = new BackgroundWorker();
-                task.RunWorkerCompleted += Task_RunWorkerCompleted;
-                task.RunWorkerAsync();
-
-                worker = new BackgroundWorker();
-                worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-                worker.RunWorkerAsync();
-
-                mainFrm.popList.Add((process_id, task_proc_id, worker, frm));
-            }
+				worker = new BackgroundWorker();
+				worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+				worker.RunWorkerAsync();
+			}
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
@@ -100,7 +93,7 @@ namespace WinMSFactoryPOP
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -112,13 +105,15 @@ namespace WinMSFactoryPOP
             dr = dt.AsEnumerable().FirstOrDefault(item => Convert.ToInt32(item["WORK_ORDER_NO"]) == workOrderNo);
         }
 
-        private void Task_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            string path = $"WinServerTask{ti.taskID.Replace("task", "")}.exe";
+            MainForm mf = this.MdiParent as MainForm;
+            string path = $"WInServerTask{ti.taskID.Replace("task", "")}.exe";
+            int task_proc_id = 0;
 
             try
             {
-                Process proc = Process.Start(path, $"{ti.taskID} {ti.hostIP} {ti.hostPort} {dr["PRODUCT_ID"]}"); // 던질 파라미터
+                Process proc = Process.Start(path, $"{ti.taskID} {ti.hostIP} {ti.hostPort} {dr["PRODUCT_ID"]} {dr["PRODUCT_TACT_TIME"]}"); // 던질 파라미터
                 proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 task_proc_id = proc.Id;
             }
@@ -131,13 +126,34 @@ namespace WinMSFactoryPOP
                 }
                 MessageBox.Show(err.Message);
             }
-        }
 
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            frm = new frmATLTask(ti.taskID, ti.hostIP, ti.hostPort);
+            frmATLTask frm = new frmATLTask(ti.taskID, ti.hostIP, ti.hostPort, workOrderNo);
             frm.Show();
             frm.Hide();
+
+            mf.popList.Add(new POPItem
+            {
+                TaskID = ti.taskID,
+                Task_proc_id = task_proc_id,
+                Worker = worker,
+                Frm = frm,
+                Work_order_no = Convert.ToInt32(dr["WORK_ORDER_NO"]),
+                Employee_name = dr["EMPLOYEE_NAME"].ToString(),
+                Product_name = dr["PRODUCT_NAME"].ToString(),
+                Qty = Convert.ToInt32(dr["QTY"]),
+                Process_name = dr["PROCESS_NAME"].ToString()
+            });
+
+            PopForm popFrm = (this.MdiParent as MainForm).popFrm;
+
+            if (popFrm != null)
+                frm.ReadData += popFrm.ReadDataDisplay;
         }
-	}
+
+        public void CloseFrm(frmATLTask frm)
+        {
+			frm.bExit = true;
+			frm.Close();
+		}
+    }
 }

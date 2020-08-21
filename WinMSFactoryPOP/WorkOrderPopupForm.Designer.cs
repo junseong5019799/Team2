@@ -48,6 +48,7 @@
 			// 
 			// dateTimePicker1
 			// 
+			this.dateTimePicker1.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
 			this.dateTimePicker1.Location = new System.Drawing.Point(477, 36);
 			this.dateTimePicker1.Name = "dateTimePicker1";
@@ -56,35 +57,42 @@
 			// 
 			// button3
 			// 
+			this.button3.BackColor = System.Drawing.Color.LightGray;
 			this.button3.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button3.Location = new System.Drawing.Point(5, 612);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(213, 73);
 			this.button3.TabIndex = 2;
 			this.button3.Text = "닫기";
-			this.button3.UseVisualStyleBackColor = true;
+			this.button3.UseVisualStyleBackColor = false;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// button2
 			// 
+			this.button2.BackColor = System.Drawing.Color.LightBlue;
 			this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button2.Location = new System.Drawing.Point(5, 103);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(213, 73);
 			this.button2.TabIndex = 1;
 			this.button2.Text = "시작";
-			this.button2.UseVisualStyleBackColor = true;
+			this.button2.UseVisualStyleBackColor = false;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// button1
 			// 
+			this.button1.BackColor = System.Drawing.Color.LightGray;
 			this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button1.Location = new System.Drawing.Point(5, 30);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(213, 73);
 			this.button1.TabIndex = 0;
 			this.button1.Text = "조회";
-			this.button1.UseVisualStyleBackColor = true;
+			this.button1.UseVisualStyleBackColor = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// panel1
@@ -145,11 +153,13 @@
 			// 
 			// dataGridView1
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView1.ColumnHeadersHeight = 30;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 161);
 			this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
 			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowHeadersWidth = 50;
 			this.dataGridView1.RowTemplate.Height = 23;
 			this.dataGridView1.Size = new System.Drawing.Size(1011, 588);
 			this.dataGridView1.TabIndex = 9;
@@ -172,22 +182,23 @@
 			// 
 			// comboBox1
 			// 
+			this.comboBox1.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Location = new System.Drawing.Point(107, 39);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(249, 29);
+			this.comboBox1.Size = new System.Drawing.Size(249, 32);
 			this.comboBox1.TabIndex = 6;
 			// 
 			// WorkOrderPopupForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1234, 749);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.panel1);
-			this.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.Margin = new System.Windows.Forms.Padding(5);
 			this.Name = "WorkOrderPopupForm";
 			this.Text = "작업 지시";

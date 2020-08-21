@@ -58,5 +58,13 @@ namespace WinMSFactoryPOP.Services
 				return workOrderDAC.GetPOPWO(date, process_id);
 			}
 		}
+
+		public bool SaveResultUse(WorkOrderVO workOrderVO)
+		{
+			using (WorkOrderDAC workOrderDAC = new WorkOrderDAC())
+			{
+				return workOrderDAC.SaveResultUse(workOrderVO);
+			}
+		}
 	}
 }
