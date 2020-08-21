@@ -286,19 +286,19 @@ namespace WinMSFactory
                 cnt++;
             }
 
-            ToolStripButton tsb = new ToolStripButton();
-            tsb.Text = "바코드 설정";
-            tsb.Click += (sender, e) =>
-            {
-                BarcodePortSettingPopForm frm = new BarcodePortSettingPopForm();
-                frm.ShowDialog();
+            //ToolStripButton tsb = new ToolStripButton();
+            //tsb.Text = "바코드 설정";
+            //tsb.Click += (sender, e) =>
+            //{
+            //    BarcodePortSettingPopForm frm = new BarcodePortSettingPopForm();
+            //    frm.ShowDialog();
 
-                if (Properties.Settings.Default.PortName.Length > 0)
-                {
-                    SerialPortConnection();
-                }
-            };
-            tsMenu.Items.Add(tsb);
+            //    if (Properties.Settings.Default.PortName.Length > 0)
+            //    {
+            //        SerialPortConnection();
+            //    }
+            //};
+            //tsMenu.Items.Add(tsb);
         }
 
 		private void timer1_Tick(object sender, EventArgs e)
