@@ -19,6 +19,8 @@ namespace WinMSFactory
         OrderService orderService = new OrderService();
         string orderString = "";
         string productString = "";
+        int order_no = 0;
+        int product_id = 0;
 
         public WareHouseWaitForm()
         {
@@ -79,13 +81,14 @@ namespace WinMSFactory
                 orderString = str[0];
                 productString = str[1];
 
-                for (int i = 0; i < dgv.RowCount; i++)
+                for (int i = 0; i < dgvDetail.RowCount; i++)
                 {
-                    if(dgv.Rows[i].Cells[0].Value.ToString() == orderString)
+                    if(dgvDetail.Rows[i].Cells[1].Value.ToString() == orderString)
                     {
-                        if(dgv.Rows[i].Cells[3].Value.ToString() == productString)
-                        {
-                            dgv.Rows[i].Selected = true;
+                        if(dgvDetail.Rows[i].Cells[4].Value.ToString() == productString)
+                        {                            
+                            dgvDetail.Rows[i].Cells[0].Value = true;
+                            dgvDetail.Rows[i].Selected = true;
                             btnWarehouse.PerformClick();                            
                         }
                     }                    
@@ -111,8 +114,8 @@ namespace WinMSFactory
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
-            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[3].Value);
+            order_no = Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value);
+            product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[3].Value);
             DataTable dt = orderService.GetWareHouseDetail(order_no, product_id);
             dgvDetail.DataSource = dt;
         }
@@ -186,9 +189,6 @@ namespace WinMSFactory
 
             for (int i = 0; i < dgvDetail.RowCount; i++)
             {
-                int order_no = 0;
-                int product_id = 0;
-
                 if (dgvDetail.Rows[i].Cells[0].Value != null)
                 {
                     bool IsCheck = (bool)dgvDetail.Rows[i].Cells[0].Value;
@@ -210,12 +210,10 @@ namespace WinMSFactory
                             frm.Product_quantity = Convert.ToInt32(dgvDetail.Rows[i].Cells["order_request_quantity"].Value);
 
                             if (frm.ShowDialog() == DialogResult.OK)
-                            {
-                                order_no = Convert.ToInt32(dgv.Rows[i].Cells["order_no"].Value);
-                                product_id = Convert.ToInt32(dgv.Rows[i].Cells[3].Value);                                                               
-                                
+                            {                                
+                                dgvDetail.DataSource = orderService.GetWareHouseDetail(order_no, product_id);
                             }
-                            dgvDetail.DataSource = orderService.GetWareHouseDetail(order_no, product_id);
+                            
                         }
                     }
                 }

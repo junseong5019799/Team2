@@ -43,6 +43,36 @@ namespace WebMSFactory
             }
         }
 
+        public List<PriceProductList> TotalProducts(int Year)
+        {
+            try
+            {
+                string connStr = WebConfigurationManager.ConnectionStrings["DBSettings"].ConnectionString;
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = @"SELECT TOP 3 PRODUCT_NAME, SUM(D.RELEASE_QUANTITY) PRODUCT_COUNT 
+                                   FROM TBL_RELEASE_DETAIL D INNER JOIN TBL_PRODUCT P ON D.PRODUCT_ID = P.PRODUCT_ID						  
+                                   WHERE YEAR(RELEASE_DATE) = @YEAR AND RELEASE_STATUS NOT IN('출고취소', '출고예정')
+                                   GROUP BY D.RELEASE_QUANTITY, PRODUCT_NAME
+                                   ORDER BY D.RELEASE_QUANTITY DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Year", Year);
+                        return SqlHelper.DataReaderMapToList<PriceProductList>(cmd.ExecuteReader());
+                    }
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public List<PriceProductList> TotalSales(int Year)
         {
             try

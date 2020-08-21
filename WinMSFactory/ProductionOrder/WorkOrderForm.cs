@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraRichEdit.Commands;
+﻿using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit.Commands;
 using MSFactoryVO;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using WinMSFactory.Barcode;
 using WinMSFactory.Services;
 
 namespace WinMSFactory
@@ -117,6 +119,21 @@ namespace WinMSFactory
 				catch (Exception err)
 				{
 					MessageBox.Show(err.Message);
+				}
+			}
+		}
+
+		private void Barcode(object sender, EventArgs e)
+		{
+			if (((MainForm)this.MdiParent).ActiveMdiChild == this)
+			{
+				dt = workOrderService.CheckBarcode();
+				BarcodeOrder rpt = new BarcodeOrder();
+				rpt.DataSource = dt;
+
+				using (ReportPrintTool printTool = new ReportPrintTool(rpt))
+				{
+					printTool.ShowRibbonPreviewDialog();
 				}
 			}
 		}

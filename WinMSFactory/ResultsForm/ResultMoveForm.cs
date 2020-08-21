@@ -15,6 +15,7 @@ namespace WinMSFactory
     {
         StorageService service = new StorageService();
         int SelectStorage;
+        int product_id = 0;
 
         public ResultMoveForm()
         {
@@ -63,7 +64,7 @@ namespace WinMSFactory
         //재고 detail 보여주기 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
+            product_id = Convert.ToInt32(dgv.SelectedRows[0].Cells[1].Value);
                                   
             dgv2.DataSource = service.GetStorageDetailList(product_id);
 
@@ -116,7 +117,7 @@ namespace WinMSFactory
             frm.ID = list;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                dgv2.DataSource = service.SelectProductAll(SelectStorage);
+                dgv2.DataSource = service.GetStorageDetailList(product_id);
             }
         }
     }

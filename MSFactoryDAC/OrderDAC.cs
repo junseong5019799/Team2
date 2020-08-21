@@ -703,7 +703,8 @@ namespace MSFactoryDAC
                             		,od.product_id,product_name, od.order_no, order_request_quantity  
                             FROM TBL_ORDER_DETAIL od left outer join TBL_PRODUCT p on od.product_id = p.product_id
                             left outer  join TBL_STOCK s on s.product_id = p.product_id
-                            WHERE order_status = '발주중'";
+                            WHERE order_status = '발주중'
+                            GROUP BY  od.product_id, product_name, od.order_no, order_request_quantity  ";
 
             DataTable dt = new DataTable();
 

@@ -8,7 +8,8 @@
 {
     - @ViewBag.Title
 }
-
+<!-- Custom styles for this template-->
+<link href="~/css/sb-admin-2.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
 </div>
@@ -16,13 +17,13 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
-            
+
             <form style="padding-left:500px" action="~/Order/OrderList">
-                일자로 검색 : 
+                일자로 검색 :
                 <input type="date" name="StartDate">
                 <input type="date" name="EndDate">
                 <input type='submit' value='검색'>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                제품명으로 검색 : 
+                제품명으로 검색 :
                 <input type="text" name="ProductName" />
                 <input type='submit' value='검색'>
             </form>
@@ -44,14 +45,14 @@
                     <tbody>
                         @foreach (var prod in Model.OrderLists)
                         {
-                        <tr role="row">
-                            <td>@prod.Order_No</td>
-                            <td>@prod.Product_Name</td>
-                            <td>@prod.Company_Name</td>
-                            <td>@prod.Order_Request_Quantity_string</td>
-                            <td>@prod.Order_Status</td>
-                            <td>@prod.Order_Request_Date_String</td>
-                        </tr>
+                            <tr role="row">
+                                <td>@prod.Order_No</td>
+                                <td>@prod.Product_Name</td>
+                                <td>@prod.Company_Name</td>
+                                <td>@prod.Order_Request_Quantity_string</td>
+                                <td>@prod.Order_Status</td>
+                                <td>@prod.Order_Request_Date_String</td>
+                            </tr>
                         }
                     </tbody>
                 </table>

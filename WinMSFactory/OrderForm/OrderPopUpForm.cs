@@ -59,10 +59,10 @@ namespace WinMSFactory.OrderForm
             dgvOrder.AddNewColumns("자재", "_product_name", 120, true);
             dgvOrder.AddNewColumns("자재 단가", "material_current_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("소요량", "order_request_quantity", 80, true, false, false, RightAlign);
-            dgvOrder.AddNewColumns("발주제안 수량", "order_request_quantity", 100, true, false, false, RightAlign);            
+            dgvOrder.AddNewColumns("발주제안 수량", "order_quantity", 100, true, false, false, RightAlign);            
             dgvOrder.AddNewColumns("발주 가격", "order_product_price", 100, true, false, false, RightAlign);
             dgvOrder.AddNewColumns("재고량", "stock_quantity", 100, true, false, false, RightAlign);
-            dgvOrder.AddNewColumns("납기일", "due_date", 100, true);
+            dgvOrder.AddNewColumns("납기일", "due_date", 100, false);
            
             DataTable dt = orderService.GetOrderPlanList(release_no);
             dgvOrder.DataSource = dt;
@@ -184,9 +184,9 @@ namespace WinMSFactory.OrderForm
             for (int i = 0; i < dgvOrder.RowCount; i++)
             {
                 int price = Convert.ToInt32(dgvOrder.Rows[i].Cells[8].Value);
-                int quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells[10].Value);
+                int quantity = Convert.ToInt32(dgvOrder.Rows[i].Cells["order_quantity"].Value);
 
-                dgvOrder.Rows[i].Cells[11].Value = price * quantity;
+                dgvOrder.Rows[i].Cells["order_product_price"].Value = price * quantity;
             }
         }
     }

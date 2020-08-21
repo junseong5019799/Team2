@@ -25,5 +25,6 @@ namespace WebMSFactory
         public int Sell_Price_Code { get; set; }
         public int Total_Price { get; set; }
         public int Mon { get; set; } // 차트의 월별 표시
+        public int Product_Count { get; set; }
     }
 }
