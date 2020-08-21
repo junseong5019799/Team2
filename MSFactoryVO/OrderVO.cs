@@ -21,6 +21,7 @@ namespace MSFactoryVO
         public int product_id { get; set; }
         public DateTime order_request_date { get; set; }
         public int order_request_quantity { get; set; }
+        public int order_quantity { get; set; }
         public string order_status { get; set; }
         public int material_current_price { get; set; }
         public int sell_current_price { get; set; }
