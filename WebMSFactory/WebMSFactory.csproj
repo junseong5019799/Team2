@@ -91,6 +91,7 @@
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="js\adminlte.min.js" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />
     <Content Include="js\demo\chart-pie-demo.js" />
@@ -118,6 +119,7 @@
     <Content Include="vendor\chart.js\Chart.bundle.min.js" />
     <Content Include="vendor\chart.js\Chart.js" />
     <Content Include="vendor\chart.js\Chart.min.js" />
+    <Content Include="vendor\chart.js\demo.js" />
     <Content Include="vendor\datatables\dataTables.bootstrap4.css" />
     <Content Include="vendor\datatables\dataTables.bootstrap4.js" />
     <Content Include="vendor\datatables\dataTables.bootstrap4.min.css" />
@@ -1951,7 +1953,6 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\_viewstart.cshtml" />
     <Content Include="Views\MSFactory\Index.cshtml" />
-    <Content Include="Views\MSFactory\Login.cshtml" />
     <Content Include="Views\AllProducts\Search.cshtml" />
     <Content Include="Views\UnitPrice\ProductPrice.cshtml" />
     <Content Include="Views\UnitPrice\SellPrice.cshtml" />

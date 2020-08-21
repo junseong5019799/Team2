@@ -10,5 +10,9 @@ namespace WebMSFactory.Models
         public string DataString { get; set; }
         public string MainString { get; set; }
         public int Year { get; set; }
+        
+        // 도넛 차트
+        public string DoughnutDataString { get; set; }
+        public string Product_Count { get; set; }
     }
 }
