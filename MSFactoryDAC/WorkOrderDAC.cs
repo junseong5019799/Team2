@@ -176,12 +176,13 @@ namespace MSFactoryDAC
 
 		public DataTable CheckBarcode()
 		{
-			string sql = @" SELECT work_date, product_name, employee_name, work_order_quantity
+			string sql = @" SELECT work_order_no, work_date, product_name, employee_name, work_order_quantity
 							FROM 
-							(SELECT work_date, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = W.product_id) product_name
-								   ,(SELECT employee_name  FROM TBL_EMPLOYEE WHERE worker_id = W.worker_id) employee_name
-								   , work_order_quantity
-							 FROM TBL_WORK_ORDER W
+							(SELECT work_order_no, work_date
+								  ,(SELECT product_name FROM TBL_PRODUCT WHERE product_id = W.product_id) product_name
+								  ,(SELECT employee_name FROM TBL_EMPLOYEE WHERE P.employee_id = employee_id) employee_name
+								  , work_order_quantity
+							 FROM TBL_WORK_ORDER W INNER JOIN TBL_PROCESS_WORKER P ON W.worker_id = P.worker_id 
 							) A";
 
 			DataTable dt = new DataTable();
