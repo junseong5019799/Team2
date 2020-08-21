@@ -305,7 +305,7 @@ namespace WinMSFactory
 		{
             ToolStripItem tsi;
 
-            if (index < tsMenu.Items.Count - 1 && (tsi = tsMenu.Items[index]).Tag.ToInt() == 0)
+            if (index <= tsMenu.Items.Count - 1 && (tsi = tsMenu.Items[index]).Tag.ToInt() == 0)
             {
                 tsi.Visible = !tsi.Visible;
                 index++;
