@@ -138,7 +138,7 @@ namespace MSFactoryDAC
 								, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = WO.FIRST_REGIST_EMPLOYEE) FIRST_REGIST_EMPLOYEE_NAME
 								, WO.FINAL_REGIST_TIME, WO.FINAL_REGIST_EMPLOYEE
 								, (SELECT EMPLOYEE_NAME FROM TBL_EMPLOYEE WHERE EMPLOYEE_ID = WO.FINAL_REGIST_EMPLOYEE ) FINAL_REGIST_EMPLOYEE_NAME
-								, WO.WORKER_ID, E.EMPLOYEE_NAME, WO.PRODUCT_ID, PD.PRODUCT_NAME, WO.WORK_ORDER_QUANTITY, PC.PROCESS_ID, PC.PROCESS_NAME, L.LINE_ID, L.LINE_NAME, F.FACTORY_ID, F.FACTORY_NAME
+								, WO.WORKER_ID, E.EMPLOYEE_NAME, WO.PRODUCT_ID, PD.PRODUCT_NAME, PD.PRODUCT_TACT_TIME, WO.WORK_ORDER_QUANTITY, PC.PROCESS_ID, PC.PROCESS_NAME, L.LINE_ID, L.LINE_NAME, F.FACTORY_ID, F.FACTORY_NAME
 						   FROM TBL_WORK_ORDER WO
 								INNER JOIN TBL_PROCESS_WORKER PW
 									ON WO.WORKER_ID = PW.WORKER_ID
@@ -153,7 +153,6 @@ namespace MSFactoryDAC
 								INNER JOIN TBL_PRODUCT PD
 									ON WO.PRODUCT_ID = PD.PRODUCT_ID
 						   WHERE NOT EXISTS (SELECT 1 FROM TBL_RESULT_LOG WHERE WORK_ORDER_NO = WO.WORK_ORDER_NO)		
-						   AND DATEDIFF(DAY, WORK_DATE, GETDATE()) <= 0
 						   AND WORK_DATE = @WORK_DATE";
 
 			if (process_id > 0)
@@ -173,6 +172,29 @@ namespace MSFactoryDAC
 			da.Fill(dt);
 
 			return dt;
+		}
+
+		public DataTable CheckBarcode()
+		{
+			string sql = @" SELECT work_date, product_name, employee_name, work_order_quantity
+							FROM 
+							(SELECT work_date, (SELECT product_name FROM TBL_PRODUCT WHERE product_id = W.product_id) product_name
+								   ,(SELECT employee_name  FROM TBL_EMPLOYEE WHERE worker_id = W.worker_id) employee_name
+								   , work_order_quantity
+							 FROM TBL_WORK_ORDER W
+							) A";
+
+			DataTable dt = new DataTable();
+
+			using (SqlConnection con = new SqlConnection(this.ConnectionString))
+			{
+				con.Open();
+				SqlDataAdapter da = new SqlDataAdapter(sql, con);
+				da.Fill(dt);
+				con.Close();
+
+				return dt;
+			}
 		}
 	}
 }
