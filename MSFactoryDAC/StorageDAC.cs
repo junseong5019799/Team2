@@ -89,7 +89,7 @@ namespace MSFactoryDAC
                 using (SqlConnection conn = new SqlConnection(this.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"SELECT ISNULL(0, SUM(stock_quantity))
+                    string sql = @"SELECT ISNULL(SUM(stock_quantity), 0)
                                    FROM TBL_STOCK ST 
                                    WHERE product_id = @product_id";
 
